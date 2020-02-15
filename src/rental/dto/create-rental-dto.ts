@@ -37,9 +37,9 @@ export class CreateRentalDto {
   pricing: {
     price: number;
     discounts: {
-      weekly: number,
-      monthly: number,
-    },
+      weekly: number;
+      monthly: number;
+    };
   };
   location: {
     street: string;
