@@ -26,7 +26,7 @@ import { ErrorFilter } from '../common/filters/error.filters';
     AppService,
     // {provide: APP_FILTER, useClass: HttpErrorFilter },
     // {provide: APP_INTERCEPTOR, useClass: LoggingInterceptor},
-    {provide: APP_FILTER, useClass: ErrorFilter},
+    { provide: APP_FILTER, useClass: ErrorFilter },
   ],
 })
 export class AppModule {}
