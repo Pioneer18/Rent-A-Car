@@ -6,6 +6,10 @@ import { UserModule } from '../user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RouterModule } from 'nest-router';
 import { routes} from '../common/routes';
+// import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+// import { HttpErrorFilter } from '../common/filters/httpError.filter';
+// import { ErrorFilter } from 'src/common/filters/error.filter';
+// import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor';
 
 @Module({
   imports: [
