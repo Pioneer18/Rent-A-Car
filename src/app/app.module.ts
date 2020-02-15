@@ -24,8 +24,8 @@ import { LoggingInterceptor } from '../common/interceptors/logging-interceptor';
   controllers: [AppController],
   providers: [
     AppService,
-    {provide: APP_FILTER, useClass: HttpErrorFilter },
-    {provide: APP_INTERCEPTOR, useClass: LoggingInterceptor},
+    { provide: APP_FILTER, useClass: HttpErrorFilter },
+    { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
     { provide: APP_FILTER, useClass: ErrorFilter },
   ],
 })
