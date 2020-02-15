@@ -3,13 +3,26 @@ import { AppController } from './controller/app.controller';
 import { AppService } from './service/app.service';
 import { VehicleModule } from '../vehicle/vehicle.module';
 import { UserModule } from '../user/user.module';
-import { MongooseModule } from '@nestjs/mongoose'
+import { MongooseModule } from '@nestjs/mongoose';
 import { RouterModule } from 'nest-router';
 import { routes} from '../common/routes';
 
 @Module({
-  imports: [AppModule, VehicleModule, UserModule],
+  imports: [
+    AppModule,
+    VehicleModule,
+    UserModule,
+    RouterModule.forRoutes(routes),
+    MongooseModule.forRoot('mongodb://localhost/rent-a-car', {
+      useNewUrlParser: true,
+    }),
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    // {provide: APP_FILTER, useClass: HttpErrorFilter},
+    // {provide: APP_INTERCEPTOR, useClass: LoggingInterceptor},
+    // {provide: APP_FILTER, useClass: ErrorFilter},
+  ],
 })
 export class AppModule {}
