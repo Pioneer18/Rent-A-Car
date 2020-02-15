@@ -5,7 +5,7 @@ This project is a demonstration of Full Stack development skills; ReactJS, TypeS
 * ReactJs
 * TypeScript
 * NodeJS
-* ExpressJS
+* NestJs
 * MongoDB
 * MySQL
 * Redis
