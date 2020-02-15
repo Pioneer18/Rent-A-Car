@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './controller/app.controller';
 import { AppService } from './service/app.service';
-import { VehicleModule } from '../vehicle/vehicle.module';
+import { RentalModule } from '../rental/rental.module';
 import { UserModule } from '../user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RouterModule } from 'nest-router';
@@ -14,7 +14,7 @@ import { LoggingInterceptor } from '../common/interceptors/logging-interceptor';
 @Module({
   imports: [
     AppModule,
-    VehicleModule,
+    RentalModule,
     UserModule,
     RouterModule.forRoutes(routes),
     MongooseModule.forRoot('mongodb://localhost/rent-a-car', {

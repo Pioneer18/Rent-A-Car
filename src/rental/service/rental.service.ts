@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { CreateRentalDto } from '../dto/create-rental-dto';
 
 @Injectable()
-export class VehicleService {
+export class RentalService {
   constructor() {
     //
   }
 
   /**
    * Create Rental:
-   * creare a new vehicle rental listing
+   * create a new vehicle rental listing
    */
   async createRental(rental: CreateRentalDto) {
     //
@@ -26,8 +26,8 @@ export class VehicleService {
    */
 
   /**
-   * Edit Vehicle Details:
-   * edit the details of the vehicle (# of seats, color, etc.)
+   * Edit Rental Details:
+   * edit the details of the Rental (# of seats, color, etc.)
    */
 
   /**

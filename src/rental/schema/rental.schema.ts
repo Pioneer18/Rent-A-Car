@@ -6,11 +6,11 @@ const ObjectID = mongoose.ObjectId;
 export const RentalSchema = new Schema({
   rentalId: ObjectID,
   rentalTitle: String,
-  vehicleDescription: String,
+  RentalDescription: String,
   address: String,
   loc: {
-      type: String,
-      coordinates: Object,
+    type: String,
+    coordinates: Object,
   },
   specs: {
     odometer: Number,
@@ -43,10 +43,10 @@ export const RentalSchema = new Schema({
     rentMaxDuration: Number,
   },
   pricing: {
-    price: {type: Number/*, default: DEFAULT_PRICE*/},
+    price: { type: Number /*, default: DEFAULT_PRICE*/ },
     discounts: {
-        weekly: {type: Number, default: null},
-        monthly: {type: Number, default: null},
+      weekly: { type: Number, default: null },
+      monthly: { type: Number, default: null },
     },
   },
   listed: Boolean,

@@ -1,9 +1,9 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { VehicleService } from '../service/vehicle.service';
+import { RentalService } from '../service/rental.service';
 
-@Controller('vehicle')
-export class VehicleController {
-  constructor(private readonly vehicleService: VehicleService) {}
+@Controller('Rental')
+export class RentalController {
+  constructor(private readonly RentalService: RentalService) {}
 
   /**
    * Create Rental:
@@ -21,8 +21,8 @@ export class VehicleController {
    */
 
   /**
-   * Edit Vehicle Details:
-   * edit the details of the vehicle (# of seats, color, etc.)
+   * Edit Rental Details:
+   * edit the details of the Rental (# of seats, color, etc.)
    */
 
   /**

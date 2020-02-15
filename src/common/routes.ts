@@ -1,11 +1,11 @@
 import { Routes } from 'nest-router';
-import { VehicleModule } from '../vehicle/vehicle.module';
+import { RentalModule } from '../rental/rental.module';
 import { UserModule } from '../user/user.module';
 
 export const routes: Routes = [
   {
     path: '/v1',
-    module: VehicleModule,
+    module: RentalModule,
   },
   {
     path: '/v1',
