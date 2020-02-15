@@ -23,13 +23,6 @@ export const RentalSchema = new Schema({
     model: String,
     style: String,
     color: String,
-  },
-  registration: {
-    vin: Number,
-    licensePlate: String,
-    state: String,
-  },
-  features: {
     numOfSeats: Number,
     numDoors: Number,
     driveAssist: Boolean,
@@ -37,6 +30,12 @@ export const RentalSchema = new Schema({
     bluetooth: Boolean,
     sunRoof: Boolean,
   },
+  registration: {
+    vin: Number,
+    licensePlate: String,
+    state: String,
+  },
+  features: [String],
   scheduling: {
     requiredNotice: Number,
     rentMinDuration: Number,
@@ -49,5 +48,6 @@ export const RentalSchema = new Schema({
       monthly: { type: Number, default: null },
     },
   },
+  photos: [File],
   listed: Boolean,
 });

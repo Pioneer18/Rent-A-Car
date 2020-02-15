@@ -14,13 +14,8 @@ export class CreateRentalDto {
     gasGrade: string;
     description: string;
     model: string;
-  };
-  registration: {
-    vin: number;
-    licensePlate: string;
-    state: string;
-  };
-  features: {
+    style: string;
+    color: string;
     numOfSeats: number;
     numDoors: number;
     driveAssist: boolean;
@@ -28,16 +23,29 @@ export class CreateRentalDto {
     bluetooth: boolean;
     sunRoof: boolean;
   };
-  schedule: {
+  registration: {
+    vin: number;
+    licensePlate: string;
+    state: string;
+  };
+  features: [string];
+  scheduling: {
     requiredNotice: number;
     rentMinDuration: number;
     rentMaxDuration: number;
+  };
+  pricing: {
+    price: number;
+    discounts: {
+      weekly: number,
+      monthly: number,
+    },
   };
   location: {
     street: string;
     city: string;
     zip: number;
   };
-  photos: [];
+  photos: [File];
   listed: boolean;
 }
