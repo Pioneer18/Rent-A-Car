@@ -5,10 +5,10 @@ import { VehicleModule } from '../vehicle/vehicle.module';
 import { UserModule } from '../user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RouterModule } from 'nest-router';
-import { routes} from '../common/routes';
-// import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-// import { HttpErrorFilter } from '../common/filters/httpError.filter';
-// import { ErrorFilter } from 'src/common/filters/error.filter';
+import { routes } from '../common/routes';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+// import { HttpErrorFilter } from '../common/filters/http-error.filter';
+import { ErrorFilter } from '../common/filters/error.filters';
 // import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor';
 
 @Module({
@@ -24,9 +24,9 @@ import { routes} from '../common/routes';
   controllers: [AppController],
   providers: [
     AppService,
-    // {provide: APP_FILTER, useClass: HttpErrorFilter},
+    // {provide: APP_FILTER, useClass: HttpErrorFilter },
     // {provide: APP_INTERCEPTOR, useClass: LoggingInterceptor},
-    // {provide: APP_FILTER, useClass: ErrorFilter},
+    {provide: APP_FILTER, useClass: ErrorFilter},
   ],
 })
 export class AppModule {}
