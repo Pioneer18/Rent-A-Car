@@ -9,7 +9,7 @@ import { routes } from '../common/routes';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpErrorFilter } from '../common/filters/http-error.filter';
 import { ErrorFilter } from '../common/filters/error.filters';
-// import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor';
+import { LoggingInterceptor } from '../common/interceptors/logging-interceptor';
 
 @Module({
   imports: [
@@ -25,7 +25,7 @@ import { ErrorFilter } from '../common/filters/error.filters';
   providers: [
     AppService,
     {provide: APP_FILTER, useClass: HttpErrorFilter },
-    // {provide: APP_INTERCEPTOR, useClass: LoggingInterceptor},
+    {provide: APP_INTERCEPTOR, useClass: LoggingInterceptor},
     { provide: APP_FILTER, useClass: ErrorFilter },
   ],
 })
