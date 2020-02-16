@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { RentalService } from '../service/rental.service';
 import { CreateRentalDto } from '../dto/create-rental-dto';
 
-@Controller('Rental')
+@Controller('rental')
 export class RentalController {
   constructor(private readonly rentalService: RentalService) {}
 
@@ -31,7 +31,7 @@ export class RentalController {
    * Edit Pricing:
    * edit the rental price
    */
-  @Post()
+  @Post('edit-price')
   // @UsePipes(new PricingPipe())
   // @UsePipes(new JoiValidationPipe(PricingValidation))
   async editPricing(@Body() editPricingDto: any /*EditPricingDto*/) {
@@ -42,6 +42,7 @@ export class RentalController {
    * Edit Rental Details:
    * edit the details of the Rental (# of seats, color, etc.)
    */
+  @Post('edit-details')
   async editDetails(@Body() editDetailsDto: any /*EdiDetailsDto*/) {
     return await this.rentalService.editDetails(editDetailsDto);
   }
@@ -50,6 +51,7 @@ export class RentalController {
    * Schedule Unavailability
    * set a period of unavailability for the rental (e.g. mon - wed  )
    */
+  @Post('schedule-unavailability')
   async scheduleUnavailability(@Body() scheduleUnavailabilityDto: any /*ScheduleUnavailabilityDto*/) {
     return await this.rentalService.scheduleUnavailability(scheduleUnavailabilityDto);
   }
