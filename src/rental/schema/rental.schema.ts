@@ -6,7 +6,7 @@ const ObjectID = mongoose.ObjectId;
 export const RentalSchema = new Schema({
   rentalId: ObjectID,
   rentalTitle: String,
-  RentalDescription: String,
+  rentalDescription: String,
   address: String,
   loc: {
     type: String,
