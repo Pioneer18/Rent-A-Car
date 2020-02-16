@@ -4,7 +4,7 @@ import { CreateRentalDto } from '../dto/create-rental-dto';
 
 @Controller('Rental')
 export class RentalController {
-  constructor(private readonly rentalService: RentalService) { }
+  constructor(private readonly rentalService: RentalService) {}
 
   /**
    * Create Rental:

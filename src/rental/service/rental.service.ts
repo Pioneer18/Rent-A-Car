@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRentalDto } from '../dto/create-rental-dto';
 import { geoUrlApi } from '../utils/geo-url-api';
+import { GeoInterface } from '../interface/geo.interface';
+import { mapNewRental } from '../utils/map-new-rental';
+import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 
 @Injectable()
 export class RentalService {
@@ -14,8 +17,8 @@ export class RentalService {
    */
   async createRental(rental: CreateRentalDto) {
     try {
-      const geo = await geoUrlApi(rental);
-      // const data: NewVehicle
+      const geo: GeoInterface = await geoUrlApi(rental);
+      const data: MappedRentalInterface = await mapNewRental(rental, geo);
     } catch (err) {
       throw new Error(err);
     }
