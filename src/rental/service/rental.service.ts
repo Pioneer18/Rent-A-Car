@@ -4,12 +4,15 @@ import { geoUrlApi } from '../utils/geo-url-api';
 import { GeoInterface } from '../interface/geo.interface';
 import { mapNewRental } from '../utils/map-new-rental';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { RentalInterface } from '../interface/rental.interface';
 
 @Injectable()
 export class RentalService {
-  constructor() {
-    //
-  }
+  constructor(
+    @InjectModel('Rental') private readonly rentalModel: Model<RentalInterface>,
+  ) { }
 
   /**
    * Create Rental:
@@ -19,6 +22,9 @@ export class RentalService {
     try {
       const geo: GeoInterface = await geoUrlApi(rental);
       const data: MappedRentalInterface = await mapNewRental(rental, geo);
+      const document = new this.rentalModel(data);
+      await document.save();
+      return document;
     } catch (err) {
       throw new Error(err);
     }
