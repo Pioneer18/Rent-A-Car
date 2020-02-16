@@ -1,9 +1,10 @@
 import { Controller, Post, Body, Get, Param, UsePipes } from '@nestjs/common';
 import { RentalService } from '../service/rental.service';
-import { CreateRentalDto } from '../dto/create-rental-dto';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
+import { JoiValidationPipe } from 'src/common/pipes/joi-validation.pipe';
+import { CreateRentalValidation } from '../schema/validation/create-rental-validation.schema';
 
 @Controller('rental')
 export class RentalController {
@@ -14,7 +15,7 @@ export class RentalController {
    * create a new vehcile rental listing
    */
   @Post()
-  // @UsePipes(new JoiValidationPipe(CreatRentalValidation))
+  @UsePipes(new JoiValidationPipe(CreateRentalValidation))
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe())
   async createRental(@Body() rental: MappedRentalInterface) {
