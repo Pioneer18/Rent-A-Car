@@ -19,11 +19,15 @@ export const geoUrlApi = async rental => {
     `${geoUrl}?app_id=${appId}&app_code=${appCode}&searchtext=${location}`,
   );
   // grab the coordinates
-  const rawCoordinates = response.data.Response.View[0].Result[0].Location.DisplayPosition;
+  const rawCoordinates =
+    response.data.Response.View[0].Result[0].Location.DisplayPosition;
   // push rawCoordinates to an array
   // coords.push(rawCoordinates.Latitude);
   // coords.push(rawCoordinates.Longitude);
-  const coords: [number, number] = [ rawCoordinates.Latitude, rawCoordinates.Longitude];
+  const coords: [number, number] = [
+    rawCoordinates.Latitude,
+    rawCoordinates.Longitude,
+  ];
 
   return { coords, address };
 };

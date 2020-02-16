@@ -6,14 +6,16 @@ import { RentalSchema } from './schema/rental.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema}]),
+    MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
   ],
   controllers: [RentalController],
   providers: [RentalService],
-  exports: [MongooseModule.forFeature([{name: 'Rental', schema: RentalSchema}])],
+  exports: [
+    MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
+  ],
 })
 export class RentalModule {
   constructor() {
-    RentalSchema.index({'locationAndDelivery.loc': '2dsphere'});
+    RentalSchema.index({ 'locationAndDelivery.loc': '2dsphere' });
   }
 }

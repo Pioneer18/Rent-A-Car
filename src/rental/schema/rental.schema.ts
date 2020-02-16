@@ -48,6 +48,6 @@ export const RentalSchema = new Schema({
       monthly: { type: Number, default: null },
     },
   },
-  photos: [File],
+  photos: [String],
   listed: Boolean,
 });

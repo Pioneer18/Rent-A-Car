@@ -12,7 +12,7 @@ import { RentalInterface } from '../interface/rental.interface';
 export class RentalService {
   constructor(
     @InjectModel('Rental') private readonly rentalModel: Model<RentalInterface>,
-  ) { }
+  ) {}
 
   /**
    * Create Rental:

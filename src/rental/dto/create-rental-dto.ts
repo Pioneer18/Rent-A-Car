@@ -46,6 +46,6 @@ export class CreateRentalDto {
     city: string;
     zip: number;
   };
-  photos: [File];
+  photos: [string];
   listed: boolean;
 }
