@@ -9,7 +9,7 @@ export const RentalSchema = new Schema({
   rentalDescription: String,
   address: String,
   loc: {
-    type: String,
+    type: { type: String },
     coordinates: Object,
   },
   specs: {

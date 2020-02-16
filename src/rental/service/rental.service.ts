@@ -1,8 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateRentalDto } from '../dto/create-rental-dto';
-import { geoUrlApi } from '../utils/geo-url-api';
-import { GeoInterface } from '../interface/geo.interface';
-import { mapNewRental } from '../utils/map-new-rental';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -18,11 +14,9 @@ export class RentalService {
    * Create Rental:
    * create a new vehicle rental listing
    */
-  async createRental(rental: CreateRentalDto) {
+  async createRental(rental: MappedRentalInterface) {
     try {
-      const geo: GeoInterface = await geoUrlApi(rental);
-      const data: MappedRentalInterface = await mapNewRental(rental, geo);
-      const document = new this.rentalModel(data);
+      const document = await new this.rentalModel(rental);
       await document.save();
       return document;
     } catch (err) {

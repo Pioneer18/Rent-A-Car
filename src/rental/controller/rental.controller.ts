@@ -1,6 +1,9 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UsePipes } from '@nestjs/common';
 import { RentalService } from '../service/rental.service';
 import { CreateRentalDto } from '../dto/create-rental-dto';
+import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
+import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
+import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 
 @Controller('rental')
 export class RentalController {
@@ -12,8 +15,10 @@ export class RentalController {
    */
   @Post()
   // @UsePipes(new JoiValidationPipe(CreatRentalValidation))
-  async createRental(@Body() createRentalDto: CreateRentalDto) {
-    return await this.rentalService.createRental(createRentalDto);
+  @UsePipes(new MapNewRentalPipe())
+  @UsePipes(new GeoUrlApiPipe())
+  async createRental(@Body() rental: MappedRentalInterface) {
+    return await this.rentalService.createRental(rental);
   }
 
   /**
