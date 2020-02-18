@@ -10,9 +10,7 @@ import { RentalSchema } from './schema/rental.schema';
   ],
   controllers: [RentalController],
   providers: [RentalService],
-  exports: [
-    MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
-  ],
+  exports: [],
 })
 export class RentalModule {
   constructor() {

@@ -3,7 +3,7 @@ import { RentalService } from '../service/rental.service';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
-import { JoiValidationPipe } from 'src/common/pipes/joi-validation.pipe';
+import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateRentalValidation } from '../schema/validation/create-rental-validation.schema';
 
 @Controller('rental')
