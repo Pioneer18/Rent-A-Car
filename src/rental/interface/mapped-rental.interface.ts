@@ -26,7 +26,7 @@ export interface MappedRentalInterface {
     licensePlate: string;
     state: string;
   };
-  features: [string];
+  features: string[];
   scheduling: {
     requiredNotice: number;
     rentMinDuration: number;
@@ -43,6 +43,6 @@ export interface MappedRentalInterface {
     type: string;
     coordinates: [number, number];
   };
-  photos: [string];
+  photos: string[];
   listed: boolean;
 }
