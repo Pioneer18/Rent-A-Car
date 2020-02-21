@@ -24,7 +24,7 @@ export class CreateRentalDto {
     sunRoof: boolean;
   };
   registration: {
-    vin: number;
+    vin: string;
     licensePlate: string;
     state: string;
   };

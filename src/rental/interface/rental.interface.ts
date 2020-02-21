@@ -2,10 +2,9 @@
  * Rental Interface
  */
 export interface RentalInterface {
-  rentalTitle: string;
   rentalDescription: string;
   address: string;
-  lock: {
+  loc: {
     type: string;
     coordinates: string;
   };
@@ -28,7 +27,7 @@ export interface RentalInterface {
     sunRoof: boolean;
   };
   registration: {
-    vin: number;
+    vin: string;
     licensePlate: string;
     state: string;
   };

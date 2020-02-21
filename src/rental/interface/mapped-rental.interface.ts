@@ -2,6 +2,7 @@
  * Interface for a mapped Rental
  */
 export interface MappedRentalInterface {
+  rentalDescription: string,
   address: string;
   specs: {
     odometer: number;
@@ -22,7 +23,7 @@ export interface MappedRentalInterface {
     sunRoof: boolean;
   };
   registration: {
-    vin: number;
+    vin: string;
     licensePlate: string;
     state: string;
   };

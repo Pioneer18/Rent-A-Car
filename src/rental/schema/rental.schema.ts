@@ -31,7 +31,7 @@ export const RentalSchema = new Schema({
     sunRoof: {type: Boolean, default: false},
   },
   registration: {
-    vin: Number,
+    vin: String,
     licensePlate: String,
     state: String,
   },
