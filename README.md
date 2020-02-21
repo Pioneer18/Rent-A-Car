@@ -11,3 +11,5 @@ This project is a demonstration of Full Stack development skills; ReactJS, TypeS
 * Redis
 * Docker
 
+### Currently under development, should be completed by 2/24/2020
+
