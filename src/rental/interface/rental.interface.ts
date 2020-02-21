@@ -2,7 +2,6 @@
  * Rental Interface
  */
 export interface RentalInterface {
-  rentalId: string;
   rentalTitle: string;
   rentalDescription: string;
   address: string;
