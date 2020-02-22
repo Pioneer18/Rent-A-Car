@@ -1,10 +1,10 @@
-import { Injectable, PipeTransform, ArgumentMetadata } from '@nestjs/common';
+import { Injectable, PipeTransform} from '@nestjs/common';
 import { MapRentalDto } from '../dto/map-rental.dto';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 
 @Injectable()
 export class MapNewRentalPipe implements PipeTransform {
-  async transform(value: MapRentalDto, metadata: ArgumentMetadata) {
+  async transform(value: MapRentalDto) {
     try {
       const data: MappedRentalInterface = {
         rentalDescription: 'this is a tokyo grocery getter',
