@@ -1,8 +1,9 @@
 import * as joi from '@hapi/joi';
 /**
- * Validate requsted new rental before passing to the handler
+ * Validate requested new rental before passing to the handler
  */
 export const CreateRentalValidation = joi.object({
+    rentalDescription: joi.string(),
     address: joi.string().required(),
     specs: joi.object({
         odometer: joi.number().required(),

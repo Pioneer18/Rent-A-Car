@@ -2,7 +2,7 @@
  * Interface for a mapped Rental
  */
 export interface MappedRentalInterface {
-  rentalDescription: string,
+  rentalDescription: string;
   address: string;
   specs: {
     odometer: number;

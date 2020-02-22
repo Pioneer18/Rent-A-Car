@@ -12,7 +12,7 @@ export class RentalController {
 
   /**
    * Create Rental:
-   * create a new vehcile rental listing
+   * create a new vehicle rental listing
    */
   @Post()
   @UsePipes(new JoiValidationPipe(CreateRentalValidation))

@@ -11,7 +11,7 @@ export class GeoUrlApiPipe {
       const geoUrl = process.env.GEO_URL;
 
       // const coords = [];
-      // create address string from incoming vehilce.address document
+      // create address string from incoming vehicle.address document
       const address: string = `${value.location.street} ${
         value.location.city
       } ${value.location.zip}`;

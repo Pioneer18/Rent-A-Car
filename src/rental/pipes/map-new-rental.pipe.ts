@@ -7,6 +7,7 @@ export class MapNewRentalPipe implements PipeTransform {
   async transform(value: MapRentalDto, metadata: ArgumentMetadata) {
     try {
       const data: MappedRentalInterface = {
+        rentalDescription: 'this is a tokyo grocery getter',
         address: value.address,
         specs: value.value.specs,
         registration: value.value.registration,
