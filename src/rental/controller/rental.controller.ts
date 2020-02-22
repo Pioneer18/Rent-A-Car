@@ -5,6 +5,7 @@ import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateRentalValidation } from '../schema/validation/create-rental-validation.schema';
+import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 
 @Controller('rental')
 export class RentalController {
@@ -17,7 +18,7 @@ export class RentalController {
   @Post()
   @UsePipes(new JoiValidationPipe(CreateRentalValidation))
   @UsePipes(new MapNewRentalPipe())
-  @UsePipes(new GeoUrlApiPipe())
+  @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil()))
   async createRental(@Body() rental: MappedRentalInterface) {
     return await this.rentalService.createRental(rental);
   }
