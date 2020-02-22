@@ -42,7 +42,6 @@ describe('RentalService Unit Tests', () => {
   });
 
   describe('verify the RentalService.createRental method returns the expected document', () => {
-
     it('should return a Rental document, or throw an error', async () => {
       const mockRentalModel = await testService.returnRentalModel();
       // a mocked MappedRentalInterface object to pass to the createRental method
