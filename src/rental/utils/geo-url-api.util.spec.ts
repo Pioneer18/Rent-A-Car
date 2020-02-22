@@ -13,12 +13,14 @@ describe('GeoUrlApiUtil Unit Test', () => {
     const appCode: string = process.env.GEO_CODE;
     const geoUrl: string = process.env.GEO_URL;
     let util: GeoUrlApiUtil;
+    let app: TestingModule;
 
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [GeoUrlApiUtil],
         }).compile();
 
+        app = module;
         util = module.get<GeoUrlApiUtil>(GeoUrlApiUtil);
     });
 
@@ -39,6 +41,10 @@ describe('GeoUrlApiUtil Unit Test', () => {
             const coordinates: [number, number] = await util.getCoordinates(address, geoUrl, appId, appCode);
             expect(coordinates).toEqual([37.786152, -79.443008]);
         });
+    });
+
+    afterAll(async () => {
+        await app.close();
     });
 
 });

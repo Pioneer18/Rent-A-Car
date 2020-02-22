@@ -14,12 +14,14 @@ describe('GeoUrlApiPipe Unit Test', () => {
 
     let util: GeoUrlApiUtil;
     let pipe: GeoUrlApiPipe;
+    let app: TestingModule;
 
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [GeoUrlApiPipe, GeoUrlApiUtil],
         }).compile();
 
+        app = module;
         util = module.get<GeoUrlApiUtil>(GeoUrlApiUtil);
         pipe = module.get<GeoUrlApiPipe>(GeoUrlApiPipe);
     });
@@ -89,6 +91,10 @@ describe('GeoUrlApiPipe Unit Test', () => {
             expect(test.address).toEqual(address);
             expect(test.coords).toEqual(mockedApiReturn);
         });
+    });
+
+    afterAll(async () => {
+        await app.close();
     });
 
 });

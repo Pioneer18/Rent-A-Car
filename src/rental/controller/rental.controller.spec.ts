@@ -8,6 +8,7 @@ import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 describe('Rental Controller', () => {
   let controller: RentalController;
   let service: RentalService;
+  let app: TestingModule;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -21,6 +22,7 @@ describe('Rental Controller', () => {
       ],
     }).compile();
 
+    app = module;
     controller = module.get<RentalController>(RentalController);
     service = module.get<RentalService>(RentalService);
   });
@@ -90,10 +92,7 @@ describe('Rental Controller', () => {
     });
   });
 
-  /**
-   * 1) Test connectivity to service endpoints; simulate calling a handler with a mocked service?
-   * This would test that if controller handler called, the service is indeed called as well.
-   * Testing that continuity for each handler is enough for the controller, that's it's job. For E2E
-   * Simulated HTTP requests, set this up in the module, not the controller or handler.
-   */
+  afterAll(async () => {
+    await app.close();
+  });
 });

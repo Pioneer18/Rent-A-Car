@@ -6,11 +6,13 @@ import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 describe('MapNewRentalPipe Unit Test', () => {
 
     let pipe: MapNewRentalPipe;
+    let app: TestingModule;
 
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [MapNewRentalPipe],
         }).compile();
+        app = module;
         pipe = module.get<MapNewRentalPipe>(MapNewRentalPipe);
     });
 
@@ -104,5 +106,9 @@ describe('MapNewRentalPipe Unit Test', () => {
             };
             expect(expected).toEqual(mapped);
         });
+    });
+
+    afterAll(async () => {
+        await app.close();
     });
 });

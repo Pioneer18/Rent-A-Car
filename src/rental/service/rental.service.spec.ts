@@ -17,6 +17,7 @@ import { TestRentalService } from './test-rental.service';
 describe('RentalService Unit Tests', () => {
   let service: RentalService;
   let testService: TestRentalService;
+  let app: TestingModule;
 
   // setup TestingModule and dependencies for this Unit Test
   beforeAll(async () => {
@@ -29,7 +30,7 @@ describe('RentalService Unit Tests', () => {
       ],
       providers: [RentalService, TestRentalService],
     }).compile();
-
+    app = module;
     service = module.get<RentalService>(RentalService);
     testService = module.get<TestRentalService>(TestRentalService);
   });
@@ -186,5 +187,9 @@ describe('RentalService Unit Tests', () => {
   // scheduledUnavailability if utilities used in the handler
   it('should query for existing unavailability, check for overlap if there is unavailability already, and save if there are no conflicts', () => {
     // do stuffs
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 });
