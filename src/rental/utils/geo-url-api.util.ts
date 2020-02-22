@@ -9,37 +9,27 @@ import * as axios from 'axios';
  */
 @Injectable()
 export class GeoUrlApiUtil {
-
-    address: string;
-    geoUrl: string;
-    appId: string;
-    appCode: string;
-
-    constructor(address: string, geoUrl: string, appId: string, appCode: string) {
-        this.address = address;
-        this.geoUrl = geoUrl;
-        this.appId = appId;
-        this.appCode = appCode;
-    }
-
     /**
      * returns an address as a single string, and the corresponding coordinates
      */
-    async getCoordinates() {
-        const location: string = this.address.replace(/\s+/g, '+');
-        // create the request
-        const response: any = await axios.default.get(
-        `${this.geoUrl}?app_id=${this.appId}&app_code=${this.appCode}&searchtext=${location}`,
-        );
-        // grab the coordinates
-        const rawCoordinates =
-        response.data.Response.View[0].Result[0].Location.DisplayPosition;
-        // push rawCoordinates to an array
-        // coords.push(rawCoordinates.Latitude);
-        // coords.push(rawCoordinates.Longitude);
-        const coords: [number, number] = [
-        rawCoordinates.Latitude,
-        rawCoordinates.Longitude,
-        ];
+    async getCoordinates(address, geoUrl, appId, appCode) {
+        try {
+            const location: string = address.replace(/\s+/g, '+');
+            // make the API request
+            const request: any = await axios.default.get(
+                `${geoUrl}?app_id=${appId}&app_code=${appCode}&searchtext=${location}`,
+            );
+            // grab the coordinates
+            const rawCoordinates =
+                request.data.Response.View[0].Result[0].Location.DisplayPosition;
+            // map the coords object to return
+            const coords: [number, number] = [
+                rawCoordinates.Latitude,
+                rawCoordinates.Longitude,
+            ];
+            return coords;
+        } catch (err) {
+            throw new Error(err);
+        }
     }
 }

@@ -1,37 +1,29 @@
 import { Injectable, ArgumentMetadata } from '@nestjs/common';
 import { CreateRentalDto } from '../dto/create-rental-dto';
-import * as axios from 'axios';
+import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 
+/**
+ * Requests coordinates from the incoming CreateRentalDto data and returns
+ * the original value, a single string address, and coordinates
+ */
 @Injectable()
 export class GeoUrlApiPipe {
+  // initialize the arguments for accessing the API
+  private readonly appId: string;
+  private readonly appCode: string;
+  private readonly geoUrl: string;
+  constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) {
+    this.appId = process.env.GEO_ID;
+    this.appCode = process.env.GEO_CODE;
+    this.geoUrl = process.env.GEO_URL;
+  }
+
   async transform(value: CreateRentalDto, metadata: ArgumentMetadata) {
     try {
-      const appId = process.env.GEO_ID;
-      const appCode = process.env.GEO_CODE;
-      const geoUrl = process.env.GEO_URL;
-
-      // const coords = [];
       // create address string from incoming vehicle.address document
-      const address: string = `${value.location.street} ${
-        value.location.city
-      } ${value.location.zip}`;
-      // format address into a location for the urlGeocodeRequest
-      const location: string = address.replace(/\s+/g, '+');
-      // create the request
-      const response: any = await axios.default.get(
-        `${geoUrl}?app_id=${appId}&app_code=${appCode}&searchtext=${location}`,
-      );
-      // grab the coordinates
-      const rawCoordinates =
-        response.data.Response.View[0].Result[0].Location.DisplayPosition;
-      // push rawCoordinates to an array
-      // coords.push(rawCoordinates.Latitude);
-      // coords.push(rawCoordinates.Longitude);
-      const coords: [number, number] = [
-        rawCoordinates.Latitude,
-        rawCoordinates.Longitude,
-      ];
-
+      const address: string = `${value.location.street} ${value.location.city} ${value.location.zip}`;
+      // request the coordinates
+      const coords = await this.geoUrlApiUtil.getCoordinates(address, this.appCode, this.appId, this.geoUrl);
       return { value, coords, address };
     } catch (err) {
       throw new Error(err);
