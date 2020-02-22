@@ -3,10 +3,9 @@ import { GeoUrlApiPipe } from './geo-url-api.pipe';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 import { CreateRentalDto } from '../dto/create-rental-dto';
 /**
- * What does this pipe do?
  * Summary:
- * Creates a single address string from the incoming CreateRentalDto
- * Cleans up the string and makes an API request for the corresponding coordinates
+ * Creates a single address string from the incoming CreateRentalDto to make API Request
+ * uses GeoUrlApiUtil to make api request for coordinates corresponding to the address
  * Returns the Coordinates, Address string, and the Original CreateRentalDto
  * Mocks:
  * mock the API return (which should be a provider( YUP))
@@ -15,6 +14,7 @@ describe('GeoUrlApiPipe Unit Test', () => {
 
     let util: GeoUrlApiUtil;
     let pipe: GeoUrlApiPipe;
+
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [GeoUrlApiPipe, GeoUrlApiUtil],
