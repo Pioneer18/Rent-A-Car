@@ -28,7 +28,7 @@ export class CreateRentalDto {
     licensePlate: string;
     state: string;
   };
-  features: [string];
+  features: string[];
   scheduling: {
     requiredNotice: number;
     rentMinDuration: number;
@@ -46,6 +46,6 @@ export class CreateRentalDto {
     city: string;
     zip: number;
   };
-  photos: [string];
+  photos: string[];
   listed: boolean;
 }
