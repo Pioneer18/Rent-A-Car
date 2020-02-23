@@ -5,6 +5,7 @@ export class PostGivenNoticeDto {
   address: string;
   rentalStartTime: Date;
   rentalEndTime: Date;
+  price: number;
   features: [string];
   givenNotice: number;
 }

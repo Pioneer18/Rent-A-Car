@@ -20,6 +20,7 @@ export class RentalDurationPipe implements PipeTransform {
             const endTime: DateTime = DateTime.fromISO(new Date(value.rentalEndTime).toISOString());
             const dto: RentalDurationDto = {
                 address: value.address,
+                price: value.price,
                 features: value.features,
                 rentalDuration: await this.generateDuration.generateRentalDurationEnum(startTime, endTime),
                 givenNotice: value.givenNotice,

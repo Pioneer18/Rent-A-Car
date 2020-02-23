@@ -18,6 +18,7 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
         try {
             const dto: SearchRentalDto = {
                 address: value.address,
+                price: value.price,
                 features: value.features,
                 rentalDuration: value.rentalDuration,
                 loc: {
