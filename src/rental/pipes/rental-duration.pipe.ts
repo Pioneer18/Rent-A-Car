@@ -2,12 +2,12 @@ import { Injectable, PipeTransform } from '@nestjs/common';
 import { PostGivenNoticeDto } from '../dto/post-given-notice.dto';
 import { DateTime } from 'luxon';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum';
-import { RentalDurationDto } from '../dto/generated-duration.dto';
+import { RentalDurationDto } from '../dto/rental-duration.dto';
 /**
  * Create a rental Duration from the incoming PostGivenNoticeDto
  */
 @Injectable()
-export class GenerateRentalDurationPipe implements PipeTransform {
+export class RentalDurationPipe implements PipeTransform {
 
     readonly generateDuration: GenerateRentalDurationEnumUtil;
     constructor(generateDuration: GenerateRentalDurationEnumUtil) {
