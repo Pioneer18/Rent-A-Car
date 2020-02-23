@@ -9,20 +9,17 @@ import { RentalDurationDto } from '../dto/rental-duration.dto';
 @Injectable()
 export class RentalDurationPipe implements PipeTransform {
 
-    readonly generateDuration: GenerateRentalDurationEnumUtil;
-    constructor(generateDuration: GenerateRentalDurationEnumUtil) {
+    constructor(private generateDuration: GenerateRentalDurationEnumUtil) {
         this.generateDuration = generateDuration;
     }
 
     async transform(value: PostGivenNoticeDto) {
         try {
-            const startTime: DateTime = DateTime.fromISO(new Date(value.rentalStartTime).toISOString());
-            const endTime: DateTime = DateTime.fromISO(new Date(value.rentalEndTime).toISOString());
             const dto: RentalDurationDto = {
                 address: value.address,
                 price: value.price,
                 features: value.features,
-                rentalDuration: await this.generateDuration.generateRentalDurationEnum(startTime, endTime),
+                rentalDuration: await this.generateDuration.generateRentalDurationEnum(value.rentalStartTime, value.rentalEndTime),
                 givenNotice: value.givenNotice,
             };
             return dto;

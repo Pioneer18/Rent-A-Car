@@ -1,10 +1,11 @@
+import { DateTime } from 'luxon';
 /**
  * Initial Raw Search Rental DTO
  */
 export class PostGivenNoticeDto {
   address: string;
-  rentalStartTime: Date;
-  rentalEndTime: Date;
+  rentalStartTime: DateTime;
+  rentalEndTime: DateTime;
   price: number;
   features: [string];
   givenNotice: number;
