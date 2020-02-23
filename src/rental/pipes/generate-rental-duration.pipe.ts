@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum';
 import { GeneratedDurationDto } from '../dto/generated-duration.dto';
 /**
- * Create a rental Duration from the incoming SearchVehicleDto
+ * Create a rental Duration from the incoming RawGeneratedDurationDto
  */
 @Injectable()
 export class GenerateRentalDurationPipe implements PipeTransform {
@@ -16,11 +16,13 @@ export class GenerateRentalDurationPipe implements PipeTransform {
 
     async transform(value: RawGeneratedDurationDto) {
         try {
-            const temp: any = value;
-            const rentalStartTime: DateTime = DateTime.fromISO(new Date(value.rentalStartTime).toISOString());
-            const rentalEndTime: DateTime = DateTime.fromISO(new Date(value.rentalEndTime).toISOString());
-            temp.rentalDuration = await this.generateDuration.generateRentalDurationEnum(rentalStartTime, rentalEndTime);
-            const dto: GeneratedDurationDto = temp;
+            const startTime: DateTime = DateTime.fromISO(new Date(value.rentalStartTime).toISOString());
+            const endTime: DateTime = DateTime.fromISO(new Date(value.rentalEndTime).toISOString());
+            const dto: GeneratedDurationDto = {
+                address: value.address,
+                features: value.features,
+                rentalDuration: await this.generateDuration.generateRentalDurationEnum(startTime, endTime),
+            };
             return dto;
         } catch (err) {
             throw new Error(err);
