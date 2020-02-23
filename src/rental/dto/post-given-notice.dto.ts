@@ -7,6 +7,6 @@ export class PostGivenNoticeDto {
   rentalStartTime: DateTime;
   rentalEndTime: DateTime;
   price: number;
-  features: [string];
+  features: string[];
   givenNotice: number;
 }

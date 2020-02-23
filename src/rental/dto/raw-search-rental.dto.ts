@@ -3,5 +3,5 @@ export class RawSearchRentalDto {
     rentalStartTime: Date;
     rentalEndTime: Date;
     price: number;
-    features: [string];
+    features: string[];
 }

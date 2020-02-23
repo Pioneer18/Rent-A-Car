@@ -36,8 +36,8 @@ export class GivenNoticePipe implements PipeTransform {
                 address: value.address,
                 rentalStartTime: startTime,
                 rentalEndTime: endTime,
-                price: value.price,
-                features: value.features,
+                price: value.price ? value.price : null,
+                features: value.features ? value.features : null,
                 givenNotice,
             };
             return dto;

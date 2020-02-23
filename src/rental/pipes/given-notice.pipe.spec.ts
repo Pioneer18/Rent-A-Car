@@ -1,5 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GivenNoticePipe } from './given-notice.pipe';
+import { RawSearchRentalDto } from '../dto/raw-search-rental.dto';
+import { Logger } from '@nestjs/common';
+import { DateTime } from 'luxon';
 /**
  * What does this pipe do?
  * summary:
@@ -22,6 +25,7 @@ describe('GivenNoticePipe Unit Test', () => {
 
     let pipe: GivenNoticePipe;
     let app: TestingModule;
+    let setTime;
 
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -29,7 +33,25 @@ describe('GivenNoticePipe Unit Test', () => {
         }).compile();
         pipe = module.get<GivenNoticePipe>(GivenNoticePipe);
         app = module;
+
+        const temp = async () => {
+            // create a rentalStartDate at least 1.5 hours from now
+            const tempStart = new Date();
+            tempStart.setHours(tempStart.getHours() + 1).toString();
+            if (tempStart.getMinutes() >= 30) {
+                tempStart.setHours(tempStart.getHours() + 1);
+            } else {
+                tempStart.setMinutes(tempStart.getMinutes() + 30);
+            }
+            // set a rentalEndDate 5 hours from now
+            const tempEnd = new Date();
+            tempEnd.setHours(tempEnd.getHours() + 5).toString();
+            return {tempStart, tempEnd};
+        };
+        setTime = temp;
+
     });
+
 
     describe('GivenNoticePipe definition unit test', () => {
         it('should be defined', () => {
@@ -38,8 +60,30 @@ describe('GivenNoticePipe Unit Test', () => {
     });
 
     describe('transform unit test', () => {
-        it('should..', async () => {
-            // do stuffs
+        // create a rentalStartDate at least 1.5 hours from now
+        it('should return a PostGivenNotice object if given a RawSearchRentalDto', async () => {
+            const time = await setTime();
+            time.tempEnd.setHours(time.tempEnd.getHours() + 5).toString();
+            const mockRawSearchRentalDto: RawSearchRentalDto = {
+                address: '204 W Washington St Lexington 24450',
+                rentalStartTime: time.tempStart,
+                rentalEndTime: time.tempEnd,
+                price: null,
+                features: null,
+            };
+            const startTime = DateTime.fromISO(new Date(mockRawSearchRentalDto.rentalStartTime).toISOString());
+            const endTime = DateTime.fromISO(new Date(mockRawSearchRentalDto.rentalEndTime).toISOString());
+            Logger.log(`startTime: ${startTime} & endTime: ${endTime}`);
+            const test = await pipe.transform(mockRawSearchRentalDto);
+            Logger.log('the expected PostGivenNoticeDto?');
+            Logger.log(test);
+            expect(test.address).toBe('204 W Washington St Lexington 24450');
+            expect(test.features).toBe(null);
+            expect(test.price).toBe(null);
+            Logger.log(`test.rentalStartTime: ${test.rentalStartTime} || startTime: ${startTime}`);
+            expect(test.rentalStartTime.toString()).toBe(startTime.toString());
+            expect(test.rentalEndTime.toString()).toBe(endTime.toString());
+            // expect(test.givenNotice).toBeGreaterThan()
         });
     });
 
