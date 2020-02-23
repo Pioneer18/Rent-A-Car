@@ -8,6 +8,8 @@ import { CreateRentalValidation } from '../schema/validation/create-rental-valid
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 import { GenerateRentalDurationPipe } from '../pipes/generate-rental-duration.pipe';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum';
+import { SearchRentalDto } from '../dto/search-rental.dto';
+import { SearchRentalPipe } from '../pipes/search-rental.pipe';
 
 @Controller('rental')
 export class RentalController {
@@ -30,9 +32,9 @@ export class RentalController {
    * find rentals available near a specified location (user's location)
    */
   @Get()
-  // @UsePipes(new JoiValidationPipe(SearchVehicleValidation))
+  @UsePipes(new SearchRentalPipe(new GeoUrlApiUtil()))
   @UsePipes(new GenerateRentalDurationPipe(new GenerateRentalDurationEnumUtil()))
-  async searchRental(@Param() searchRentalDto: any /*SearchVehicleDto*/) {
+  async searchRental(@Param() searchRentalDto: SearchRentalDto) {
     return await this.rentalService.searchRental(searchRentalDto);
   }
 
