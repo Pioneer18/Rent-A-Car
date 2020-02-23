@@ -9,11 +9,6 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
     constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) {
     }
 
-    private async getCoordinates(address: string, appCode: string, appId: string, geoUrl: string) {
-        const coords = await this.geoUrlApiUtil.getCoordinates(address, appCode, appId, geoUrl);
-        return coords;
-    }
-
     async transform(value: RentalDurationDto) {
         const geoUrl = process.env.GEO_URL;
         const appId = process.env.GEO_ID;

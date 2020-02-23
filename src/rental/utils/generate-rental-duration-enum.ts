@@ -5,7 +5,7 @@ import { RentalDurations } from '../const';
 @Injectable()
 export class GenerateRentalDurationEnumUtil {
 
-    async generateRentalDurationEnum(startTime, endTime) {
+    private async processRentalTime(startTime, endTime) {
         try {
             const base = Interval.fromDateTimes(startTime, endTime);
             const months = base.length('months');
@@ -14,28 +14,37 @@ export class GenerateRentalDurationEnumUtil {
             Logger.log(`The Base`);
             Logger.log(base);
             Logger.log( `months: ${months}, weeks: ${weeks}, days: ${days}`);
-            if (months > 3) {
+            return {months, weeks, days};
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+
+    async generateRentalDurationEnum(startTime, endTime) {
+        try {
+            const schedule = await this.processRentalTime(startTime, endTime);
+            if (schedule.months > 3) {
                 return RentalDurations.Any;
             }
-            if (months <= 3 && months > 1) {
+            if (schedule.months <= 3 && schedule.months > 1) {
                 return RentalDurations['3 Months'];
             }
-            if (months <= 1 && weeks > 3) {
+            if (schedule.months <= 1 && schedule.weeks > 3) {
                 return RentalDurations['1 Month'];
             }
-            if (weeks <= 3 && weeks > 1) {
+            if (schedule.weeks <= 3 && schedule.weeks > 1) {
                 return RentalDurations['3 Weeks'];
             }
-            if (weeks <= 1 && days > 5) {
+            if (schedule.weeks <= 1 && schedule.days > 5) {
                 return RentalDurations['1 Week'];
             }
-            if (days <= 5 && days > 3) {
+            if (schedule.days <= 5 && schedule.days > 3) {
                 return RentalDurations['5 Days'];
             }
-            if (days <= 3 && days > 1) {
+            if (schedule.days <= 3 && schedule.days > 1) {
                 return RentalDurations['3 Days'];
             }
-            if (days === 1) {
+            if (schedule.days === 1) {
                 return RentalDurations['1 Day'];
             }
         } catch (err) {

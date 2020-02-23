@@ -18,7 +18,7 @@ export class GeoUrlApiPipe {
     return address;
   }
 
-  private async getCoordinates(address: string, geoUrl: string, appId: string, appCode: string) {
+  async getCoordinates(address: string, geoUrl: string, appId: string, appCode: string) {
     Logger.log(`geoUrl: ${process.env.GEO_URL}`);
     const coords = await this.geoUrlApiUtil.getCoordinates(address, geoUrl, appId, appCode);
     return coords;
