@@ -22,6 +22,7 @@ export class RentalDurationPipe implements PipeTransform {
                 address: value.address,
                 features: value.features,
                 rentalDuration: await this.generateDuration.generateRentalDurationEnum(startTime, endTime),
+                givenNotice: value.givenNotice,
             };
             return dto;
         } catch (err) {

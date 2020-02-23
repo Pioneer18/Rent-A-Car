@@ -11,6 +11,7 @@ import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duratio
 import { SearchRentalDto } from '../dto/search-rental.dto';
 import { RequestCoordinatesPipe } from '../pipes/request-coordinates.pipe';
 import { GivenNoticePipe } from '../pipes/given-notice.pipe';
+import { SearchRentalValidationSchema } from '../schema/validation/search-vehicle-validation.schema';
 
 @Controller('rental')
 export class RentalController {
@@ -33,6 +34,7 @@ export class RentalController {
    * find rentals available near a specified location (user's location)
    */
   @Get()
+  @UsePipes(new JoiValidationPipe(SearchRentalValidationSchema))
   @UsePipes(new RequestCoordinatesPipe(new GeoUrlApiUtil()))
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
   @UsePipes(new GivenNoticePipe())

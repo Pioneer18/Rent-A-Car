@@ -9,4 +9,5 @@ export class SearchRentalDto {
         type: 'Point'
         coordinates: [number, number];
     };
+    givenNotice: number;
 }
