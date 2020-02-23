@@ -7,7 +7,7 @@ import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateRentalValidation } from '../schema/validation/create-rental-validation.schema';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 import { RentalDurationPipe } from '../pipes/rental-duration.pipe';
-import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum';
+import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum.util';
 import { SearchRentalDto } from '../dto/search-rental.dto';
 import { RequestCoordinatesPipe } from '../pipes/request-coordinates.pipe';
 import { GivenNoticePipe } from '../pipes/given-notice.pipe';
