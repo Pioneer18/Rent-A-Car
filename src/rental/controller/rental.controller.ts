@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, UsePipes } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UsePipes, Query } from '@nestjs/common';
 import { RentalService } from '../service/rental.service';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
@@ -38,7 +38,7 @@ export class RentalController {
   @UsePipes(new RequestCoordinatesPipe(new GeoUrlApiUtil()))
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
   @UsePipes(new GivenNoticePipe())
-  async searchRental(@Param() searchRentalDto: SearchRentalDto) {
+  async searchRental(@Query() searchRentalDto: SearchRentalDto) {
     return await this.rentalService.searchRental(searchRentalDto);
   }
 

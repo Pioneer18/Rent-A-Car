@@ -15,6 +15,6 @@ import { GeoUrlApiUtil } from './utils/geo-url-api.util';
 })
 export class RentalModule {
   constructor() {
-    RentalSchema.index({ 'locationAndDelivery.loc': '2dsphere' });
+    RentalSchema.index({ loc: '2dsphere' });
   }
 }

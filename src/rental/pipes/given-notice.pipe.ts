@@ -1,7 +1,7 @@
-import { Injectable, PipeTransform } from '@nestjs/common';
+import { Injectable, PipeTransform, Logger, ArgumentMetadata } from '@nestjs/common';
 import { PostGivenNoticeDto } from '../dto/post-given-notice.dto';
 import { RawSearchRentalDto } from '../dto/raw-search-rental.dto';
-import { DateTime, Duration, diffNow, diff } from 'luxon';
+import { DateTime} from 'luxon';
 /**
  * Creates a Luxon Interval from the startTime and currentTime
  * Validates the Interval is at least 1 hour long
@@ -11,9 +11,8 @@ import { DateTime, Duration, diffNow, diff } from 'luxon';
 export class GivenNoticePipe implements PipeTransform {
 
     private async createGivenNotice(startTime) {
-        const duration: Duration = diffNow(startTime);
-        if (duration >= 1) {
-            const givenNotice = duration;
+        const givenNotice: number = (startTime.diffNow().toObject()).milliseconds;
+        if (givenNotice >= 3600000) {
             return givenNotice;
         }
         throw new Error('Sorry, you cannot request a rental less than an hour before it begins');
@@ -21,7 +20,9 @@ export class GivenNoticePipe implements PipeTransform {
 
     private async validateRequestedTime(startTime, endTime) {
         if ( startTime > endTime) { throw new Error('The rental start time cannot be after the rental end time'); }
-        if (diff(endTime, startTime) < 1) { throw new Error('The rental must be at least 1 hour in Duration'); }
+        if ((endTime.diff(startTime).toObject()).milliseconds < 3600000) {
+            throw new Error('The rental must be at least 1 hour in Duration');
+        }
     }
 
     async transform(value: RawSearchRentalDto) {

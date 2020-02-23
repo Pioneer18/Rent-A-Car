@@ -1,4 +1,4 @@
-import { Injectable, ArgumentMetadata } from '@nestjs/common';
+import { Injectable, ArgumentMetadata, Logger } from '@nestjs/common';
 import { CreateRentalDto } from '../dto/create-rental-dto';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 
@@ -8,34 +8,31 @@ import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
  */
 @Injectable()
 export class GeoUrlApiPipe {
-  // initialize the arguments for accessing the API
-  private readonly appId: string;
-  private readonly appCode: string;
-  private readonly geoUrl: string;
 
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) {
-    this.appId = process.env.GEO_ID;
-    this.appCode = process.env.GEO_CODE;
-    this.geoUrl = process.env.GEO_URL;
   }
 
-  async createAddress(value) {
+  private async createAddress(value) {
     // create address string from incoming vehicle.address document
     const address: string = `${value.location.street} ${value.location.city} ${value.location.zip}`;
     return address;
   }
 
-  async getCoordinates(address: string, appCode: string, appId: string, geoUrl: string) {
-    const coords = await this.geoUrlApiUtil.getCoordinates(address, appCode, appId, geoUrl);
+  private async getCoordinates(address: string, geoUrl: string, appId: string, appCode: string) {
+    Logger.log(`geoUrl: ${process.env.GEO_URL}`);
+    const coords = await this.geoUrlApiUtil.getCoordinates(address, geoUrl, appId, appCode);
     return coords;
   }
 
   async transform(value: CreateRentalDto) {
+    const appId = process.env.GEO_ID;
+    const appCode = process.env.GEO_CODE;
+    const geoUrl = process.env.GEO_URL;
     try {
       // create the address
       const address = await this.createAddress(value);
       // request the coordinates from the API
-      const coords = await this.getCoordinates(address, this.appCode, this.appId, this.geoUrl);
+      const coords = await this.getCoordinates(address, geoUrl, appId, appCode);
       return { value, coords, address };
     } catch (err) {
       throw new Error(err);
