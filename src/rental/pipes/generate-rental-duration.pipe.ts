@@ -1,10 +1,10 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { RawGeneratedDurationDto } from '../dto/raw-search-rental.dto';
+import { PostGivenNoticeDto } from '../dto/post-given-notice.dto';
 import { DateTime } from 'luxon';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum';
 import { GeneratedDurationDto } from '../dto/generated-duration.dto';
 /**
- * Create a rental Duration from the incoming RawGeneratedDurationDto
+ * Create a rental Duration from the incoming PostGivenNoticeDto
  */
 @Injectable()
 export class GenerateRentalDurationPipe implements PipeTransform {
@@ -14,7 +14,7 @@ export class GenerateRentalDurationPipe implements PipeTransform {
         this.generateDuration = generateDuration;
     }
 
-    async transform(value: RawGeneratedDurationDto) {
+    async transform(value: PostGivenNoticeDto) {
         try {
             const startTime: DateTime = DateTime.fromISO(new Date(value.rentalStartTime).toISOString());
             const endTime: DateTime = DateTime.fromISO(new Date(value.rentalEndTime).toISOString());
