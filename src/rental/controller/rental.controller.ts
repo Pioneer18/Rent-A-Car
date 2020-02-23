@@ -6,6 +6,8 @@ import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateRentalValidation } from '../schema/validation/create-rental-validation.schema';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
+import { GenerateRentalDurationPipe } from '../pipes/generate-rental-duration.pipe';
+import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum';
 
 @Controller('rental')
 export class RentalController {
@@ -29,7 +31,7 @@ export class RentalController {
    */
   @Get()
   // @UsePipes(new JoiValidationPipe(SearchVehicleValidation))
-  // @UsePipes(new LuxonSearchVehiclePipe())
+  @UsePipes(new GenerateRentalDurationPipe(new GenerateRentalDurationEnumUtil()))
   async searchRental(@Param() searchRentalDto: any /*SearchVehicleDto*/) {
     return await this.rentalService.searchRental(searchRentalDto);
   }
