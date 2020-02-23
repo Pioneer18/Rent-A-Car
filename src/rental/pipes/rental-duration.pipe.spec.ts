@@ -8,3 +8,8 @@
  * expect RentalDurationDto
  * expect correct rentalDuration
  */
+describe('RentalDurationPipe Unit Test', () => {
+    it('should..', () => {
+        // do stuffs
+    });
+});

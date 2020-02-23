@@ -8,3 +8,8 @@
  * expect a SearchRentalDto
  * expect correct coordinates for given address
  */
+describe('RequestCoordinatesPipe Unit Test', () => {
+    it('should..', () => {
+        // do stuffs
+    });
+});
