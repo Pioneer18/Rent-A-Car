@@ -10,6 +10,7 @@ import { GenerateRentalDurationPipe } from '../pipes/generate-rental-duration.pi
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum';
 import { SearchRentalDto } from '../dto/search-rental.dto';
 import { RequestCoordinatesPipe } from '../pipes/request-coordinates.pipe';
+import { GivenNoticePipe } from '../pipes/given-notice.pipe';
 
 @Controller('rental')
 export class RentalController {
@@ -34,6 +35,7 @@ export class RentalController {
   @Get()
   @UsePipes(new RequestCoordinatesPipe(new GeoUrlApiUtil()))
   @UsePipes(new GenerateRentalDurationPipe(new GenerateRentalDurationEnumUtil()))
+  @UsePipes(new GivenNoticePipe())
   async searchRental(@Param() searchRentalDto: SearchRentalDto) {
     return await this.rentalService.searchRental(searchRentalDto);
   }

@@ -2,7 +2,11 @@ import { Injectable, PipeTransform } from '@nestjs/common';
 import { PostGivenNoticeDto } from '../dto/post-given-notice.dto';
 import { RawSearchRentalDto } from '../dto/raw-search-rental.dto';
 import { Interval, DateTime } from 'luxon';
-
+/**
+ * Creates a Luxon Interval from the startTime and currentTime
+ * Validates the Interval is at least 1 hour long
+ * returns a PostGivenNoticeDto
+ */
 @Injectable()
 export class GivenNoticePipe implements PipeTransform {
     async createGivenNotice(startTime) {
