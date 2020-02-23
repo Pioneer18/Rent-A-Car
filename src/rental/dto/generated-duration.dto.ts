@@ -1,7 +1,7 @@
 /**
  * Final Search Rental DTO
  */
-export class GeneratedDurationDto {
+export class RentalDurationDto {
   address: string;
   features: [string];
   rentalDuration: number; // enum

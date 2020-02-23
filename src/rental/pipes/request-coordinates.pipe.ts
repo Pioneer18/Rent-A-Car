@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { GeneratedDurationDto } from '../dto/generated-duration.dto';
+import { RentalDurationDto } from '../dto/generated-duration.dto';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 import { SearchRentalDto } from '../dto/search-rental.dto';
 
@@ -13,18 +13,18 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
 
     }
     // separate pipe: generateRentalDuration
-    // accepts RawRentalDto, returns GeneratedDurationDto
+    // accepts RawRentalDto, returns RentalDurationDto
     // convert incoming RentalStart and RentalEnd Date objects to DateTimes => util (used by validation pipe after this one)
     // generate rental duration enum from the given startTime and endTime
 
     // separate pipe: this pipe
-    // accepts GeneratedDurationDto returns SearchRentalDto
+    // accepts RentalDurationDto returns SearchRentalDto
     // request coordinates with passed in address => util
     // return a return SearchRentalDto with a loc => the pipe
 
     // separate pipe: validate GivenNotice
     // validate the GivenNotice => separate pipe
-    async transform(value: GeneratedDurationDto) {
+    async transform(value: RentalDurationDto) {
         try {
             const dto: SearchRentalDto = {
                 address: value.address,
