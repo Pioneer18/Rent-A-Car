@@ -4,7 +4,7 @@ import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 import { SearchRentalDto } from '../dto/search-rental.dto';
 
 @Injectable()
-export class SearchRentalPipe implements PipeTransform<any> {
+export class RequestCoordinatesPipe implements PipeTransform<any> {
 
     private readonly geoUrl = process.env.GEO_URL;
     private readonly appId = process.env.GEO_ID;
