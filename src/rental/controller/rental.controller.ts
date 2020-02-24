@@ -11,7 +11,7 @@ import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duratio
 import { SearchRentalDto } from '../dto/search-rental.dto';
 import { RequestCoordinatesPipe } from '../pipes/request-coordinates.pipe';
 import { GivenNoticePipe } from '../pipes/given-notice.pipe';
-import { SearchRentalValidationSchema } from '../schema/validation/search-vehicle-validation.schema';
+import { SearchRentalValidationSchema } from '../schema/validation/search-rental-validation.schema';
 
 @Controller('rental')
 export class RentalController {
