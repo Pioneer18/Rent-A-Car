@@ -4,7 +4,7 @@
 export class RentalDurationDto {
   address: string;
   price: number;
-  features: [string];
+  features: string[];
   rentalDuration: number; // enum
   givenNotice: number;
 }
