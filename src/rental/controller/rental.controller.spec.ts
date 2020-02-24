@@ -4,6 +4,7 @@ import { RentalService } from '../service/rental.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RentalSchema } from '../schema/rental.schema';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
+import { SearchRentalDto } from '../dto/search-rental.dto';
 
 describe('Rental Controller', () => {
   let controller: RentalController;
@@ -35,8 +36,7 @@ describe('Rental Controller', () => {
 
   // Spy on the RentalService and mock the createRental method to test continuity of controller and handler
   // currently failing because of Pipes involvement
-  describe('test contract with service', () => {
-
+  describe('createRental endpoint test', () => {
     const mockedRental: MappedRentalInterface = {
       rentalDescription: 'This is a Tokyo grocery getter',
       address: '3489 FakeDale Drive, Fake City, GA',
@@ -85,10 +85,35 @@ describe('Rental Controller', () => {
     };
 
     it('should pass back the mocked document', async () => {
-      const result = ['test'];
-      jest.spyOn(service, 'createRental').mockImplementation(async () => result);
+      const mockResponse = ['test'];
+      jest
+        .spyOn(service, 'createRental')
+        .mockImplementation(async () => mockResponse);
 
-      expect(await service.createRental(mockedRental)).toBe(result);
+      expect(await service.createRental(mockedRental)).toBe(mockResponse);
+    });
+  });
+
+  describe('searchRental endpoint test', () => {
+    it('should return an array of queried rentals', async () => {
+      const mockResponse = ['fake rental data'];
+      const mockSearchRentalDto: SearchRentalDto = {
+        address: 'muffin lane',
+        price: 28,
+        features: null,
+        rentalDuration: 3,
+        loc: {
+          type: 'Point',
+          coordinates: [39, -50],
+        },
+        givenNotice: 2,
+      };
+      jest
+        .spyOn(service, 'searchRental')
+        .mockImplementation(async x => mockResponse);
+      expect(await service.searchRental(mockSearchRentalDto)).toBe(
+        mockResponse,
+      );
     });
   });
 
