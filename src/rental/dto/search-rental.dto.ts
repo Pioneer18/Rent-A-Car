@@ -4,7 +4,7 @@
 export class SearchRentalDto {
     address: string;
     price: number;
-    features: [string];
+    features: string[];
     rentalDuration: number;
     loc: {
         type: 'Point'
