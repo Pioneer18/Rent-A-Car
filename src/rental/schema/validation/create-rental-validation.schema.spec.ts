@@ -2,7 +2,7 @@ import { MappedRentalInterface } from '../../../rental/interface/mapped-rental.i
 import { JoiValidationPipe } from '../../../common/pipes/joi-validation.pipe';
 import { CreateRentalValidation } from '../validation/create-rental-validation.schema';
 
-describe('Validation Pipe Unit Test', () => {
+describe('CreateRentalValidationSchema Unit Test', () => {
   it('should only accept objects that fit the MapRentalInterface', () => {
     const rental: MappedRentalInterface = {
       rentalDescription: 'Tokyo grocery getter',

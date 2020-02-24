@@ -5,8 +5,8 @@ import * as joi from '@hapi/joi';
  */
 export const SearchRentalValidationSchema = joi.object({
   address: joi.string().required(),
-  features: joi.array().items(joi.string()),
-  price: joi.string(),
+  features: joi.array().items(joi.string()).allow(null),
+  price: joi.number().allow(null),
   rentalDuration: joi.number().required(),
   loc: {
     type: joi.string().required(),
