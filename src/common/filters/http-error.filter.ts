@@ -8,7 +8,7 @@ import {
 import { DateTime } from 'luxon';
 
 /**
- * Exception fitlers give full control over the exceptions layer
+ * Exception filters give full control over the exceptions layer
  * Add Logging
  * Control exact flow of control and the content of the response sent
  * This filter is responsible for catching exceptions which are an instance of the HttpException

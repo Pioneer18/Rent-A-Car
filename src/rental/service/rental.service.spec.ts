@@ -4,6 +4,7 @@ import { MongooseModule, getModelToken } from '@nestjs/mongoose';
 import { RentalSchema } from '../schema/rental.schema';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { TestRentalService } from './test-rental.service';
+import { SearchRentalDto } from '../dto/search-rental.dto';
 
 /**
  * Test the properties of the RentalService Class:
@@ -35,13 +36,13 @@ describe('RentalService Unit Tests', () => {
     testService = module.get<TestRentalService>(TestRentalService);
   });
 
-  describe('rental service check', () => {
+  describe('RentalService definition test', () => {
     it('should be defined', () => {
       expect(service).toBeDefined();
     });
   });
 
-  describe('verify the RentalService.createRental method returns the expected document', () => {
+  describe('createRental method test', () => {
     it('should return a Rental document, or throw an error', async () => {
       const mockRentalModel = await testService.returnRentalModel();
       // a mocked MappedRentalInterface object to pass to the createRental method
@@ -166,8 +167,45 @@ describe('RentalService Unit Tests', () => {
     });
   });
 
-  it('should query the db for rentals with the given query object and return the results', () => {
-    // do stuffs
+  describe('searchRental method & createRentalQuery test', () => {
+    it('should return the expected query from the given SearchRentalDto', async () => {
+      const mockSearchRental = async rental => {
+        try {
+          const query = await testService.createRentalQuery(rental);
+          return query;
+        } catch (err) {
+          throw new Error(err);
+        }
+      };
+      const mockSearchRentalDto: SearchRentalDto = {
+        address: '204 W Washington St Lexington 24450',
+        price: 28,
+        features: ['A/C', 'AUX'],
+        rentalDuration: 3,
+        givenNotice: 2,
+        loc: {
+          type: 'Point',
+          coordinates: [39, -50],
+        },
+      };
+      const test = await mockSearchRental(mockSearchRentalDto);
+      expect(test['scheduling.rentMinDuration']).toEqual(
+        expect.objectContaining({ $lte: 3 }),
+      );
+      expect(await test['scheduling.rentMaxDuration']).toEqual(
+        expect.objectContaining({ $gte: 3 }),
+      );
+      expect(await test['scheduling.requiredNotice']).toEqual(
+        expect.objectContaining({ $lte: 2 }),
+      );
+      expect(await test.loc.$near.$maxDistance).toBe(12875);
+      expect(await test.loc.$near.$geometry.type).toBe('Point');
+      expect(await test.loc.$near.$geometry.coordinates[0]).toBe(39);
+      expect(await test.loc.$near.$geometry.coordinates[1]).toBe(-50);
+      expect(await test.pricing.price).toBe(28);
+      expect(await test.features.$in[0]).toBe('A/C');
+      expect(await test.features.$in[1]).toBe('AUX');
+    });
   });
 
   it('should query the db to update a rental with the given update and throw an error if one is caught', () => {
