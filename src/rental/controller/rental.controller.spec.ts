@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { RentalSchema } from '../schema/rental.schema';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { SearchRentalDto } from '../dto/search-rental.dto';
+import { PricingDto } from '../dto/pricing.dto';
 
 describe('Rental Controller', () => {
   let controller: RentalController;
@@ -108,12 +109,24 @@ describe('Rental Controller', () => {
         },
         givenNotice: 2,
       };
-      jest
-        .spyOn(service, 'searchRental')
-        .mockImplementation(async x => mockResponse);
-      expect(await service.searchRental(mockSearchRentalDto)).toBe(
-        mockResponse,
-      );
+      jest.spyOn(service, 'searchRental').mockImplementation(async x => mockResponse);
+      expect(await service.searchRental(mockSearchRentalDto)).toBe(mockResponse);
+    });
+  });
+
+  describe('editPrice endpoint test', () => {
+    it('should return the updated document, or nothing', async () => {
+      const mockResponse = ['fake document'];
+      const mockPricingDto: PricingDto = {
+        rentalId: 'xxx',
+        price: 28,
+        discounts: {
+          weekly: null,
+          monthly: null,
+        },
+      };
+      jest.spyOn(service, 'editPricing').mockImplementation(async x => mockResponse);
+      expect(await service.editPricing(mockPricingDto)).toBe(mockResponse);
     });
   });
 
