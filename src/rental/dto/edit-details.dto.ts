@@ -20,10 +20,5 @@ export class EditDetailsDto {
     bluetooth: boolean;
     sunRoof: boolean;
   };
-  registration: {
-    vin: string;
-    licensePlate: string;
-    state: string;
-  };
   features: [string];
 }
