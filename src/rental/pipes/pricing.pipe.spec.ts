@@ -19,6 +19,7 @@ describe('PricingPipe Unit Test', () => {
         it('should validate price and discounts are not negative nor have illogical values', async () => {
             // do stuffs
             const pricePass: PricingDto = {
+                rentalId:'xxx',
                 price: 28,
                 discounts: {
                     weekly: null,
@@ -26,6 +27,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const discountsPass: PricingDto = {
+                rentalId:'xxx',
                 price: 28,
                 discounts: {
                     weekly: 5,
@@ -33,6 +35,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const negativeFail: PricingDto = {
+                rentalId:'xxx',
                 price: -10,
                 discounts: {
                     weekly: null,
@@ -40,6 +43,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const belowMinFail: PricingDto = {
+                rentalId:'xxx',
                 price: 7,
                 discounts: {
                     weekly: null,
@@ -47,6 +51,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const weeklyTooLargeFail: PricingDto = {
+                rentalId:'xxx',
                 price: 10,
                 discounts: {
                     weekly: 11,
@@ -54,6 +59,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const monthlyTooLargeFail: PricingDto = {
+                rentalId:'xxx',
                 price: 10,
                 discounts: {
                     weekly: null,
@@ -84,6 +90,7 @@ describe('PricingPipe Unit Test', () => {
     describe('mapPricingDto method test', () => {
         it('should return a complete pricingDto', async () => {
             const test1: PricingDto = {
+                rentalId: 'xxx',
                 price: 28,
                 discounts: {
                     weekly: 5,
@@ -91,6 +98,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const test2: PricingDto = {
+                rentalId: 'xxx',
                 price: 10,
                 discounts: {
                     weekly: null,

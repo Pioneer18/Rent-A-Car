@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RentalInterface } from '../interface/rental.interface';
 import { SearchRentalDto } from '../dto/search-rental.dto';
+import { PricingDto } from '../dto/pricing.dto';
 
 @Injectable()
 export class RentalService {
@@ -77,8 +78,32 @@ export class RentalService {
    * Edit Pricing:
    * edit the rental price
    */
-  async editPricing(update: any /*EditPriceDto*/) {
-    //
+  async editPricing(data: PricingDto) {
+    // make an update document
+    try {
+      const filter = { _id: data.rentalId};
+      Logger.log(filter);
+      const update = {
+        specs: {
+          pricing: {
+            price: data.price,
+            discounts: {
+              weekly: data.discounts.weekly,
+              monthly: data.discounts.monthly,
+            },
+         },
+        },
+      };
+      const updater = {
+        $set: update,
+      };
+      Logger.log(`updater`);
+      Logger.log(updater.$set);
+      const doc = await this.rentalModel.findOneAndUpdate(filter, updater);
+      return doc;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   /**

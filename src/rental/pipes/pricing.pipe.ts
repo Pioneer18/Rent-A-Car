@@ -11,6 +11,10 @@ export class PricingPipe implements PipeTransform {
     // validate the incoming pricing
     private validatePricingDto = async (data: PricingDto) => {
         const minPrice: number = parseInt(process.env.MIN_PRICE, 10);
+        // check rentalId
+        if (!data.rentalId || (typeof data.rentalId !== 'string')) {
+            throw new Error('Invalid rentalID');
+        }
         // check price is not negative && >= 9
         if (Math.sign(data.price) === -1 || data.price < minPrice) {
             throw new Error('Price cannot be negative or below $9');
@@ -25,6 +29,7 @@ export class PricingPipe implements PipeTransform {
     // map the pricing dto before returning
     private mapPricingDto = async (data: PricingDto) => {
         const value: PricingDto = {
+            rentalId: data.rentalId,
             price: data.price ? data.price : null,
             discounts: {
                 weekly: data.discounts.weekly ? data.discounts.weekly : null,

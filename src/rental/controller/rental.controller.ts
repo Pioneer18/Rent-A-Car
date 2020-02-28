@@ -52,7 +52,7 @@ export class RentalController {
   @UsePipes(new PricingPipe())
   // @UsePipes(new JoiValidationPipe(PricingValidation))
   async editPricing(@Body() pricingDto: PricingDto  /*EditPricingDto*/) {
-    return 'teehee';/*await this.rentalService.editPricing(pricingDto);*/
+    return await this.rentalService.editPricing(pricingDto);
   }
 
   /**
