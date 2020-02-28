@@ -106,7 +106,7 @@ export class RentalService {
    * Edit Rental Details:
    * edit the details of the Rental (# of seats, color, etc.)
    */
-  async editDetails(update: any /*EditDetailsDto */) {
+  async editDetails(update: any /*EditDetailsDto */) {  
     //
   }
 

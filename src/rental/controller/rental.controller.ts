@@ -59,6 +59,7 @@ export class RentalController {
    * edit the details of the Rental (# of seats, color, etc.)
    */
   @Post('edit-details')
+  // @UsePipes( new EditDetailsPipe())
   async editDetails(@Body() editDetailsDto: any /*EdiDetailsDto*/) {
     return await this.rentalService.editDetails(editDetailsDto);
   }
