@@ -1,4 +1,4 @@
-import { Injectable, PipeTransform } from '@nestjs/common';
+import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { PricingDto } from '../dto/pricing.dto';
 
 /**
@@ -8,11 +8,13 @@ import { PricingDto } from '../dto/pricing.dto';
 @Injectable()
 export class PricingPipe implements PipeTransform {
 
-    minPrice = parseInt(process.env.MIN_PRICE, 10);
 
+    // validate the incoming pricing
     private validatePricingDto = async (data: PricingDto) => {
+        const minPrice: number = parseInt(process.env.MIN_PRICE, 10);
         // check price is not negative && >= 9
-        if (Math.sign(data.price) === -1 || data.price < this.minPrice) {
+        Logger.log(`the min price: ${minPrice} & the price: ${data.price}`);
+        if (Math.sign(data.price) === -1 || data.price < minPrice) {
             throw new Error('Price cannot be negative or below $9');
         }
         // check discount.weekly is not negative and not greater than the price
@@ -22,7 +24,25 @@ export class PricingPipe implements PipeTransform {
         }
     }
 
+    // map the pricing dto before returning
+    private mapPricingDto = async (data: PricingDto) => {
+        const value: PricingDto = {
+            price: data.price ? data.price : null,
+            discounts: {
+                weekly: data.discounts.weekly ? data.discounts.weekly : null,
+                monthly: data.discounts.monthly ? data.discounts.monthly : null,
+            },
+        };
+        return value;
+    }
+
     async transform(value: PricingDto) {
-        this.validatePricingDto(value);
+        try {
+            await this.validatePricingDto(value);
+            const data: PricingDto = await this.mapPricingDto(value);
+            return data;
+        } catch (err) {
+            throw new Error(err);
+        }
     }
 }

@@ -12,6 +12,8 @@ import { SearchRentalDto } from '../dto/search-rental.dto';
 import { RequestCoordinatesPipe } from '../pipes/request-coordinates.pipe';
 import { GivenNoticePipe } from '../pipes/given-notice.pipe';
 import { SearchRentalValidationSchema } from '../schema/validation/search-rental-validation.schema';
+import { PricingPipe } from '../pipes/pricing.pipe';
+import { PricingDto } from '../dto/pricing.dto';
 
 @Controller('rental')
 export class RentalController {
@@ -47,10 +49,10 @@ export class RentalController {
    * edit the rental price
    */
   @Post('edit-price')
-  // @UsePipes(new PricingPipe())
+  @UsePipes(new PricingPipe())
   // @UsePipes(new JoiValidationPipe(PricingValidation))
-  async editPricing(@Body() editPricingDto: any /*EditPricingDto*/) {
-    return await this.rentalService.editPricing(editPricingDto);
+  async editPricing(@Body() pricingDto: PricingDto  /*EditPricingDto*/) {
+    return 'teehee';/*await this.rentalService.editPricing(pricingDto);*/
   }
 
   /**
