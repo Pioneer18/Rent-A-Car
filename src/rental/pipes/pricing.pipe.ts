@@ -8,19 +8,17 @@ import { PricingDto } from '../dto/pricing.dto';
 @Injectable()
 export class PricingPipe implements PipeTransform {
 
-
     // validate the incoming pricing
     private validatePricingDto = async (data: PricingDto) => {
         const minPrice: number = parseInt(process.env.MIN_PRICE, 10);
         // check price is not negative && >= 9
-        Logger.log(`the min price: ${minPrice} & the price: ${data.price}`);
         if (Math.sign(data.price) === -1 || data.price < minPrice) {
             throw new Error('Price cannot be negative or below $9');
         }
         // check discount.weekly is not negative and not greater than the price
         if ((Math.sign(data.discounts.weekly) === -1 || data.discounts.weekly > data.price) ||
             (Math.sign(data.discounts.monthly) === -1 || data.discounts.monthly > data.price)) {
-            throw new Error('discounts cannot be negative or greater than the price');
+            throw new Error('Discounts cannot be negative or greater than the price');
         }
     }
 

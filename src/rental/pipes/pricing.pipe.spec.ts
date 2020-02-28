@@ -69,19 +69,44 @@ describe('PricingPipe Unit Test', () => {
                 // check discount.weekly is not negative and not greater than the price
                 if ((Math.sign(data.discounts.weekly) === -1 || data.discounts.weekly > data.price) ||
                     (Math.sign(data.discounts.monthly) === -1 || data.discounts.monthly > data.price)) {
-                    return 'discounts cannot be negative or greater than the price';
+                    return 'Discounts cannot be negative or greater than the price';
                 }
             };
             expect(await mockValidatePricingDto(pricePass)).toBe(undefined);
             expect(await mockValidatePricingDto(discountsPass)).toBe(undefined);
             expect(await mockValidatePricingDto(negativeFail)).toBe('Price cannot be negative or below $9');
             expect(await mockValidatePricingDto(belowMinFail)).toBe('Price cannot be negative or below $9');
-            expect(await mockValidatePricingDto(weeklyTooLargeFail)).toBe('discounts cannot be negative or greater than the price');
-            expect(await mockValidatePricingDto(monthlyTooLargeFail)).toBe('discounts cannot be negative or greater than the price');
+            expect(await mockValidatePricingDto(weeklyTooLargeFail)).toBe('Discounts cannot be negative or greater than the price');
+            expect(await mockValidatePricingDto(monthlyTooLargeFail)).toBe('Discounts cannot be negative or greater than the price');
+        });
+    });
+
+    describe('mapPricingDto method test', () => {
+        it('should return a complete pricingDto', async () => {
+            const test1: PricingDto = {
+                price: 28,
+                discounts: {
+                    weekly: 5,
+                    monthly: 10,
+                },
+            };
+            const test2: PricingDto = {
+                price: 10,
+                discounts: {
+                    weekly: null,
+                    monthly: null,
+                },
+            };
+            expect((await pipe.transform(test1)).price).toBe(test1.price);
+            expect((await pipe.transform(test1)).discounts.weekly).toBe(test1.discounts.weekly);
+            expect((await pipe.transform(test1)).discounts.monthly).toBe(test1.discounts.monthly);
+            expect((await pipe.transform(test2)).price).toBe(test2.price);
+            expect((await pipe.transform(test2)).discounts.weekly).toBe(test2.discounts.weekly);
+            expect((await pipe.transform(test2)).discounts.monthly).toBe(test2.discounts.monthly);
         });
     });
 
     afterAll(async () => {
         app.close();
-    })
-})
+    });
+});
