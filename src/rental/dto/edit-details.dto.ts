@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class EditDetailsDto {
+  rentalId: string;
   specs: {
     odometer: number;
     transmission: string;
@@ -20,5 +21,5 @@ export class EditDetailsDto {
     bluetooth: boolean;
     sunRoof: boolean;
   };
-  features: [string];
+  features: string[];
 }
