@@ -1,6 +1,5 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { PricingPipe } from './pricing.pipe';
-import { Logger } from '@nestjs/common';
 import { PricingDto } from '../dto/pricing.dto';
 
 describe('PricingPipe Unit Test', () => {
@@ -19,7 +18,7 @@ describe('PricingPipe Unit Test', () => {
         it('should validate price and discounts are not negative nor have illogical values', async () => {
             // do stuffs
             const pricePass: PricingDto = {
-                rentalId:'xxx',
+                rentalId: 'xxx',
                 price: 28,
                 discounts: {
                     weekly: null,
@@ -27,7 +26,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const discountsPass: PricingDto = {
-                rentalId:'xxx',
+                rentalId: 'xxx',
                 price: 28,
                 discounts: {
                     weekly: 5,
@@ -35,7 +34,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const negativeFail: PricingDto = {
-                rentalId:'xxx',
+                rentalId: 'xxx',
                 price: -10,
                 discounts: {
                     weekly: null,
@@ -43,7 +42,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const belowMinFail: PricingDto = {
-                rentalId:'xxx',
+                rentalId: 'xxx',
                 price: 7,
                 discounts: {
                     weekly: null,
@@ -51,7 +50,7 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const weeklyTooLargeFail: PricingDto = {
-                rentalId:'xxx',
+                rentalId: 'xxx',
                 price: 10,
                 discounts: {
                     weekly: 11,
@@ -59,15 +58,27 @@ describe('PricingPipe Unit Test', () => {
                 },
             };
             const monthlyTooLargeFail: PricingDto = {
-                rentalId:'xxx',
+                rentalId: 'xxx',
                 price: 10,
                 discounts: {
                     weekly: null,
                     monthly: 11,
                 },
             };
-            const mockValidatePricingDto = async (data) => {
+            const invalidRentalIdFail: PricingDto = {
+                rentalId: null,
+                price: 10,
+                discounts: {
+                    weekly: null,
+                    monthly: null,
+                },
+            };
+            const mockValidatePricingDto = async (data: PricingDto) => {
                 const minPrice: number = 9;
+                // check rentalID
+                if (!data.rentalId || (typeof data.rentalId !== 'string')) {
+                    return('Invalid rentalID');
+                }
                 // check price is not negative && >= 9
                 if (Math.sign(data.price) === -1 || data.price < minPrice) {
                     return 'Price cannot be negative or below $9';
@@ -84,6 +95,7 @@ describe('PricingPipe Unit Test', () => {
             expect(await mockValidatePricingDto(belowMinFail)).toBe('Price cannot be negative or below $9');
             expect(await mockValidatePricingDto(weeklyTooLargeFail)).toBe('Discounts cannot be negative or greater than the price');
             expect(await mockValidatePricingDto(monthlyTooLargeFail)).toBe('Discounts cannot be negative or greater than the price');
+            expect(await mockValidatePricingDto(invalidRentalIdFail)).toBe('Invalid rentalID');
         });
     });
 

@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable} from '@nestjs/common';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -62,7 +62,6 @@ export class RentalService {
   async searchRental(rental: SearchRentalDto) {
     try {
       const query = await this.createRentalQuery(rental);
-      Logger.log(query);
       const rentals = await this.rentalModel.find(query);
       if (rentals.length > 0) {
         return rentals;
@@ -82,7 +81,6 @@ export class RentalService {
     // make an update document
     try {
       const filter = { _id: data.rentalId};
-      Logger.log(filter);
       const update = {
         specs: {
           pricing: {
@@ -97,8 +95,6 @@ export class RentalService {
       const updater = {
         $set: update,
       };
-      Logger.log(`updater`);
-      Logger.log(updater.$set);
       const doc = await this.rentalModel.findOneAndUpdate(filter, updater);
       return doc;
     } catch (err) {

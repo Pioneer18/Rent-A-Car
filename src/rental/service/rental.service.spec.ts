@@ -208,8 +208,41 @@ describe('RentalService Unit Tests', () => {
     });
   });
 
-  it('should query the db to update a rental with the given update and throw an error if one is caught', () => {
-    // do stuffs
+  describe('editPricing method test', () => {
+    it('should query the db to update a rental with the given update and throw an error if one is caught', async () => {
+      const pricingDto = {
+        rentalId: 'fake-id',
+        price: 29,
+        discounts: {
+          weekly: 5,
+          monthly: 10,
+        },
+      };
+      const mockEditPricing = async (data) => {
+        const filter = { _id: data.rentalId };
+        const update = {
+          specs: {
+            pricing: {
+              price: data.price,
+              discounts: {
+                weekly: data.discounts.weekly,
+                monthly: data.discounts.monthly,
+              },
+            },
+          },
+        };
+        const updater = {
+          $set: update,
+        };
+        return {updater, filter};
+      };
+      // expect filter
+      const test = await mockEditPricing(pricingDto);
+      expect(test.filter).toEqual(expect.objectContaining({_id: 'fake-id'}));
+      expect(test.updater.$set.specs.pricing.price).toBe(29);
+      expect(test.updater.$set.specs.pricing.discounts.weekly).toBe(5);
+      expect(test.updater.$set.specs.pricing.discounts.monthly).toBe(10);
+    });
   });
 
   it(`should query the db to update a rental's pricing with the given update, and throw an error if one is caught`, () => {

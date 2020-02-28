@@ -1,4 +1,4 @@
-import { Injectable, PipeTransform, Logger } from '@nestjs/common';
+import { Injectable, PipeTransform} from '@nestjs/common';
 import { PricingDto } from '../dto/pricing.dto';
 
 /**
