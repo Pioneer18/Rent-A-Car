@@ -14,6 +14,8 @@ import { GivenNoticePipe } from '../pipes/given-notice.pipe';
 import { SearchRentalValidationSchema } from '../schema/validation/search-rental-validation.schema';
 import { PricingPipe } from '../pipes/pricing.pipe';
 import { PricingDto } from '../dto/pricing.dto';
+import { EditDetailsPipe } from '../pipes/edit-details.pipe';
+import { EditDetailsDto } from '../dto/edit-details.dto';
 
 @Controller('rental')
 export class RentalController {
@@ -59,8 +61,8 @@ export class RentalController {
    * edit the details of the Rental (# of seats, color, etc.)
    */
   @Post('edit-details')
-  // @UsePipes( new EditDetailsPipe())
-  async editDetails(@Body() editDetailsDto: any /*EdiDetailsDto*/) {
+  @UsePipes(new EditDetailsPipe())
+  async editDetails(@Body() editDetailsDto: EditDetailsDto) {
     return await this.rentalService.editDetails(editDetailsDto);
   }
 

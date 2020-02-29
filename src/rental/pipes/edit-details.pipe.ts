@@ -104,7 +104,7 @@ export class EditDetailsPipe implements PipeTransform {
 
     // apply validation
     async transform(value: EditDetailsDto) {
-        this.validateDetails(value);
+        await this.validateDetails(value);
         return value;
     }
 }
