@@ -14,6 +14,7 @@ import { DateTime } from 'luxon';
  */
 @Injectable()
 export class GivenNoticePipe implements PipeTransform {
+
   private async createGivenNotice(startTime) {
     const givenNotice: number = startTime.diffNow().toObject().milliseconds;
     if (givenNotice >= 3600000) {

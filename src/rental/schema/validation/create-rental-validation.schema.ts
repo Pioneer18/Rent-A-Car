@@ -20,7 +20,7 @@ export const CreateRentalValidation = joi.object({
     numDoors: joi.number().required(),
   }),
   registration: joi.object({
-    vin: joi.number().required(),
+    vin: joi.string().required(),
     licensePlate: joi.string().required(),
     state: joi.string().required(),
   }),
