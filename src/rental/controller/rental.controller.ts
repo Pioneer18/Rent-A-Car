@@ -30,7 +30,11 @@ export class RentalController {
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil()))
   async createRental(@Body() rental: MappedRentalInterface) {
-    return await this.rentalService.createRental(rental);
+    try {
+      return await this.rentalService.createRental(rental);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   /**
@@ -43,7 +47,11 @@ export class RentalController {
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
   @UsePipes(new GivenNoticePipe())
   async searchRental(@Query() searchRentalDto: SearchRentalDto) {
-    return await this.rentalService.searchRental(searchRentalDto);
+    try {
+      return await this.rentalService.searchRental(searchRentalDto);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   /**
@@ -53,7 +61,11 @@ export class RentalController {
   @Post('edit-price')
   @UsePipes(new PricingPipe())
   async editPricing(@Body() pricingDto: PricingDto) {
-    return await this.rentalService.editPricing(pricingDto);
+    try {
+      return await this.rentalService.editPricing(pricingDto);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   /**
@@ -63,7 +75,11 @@ export class RentalController {
   @Post('edit-details')
   @UsePipes(new EditDetailsPipe())
   async editDetails(@Body() editDetailsDto: EditDetailsDto) {
-    return await this.rentalService.editDetails(editDetailsDto);
+    try {
+      return await this.rentalService.editDetails(editDetailsDto);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   /**
