@@ -62,10 +62,6 @@ describe('RentalService Unit Tests', () => {
           color: 'white',
           numOfSeats: 5,
           numDoors: 4,
-          driveAssist: false,
-          rearviewCam: false,
-          bluetooth: false,
-          sunRoof: false,
         },
         registration: {
           vin: '1783938',
@@ -108,10 +104,6 @@ describe('RentalService Unit Tests', () => {
       expect(result).toEqual(expect.any(Object));
       expect(result.specs).toEqual(
         expect.objectContaining({
-          driveAssist: expect.any(Boolean),
-          rearviewCam: expect.any(Boolean),
-          bluetooth: expect.any(Boolean),
-          sunRoof: expect.any(Boolean),
           odometer: expect.any(Number),
           transmission: expect.any(String),
           cityMpg: expect.any(Number),

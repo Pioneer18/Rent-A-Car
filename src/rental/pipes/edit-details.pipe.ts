@@ -74,22 +74,6 @@ export class EditDetailsPipe implements PipeTransform {
                 !this.typeOfValue.validate(value.specs.numDoors, 'number') || !this.positiveNumber.validate(value.specs.numDoors)) {
                     throw new Error('numDoors must be a positive number');
                 }
-            if (value.specs.driveAssist &&
-                !this.typeOfValue.validate(value.specs.driveAssist, 'boolean')) {
-                    throw new Error('driveAssist must be a valid value (boolean)');
-                }
-            if (value.specs.rearviewCam &&
-                !this.typeOfValue.validate(value.specs.rearviewCam, 'boolean')) {
-                    throw new Error('rearviewCam must be a valid value (boolean)');
-                }
-            if (value.specs.bluetooth &&
-                !this.typeOfValue.validate(value.specs.bluetooth, 'boolean')) {
-                    throw new Error('bluetooth must be a valid value (boolean)');
-                }
-            if (value.specs.sunRoof &&
-                !this.typeOfValue.validate(value.specs.sunRoof, 'boolean')) {
-                    throw new Error('sunRoof must be a valid value (boolean)');
-                }
         }
         if (value.features) {
             if (value.features.length > 0) {

@@ -54,10 +54,6 @@ describe('Rental Controller', () => {
         color: 'white',
         numOfSeats: 5,
         numDoors: 4,
-        driveAssist: false,
-        rearviewCam: false,
-        bluetooth: false,
-        sunRoof: false,
       },
       registration: {
         vin: '1783938',

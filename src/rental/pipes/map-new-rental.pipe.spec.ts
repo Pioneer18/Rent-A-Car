@@ -39,10 +39,6 @@ describe('MapNewRentalPipe Unit Test', () => {
             color: 'white',
             numOfSeats: 5,
             numDoors: 4,
-            driveAssist: false,
-            rearviewCam: false,
-            bluetooth: false,
-            sunRoof: false,
           },
           registration: {
             vin: 'E5597C6347',
@@ -90,10 +86,6 @@ describe('MapNewRentalPipe Unit Test', () => {
           color: 'white',
           numOfSeats: 5,
           numDoors: 4,
-          driveAssist: false,
-          rearviewCam: false,
-          bluetooth: false,
-          sunRoof: false,
         },
         registration: {
           vin: 'E5597C6347',

@@ -18,10 +18,6 @@ export class CreateRentalDto {
     color: string;
     numOfSeats: number;
     numDoors: number;
-    driveAssist: boolean;
-    rearviewCam: boolean;
-    bluetooth: boolean;
-    sunRoof: boolean;
   };
   registration: {
     vin: string;

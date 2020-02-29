@@ -20,10 +20,6 @@ describe('CreateRentalValidationSchema Unit Test', () => {
         color: 'yellow',
         numOfSeats: 5,
         numDoors: 4,
-        driveAssist: false,
-        rearviewCam: false,
-        bluetooth: false,
-        sunRoof: false,
       },
       registration: {
         vin: '511892000',

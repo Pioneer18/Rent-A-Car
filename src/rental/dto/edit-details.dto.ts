@@ -16,10 +16,6 @@ export class EditDetailsDto {
     color: string;
     numOfSeats: number;
     numDoors: number;
-    driveAssist: boolean;
-    rearviewCam: boolean;
-    bluetooth: boolean;
-    sunRoof: boolean;
   };
   features: string[];
 }

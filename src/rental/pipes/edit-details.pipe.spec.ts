@@ -37,10 +37,6 @@ describe('EditDetailsPipe Unit Test', () => {
             color: null,
             numOfSeats: null,
             numDoors: null,
-            driveAssist: null,
-            rearviewCam: null,
-            bluetooth: null,
-            sunRoof: null,
             features: null,
         };
         // check rentalId
@@ -102,22 +98,6 @@ describe('EditDetailsPipe Unit Test', () => {
                 !val.validate(value.specs.numDoors, 'number') || !pos.validate(value.specs.numDoors)) {
                     result.numDoors = 'numDoors must be a positive number';
                 }
-            if (value.specs.driveAssist &&
-                !val.validate(value.specs.driveAssist, 'boolean')) {
-                    result.driveAssist = 'driveAssist must be a valid value (boolean)';
-                }
-            if (value.specs.rearviewCam &&
-                !val.validate(value.specs.rearviewCam, 'boolean')) {
-                    result.rearviewCam = 'rearviewCam must be a valid value (boolean)';
-                }
-            if (value.specs.bluetooth &&
-                !val.validate(value.specs.bluetooth, 'boolean')) {
-                    result.bluetooth = 'bluetooth must be a valid value (boolean)';
-                }
-            if (value.specs.sunRoof &&
-                !val.validate(value.specs.sunRoof, 'boolean')) {
-                    result.sunRoof = 'sunRoof must be a valid value (boolean)';
-                }
         }
         if (value.features) {
             if (value.features.length > 0) {
@@ -155,10 +135,6 @@ describe('EditDetailsPipe Unit Test', () => {
                     color: 'white',
                     numOfSeats: 5,
                     numDoors: 4,
-                    driveAssist: false,
-                    rearviewCam: false,
-                    bluetooth: false,
-                    sunRoof: false,
                   },
                   features: ['A/C', 'AUX'],
             };
@@ -175,10 +151,6 @@ describe('EditDetailsPipe Unit Test', () => {
             expect((await pipe.transform(test)).specs.color).toBe(test.specs.color);
             expect((await pipe.transform(test)).specs.numOfSeats).toBe(test.specs.numOfSeats);
             expect((await pipe.transform(test)).specs.numDoors).toBe(test.specs.numDoors);
-            expect((await pipe.transform(test)).specs.driveAssist).toBe(test.specs.driveAssist);
-            expect((await pipe.transform(test)).specs.rearviewCam).toBe(test.specs.rearviewCam);
-            expect((await pipe.transform(test)).specs.bluetooth).toBe(test.specs.bluetooth);
-            expect((await pipe.transform(test)).specs.sunRoof).toBe(test.specs.sunRoof);
             expect((await pipe.transform(test)).features[0]).toBe(test.features[0]);
             expect((await pipe.transform(test)).features[1]).toBe(test.features[1]);
         });
@@ -202,10 +174,6 @@ describe('EditDetailsPipe Unit Test', () => {
                     color: 0,
                     numOfSeats: 'string',
                     numDoors: 'string',
-                    driveAssist: 'string',
-                    rearviewCam: 'string',
-                    bluetooth: 'string',
-                    sunRoof: 'string',
                 },
                 features: [0, 0],
             };
@@ -225,10 +193,6 @@ describe('EditDetailsPipe Unit Test', () => {
                     color: 'white',
                     numOfSeats: 5,
                     numDoors: 4,
-                    driveAssist: false,
-                    rearviewCam: false,
-                    bluetooth: false,
-                    sunRoof: false,
                 },
                 features: ['fake feature'],
             };
@@ -247,10 +211,6 @@ describe('EditDetailsPipe Unit Test', () => {
             expect((await validateDetails(pass)).color).toBe(null);
             expect((await validateDetails(pass)).numOfSeats).toBe(null);
             expect((await validateDetails(pass)).numDoors).toBe(null);
-            expect((await validateDetails(pass)).driveAssist).toBe(null);
-            expect((await validateDetails(pass)).rearviewCam).toBe(null);
-            expect((await validateDetails(pass)).bluetooth).toBe(null);
-            expect((await validateDetails(pass)).sunRoof).toBe(null);
             expect((await validateDetails(pass)).features).toBe(null);
             // failing test
             /*expect((await validateDetails(fail)).rentalId).toBe('Invalid rental id');
@@ -267,10 +227,6 @@ describe('EditDetailsPipe Unit Test', () => {
             expect((await validateDetails(fail)).color).toBe('color must be a valid value (string)');
             expect((await validateDetails(fail)).numOfSeats).toBe('numOfSeats must be a positive number');
             expect((await validateDetails(fail)).numDoors).toBe('numDoors must be a positive number');
-            expect((await validateDetails(fail)).driveAssist).toBe('driveAssist must be a valid value (boolean)');
-            expect((await validateDetails(fail)).rearviewCam).toBe('rearviewCam must be a valid value (boolean)');
-            expect((await validateDetails(fail)).bluetooth).toBe('bluetooth must be a valid value (boolean)');
-            expect((await validateDetails(fail)).sunRoof).toBe('sunRoof must be a valid value (boolean)');
             expect((await validateDetails(fail)).features).toBe('features must be valid values (string)');*/
         });
     });

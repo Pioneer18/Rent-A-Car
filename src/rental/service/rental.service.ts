@@ -47,9 +47,13 @@ export class RentalService {
    * create a new vehicle rental listing
    */
   async createRental(rental: MappedRentalInterface) {
-    const document = await new this.rentalModel(rental);
-    await document.save();
-    return document;
+    try {
+      const document = await new this.rentalModel(rental);
+      await document.save();
+      return document;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   /**
@@ -57,12 +61,16 @@ export class RentalService {
    * find rentals available near a specified locations (user's location)
    */
   async searchRental(rental: SearchRentalDto) {
-    const query = await this.createRentalQuery(rental);
-    const rentals = await this.rentalModel.find(query);
-    if (rentals.length > 0) {
-      return rentals;
-    } else {
-      throw new Error('No rentals were found');
+    try {
+      const query = await this.createRentalQuery(rental);
+      const rentals = await this.rentalModel.find(query);
+      if (rentals.length > 0) {
+        return rentals;
+      } else {
+        throw new Error('No rentals were found');
+      }
+    } catch (err) {
+      throw new Error(err);
     }
   }
 
@@ -72,9 +80,9 @@ export class RentalService {
    */
   async editPricing(data: PricingDto) {
     // make an update document
-    const filter = { _id: data.rentalId };
-    const update = {
-      specs: {
+    try {
+      const filter = { _id: data.rentalId };
+      const update = {
         pricing: {
           price: data.price,
           discounts: {
@@ -82,21 +90,35 @@ export class RentalService {
             monthly: data.discounts.monthly,
           },
         },
-      },
-    };
-    const updater = {
-      $set: update,
-    };
-    const doc = await this.rentalModel.findOneAndUpdate(filter, updater);
-    return doc;
+      };
+      const updater = {
+        $set: update,
+      };
+      const doc = await this.rentalModel.findOneAndUpdate(filter, updater);
+      return doc;
+    } catch (err) { throw new Error(err); }
   }
 
   /**
    * Edit Rental Details:
    * edit the details of the Rental (# of seats, color, etc.)
    */
-  async editDetails(update: EditDetailsDto) {
-    // create an updater from incoming data
+  async editDetails(data: EditDetailsDto) {
+    // make an update document
+    try {
+      const filter = {_id: data.rentalId };
+      const update = {
+        specs: data.specs,
+        features: data.features,
+      };
+      const updater = {
+        $set: update,
+      };
+      const doc = await this.rentalModel.findOneAndUpdate(filter, updater);
+      return doc;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   /**

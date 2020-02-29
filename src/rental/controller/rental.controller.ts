@@ -47,11 +47,7 @@ export class RentalController {
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
   @UsePipes(new GivenNoticePipe())
   async searchRental(@Query() searchRentalDto: SearchRentalDto) {
-    try {
       return await this.rentalService.searchRental(searchRentalDto);
-    } catch (err) {
-      throw new Error(err);
-    }
   }
 
   /**
@@ -61,11 +57,7 @@ export class RentalController {
   @Post('edit-price')
   @UsePipes(new PricingPipe())
   async editPricing(@Body() pricingDto: PricingDto) {
-    try {
       return await this.rentalService.editPricing(pricingDto);
-    } catch (err) {
-      throw new Error(err);
-    }
   }
 
   /**
@@ -75,11 +67,7 @@ export class RentalController {
   @Post('edit-details')
   @UsePipes(new EditDetailsPipe())
   async editDetails(@Body() editDetailsDto: EditDetailsDto) {
-    try {
       return await this.rentalService.editDetails(editDetailsDto);
-    } catch (err) {
-      throw new Error(err);
-    }
   }
 
   /**

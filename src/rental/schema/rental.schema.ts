@@ -25,10 +25,6 @@ export const RentalSchema = new Schema({
     color: String,
     numOfSeats: Number,
     numDoors: Number,
-    driveAssist: { type: Boolean, default: false },
-    rearviewCam: { type: Boolean, default: false },
-    bluetooth: { type: Boolean, default: false },
-    sunRoof: { type: Boolean, default: false },
   },
   registration: {
     vin: String,

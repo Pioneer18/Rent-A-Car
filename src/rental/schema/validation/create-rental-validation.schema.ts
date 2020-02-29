@@ -18,10 +18,6 @@ export const CreateRentalValidation = joi.object({
     color: joi.string().required(),
     numOfSeats: joi.number().required(),
     numDoors: joi.number().required(),
-    driveAssist: joi.boolean(),
-    rearviewCam: joi.boolean(),
-    bluetooth: joi.boolean(),
-    sunRoof: joi.boolean(),
   }),
   registration: joi.object({
     vin: joi.number().required(),
