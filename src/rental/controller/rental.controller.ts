@@ -16,9 +16,10 @@ import { PricingPipe } from '../pipes/pricing.pipe';
 import { PricingDto } from '../dto/pricing.dto';
 import { EditDetailsPipe } from '../pipes/edit-details.pipe';
 import { EditDetailsDto } from '../dto/edit-details.dto';
-import { Processed } from '../interface/processed.interface';
 import { SortUnavailabilityPipe } from '../pipes/sort-unavailability.pipe';
 import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pipe';
+import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
+import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
 
 @Controller('rental')
 export class RentalController {
@@ -75,23 +76,14 @@ export class RentalController {
 
   /**
    * Schedule Unavailability
-   * set a period of unavailability for the rental (e.g. mon - wed  )
-   * - #1
-   * sort and combine requested unavailability if it's 2 years (on the crossover)
-   * account for Leap Years
-   * - #2
-   * query ScheduledUnavailability for requested unavailability by range of DOY (for 1 year or both)
-   * throw error if any overlap
-   * - #3
-   * validate the unavailability
-   * - #4
-   * insert the unavailability
+   * set a period of unavailability for the rental
    */
   @Post('schedule-unavailability')
+  @UsePipes(new ProcessUnavailabilityPipe())
   @UsePipes(new ValidateUnavailabilityPipe())
   @UsePipes(new SortUnavailabilityPipe())
-  async scheduleUnavailability(@Body() processed: Processed ) {
-    return 'tee-hee'; // await this.rentalService.scheduleUnavailability(processed);
+  async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto ) {
+    return await this.rentalService.scheduleUnavailability(processed);
   }
 
   /**

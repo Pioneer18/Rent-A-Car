@@ -65,30 +65,42 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     return start;
   }
 
-  private validateCrossover = async (y1: Unavailability[], y2: Unavailability[], ly: boolean): Promise<void> => {
-      // y1's final Unavailability
-      const y1Final = y1[y1.length - 1];
-      // # of days in y1
-      const diy = (await this.convertToDateTime(y1Final)).daysInYear;
-      // final DOY of y1 must equal diy of y1
-      if (diy !== y1Final.doy) {
-        if (ly) {
-            throw new Error(`the final day of this leap year, ${y1Final.doy}/${y1Final.year}, is missing`);
-        }
-        throw new Error(`the final day of this year, ${y1Final.doy}/${y1Final.year}, is missing`);
+  private validateCrossover = async (
+    y1: Unavailability[],
+    y2: Unavailability[],
+    ly: boolean,
+  ): Promise<void> => {
+    // y1's final Unavailability
+    const y1Final = y1[y1.length - 1];
+    // # of days in y1
+    const diy = (await this.convertToDateTime(y1Final)).daysInYear;
+    // final DOY of y1 must equal diy of y1
+    if (diy !== y1Final.doy) {
+      if (ly) {
+        throw new Error(
+          `the final day of this leap year, ${y1Final.doy}/${
+            y1Final.year
+          }, is missing`,
+        );
       }
-      // validate y2 starts at 0, we already know it's sequential
-      if (y2[0]) {
-          if (y2[0].doy !== 0) {
-              throw new Error('the 1st day of the second year is missing');
-          }
-      } else {
-          throw new Error('there is not a second year');
+      throw new Error(
+        `the final day of this year, ${y1Final.doy}/${y1Final.year}, is missing`,
+      );
+    }
+    // validate y2 starts at 0, we already know it's sequential
+    if (y2[0]) {
+      if (y2[0].doy !== 0) {
+        throw new Error('the 1st day of the second year is missing');
       }
-      Logger.log('the final unavailability of y1');
-      Logger.log(y1Final);
-      Logger.log(`the total days in y1: ${diy} & the final day of y1: ${y1Final.doy}`);
-      Logger.log(`this is a leap year: ${ly}`);
+    } else {
+      throw new Error('there is not a second year');
+    }
+    Logger.log('the final unavailability of y1');
+    Logger.log(y1Final);
+    Logger.log(
+      `the total days in y1: ${diy} & the final day of y1: ${y1Final.doy}`,
+    );
+    Logger.log(`this is a leap year: ${ly}`);
   }
 
   /**
@@ -96,12 +108,14 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * return if it's a leap year or not
    */
   private checkLeapYear = async (u1: DateTime) => {
-      const check = u1.isInLeapYear;
+    const check = u1.isInLeapYear;
 
-      return check; // true or false
+    return check; // true or false
   }
 
-  private validateEachUnavailability = async (unavailability: Unavailability[]) => {
+  private validateEachUnavailability = async (
+    unavailability: Unavailability[],
+  ) => {
     const base = unavailability[0];
     for (const { item, index } of toItemIndexes(unavailability)) {
       // rentalId congruence
@@ -115,17 +129,18 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
       // interval congruence
       if (item.start !== base.start || item.end !== base.end) {
         throw new Error(
-           'each requested day of unavailability must share the same start end time',
+          'each requested day of unavailability must share the same start end time',
         );
       }
       // MTime
-      if (item.start < 0 || item.start > 24 || item.end < 0 || item.end > 24
-      ) {
+      if (item.start < 0 || item.start > 24 || item.end < 0 || item.end > 24) {
         throw new Error('the unavailable time must be in military time format');
       }
       // year congruence
       if (item.year !== base.year) {
-        throw new Error(`invalid year: first year ${item.year} second year ${base.year}`);
+        throw new Error(
+          `invalid year: first year ${item.year} second year ${base.year}`,
+        );
       }
       // sequential DOY
       if (index > 0) {
@@ -135,22 +150,35 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
       }
       // title congruence
       if (item.title !== base.title) {
-        throw new Error(`request cannot have more than one title: 1st year title "${item.title}" 2nd year title "${base.title}"`);
+        throw new Error(
+          `request cannot have more than one title: 1st year title "${
+            item.title
+          }" 2nd year title "${base.title}"`,
+        );
       }
     }
   }
 
   // validate congruence in rentalId, start, end, and title across y1 and y2
-  private validateCrossYearCongruence = async (y1: Unavailability, y2: Unavailability) => {
-      if (y1.rentalId !== y2.rentalId) {
-          throw new Error('request cannot have more than 1 Rental ID');
-      }
-      if (y1.start !== y2.start || y1.end !== y2.end) {
-          throw new Error('each requested day of unavailability must share the same start end time');
-      }
-      if (y1.title !== y2.title) {
-          throw new Error(`request cannot have more than one title: 1st year title "${y1.title}" 2nd year title "${y2.title}"`);
-      }
+  private validateCrossYearCongruence = async (
+    y1: Unavailability,
+    y2: Unavailability,
+  ) => {
+    if (y1.rentalId !== y2.rentalId) {
+      throw new Error('request cannot have more than 1 Rental ID');
+    }
+    if (y1.start !== y2.start || y1.end !== y2.end) {
+      throw new Error(
+        'each requested day of unavailability must share the same start end time',
+      );
+    }
+    if (y1.title !== y2.title) {
+      throw new Error(
+        `request cannot have more than one title: 1st year title "${
+          y1.title
+        }" 2nd year title "${y2.title}"`,
+      );
+    }
   }
 
   async transform(value: Ordered): Promise<ValidatedUnavailabilityDto> {
@@ -160,23 +188,21 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
       Logger.log('it is valid!!!!!!');
       // if 2 years; if there are 2 years we know y1 must include the final doy of y1
       if (value.y2 !== null) {
-          // validate 2 years
-          Logger.log(`this is the second year of Unavailability`);
-          Logger.log(value.y2);
-          await this.validateEachUnavailability(value.y1);
-          await this.validateEachUnavailability(value.y2);
-          // check if y1 is a leap year
-          const ly = await this.checkLeapYear(start);
-          // validate crossover from y1 to y2; account for if it's a leap year
-          await this.validateCrossover(value.y1, value.y2, ly);
-          await this.validateCrossYearCongruence(value.y1[0], value.y2[0]);
-          // return a ValidatedUnavailabilityDto
-          return {y1: value.y1, y2: value.y2, validated};
-
+        // validate 2 years
+        Logger.log(`this is the second year of Unavailability`);
+        Logger.log(value.y2);
+        await this.validateEachUnavailability(value.y1);
+        await this.validateEachUnavailability(value.y2);
+        // check if y1 is a leap year
+        const ly = await this.checkLeapYear(start);
+        // validate crossover from y1 to y2; account for if it's a leap year
+        await this.validateCrossover(value.y1, value.y2, ly);
+        await this.validateCrossYearCongruence(value.y1[0], value.y2[0]);
+        // return a ValidatedUnavailabilityDto
+        return { y1: value.y1, y2: value.y2, validated };
       }
-      // else
       await this.validateEachUnavailability(value.y1);
-      // validate a single year
+      return { y1: value.y1, y2: null, validated };
     } catch (err) {
       throw new Error(err);
     }
