@@ -11,8 +11,25 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
       rentalId: year.min.rentalId,
       year: year.year,
       doy: { $lte: year.max.doy, $gte: year.min.doy },
-      start: { $gte: year.start, $lte: year.end },
-      end: { $lte: year.end, $gte: year.start },
+      $or: [
+        { // enclosed
+          start: { $gte: year.start},
+          end: { $lte: year.end },
+        },
+        {
+          // offset before start
+          start: {$lt: year.start},
+          end: {$lte: year.end},
+        },
+        { // offset after end
+          start: {$gte: year.start},
+          end: {$gt: year.end},
+        },
+        { // outside
+          start: {$lt: year.start},
+          end: {$gt: year.end},
+        },
+      ],
     };
   }
 
