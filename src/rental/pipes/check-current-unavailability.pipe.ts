@@ -18,9 +18,8 @@ export class CheckUnavailabilityPipe implements PipeTransform {
     ) {}
 
     private validate2Years = async (yearB: Unavailability[]): Promise<void> => {
-        const check = yearB[0].year;
         for (const x of yearB) {
-            if (x.year !== check) {
+            if (x.year !== yearB[0].year) {
                 throw new Error('Cannot request 3 years of unavailability');
             }
         }
@@ -48,7 +47,7 @@ export class CheckUnavailabilityPipe implements PipeTransform {
             }
             // sequential DOY
             if (index > 0) {
-                if (unavailability[index].doy <= unavailability[index - 1].doy) {
+                if ((unavailability[index].doy - 1) !== unavailability[index - 1].doy) {
                     throw new Error('The requested unavailability is not sequential');
                 }
             }
@@ -80,7 +79,7 @@ export class CheckUnavailabilityPipe implements PipeTransform {
     private processYears = async (sorted: Sorted): Promise<Processed> => {
         // a single year
         if (sorted.yB === null) {
-            await this.validateEachYear(sorted.yA)
+            await this.validateEachYear(sorted.yA);
             const {min, max} = await this.minMax(sorted.yA);
             return {
                 y1: {
@@ -180,6 +179,8 @@ export class CheckUnavailabilityPipe implements PipeTransform {
         const processed: Processed = await this.processYears(sorted);
         // validate there is no overlap
         await this.checkForOverlap(processed);
+        // return the processed request
+        return processed;
     }
 }
 
