@@ -19,6 +19,8 @@ import { EditDetailsDto } from '../dto/edit-details.dto';
 import { ScheduleUnavailabilityDto } from '../dto/scheduled-unavailability.dto';
 import { CheckUnavailabilityPipe } from '../pipes/check-current-unavailability.pipe';
 import { Processed } from '../interface/processed.interface';
+import { SortUnavailabilityPipe } from '../pipes/sort-unavailability.pipe';
+import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pipe';
 
 @Controller('rental')
 export class RentalController {
@@ -88,9 +90,10 @@ export class RentalController {
    * insert the unavailability
    */
   @Post('schedule-unavailability')
-  @UsePipes(new CheckUnavailabilityPipe())
+  @UsePipes(new ValidateUnavailabilityPipe())
+  @UsePipes(new SortUnavailabilityPipe())
   async scheduleUnavailability(@Body() processed: Processed ) {
-    return await this.rentalService.scheduleUnavailability(processed);
+    return 'tee-hee'; // await this.rentalService.scheduleUnavailability(processed);
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Injectable, PipeTransform } from '@nestjs/common';
+import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { Unavailability } from '../interface/unavailability.interface';
 import { ScheduleUnavailabilityDto } from '../dto/scheduled-unavailability.dto';
 import { Sorted } from '../interface/sorted.interface';
@@ -70,6 +70,8 @@ export class SortUnavailabilityPipe implements PipeTransform {
     try {
       const sorted: Sorted = await this.sort(value);
       const ordered = await this.orderYears(sorted);
+      Logger.log(`the ordered data below:`);
+      Logger.log(ordered);
       return ordered;
     } catch (err) {
       throw new Error(err);
