@@ -16,8 +16,6 @@ import { PricingPipe } from '../pipes/pricing.pipe';
 import { PricingDto } from '../dto/pricing.dto';
 import { EditDetailsPipe } from '../pipes/edit-details.pipe';
 import { EditDetailsDto } from '../dto/edit-details.dto';
-import { ScheduleUnavailabilityDto } from '../dto/scheduled-unavailability.dto';
-import { CheckUnavailabilityPipe } from '../pipes/check-current-unavailability.pipe';
 import { Processed } from '../interface/processed.interface';
 import { SortUnavailabilityPipe } from '../pipes/sort-unavailability.pipe';
 import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pipe';

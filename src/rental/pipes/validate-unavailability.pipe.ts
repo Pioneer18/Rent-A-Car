@@ -3,6 +3,8 @@ import { DateTime, Interval } from 'luxon';
 import { Ordered } from '../interface/ordered.interface';
 import { Unavailability } from '../interface/unavailability.interface';
 import { toItemIndexes } from 'src/common/util/to-item-indexes';
+import { validated } from 'src/common/Const';
+import { ValidatedUnavailabilityDto } from '../interface/validated-unavailability';
 
 @Injectable()
 export class ValidateUnavailabilityPipe implements PipeTransform {
@@ -58,7 +60,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     Logger.log(`the current DateTime below:`);
     Logger.log(currentDateTime);
     const start: DateTime = await this.convertToDateTime(value.y1[0]);
-    // compare cdt and start dt
+    // compare current DT and start DT
     await this.validateMinNotice(currentDateTime, start);
     return start;
   }
@@ -76,13 +78,17 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
         throw new Error(`the final day of this year, ${y1Final.doy}/${y1Final.year}, is missing`);
       }
       // validate y2 starts at 0, we already know it's sequential
-      if (y2[0].doy) {
+      if (y2[0]) {
           if (y2[0].doy !== 0) {
               throw new Error('the 1st day of the second year is missing');
           }
       } else {
           throw new Error('there is not a second year');
       }
+      Logger.log('the final unavailability of y1');
+      Logger.log(y1Final);
+      Logger.log(`the total days in y1: ${diy} & the final day of y1: ${y1Final.doy}`);
+      Logger.log(`this is a leap year: ${ly}`);
   }
 
   /**
@@ -109,7 +115,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
       // interval congruence
       if (item.start !== base.start || item.end !== base.end) {
         throw new Error(
-          'each requested day of unavailability must share the same start end time',
+           'each requested day of unavailability must share the same start end time',
         );
       }
       // MTime
@@ -119,7 +125,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
       }
       // year congruence
       if (item.year !== base.year) {
-        throw new Error('invalid years');
+        throw new Error(`invalid year: first year ${item.year} second year ${base.year}`);
       }
       // sequential DOY
       if (index > 0) {
@@ -129,12 +135,25 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
       }
       // title congruence
       if (item.title !== base.title) {
-        throw new Error('request cannot have more than one title');
+        throw new Error(`request cannot have more than one title: 1st year title "${item.title}" 2nd year title "${base.title}"`);
       }
     }
   }
 
-  async transform(value: Ordered) {
+  // validate congruence in rentalId, start, end, and title across y1 and y2
+  private validateCrossYearCongruence = async (y1: Unavailability, y2: Unavailability) => {
+      if (y1.rentalId !== y2.rentalId) {
+          throw new Error('request cannot have more than 1 Rental ID');
+      }
+      if (y1.start !== y2.start || y1.end !== y2.end) {
+          throw new Error('each requested day of unavailability must share the same start end time');
+      }
+      if (y1.title !== y2.title) {
+          throw new Error(`request cannot have more than one title: 1st year title "${y1.title}" 2nd year title "${y2.title}"`);
+      }
+  }
+
+  async transform(value: Ordered): Promise<ValidatedUnavailabilityDto> {
     try {
       // validate startTime is not in the past
       const start: DateTime = await this.validateRelevance(value);
@@ -142,14 +161,17 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
       // if 2 years; if there are 2 years we know y1 must include the final doy of y1
       if (value.y2 !== null) {
           // validate 2 years
+          Logger.log(`this is the second year of Unavailability`);
+          Logger.log(value.y2);
           await this.validateEachUnavailability(value.y1);
           await this.validateEachUnavailability(value.y2);
           // check if y1 is a leap year
           const ly = await this.checkLeapYear(start);
           // validate crossover from y1 to y2; account for if it's a leap year
           await this.validateCrossover(value.y1, value.y2, ly);
+          await this.validateCrossYearCongruence(value.y1[0], value.y2[0]);
           // return a ValidatedUnavailabilityDto
-          return {y1: value.y1, y2: value.y2};
+          return {y1: value.y1, y2: value.y2, validated};
 
       }
       // else
