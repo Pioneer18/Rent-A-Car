@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, UsePipes, Query } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UsePipes, Query, Inject } from '@nestjs/common';
 import { RentalService } from '../service/rental.service';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
@@ -17,6 +17,8 @@ import { PricingDto } from '../dto/pricing.dto';
 import { EditDetailsPipe } from '../pipes/edit-details.pipe';
 import { EditDetailsDto } from '../dto/edit-details.dto';
 import { ScheduleUnavailabilityDto } from '../dto/scheduled-unavailability.dto';
+import { CheckUnavailabilityPipe } from '../pipes/check-current-unavailability.pipe';
+import { Processed } from '../interface/processed.interface';
 
 @Controller('rental')
 export class RentalController {
@@ -86,8 +88,9 @@ export class RentalController {
    * insert the unavailability
    */
   @Post('schedule-unavailability')
-  async scheduleUnavailability(@Body() scheduleUnavailabilityDto: ScheduleUnavailabilityDto) {
-    return await this.rentalService.scheduleUnavailability(scheduleUnavailabilityDto);
+  @UsePipes(new CheckUnavailabilityPipe())
+  async scheduleUnavailability(@Body() processed: Processed ) {
+    return await this.rentalService.scheduleUnavailability(processed);
   }
 
   /**
