@@ -48,7 +48,7 @@ export class CheckUnavailabilityPipe implements PipeTransform {
             }
             // sequential DOY
             if (index > 0) {
-                if (unavailability[index].doy >= unavailability[index - 1].doy) {
+                if (unavailability[index].doy <= unavailability[index - 1].doy) {
                     throw new Error('The requested unavailability is not sequential');
                 }
             }
@@ -89,6 +89,7 @@ export class CheckUnavailabilityPipe implements PipeTransform {
                     year: sorted.yA[0].year,
                     start: sorted.yA[0].start,
                     end: sorted.yA[0].end,
+                    data: sorted.yA,
                 },
                 y2: null,
             };
@@ -106,6 +107,7 @@ export class CheckUnavailabilityPipe implements PipeTransform {
                 year: y1[0].year,
                 start: y1[0].start,
                 end: y1[0].end,
+                data: y1,
             },
             y2: {
                 min: temp2.min,
@@ -113,12 +115,30 @@ export class CheckUnavailabilityPipe implements PipeTransform {
                 year: y2[0].year,
                 start: y2[0].start,
                 end: y2[0].end,
+                data: y2,
             },
         };
     }
 
-    private checkForOverlap = async () => {
-        // check the db for overlap
+    private checkForOverlap = async (data: Processed) => {
+        const { y1, y2 } = data;
+        // if there are 2 years
+        if (y2 !== null) {
+            const y1Query = await this.createQuery(y1);
+            const y2Query = await this.createQuery(y2);
+            // query for both years
+            const test1 = await this.unavailabilityModel.find(y1Query);
+            const test2 = await this.unavailabilityModel.find(y2Query);
+            if (test1.length || test2.length) {
+                throw new Error('this request overlaps with existing unavailability');
+            }
+        }
+        // else
+        const query = await this.createQuery(y1);
+        const test = await this.unavailabilityModel.find(query);
+        if (test.length) {
+            throw new Error('this request overlaps with existing unavailability');
+        }
     }
 
     // return one or two arrays of DOY sorted Unavailability
@@ -137,33 +157,29 @@ export class CheckUnavailabilityPipe implements PipeTransform {
                 .sort((a, b) => a.doy - b.doy);
             return {yA: yearA, yB: yearB};
         }
-        return {yA: value.unavailability, yB: null };
+        return {
+            yA: value.unavailability.sort((a, b) => a.doy - b.doy), 
+            yB: null,
+        };
+    }
+
+    private createQuery = async (year) => {
+        return {
+            rentalId: year.min.rentalId,
+            year: year.year,
+            doy: {$lte: year.max.doy, $gte: year.min.doy},
+            start: {$gte: year.start, $lte: year.end},
+            end: {$lte: year.end, $gte: year.start},
+        };
     }
 
     async transform(value: ScheduleUnavailabilityDto) {
         // sort if there are 2 years
         const sorted: Sorted = await this.sort(value);
         // return min and max for each provided year; or null for y2
-        const {y1, y2} = await this.processYears(sorted);
-        // if there are 2 years
-        if (y2 !== null) {
-            const y1Query = {
-                rentalId: y1.min.rentalId,
-                year: y1.year,
-                doy: {$lte: y1.max.doy, $gte: y1.min.doy},
-                start: {$gte: y1.start, $lte: y1.end},
-                end: {$lte: y1.end, $gte: y1.start},
-            };
-            const y2Query = {
-                rentalId: y2.min.rentalId,
-                year: y2.year,
-                doy: {$lte: y2.max.doy, $gte: y2.min.doy},
-                start: y2.start,
-                end: y2.end,
-            };
-        }
-        // else
-
+        const processed: Processed = await this.processYears(sorted);
+        // validate there is no overlap
+        await this.checkForOverlap(processed);
     }
 }
 
@@ -173,8 +189,8 @@ interface Sorted {
 }
 
 interface Processed {
-    y1: { min: Unavailability, max: Unavailability, year: number, start: MTime, end: MTime };
-    y2: { min: Unavailability, max: Unavailability, year: number, start: MTime, end: MTime } | null;
+    y1: { min: Unavailability, max: Unavailability, year: number, start: MTime, end: MTime, data: Unavailability[] };
+    y2: { min: Unavailability, max: Unavailability, year: number, start: MTime, end: MTime, data: Unavailability[] } | null;
 }
 
 interface Ordered {

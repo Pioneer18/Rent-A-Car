@@ -16,6 +16,7 @@ import { PricingPipe } from '../pipes/pricing.pipe';
 import { PricingDto } from '../dto/pricing.dto';
 import { EditDetailsPipe } from '../pipes/edit-details.pipe';
 import { EditDetailsDto } from '../dto/edit-details.dto';
+import { ScheduleUnavailabilityDto } from '../dto/scheduled-unavailability.dto';
 
 @Controller('rental')
 export class RentalController {
@@ -73,9 +74,24 @@ export class RentalController {
   /**
    * Schedule Unavailability
    * set a period of unavailability for the rental (e.g. mon - wed  )
+   * - #1
+   * sort and combine requested unavailability if it's 2 years (on the crossover)
+   * account for Leap Years
+   * - #2
+   * query ScheduledUnavailability for requested unavailability by range of DOY (for 1 year or both)
+   * throw error if any overlap
+   * - #3
+   * validate the unavailability
+   * - #4
+   * insert the unavailability
    */
   @Post('schedule-unavailability')
-  async scheduleUnavailability(@Body() scheduleUnavailabilityDto: any /*ScheduleUnavailabilityDto*/) {
+  async scheduleUnavailability(@Body() scheduleUnavailabilityDto: ScheduleUnavailabilityDto) {
     return await this.rentalService.scheduleUnavailability(scheduleUnavailabilityDto);
   }
+
+  /**
+   * Update Unavailability
+   * edit current unavailability
+   */
 }
