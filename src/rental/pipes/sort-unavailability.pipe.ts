@@ -26,7 +26,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
     }
   }
 
-  // return the years in order, or return a single year
+  // return the sorted (by DOY) years in order, or return a single year
   private orderYears = async (sorted: Sorted): Promise<Ordered> => {
     // return a single year
     if (sorted.yB === null) {
@@ -41,7 +41,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
     return { y1: sorted.yB, y2: sorted.yA };
   }
 
-  // return one or two arrays of DOY sorted Unavailability
+  // separate years into y1 and y2 array and sort each by DOY
   private sort = async (value: ScheduleUnavailabilityDto): Promise<Sorted> => {
     // grab the year property from the first element
     const iYear: number = value.unavailability[0].year;
