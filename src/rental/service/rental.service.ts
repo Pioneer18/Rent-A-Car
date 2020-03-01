@@ -155,7 +155,17 @@ export class RentalService {
    * set a period of unavailability for the rental (e.g. mon - wed)
    */
   async scheduleUnavailability(processed: ProcessedUnavailabilityDto) {
-    await this.checkForOverlap(processed);
-    return processed;
+    try {
+      await this.checkForOverlap(processed);
+      // if it passed, combine data into one array and insert
+      const {y1, y2} = processed.data;
+      if (y2 !== null) {
+        const merged = y1.concat(y2);
+        return await this.unavailability.insertMany(merged, {ordered: true});
+      }
+      return await this.unavailability.insertMany(y1, {ordered: true});
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }

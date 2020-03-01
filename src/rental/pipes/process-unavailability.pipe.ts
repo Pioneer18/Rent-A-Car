@@ -42,6 +42,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
         return {
           y1Query: await this.createQuery(a1),
           y2Query: await this.createQuery(a2),
+          data: value,
         };
     }
     const b = {
@@ -55,6 +56,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
     return {
       y1Query: await this.createQuery(b),
       y2Query: null,
+      data: value,
     };
   }
 }
