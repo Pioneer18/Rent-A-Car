@@ -18,5 +18,6 @@ import { UnavailabilitySchema } from './schema/validation/unavailability-schema'
 export class RentalModule {
   constructor() {
     RentalSchema.index({ loc: '2dsphere' });
+    UnavailabilitySchema.index({rentalId: true});
   }
 }
