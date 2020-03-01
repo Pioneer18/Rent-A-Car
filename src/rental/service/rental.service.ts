@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -6,11 +6,15 @@ import { RentalInterface } from '../interface/rental.interface';
 import { SearchRentalDto } from '../dto/search-rental.dto';
 import { PricingDto } from '../dto/pricing.dto';
 import { EditDetailsDto } from '../dto/edit-details.dto';
+import { Processed } from '../interface/processed.interface';
+import { unavailabilityModel } from 'src/common/Const';
+import { Unavailability } from '../interface/unavailability.interface';
 
 @Injectable()
 export class RentalService {
   constructor(
     @InjectModel('Rental') private readonly rentalModel: Model<RentalInterface>,
+    @Inject(unavailabilityModel) private readonly unavailability: Model<Unavailability>,
   ) { }
 
   private async createRentalQuery(rental) {
@@ -40,6 +44,37 @@ export class RentalService {
       ? (query.features = { $in: rental.features })
       : (rental.features = null);
     return query;
+  }
+
+  private createQuery = async year => {
+    return {
+      rentalId: year.min.rentalId,
+      year: year.year,
+      doy: { $lte: year.max.doy, $gte: year.min.doy },
+      start: { $gte: year.start, $lte: year.end },
+      end: { $lte: year.end, $gte: year.start },
+    };
+  }
+
+  private checkForOverlap = async (data: Processed) => {
+    const { y1, y2 } = data;
+    // if there are 2 years
+    if (y2 !== null) {
+      const y1Query = await this.createQuery(y1);
+      const y2Query = await this.createQuery(y2);
+      // query for both years
+      const test1 = await this.unavailability.find(y1Query);
+      const test2 = await this.unavailability.find(y2Query);
+      if (test1.length || test2.length) {
+        throw new Error('this request overlaps with existing unavailability');
+      }
+    }
+    // else
+    const query = await this.createQuery(y1);
+    const test = await this.unavailability.find(query);
+    if (test.length) {
+      throw new Error('this request overlaps with existing unavailability');
+    }
   }
 
   /**
@@ -125,7 +160,8 @@ export class RentalService {
    * Schedule Unavailability:
    * set a period of unavailability for the rental (e.g. mon - wed)
    */
-  async scheduleUnavailability(schedule: any /*scheduleUnavailabilityDto*/) {
-    //
+  async scheduleUnavailability(processed: Processed) {
+    this.checkForOverlap(processed);
+    return 'tee-hee';
   }
 }
