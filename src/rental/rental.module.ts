@@ -21,6 +21,7 @@ import { unavailabilityProvider } from 'src/database/providers/unavailability-mo
 export class RentalModule {
   constructor() {
     RentalSchema.index({ loc: '2dsphere' });
-    UnavailabilitySchema.index({rentalId: true});
+    UnavailabilitySchema.index({rentalId: 1});
+    UnavailabilitySchema.index({title: 1});
   }
 }

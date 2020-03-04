@@ -89,5 +89,20 @@ export class RentalController {
   /**
    * Update Unavailability
    * edit current unavailability
+   * Pipes:
+   * - ValidateUpdateUnavailabilityPipe
    */
+  async updateUnavailability(@Body() data) {
+    return await 'tee-hee';
+  }
+
+   /**
+    * Remove Unavailability
+    * remove existing unavailability
+    * Pipes:
+    * - ValidateRemoveUnavailabilityPipe
+    */
+   async removeUnavailability(@Body() data) {
+     return 'tee-hee';
+   }
 }
