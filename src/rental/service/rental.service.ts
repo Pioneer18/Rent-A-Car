@@ -161,6 +161,8 @@ export class RentalService {
       const {y1, y2} = processed.data;
       if (y2 !== null) {
         const merged = y1.concat(y2);
+        Logger.log(`the merged years`);
+        Logger.log(merged);
         return await this.unavailability.insertMany(merged, {ordered: true});
       }
       return await this.unavailability.insertMany(y1, {ordered: true});

@@ -18,16 +18,16 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
         },
         {
           // offset before start
-          start: {$lt: year.start},
-          end: {$lte: year.end},
+          start: {$lte: year.start},
+          end: {$gte: year.start},
         },
         { // offset after end
-          start: {$gte: year.start},
-          end: {$gt: year.end},
+          start: {$lte: year.end},
+          end: {$gte: year.end},
         },
         { // outside
-          start: {$lt: year.start},
-          end: {$gt: year.end},
+          start: {$lte: year.start},
+          end: {$gte: year.end},
         },
       ],
     };

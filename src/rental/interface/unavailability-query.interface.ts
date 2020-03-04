@@ -8,16 +8,16 @@ export interface UnavailabilityQuery {
       end: { $lte: number };
     },
     {
-      start: {$lt: number};
-      end: { $lte: number };
+      start: {$lte: number};
+      end: { $gte: number };
     },
     {
-        start: {$gte: number},
-        end: {$gt: number},
+        start: {$lte: number},
+        end: {$gte: number},
     },
     {
-        start: {$lt: number},
-        end: {$gt: number},
+        start: {$lte: number},
+        end: {$gte: number},
     }
   ];
 }
