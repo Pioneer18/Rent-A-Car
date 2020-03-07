@@ -13,6 +13,7 @@ export const CreateRentalValidation = joi.object({
     fuel: joi.string().required(),
     gasGrade: joi.string().required(),
     description: joi.string().required(),
+    make: joi.string().required(),
     model: joi.string().required(),
     style: joi.string().required(),
     color: joi.string().required(),

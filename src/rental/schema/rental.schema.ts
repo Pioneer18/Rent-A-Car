@@ -20,6 +20,7 @@ export const RentalSchema = new Schema({
     fuel: String,
     gasGrade: String,
     description: String,
+    make: String,
     model: String,
     style: String,
     color: String,

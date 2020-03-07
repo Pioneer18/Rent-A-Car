@@ -13,6 +13,7 @@ export class CreateRentalDto {
     fuel: string;
     gasGrade: string;
     description: string;
+    make: string;
     model: string;
     style: string;
     color: string;

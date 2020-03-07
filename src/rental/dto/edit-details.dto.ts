@@ -11,6 +11,7 @@ export class EditDetailsDto {
     fuel: string;
     gasGrade: string;
     description: string;
+    make: string;
     model: string;
     style: string;
     color: string;
