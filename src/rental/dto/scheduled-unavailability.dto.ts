@@ -1,4 +1,3 @@
-import { Interval } from 'luxon';
 import { Unavailability } from '../interface/unavailability.interface';
 
 export class ScheduleUnavailabilityDto {
