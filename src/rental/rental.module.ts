@@ -1,12 +1,13 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { RentalController } from './controller/rental.controller';
 import { RentalService } from './service/rental.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RentalSchema } from './schema/rental.schema';
 import { GeoUrlApiUtil } from './utils/geo-url-api.util';
 import { UnavailabilitySchema } from './schema/validation/unavailability-schema';
-import { DatabaseModule } from 'src/database/database.module';
-import { unavailabilityProvider } from 'src/database/providers/unavailability-model.provider';
+import { DatabaseModule } from '../database/database.module';
+import { unavailabilityProvider } from '../database/providers/unavailability-model.provider';
+import { ValidateUpdateUnavailabilityMiddleware } from './middleware/validate-update-unavailability.middleware';
 
 @Module({
   imports: [
@@ -18,10 +19,15 @@ import { unavailabilityProvider } from 'src/database/providers/unavailability-mo
   providers: [RentalService, GeoUrlApiUtil, ...unavailabilityProvider],
   exports: [],
 })
-export class RentalModule {
+export class RentalModule implements NestModule {
   constructor() {
     RentalSchema.index({ loc: '2dsphere' });
     UnavailabilitySchema.index({rentalId: 1});
     UnavailabilitySchema.index({title: 1});
+  }
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(ValidateUpdateUnavailabilityMiddleware)
+      .forRoutes('v1/rental');
   }
 }

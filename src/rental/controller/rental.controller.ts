@@ -92,6 +92,7 @@ export class RentalController {
    */
   // @UsePipes(new ProcessUpdateUnavailabilityPipe())
   // @UsePipes(new ValidateUnavailabilityDataPipe())
+  @Post('update-unavailability')
   async updateUnavailability(@Body() data) {
     return await 'tee-hee';
   }

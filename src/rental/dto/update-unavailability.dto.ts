@@ -3,6 +3,8 @@ export class UpdateUnavailabilityDto {
     year: number;
     start: number;
     end: number;
+    minDoy: number;
+    maxDoy: number;
     title: string; // for indexing
     // update time
     updateStart: number;
