@@ -4,7 +4,7 @@ import { RentalService } from './service/rental.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RentalSchema } from './schema/rental.schema';
 import { GeoUrlApiUtil } from './utils/geo-url-api.util';
-import { UnavailabilitySchema } from './schema/validation/unavailability-schema';
+import { UnavailabilitySchema } from './schema/unavailability-schema';
 import { DatabaseModule } from '../database/database.module';
 import { unavailabilityProvider } from '../database/providers/unavailability-model.provider';
 import { ValidateUpdateUnavailabilityMiddleware } from './middleware/validate-update-unavailability.middleware';

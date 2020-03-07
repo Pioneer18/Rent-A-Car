@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 export const UnavailabilitySchema = new Schema({
     rentalId: String,
+    unavailabilityId: String,
     year: Number,
     doy: Number, // day of the year
     start: {type: Number, min: 0, max: 24}, // min: 0; max: 24 military time

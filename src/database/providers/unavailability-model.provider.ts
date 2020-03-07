@@ -1,5 +1,5 @@
 import { Connection } from 'mongoose';
-import { UnavailabilitySchema } from '../../rental/schema/validation/unavailability-schema';
+import { UnavailabilitySchema } from '../../rental/schema/unavailability-schema';
 import { databaseConnection, unavailabilityModel } from 'src/common/Const';
 
 export const unavailabilityProvider = [
