@@ -1,4 +1,4 @@
-import { Unavailability } from './unavailability.interface';
+import { Unavailability } from '../interface/unavailability.interface';
 
 export interface ValidatedUnavailabilityDto {
     y1: Unavailability[];

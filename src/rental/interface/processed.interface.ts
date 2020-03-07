@@ -6,5 +6,4 @@ export interface Processed {
     year: number;
     start: number;
     end: number;
-    data: Unavailability[];
 }
