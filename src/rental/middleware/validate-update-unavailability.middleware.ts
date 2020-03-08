@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { unavailabilityModel } from 'src/common/Const';
 import { Model } from 'mongoose';
 import { Unavailability } from '../interface/unavailability.interface';
-import { UpdateUnavailabilityDto } from '../dto/update-unavailability.dto';
+import { ValidateUpdateUnavailabilityDto } from '../dto/validate-update-unavailability.dto';
 /**
  * Check for any overlap in the db
  * create a query, if anything returned, throw an error
@@ -36,7 +36,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
 
   // validate that the unavailability is present in the db
   private validateExpectedUnavailability = async (
-    value: UpdateUnavailabilityDto,
+    value: ValidateUpdateUnavailabilityDto,
   ) => {
     const range = await this.calculateRange(value.y1, value.y2);
     const test = await this.unavailability.find({
@@ -55,7 +55,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   }
 
   // validate dto data
-  private validateDto = async (value: UpdateUnavailabilityDto) => {
+  private validateDto = async (value: ValidateUpdateUnavailabilityDto) => {
     if (typeof value.unavailabilityId !== 'string') {
       throw new Error('invalid unavailabilityId; must be a string');
     }
