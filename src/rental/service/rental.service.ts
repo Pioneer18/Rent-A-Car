@@ -10,6 +10,7 @@ import { unavailabilityModel } from 'src/common/Const';
 import { Unavailability } from '../interface/unavailability.interface';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
 import { ValidateUpdateUnavailabilityDto } from '../dto/validate-update-unavailability.dto';
+import { UpdateUnavailabilityDto } from '../dto/update-unavailability.dto';
 
 @Injectable()
 export class RentalService {
@@ -176,8 +177,9 @@ export class RentalService {
    * Update Unavailability
    * edit the time interval of an unavailability series
    */
-  async updateUnavailability(data) {
+  async updateUnavailability(data: UpdateUnavailabilityDto) {
     // create the updater
     // send the update
+    return data;
   }
 }

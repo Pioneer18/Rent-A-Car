@@ -21,6 +21,7 @@ import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pip
 import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
 import { DistillUpdateDtoPipe } from '../pipes/distill-update-dto.pipe';
+import { UpdateUnavailabilityDto } from '../dto/update-unavailability.dto';
 
 @Controller('rental')
 export class RentalController {
@@ -93,8 +94,8 @@ export class RentalController {
    */
   @Post('update-unavailability')
   @UsePipes(new DistillUpdateDtoPipe())
-  async updateUnavailability(@Body() data) {
-    return await 'tee-hee';
+  async updateUnavailability(@Body() data: UpdateUnavailabilityDto) {
+    return await this.rentalService.updateUnavailability(data);
   }
 
    /**

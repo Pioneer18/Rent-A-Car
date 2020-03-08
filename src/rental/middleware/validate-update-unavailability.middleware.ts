@@ -5,8 +5,8 @@ import { Model } from 'mongoose';
 import { Unavailability } from '../interface/unavailability.interface';
 import { ValidateUpdateUnavailabilityDto } from '../dto/validate-update-unavailability.dto';
 /**
- * Check for any overlap in the db
- * create a query, if anything returned, throw an error
+ * Validate the incoming dto
+ * Validate the expected # of unavailability docs are present in the database
  */
 @Injectable()
 export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
@@ -36,7 +36,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
 
   // validate that the unavailability is present in the db
   private validateExpectedUnavailability = async (
-    value: ValidateUpdateUnavailabilityDto, range,
+    value: ValidateUpdateUnavailabilityDto, range: {range: number},
   ) => {
     const test = await this.unavailability.find({
       rentalId: value.rentalId,
@@ -46,7 +46,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
     if (test.length < 1) {
       throw new Error('The requested unavailability is not in the database');
     }
-    if (test.length !== range) {
+    if (test.length !== range.range) {
       throw new Error('The expected # of days of unavailability to update,\
       does not match the actual number of days in the database; please remove the unavailability and add a new one instead');
     }
