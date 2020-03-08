@@ -20,6 +20,7 @@ import { SortUnavailabilityPipe } from '../pipes/sort-unavailability.pipe';
 import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pipe';
 import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
+import { DistillUpdateDtoPipe } from '../pipes/distill-update-dto.pipe';
 
 @Controller('rental')
 export class RentalController {
@@ -91,6 +92,7 @@ export class RentalController {
    * edit current unavailability
    */
   @Post('update-unavailability')
+  @UsePipes(new DistillUpdateDtoPipe())
   async updateUnavailability(@Body() data) {
     return await 'tee-hee';
   }
