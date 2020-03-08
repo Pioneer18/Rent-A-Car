@@ -90,8 +90,6 @@ export class RentalController {
    * Update Unavailability
    * edit current unavailability
    */
-  // @UsePipes(new ProcessUpdateUnavailabilityPipe())
-  // @UsePipes(new ValidateUnavailabilityDataPipe())
   @Post('update-unavailability')
   async updateUnavailability(@Body() data) {
     return await 'tee-hee';
