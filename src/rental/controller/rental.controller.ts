@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, UsePipes, Query, Inject } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req } from '@nestjs/common';
 import { RentalService } from '../service/rental.service';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
@@ -21,7 +21,6 @@ import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pip
 import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
 import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
-import { UpdateUnavailabilityDto } from '../dto/update-unavailability.dto';
 import { UpdateUnavailabilityDataDto } from '../dto/update-unavailability-data.dto';
 import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
 import { RemoveUnavailabilityDto } from '../dto/remove-unavailability.dto';
@@ -109,5 +108,14 @@ export class RentalController {
    @UsePipes(new ValidateRemoveUnavailabilityPipe())
    async removeUnavailability(@Body() data: RemoveUnavailabilityDto) {
      return await this.rentalService.removeUnavailability(data);
+   }
+
+   /**
+    * Upload Rental Photos
+    * upload photos of your rental listing
+    */
+   @Post('upload-rental-photos')
+   async uploadRentalPhotos(@Req() req, @Res() res) {
+    return 'tee-hee';
    }
 }
