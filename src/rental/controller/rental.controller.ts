@@ -23,6 +23,8 @@ import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto'
 import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
 import { UpdateUnavailabilityDto } from '../dto/update-unavailability.dto';
 import { UpdateUnavailabilityDataDto } from '../dto/update-unavailability-data.dto';
+import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
+import { RemoveUnavailabilityDto } from '../dto/remove-unavailability.dto';
 
 @Controller('rental')
 export class RentalController {
@@ -102,10 +104,10 @@ export class RentalController {
    /**
     * Remove Unavailability
     * remove existing unavailability
-    * Pipes:
-    * - ValidateRemoveUnavailabilityPipe
     */
-   async removeUnavailability(@Body() data) {
-     return 'tee-hee';
+   @Post('remove-unavailability')
+   @UsePipes(new ValidateRemoveUnavailabilityPipe())
+   async removeUnavailability(@Body() data: RemoveUnavailabilityDto) {
+     return await this.rentalService.removeUnavailability(data);
    }
 }

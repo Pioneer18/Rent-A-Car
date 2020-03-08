@@ -9,44 +9,48 @@ import { EditDetailsDto } from '../dto/edit-details.dto';
 import { unavailabilityModel } from 'src/common/Const';
 import { Unavailability } from '../interface/unavailability.interface';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
-import { ValidateUpdateUnavailabilityDto } from '../dto/validate-update-unavailability.dto';
-import { UpdateUnavailabilityDto } from '../dto/update-unavailability.dto';
 import { UpdateUnavailabilityDataDto } from '../dto/update-unavailability-data.dto';
+import { RemoveUnavailabilityDto } from '../dto/remove-unavailability.dto';
 
 @Injectable()
 export class RentalService {
   constructor(
     @InjectModel('Rental') private readonly rentalModel: Model<RentalInterface>,
-    @Inject(unavailabilityModel) private readonly unavailability: Model<Unavailability>,
-  ) { }
+    @Inject(unavailabilityModel)
+    private readonly unavailability: Model<Unavailability>,
+  ) {}
 
   private async createRentalQuery(rental) {
-    const query: any = {
-      'scheduling.rentMinDuration': { $lte: rental.rentalDuration },
-      'scheduling.rentMaxDuration': { $gte: rental.rentalDuration },
-      'scheduling.requiredNotice': { $lte: rental.givenNotice },
-      'loc': {
-        $near: {
-          $maxDistance: 12875, // 8 miles
-          $geometry: {
-            type: rental.loc.type,
-            coordinates: [
-              rental.loc.coordinates[0], // latitude
-              rental.loc.coordinates[1], // longitude
-            ],
+    try {
+      const query: any = {
+        'scheduling.rentMinDuration': { $lte: rental.rentalDuration },
+        'scheduling.rentMaxDuration': { $gte: rental.rentalDuration },
+        'scheduling.requiredNotice': { $lte: rental.givenNotice },
+        'loc': {
+          $near: {
+            $maxDistance: 12875, // 8 miles
+            $geometry: {
+              type: rental.loc.type,
+              coordinates: [
+                rental.loc.coordinates[0], // latitude
+                rental.loc.coordinates[1], // longitude
+              ],
+            },
           },
         },
-      },
-    };
-    rental.price
-      ? (query.pricing = {
-        price: rental.price, // add price as optional search parameter
-      })
-      : (rental.priceRange = null);
-    rental.features
-      ? (query.features = { $in: rental.features })
-      : (rental.features = null);
-    return query;
+      };
+      rental.price
+        ? (query.pricing = {
+            price: rental.price, // add price as optional search parameter
+          })
+        : (rental.priceRange = null);
+      rental.features
+        ? (query.features = { $in: rental.features })
+        : (rental.features = null);
+      return query;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   /**
@@ -72,7 +76,7 @@ export class RentalService {
     if (test.length) {
       throw new Error('this request overlaps with existing unavailability');
     }
-  }
+  };
 
   /**
    * Create Rental:
@@ -128,7 +132,9 @@ export class RentalService {
       };
       const doc = await this.rentalModel.findOneAndUpdate(filter, updater);
       return doc;
-    } catch (err) { throw new Error(err); }
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   /**
@@ -138,7 +144,7 @@ export class RentalService {
   async editDetails(data: EditDetailsDto) {
     // make an update document
     try {
-      const filter = {_id: data.rentalId };
+      const filter = { _id: data.rentalId };
       const update = {
         specs: data.specs,
         features: data.features,
@@ -161,14 +167,14 @@ export class RentalService {
     try {
       await this.checkForOverlap(processed);
       // if it passed, combine data into one array and insert
-      const {y1, y2} = processed.data;
+      const { y1, y2 } = processed.data;
       if (y2 !== null) {
         const merged = y1.concat(y2);
         Logger.log(`the merged years`);
         Logger.log(merged);
-        return await this.unavailability.insertMany(merged, {ordered: true});
+        return await this.unavailability.insertMany(merged, { ordered: true });
       }
-      return await this.unavailability.insertMany(y1, {ordered: true});
+      return await this.unavailability.insertMany(y1, { ordered: true });
     } catch (err) {
       throw new Error(err);
     }
@@ -180,7 +186,29 @@ export class RentalService {
    */
   async updateUnavailability(data: UpdateUnavailabilityDataDto) {
     // send the update
-    const update = await this.unavailability.updateMany(data.filter, data.updater);
-    return update;
+    try {
+      const update = await this.unavailability.updateMany(
+        data.filter,
+        data.updater,
+      );
+      return update;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  async removeUnavailability(data: RemoveUnavailabilityDto) {
+    try {
+      const remove = await this.unavailability.deleteMany({
+        rentalId: data.rentalId,
+        unavailabilityId: data.unavailabilityId,
+      });
+      if (remove.deletedCount === 0) {
+        throw new Error('No Unavailability documents were found, no documents were deleted');
+      }
+      return remove;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }
