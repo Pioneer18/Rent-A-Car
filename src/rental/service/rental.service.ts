@@ -9,6 +9,7 @@ import { EditDetailsDto } from '../dto/edit-details.dto';
 import { unavailabilityModel } from 'src/common/Const';
 import { Unavailability } from '../interface/unavailability.interface';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
+import { UpdateUnavailabilityDto } from '../dto/update-unavailability.dto';
 
 @Injectable()
 export class RentalService {
@@ -169,5 +170,14 @@ export class RentalService {
     } catch (err) {
       throw new Error(err);
     }
+  }
+
+  /**
+   * Update Unavailability
+   * edit the time interval of an unavailability series
+   */
+  async updateUnavailability(data) {
+    // create the updater
+    // send the update
   }
 }
