@@ -36,9 +36,8 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
 
   // validate that the unavailability is present in the db
   private validateExpectedUnavailability = async (
-    value: ValidateUpdateUnavailabilityDto,
+    value: ValidateUpdateUnavailabilityDto, range,
   ) => {
-    const range = await this.calculateRange(value.y1, value.y2);
     const test = await this.unavailability.find({
       rentalId: value.rentalId,
       unavailabilityId: value.unavailabilityId,
@@ -127,7 +126,8 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
     // apply only to update-unavailability request
     if (req.originalUrl === '/v1/rental/update-unavailability') {
       await this.validateDto(req.body);
-      await this.validateExpectedUnavailability(req.body);
+      const range = await this.calculateRange(req.body.y1, req.body.y2); // to validate expected # of Unavailability docs
+      await this.validateExpectedUnavailability(req.body, range);
     }
     next();
   }
