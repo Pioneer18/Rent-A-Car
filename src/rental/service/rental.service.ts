@@ -11,6 +11,7 @@ import { Unavailability } from '../interface/unavailability.interface';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
 import { ValidateUpdateUnavailabilityDto } from '../dto/validate-update-unavailability.dto';
 import { UpdateUnavailabilityDto } from '../dto/update-unavailability.dto';
+import { UpdateUnavailabilityDataDto } from '../dto/update-unavailability-data.dto';
 
 @Injectable()
 export class RentalService {
@@ -177,9 +178,9 @@ export class RentalService {
    * Update Unavailability
    * edit the time interval of an unavailability series
    */
-  async updateUnavailability(data: UpdateUnavailabilityDto) {
-    // create the updater
+  async updateUnavailability(data: UpdateUnavailabilityDataDto) {
     // send the update
-    return data;
+    const update = await this.unavailability.updateMany(data.filter, data.updater);
+    return update;
   }
 }

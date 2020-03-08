@@ -12,5 +12,5 @@ export class ValidateUpdateUnavailabilityDto {
   };
   newStart: number;
   newEnd: number;
-  newTitle: string; // not required
+  newTitle: string | null; // not required
 }

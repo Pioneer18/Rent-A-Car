@@ -1,7 +1,7 @@
 import { ValidatedUnavailabilityDto } from '../dto/validated-unavailability.dto';
 import { ValidateUpdateUnavailabilityDto } from '../dto/validate-update-unavailability.dto';
 import { TestingModule, Test } from '@nestjs/testing';
-import { CreateUpdaterDtoPipe } from './distill-update-dto.pipe';
+import { CreateUpdaterDtoPipe } from './create-updater-dto.pipe';
 import { Logger } from '@nestjs/common';
 
 describe('CreateUpdaterDtoPipe Unit Test', () => {

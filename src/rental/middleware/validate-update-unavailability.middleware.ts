@@ -98,7 +98,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
     if (value.y2.sD > value.y2.eD) {
       throw new Error('minimum DOY cannot be larger than maximum DOY');
     }
-    if (typeof value.newTitle !== 'string') {
+    if (typeof value.newTitle !== 'string' && value.newTitle !== null) {
       throw new Error('invalid title; must be a string');
     }
     if (
