@@ -23,7 +23,7 @@ export class RentalModule implements NestModule {
   constructor() {
     RentalSchema.index({ loc: '2dsphere' });
     UnavailabilitySchema.index({rentalId: 1});
-    UnavailabilitySchema.index({title: 1});
+    UnavailabilitySchema.index({UnavailabilityId: 1});
   }
   configure(consumer: MiddlewareConsumer) {
     consumer
