@@ -11,6 +11,7 @@ import { HttpErrorFilter } from '../common/filters/http-error.filter';
 import { ErrorFilter } from '../common/filters/error.filters';
 import { LoggingInterceptor } from '../common/interceptors/logging-interceptor';
 import { ImagesModule } from 'src/images/images.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -19,8 +20,13 @@ import { ImagesModule } from 'src/images/images.module';
     UserModule,
     ImagesModule,
     RouterModule.forRoutes(routes),
-    MongooseModule.forRoot('mongodb://localhost/rent-a-car', {
-      useNewUrlParser: true,
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get('REMOTE_DB'),
+      }),
+      inject: [ConfigService],
     }),
   ],
   controllers: [AppController],
@@ -30,5 +36,6 @@ import { ImagesModule } from 'src/images/images.module';
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
     { provide: APP_FILTER, useClass: ErrorFilter },
   ],
+  exports: [ConfigService],
 })
 export class AppModule {}
