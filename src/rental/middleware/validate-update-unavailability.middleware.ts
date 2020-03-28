@@ -1,6 +1,6 @@
 import { Injectable, Inject, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { unavailabilityModel } from 'src/common/Const';
+import { unavailabilityModel } from '../../common/Const';
 import { Model } from 'mongoose';
 import { Unavailability } from '../interface/unavailability.interface';
 import { ValidateUpdateUnavailabilityDto } from '../dto/validate-update-unavailability.dto';
