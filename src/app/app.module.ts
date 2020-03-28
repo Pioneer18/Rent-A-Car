@@ -12,6 +12,8 @@ import { ErrorFilter } from '../common/filters/error.filters';
 import { LoggingInterceptor } from '../common/interceptors/logging-interceptor';
 import { ImagesModule } from 'src/images/images.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -27,6 +29,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         uri: configService.get('REMOTE_DB'),
       }),
       inject: [ConfigService],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client/build'),
     }),
   ],
   controllers: [AppController],
