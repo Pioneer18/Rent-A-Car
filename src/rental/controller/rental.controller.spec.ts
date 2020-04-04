@@ -6,6 +6,7 @@ import { RentalSchema } from '../schema/rental.schema';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { SearchRentalDto } from '../dto/search-rental.dto';
 import { PricingDto } from '../dto/pricing.dto';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 describe('Rental Controller', () => {
   let controller: RentalController;
@@ -18,8 +19,12 @@ describe('Rental Controller', () => {
       providers: [RentalService],
       imports: [
         MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
-        MongooseModule.forRoot('mongodb://admin:Pioneer18!@ds141410.mlab.com:41410/heroku_q3rt34gr', {
-          useNewUrlParser: true,
+        MongooseModule.forRootAsync({
+          imports: [ConfigModule],
+          useFactory: async (configService: ConfigService) => ({
+            uri: configService.get('REMOTE_DB'),
+          }),
+          inject: [ConfigService],
         }),
       ],
     }).compile();

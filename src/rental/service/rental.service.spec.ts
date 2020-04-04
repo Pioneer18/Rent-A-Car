@@ -5,6 +5,7 @@ import { RentalSchema } from '../schema/rental.schema';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { TestRentalService } from './test-rental.service';
 import { SearchRentalDto } from '../dto/search-rental.dto';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 /**
  * Test the properties of the RentalService Class:
@@ -25,8 +26,12 @@ describe('RentalService Unit Tests', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
-        MongooseModule.forRoot('mongodb://admin:Pioneer18!@ds141410.mlab.com:41410/heroku_q3rt34gr', {
-          useNewUrlParser: true,
+        MongooseModule.forRootAsync({
+          imports: [ConfigModule],
+          useFactory: async (configService: ConfigService) => ({
+            uri: configService.get('REMOTE_DB'),
+          }),
+          inject: [ConfigService],
         }),
       ],
       providers: [RentalService, TestRentalService],
