@@ -42,5 +42,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
     { provide: APP_FILTER, useClass: ErrorFilter },
   ],
+  exports: [ConfigService],
 })
 export class AppModule {}
