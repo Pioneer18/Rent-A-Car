@@ -6,7 +6,7 @@ import { RentalInterface } from '../interface/rental.interface';
 import { SearchRentalDto } from '../dto/search-rental.dto';
 import { PricingDto } from '../dto/pricing.dto';
 import { EditDetailsDto } from '../dto/edit-details.dto';
-import { unavailabilityModel } from 'src/common/Const';
+import { unavailabilityModel } from '../../common/Const';
 import { Unavailability } from '../interface/unavailability.interface';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
 import { UpdateUnavailabilityDataDto } from '../dto/update-unavailability-data.dto';
