@@ -12,6 +12,7 @@ import { ErrorFilter } from '../common/filters/error.filters';
 import { LoggingInterceptor } from '../common/interceptors/logging-interceptor';
 import { ImagesModule } from '../images/images.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -23,6 +24,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     // I need a remote db
     MongooseModule.forRoot('mongodb://admin:Pioneer18!@ds141410.mlab.com:41410/heroku_q3rt34gr', {
       useNewUrlParser: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client/build'),
     }),
   ],
   controllers: [AppController],
