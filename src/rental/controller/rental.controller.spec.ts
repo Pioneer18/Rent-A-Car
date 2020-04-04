@@ -18,7 +18,7 @@ describe('Rental Controller', () => {
       providers: [RentalService],
       imports: [
         MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
-        MongooseModule.forRoot('mongodb://localhost/rent-a-car', {
+        MongooseModule.forRoot('mongodb://admin:pioneer18!@ds141410.mlab.com:41410/heroku_q3rt34gr', {
           useNewUrlParser: true,
         }),
       ],
