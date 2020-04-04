@@ -31,7 +31,7 @@ import { join } from 'path';
       inject: [ConfigService],
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client/build'),
+      rootPath: join('app/client/build'),
     }),
   ],
   controllers: [AppController],
@@ -41,6 +41,5 @@ import { join } from 'path';
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
     { provide: APP_FILTER, useClass: ErrorFilter },
   ],
-  exports: [ConfigService],
 })
 export class AppModule {}
