@@ -11,6 +11,7 @@ import { HttpErrorFilter } from '../common/filters/http-error.filter';
 import { ErrorFilter } from '../common/filters/error.filters';
 import { LoggingInterceptor } from '../common/interceptors/logging-interceptor';
 import { ImagesModule } from '../images/images.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
