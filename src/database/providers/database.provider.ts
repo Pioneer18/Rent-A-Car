@@ -5,6 +5,6 @@ export const databaseProvider = [
   {
     provide: databaseConnection,
     useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect('mongodb://admin:pioneer18!@ds141410.mlab.com:41410/heroku_q3rt34gr'),
+      mongoose.connect('mongodb://admin:Pioneer18!@ds141410.mlab.com:41410/heroku_q3rt34gr'),
   },
 ];

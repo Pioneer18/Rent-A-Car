@@ -20,7 +20,7 @@ import { ImagesModule } from '../images/images.module';
     ImagesModule,
     RouterModule.forRoutes(routes),
     // I need a remote db
-    MongooseModule.forRoot('mongodb://admin:pioneer18!@ds141410.mlab.com:41410/heroku_q3rt34gr', {
+    MongooseModule.forRoot('mongodb://admin:Pioneer18!@ds141410.mlab.com:41410/heroku_q3rt34gr', {
       useNewUrlParser: true,
     }),
   ],
