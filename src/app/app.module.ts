@@ -13,6 +13,7 @@ import { LoggingInterceptor } from '../common/interceptors/logging-interceptor';
 import { ImagesModule } from '../images/images.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -22,12 +23,17 @@ import { join } from 'path';
     ImagesModule,
     RouterModule.forRoutes(routes),
     // I need a remote db
-    MongooseModule.forRoot('mongodb://admin:Pioneer18!@ds141410.mlab.com:41410/heroku_q3rt34gr', {
-      useNewUrlParser: true,
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get('REMOTE_DB'),
+      }),
+      inject: [ConfigService],
     }),
     ServeStaticModule.forRoot({
       rootPath: join('app/client/build'),
     }),
+    // parse .env file and resolve the env variables
   ],
   controllers: [AppController],
   providers: [
