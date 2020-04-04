@@ -26,7 +26,7 @@ import { join } from 'path';
       useNewUrlParser: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client/build'),
+      rootPath: join('app/client/build'),
     }),
   ],
   controllers: [AppController],
