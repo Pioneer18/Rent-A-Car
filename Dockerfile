@@ -2,7 +2,7 @@ FROM node:current-slim AS builder1
 WORKDIR /client
 COPY ./client/package.json .
 RUN yarn install
-COPY ./client/ .
+COPY ./client .
 RUN yarn build
 
 FROM node:current-slim AS builder2
