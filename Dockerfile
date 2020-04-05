@@ -7,7 +7,7 @@ RUN yarn build
 
 FROM node:10 AS builder2
 WORKDIR /app
-COPY --from=builder1 /client .
+COPY --from=builder1 /client ./client
 COPY ./package.json .
 RUN npm install
 COPY . .
