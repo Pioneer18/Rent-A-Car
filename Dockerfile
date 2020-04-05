@@ -1,4 +1,4 @@
-FROM node:current-slim
+FROM node:current-slim AS builder
 
 WORKDIR /app
 COPY ./package.json .
