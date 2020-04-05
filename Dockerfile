@@ -9,5 +9,5 @@ RUN npm run build
 FROM node:current-slim
 WORKDIR /app
 COPY --from=builder /app ./
-EXPOSE 8080
+EXPOSE 3000
 CMD ["npm", "run", "start:prod"]
