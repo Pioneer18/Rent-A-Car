@@ -23,4 +23,23 @@ export class UserController {
         return 'tee-hee';
     }
 
+    @Post('upload-profile-image')
+    async uploadProfileImage(@Body() image) {
+        return 'tee-hee';
+    }
+
+    @Post('login')
+    async login(@Body() data) {
+        return 'tee-hee';
+    }
+
+    @Post('logout')
+    async logout(@Body() data) {
+        return 'tee-hee';
+    }
+
+    @Post('delete-profile')
+    async deleteProfile(@Body() data) {
+        return 'tee-hee';
+    }
 }
