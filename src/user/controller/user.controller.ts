@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 
 @Controller('user')
 export class UserController {
@@ -13,12 +13,12 @@ export class UserController {
      * logout
      * delete profile
      */
-    @Post('create-profile')
+    @Post('create-user')
     async createProfile(@Body() profile) {
         return 'tee-hee';
     }
 
-    @Post('update-profile')
+    @Post('update-user')
     async updateProfile(@Body() update) {
         return 'tee-hee';
     }
@@ -28,6 +28,12 @@ export class UserController {
         return 'tee-hee';
     }
 
+    @Get('find-user')
+    async findUser(@Body() user) {
+        return 'tee-hee';
+    }
+
+    // below will go into the auth module
     @Post('login')
     async login(@Body() data) {
         return 'tee-hee';
