@@ -14,11 +14,13 @@ import { ImagesModule } from '../images/images.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
     AppModule,
     RentalModule,
+    AuthModule,
     UserModule,
     ImagesModule,
     RouterModule.forRoutes(routes),
