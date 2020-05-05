@@ -33,7 +33,7 @@ import { AuthModule } from 'src/auth/auth.module';
       inject: [ConfigService],
     }),
     ServeStaticModule.forRoot({
-      rootPath: join('client/build'),
+      rootPath: join(__dirname, '../client/build'),
     }),
   ],
   controllers: [AppController],
