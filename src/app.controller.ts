@@ -10,10 +10,10 @@ export class AppController {
     private readonly authService: AuthService,
   ) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+  // @Get()
+  // getHello(): string {
+  //   return this.appService.getHello();
+  // }
 
   // bare-bones login route
   // Passport automatically creates a user object, based on the value we return
