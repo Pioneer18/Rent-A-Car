@@ -113,9 +113,6 @@ export class RentalController {
    /**
     * Upload Rental Photos
     * upload photos of your rental listing
+    * ! see the images/controller
     */
-   @Post('upload-rental-photos')
-   async uploadRentalPhotos(@Req() req, @Res() res) {
-    return 'tee-hee';
-   }
 }

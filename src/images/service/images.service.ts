@@ -1,3 +1,6 @@
+/**
+ * Upload Images to AWS S3 Bucket
+ */
 import { Injectable, Req, Res, Logger } from '@nestjs/common';
 import * as multer from 'multer';
 import * as AWS from 'aws-sdk';
