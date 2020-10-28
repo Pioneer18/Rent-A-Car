@@ -28,7 +28,7 @@ export class UserController {
         return 'tee-hee';
     }
 
-    @Get('find-user')
+    @Get('find-users')
     async findUser(@Body() user) {
         return 'tee-hee';
     }
