@@ -28,7 +28,7 @@ import { AuthModule } from 'src/auth/auth.module';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get('REMOTE_DB'),
+        uri: configService.get<string>('REMOTE_DB'),
       }),
       inject: [ConfigService],
     }),
