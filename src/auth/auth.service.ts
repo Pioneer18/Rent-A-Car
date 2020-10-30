@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 /**
  * Passport Local
  * Retrieve a user and verify their password with ValidateUser()
- * Handles user login
+ * Create a JWT from the validated user's id and username
  */
 @Injectable()
 export class AuthService {

@@ -12,7 +12,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         super(); // no config for passport local strategy
     }
 
-    // every passport strategy calls the validate method (which calls the verify function)
+    // every passport strategy calls the validate method (which calls the validateUser function in the auth.service)
     // for any strategy, if the user is found, Passport will create a user property on the request object
     // the biggest difference is how each strategy determines if a user exists
     async validate(username: string, password: string): Promise<any> {
@@ -20,6 +20,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         if (!user) {
             throw new UnauthorizedException('invalid credentials');
         }
+        // call the login and return the jwt?
         return user;
     }
 }

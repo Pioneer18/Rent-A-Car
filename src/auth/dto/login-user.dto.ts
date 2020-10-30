@@ -1,3 +1,4 @@
 export class LoginUserDto {
-    // bleh
+    username: string;
+    pass: string;
 }
