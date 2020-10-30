@@ -6,12 +6,9 @@ export class UserController {
         // initialize stuffs
     }
     /**
-     * create profile
-     * update profile
-     * upload profile image
-     * login
-     * logout
-     * delete profile
+     * ENDPOINTS:
+     * create profile, update profile, upload profile image
+     * login, logout, delete profile
      */
     @Post('create-user')
     async createProfile(@Body() profile) {
@@ -30,17 +27,6 @@ export class UserController {
 
     @Get('find-users')
     async findUser(@Body() user) {
-        return 'tee-hee';
-    }
-
-    // below will go into the auth module
-    @Post('login')
-    async login(@Body() data) {
-        return 'tee-hee';
-    }
-
-    @Post('logout')
-    async logout(@Body() data) {
         return 'tee-hee';
     }
 

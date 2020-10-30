@@ -5,6 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 /**
  * Passport Local
  * Retrieve a user and verify their password with ValidateUser()
+ * Handles user login
  */
 @Injectable()
 export class AuthService {
@@ -23,7 +24,7 @@ export class AuthService {
         return null;
     }
 
-    // use the sign method to create a JWT from the username and password
+    // use the sign method to create a JWT from the username and userid
     // using sub for userId is consistent with JWT standards
     async login(user: any) {
         const payload = {username: user.name, sub: user.userId };
