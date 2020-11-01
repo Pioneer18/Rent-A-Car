@@ -1,10 +1,10 @@
 import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
-const ObjectID = mongoose.ObjectID;
+const ObjectId = mongoose.ObjectId;
 
 export const UserSchema = new Schema({
-    userId: ObjectID,
+    userId: ObjectId,
     username: String,
     email: String,
     password: String,
