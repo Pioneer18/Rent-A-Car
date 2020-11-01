@@ -28,8 +28,8 @@ export class UserController {
     }
 
     @Get('find-user')
-    async findUser(@Body() user: FindUserDto) {
-        return await this.userService.findUser(user)
+    async findUser(@Body() username: string) {
+        return await this.userService.findUser(username)
     }
 
     @Post('delete-profile')
