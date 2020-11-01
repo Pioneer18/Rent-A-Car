@@ -10,6 +10,10 @@ export class UserService {
       ) {}
 
     async findUser(username: string) {
-        return {user: 'tee-hee'};
+        try {
+            return this.userModel.find(user => user.username === username);
+        } catch (err) {
+            throw new Error(err);
+        }
     }
 }
