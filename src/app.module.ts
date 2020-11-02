@@ -15,6 +15,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from 'src/auth/auth.module';
+import { UserController } from './user/controller/user.controller';
+import { RentalController } from './rental/controller/rental.controller';
 
 @Module({
   imports: [
@@ -36,7 +38,7 @@ import { AuthModule } from 'src/auth/auth.module';
       rootPath: join(__dirname, '../client/build'),
     }),
   ],
-  controllers: [AppController],
+  controllers: [AppController, UserController, RentalController],
   providers: [
     AppService,
     { provide: APP_FILTER, useClass: HttpErrorFilter },
