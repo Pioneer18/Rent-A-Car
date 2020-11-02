@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
-import { FindUserDto } from '../dto/find-user.dto';
+import { CreateUserDto } from '../dto/create-user.dto';
 import { UserService } from '../service/user.service';
 
 @Controller('user')
@@ -13,8 +13,8 @@ export class UserController {
      * login, logout, delete profile
      */
     @Post('create-user')
-    async createProfile(@Body() profile) {
-        return 'tee-hee';
+    async createProfile(@Body() user: CreateUserDto) {
+        return await this.userService.createUser(user);
     }
 
     @Post('update-user')
