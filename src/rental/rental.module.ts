@@ -17,7 +17,7 @@ import { ValidateUpdateUnavailabilityMiddleware } from './middleware/validate-up
   ],
   controllers: [RentalController],
   providers: [RentalService, GeoUrlApiUtil, ...unavailabilityProvider],
-  exports: [],
+  exports: [RentalService],
 })
 export class RentalModule implements NestModule {
   constructor() {
