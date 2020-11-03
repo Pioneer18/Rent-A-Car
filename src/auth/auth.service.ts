@@ -17,12 +17,12 @@ export class AuthService {
 
     async validateUser(username: string, pass: string): Promise<any> {
         const query: FindUserDto = { username: username}
-        const user = await this.userService.findUser(query); // find user in db by username
-        console.log('user returned from userservice, inside the validateUser function: ' + user)
+        const temp = await this.userService.findUser(query); // find user in db by username
+        const user = temp[0];
+        console.log(user)
+        // use bcrypt on the password
         if (user && user.password === pass) {
             const {password, ...result } = user;
-            // return everything but the password
-            console.log('Here is the `result`: ' + result);
             return result;
         }
         return null;
