@@ -17,6 +17,5 @@ import { DatabaseModule } from '../database/database.module';
 })
 export class UserModule  {
   constructor() {
-    UserSchema.index({userId: 1});
   }
 }

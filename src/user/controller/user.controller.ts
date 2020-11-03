@@ -1,5 +1,6 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { FindUserDto } from '../dto/find-user.dto';
 import { UserService } from '../service/user.service';
 
 @Controller('user')
@@ -28,8 +29,8 @@ export class UserController {
     }
 
     @Get('find-user')
-    async findUser(@Body() username: string) {
-        return await this.userService.findUser(username)
+    async findUser(@Body() user: FindUserDto) {
+        return await this.userService.findUser(user)
     }
 
     @Post('delete-profile')

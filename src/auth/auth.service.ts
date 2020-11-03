@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../user/service/user.service';
 import { JwtService } from '@nestjs/jwt';
+import { FindUserDto } from 'src/user/dto/find-user.dto';
 
 /**
  * Passport Local
@@ -15,10 +16,13 @@ export class AuthService {
     ) {}
 
     async validateUser(username: string, pass: string): Promise<any> {
-        const user = await this.userService.findUser(username); // find user in db by username
+        const query: FindUserDto = { username: username}
+        const user = await this.userService.findUser(query); // find user in db by username
+        console.log('user returned from userservice, inside the validateUser function: ' + user)
         if (user && user.password === pass) {
             const {password, ...result } = user;
             // return everything but the password
+            console.log('Here is the `result`: ' + result);
             return result;
         }
         return null;
