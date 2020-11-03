@@ -19,7 +19,6 @@ export class AuthService {
         const query: FindUserDto = { username: username}
         const temp = await this.userService.findUser(query); // find user in db by username
         const user = temp[0];
-        console.log(user)
         // use bcrypt on the password
         if (user && user.password === pass) {
             const {password, ...result } = user;
@@ -31,7 +30,9 @@ export class AuthService {
     // use the sign method to create a JWT from the username and userid
     // using sub for userId is consistent with JWT standards
     async login(user: any) {
-        const payload = {username: user.name, sub: user.userId };
+        const packet = user._doc;
+
+        const payload = {username: packet.username, sub: packet._id };
         return {
             access_token: this.jwtService.sign(payload), // create a JWT 
         };
