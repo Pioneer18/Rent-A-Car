@@ -17,6 +17,7 @@ import { join } from 'path';
 import { AuthModule } from 'src/auth/auth.module';
 import { UserController } from './user/controller/user.controller';
 import { RentalController } from './rental/controller/rental.controller';
+import { ImagesController } from './images/controller/images.controller';
 
 @Module({
   imports: [
@@ -38,7 +39,7 @@ import { RentalController } from './rental/controller/rental.controller';
       rootPath: join(__dirname, '../client/build'),
     }),
   ],
-  controllers: [AppController, UserController, RentalController],
+  controllers: [AppController, UserController, RentalController, ImagesController],
   providers: [
     AppService,
     { provide: APP_FILTER, useClass: HttpErrorFilter },
