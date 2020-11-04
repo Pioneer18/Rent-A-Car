@@ -2,7 +2,7 @@
  * Upload Images to AWS S3 Bucket
  */
 import { Injectable, Req, Res, Logger } from '@nestjs/common';
-import * as multer from 'multer';
+import * as multer from 'multer'; // uploading files
 import * as AWS from 'aws-sdk';
 import * as multerS3 from 'multer-s3';
 
@@ -22,7 +22,7 @@ export class ImagesService {
     const upload = multer({
       storage: multerS3({
         s3,
-        bucket: path, // process.env.AWS_S3_BUCKET_RENTALS,
+        bucket: path, // process.env.AWS_S3_BUCKET_RENTALS or PROFILE,
         acl: 'public-read',
         key: (request, file, cb) => {
           cb(null, `${Date.now().toString()} - ${file.originalname}`);
