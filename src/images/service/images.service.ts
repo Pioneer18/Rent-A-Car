@@ -12,23 +12,15 @@ export class ImagesService {
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
   ) {}
 
-  // incoming files will always be in an array
-  // map the files and upload them to the database
+ /**
+  * Upload Images of User's Vehicle
+  * @param files user's selected vehicle image files
+  */
   async saveVehicleImages (files: [any]) {
     try {
       const packet: ImageInterface[] = []; 
-      // map the files and push to packet
-      // grab the logged in user's id from the jwt (must decode it)
+      // map the files to image.interface and push to the packet
       files.map(item => {
-        /**
-         * for each item grab;
-         * - buffer (img data)
-         * - mimetype
-         * - originalname
-         * - encoding (e.g. 7bit)
-         * - size
-         * - userId (ref)
-         */
         packet.push({
           data: item.buffer,
           mimeType: item.mimetype,
