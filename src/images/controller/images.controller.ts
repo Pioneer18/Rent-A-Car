@@ -27,12 +27,15 @@ export class ImagesController {
 
 
     /**
-     * upload a single or multiple photos to be saved
-     * @param files image files
+     * Upload a single or multiple vehicle photos to be saved
+     * @param files fieldName
+     * @param maxCount maxCount
+     * @param options option
      */
     @Post('upload-vehicle-images')
     @UseInterceptors(FilesInterceptor('files'))
-    async uploadVehicleImages(@UploadedFiles() files: any) {
-        console.log(files);
+    async uploadVehicleImages(@UploadedFiles() files: [any]) {
+        // pass files to images service to be saved in the db
+        return await this.imagesService.saveVehicleImages(files);
     }
 }
