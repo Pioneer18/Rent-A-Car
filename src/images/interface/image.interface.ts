@@ -6,5 +6,6 @@ export interface ImageInterface{
     originalName: string;
     encoding: string;
     size: string;
+    category: string;
     user_id: string;
 }

@@ -9,5 +9,6 @@ export const ImageSchema = new Schema({
     originalName: String,
     encoding: String,
     size: String,
+    category: String, // vehicle or profile
     user_id: String, // ObjectId of the logged in user
 });

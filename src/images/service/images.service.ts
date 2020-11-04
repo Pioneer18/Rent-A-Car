@@ -27,6 +27,7 @@ export class ImagesService {
           originalName: item.originalname,
           encoding: item.encoding,
           size: item.size,
+          category: 'Vehicle',
           user_id: 'fake_id_for_now23',
         })
       })
@@ -38,4 +39,8 @@ export class ImagesService {
       throw new Error(err);
     }
   }
+
+  /**
+   * Upload Profile Image
+   */
 }
