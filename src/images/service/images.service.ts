@@ -5,6 +5,7 @@ import { Injectable} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ImageInterface } from '../interface/image.interface';
 import { Model } from 'mongoose';
+import { JwtPayloadInterface } from 'src/auth/interface/jwt-payload';
 
 @Injectable()
 export class ImagesService {
@@ -16,7 +17,7 @@ export class ImagesService {
   * Upload Images of User's Vehicle
   * @param files user's selected vehicle image files
   */
-  async saveVehicleImages (files: [any], user: any) {
+  async saveVehicleImages (files: [any], user: JwtPayloadInterface) {
     try {
       console.log('here is the incoming user payload')
       console.log(user);
@@ -30,7 +31,7 @@ export class ImagesService {
           encoding: item.encoding,
           size: item.size,
           category: 'Vehicle',
-          user_id: 'fake_id_for_now23',
+          user_id: user.userId,
         })
       })
       // use insertMany to save the packet to the db
