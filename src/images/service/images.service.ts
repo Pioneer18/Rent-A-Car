@@ -4,7 +4,7 @@
 import { Injectable, Req, Res, Logger } from '@nestjs/common';
 import * as multer from 'multer'; // uploading files
 import * as AWS from 'aws-sdk';
-import * as multerS3 from 'multer-s3';
+// import * as multerS3 from 'multer-s3';
 
 const s3 = new AWS.S3();
 AWS.config.update({
@@ -18,6 +18,7 @@ export class ImagesService {
    * build an upload document for the selected directory
    * @param {string} directory the s3 bucket directory path
    */
+  /*
   private uploader = (req, res, path) => {
     const upload = multer({
       storage: multerS3({
@@ -37,7 +38,8 @@ export class ImagesService {
       return res.status(201).json(req.files[0].location);
     });
   }
-
+  */
+  /*
   async uploadImages(@Req() req, @Res() res, path) {
     // upload to aws s3 bucket
     try {
@@ -50,4 +52,8 @@ export class ImagesService {
       return res.status(500).json(`Failed to upload image file: ${err}`);
     }
   }
+  */
+
+  // This is a rewrite of the images service using multer and mongodb to store images
+  
 }
