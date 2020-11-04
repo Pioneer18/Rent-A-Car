@@ -16,8 +16,10 @@ export class ImagesService {
   * Upload Images of User's Vehicle
   * @param files user's selected vehicle image files
   */
-  async saveVehicleImages (files: [any]) {
+  async saveVehicleImages (files: [any], user: any) {
     try {
+      console.log('here is the incoming user payload')
+      console.log(user);
       const packet: ImageInterface[] = []; 
       // map the files to image.interface and push to the packet
       files.map(item => {
@@ -34,7 +36,7 @@ export class ImagesService {
       // use insertMany to save the packet to the db
       const upload = await this.imagesModel.insertMany(packet);
       console.log(`packet was inserted`);
-      return upload;
+      return `Unathi is such a hottie! :)`;
     } catch(err) {
       throw new Error(err);
     }

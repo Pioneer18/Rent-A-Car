@@ -1,22 +1,11 @@
-import { Controller, Post, Req, Res, Logger, UseInterceptors, UploadedFile, UploadedFiles } from '@nestjs/common';
+import { Controller, Post, Req, Res, Logger, UseInterceptors, UploadedFile, UploadedFiles, UseGuards } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.gaurd';
 import { ImagesService } from '../service/images.service';
 
 @Controller('images')
 export class ImagesController {
     constructor(private readonly imagesService: ImagesService) {}
-    /*
-    @Post('upload-rental-images')
-    async uploadRentalImages(@Req() req, @Res() res) {
-        const path = process.env.AWS_S3_BUCKET_RENTALS;
-        return await this.imagesService.uploadImages(req, res, path);
-    }
-
-    @Post('upload-profile-image')
-    async uploadProfileImage(@Req() req, @Res() res) {
-        const path = process.env.AWS_S3_BUCKET_PROFILE;
-    }
-    */
 
     /**
      * 1) upload vehicle photos to db with reference to the logged in user
@@ -33,9 +22,10 @@ export class ImagesController {
      * @param options option
      */
     @Post('upload-vehicle-images')
+    @UseGuards(JwtAuthGuard)
     @UseInterceptors(FilesInterceptor('files'))
-    async uploadVehicleImages(@UploadedFiles() files: [any]) {
+    async uploadVehicleImages(@UploadedFiles() files: [any], @Req() req) {
         // pass files to images service to be saved in the db
-        return await this.imagesService.saveVehicleImages(files);
+        return await this.imagesService.saveVehicleImages(files, req.user);
     }
 }
