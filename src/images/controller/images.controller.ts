@@ -47,7 +47,7 @@ export class ImagesController {
      */
     @Get('find-all-vehicle-images')
     async findAllVehilceImages(@Req() req) {
-        return await this.imagesService.findAllVehicleImages(req.user);
+        return await this.imagesService.findVehicleImages(req.user);
     }
 
     /**
@@ -55,8 +55,8 @@ export class ImagesController {
      * @param image the id of the image to find
      */
     @Get('find-vehicle-image')
-    async findVehicleImage(@Body() image) {
-        console.log(image);
+    async findVehicleImage(@Req() req, @Body() image: {id: string }) {
+        return await this.imagesService.findVehicleImages(req.user, image.id)
     }
 
     /**

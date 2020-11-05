@@ -47,13 +47,22 @@ export class ImagesService {
    * Find all of user's vehicle images
    * @param user the user property of the request object
    */
-  async findAllVehicleImages(user: JwtPayloadInterface) {
+  async findVehicleImages(user: JwtPayloadInterface, img_id?: string) {
+    // img_id given from findVehicleImage endpoint
+    let flag;
+    img_id ? flag = 'single' : flag = 'multiple';
     try {
-      const images = await this.imagesModel.find({user_id: user.userId});
-      console.log(images);
-      return images;
+      // find multiple images
+      if (flag === 'multiple') {
+        return await this.imagesModel.find({user_id: user.userId, category: 'Vehicle'});
+      }
+      // find a specific image
+      const image = await this.imagesModel.find({_id: img_id});
+      console.log(image)
+      return image;
     } catch (err) {
       throw new Error(err);
     }
   }
+
 }
