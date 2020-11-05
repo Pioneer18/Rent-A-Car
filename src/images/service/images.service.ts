@@ -1,5 +1,6 @@
 /**
  * Save Images
+ * Could upload images to AWS S3 bucket and save the links?
  */
 import { Injectable} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -17,12 +18,10 @@ export class ImagesService {
   * Upload Images of User's Vehicle
   * @param files user's selected vehicle image files
   */
-  async saveVehicleImages (files: [any], user: JwtPayloadInterface) {
+  async saveImages (files: [any], user: JwtPayloadInterface, category: string) {
     try {
-      console.log('here is the incoming user payload')
-      console.log(user);
       const packet: ImageInterface[] = []; 
-      // map the files to image.interface and push to the packet
+      // map files to packet
       files.map(item => {
         packet.push({
           data: item.buffer,
@@ -30,20 +29,17 @@ export class ImagesService {
           originalName: item.originalname,
           encoding: item.encoding,
           size: item.size,
-          category: 'Vehicle',
+          category: category,
           user_id: user.userId,
         })
       })
-      // use insertMany to save the packet to the db
+      // insert packet into the database
       const upload = await this.imagesModel.insertMany(packet);
       console.log(`packet was inserted`);
+      console.log(upload)
       return `Unathi is such a hottie! :)`;
     } catch(err) {
       throw new Error(err);
     }
   }
-
-  /**
-   * Upload Profile Image
-   */
 }

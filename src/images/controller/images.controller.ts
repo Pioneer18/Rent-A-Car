@@ -1,17 +1,20 @@
-import { Controller, Post, Req, Res, Logger, UseInterceptors, UploadedFile, UploadedFiles, UseGuards } from '@nestjs/common';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { Controller, Post, Req, Res, Logger, UseInterceptors, UploadedFile, UploadedFiles, UseGuards, Body } from '@nestjs/common';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.gaurd';
 import { ImagesService } from '../service/images.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('images')
 export class ImagesController {
     constructor(private readonly imagesService: ImagesService) {}
 
     /**
      * 1) upload vehicle photos to db with reference to the logged in user
-     * 2) upload profile photo to db with reference to the logged in user
-     * 3) remove specific photo from vehicle photo db
-     * 4) remove specific photo from profile photo db
+     * 2) find vehicle photos in the db 
+     * 3) upload profile photo to db with reference to the logged in user
+     * 4) find profile photos in the db
+     * 5) remove specific photo(s) from vehicle photo db
+     * 6) remove specific photo(s) from profile photo db
      */
 
 
@@ -22,10 +25,41 @@ export class ImagesController {
      * @param options option
      */
     @Post('upload-vehicle-images')
-    @UseGuards(JwtAuthGuard)
     @UseInterceptors(FilesInterceptor('files'))
     async uploadVehicleImages(@UploadedFiles() files: [any], @Req() req) {
         // pass files to images service to be saved in the db
-        return await this.imagesService.saveVehicleImages(files, req.user);
+        return await this.imagesService.saveImages(files, req.user, 'Vehicle');
     }
+
+    /**
+     * Upload a single photo to be saved
+     * @param files fieldName
+     */
+    @Post('upload-profile-images')
+    @UseInterceptors(FilesInterceptor('file'))
+    async uploadProfileImage(@UploadedFiles() file, @Req() req) {
+        return await this.imagesService.saveImages(file, req.user, 'Profile');
+    }
+
+    /**
+     * Find all vehicle images related to a user
+     * @param req the request object, which has a user property
+     */
+    @Post('find-all-vehicle-images')
+    async findAllVehilceImages(@Req() req) {
+        console.log(req.user)
+    }
+
+    /**
+     * Find vehicle image by id
+     * @param image the id of the image to find
+     */
+    @Post('find-vehicle-image')
+    async findVehicleImage(@Body() image) {
+        console.log(image);
+    }
+
+    /**
+     * Find user profile image
+     */
 }
