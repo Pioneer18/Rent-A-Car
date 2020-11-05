@@ -34,10 +34,8 @@ export class ImagesService {
         })
       })
       // insert packet into the database
-      const upload = await this.imagesModel.insertMany(packet);
-      console.log(`packet was inserted`);
-      console.log(upload)
-      return `Unathi is such a hottie! :)`;
+      await this.imagesModel.insertMany(packet);
+      return {message: 'These are the images that were uploaded', packet};
     } catch(err) {
       throw new Error(err);
     }
@@ -57,9 +55,7 @@ export class ImagesService {
         return await this.imagesModel.find({user_id: user.userId, category: 'Vehicle'});
       }
       // find a specific image
-      const image = await this.imagesModel.find({_id: img_id});
-      console.log(image)
-      return image;
+      return await this.imagesModel.find({_id: img_id});
     } catch (err) {
       throw new Error(err);
     }
