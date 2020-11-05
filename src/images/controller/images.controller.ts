@@ -1,4 +1,4 @@
-import { Controller, Post, Req, Res, Logger, UseInterceptors, UploadedFile, UploadedFiles, UseGuards, Body } from '@nestjs/common';
+import { Controller, Post, Req, Res, Logger, UseInterceptors, UploadedFile, UploadedFiles, UseGuards, Body, Get } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.gaurd';
 import { ImagesService } from '../service/images.service';
@@ -45,16 +45,16 @@ export class ImagesController {
      * Find all vehicle images related to a user
      * @param req the request object, which has a user property
      */
-    @Post('find-all-vehicle-images')
+    @Get('find-all-vehicle-images')
     async findAllVehilceImages(@Req() req) {
-        console.log(req.user)
+        return await this.imagesService.findAllVehicleImages(req.user);
     }
 
     /**
      * Find vehicle image by id
      * @param image the id of the image to find
      */
-    @Post('find-vehicle-image')
+    @Get('find-vehicle-image')
     async findVehicleImage(@Body() image) {
         console.log(image);
     }

@@ -42,4 +42,18 @@ export class ImagesService {
       throw new Error(err);
     }
   }
+
+  /**
+   * Find all of user's vehicle images
+   * @param user the user property of the request object
+   */
+  async findAllVehicleImages(user: JwtPayloadInterface) {
+    try {
+      const images = await this.imagesModel.find({user_id: user.userId});
+      console.log(images);
+      return images;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 }
