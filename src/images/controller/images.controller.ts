@@ -1,4 +1,4 @@
-import { Controller, Post, Req, Res, Logger, UseInterceptors, UploadedFile, UploadedFiles, UseGuards, Body, Get } from '@nestjs/common';
+import { Controller, Post, Req, UseInterceptors, UploadedFiles, UseGuards, Body, Get, Param, Query } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.gaurd';
 import { ImagesService } from '../service/images.service';
@@ -6,7 +6,7 @@ import { ImagesService } from '../service/images.service';
 @UseGuards(JwtAuthGuard)
 @Controller('images')
 export class ImagesController {
-    constructor(private readonly imagesService: ImagesService) {}
+    constructor(private readonly imagesService: ImagesService) { }
 
     /**
      * 1) upload vehicle photos to db with reference to the logged in user
@@ -55,7 +55,7 @@ export class ImagesController {
      * @param image the id of the image to find
      */
     @Get('find-vehicle-image')
-    async findVehicleImage(@Req() req, @Body() image: {id: string }) {
+    async findVehicleImage(@Req() req, @Body() image: { id: string }) {
         return await this.imagesService.findVehicleImages(req.user, image.id)
     }
 
@@ -73,7 +73,19 @@ export class ImagesController {
      * @param req request object
      */
     @Get('find-profile-image')
-    async findProfileImage(@Req() req, @Body() image: {id: string}) {
+    async findProfileImage(@Req() req, @Body() image: { id: string }) {
         return await this.imagesService.findProfileImages(req.user, image.id);
     }
+
+    /**
+     * Delete all user images
+     * @param category both or a single one
+     */
+    @Post('delete-all-images')
+    async deleteAllImages(@Query() params: {category: string}, @Req() req) {
+        return await this.imagesService.deleteImages(req.user, params.category)
+    }
+    /**
+    * Delete single image
+    */
 }

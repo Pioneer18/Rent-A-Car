@@ -79,7 +79,15 @@ export class ImagesService {
   }
 
   /**
-   * 
+   * Delete all of a user's images by category
+   * @param user the user property of the request object
    */
+  async deleteImages(user: JwtPayloadInterface, category) {
+    try {
+      return await this.imagesModel.deleteMany({ user_id: user.userId, category});
+    } catch(err) {
+      throw new Error(err);
+    }
+  }
 
 }
