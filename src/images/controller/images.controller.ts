@@ -61,5 +61,19 @@ export class ImagesController {
 
     /**
      * Find user profile image
+     * @param req request object
      */
+    @Get('find-profile-images')
+    async findProfileImages(@Req() req) {
+        return await this.imagesService.findProfileImages(req.user);
+    }
+
+    /**
+     * Find user profile image
+     * @param req request object
+     */
+    @Get('find-profile-image')
+    async findProfileImage(@Req() req, @Body() image: {id: string}) {
+        return await this.imagesService.findProfileImages(req.user, image.id);
+    }
 }

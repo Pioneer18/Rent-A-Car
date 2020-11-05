@@ -47,18 +47,39 @@ export class ImagesService {
    */
   async findVehicleImages(user: JwtPayloadInterface, img_id?: string) {
     // img_id given from findVehicleImage endpoint
-    let flag;
-    img_id ? flag = 'single' : flag = 'multiple';
     try {
+      let flag;
+      img_id ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
         return await this.imagesModel.find({user_id: user.userId, category: 'Vehicle'});
       }
       // find a specific image
-      return await this.imagesModel.find({_id: img_id});
+      return await this.imagesModel.findById(img_id);
     } catch (err) {
       throw new Error(err);
     }
   }
+
+  /**
+   * Find all of user's profile images
+   * @param user the user property of the request object
+   */
+  async findProfileImages(user: JwtPayloadInterface, img_id?: string) {
+    try {
+      let flag;
+      img_id ? flag = 'single' : flag = 'multiple';
+      if (flag === 'multiple') {
+        return await this.imagesModel.find({user_id: user.userId})
+      };
+      return await this.imagesModel.findById(img_id);
+    } catch(err) {
+      throw new Error(err)
+    }
+  }
+
+  /**
+   * 
+   */
 
 }
