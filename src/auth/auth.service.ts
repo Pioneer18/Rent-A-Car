@@ -3,6 +3,8 @@ import { UserService } from '../user/service/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { FindUserDto } from 'src/user/dto/find-user.dto';
 import { UserPropertyInterface } from './interface/user-property.interface';
+import * as bcrypt from 'bcrypt';
+import { UserInterface } from 'src/user/interface/user.interface';
 
 /**
  * Passport Local
@@ -20,15 +22,16 @@ export class AuthService {
         try{
             const query: FindUserDto = { username: username}
             const temp = await this.userService.findUser(query); // find user in db by username
-            const user = temp[0];
-            // use bcrypt on the password
-            if (user && user.password === pass) {
+            const user: UserInterface = temp[0];
+            // validate the given password
+            if(await bcrypt.compare(user.password, pass)) {
                 const {password, ...result } = user;
                 return result;
             }
             return null;
         } catch (err) {
             throw new Error(err);
+            // catch and report the unique email error
         }
     }
 
