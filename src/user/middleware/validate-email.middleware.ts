@@ -16,13 +16,15 @@ export class ValidateEmailMiddleware implements NestMiddleware {
 
     private async validateEmail(value: CreateUserDto){
         const check = await this.user.find({email: 'nothing'});
-        console.log('The email check');
-        console.log(check);
+
+        if(check.length === 0 || check.length === undefined) {
+            throw new Error('Email validation');
+        }
     }
 
     async use(req: Request, res: Response, next: Function) {
         // apply to create-user route
-        if (req.originalUrl === 'v1/user/create-user') {
+        if (req.originalUrl === '/v1/user/create-user') {
             await this.validateEmail(req.body);
         }
         next();
