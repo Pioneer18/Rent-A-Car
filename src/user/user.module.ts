@@ -5,6 +5,7 @@ import { UserController } from './controller/user.controller';
 import { UserService } from './service/user.service';
 import { DatabaseModule } from '../database/database.module';
 import { ValidateEmailMiddleware } from './middleware/validate-email.middleware';
+import { userProvider} from '../database/providers/user-model.provider';
 
 
 @Module({
@@ -12,7 +13,7 @@ import { ValidateEmailMiddleware } from './middleware/validate-email.middleware'
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema}]),
     DatabaseModule
   ],
-  providers: [UserService],
+  providers: [UserService,...userProvider],
   controllers: [UserController],
   exports: [UserService], // used in the AuthService
 })
