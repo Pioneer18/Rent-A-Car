@@ -7,6 +7,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ImageInterface } from '../interface/image.interface';
 import { Model } from 'mongoose';
 import { JwtPayloadInterface } from 'src/auth/interface/jwt-payload';
+import { UserPropertyInterface} from '../../auth/interface/user-property.interface';
 
 @Injectable()
 export class ImagesService {

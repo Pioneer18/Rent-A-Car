@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from '../user/service/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { FindUserDto } from 'src/user/dto/find-user.dto';
+import { UserPropertyInterface } from './interface/user-property.interface';
 
 /**
  * Passport Local
@@ -30,11 +31,18 @@ export class AuthService {
     // use the sign method to create a JWT from the username and userid
     // using sub for userId is consistent with JWT standards
     async login(user: any) {
-        const packet = user._doc;
+        console.log(`here is the user property created by Passport`)
+        console.log(user._doc)
+        const packet: UserPropertyInterface = user._doc;
 
-        const payload = {username: packet.username, sub: packet._id };
+        const payload = {
+            username: packet.username,
+            email: packet.email,
+            sub: packet._id,
+            // iat:
+        };
         return {
-            access_token: this.jwtService.sign(payload), // create a JWT 
+            access_token: await this.jwtService.sign(payload), // create a JWT 
         };
     }
 }
