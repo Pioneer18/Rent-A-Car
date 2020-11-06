@@ -24,7 +24,7 @@ export class AuthService {
             const temp = await this.userService.findUser(query); // find user in db by username
             const user: UserInterface = temp[0];
             // validate the given password
-            if(await bcrypt.compare(user.password, pass)) {
+            if(await bcrypt.compare(pass, user.password)) {
                 const {password, ...result } = user;
                 return result;
             }
