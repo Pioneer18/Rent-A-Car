@@ -26,10 +26,9 @@ export class UserService {
 
     async createUser(user: CreateUserDto) {
         try {
-            console.log('creating a user!!');
             const document = await new this.userModel(user);
-            console.log(`this is the document: ${document}`);
             await document.save();
+            document.password = undefined;
             return document;
         } catch (err) {
             throw new Error(err);

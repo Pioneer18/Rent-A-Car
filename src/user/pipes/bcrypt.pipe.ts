@@ -3,7 +3,7 @@ import { CreateUserDto } from "../dto/create-user.dto";
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
-export class BcryptPipe implements PipeTransform {
+export class BcryptHashPipe implements PipeTransform {
 
     /**
      * Use bcrypt to hash and salt the user's password
