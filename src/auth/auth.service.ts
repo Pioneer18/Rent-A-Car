@@ -18,9 +18,9 @@ export class AuthService {
         private jwtService: JwtService,
     ) {}
 
-    async validateUser(username: string, pass: string): Promise<any> {
+    async validateUser(email: string, pass: string): Promise<any> {
         try{
-            const query: FindUserDto = { username: username}
+            const query: FindUserDto = {email: email};
             const temp = await this.userService.findUser(query); // find user in db by username
             const user: UserInterface = temp[0];
             // validate the given password
