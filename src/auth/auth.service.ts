@@ -17,15 +17,19 @@ export class AuthService {
     ) {}
 
     async validateUser(username: string, pass: string): Promise<any> {
-        const query: FindUserDto = { username: username}
-        const temp = await this.userService.findUser(query); // find user in db by username
-        const user = temp[0];
-        // use bcrypt on the password
-        if (user && user.password === pass) {
-            const {password, ...result } = user;
-            return result;
+        try{
+            const query: FindUserDto = { username: username}
+            const temp = await this.userService.findUser(query); // find user in db by username
+            const user = temp[0];
+            // use bcrypt on the password
+            if (user && user.password === pass) {
+                const {password, ...result } = user;
+                return result;
+            }
+            return null;
+        } catch (err) {
+            throw new Error(err);
         }
-        return null;
     }
 
     // use the sign method to create a JWT from the username and userid
