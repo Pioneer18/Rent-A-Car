@@ -16,8 +16,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     // for any strategy, if the user is found, Passport will create a user property on the request object
     async validate(username: string, password: string): Promise<any> {
         const user = await this.authService.validateUser(username, password);
-        console.log('here is the user from inside the local-strategy');
-        console.log(user);
         if (!user) {
             throw new Error('invalid credentials');
             // throw new UnauthorizedException('invalid credentials');
