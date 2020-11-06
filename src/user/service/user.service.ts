@@ -11,13 +11,10 @@ export class UserService {
         @InjectModel('User') private readonly userModel: Model<UserInterface>,
       ) {}
 
-      // update this to also use email
     async findUser(data: FindUserDto) {
         try {
-            console.log('here is the username ' + data.username)
-            const name = data.username;
-            const user = await this.userModel.find({username: name});
-            console.log(`this is the user that was found: ${user}`);
+            const email = data.email;
+            const user = await this.userModel.find(email);
             return user;
         } catch (err) {
             throw new Error(err);
