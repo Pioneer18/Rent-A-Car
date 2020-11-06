@@ -1,6 +1,7 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, UsePipes } from '@nestjs/common';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { FindUserDto } from '../dto/find-user.dto';
+import { BcryptPipe } from '../pipes/bcrypt.pipe';
 import { UserService } from '../service/user.service';
 
 @Controller('user')
@@ -8,11 +9,8 @@ export class UserController {
     constructor(private readonly userService: UserService) {
         // initialize stuffs
     }
-    /**
-     * ENDPOINTS:
-     * create profile, update profile, upload profile image
-     * login, logout, delete profile
-     */
+    
+    @UsePipes(new BcryptPipe())
     @Post('create-user')
     async createProfile(@Body() user: CreateUserDto) {
         return await this.userService.createUser(user);
