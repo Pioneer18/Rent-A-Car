@@ -20,7 +20,7 @@ export class ValidateEmailMiddleware implements NestMiddleware {
     }
 
     private async validateEmail(value: CreateUserDto){
-        const check = await this.user.find({email: 'nothing'});
+        const check = await this.user.find({email: value.email});
         this.validateEmailUtil.validateEmail(check)
     }
 
