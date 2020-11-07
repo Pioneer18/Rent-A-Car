@@ -13,8 +13,7 @@ export class UserService {
 
     async findUser(data: FindUserDto) {
         try {
-            const email = data.email;
-            const user = await this.userModel.find(email);
+            const user = await this.userModel.find(data);
             return user;
         } catch (err) {
             throw new Error(err);
