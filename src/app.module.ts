@@ -27,7 +27,20 @@ import { ImagesController } from './images/controller/images.controller';
     UserModule,
     ImagesModule,
     RouterModule.forRoutes(routes),
-    ConfigModule.forRoot(),
+    // parses the .env file, assign key/value pairs to process.env, stores results in configService
+    // can set alternative .env file path
+    ConfigModule.forRoot({
+      isGlobal: true,
+      // load: [configuration] // databaseConfig, authConfig
+      /**
+       * validationSceham: Joi.object({
+       *  NODE_ENV: Joi.string()
+       *    .valid('development', 'production', 'test')
+       *    .default('development'),
+       *  PORT: Joi.number().default(3000),
+       * })
+       */
+    }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
