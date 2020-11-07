@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
     constructor(private authService: AuthService) {
-        super(); // no config for passport local strategy
+        super({usernameField: 'email' }); // use email instead of username
     }
 
     // every passport strategy calls the validate method (which calls the validateUser function in the auth.service)
