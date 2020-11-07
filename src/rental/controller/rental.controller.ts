@@ -24,6 +24,8 @@ import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
 import { UpdateUnavailabilityDataDto } from '../dto/update-unavailability-data.dto';
 import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
 import { RemoveUnavailabilityDto } from '../dto/remove-unavailability.dto';
+import { AppConfigService } from 'src/config/configuration.service';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('rental')
 export class RentalController {
@@ -36,7 +38,7 @@ export class RentalController {
   @Post()
   @UsePipes(new JoiValidationPipe(CreateRentalValidation))
   @UsePipes(new MapNewRentalPipe())
-  @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil()))
+  @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
   async createRental(@Body() rental: MappedRentalInterface) {
     try {
       return await this.rentalService.createRental(rental);
