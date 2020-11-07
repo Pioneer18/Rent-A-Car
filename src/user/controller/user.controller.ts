@@ -15,6 +15,7 @@ export class UserController {
     
     @UsePipes(new BcryptHashPipe())
     @UsePipes(new JoiValidationPipe(CreateUserValidation))
+    // validate-email.middleware applied
     @Post('create-user')
     async createProfile(@Body() user: CreateUserDto) {
         return await this.userService.createUser(user);
