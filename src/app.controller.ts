@@ -1,4 +1,4 @@
-import { Controller, UseGuards, Get, Post, Request, Req } from '@nestjs/common';
+import { Controller, UseGuards, Get, Post, Request, Req, HttpCode } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth.gaurd';
 import { LocalAuthGuard } from './auth/local-auth.guard';
@@ -10,6 +10,7 @@ export class AppController {
   // bare-bones login route
   // Passport automatically creates a user object, based on the value we return
   // from the validate() method, and assigns it to the Request object as req.user.
+  @HttpCode(200)
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(@Request() req) {
