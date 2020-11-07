@@ -26,13 +26,13 @@ export class AppConfigService {
     get secret_key(): string {
         return this.configService.get<string>('app.secret_key')
     }
+    get port(): number { 
+        return this.configService.get<number>('app.port');
+    }
     /**
      * get env(): string { 
      *  return this.configService.get<string>('app.env');
      * }
      * 
-     * get port(): number { 
-     *  return this.configService.get<number>('app.port');
-     * }
     */
 }
