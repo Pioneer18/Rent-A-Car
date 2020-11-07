@@ -1,8 +1,9 @@
 import Joi = require("@hapi/joi");
 import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { join } from "path";
 import configuration from "./configuration";
+import { AppConfigService } from "./configuration.service";
 /**
  * Import and provide app configuration related classes
  */
@@ -23,6 +24,8 @@ import configuration from "./configuration";
                 PORT: Joi.number().default(3000),
             })
         })
-    ]
+    ],
+    providers: [ConfigService, AppConfigService],
+    exports: [ConfigService, AppConfigService]
 })
 export class AppConfigModule {}
