@@ -46,7 +46,6 @@ export class AuthService {
             username: packet.username,
             email: packet.email,
             sub: packet._id,
-            // iat:
         };
         return {
             access_token: await this.jwtService.sign(payload), // create a JWT 
