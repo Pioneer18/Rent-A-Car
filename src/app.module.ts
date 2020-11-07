@@ -11,13 +11,15 @@ import { HttpErrorFilter } from './common/filters/http-error.filter';
 import { ErrorFilter } from './common/filters/error.filters';
 import { LoggingInterceptor } from './common/interceptors/logging-interceptor';
 import { ImagesModule } from './images/images.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+// import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from 'src/auth/auth.module';
 import { UserController } from './user/controller/user.controller';
 import { RentalController } from './rental/controller/rental.controller';
 import { ImagesController } from './images/controller/images.controller';
+import { AppConfigModule } from './config/configuration.module';
+import { AppConfigService } from './config/configuration.service';
 
 @Module({
   imports: [
@@ -29,24 +31,13 @@ import { ImagesController } from './images/controller/images.controller';
     RouterModule.forRoutes(routes),
     // parses the .env file, assign key/value pairs to process.env, stores results in configService
     // can set alternative .env file path
-    ConfigModule.forRoot({
-      isGlobal: true,
-      // load: [configuration] // databaseConfig, authConfig
-      /**
-       * validationSceham: Joi.object({
-       *  NODE_ENV: Joi.string()
-       *    .valid('development', 'production', 'test')
-       *    .default('development'),
-       *  PORT: Joi.number().default(3000),
-       * })
-       */
-    }),
+    AppConfigModule,
     MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('REMOTE_DB'),
+      imports: [AppConfigModule],
+      useFactory: async (appConfigService: AppConfigService) => ({
+        uri: appConfigService.remote_db,
       }),
-      inject: [ConfigService],
+      inject: [AppConfigService],
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../client/build'),

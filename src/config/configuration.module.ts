@@ -1,7 +1,6 @@
 import Joi = require("@hapi/joi");
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
-import { join } from "path";
 import configuration from "./configuration";
 import { AppConfigService } from "./configuration.service";
 /**
@@ -12,12 +11,12 @@ import { AppConfigService } from "./configuration.service";
         ConfigModule.forRoot({
             load: [configuration],
             validationSchema: Joi.object({
-                GEO_ID: join.toString(),
-                GEO_CODE: join.toString(),
-                GEO_URL: join.toString(),
-                REMOTE_DB: join.toString(),
-                LOCAL_DB: join.toString(),
-                SECRET_KEY: join.toString(),
+                GEO_ID: Joi.string(),
+                GEO_CODE: Joi.string(),
+                GEO_URL: Joi.string(),
+                REMOTE_DB: Joi.string(),
+                LOCAL_DB: Joi.string(),
+                SECRET_KEY: Joi.string(),
                 NODE_ENV: Joi.string()
                   .valid('development', 'production', 'test')
                   .default('development'),
