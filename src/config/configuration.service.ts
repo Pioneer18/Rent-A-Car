@@ -29,6 +29,9 @@ export class AppConfigService {
     get port(): number { 
         return this.configService.get<number>('app.port');
     }
+    get jwt_exp_time(): number {
+        return this.configService.get<number>('app.jwt_exp_time');
+    }
     /**
      * get env(): string { 
      *  return this.configService.get<string>('app.env');
