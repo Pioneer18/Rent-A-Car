@@ -6,6 +6,7 @@ import { UserPropertyInterface } from '../interface/user-property.interface';
 import * as bcrypt from 'bcrypt';
 import { UserInterface } from 'src/user/interface/user.interface';
 import { AppConfigService } from 'src/config/configuration.service';
+import { Response } from 'express';
 
 /**
  * Passport Local
@@ -37,26 +38,27 @@ export class AuthService {
         }
     }
 
-    async getCookieWithJwtToken(userId: string) {
-        const payload = {userId}
-        const token = this.jwtService.sign(payload);
-        return `Authenticaiton=${token}; HttpOnly; Path=/; Max-Age=${this.appConfig.jwt_exp_time}`;
-    }
-
     // use the sign method to create a JWT from the username and userid
     // using sub for userId is consistent with JWT standards
-    async login(user: any) {
+    // return JWT to be stored in the response header
+    async login(user: any, res: Response) {
         console.log(`here is the user property created by Passport`)
         console.log(user._doc)
+        // 1) create payload
         const packet: UserPropertyInterface = user._doc;
-
         const payload = {
             username: packet.username,
             email: packet.email,
             sub: packet._id,
         };
-        return {
-            access_token: await this.jwtService.sign(payload), // create a JWT 
-        };
+        // 2) make a JWT token from payload
+        const token = await this.jwtService.sign(payload);
+        // 3) set the response Cookie header with the JWT
+        const cookie = `Authenticaiton=${token}; HttpOnly; Path=/; Max-Age=${this.appConfig.jwt_exp_time}`
+        res.setHeader('Set-Cookie', cookie)
+        // 5) return the user object with no password;
+        packet.password = undefined;
+        return res.send(packet);
+
     }
 }

@@ -1,4 +1,5 @@
-import { Controller, HttpCode, Post, UseGuards, Request } from "@nestjs/common";
+import { Controller, HttpCode, Post, UseGuards, Request, Res } from "@nestjs/common";
+import { Response } from "express";
 import { JwtAuthGuard } from "../guards/jwt-auth.gaurd";
 import { LocalAuthGuard } from "../guards/local-auth.guard";
 import { RequestWithUser } from "../interface/request-with-user.interface";
@@ -8,18 +9,19 @@ import { AuthService } from "../service/auth.service";
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
-  // bare-bones login route
-  // Passport automatically creates a user object, based on the value we return
-  // from the validate() method, and assigns it to the Request object as req.user.
+  /**
+   * Login
+   * @param req 
+   * @param res
+   * Validate User by email
+   * Store JWT as Cookie in Response Header 
+   * return user object
+   */
   @HttpCode(200)
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Request() req: RequestWithUser) {
-    // extract user object from request object
-    // create a cookie
-    // set the cookie in the header
-    // return the accessToken-
-    return this.authService.login(req.user);
+  async login(@Request() req: RequestWithUser, @Res() res: Response) {
+    return await this.authService.login(req.user, res);
   }
 
   /**
