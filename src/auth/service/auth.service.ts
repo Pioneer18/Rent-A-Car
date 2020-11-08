@@ -5,6 +5,7 @@ import { FindUserDto } from 'src/user/dto/find-user.dto';
 import { UserPropertyInterface } from '../interface/user-property.interface';
 import * as bcrypt from 'bcrypt';
 import { UserInterface } from 'src/user/interface/user.interface';
+import { AppConfigService } from 'src/config/configuration.service';
 
 /**
  * Passport Local
@@ -16,6 +17,7 @@ export class AuthService {
     constructor(
         private userService: UserService,
         private jwtService: JwtService,
+        private appConfig: AppConfigService,
     ) {}
 
     async validateUser(email: string, pass: string): Promise<any> {
@@ -33,6 +35,12 @@ export class AuthService {
             throw new Error(err);
             // catch and report the unique email error
         }
+    }
+
+    async getCookieWithJwtToken(userId: string) {
+        const payload = {userId}
+        const token = this.jwtService.sign(payload);
+        return `Authenticaiton=${token}; HttpOnly; Path=/; Max-Age=${this.appConfig.jwt_exp_time}`;
     }
 
     // use the sign method to create a JWT from the username and userid

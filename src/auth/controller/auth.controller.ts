@@ -15,6 +15,10 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req: RequestWithUser) {
+    // extract user object from request object
+    // create a cookie
+    // set the cookie in the header
+    // return the accessToken-
     return this.authService.login(req.user);
   }
 
