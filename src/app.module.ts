@@ -20,6 +20,7 @@ import { RentalController } from './rental/controller/rental.controller';
 import { ImagesController } from './images/controller/images.controller';
 import { AppConfigModule } from './config/configuration.module';
 import { AppConfigService } from './config/configuration.service';
+import { AuthController } from './auth/controller/auth.controller';
 
 @Module({
   imports: [
@@ -29,8 +30,6 @@ import { AppConfigService } from './config/configuration.service';
     UserModule,
     ImagesModule,
     RouterModule.forRoutes(routes),
-    // parses the .env file, assign key/value pairs to process.env, stores results in configService
-    // can set alternative .env file path
     AppConfigModule,
     MongooseModule.forRootAsync({
       imports: [AppConfigModule],
@@ -43,7 +42,13 @@ import { AppConfigService } from './config/configuration.service';
       rootPath: join(__dirname, '../client/build'),
     }),
   ],
-  controllers: [AppController, UserController, RentalController, ImagesController],
+  controllers: [
+    AppController,
+    UserController,
+    RentalController,
+    ImagesController,
+    AuthController
+  ],
   providers: [
     AppService,
     { provide: APP_FILTER, useClass: HttpErrorFilter },
