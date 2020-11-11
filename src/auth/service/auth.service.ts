@@ -53,12 +53,11 @@ export class AuthService {
         };
         // 2) make a JWT token from payload
         const token = await this.jwtService.sign(payload);
-        // 3) set the response Cookie header with the JWT
+        // 3) set the response Cookie header with the JWT, the browser will store it
         const cookie = `Authenticaiton=${token}; HttpOnly; Path=/; Max-Age=${this.appConfig.jwt_exp_time}`
         res.setHeader('Set-Cookie', cookie)
         // 5) return the user object with no password;
         packet.password = undefined;
-        return res.send(packet);
-
+        return res.send({acess_token: token});
     }
 }

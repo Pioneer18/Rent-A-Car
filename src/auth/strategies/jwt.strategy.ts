@@ -4,8 +4,10 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { AppConfigService } from 'src/config/configuration.service';
-import { UserService } from 'src/user/service/user.service';
-
+/**
+ * Read the JWT from the Cookie header when user requests data
+ * grab the 'Authentication' cookie from the request header
+ */
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
