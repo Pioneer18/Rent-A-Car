@@ -1,5 +1,8 @@
 # Rent-A-Car
-This project is a demonstration of Full Stack development skills; ReactJS, TypeScript, NodeJS, NestJS, MongoDB, MySQL, Redis, Docker, and Testing
+This project is a demonstration of Full Stack development skills; ReactJS, TypeScript, NodeJS, NestJS, MongoDB, MySQL, Redis, Docker, and Testing. This Repository has the files for the backend of the application.
+
+### About The App:
+Rent-A-Car is a car rental web application that allows users to list their own vehicles or search for vehicles in a specified area. 
 
 ### Technologies:
 * ReactJs
