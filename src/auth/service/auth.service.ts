@@ -82,4 +82,30 @@ export class AuthService {
         }
     }
 
+    /**
+     * Change Password
+     */
+    async changePassword(data) {
+        // verify user submitted pw matches the saved pw
+        // now update the pw and logout the user, they need to log back in
+    }
+
+
+    /**
+     * Forgot Password
+     * @param email the email for resetting the password
+     * summary: sends user a reset password link to the provided email, if it's an account associated email
+     */
+    async forgotPassword() {
+
+    }
+
+    /**
+     * Reset Password
+     * summary: resets the password from a submitted forgot-password email
+     */
+    async resetPassword() {
+
+    }
+
 }
