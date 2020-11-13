@@ -84,9 +84,16 @@ export class AuthService {
 
     /**
      * Change Password
+     * @param new_password
+     * @param confirm_password
+     * @param user 
      */
     async changePassword(data) {
-        // verify user submitted pw matches the saved pw
+        // verify user submitted same pw twice
+        // find user by email
+        // bcrypt compare incoming pw with saved, make sure no match
+        // update the password
+        // save user
         // now update the pw and logout the user, they need to log back in
     }
 
