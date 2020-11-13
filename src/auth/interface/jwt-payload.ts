@@ -1,1 +1,5 @@
-export interface JwtPayloadInterface { userId: string, username: string }
+export interface JwtPayloadInterface { 
+    username: string,
+    email: string, 
+    sub: string,
+}

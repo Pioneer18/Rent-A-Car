@@ -31,7 +31,7 @@ export class ImagesService {
           encoding: item.encoding,
           size: item.size,
           category: category,
-          user_id: user.userId,
+          user_id: user.sub,
         })
       })
       // insert packet into the database
@@ -53,7 +53,7 @@ export class ImagesService {
       img_id ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        return await this.imagesModel.find({user_id: user.userId, category: 'Vehicle'});
+        return await this.imagesModel.find({user_id: user.sub, category: 'Vehicle'});
       }
       // find a specific image
       return await this.imagesModel.findById(img_id);
@@ -71,7 +71,7 @@ export class ImagesService {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        return await this.imagesModel.find({user_id: user.userId})
+        return await this.imagesModel.find({user_id: user.sub})
       };
       return await this.imagesModel.findById(img_id);
     } catch(err) {
@@ -85,7 +85,7 @@ export class ImagesService {
    */
   async deleteImages(user: JwtPayloadInterface, category) {
     try {
-      return await this.imagesModel.deleteMany({ user_id: user.userId, category});
+      return await this.imagesModel.deleteMany({ user_id: user.sub, category});
     } catch(err) {
       throw new Error(err);
     }
