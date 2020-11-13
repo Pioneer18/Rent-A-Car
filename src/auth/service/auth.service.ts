@@ -86,7 +86,7 @@ export class AuthService {
      * Change Password
      * @param new_password
      * @param confirm_password
-     * @param user 
+     * @param email
      */
     async changePassword(data) {
         // verify user submitted same pw twice
