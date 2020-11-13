@@ -105,6 +105,7 @@ export class AuthService {
         const email = await this.extractEmailUtil.extract(jwt);
         console.log('The Decoded JWT');
         console.log(email);
+        return email;
     }
 
 

@@ -27,7 +27,7 @@ import { AppConfigService } from 'src/config/configuration.service';
       inject: [AppConfigService],
       useFactory: async (appConfig: AppConfigService) => ({
         secret: appConfig.secret_key,
-        signOptions: {expiresIn: `${appConfig.jwt_exp_time}`}, // 30 minutes
+        signOptions: {expiresIn: `${appConfig.jwt_exp_time}s`}, // 30 minutes
       })
     }),
   ],
