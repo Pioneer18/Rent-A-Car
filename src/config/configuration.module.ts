@@ -21,6 +21,9 @@ import { AppConfigService } from "./configuration.service";
                   .valid('development', 'production', 'test')
                   .default('development'),
                 PORT: Joi.number().default(3000),
+                // REDIS_HOST
+                // REDIS_PORT
+                // CACHE_TTL
             }),
             validationOptions: {
                 allowUnkown: false, // enforce validation, don't allow unknown keys in the env variables
