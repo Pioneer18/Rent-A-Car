@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { UserService } from '../user/service/user.service';
+import { UserService } from '../../user/service/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { FindUserDto } from 'src/user/dto/find-user.dto';
-import { UserPropertyInterface } from './interface/user-property.interface';
+import { UserPropertyInterface } from '../interface/user-property.interface';
 import * as bcrypt from 'bcrypt';
 import { UserInterface } from 'src/user/interface/user.interface';
 

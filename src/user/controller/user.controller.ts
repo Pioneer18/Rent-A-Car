@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Get, UsePipes, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.gaurd';
+import { JwtAuthGuard } from 'src/auth/gaurds/jwt-auth.gaurd';
 import { JoiValidationPipe } from 'src/common/pipes/joi-validation.pipe';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { FindUserDto } from '../dto/find-user.dto';
