@@ -1,5 +1,6 @@
 import { Controller, Post, Body, Get, UsePipes, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/gaurds/jwt-auth.guard';
+import { LoggedOutGaurd } from 'src/auth/gaurds/logged-out.guard';
 import { JoiValidationPipe } from 'src/common/pipes/joi-validation.pipe';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { FindUserDto } from '../dto/find-user.dto';
@@ -27,13 +28,14 @@ export class UserController {
         return 'tee-hee';
     }
 
-    @UseGuards(JwtAuthGuard)
+    /*@UseGuards(JwtAuthGuard)
     @Post('upload-profile-image')
     async uploadProfileImage(@Body() image) {
         return 'tee-hee';
-    }
+    }*/
 
     @UseGuards(JwtAuthGuard)
+    @UseGuards(LoggedOutGaurd)
     @Get('find-user')
     async findUser(@Body() user: FindUserDto) {
         return await this.userService.findUser(user)
