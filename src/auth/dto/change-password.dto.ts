@@ -1,6 +1,5 @@
 /*change password dto */
 export class ChangePasswordDto {
-	readonly changePass: string;
-	readonly confirmPass: string;
-	readonly authorizedUser: string;
+	readonly newPassword: string;
+	readonly confirmPassword: string;
 }

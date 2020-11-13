@@ -9,6 +9,7 @@ import { Request } from 'express';
 import { RedisService } from '../../redis/service/redis.service';
 import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
 import { ExtractEmailUtil } from 'src/common/util/extract-email.util';
+import { ChangePasswordDto } from '../dto/change-password.dto';
 
 /**
  * Passport Local
@@ -88,9 +89,11 @@ export class AuthService {
      * Change Password
      * @param new_password
      * @param confirm_password
-     * @param email
+     * @param req
      */
-    async changePassword(data, req) {
+    async changePassword(data: ChangePasswordDto, req: Request) {
+        console.log('Change Password Data:')
+        console.log(data);
         // verify user submitted same pw twice
         // find user by email
         // bcrypt compare incoming pw with saved, make sure no match

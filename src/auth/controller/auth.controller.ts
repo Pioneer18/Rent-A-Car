@@ -1,4 +1,5 @@
 import { Controller, HttpCode, Post, UseGuards, Request, Body, Req } from "@nestjs/common";
+import { ChangePasswordDto } from "../dto/change-password.dto";
 import { JwtAuthGuard } from "../gaurds/jwt-auth.guard";
 import { LocalAuthGuard } from "../gaurds/local-auth.guard";
 import { LoggedOutGaurd } from "../gaurds/logged-out.guard";
@@ -35,7 +36,7 @@ export class AuthController {
      */
     @UseGuards(JwtAuthGuard)
     @Post('change-password')
-    async changePassword(@Req() req,@Body() data) {
+    async changePassword(@Req() req,@Body() data: ChangePasswordDto) {
         return this.authService.changePassword(data, req)
     }
 
