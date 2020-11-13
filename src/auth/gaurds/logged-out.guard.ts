@@ -7,11 +7,11 @@ export class LoggedOutGaurd implements CanActivate {
     constructor(private readonly redisService: RedisService) {}
 
     // This is where we use redis to check the incoming jwt by it's last 8 digits
-    private tee_hee(req): boolean {
+    private async checkDeadList(req): Promise<boolean> {
         // grab the key from the incoming jwt
         const rawAuth = req.headers.authorization;
         const key = rawAuth.slice(-8);
-        const check = this.redisService.get(key);
+        const check = await this.redisService.get(key);
         console.log(`LOGGED-OUT Guard Check Results: `);
         console.log(check)
         return true;
@@ -22,6 +22,6 @@ export class LoggedOutGaurd implements CanActivate {
     ): boolean | Promise<boolean> | Observable<boolean> {
         const request = context.switchToHttp().getRequest();
         console.log('I LOVE UNATHI - LOGGED-OUT GUARD :)')
-        return  this.tee_hee(request);
+        return this.checkDeadList(request);
     }
 }
