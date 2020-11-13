@@ -8,6 +8,7 @@ import { UserInterface } from '../../user/interface/user.interface';
 import { Request } from 'express';
 import { RedisService } from '../../redis/service/redis.service';
 import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
+import { ExtractEmailUtil } from 'src/common/util/extract-email.util';
 
 /**
  * Passport Local
@@ -20,7 +21,8 @@ export class AuthService {
         private readonly userService: UserService,
         private readonly jwtService: JwtService,
         private readonly redisService: RedisService,
-        private readonly extractKeyValueUtil: ExtractKeyValueUtil
+        private readonly extractKeyValueUtil: ExtractKeyValueUtil,
+        private readonly extractEmailUtil: ExtractEmailUtil,
     ) {}
 
     /**
@@ -88,13 +90,18 @@ export class AuthService {
      * @param confirm_password
      * @param email
      */
-    async changePassword(data) {
+    async changePassword(data, req) {
         // verify user submitted same pw twice
         // find user by email
         // bcrypt compare incoming pw with saved, make sure no match
         // update the password
         // save user
         // now update the pw and logout the user, they need to log back in
+        console.log('Hello from Change Password Handler');
+        const {jwt} = await this.extractKeyValueUtil.extract(req)
+        const email = await this.extractEmailUtil.extract(jwt);
+        console.log('The Decoded JWT');
+        console.log(email);
     }
 
 
