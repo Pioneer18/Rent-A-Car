@@ -68,13 +68,22 @@ export class AuthService {
      * summary: set the user's JWT in the redis 'dead-list'
      */
     async logout(req: Request) {
-        const rawAuth = req.headers.authorization;
-        console.log(rawAuth);
-        const jwt = rawAuth.slice(7);
-        console.log(jwt);
-    
-        // use the redis client to push the user's jwt to the 'dead-list'
-        return await rawAuth;
+        try{
+            // grab the authorization header
+            const rawAuth = req.headers.authorization;
+            // trim off the JWT
+            const jwt = rawAuth.slice(7);
+            // use last 8 digits as key name for redis-cahce
+            const key = rawAuth.slice(-8);
+            // set to redis dead-list
+            await this.redisService.set(key, jwt);
+            // return success or error
+            const reader = await this.redisService.get(key);
+            console.log(`Reader: ${key}: ${reader}`);
+            return await {key: key, value: reader};
+        } catch(err) {
+            throw new Error(err);
+        }
     }
 
 }
