@@ -26,8 +26,7 @@ export class AuthController {
     @UseGuards(JwtAuthGuard)
     @Post('logout')
     async logout(@Request() req) {
-        console.log(req.user);
-        // expire the user's token
+        return await this.authService.logout(req.user);
     }
 
     /**

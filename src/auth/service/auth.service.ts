@@ -18,6 +18,11 @@ export class AuthService {
         private jwtService: JwtService,
     ) {}
 
+    /**
+     * Initial User Validation
+     * @param email 
+     * @param pass 
+     */
     async validateUser(email: string, pass: string): Promise<any> {
         try{
             const query: FindUserDto = {email: email};
@@ -35,8 +40,10 @@ export class AuthService {
         }
     }
 
-    // use the sign method to create a JWT from the username and userid
-    // using sub for userId is consistent with JWT standards
+    /**
+     * Login
+     * @param user 
+     */
     async login(user: any) {
         console.log(`here is the user property created by Passport`)
         console.log(user._doc)
@@ -51,4 +58,17 @@ export class AuthService {
             access_token: await this.jwtService.sign(payload), // create a JWT 
         };
     }
+
+    /**
+     * Logout
+     * @param user user property from the request object
+     * summary: set the user's JWT in the redis 'dead-list'
+     */
+    async logout(user) {
+        console.log(user);
+        // grab the jwt from the user
+        // use the redis client to push the user's jwt to the 'dead-list'
+        return user;
+    }
+
 }
