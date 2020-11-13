@@ -5,6 +5,7 @@ import { FindUserDto } from 'src/user/dto/find-user.dto';
 import { UserPropertyInterface } from '../interface/user-property.interface';
 import * as bcrypt from 'bcrypt';
 import { UserInterface } from 'src/user/interface/user.interface';
+import { Request } from 'express';
 
 /**
  * Passport Local
@@ -64,11 +65,13 @@ export class AuthService {
      * @param user user property from the request object
      * summary: set the user's JWT in the redis 'dead-list'
      */
-    async logout(user) {
-        console.log(user);
+    async logout(req: Request) {
+        console.log(req);
+        const rawAuth = req.headers.authorization;
+        console.log(rawAuth);
         // grab the jwt from the user
         // use the redis client to push the user's jwt to the 'dead-list'
-        return user;
+        return await rawAuth;
     }
 
 }
