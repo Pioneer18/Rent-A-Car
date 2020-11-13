@@ -7,6 +7,7 @@ import * as bcrypt from 'bcrypt';
 import { UserInterface } from '../../user/interface/user.interface';
 import { Request } from 'express';
 import { RedisService } from '../../redis/service/redis.service';
+import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
 
 /**
  * Passport Local
@@ -19,6 +20,7 @@ export class AuthService {
         private readonly userService: UserService,
         private readonly jwtService: JwtService,
         private readonly redisService: RedisService,
+        private readonly extractKeyValueUtil: ExtractKeyValueUtil
     ) {}
 
     /**
@@ -69,18 +71,12 @@ export class AuthService {
      */
     async logout(req: Request) {
         try{
-            // grab the authorization header
-            const rawAuth = req.headers.authorization;
-            // trim off the JWT
-            const jwt = rawAuth.slice(7);
-            // use last 8 digits as key name for redis-cahce
-            const key = rawAuth.slice(-8);
-            // set to redis dead-list
+            // extract the jwt and the cachce key
+            const {key, jwt} = await this.extractKeyValueUtil.extract(req);
+            // save jwt to redis dead-list with key
             await this.redisService.set(key, jwt);
             // return success or error
-            const reader = await this.redisService.get(key);
-            console.log(`Reader: ${key}: ${reader}`);
-            return await {key: key, value: reader};
+            return await {key: key, value: jwt};
         } catch(err) {
             throw new Error(err);
         }
