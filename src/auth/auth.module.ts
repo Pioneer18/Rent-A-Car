@@ -11,6 +11,7 @@ import { AuthController } from './controller/auth.controller';
 import { RedisModule } from 'src/redis/redis.module';
 import { LoggedOutGaurd } from './gaurds/logged-out.guard';
 import { ExtractKeyValueUtil } from './util/extract-key-value.util';
+import { ExtractEmailUtil } from 'src/common/util/extract-email.util';
 
 @Module({
   imports: [
@@ -23,8 +24,8 @@ import { ExtractKeyValueUtil } from './util/extract-key-value.util';
       signOptions: {expiresIn: '1h'}, // 1 hour token time
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil],
-  exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil],
+  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil],
+  exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil],
   controllers:[AuthController],
 })
 export class AuthModule {}
