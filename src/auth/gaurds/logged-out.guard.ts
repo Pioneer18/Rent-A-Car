@@ -14,8 +14,12 @@ export class LoggedOutGaurd implements CanActivate {
         const check = await this.redisService.get(key);
         console.log(`LOGGED-OUT Guard Check Results: `);
         console.log(check)
-        const result = true ? check : false;
-        return result;
+        // if the key is found, deny access; User is Logged Out
+        if (check && check !== null) {
+            throw new Error('You are logged out, log back in to continue');
+            // REDIRECT to login
+        }
+        return true;
     }
 
     canActivate(

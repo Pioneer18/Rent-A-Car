@@ -76,7 +76,7 @@ export class AuthService {
             // save jwt to redis dead-list with key
             await this.redisService.set(key, jwt);
             // return success or error
-            return await {key: key, value: jwt};
+            return {key: key, value: jwt};
         } catch(err) {
             throw new Error(err);
         }
