@@ -6,12 +6,14 @@ import { UserService } from './service/user.service';
 import { DatabaseModule } from '../database/database.module';
 import { ValidateEmailMiddleware } from './middleware/validate-email.middleware';
 import { userProvider} from '../database/providers/user-model.provider';
+import { RedisModule } from 'src/redis/redis.module';
 
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema}]),
-    DatabaseModule
+    DatabaseModule,
+    RedisModule
   ],
   providers: [UserService,...userProvider],
   controllers: [UserController],

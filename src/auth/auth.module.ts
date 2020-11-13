@@ -9,6 +9,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './controller/auth.controller';
 import { RedisModule } from 'src/redis/redis.module';
+import { LoggedOutGaurd } from './gaurds/logged-out.guard';
 
 @Module({
   imports: [
@@ -21,8 +22,8 @@ import { RedisModule } from 'src/redis/redis.module';
       signOptions: {expiresIn: '1h'}, // 1 hour token time
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
-  exports: [AuthService],
+  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd],
+  exports: [AuthService, LoggedOutGaurd],
   controllers:[AuthController],
 })
 export class AuthModule {}
