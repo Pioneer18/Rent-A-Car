@@ -10,6 +10,7 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './controller/auth.controller';
 import { RedisModule } from 'src/redis/redis.module';
 import { LoggedOutGaurd } from './gaurds/logged-out.guard';
+import { ExtractKeyValueUtil } from './util/extract-key-value.util';
 
 @Module({
   imports: [
@@ -22,8 +23,8 @@ import { LoggedOutGaurd } from './gaurds/logged-out.guard';
       signOptions: {expiresIn: '1h'}, // 1 hour token time
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd],
-  exports: [AuthService, LoggedOutGaurd],
+  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil],
+  exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil],
   controllers:[AuthController],
 })
 export class AuthModule {}
