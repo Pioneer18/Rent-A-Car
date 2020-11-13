@@ -12,9 +12,11 @@ import { RedisModule } from 'src/redis/redis.module';
 import { LoggedOutGaurd } from './gaurds/logged-out.guard';
 import { ExtractKeyValueUtil } from './util/extract-key-value.util';
 import { ExtractEmailUtil } from 'src/common/util/extract-email.util';
+import { AppConfigModule } from 'src/config/configuration.module';
 
 @Module({
   imports: [
+    AppConfigModule,
     ConfigModule,
     UserModule,
     PassportModule,
