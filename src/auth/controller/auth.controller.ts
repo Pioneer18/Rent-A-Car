@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Post, UseGuards, Request } from "@nestjs/common";
+import { Controller, HttpCode, Post, UseGuards, Request, Body } from "@nestjs/common";
 import { JwtAuthGuard } from "../gaurds/jwt-auth.gaurd";
 import { LocalAuthGuard } from "../gaurds/local-auth.guard";
 import { AuthService } from "../service/auth.service";
@@ -14,7 +14,7 @@ export class AuthController {
      */
     @HttpCode(200)
     @UseGuards(LocalAuthGuard)
-    @Post('auth/login')
+    @Post('login')
     async login(@Request() req) {
         return this.authService.login(req.user);
     }
@@ -24,9 +24,28 @@ export class AuthController {
      * @param req
      */
     @UseGuards(JwtAuthGuard)
-    @Post('auth/logout')
+    @Post('logout')
     async logout(@Request() req) {
         console.log(req.user);
         // expire the user's token
     }
+
+    /**
+     * Change Password
+     */
+    @UseGuards(JwtAuthGuard)
+    @Post('change-password')
+    async changePassword(@Body() data) {
+        return data;
+    }
+
+    /**
+     * Forgot Password
+     */
+    @Post('forgot-password')
+    async forgotPassword(@Body() data) {
+        return data;
+    }
+
+
 }
