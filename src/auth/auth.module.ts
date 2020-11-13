@@ -8,12 +8,14 @@ import { jwtConstants } from './constant';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './controller/auth.controller';
+import { RedisModule } from 'src/redis/redis.module';
 
 @Module({
   imports: [
     ConfigModule,
     UserModule,
     PassportModule,
+    RedisModule,
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {expiresIn: '1h'}, // 1 hour token time

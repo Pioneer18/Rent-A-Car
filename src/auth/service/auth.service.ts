@@ -4,8 +4,9 @@ import { JwtService } from '@nestjs/jwt';
 import { FindUserDto } from 'src/user/dto/find-user.dto';
 import { UserPropertyInterface } from '../interface/user-property.interface';
 import * as bcrypt from 'bcrypt';
-import { UserInterface } from 'src/user/interface/user.interface';
+import { UserInterface } from '../../user/interface/user.interface';
 import { Request } from 'express';
+import { RedisService } from '../../redis/service/redis.service';
 
 /**
  * Passport Local
@@ -15,8 +16,9 @@ import { Request } from 'express';
 @Injectable()
 export class AuthService {
     constructor(
-        private userService: UserService,
-        private jwtService: JwtService,
+        private readonly userService: UserService,
+        private readonly jwtService: JwtService,
+        private readonly redisService: RedisService,
     ) {}
 
     /**
@@ -66,10 +68,11 @@ export class AuthService {
      * summary: set the user's JWT in the redis 'dead-list'
      */
     async logout(req: Request) {
-        console.log(req);
         const rawAuth = req.headers.authorization;
         console.log(rawAuth);
-        // grab the jwt from the user
+        const jwt = rawAuth.slice(7);
+        console.log(jwt);
+    
         // use the redis client to push the user's jwt to the 'dead-list'
         return await rawAuth;
     }
