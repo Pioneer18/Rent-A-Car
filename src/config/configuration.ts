@@ -11,6 +11,7 @@ export default registerAs('app', () => ({
     remote_db: process.env.REMOTE_DB,
     local_db: process.env.LOCAL_DB,
     secret_key: process.env.SECRET_KEY,
+    jwt_exp_time: process.env.JWT_EXP_TIME,
     redis_host: process.env.REDIS_HOST,
     redis_port: process.env.REDIS_PORT,
     cache_ttl: process.env.CACHE_TTL,

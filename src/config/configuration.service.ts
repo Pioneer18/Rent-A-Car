@@ -9,22 +9,25 @@ export class AppConfigService {
     constructor(private readonly configService: ConfigService) {}
 
     get geo_id(): string {
-        return this.configService.get<string>('app.geo_id')
+        return this.configService.get<string>('app.geo_id');
     }
     get geo_code(): string {
-        return this.configService.get<string>('app.geo_code')
+        return this.configService.get<string>('app.geo_code');
     }
     get geo_url(): string {
-        return this.configService.get<string>('app.geo_url')
+        return this.configService.get<string>('app.geo_url');
     }
     get remote_db(): string {
-        return this.configService.get<string>('app.remote_db')
+        return this.configService.get<string>('app.remote_db');
     }
     get local_db(): string {
-        return this.configService.get<string>('app.local_db')
+        return this.configService.get<string>('app.local_db');
     }
     get secret_key(): string {
-        return this.configService.get<string>('app.secret_key')
+        return this.configService.get<string>('app.secret_key');
+    }
+    get jwt_exp_time(): string {
+        return this.configService.get<string>('app.jwt_exp_time');
     }
     get port(): number { 
         return this.configService.get<number>('app.port');

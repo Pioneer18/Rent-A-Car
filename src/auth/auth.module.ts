@@ -13,6 +13,7 @@ import { LoggedOutGaurd } from './gaurds/logged-out.guard';
 import { ExtractKeyValueUtil } from './util/extract-key-value.util';
 import { ExtractEmailUtil } from 'src/common/util/extract-email.util';
 import { AppConfigModule } from 'src/config/configuration.module';
+import { AppConfigService } from 'src/config/configuration.service';
 
 @Module({
   imports: [
@@ -21,9 +22,13 @@ import { AppConfigModule } from 'src/config/configuration.module';
     UserModule,
     PassportModule,
     RedisModule,
-    JwtModule.register({
-      secret: jwtConstants.secret,
-      signOptions: {expiresIn: '1h'}, // 1 hour token time
+    JwtModule.registerAsync({
+      imports: [AppConfigModule],
+      inject: [AppConfigService],
+      useFactory: async (appConfig: AppConfigService) => ({
+        secret: appConfig.secret_key,
+        signOptions: {expiresIn: `${appConfig.jwt_exp_time}`}, // 30 minutes
+      })
     }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil],
