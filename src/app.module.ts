@@ -21,6 +21,7 @@ import { ImagesController } from './images/controller/images.controller';
 import { AppConfigModule } from './config/configuration.module';
 import { AppConfigService } from './config/configuration.service';
 import { AuthController } from './auth/controller/auth.controller';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { AuthController } from './auth/controller/auth.controller';
     // parses the .env file, assign key/value pairs to process.env, stores results in configService
     // can set alternative .env file path
     AppConfigModule,
+    RedisModule,
     MongooseModule.forRootAsync({
       imports: [AppConfigModule],
       useFactory: async (appConfigService: AppConfigService) => ({
