@@ -8,12 +8,13 @@ import { jwtConstants } from './constant';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './controller/auth.controller';
-import { RedisModule } from 'src/redis/redis.module';
+import { RedisModule } from '../redis/redis.module';
 import { LoggedOutGaurd } from './gaurds/logged-out.guard';
 import { ExtractKeyValueUtil } from './util/extract-key-value.util';
-import { ExtractEmailUtil } from 'src/common/util/extract-email.util';
-import { AppConfigModule } from 'src/config/configuration.module';
-import { AppConfigService } from 'src/config/configuration.service';
+import { ExtractEmailUtil } from '../common/util/extract-email.util';
+import { AppConfigModule } from '../config/configuration.module';
+import { AppConfigService } from '../config/configuration.service';
+import { VerifyNewPasswordUtil } from './util/verify-new-password.util';
 
 @Module({
   imports: [
@@ -27,12 +28,12 @@ import { AppConfigService } from 'src/config/configuration.service';
       inject: [AppConfigService],
       useFactory: async (appConfig: AppConfigService) => ({
         secret: appConfig.secret_key,
-        signOptions: {expiresIn: `${appConfig.jwt_exp_time}s`}, // 30 minutes
+        signOptions: {expiresIn: `${appConfig.jwt_exp_time}`}, // 30 minutes
       })
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil],
-  exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil],
+  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil],
+  exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil],
   controllers:[AuthController],
 })
 export class AuthModule {}
