@@ -10,6 +10,7 @@ import { RedisService } from '../../redis/service/redis.service';
 import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
 import { ExtractEmailUtil } from 'src/common/util/extract-email.util';
 import { ChangePasswordDto } from '../dto/change-password.dto';
+import { VerifyNewPasswordUtil } from '../util/verify-new-password.util';
 
 /**
  * Passport Local
@@ -24,7 +25,8 @@ export class AuthService {
         private readonly redisService: RedisService,
         private readonly extractKeyValueUtil: ExtractKeyValueUtil,
         private readonly extractEmailUtil: ExtractEmailUtil,
-    ) {}
+        private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
+    ) { }
 
     /**
      * Initial User Validation
@@ -32,13 +34,12 @@ export class AuthService {
      * @param pass 
      */
     async validateUser(email: string, pass: string): Promise<any> {
-        try{
-            const query: FindUserDto = {email: email};
-            const temp = await this.userService.findUser(query); // find user in db by username
-            const user: UserInterface = temp[0];
+        try {
+            const query: FindUserDto = { email: email };
+            const user: UserInterface = await this.userService.findUser(query); // find user in db by username
             // validate the given password
-            if(await bcrypt.compare(pass, user.password)) {
-                const {password, ...result } = user;
+            if (await bcrypt.compare(pass, user.password)) {
+                const { password, ...result } = user;
                 return result;
             }
             return null;
@@ -73,14 +74,14 @@ export class AuthService {
      * summary: set the user's JWT in the redis 'dead-list'
      */
     async logout(req: Request) {
-        try{
+        try {
             // extract the jwt and the cachce key
-            const {key, jwt} = await this.extractKeyValueUtil.extract(req);
+            const { key, jwt } = await this.extractKeyValueUtil.extract(req);
             // save jwt to redis dead-list with key
             await this.redisService.set(key, jwt);
             // return success or error
-            return {key: key, value: jwt};
-        } catch(err) {
+            return { key: key, value: jwt };
+        } catch (err) {
             throw new Error(err);
         }
     }
@@ -92,20 +93,29 @@ export class AuthService {
      * @param req
      */
     async changePassword(data: ChangePasswordDto, req: Request) {
-        console.log('Change Password Data:')
-        console.log(data);
-        // verify user submitted same pw twice
-        // find user by email
-        // bcrypt compare incoming pw with saved, make sure no match
-        // update the password
-        // save user
-        // now update the pw and logout the user, they need to log back in
-        console.log('Hello from Change Password Handler');
-        const {jwt} = await this.extractKeyValueUtil.extract(req)
-        const email = await this.extractEmailUtil.extract(jwt);
-        console.log('The email that will be used to save');
-        console.log(email);
-        return email;
+        try {
+            console.log('Change Password Data:')
+            console.log(data);
+            // verify user submitted same pw twice
+            await this.verifyNewPasswordUtil.checkTypos({ newPassword: data.newPassword, confirmPassword: data.confirmPassword });
+            // extract the email from the jwt
+            const { jwt, key } = await this.extractKeyValueUtil.extract(req);
+            const email = await this.extractEmailUtil.extract(jwt);
+            // find user document
+            const user = await this.userService.findUser({email: email});
+            // verify new password does not match current password
+            await this.verifyNewPasswordUtil.verifyNew({ newPassword: data.newPassword, oldPassword: user.password });
+            // update the user's password
+            user.password = await bcrypt.hash(data.newPassword, 10);
+            user.save();
+            // logout the user, they'll need to log back in
+            await this.redisService.set(key, jwt);
+            // redirect to login page 
+            console.log('redirect to login page...');
+            return;
+        } catch (err) {
+            throw new Error(err);
+        };
     }
 
 

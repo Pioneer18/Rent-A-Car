@@ -19,6 +19,7 @@ export class LoggedOutGaurd implements CanActivate {
             throw new Error('You are logged out, log back in to continue');
             // REDIRECT to login
         }
+        console.log('You are logged in :)')
         return true;
     }
 
@@ -26,7 +27,6 @@ export class LoggedOutGaurd implements CanActivate {
         context: ExecutionContext,
     ): boolean | Promise<boolean> | Observable<boolean> {
         const request = context.switchToHttp().getRequest();
-        console.log('I LOVE UNATHI - LOGGED-OUT GUARD :)')
         return this.checkDeadList(request);
     }
 }
