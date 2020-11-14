@@ -1,17 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../../user/service/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { FindUserDto } from 'src/user/dto/find-user.dto';
+import { FindUserDto } from '../../user/dto/find-user.dto';
 import { UserPropertyInterface } from '../interface/user-property.interface';
 import * as bcrypt from 'bcrypt';
 import { UserInterface } from '../../user/interface/user.interface';
 import { Request } from 'express';
 import { RedisService } from '../../redis/service/redis.service';
 import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
-import { ExtractEmailUtil } from 'src/common/util/extract-email.util';
+import { ExtractEmailUtil } from '../../common/util/extract-email.util';
 import { ChangePasswordDto } from '../dto/change-password.dto';
 import { VerifyNewPasswordUtil } from '../util/verify-new-password.util';
 import { ForgotPasswordDto } from '../dto/forgot-password.dto';
+import { EmailService } from '../../email/email.service';
 
 /**
  * Passport Local
@@ -27,6 +28,7 @@ export class AuthService {
         private readonly extractKeyValueUtil: ExtractKeyValueUtil,
         private readonly extractEmailUtil: ExtractEmailUtil,
         private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
+        private readonly emailService: EmailService,
     ) { }
 
     /**
@@ -139,7 +141,14 @@ export class AuthService {
             // save the updated user
             user.save();
             // create an email to send to the given email
+            // create mail options
+            const mailOptions = await this.emailService.createMailOptions(user.email);
+            // create a transporter 
+            const transporter = await this.emailService.createTransporter();
             // email body contains link to form to submit new password
+            console.log('Mailing the Email...')
+            const result = await this.emailService.sendMail(mailOptions, transporter);
+            console.log('Mailed the Email');
             return user.resetPasswordToken;
         } catch(err) {
             throw new Error(err);
