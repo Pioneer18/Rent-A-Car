@@ -1,4 +1,6 @@
 import * as mongoose from 'mongoose';
+import * as crypto from 'crypto';
+import * as bcrypt from 'bcrypt'; // move password encryption to the schema
 
 const Schema = mongoose.Schema;
 
@@ -9,4 +11,24 @@ export const UserSchema = new Schema({
         unique: true
     },
     password: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
 });
+
+UserSchema.methods.setExpirationDate = function() {
+    let user = this;
+    // grab current date and time
+    const timestamp = Date.now();
+    // set expiration date
+    const expir = timestamp + 1800000; // 30 minutes
+    user.resetPasswordExpires = expir;
+}
+
+UserSchema.methods.setResetToken = function() {
+    let user = this;
+    // generate random token
+    let buf = crypto.randomBytes(20);
+    // convert to hexadecimal string
+    const token = buf.toString('hex');
+    user.resetPasswordToken = token;
+}
