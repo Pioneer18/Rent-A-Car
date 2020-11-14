@@ -1,5 +1,6 @@
 import { Controller, HttpCode, Post, UseGuards, Request, Body, Req } from "@nestjs/common";
 import { ChangePasswordDto } from "../dto/change-password.dto";
+import { ForgotPasswordDto } from "../dto/forgot-password.dto";
 import { JwtAuthGuard } from "../gaurds/jwt-auth.guard";
 import { LocalAuthGuard } from "../gaurds/local-auth.guard";
 import { LoggedOutGaurd } from "../gaurds/logged-out.guard";
@@ -45,8 +46,8 @@ export class AuthController {
      * Forgot Password
      */
     @Post('forgot-password')
-    async forgotPassword(@Body() data) {
-        return data;
+    async forgotPassword(@Body() data: ForgotPasswordDto) {
+        return this.authService.forgotPassword(data)
     }
 
     /**

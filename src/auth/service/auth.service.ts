@@ -126,14 +126,24 @@ export class AuthService {
      * summary: sends user a reset password link to the provided email, if it's an account associated email
      */
     async forgotPassword(data: ForgotPasswordDto) {
-        // user not logged in
-        // user enters email and selects 'reset password by email'
-        //----- code begins -----
-        // query user and confirm they exist
-        const user = this.userService.findUser({email: data.email});
-        if (!user) { throw new Error('There is no User registered with the provided email')}
-        // create an email to send to the given email
-        // email body contains link to form to submit new password
+        try {
+            // query user and confirm they exist
+            const user = await this.userService.findUser({email: data.email});
+            if (!user) { throw new Error('There is no User registered with the provided email')}
+            console.log('Forgot Password: User ----');
+            console.log(user);
+            // set the reset-token and it's expiration on the user document
+            user.setResetToken();
+            user.setExpirationDate();
+            console.log('set the reset token and expiration date on the user')
+            // save the updated user
+            user.save();
+            // create an email to send to the given email
+            // email body contains link to form to submit new password
+            return user.resetPasswordToken;
+        } catch(err) {
+            throw new Error(err);
+        }
     }
 
     /**
