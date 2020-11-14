@@ -11,6 +11,7 @@ import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
 import { ExtractEmailUtil } from 'src/common/util/extract-email.util';
 import { ChangePasswordDto } from '../dto/change-password.dto';
 import { VerifyNewPasswordUtil } from '../util/verify-new-password.util';
+import { ForgotPasswordDto } from '../dto/forgot-password.dto';
 
 /**
  * Passport Local
@@ -124,16 +125,26 @@ export class AuthService {
      * @param email the email for resetting the password
      * summary: sends user a reset password link to the provided email, if it's an account associated email
      */
-    async forgotPassword() {
-
+    async forgotPassword(data: ForgotPasswordDto) {
+        // user not logged in
+        // user enters email and selects 'reset password by email'
+        //----- code begins -----
+        // query user and confirm they exist
+        const user = this.userService.findUser({email: data.email});
+        if (!user) { throw new Error('There is no User registered with the provided email')}
+        // create an email to send to the given email
+        // email body contains link to form to submit new password
     }
 
     /**
      * Reset Password
+     * @param email
+     * @param newPassword
+     * @param confirmPassword
      * summary: resets the password from a submitted forgot-password email
      */
     async resetPassword() {
-
+        // 
     }
 
 }
