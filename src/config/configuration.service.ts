@@ -26,8 +26,8 @@ export class AppConfigService {
     get secret_key(): string {
         return this.configService.get<string>('app.secret_key');
     }
-    get jwt_exp_time(): number {
-        return this.configService.get<number>('app.jwt_exp_time');
+    get jwt_exp_time(): string {
+        return this.configService.get<string>('app.jwt_exp_time');
     }
     get port(): number { 
         return this.configService.get<number>('app.port');
