@@ -14,6 +14,7 @@ import { ExtractKeyValueUtil } from './util/extract-key-value.util';
 import { ExtractEmailUtil } from '../common/util/extract-email.util';
 import { AppConfigModule } from '../config/configuration.module';
 import { VerifyNewPasswordUtil } from './util/verify-new-password.util';
+import { EmailService } from '../email/email.service';
 
 @Module({
   imports: [
@@ -27,8 +28,8 @@ import { VerifyNewPasswordUtil } from './util/verify-new-password.util';
       signOptions: {expiresIn: jwtConstants.jwt_exp_time}, // add this expiresIn value to the `jwtConstants` object
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil],
-  exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil],
+  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil, EmailService],
+  exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil, EmailService],
   controllers:[AuthController],
 })
 export class AuthModule {}
