@@ -24,7 +24,7 @@ import { VerifyNewPasswordUtil } from './util/verify-new-password.util';
     RedisModule,
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: {expiresIn: '1h'}, // add this expiresIn value to the `jwtConstants` object
+      signOptions: {expiresIn: jwtConstants.jwt_exp_time}, // add this expiresIn value to the `jwtConstants` object
     }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil],
