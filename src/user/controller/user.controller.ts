@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, UsePipes, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/gaurds/jwt-auth.guard';
-import { LoggedOutGaurd } from 'src/auth/gaurds/logged-out.guard';
-import { JoiValidationPipe } from 'src/common/pipes/joi-validation.pipe';
+import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
+import { LoggedOutGaurd } from '../../auth/gaurds/logged-out.guard';
+import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { FindUserDto } from '../dto/find-user.dto';
 import { BcryptHashPipe } from '../pipes/bcrypt.pipe';
