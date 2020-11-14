@@ -13,10 +13,10 @@ export class ExtractEmailUtil {
         // grab the secret
         const secret = this.appConfig.secret_key;
         console.log('Verifying and Decoding the JWT:')
-        const decoded = await jwt.verify(token, secret);
-        console.log('here is the decoded JWT')
-        console.log(decoded)
-        return decoded;
+        const decoded: any = await jwt.verify(token, secret);
+        console.log('here is the user`s email')
+        console.log(decoded.email)
+        return decoded.email;
     }
 
 }

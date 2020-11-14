@@ -103,7 +103,7 @@ export class AuthService {
         console.log('Hello from Change Password Handler');
         const {jwt} = await this.extractKeyValueUtil.extract(req)
         const email = await this.extractEmailUtil.extract(jwt);
-        console.log('The Decoded JWT');
+        console.log('The email that will be used to save');
         console.log(email);
         return email;
     }
