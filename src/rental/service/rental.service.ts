@@ -130,7 +130,7 @@ export class RentalService {
       const updater = {
         $set: update,
       };
-      const doc = await this.rentalModel.findOneAndUpdate(filter, updater);
+      const doc = await this.rentalModel.findOneAndUpdate(filter, updater, {new: true});
       return doc;
     } catch (err) {
       throw new Error(err);
@@ -152,7 +152,7 @@ export class RentalService {
       const updater = {
         $set: update,
       };
-      const doc = await this.rentalModel.findOneAndUpdate(filter, updater);
+      const doc = await this.rentalModel.findOneAndUpdate(filter, updater, {new: true});
       return doc;
     } catch (err) {
       throw new Error(err);
