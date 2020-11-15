@@ -157,7 +157,7 @@ export class AuthService {
         // check new password for typos
         await this.verifyNewPasswordUtil.checkTypos({newPassword: data.confirmPass, confirmPassword: data.resetPass});
         // query user by resetToken
-        const user = await this.userService.findUserByResetPasswordToken({token: data.resetPasswordToken})
+        const user = await this.userService.findUserByResetPasswordToken({token: data.resetPasswordToken});
         // check reset token has not expired
         if (Date.now() >= user.resetPasswordExpires) { throw new Error('This passowrd reset request has expired, please make a new request.')}
         // verify new password is actually new
