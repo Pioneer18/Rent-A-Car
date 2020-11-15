@@ -139,7 +139,7 @@ export class AuthService {
             // create mail options
             const mailOptions = await this.emailService.createMailOptions(user.email);
             const result = await this.emailService.sendMail(mailOptions);
-            return result;
+            return user.resetPasswordToken;
         } catch(err) {
             throw new Error(err);
         }
@@ -153,7 +153,13 @@ export class AuthService {
      * summary: resets the password from a submitted forgot-password email
      */
     async resetPassword() {
-        // 
+        // check new password for typos
+        // query user by resetToken
+        // check reset token has not expired
+        // verify new password is actually new
+        // update user password
+        // reset the 'reset tokens' to null
+        // save the user
     }
 
 }
