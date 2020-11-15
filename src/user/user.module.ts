@@ -9,6 +9,7 @@ import { userProvider} from '../database/providers/user-model.provider';
 import { RedisModule } from '../redis/redis.module';
 import { ExtractEmailUtil } from '../common/util/extract-email.util';
 import { ExtractKeyValueUtil } from '../auth/util/extract-key-value.util';
+import { AppConfigModule } from '../config/configuration.module';
 
 
 
@@ -16,7 +17,8 @@ import { ExtractKeyValueUtil } from '../auth/util/extract-key-value.util';
   imports: [
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema}]),
     DatabaseModule,
-    RedisModule
+    RedisModule,
+    AppConfigModule,
   ],
   providers: [UserService,...userProvider, ExtractEmailUtil, ExtractKeyValueUtil],
   controllers: [UserController],

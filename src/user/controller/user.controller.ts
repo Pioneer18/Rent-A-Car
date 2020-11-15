@@ -1,4 +1,5 @@
-import { Controller, Post, Body, Get, UsePipes, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, UsePipes, UseGuards, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { LoggedOutGaurd } from '../../auth/gaurds/logged-out.guard';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
@@ -25,8 +26,8 @@ export class UserController {
 
     @UseGuards(JwtAuthGuard)
     @Post('update-user')
-    async updateProfile(@Body() update: UpdateUserDto) {
-        return 'tee-hee';
+    async updateProfile(@Body() update: UpdateUserDto, @Req() req: Request) {
+        return await this.userService.updateUser(update, req);
     }
 
     /*

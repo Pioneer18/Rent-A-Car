@@ -70,6 +70,7 @@ export class UserService {
             const {jwt} = await this.extractKeyValueUtil.extract(req)
             const email = await this.extractEmailUtil.extract(jwt);
             const filter = {email: email};
+            return 'love unathi :)'
        } catch(err) {
            throw new Error(err)
        }
