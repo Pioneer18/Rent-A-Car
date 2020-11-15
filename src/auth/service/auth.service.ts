@@ -42,11 +42,9 @@ export class AuthService {
             const query: FindUserDto = { email: email };
             const user: UserInterface = await this.userService.findUser(query); // find user in db by username
             // validate the given password
-            if (await bcrypt.compare(pass, user.password)) {
-                const { password, ...result } = user;
-                return result;
-            }
-            return null;
+            await this.verifyNewPasswordUtil.verifyMatch({newPassword: pass, oldPassword: user.password});
+            const { password, ...result } = user;
+            return result;
         } catch (err) {
             throw new Error(err);
             // catch and report the unique email error
