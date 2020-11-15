@@ -13,6 +13,7 @@ import { ChangePasswordDto } from '../dto/change-password.dto';
 import { VerifyNewPasswordUtil } from '../util/verify-new-password.util';
 import { ForgotPasswordDto } from '../dto/forgot-password.dto';
 import { EmailService } from '../../email/email.service';
+import { ResetPasswordDto } from '../dto/reset-password.dto';
 
 /**
  * Passport Local
@@ -152,8 +153,9 @@ export class AuthService {
      * @param confirmPassword
      * summary: resets the password from a submitted forgot-password email
      */
-    async resetPassword() {
+    async resetPassword(data: ResetPasswordDto) {
         // check new password for typos
+        await this.verifyNewPasswordUtil.checkTypos({newPassword: data.confirmPass, confirmPassword: data.resetPass});
         // query user by resetToken
         // check reset token has not expired
         // verify new password is actually new

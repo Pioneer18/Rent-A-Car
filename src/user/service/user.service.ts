@@ -11,6 +11,10 @@ export class UserService {
         @InjectModel('User') private readonly userModel: Model<UserInterface>,
       ) {}
 
+    /**
+     * Find User by email
+     * @param data email
+     */
     async findUser(data: FindUserDto) {
         try {
             console.log('Find-User Calling User Model...')
@@ -19,6 +23,14 @@ export class UserService {
         } catch (err) {
             throw new Error(err);
         }
+    }
+
+    /**
+     * Find User by resetPasswordToken
+     * @param 
+     */
+    async findUserByResetPasswordToken(data) {
+        
     }
 
     async createUser(user: CreateUserDto) {
