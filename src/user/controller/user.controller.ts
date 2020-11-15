@@ -12,19 +12,26 @@ import { UserService } from '../service/user.service';
 
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService) {
-        // initialize stuffs
-    }
+    constructor(private readonly userService: UserService) {}
     
+    /**
+     * Create User
+     * @param user new user
+     */
     @UsePipes(new BcryptHashPipe())
     @UsePipes(new JoiValidationPipe(CreateUserValidation))
-    // validate-email.middleware applied
     @Post('create-user')
     async createProfile(@Body() user: CreateUserDto) {
         return await this.userService.createUser(user);
     }
 
+    /**
+     * Update User
+     * @param update updates
+     * @param req 
+     */
     @UseGuards(JwtAuthGuard)
+    @UseGuards(LoggedOutGaurd)
     @Post('update-user')
     async updateProfile(@Body() update: UpdateUserDto, @Req() req: Request) {
         return await this.userService.updateUser(update, req);
@@ -34,6 +41,10 @@ export class UserController {
      * See Images Controller for Upload User Image(s)
     */
 
+    /**
+     * Find User by Email
+     * @param user 
+     */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Get('find-user')
@@ -41,7 +52,13 @@ export class UserController {
         return await this.userService.findUser(user)
     }
 
+
+    /**
+     * Delete User Profile
+     * @param data user credentials
+     */
     @UseGuards(JwtAuthGuard)
+    @UseGuards(LoggedOutGaurd)
     @Post('delete-profile')
     async deleteProfile(@Body() data) {
         return 'tee-hee';
