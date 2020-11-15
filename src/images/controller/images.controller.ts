@@ -1,6 +1,6 @@
 import { Controller, Post, Req, UseInterceptors, UploadedFiles, UseGuards, Body, Get, Param, Query } from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { JwtAuthGuard } from 'src/auth/gaurds/jwt-auth.guard';
+import {  FilesInterceptor } from '@nestjs/platform-express';
+import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
 
 @UseGuards(JwtAuthGuard)

@@ -14,7 +14,7 @@ import { ImagesModule } from './images/images.module';
 // import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 import { UserController } from './user/controller/user.controller';
 import { RentalController } from './rental/controller/rental.controller';
 import { ImagesController } from './images/controller/images.controller';

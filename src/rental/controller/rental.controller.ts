@@ -24,7 +24,7 @@ import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
 import { UpdateUnavailabilityDataDto } from '../dto/update-unavailability-data.dto';
 import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
 import { RemoveUnavailabilityDto } from '../dto/remove-unavailability.dto';
-import { AppConfigService } from 'src/config/configuration.service';
+import { AppConfigService } from '../../config/configuration.service';
 import { ConfigService } from '@nestjs/config';
 
 @Controller('rental')
