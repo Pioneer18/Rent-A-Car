@@ -132,23 +132,14 @@ export class AuthService {
             // query user and confirm they exist
             const user = await this.userService.findUser({email: data.email});
             if (!user) { throw new Error('There is no User registered with the provided email')}
-            console.log('Forgot Password: User ----');
-            console.log(user);
             // set the reset-token and it's expiration on the user document
             user.setResetToken();
             user.setExpirationDate();
-            // save the updated user
             user.save();
-            // create an email to send to the given email
             // create mail options
             const mailOptions = await this.emailService.createMailOptions(user.email);
-            // create a transporter 
-            const transporter = await this.emailService.createTransporter();
-            // email body contains link to form to submit new password
-            console.log('Mailing the Email...')
-            const result = await this.emailService.sendMail(mailOptions, transporter);
-            console.log('Mailed the Email');
-            return user.resetPasswordToken;
+            const result = await this.emailService.sendMail(mailOptions);
+            return result;
         } catch(err) {
             throw new Error(err);
         }

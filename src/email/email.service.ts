@@ -11,16 +11,14 @@ export class EmailService {
     constructor() {}
 
 
-    async createTransporter (): Promise<TransporterInterface> {
-        const transporter: TransporterInterface = nodemailer.createTransport({
-            service: 'gmail', 
-            auth: {
-                user: 'rentacar.team2020@gmail.com',
-                pass: 'Unathi2020!'
-            }
-        })
-        return transporter;
-    }
+
+    private transporter = nodemailer.createTransport( {
+        service: 'gmail', 
+        auth: {
+            user: 'rentacar.team2020@gmail.com',
+            pass: 'Unathi2020!'
+        }
+    })
 
     /**
      * @param email user's email
@@ -36,9 +34,9 @@ export class EmailService {
         return mailOptions;
     }
 
-    async sendMail(mailOptions, sender): Promise<any> {
+    async sendMail(mailOptions): Promise<any> {
         try{
-            sender.sendMail(mailOptions);
+            this.transporter.sendMail(mailOptions);
         } catch(err) {
             throw new Error(err);
         }
