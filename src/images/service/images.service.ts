@@ -53,7 +53,8 @@ export class ImagesService {
       img_id ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        return await this.imagesModel.find({user_id: user.sub, category: 'Vehicle'});
+        const images = await this.imagesModel.find({user_id: user.sub, category: 'Vehicle'});
+        return { count: images.length, images: images}
       }
       // find a specific image
       return await this.imagesModel.findById(img_id);
