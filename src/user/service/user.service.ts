@@ -11,6 +11,7 @@ import { ExtractEmailUtil } from '../../common/util/extract-email.util';
 import { ExtractKeyValueUtil } from '../../auth/util/extract-key-value.util';
 import { DeleteUserDto } from '../dto/delete-user.dto';
 import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
+import { RedisService } from '../../redis/service/redis.service';
 
 @Injectable()
 export class UserService {
@@ -19,6 +20,7 @@ export class UserService {
         private readonly extractEmailUtil: ExtractEmailUtil,
         private readonly extractKeyValueUtil: ExtractKeyValueUtil,
         private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
+        private readonly redisService: RedisService
     ) { }
 
     /**
@@ -92,11 +94,16 @@ export class UserService {
     async deleteUser(data: DeleteUserDto, req: Request) {
         try {
             // extract user email
-            const email = this.extractUserEmail(req);
+            const email = await this.extractUserEmail(req);
+            // query the user
+            const user = await this.findUser({email: email});
             // verify their password matches the current
-    
+            await this.verifyNewPasswordUtil.verifyMatch({newPassword: data.password, oldPassword: user.password})
             // logout
+            await this.logoutUser(req);
             // delete
+            const res = await user.remove();
+            return res.deletedCount;
             // redirect
         } catch(err) {
             throw new Error(err);
@@ -115,10 +122,15 @@ export class UserService {
     }
 
     // this could be a middleware
-    private async extractUserEmail(req: Request) {
+    private async extractUserEmail(req: Request):Promise<string> {
         const {jwt} = await this.extractKeyValueUtil.extract(req)
         const email = await this.extractEmailUtil.extract(jwt);
         return email;
+    }
+
+    private async logoutUser(req: Request){
+        const {jwt, key} = await this.extractKeyValueUtil.extract(req);
+        await this.redisService.set(key, jwt);
     }
 
 }

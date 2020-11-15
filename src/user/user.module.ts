@@ -11,6 +11,7 @@ import { ExtractEmailUtil } from '../common/util/extract-email.util';
 import { ExtractKeyValueUtil } from '../auth/util/extract-key-value.util';
 import { AppConfigModule } from '../config/configuration.module';
 import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
+import { RedisService } from '../redis/service/redis.service';
 
 
 
@@ -20,8 +21,9 @@ import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
     DatabaseModule,
     RedisModule,
     AppConfigModule,
+    RedisModule
   ],
-  providers: [UserService,...userProvider, ExtractEmailUtil, ExtractKeyValueUtil, VerifyNewPasswordUtil],
+  providers: [UserService,...userProvider, ExtractEmailUtil, ExtractKeyValueUtil, VerifyNewPasswordUtil, RedisService],
   controllers: [UserController],
   exports: [UserService], // used in the AuthService
 })
