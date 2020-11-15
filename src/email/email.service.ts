@@ -13,12 +13,7 @@ export class EmailService {
 
     async createTransporter (): Promise<TransporterInterface> {
         const transporter: TransporterInterface = nodemailer.createTransport({
-            host: 'smtp-mail.outlook.com',
-            secureConnection: true, // TLS requires secureConnection to be false
-            port: 587,
-            tls: {
-                ciphers: 'SSLv3'
-            },
+            service: 'gmail', 
             auth: {
                 user: 'rentacar.team2020@gmail.com',
                 pass: 'Unathi2020!'

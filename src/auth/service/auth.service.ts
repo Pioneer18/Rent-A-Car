@@ -137,7 +137,6 @@ export class AuthService {
             // set the reset-token and it's expiration on the user document
             user.setResetToken();
             user.setExpirationDate();
-            console.log('set the reset token and expiration date on the user')
             // save the updated user
             user.save();
             // create an email to send to the given email
