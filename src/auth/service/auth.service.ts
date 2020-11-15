@@ -141,13 +141,13 @@ export class AuthService {
             const mailOptions = await this.emailService.createMailOptions(user.email);
             const result = await this.emailService.sendMail(mailOptions);
             return user.resetPasswordToken;
-        } catch(err) {
+        } catch(err) { 
             throw new Error(err);
         }
     }
 
     /**
-     * Reset Password
+     * Reset Password 
      * @param email
      * @param newPassword
      * @param confirmPassword
@@ -168,7 +168,7 @@ export class AuthService {
         user.resetPasswordToken = null;
         user.resetPasswordExpires = null;
         // save the user
-        user.save;
+        await user.save();
         // redirect to login
         return;
     }

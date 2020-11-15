@@ -1,6 +1,7 @@
 import { Controller, HttpCode, Post, UseGuards, Request, Body, Req } from "@nestjs/common";
 import { ChangePasswordDto } from "../dto/change-password.dto";
 import { ForgotPasswordDto } from "../dto/forgot-password.dto";
+import { ResetPasswordDto } from "../dto/reset-password.dto";
 import { JwtAuthGuard } from "../gaurds/jwt-auth.guard";
 import { LocalAuthGuard } from "../gaurds/local-auth.guard";
 import { LoggedOutGaurd } from "../gaurds/logged-out.guard";
@@ -55,7 +56,7 @@ export class AuthController {
      * summary: resets the user's password with the data submitted from the email redirect
      */
     @Post('reset-password')
-    async resetPassword(@Body() data) {
-
+    async resetPassword(@Body() data: ResetPasswordDto) {
+        return await this.authService.resetPassword(data)
     }
 }
