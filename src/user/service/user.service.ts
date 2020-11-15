@@ -67,13 +67,32 @@ export class UserService {
     async updateUser(data: UpdateUserDto, req: Request ) {
         try {
             // extract user email
-            const {jwt} = await this.extractKeyValueUtil.extract(req)
-            const email = await this.extractEmailUtil.extract(jwt);
-            const filter = {email: email};
-            return 'love unathi :)'
+            const filter = {email: await this.extractUserEmail(req)};
+            // create an update object
+            let update = this.createUserUpdate(data);
+            const updater = {
+                $set: update,
+            }
+            console.log('User Update Object');
+            console.log(updater);
+            return await this.userModel.findOneAndUpdate(filter, updater, {new: true});
        } catch(err) {
            throw new Error(err)
        }
+    }
+
+    // private methods
+    private createUserUpdate(data: UpdateUserDto) {
+        let update: UpdateUserDto = {}
+        data.username ? update.username = data.username : data.username = null;
+        data.email ? update.email = data.email : data.email = null;
+        return update;
+    }
+
+    private async extractUserEmail(req: Request) {
+        const {jwt} = await this.extractKeyValueUtil.extract(req)
+        const email = await this.extractEmailUtil.extract(jwt);
+        return email;
     }
 
 }
