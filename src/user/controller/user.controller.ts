@@ -28,11 +28,9 @@ export class UserController {
         return 'tee-hee';
     }
 
-    /*@UseGuards(JwtAuthGuard)
-    @Post('upload-profile-image')
-    async uploadProfileImage(@Body() image) {
-        return 'tee-hee';
-    }*/
+    /*
+     * See Images Controller for Upload User Image(s)
+    */
 
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
