@@ -4,6 +4,7 @@ import { LoggedOutGaurd } from '../../auth/gaurds/logged-out.guard';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { FindUserDto } from '../dto/find-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
 import { BcryptHashPipe } from '../pipes/bcrypt.pipe';
 import { CreateUserValidation } from '../schema/validation/create-user-validation.schema';
 import { UserService } from '../service/user.service';
@@ -24,7 +25,7 @@ export class UserController {
 
     @UseGuards(JwtAuthGuard)
     @Post('update-user')
-    async updateProfile(@Body() update) {
+    async updateProfile(@Body() update: UpdateUserDto) {
         return 'tee-hee';
     }
 
