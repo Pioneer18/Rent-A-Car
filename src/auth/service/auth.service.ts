@@ -163,7 +163,7 @@ export class AuthService {
         // verify new password is actually new
         await this.verifyNewPasswordUtil.verifyNew({newPassword: data.resetPass, oldPassword: user.password})
         // update user password
-        user.password = bcrypt.hash(data.resetPass, 10);
+        user.password = await bcrypt.hash(data.resetPass, 10);
         // reset the 'reset tokens' to null
         user.resetPasswordToken = null;
         user.resetPasswordExpires = null;
