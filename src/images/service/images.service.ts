@@ -72,7 +72,8 @@ export class ImagesService {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        return await this.imagesModel.find({user_id: user.sub})
+        const images = await this.imagesModel.find({user_id: user.sub})
+        return { count: images.length, images: images };
       };
       return await this.imagesModel.findById(img_id);
     } catch(err) {

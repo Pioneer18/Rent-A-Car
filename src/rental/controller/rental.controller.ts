@@ -117,4 +117,8 @@ export class RentalController {
     * upload photos of your rental listing
     * ! see the images/controller
     */
+
+    /**
+     * Toggle Rental listed status
+     */
 }
