@@ -10,6 +10,7 @@ import { RedisModule } from '../redis/redis.module';
 import { ExtractEmailUtil } from '../common/util/extract-email.util';
 import { ExtractKeyValueUtil } from '../auth/util/extract-key-value.util';
 import { AppConfigModule } from '../config/configuration.module';
+import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
 
 
 
@@ -20,9 +21,9 @@ import { AppConfigModule } from '../config/configuration.module';
     RedisModule,
     AppConfigModule,
   ],
-  providers: [UserService,...userProvider, ExtractEmailUtil, ExtractKeyValueUtil],
+  providers: [UserService,...userProvider, ExtractEmailUtil, ExtractKeyValueUtil, VerifyNewPasswordUtil],
   controllers: [UserController],
-  exports: [UserService, ExtractEmailUtil, ExtractKeyValueUtil], // used in the AuthService
+  exports: [UserService], // used in the AuthService
 })
 export class UserModule  {
   constructor() {

@@ -19,6 +19,12 @@ export class VerifyNewPasswordUtil {
         return;
     }
 
+    async asyncVerifyMatch(data: VerifyNewPasswordDto){
+        const check = await bcrypt.compare(data.newPassword, data.oldPassword);
+        if (!check) { throw new Error('Error: incorrect password entered')};
+        return;
+    }
+
     /**
      * Verify the user entered the same password twice
      * @param data 

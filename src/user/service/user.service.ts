@@ -9,13 +9,16 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 import { Request } from 'express';
 import { ExtractEmailUtil } from '../../common/util/extract-email.util';
 import { ExtractKeyValueUtil } from '../../auth/util/extract-key-value.util';
+import { DeleteUserDto } from '../dto/delete-user.dto';
+import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectModel('User') private readonly userModel: Model<UserInterface>,
         private readonly extractEmailUtil: ExtractEmailUtil,
-        private readonly extractKeyValueUtil: ExtractKeyValueUtil
+        private readonly extractKeyValueUtil: ExtractKeyValueUtil,
+        private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
     ) { }
 
     /**
@@ -81,7 +84,29 @@ export class UserService {
        }
     }
 
-    // private methods
+    /**
+     * Delete User Profile
+     * @param data user credentials
+     * @param req
+     */
+    async deleteUser(data: DeleteUserDto, req: Request) {
+        try {
+            // extract user email
+            const email = this.extractUserEmail(req);
+            // verify their password matches the current
+    
+            // logout
+            // delete
+            // redirect
+        } catch(err) {
+            throw new Error(err);
+        }
+    }
+
+    /**
+     ************************ Private Functions ************************
+    */
+
     private createUserUpdate(data: UpdateUserDto) {
         let update: UpdateUserDto = {}
         data.username ? update.username = data.username : data.username = null;
@@ -89,6 +114,7 @@ export class UserService {
         return update;
     }
 
+    // this could be a middleware
     private async extractUserEmail(req: Request) {
         const {jwt} = await this.extractKeyValueUtil.extract(req)
         const email = await this.extractEmailUtil.extract(jwt);
