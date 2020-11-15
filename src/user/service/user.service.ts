@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UserInterface } from '../interface/user.interface';
 import { FindUserDto } from '../dto/find-user.dto';
+import { ResetPasswordTokenDto } from '../dto/find-user-by-reset-password-token.dto';
 
 @Injectable()
 export class UserService {
@@ -27,10 +28,16 @@ export class UserService {
 
     /**
      * Find User by resetPasswordToken
-     * @param 
+     * @param data the token
      */
-    async findUserByResetPasswordToken(data) {
-        
+    async findUserByResetPasswordToken(data: ResetPasswordTokenDto) {
+        try {
+            console.log('Finding User by resetPasswordToken');
+            const user = await this.userModel.findOne({resetPasswordToken: data.token});
+            return user;
+        } catch(err) {
+            throw new Error(err)
+        }
     }
 
     async createUser(user: CreateUserDto) {
