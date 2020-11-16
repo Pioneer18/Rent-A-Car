@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import { AppConfigService } from './config/configuration.service';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as helmet from 'helmet';
 
 
 dotenv.config();
@@ -19,6 +20,7 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     const appConfig = await app.get(AppConfigService);
     app.enableCors();
+    app.use(helmet());
     await app.listen(appConfig.port || 3000);
   }
   // Production HTTPS
