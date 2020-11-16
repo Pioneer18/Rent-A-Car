@@ -24,7 +24,7 @@ import { AppConfigService } from "./configuration.service";
                 PORT: Joi.number().default(3000),
                 REDIS_HOST: Joi.string().required(),
                 REDIS_PORT: Joi.string().required(),
-                CACHE_TTL: Joi.number().required()
+                CACHE_TTL: Joi.string().required()
             }),
             validationOptions: {
                 allowUnkown: false, // enforce validation, don't allow unknown keys in the env variables

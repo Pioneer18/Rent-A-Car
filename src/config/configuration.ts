@@ -1,6 +1,5 @@
 /**
- * MongoDB config
- * Namespaces
+ * App Configuration
  */
 import { registerAs } from '@nestjs/config';
 

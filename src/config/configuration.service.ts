@@ -35,8 +35,8 @@ export class AppConfigService {
     get redis_host(): string { 
         return this.configService.get<string>('app.redis_host');
     }
-    get redis_port(): number { 
-        return this.configService.get<number>('app.redis_port');
+    get redis_port(): string { 
+        return this.configService.get<string>('app.redis_port');
     }
     get cache_ttl(): string { 
         return this.configService.get<string>('app.cache_ttl');
