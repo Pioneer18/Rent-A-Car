@@ -14,6 +14,7 @@ import { VerifyNewPasswordUtil } from '../util/verify-new-password.util';
 import { ForgotPasswordDto } from '../dto/forgot-password.dto';
 import { EmailService } from '../../email/email.service';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
+import { AppConfigService } from '../../config/configuration.service';
 
 /**
  * Passport Local
@@ -30,6 +31,7 @@ export class AuthService {
         private readonly extractEmailUtil: ExtractEmailUtil,
         private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
         private readonly emailService: EmailService,
+        private readonly appConfig: AppConfigService,
     ) { }
 
     /**
@@ -52,22 +54,22 @@ export class AuthService {
     }
 
     /**
-     * Login
+     * Login (Assign a JWT)
      * @param user 
      */
     async login(user: any) {
         console.log(`here is the user property created by Passport`)
         console.log(user._doc)
         const packet: UserPropertyInterface = user._doc;
-
+        // create the JWT payload
         const payload = {
             username: packet.username,
             email: packet.email,
             sub: packet._id,
         };
-        return {
-            access_token: await this.jwtService.sign(payload), // create a JWT 
-        };
+        // create JWT and return as a Cookie string
+        const token = await this.jwtService.sign(payload);
+        return `Authentication=${token}; HttpOnly: Path=/; Max-Age=${this.appConfig.jwt_exp_time}`;
     }
 
     /**

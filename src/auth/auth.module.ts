@@ -15,6 +15,7 @@ import { ExtractEmailUtil } from '../common/util/extract-email.util';
 import { AppConfigModule } from '../config/configuration.module';
 import { VerifyNewPasswordUtil } from './util/verify-new-password.util';
 import { EmailService } from '../email/email.service';
+import { AppConfigService } from '../config/configuration.service';
 
 @Module({
   imports: [
@@ -25,10 +26,10 @@ import { EmailService } from '../email/email.service';
     RedisModule,
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: {expiresIn: jwtConstants.jwt_exp_time}, // add this expiresIn value to the `jwtConstants` object
+      signOptions: {expiresIn: `${jwtConstants.jwt_exp_time}s`}, // add this expiresIn value to the `jwtConstants` object
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil, EmailService],
+  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil, EmailService, AppConfigService],
   exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil, EmailService],
   controllers:[AuthController],
 })

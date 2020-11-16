@@ -1,4 +1,5 @@
-import { Controller, HttpCode, Post, UseGuards, Request, Body, Req, Redirect } from "@nestjs/common";
+import { Controller, HttpCode, Post, UseGuards, Request, Body, Req, Redirect, Res } from "@nestjs/common";
+import { Response } from "express";
 import { ChangePasswordDto } from "../dto/change-password.dto";
 import { ForgotPasswordDto } from "../dto/forgot-password.dto";
 import { ResetPasswordDto } from "../dto/reset-password.dto";
@@ -19,8 +20,11 @@ export class AuthController {
     @HttpCode(200)
     @UseGuards(LocalAuthGuard)
     @Post('login')
-    async login(@Request() req) {
-        return this.authService.login(req.user);
+    async login(@Request() req, @Res() res: Response) {
+        const cookie = await this.authService.login(req.user);
+        res.setHeader('Set-Cookie', cookie);
+        req.user._doc.password = undefined;
+        return res.send(req.user._doc);
     }
 
     /**
