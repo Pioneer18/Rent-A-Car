@@ -25,7 +25,7 @@ Rent-A-Car is a demonstrative car rental web application that allows users to li
 - Ready to serve a front-end
 
 ## Why NestJS
-- NestJS is "A progressive Node.js framework for building efficient, reliable and scalable server-side applications." - nestjs.com
+NestJS is "A progressive Node.js framework for building efficient, reliable and scalable server-side applications." - nestjs.com
 
 ## Rent-A-Car Route Map
 ### Auth
