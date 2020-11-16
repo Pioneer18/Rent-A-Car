@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as helmet from 'helmet';
 import { Secrets } from './secrets/secrets';
-
+import * as cookieParser from 'cookie-parser';
 
 dotenv.config();
 async function bootstrap() {
@@ -22,6 +22,7 @@ async function bootstrap() {
     const appConfig = await app.get(AppConfigService);
     app.enableCors();
     app.use(helmet());
+    app.use(cookieParser());
     await app.listen(appConfig.port || 3000);
   }
   // Production HTTPS
@@ -30,6 +31,11 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
       httpsOptions,
     });
+      const appConfig = await app.get(AppConfigService);
+    app.enableCors();
+    app.use(helmet());
+    app.use(cookieParser());
+    await app.listen(appConfig.port || 3000);
   }
 }
 bootstrap();
