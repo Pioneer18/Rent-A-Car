@@ -16,6 +16,7 @@ export class ImagesService {
   ) {}
 
  /**
+  * TODO: Save with specific [rental id] as well
   * Upload Images of User's Vehicle
   * @param files user's selected vehicle image files
   */

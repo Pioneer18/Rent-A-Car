@@ -78,7 +78,7 @@ export class ImagesController {
     }
 
     /**
-     * Delete all user images
+     * TODO: Delete selected images
      * @param category both or a single one
      */
     @Post('delete-all-images')
