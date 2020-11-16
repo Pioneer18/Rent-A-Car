@@ -7,7 +7,7 @@ Rent-A-Car is a demonstrative car rental web application that allows users to li
 ## Technologies:
 * TypeScript
 * NodeJS
-* NestJs
+* NestJS
 * MongoDB
 * Redis
 * Docker
@@ -22,7 +22,7 @@ Rent-A-Car is a demonstrative car rental web application that allows users to li
 - Error Handling
 - Testing
 - Docker and Google Cloud Deployment
-- Ready to serve a front-end
+- React frontend
 
 ## Why NestJS
 NestJS is "A progressive Node.js framework for building efficient, reliable and scalable server-side applications." - nestjs.com
