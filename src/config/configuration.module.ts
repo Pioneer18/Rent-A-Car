@@ -11,19 +11,20 @@ import { AppConfigService } from "./configuration.service";
         ConfigModule.forRoot({
             load: [configuration],
             validationSchema: Joi.object({
-                GEO_ID: Joi.string(),
-                GEO_CODE: Joi.string(),
-                GEO_URL: Joi.string(),
+                GEO_ID: Joi.string().required(),
+                GEO_CODE: Joi.string().required(),
+                GEO_URL: Joi.string().required(),
                 REMOTE_DB: Joi.string(),
                 LOCAL_DB: Joi.string(),
-                SECRET_KEY: Joi.string(),
+                SECRET_KEY: Joi.string().required(),
+                JWT_EXP_TIME: Joi.string().required(),
                 NODE_ENV: Joi.string()
                   .valid('development', 'production', 'test')
                   .default('development'),
                 PORT: Joi.number().default(3000),
-                // REDIS_HOST
-                // REDIS_PORT
-                // CACHE_TTL
+                REDIS_HOST: Joi.string().required(),
+                REDIS_PORT: Joi.string().required(),
+                CACHE_TTL: Joi.number().required()
             }),
             validationOptions: {
                 allowUnkown: false, // enforce validation, don't allow unknown keys in the env variables
