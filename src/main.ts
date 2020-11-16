@@ -5,13 +5,14 @@ import { AppConfigService } from './config/configuration.service';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as helmet from 'helmet';
+import { Secrets } from './secrets/secrets';
 
 
 dotenv.config();
 async function bootstrap() {
   const httpsOptions = {
-    key: fs.readFileSync(path.resolve(__dirname, './secrets/private.pem')),
-    cert: fs.readFileSync(path.resolve(__dirname, './secrets/public.pem')), 
+    key: Secrets.key,
+    cert: fs.readFileSync(path.resolve(__dirname, './secrets/server.crt')), 
   };
   console.log(`The Environment: ${process.env.NODE_ENV}`);
   // Development HTTP
