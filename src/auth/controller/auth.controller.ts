@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Post, UseGuards, Request, Body, Req } from "@nestjs/common";
+import { Controller, HttpCode, Post, UseGuards, Request, Body, Req, Redirect } from "@nestjs/common";
 import { ChangePasswordDto } from "../dto/change-password.dto";
 import { ForgotPasswordDto } from "../dto/forgot-password.dto";
 import { ResetPasswordDto } from "../dto/reset-password.dto";
@@ -28,6 +28,7 @@ export class AuthController {
      * @param req
      */
     @UseGuards(JwtAuthGuard)
+    @Redirect('http://localhost:3000/auth/login')
     @Post('logout')
     async logout(@Request() req) {
         return await this.authService.logout(req);

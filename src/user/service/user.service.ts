@@ -104,7 +104,6 @@ export class UserService {
             // delete
             const res = await user.remove();
             return res.deletedCount;
-            // redirect
         } catch(err) {
             throw new Error(err);
         }

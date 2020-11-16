@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, UsePipes, UseGuards, Req } from '@nestjs/common';
+import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { LoggedOutGaurd } from '../../auth/gaurds/logged-out.guard';
@@ -60,6 +60,7 @@ export class UserController {
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
+    @Redirect('http://localhost:3000/auth/login', 302)
     @Post('delete-profile')
     async deleteProfile(@Body() data: DeleteUserDto, @Req() req: Request) {
         return this.userService.deleteUser(data, req);
