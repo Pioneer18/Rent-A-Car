@@ -14,8 +14,8 @@ Rent-A-Car is a demonstrative car rental web application that allows users to li
 
 ## App Features
 - HTTP Development Environment/ HTTPS Production Environment
-- JWT Authentication with Cookies (increased security)
-- Security *
+- JWT Authentication with Cookies (httpOnly)
+- Helmet (Http Security)
 - Geo Coder API
 - AWS S3 Bucket image storage *
 - Logs
