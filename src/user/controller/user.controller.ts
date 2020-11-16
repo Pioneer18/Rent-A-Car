@@ -4,6 +4,7 @@ import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { LoggedOutGaurd } from '../../auth/gaurds/logged-out.guard';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { DeleteUserDto } from '../dto/delete-user.dto';
 import { FindUserDto } from '../dto/find-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { BcryptHashPipe } from '../pipes/bcrypt.pipe';
@@ -60,7 +61,7 @@ export class UserController {
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Post('delete-profile')
-    async deleteProfile(@Body() data) {
-        return 'tee-hee';
+    async deleteProfile(@Body() data: DeleteUserDto, @Req() req: Request) {
+        return this.userService.deleteUser(data, req);
     }
 }
