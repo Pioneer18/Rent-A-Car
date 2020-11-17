@@ -8,13 +8,13 @@ import { UserInterface } from '../../user/interface/user.interface';
 import { Request } from 'express';
 import { RedisService } from '../../redis/service/redis.service';
 import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
-import { ExtractEmailUtil } from '../../common/util/extract-email.util';
 import { ChangePasswordDto } from '../dto/change-password.dto';
 import { VerifyNewPasswordUtil } from '../util/verify-new-password.util';
 import { ForgotPasswordDto } from '../dto/forgot-password.dto';
 import { EmailService } from '../../email/email.service';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
 import { AppConfigService } from '../../config/configuration.service';
+import { ExtractUserUtil } from '../../user/util/extract-user.util';
 
 /**
  * Passport Local
@@ -28,10 +28,10 @@ export class AuthService {
         private readonly jwtService: JwtService,
         private readonly redisService: RedisService,
         private readonly extractKeyValueUtil: ExtractKeyValueUtil,
-        private readonly extractEmailUtil: ExtractEmailUtil,
         private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
         private readonly emailService: EmailService,
         private readonly appConfig: AppConfigService,
+        private readonly extractUserUtil: ExtractUserUtil
     ) { }
 
     /**
@@ -102,11 +102,12 @@ export class AuthService {
             console.log(data);
             // verify user submitted same pw twice
             await this.verifyNewPasswordUtil.checkTypos({ newPassword: data.newPassword, confirmPassword: data.confirmPassword });
-            // extract the email from the jwt
+            // extract the user
+            const doc = await this.extractUserUtil.extract(req)
+            // extract the jwt and key
             const { jwt, key } = await this.extractKeyValueUtil.extract(req);
-            const email = await this.extractEmailUtil.extract(jwt);
             // find user document
-            const user = await this.userService.findUser({email: email});
+            const user = await this.userService.findUser({email: doc.email});
             // verify new password does not match current password
             await this.verifyNewPasswordUtil.verifyNew({ newPassword: data.newPassword, oldPassword: user.password });
             // update the user's password

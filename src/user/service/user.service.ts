@@ -7,20 +7,21 @@ import { FindUserDto } from '../dto/find-user.dto';
 import { ResetPasswordTokenDto } from '../dto/find-user-by-reset-password-token.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { Request } from 'express';
-import { ExtractEmailUtil } from '../../common/util/extract-email.util';
 import { ExtractKeyValueUtil } from '../../auth/util/extract-key-value.util';
 import { DeleteUserDto } from '../dto/delete-user.dto';
 import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
 import { RedisService } from '../../redis/service/redis.service';
+import { JwtPayloadInterface } from 'src/auth/interface/jwt-payload';
+import { ExtractUserUtil } from '../util/extract-user.util';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectModel('User') private readonly userModel: Model<UserInterface>,
-        private readonly extractEmailUtil: ExtractEmailUtil,
         private readonly extractKeyValueUtil: ExtractKeyValueUtil,
         private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
-        private readonly redisService: RedisService
+        private readonly redisService: RedisService,
+        private readonly extractUserUtil: ExtractUserUtil,
     ) { }
 
     /**
@@ -72,7 +73,8 @@ export class UserService {
     async updateUser(data: UpdateUserDto, req: Request ) {
         try {
             // extract user email
-            const filter = {email: await this.extractUserEmail(req)};
+            const user: JwtPayloadInterface = await this.extractUserUtil.extract(req);
+            const filter = {email: user.email };
             // create an update object
             let update = this.createUserUpdate(data);
             const updater = {
@@ -96,9 +98,9 @@ export class UserService {
     async deleteUser(data: DeleteUserDto, req: Request) {
         try {
             // extract user email
-            const email = await this.extractUserEmail(req);
+            const doc = await this.extractUserUtil.extract(req);
             // query the user
-            const user = await this.findUser({email: email});
+            const user = await this.findUser({email: doc.email});
             // verify their password matches the current
             await this.verifyNewPasswordUtil.verifyMatch({newPassword: data.password, oldPassword: user.password})
             // logout
@@ -120,13 +122,6 @@ export class UserService {
         data.username ? update.username = data.username : data.username = null;
         data.email ? update.email = data.email : data.email = null;
         return update;
-    }
-
-    // this could be a middleware
-    private async extractUserEmail(req: Request):Promise<string> {
-        const {jwt} = await this.extractKeyValueUtil.extract(req)
-        const email = await this.extractEmailUtil.extract(jwt);
-        return email;
     }
 
     private async logoutUser(req: Request){

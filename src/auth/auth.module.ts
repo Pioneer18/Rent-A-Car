@@ -11,11 +11,11 @@ import { AuthController } from './controller/auth.controller';
 import { RedisModule } from '../redis/redis.module';
 import { LoggedOutGaurd } from './gaurds/logged-out.guard';
 import { ExtractKeyValueUtil } from './util/extract-key-value.util';
-import { ExtractEmailUtil } from '../common/util/extract-email.util';
 import { AppConfigModule } from '../config/configuration.module';
 import { VerifyNewPasswordUtil } from './util/verify-new-password.util';
 import { EmailService } from '../email/email.service';
 import { AppConfigService } from '../config/configuration.service';
+import { ExtractUserUtil } from '../user/util/extract-user.util';
 
 @Module({
   imports: [
@@ -29,8 +29,8 @@ import { AppConfigService } from '../config/configuration.service';
       signOptions: {expiresIn: `${jwtConstants.jwt_exp_time}s`}, // add this expiresIn value to the `jwtConstants` object
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil, EmailService, AppConfigService],
-  exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, ExtractEmailUtil, VerifyNewPasswordUtil, EmailService],
+  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, VerifyNewPasswordUtil, EmailService, AppConfigService, ExtractUserUtil],
+  exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, VerifyNewPasswordUtil, EmailService],
   controllers:[AuthController],
 })
 export class AuthModule {}
