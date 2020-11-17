@@ -11,7 +11,7 @@ export class ExtractKeyValueUtil {
     
     public async extract(req: Request): Promise<ExtractKeyValueUtilInterface> {
         if (req){
-            const rawAuth = req.headers.authorization;
+            const rawAuth = req.headers.cookie
             return {
                 jwt: await rawAuth.slice(7), // JWT
                 key: await rawAuth.slice(-8), // KEY
