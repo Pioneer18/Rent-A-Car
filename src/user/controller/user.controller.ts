@@ -34,6 +34,7 @@ export class UserController {
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Post('update-user')
+    @Redirect('http://localhost:3000/auth/login')
     async updateProfile(@Body() update: UpdateUserDto, @Req() req: Request) {
         return await this.userService.updateUser(update, req);
     }

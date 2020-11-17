@@ -69,7 +69,7 @@ export class AuthService {
         };
         // create JWT and return as a Cookie string
         const token = await this.jwtService.sign(payload);
-        return `Authentication=${token}; HttpOnly: Path=/; Max-Age=${this.appConfig.jwt_exp_time}`;
+        return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.appConfig.jwt_exp_time}`;
     }
 
     /**

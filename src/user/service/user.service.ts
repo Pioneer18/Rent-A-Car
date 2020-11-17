@@ -80,6 +80,8 @@ export class UserService {
             }
             console.log('User Update Object');
             console.log(updater);
+            // logout the user and return the data before redirecting to login
+            await this.logoutUser(req);
             return await this.userModel.findOneAndUpdate(filter, updater, {new: true});
        } catch(err) {
            throw new Error(err)
