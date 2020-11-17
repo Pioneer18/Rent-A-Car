@@ -7,19 +7,18 @@ import { CheckPasswordTypoDto } from "../dto/check-password-typo.dto";
  */
 @Injectable()
 export class VerifyNewPasswordUtil {
-    constructor(){}
 
     /**
      * Verify the new password does not match the database password
      * @param data 
      */
-    async verifyNew(data: VerifyNewPasswordDto){
+    async verifyNew(data: VerifyNewPasswordDto): Promise<void>{
         const check = await bcrypt.compare(data.newPassword, data.oldPassword);
         if (check) { throw new Error('Error: The new password cannot mathch the current password.') };
         return;
     }
 
-    async verifyMatch(data: VerifyNewPasswordDto){
+    async verifyMatch(data: VerifyNewPasswordDto): Promise<void>{
         const check = await bcrypt.compare(data.newPassword, data.oldPassword);
         if (!check) { throw new Error('Error: incorrect password entered')};
         return;
@@ -29,7 +28,7 @@ export class VerifyNewPasswordUtil {
      * Verify the user entered the same password twice
      * @param data 
      */
-    checkTypos(data: CheckPasswordTypoDto) {
+    checkTypos(data: CheckPasswordTypoDto): Promise<void> {
         const check = data.newPassword === data.confirmPassword;
         if (check) { return };
         throw new Error('You did not enter the same password twice, please try again')

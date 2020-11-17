@@ -7,7 +7,6 @@ import { DatabaseModule } from '../database/database.module';
 import { ValidateEmailMiddleware } from './middleware/validate-email.middleware';
 import { userProvider} from '../database/providers/user-model.provider';
 import { RedisModule } from '../redis/redis.module';
-import { ExtractEmailUtil } from '../common/util/extract-email.util';
 import { ExtractKeyValueUtil } from '../auth/util/extract-key-value.util';
 import { AppConfigModule } from '../config/configuration.module';
 import { VerifyNewPasswordUtil } from '../auth/util/verify-new-password.util';
@@ -24,7 +23,7 @@ import { ExtractUserUtil } from './util/extract-user.util';
     AppConfigModule,
     RedisModule
   ],
-  providers: [UserService,...userProvider, ExtractEmailUtil, ExtractKeyValueUtil, VerifyNewPasswordUtil, RedisService, ExtractUserUtil],
+  providers: [UserService,...userProvider, ExtractKeyValueUtil, VerifyNewPasswordUtil, RedisService, ExtractUserUtil],
   controllers: [UserController],
   exports: [UserService], // used in the AuthService
 })
