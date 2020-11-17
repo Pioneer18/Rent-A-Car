@@ -13,7 +13,7 @@ export class ExtractKeyValueUtil {
         if (req){
             const rawAuth = req.headers.cookie
             return {
-                jwt: await rawAuth.slice(7), // JWT
+                jwt: await rawAuth.slice(15), // JWT
                 key: await rawAuth.slice(-8), // KEY
             }
         }
