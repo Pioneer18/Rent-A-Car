@@ -47,4 +47,10 @@ export class AppConfigService {
    get access_key_id(): string {
        return this.configService.get<string>('app.access_key_id');
    }
+   get aws_s3_bucket_rentals(): string {
+       return this.configService.get<string>('app.aws_s3_bucket_rentals');
+   }
+   get aws_s3_bucket_profile(): string {
+       return this.configService.get<string>('app.aws_s3_bucket_profile');
+   }
 }

@@ -16,4 +16,6 @@ export default registerAs('app', () => ({
     cache_ttl: process.env.CACHE_TTL,
     access_key_id: process.env.ACCESS_KEY_ID,
     secret_access_key: process.env.SECRET_ACCESS_KEY,
+    aws_s3_bucket_rentals: process.env.AWS_S3_BUCKET_RENTALS,
+    aws_s3_bucket_profile: process.env.AWS_S3_BUCKET_PROFILE,
 }))

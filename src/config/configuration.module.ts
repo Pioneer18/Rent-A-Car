@@ -33,6 +33,8 @@ import { AppConfigService } from "./configuration.service";
                 // JWT AUTHORIZATION
                 SECRET_KEY: Joi.string().required(),
                 JWT_EXP_TIME: Joi.string().required(),
+                AWS_S3_BUCKET_RENTALS: Joi.string().required(),
+                AWS_S3_BUCKET_PROFILE: Joi.string().required(),
             }),
             validationOptions: {
                 allowUnkown: false, // enforce validation, don't allow unknown keys in the env variables
