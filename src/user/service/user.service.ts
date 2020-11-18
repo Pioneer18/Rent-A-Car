@@ -33,6 +33,8 @@ export class UserService {
             const document = await new this.userModel(user);
             await document.save();
             document.password = undefined;
+            console.log('CREATE USER: RETURN');
+            console.log(document);
             return document;
         } catch (err) {
             throw new Error(err);
@@ -45,8 +47,9 @@ export class UserService {
      */
     async findUser(data: FindUserDto) {
         try {
-            console.log('Find-User Calling User Model...')
             const user = await this.userModel.findOne({ email: data.email });
+            console.log('FIND USER: RETURN')
+            console.log(user);
             return user;
         } catch (err) {
             throw new Error(err);
@@ -59,8 +62,9 @@ export class UserService {
      */
     async findUserByResetPasswordToken(data: ResetPasswordTokenDto) {
         try {
-            console.log('Finding User by resetPasswordToken');
             const user = await this.userModel.findOne({ resetPasswordToken: data.token });
+            console.log('FIND USER BY RESET PASSWORD TOKEN: RETURN')
+            console.log(user);
             return user;
         } catch (err) {
             throw new Error(err)
@@ -80,10 +84,10 @@ export class UserService {
             const updater = {
                 $set: update,
             }
-            console.log('User Update Object');
-            console.log(updater);
             // logout the user and return the data before redirecting to login
             await this.logoutUser(req);
+            console.log('UPDATE USER: RETURN')
+            console.log(await this.userModel.findOneAndUpdate(filter, updater, {new: true}));
             return await this.userModel.findOneAndUpdate(filter, updater, {new: true});
        } catch(err) {
            throw new Error(err)
@@ -107,6 +111,8 @@ export class UserService {
             await this.logoutUser(req);
             // delete
             const res = await user.remove();
+            console.log('DELETE USER: RETURN')
+            console.log(res);
             return res.deletedCount;
         } catch(err) {
             throw new Error(err);
@@ -121,6 +127,8 @@ export class UserService {
         let update: UpdateUserDto = {}
         data.username ? update.username = data.username : data.username = null;
         data.email ? update.email = data.email : data.email = null;
+        console.log('CREATE USER UPDATE: RETURN')
+        console.log(update);
         return update;
     }
 
