@@ -116,9 +116,9 @@ export class ImagesService {
     const upload = multer({
       storage: multerS3({
         s3: this.s3,
-        bucket: 'rentals/', // process.env.AWS_S3_BUCKET_RENTALS
+        bucket: path, // process.env.AWS_S3_BUCKET_RENTALS
         acl: 'public-read',
-        key: (request, file, cb) => {
+        key: (req, file, cb) => {
           cb(null, `${Date.now().toString()} - ${file.originalname}`);
         },
       }),
@@ -136,9 +136,11 @@ export class ImagesService {
     // upload to aws s3 bucket
     try {
       Logger.log('below is the req.body');
-      Logger.log(Object.keys(req));
+      Logger.log(Object.keys(req.body));
+      Logger.log('below is the request object');
+      Logger.log(req);
+      Logger.log('Below are the request headers');
       Logger.log(req.headers);
-      // const path = process.env.AWS_S3_BUCKET_RENTALS;
       this.uploader(req, res, path);
     } catch (err) {
       return res.status(500).json(`Failed to upload image file: ${err}`);

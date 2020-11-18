@@ -1,12 +1,13 @@
-import { Controller, Post, Req, UseInterceptors, UploadedFiles, UseGuards, Body, Get, Param, Query } from '@nestjs/common';
+import { Controller, Post, Req, UseInterceptors, UploadedFiles, UseGuards, Body, Get, Param, Query, Res } from '@nestjs/common';
 import {  FilesInterceptor } from '@nestjs/platform-express';
+import { AppConfigService } from '../../config/configuration.service';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
 
 @UseGuards(JwtAuthGuard)
 @Controller('images')
 export class ImagesController {
-    constructor(private readonly imagesService: ImagesService) { }
+    constructor(private readonly imagesService: ImagesService, private readonly appConfig: AppConfigService) { }
 
     /**
      * 1) upload vehicle photos to db with reference to the logged in user
@@ -85,7 +86,24 @@ export class ImagesController {
     async deleteAllImages(@Query() params: {category: string}, @Req() req) {
         return await this.imagesService.deleteImages(req.user, params.category)
     }
+
     /**
     * Delete single image
     */
+
+    /**
+     * Upload to AWS S3 Bucket
+     */
+    @Post('upload-rental-images')
+    async uploadRentalImages(@Req() req, @Res() res) {
+        // const path = process.env.AWS_S3_BUCKET_RENTALS;
+        const path = this.appConfig.aws_s3_bucket_rentals;
+        return await this.imagesService.uploadImages(req, res, path);
+    }
+
+    @Post('upload-profile-image')
+    async uploadProfileImageToS3(@Req() req, @Res() res) {
+        const path = this.appConfig.aws_s3_bucket_profile;
+        return await this.imagesService.uploadImages(req, res, path);
+    }
 }
