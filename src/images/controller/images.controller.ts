@@ -1,5 +1,5 @@
-import { Controller, Post, Req, UseInterceptors, UploadedFiles, UseGuards, Body, Get, Param, Query, Res } from '@nestjs/common';
-import {  FilesInterceptor } from '@nestjs/platform-express';
+import { Controller, Post, Req, UseInterceptors, UploadedFiles, UseGuards, Body, Get, Param, Query, Res, UploadedFile } from '@nestjs/common';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { AppConfigService } from '../../config/configuration.service';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
@@ -83,7 +83,7 @@ export class ImagesController {
      * @param category both or a single one
      */
     @Post('delete-all-images')
-    async deleteAllImages(@Query() params: {category: string}, @Req() req) {
+    async deleteAllImages(@Query() params: { category: string }, @Req() req) {
         return await this.imagesService.deleteImages(req.user, params.category)
     }
 
@@ -94,16 +94,11 @@ export class ImagesController {
     /**
      * Upload to AWS S3 Bucket
      */
-    @Post('upload-rental-images')
-    async uploadRentalImages(@Req() req, @Res() res) {
-        // const path = process.env.AWS_S3_BUCKET_RENTALS;
-        const path = this.appConfig.aws_s3_bucket_rentals;
-        return await this.imagesService.uploadImages(req, res, path);
+
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('file'))
+    async upload(@UploadedFile() file) {
+        return await this.imagesService.upload(file);
     }
 
-    @Post('upload-profile-image')
-    async uploadProfileImageToS3(@Req() req, @Res() res) {
-        const path = this.appConfig.aws_s3_bucket_profile;
-        return await this.imagesService.uploadImages(req, res, path);
-    }
 }

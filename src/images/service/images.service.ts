@@ -2,41 +2,31 @@
  * Save Images
  * Could upload images to AWS S3 bucket and save the links?
  */
-import { Injectable, Logger, Req, Res} from '@nestjs/common';
+import { Injectable, Logger, Req, Res } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ImageInterface } from '../interface/image.interface';
 import { Model } from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interface/jwt-payload';
-import * as AWS from 'aws-sdk';
-import * as multer from 'multer';
-import* as multerS3 from 'multer-s3'
+import { S3 } from 'aws-sdk';
 import { AppConfigService } from '../../config/configuration.service';
 
 
 @Injectable()
 export class ImagesService {
 
-  private s3
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
     private readonly appConfig: AppConfigService,
-      ) {
-        this.s3 = new AWS.S3();
-        AWS.config.update({
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    });
+  ) { }
 
-      }
-
- /**
-  * TODO: Save with specific [rental id] as well
-  * Upload Images of User's Vehicle
-  * @param files user's selected vehicle image files
-  */
-  async saveImages (files: [any], user: JwtPayloadInterface, category: string) {
+  /**
+   * TODO: Save with specific [rental id] as well
+   * Upload Images of User's Vehicle
+   * @param files user's selected vehicle image files
+   */
+  async saveImages(files: [any], user: JwtPayloadInterface, category: string) {
     try {
-      const packet: ImageInterface[] = []; 
+      const packet: ImageInterface[] = [];
       // map files to packet
       files.map(item => {
         packet.push({
@@ -51,8 +41,8 @@ export class ImagesService {
       })
       // insert packet into the database
       await this.imagesModel.insertMany(packet);
-      return {message: 'These are the images that were uploaded', packet};
-    } catch(err) {
+      return { message: 'These are the images that were uploaded', packet };
+    } catch (err) {
       throw new Error(err);
     }
   }
@@ -68,8 +58,8 @@ export class ImagesService {
       img_id ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({user_id: user.sub, category: 'Vehicle'});
-        return { count: images.length, images: images}
+        const images = await this.imagesModel.find({ user_id: user.sub, category: 'Vehicle' });
+        return { count: images.length, images: images }
       }
       // find a specific image
       return await this.imagesModel.findById(img_id);
@@ -87,11 +77,11 @@ export class ImagesService {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({user_id: user.sub})
+        const images = await this.imagesModel.find({ user_id: user.sub })
         return { count: images.length, images: images };
       };
       return await this.imagesModel.findById(img_id);
-    } catch(err) {
+    } catch (err) {
       throw new Error(err)
     }
   }
@@ -102,49 +92,46 @@ export class ImagesService {
    */
   async deleteImages(user: JwtPayloadInterface, category) {
     try {
-      return await this.imagesModel.deleteMany({ user_id: user.sub, category});
-    } catch(err) {
+      return await this.imagesModel.deleteMany({ user_id: user.sub, category });
+    } catch (err) {
       throw new Error(err);
     }
   }
 
   /**
-   * build an upload document for the selected directory
-   * @param {string} directory the s3 bucket directory path
+   * AWS Upload and Config
    */
-  private uploader = (req, res, path) => {
-    const upload = multer({
-      storage: multerS3({
-        s3: this.s3,
-        bucket: path, // process.env.AWS_S3_BUCKET_RENTALS
-        acl: 'public-read',
-        key: (req, file, cb) => {
-          cb(null, `${Date.now().toString()} - ${file.originalname}`);
-        },
-      }),
-    }).array('upload', 1);
+  async upload(file) {
+    console.log('Here is the File:')
+    console.log(file);
+    const { originalname } = file;
+    const bucketS3 = 'rent-a-car-photos/rentals/';
+    await this.uploadS3(file.buffer, bucketS3, originalname);
+  }
 
-    upload(req, res, error => {
-      if (error) {
-        return res.status(404).json(`Failed to upload image file: ${error}`);
-      }
-      return res.status(201).json(req.files[0].location);
+  async uploadS3(file, bucket, name) {
+    const s3 = this.getS3();
+    const params = {
+      Bucket: bucket, // rentals/
+      Key: String(name),
+      Body: file,
+    };
+    return new Promise((resolve, reject) => {
+      s3.upload(params, (err, data) => {
+        if (err) {
+          Logger.error(err);
+          reject(err.message);
+        }
+        resolve(data);
+      });
     });
   }
 
-  async uploadImages(@Req() req, @Res() res, path) {
-    // upload to aws s3 bucket
-    try {
-      Logger.log('below is the req.body');
-      Logger.log(Object.keys(req.body));
-      Logger.log('below is the request object');
-      Logger.log(req);
-      Logger.log('Below are the request headers');
-      Logger.log(req.headers);
-      this.uploader(req, res, path);
-    } catch (err) {
-      return res.status(500).json(`Failed to upload image file: ${err}`);
-    }
+  getS3() {
+    return new S3({
+      accessKeyId: process.env.ACCESS_KEY_ID,
+      secretAccessKey: process.env.SECRET_ACCESS_KEY,
+    });
   }
 
 }
