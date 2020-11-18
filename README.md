@@ -1,6 +1,9 @@
 # Rent-A-Car
 This project is a demonstration of server-side development skills; TypeScript, NodeJS, NestJS, MongoDB, MySQL, Redis, Docker, and Testing. This Repository has the files for the backend of the application.
 
+## Try the App with Postman:
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/d687e602b7ebb63c6883#?env%5BRent-A-Car%5D=W3sia2V5IjoiYmFzZV91cmwiLCJ2YWx1ZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiUmVzZXRfVG9rZW4iLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY29va2llIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=)
+
 ## About The App:
 Rent-A-Car is a demonstrative car rental web application that allows users to list their own vehicles or search for vehicles in a specified area. 
 
@@ -18,12 +21,18 @@ Rent-A-Car is a demonstrative car rental web application that allows users to li
 - Helmet (Http Security)
 - Geo Coder API
 - AWS S3 Bucket image storage *
-- Logs
-- Error Handling
-- Testing
-- Docker and Google Cloud Deployment
-- React frontend
-
+- Docker and Google Cloud Deployment*
+- Next.js (React) application as placeholder front-end // front-end app will be developed later*
+- circle-ci integration*
+- **Nest JS Features**
+  - custom configuration module
+  - Logging Interceptor
+  - Redis interceptor: caching for query efficiency
+  - Error Handling and Http Filters
+  - Pipes: transorm request data before handler
+  - Guards: Authorization of JWT
+  - Testing: Jest e2e and unit testing*
+  
 ## Why NestJS
 NestJS is "A progressive Node.js framework for building efficient, reliable and scalable server-side applications." - nestjs.com
 
