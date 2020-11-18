@@ -99,13 +99,15 @@ export class ImagesService {
   }
 
   /**
-   * AWS Upload and Config
+   * AWS Upload and 
+   * Seems you can actually make folders on the fly
+   * Images making it up there, but access denied when trying to view them?
    */
   async upload(file) {
     console.log('Here is the File:')
     console.log(file);
     const { originalname } = file;
-    const bucketS3 = 'rent-a-car-photos/rentals/';
+    const bucketS3 = 'rent-a-car-photos/vehicles'; // the base url is rent-a-car-photos/
     await this.uploadS3(file.buffer, bucketS3, originalname);
   }
 
@@ -116,6 +118,11 @@ export class ImagesService {
       Key: String(name),
       Body: file,
     };
+    const url = s3.getSignedUrl('getObject', params);
+    console.log(`Here is the Url`)
+    console.log(url);
+    console.log('S3 UPLOAD PARAMS:')
+    console.log(params);
     return new Promise((resolve, reject) => {
       s3.upload(params, (err, data) => {
         if (err) {
