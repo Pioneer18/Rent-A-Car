@@ -41,10 +41,10 @@ export class AppConfigService {
     get cache_ttl(): string { 
         return this.configService.get<string>('app.cache_ttl');
     }
-    /**
-     * get env(): string { 
-     *  return this.configService.get<string>('app.env');
-     * }
-     * 
-    */
+   get secret_access_key(): string {
+       return this.configService.get<string>('app.secret_access_key');
+   }
+   get access_key_id(): string {
+       return this.configService.get<string>('app.access_key_id');
+   }
 }

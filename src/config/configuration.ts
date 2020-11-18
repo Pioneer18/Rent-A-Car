@@ -14,4 +14,6 @@ export default registerAs('app', () => ({
     redis_host: process.env.REDIS_HOST,
     redis_port: process.env.REDIS_PORT,
     cache_ttl: process.env.CACHE_TTL,
+    access_key_id: process.env.ACCESS_KEY_ID,
+    secret_access_key: process.env.SECRET_ACCESS_KEY,
 }))
