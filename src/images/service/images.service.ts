@@ -114,17 +114,18 @@ export class ImagesService {
   async uploadS3(file, bucket, name) {
     const s3 = this.getS3();
     const params = {
-      Bucket: bucket, // rentals/
-      Key: String(name),
-      Body: file,
+      Bucket: bucket, // bucket name and path
+      Key: String(name), // file name
+      Body: file, // file.buffer
     };
-    const url = s3.getSignedUrl('getObject', params);
+    // create signed url PUT
+    const url = s3.getSignedUrl('putObject', params);
     console.log(`Here is the Url`)
     console.log(url);
     console.log('S3 UPLOAD PARAMS:')
     console.log(params);
     return new Promise((resolve, reject) => {
-      s3.upload(params, (err, data) => {
+      s3.upload(params, {}, (err, data) => {
         if (err) {
           Logger.error(err);
           reject(err.message);
