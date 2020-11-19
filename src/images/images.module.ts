@@ -11,7 +11,7 @@ import { ImagesService } from './service/images.service';
     imports: [
         DatabaseModule,
         MongooseModule.forFeature([{ name: 'Images', schema: ImageSchema}]),
-        AppConfigModule
+        AppConfigModule,
     ],
     controllers: [ImagesController],
     providers: [ImagesService, AppConfigService],

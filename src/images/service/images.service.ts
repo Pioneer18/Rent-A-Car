@@ -17,17 +17,30 @@ export class ImagesService {
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
     private readonly appConfig: AppConfigService,
+  
   ) { }
 
   /**
    * TODO: Save with specific [rental id] as well
    * Upload Images of User's Vehicle
-   * @param files user's selected vehicle image files
+   * @param bucketPath bucket name: param for getSignedUrl
+   * @param originalname name of the uploaded file: param for getSignedUrl
+   * @param expires how long the presigned url will be valid
+   * @param category rentals / profile
+   * @param {string} user_id user id to associate with the image
+   * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  async saveImages(files: [any], user: JwtPayloadInterface, category: string) {
+  async saveImages(files: [any],) {
     try {
-      const packet: ImageInterface[] = [];
+
+
+
+
+
+
+      // const packet: ImageInterface[] = [];
       // map files to packet
+      /*
       files.map(item => {
         packet.push({
           data: item.buffer,
@@ -39,13 +52,21 @@ export class ImagesService {
           user_id: user.sub,
         })
       })
+      */
       // insert packet into the database
-      await this.imagesModel.insertMany(packet);
-      return { message: 'These are the images that were uploaded', packet };
+      //await this.imagesModel.insertMany(packet);
+      // return { message: 'These are the images that were uploaded', packet };
     } catch (err) {
       throw new Error(err);
     }
   }
+
+  /**
+   * Get signed url
+  */
+  //const url = await this.getSingedUrl(bucket,originalname);
+  //console.log(`Presigned URL: ${url}`);
+  //return {result: result, presigned: url};
 
   /**
    * Find all of user's vehicle images
@@ -99,29 +120,55 @@ export class ImagesService {
   }
 
   /**
-   * AWS Upload and 
-   * Seems you can actually make folders on the fly
-   * Images making it up there, but access denied when trying to view them?
+   * Upload
+   * summary: call the uploadS3() function with the file, the completed bucket path
+   * and the file name
+   * @param {string} file the file to be uploaded
+   * {string} bucketPath {email}/rentals or {email}/profile
+   * @param {string} user req.user; Jwt decoded payload
+   * @param {string} category rentals / profile
+   * @param {string | null} rental_id id of the rental the images will be linked to
    */
-  async upload(file) {
+  async upload(file, user: JwtPayloadInterface, category: string, rental_id: string | null) {
+    // this is a private function to call uploadS3
+    /**
+     * create bucketPath and get the originalname of the file
+     */
     console.log('Here is the File:')
     console.log(file);
     const { originalname } = file;
-    const bucketS3 = 'rent-a-car-photos/vehicles'; // the base url is rent-a-car-photos/
-    await this.uploadS3(file.buffer, bucketS3, originalname);
+    const bucketPath: string = `${user.email}/${category}`;
+    const bucket: string = 'rent-a-car-photos/' + bucketPath; // TODO: make this an environment variable
+    console.log(`The Bucket: ${bucket}`);
+
+    // Upload the images to the s3 bucket
+    const result = await this.uploadS3(file.buffer, bucket, originalname);
+
+    /**
+     * Save Images to DB
+     * @param bucketPath bucket name: param for getSignedUrl
+     * @param originalname name of the uploaded file: param for getSignedUrl
+     * @param expires how long the presigned url will be valid
+     * @param category rentals / profile
+     * @param {string} user_id user id to associate with the image
+     * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
+     */
+    // await saveImages();
   }
 
-  async uploadS3(file, bucket, name) {
+  /**
+   * Upload file to AWS S3 Bucket
+   * @param {string} file the file to be uploaded
+   * @param {string} bucket the bucket path
+   * @param {string} originalname the name of the file
+   */
+  private async uploadS3(file, bucket, originalname) {
     const s3 = this.getS3();
     const params = {
       Bucket: bucket, // bucket name and path
-      Key: String(name), // file name
+      Key: String(originalname), // file name
       Body: file, // file.buffer
     };
-    // create signed url PUT
-    const url = s3.getSignedUrl('putObject', params);
-    console.log(`Here is the Url`)
-    console.log(url);
     console.log('S3 UPLOAD PARAMS:')
     console.log(params);
     return new Promise((resolve, reject) => {
@@ -135,11 +182,37 @@ export class ImagesService {
     });
   }
 
-  getS3() {
+  private getS3() {
     return new S3({
-      accessKeyId: process.env.ACCESS_KEY_ID,
-      secretAccessKey: process.env.SECRET_ACCESS_KEY,
+      accessKeyId: this.appConfig.access_key_id, // process.env.ACCESS_KEY_ID,
+      secretAccessKey: this.appConfig.secret_access_key // process.env.SECRET_ACCESS_KEY,
     });
   }
 
+  // Get Presigned Url to download file
+  /**
+   * @param originalname file name
+   * @param bucketPath location of the photo
+   */
+  private getSingedUrl = async (bucketPath, originalname) => {
+    const s3 = this.getS3()
+    const params = {
+      Bucket: bucketPath,
+      Key: originalname,
+      Expires: 60 * 60, //1 hour
+    };
+    try {
+      const url = await new Promise((resolve, reject) => {
+        s3.getSignedUrl('getObject', params, (err, url) => {
+          err ? reject(err) : resolve(url);
+        });
+      });
+      console.log(url)
+      return url;
+    } catch (err) {
+      if (err) {
+        throw new Error(err);
+      }
+    }
+  }
 }
