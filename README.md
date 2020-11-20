@@ -7,13 +7,48 @@ This project is a demonstration of server-side development skills; TypeScript, N
 ## About The App:
 Rent-A-Car is a demonstrative car rental web application that allows users to list their own vehicles or search for vehicles in a specified area. 
 
-## Technologies:
+## Dependencies:
 * TypeScript
 * NodeJS
 * NestJS
-* MongoDB
-* Redis
 * Docker
+* Google Cloud Platform
+* AWS-SDK
+* MongoDB
+* Mongoose
+* Redis
+* Multer/Multer-S3
+* Nodemailer
+* Passport
+* Jsonwebtoken
+* cookie-parser
+* hapi-joi
+* Luxon
+
+## APIs Used in the App
+
+### AWS S3
+- Upload multiple image files to S3 bucket
+- Download multiple image files from S3 bucket
+<br>
+### Geo Coder Api
+- Obtain geocoordinates for addresses
+- Obtain addresses or administrative areas for locations
+- Obtain geocoordinates for known landmarks
+
+
+
+## Security
+- Helmet: http headers
+- Encryption and Hashing
+- Passport-local
+- Passport-JWT with HttpOnly Cookies: browser javascript cannot interact with cookies
+- CORS
+- production uses Https
+
+## Testing
+- This app includes unit and e2e testing with Jest
+- continous testing integrtion with CircleCI
 
 ## App Features
 - HTTP Development Environment/ HTTPS Production Environment
