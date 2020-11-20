@@ -24,66 +24,79 @@ Rent-A-Car is a demonstrative car rental web application that allows users to li
 * cookie-parser
 * hapi-joi
 * Luxon
+* bcrypt
+* crypto
+* dotenv
 
 ## APIs Used in the App
 
 ### AWS S3
 - Upload multiple image files to S3 bucket
 - Download multiple image files from S3 bucket
-<br>
+
 ### Geo Coder Api
 - Obtain geocoordinates for addresses
 - Obtain addresses or administrative areas for locations
 - Obtain geocoordinates for known landmarks
 
+## Database & Caching
+- MongoDB Atlas (official cloud database)
+- Mongoose ODM
+- Redis
 
+## Validation
+- @hapi/joi
 
-## Security
+## Security & Authentication
 - Helmet: http headers
 - Encryption and Hashing
 - Passport-local
 - Passport-JWT with HttpOnly Cookies: browser javascript cannot interact with cookies
+- bcrypt & crypto
 - CORS
 - production uses Https
+
+## Front-end
+- Next.js (React) application as placeholder front-end // front-end app will be developed later
 
 ## Testing
 - This app includes unit and e2e testing with Jest
 - continous testing integrtion with CircleCI
 
-## App Features
-- HTTP Development Environment/ HTTPS Production Environment
-- JWT Authentication with Cookies (httpOnly)
-- Helmet (Http Security)
-- Geo Coder API
-- AWS S3 Bucket image storage *
-- Docker and Google Cloud Deployment*
-- Next.js (React) application as placeholder front-end // front-end app will be developed later*
-- circle-ci integration*
-- **Nest JS Features**
-  - custom configuration module
-  - Logging Interceptor
-  - Redis interceptor: caching for query efficiency
-  - Error Handling and Http Filters
-  - Pipes: transorm request data before handler
-  - Guards: Authorization of JWT
-  - Testing: Jest e2e and unit testing*
+## Deployment
+- Docker
+- bash: load secret rsa pem files before deploying production
+- Google Cloud Deployment*
+
+## NestJS Features Used in the App
+- Modular injection based design
+- TypeScript
+- Custom providers: datbase, logging interceptor, http error filter, error filter
+- Custom Configuration Module: group related settings
+- Error Handling and Http Filters
+- Pipes: transorm request data before handler
+- Guards: Authorization of JWT
+- Middleware: processing request and data
+- CacheManager: built in cache manager
+- ServeStaticModule: server a front-end application
+- Testing: Jest e2e and unit testing*
   
 ## Why NestJS
 NestJS is "A progressive Node.js framework for building efficient, reliable and scalable server-side applications." - nestjs.com
 
 ## Rent-A-Car Route Map
-### Auth
+### Auth: login in to and manage account
 - ***@Post(login)***: log user into the application and grant a JWT authentication token
 - ***@Post(logout)***: log user out of the application and expire their JWT authentication token
 - ***@Post(change-password)***: replace user's current password with the new password
 - ***@Post(forgot-password)***: send user a password replacement email
 - ***@Post(reset-password)***: reset the user's password with the password provided by the completed reset password email
-### User
+### User: create and manage users
 - ***@Post(create-user)***: create a new user account
 - ***@Pot(update-user)***: update user info; e.g. email, username
 - ***@Post(find-user)***: find a user in the database by email
 - ***@Post(delete-profile)***: delete a user profile
-### Rental
+### Rental: list and search for rentals in a specified area
 - ***@Post(rental)***: create a new rental vheicle listing
 - ***@Get(rental)***: search for rentals near a specified location (the user's location)
 - ***@Post(edit-price)***: edit the rental's pricing
@@ -91,7 +104,7 @@ NestJS is "A progressive Node.js framework for building efficient, reliable and 
 - ***@Post(schedule-unavailability)***: set a period of unavailability for the rental; e.g. Apr. 1 - Jun. 15
 - ***@Post(update-unavailability)***: edit the unavailability of the vehicle
 - ***@Post(remove-unavailability)***: remove scheduled unavailability from a listed rental vehicle
-### Images
+### Images: upload images to AWS S3 Bucket
 - ***@Post(upload-vehicle-images)***: upload a single or multiple photos for a vehcile
 - ***@Post(upload-profile-images)***: upload a single or multiple profile photos
 - ***@Post(find-all-vehicle-images)***: find all images of a vehicle from the database
