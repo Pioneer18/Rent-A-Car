@@ -30,11 +30,11 @@ Rent-A-Car is a demonstrative car rental web application that allows users to li
 
 ## APIs Used in the App
 
-### AWS S3
+#### AWS S3
 - Upload multiple image files to S3 bucket
 - Download multiple image files from S3 bucket
 
-### Geo Coder Api
+#### Geo Coder Api
 - Obtain geocoordinates for addresses
 - Obtain addresses or administrative areas for locations
 - Obtain geocoordinates for known landmarks
