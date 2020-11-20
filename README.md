@@ -57,7 +57,8 @@ Rent-A-Car is a demonstrative car rental web application that allows users to li
 - production uses Https
 
 ## Front-end
-- Next.js (React) application as placeholder front-end // front-end app will be developed later
+- serving a palceholder Next.JS application
+- will develop the front-end of this application later
 
 ## Testing
 - This app includes unit and e2e testing with Jest
