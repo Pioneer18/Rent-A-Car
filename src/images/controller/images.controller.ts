@@ -101,9 +101,9 @@ export class ImagesController {
      * @param {string} rental_id id of the rental; if this is a rental image upload
      */
     @Post('upload')
-    @UseInterceptors(FileInterceptor('file'))
-    async upload(@UploadedFile() file, @Req() req, @Body() rental_id) {
-        return await this.imagesService.upload(file, req.user, 'rentals', rental_id);
+    @UseInterceptors(FilesInterceptor('files'))
+    async upload(@UploadedFiles() files, @Req() req, @Body() rental_id) {
+        return await this.imagesService.upload(files, req.user, 'test', rental_id);
     }
 
 }

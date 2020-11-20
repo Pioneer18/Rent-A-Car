@@ -9,6 +9,7 @@ import { Model } from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interface/jwt-payload';
 import { S3 } from 'aws-sdk';
 import { AppConfigService } from '../../config/configuration.service';
+import { ProcessUploadDataUtil } from '../util/process-upload-data.util';
 
 
 @Injectable()
@@ -17,24 +18,33 @@ export class ImagesService {
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
     private readonly appConfig: AppConfigService,
-  
+    private readonly processUploadDataUtil: ProcessUploadDataUtil,
+
   ) { }
 
   /**
    * TODO: Save with specific [rental id] as well
    * Upload Images of User's Vehicle
-   * @param bucketPath bucket name: param for getSignedUrl
-   * @param originalname name of the uploaded file: param for getSignedUrl
+   * @param bucket bucket name: param for getSignedUrl
+   * @param originalnames name of the uploaded file: param for getSignedUrl
    * @param expires how long the presigned url will be valid
    * @param category rentals / profile
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  async saveImages(files: [any],) {
+  async saveImages() {
     try {
+      /**
+       * Steps:
+       * 1) check for file and if there is more than one: use insertMany or save()
 
-
-
+       * 2) if it's only one file:
+       * - map an image document with all of the arguments
+       * - save the image document
+       * 3) if it's multiple files:
+       * - create an array of mapped image documents
+       * - save the array of mapped image documents
+       */
 
 
 
@@ -65,7 +75,7 @@ export class ImagesService {
    * Get signed url
   */
   //const url = await this.getSingedUrl(bucket,originalname);
-  //console.log(`Presigned URL: ${url}`);
+  //Logger.log(`Presigned URL: ${url}`);
   //return {result: result, presigned: url};
 
   /**
@@ -120,35 +130,31 @@ export class ImagesService {
   }
 
   /**
-   * Upload
-   * summary: call the uploadS3() function with the file, the completed bucket path
+   * Upload & Save
+   * summary: upload the data to the S3 bucket and then save the data
    * and the file name
-   * @param {string} file the file to be uploaded
-   * {string} bucketPath {email}/rentals or {email}/profile
+   * @param  files the file(s) to be uploaded
    * @param {string} user req.user; Jwt decoded payload
    * @param {string} category rentals / profile
    * @param {string | null} rental_id id of the rental the images will be linked to
    */
-  async upload(file, user: JwtPayloadInterface, category: string, rental_id: string | null) {
-    // this is a private function to call uploadS3
-    /**
-     * create bucketPath and get the originalname of the file
-     */
-    console.log('Here is the File:')
-    console.log(file);
-    const { originalname } = file;
-    const bucketPath: string = `${user.email}/${category}`;
-    const bucket: string = 'rent-a-car-photos/' + bucketPath; // TODO: make this an environment variable
-    console.log(`The Bucket: ${bucket}`);
-
-    // Upload the images to the s3 bucket
-    const result = await this.uploadS3(file.buffer, bucket, originalname);
+  async upload(files, user: JwtPayloadInterface, category: string, rental_id: string | null) {
+    
+    // upload the data to the S3 bucket
+    const bucket: string = 'rent-a-car-photos/' + `${user.email}/${category}`; // TODO: make this an environment variable
+    Logger.log(`The Bucket: ${bucket}`);
+    const {packet, param} = await this.processUploadDataUtil.process(files, bucket)
+    const data = packet ? packet : param;
+    console.log('Processed: Data');
+    console.log(data);
+    const result = await this.uploadS3(data);
+    return result;
 
     /**
      * Save Images to DB
-     * @param bucketPath bucket name: param for getSignedUrl
-     * @param originalname name of the uploaded file: param for getSignedUrl
-     * @param expires how long the presigned url will be valid
+     * @param bucket bucket name: param for getSignedUrl
+     * @param {[string]} originalname name(s) of the uploaded file(s): param for getSignedUrl
+     * @param expires how long the presigned url(s) will be valid
      * @param category rentals / profile
      * @param {string} user_id user id to associate with the image
      * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
@@ -157,22 +163,15 @@ export class ImagesService {
   }
 
   /**
-   * Upload file to AWS S3 Bucket
-   * @param {string} file the file to be uploaded
-   * @param {string} bucket the bucket path
-   * @param {string} originalname the name of the file
+   * Upload file(s) to AWS S3 Bucket
+   * @param {object | array} data an upload object or an array of objects 
    */
-  private async uploadS3(file, bucket, originalname) {
+  private async uploadS3(data) {
+    // connect to the S3 Bucket
     const s3 = this.getS3();
-    const params = {
-      Bucket: bucket, // bucket name and path
-      Key: String(originalname), // file name
-      Body: file, // file.buffer
-    };
-    console.log('S3 UPLOAD PARAMS:')
-    console.log(params);
+    // upload the data
     return new Promise((resolve, reject) => {
-      s3.upload(params, {}, (err, data) => {
+      s3.upload(data, {}, (err, data) => {
         if (err) {
           Logger.error(err);
           reject(err.message);
@@ -182,6 +181,9 @@ export class ImagesService {
     });
   }
 
+  /**
+   * Connect to the S3 Bucket
+   */
   private getS3() {
     return new S3({
       accessKeyId: this.appConfig.access_key_id, // process.env.ACCESS_KEY_ID,
@@ -192,12 +194,12 @@ export class ImagesService {
   // Get Presigned Url to download file
   /**
    * @param originalname file name
-   * @param bucketPath location of the photo
+   * @param bucket location of the photo
    */
-  private getSingedUrl = async (bucketPath, originalname) => {
+  private getSingedUrl = async (bucket, originalname) => {
     const s3 = this.getS3()
     const params = {
-      Bucket: bucketPath,
+      Bucket: bucket,
       Key: originalname,
       Expires: 60 * 60, //1 hour
     };
@@ -207,7 +209,7 @@ export class ImagesService {
           err ? reject(err) : resolve(url);
         });
       });
-      console.log(url)
+      Logger.log(url)
       return url;
     } catch (err) {
       if (err) {
