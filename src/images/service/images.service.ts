@@ -143,8 +143,8 @@ export class ImagesService {
     // upload the data to the S3 bucket
     const bucket: string = 'rent-a-car-photos/' + `${user.email}/${category}`; // TODO: make this an environment variable
     Logger.log(`The Bucket: ${bucket}`);
-    const {packet, param} = await this.processUploadDataUtil.process(files, bucket)
-    const data = packet ? packet : param;
+    const {params, param} = await this.processUploadDataUtil.process(files, bucket)
+    const data = params ? params : param;
     console.log('Processed: Data');
     console.log(data);
     const result = await this.uploadS3(data);
@@ -166,12 +166,13 @@ export class ImagesService {
    * Upload file(s) to AWS S3 Bucket
    * @param {object | array} data an upload object or an array of objects 
    */
-  private async uploadS3(data) {
+  private async uploadS3(params) {
     // connect to the S3 Bucket
     const s3 = this.getS3();
     // upload the data
+    console.log('Call the s3.upload() funtion')
     return new Promise((resolve, reject) => {
-      s3.upload(data, {}, (err, data) => {
+      s3.upload(params, {}, (err, data) => {
         if (err) {
           Logger.error(err);
           reject(err.message);
@@ -180,6 +181,10 @@ export class ImagesService {
       });
     });
   }
+
+  /**
+   * Multer Upload File(s) to AWS S3 Bucket
+   */
 
   /**
    * Connect to the S3 Bucket
