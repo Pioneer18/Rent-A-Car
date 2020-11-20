@@ -112,7 +112,7 @@ NestJS is "A progressive Node.js framework for building efficient, reliable and 
 - ***@Post(find-profile-image)***: find a specific profile image of a user from the database
 - ***@Post(delete-images)***: delete selected image(s)
 
-### Currently under development, should be completed by 11/18/2020
+### Currently under development, should be completed by 11/21/2020
 - Jonathan Sells
 
 
