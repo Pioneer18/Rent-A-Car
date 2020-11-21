@@ -27,7 +27,13 @@ export class ImagesController {
      */
     @Post('upload-rental-images')
     async uploadRentalImages(@Req() req, @Res() res) {
-        // return await this.imagesService.multerUpload()
+        try {
+            await this.imagesService.fileupload(req, res, 'rentals')
+        } catch(err) {
+            return response
+                .status(500)
+                .json(`Failed to upload image file: ${err.message}`)
+        }
     }
 
     /**
@@ -36,7 +42,13 @@ export class ImagesController {
      */
     @Post('upload-profile-images')
     async uploadProfileImage(@Req() req, @Res() res) {
-        // return await this.imagesService.multerUpload()
+        try {
+            await this.imagesService.fileupload(req, res, 'profile')
+        } catch(err) {
+            return response
+                .status(500)
+                .json(`Failed to upload image file: ${err.message}`)
+        }
     }
 
     /**
@@ -98,7 +110,7 @@ export class ImagesController {
     @Post('multer-upload')
     async multerUpload(@Req() req, @Res() res) {
         try {
-            await this.imagesService.fileupload(req, res)
+            await this.imagesService.fileupload(req, res, 'testing_category')
         } catch(err) {
             return response
                 .status(500)

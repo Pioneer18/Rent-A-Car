@@ -6,7 +6,7 @@ import { DatabaseModule } from '../database/database.module';
 import { ImagesController } from './controller/images.controller';
 import { ImageSchema } from './schema/images.schema';
 import { ImagesService } from './service/images.service';
-import { ProcessUploadDataUtil } from './util/process-upload-data.util';
+
 
 @Module({
     imports: [
@@ -15,7 +15,7 @@ import { ProcessUploadDataUtil } from './util/process-upload-data.util';
         AppConfigModule,
     ],
     controllers: [ImagesController],
-    providers: [ImagesService, AppConfigService, ProcessUploadDataUtil], 
+    providers: [ImagesService, AppConfigService], 
     exports: [ImagesService]
 
 })

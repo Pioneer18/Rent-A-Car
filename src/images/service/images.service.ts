@@ -11,7 +11,7 @@ import { S3 } from 'aws-sdk';
 import { AppConfigService } from '../../config/configuration.service';
 import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
-
+import * as cryptoRandomString from 'crypto-random-string';
 
 @Injectable()
 export class ImagesService {
@@ -175,30 +175,35 @@ export class ImagesService {
   }
 
   /**
-   * Multer image uploading
-   * using only the multer upload method
-   * Details:
-   * - bucket = rent-a-car-photos/{user_email}/{category}/
+   * Upload Images to S3 Bucket
+   * @param category rentals or profile
+   * summary: send the file(s) to the bucket and give each image a random 10 digit 'tag'.
+   * the tag ensures no images with the exact same name end up in the same AWS Bucket folder
    */
-  async fileupload(req, res) {
-
-    //build the multer upload
+  async fileupload(req, res, category) {
+    // create a multer upload
+    const user: JwtPayloadInterface = req.user;
     const multerUpload = multer({
       storage: multerS3({
         s3: this.getS3(),
-        bucket: 'rent-a-car-photos/multer_test',
+        bucket: `rent-a-car-photos/${user.email}/${category}`,
         acl: 'public-read',
         key: function( request, file, cb) {
-          cb(`${file.originalname}`); // unique id generator for file (image tag)
+          cb(null, `${cryptoRandomString({length: 10, type: 'numeric'})}-${file.originalname}`); // unique id generator for file (image tag)
         },
       }),
-    }).array('upload', 10);
-
+    }).array('upload', 9);
     // Upload the image(s)
     try {
-      multerUpload(req, res);
+      multerUpload(req, res, function(err){
+        if (err) {
+          console.log(err);
+          return res.status(404).json(`Failed to upload image file: ${err}`);
+        }
+        return res.status(201).json(req.files[0].location);
+      });
     } catch (err) {
-      throw new Error(err)
+      return res.status(500).json(`Failed to upload image file: ${err}`)
     }
   }
 
