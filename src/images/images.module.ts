@@ -19,4 +19,8 @@ import { ProcessUploadDataUtil } from './util/process-upload-data.util';
     exports: [ImagesService]
 
 })
-export class ImagesModule {}
+export class ImagesModule {
+    constructor() {
+        ImageSchema.index({tag: 1}); // tag given when image(s) uploaded to AWS
+    }
+}
