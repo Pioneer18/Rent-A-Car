@@ -1,9 +1,8 @@
-import { Controller, Post, Req, UseInterceptors, UploadedFiles, UseGuards, Body, Get, Param, Query, Res, UploadedFile } from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { Controller, Post, Req, UseGuards, Body, Get, Query, Res} from '@nestjs/common';
 import { AppConfigService } from '../../config/configuration.service';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
-import { Request, response } from 'express';
+import { response } from 'express';
 
 @UseGuards(JwtAuthGuard)
 @Controller('images')
@@ -89,20 +88,6 @@ export class ImagesController {
     * Delete a single image
     */
 
-    /**
-     * DEPRECATED
-     * Upload to AWS S3 Bucket
-     * Bucket base: rent-a-car-photos/{email}/{vehicle or profile}
-     * @param {string} file the file(s) being uploaded
-     * @param {object} req.user the logged in user
-     * @param {string} category rentals or profile
-     * @param {string} rental_id id of the rental; if this is a rental image upload
-    @Post('upload')
-    @UseInterceptors(FilesInterceptor('files'))
-    async upload(@UploadedFiles() files, @Req() req, @Body() rental_id) {
-        return await this.imagesService.upload(files, req.user, 'test', rental_id);
-    }
-    */
 
     /**
      * Upload images to AWS S3 Bucket

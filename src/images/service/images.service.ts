@@ -9,18 +9,20 @@ import { Model } from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interface/jwt-payload';
 import { S3 } from 'aws-sdk';
 import { AppConfigService } from '../../config/configuration.service';
-import { ProcessUploadDataUtil } from '../util/process-upload-data.util';
+import * as multer from 'multer';
+import * as multerS3 from 'multer-s3';
 
 
 @Injectable()
 export class ImagesService {
 
+  private s3;
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
     private readonly appConfig: AppConfigService,
-    private readonly processUploadDataUtil: ProcessUploadDataUtil,
-
-  ) { }
+  ) {
+    this.s3 = this.getS3()
+  }
 
   /**
    * TODO: Save with specific [rental id] as well
@@ -129,62 +131,11 @@ export class ImagesService {
     }
   }
 
-  /**
-   * Upload & Save
-   * summary: upload the data to the S3 bucket and then save the data
-   * and the file name
-   * @param  files the file(s) to be uploaded
-   * @param {string} user req.user; Jwt decoded payload
-   * @param {string} category rentals / profile
-   * @param {string | null} rental_id id of the rental the images will be linked to
-   */
-  async upload(files, user: JwtPayloadInterface, category: string, rental_id: string | null) {
-    
-    // upload the data to the S3 bucket
-    const bucket: string = 'rent-a-car-photos/' + `${user.email}/${category}`; // TODO: make this an environment variable
-    Logger.log(`The Bucket: ${bucket}`);
-    const {params, param} = await this.processUploadDataUtil.process(files, bucket)
-    const data = params ? params : param;
-    console.log('Processed: Data');
-    console.log(data);
-    const result = await this.uploadS3(data);
-    return result;
-
-    /**
-     * Save Images to DB
-     * @param bucket bucket name: param for getSignedUrl
-     * @param {[string]} originalname name(s) of the uploaded file(s): param for getSignedUrl
-     * @param expires how long the presigned url(s) will be valid
-     * @param category rentals / profile
-     * @param {string} user_id user id to associate with the image
-     * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
-     */
-    // await saveImages();
-  }
 
   /**
-   * Upload file(s) to AWS S3 Bucket
-   * @param {object | array} data an upload object or an array of objects 
+   * ////////////////////////////////////////////////// AWS CODE BELOW ///////////////////////////////////////////////////////////////////////////////
    */
-  private async uploadS3(params) {
-    // connect to the S3 Bucket
-    const s3 = this.getS3();
-    // upload the data
-    console.log('Call the s3.upload() funtion')
-    return new Promise((resolve, reject) => {
-      s3.upload(params, {}, (err, data) => {
-        if (err) {
-          Logger.error(err);
-          reject(err.message);
-        }
-        resolve(data);
-      });
-    });
-  }
 
-  /**
-   * Multer Upload File(s) to AWS S3 Bucket
-   */
 
   /**
    * Connect to the S3 Bucket
@@ -202,7 +153,7 @@ export class ImagesService {
    * @param bucket location of the photo
    */
   private getSingedUrl = async (bucket, originalname) => {
-    const s3 = this.getS3()
+    const s3 = this.s3;
     const params = {
       Bucket: bucket,
       Key: originalname,
@@ -222,4 +173,33 @@ export class ImagesService {
       }
     }
   }
+
+  /**
+   * Multer image uploading
+   * using only the multer upload method
+   * Details:
+   * - bucket = rent-a-car-photos/{user_email}/{category}/
+   */
+  async fileupload(req, res) {
+
+    //build the multer upload
+    const multerUpload = multer({
+      storage: multerS3({
+        s3: this.getS3(),
+        bucket: 'rent-a-car-photos/multer_test',
+        acl: 'public-read',
+        key: function( request, file, cb) {
+          cb(`${file.originalname}`); // unique id generator for file (image tag)
+        },
+      }),
+    }).array('upload', 10);
+
+    // Upload the image(s)
+    try {
+      multerUpload(req, res);
+    } catch (err) {
+      throw new Error(err)
+    }
+  }
+
 }
