@@ -28,7 +28,7 @@ export class ImagesController {
     @Post('upload-rental-images')
     async uploadRentalImages(@Req() req, @Res() res) {
         try {
-            await this.imagesService.fileupload(req, res, 'rentals')
+            await this.imagesService.fileuploadAndSave(req, res, 'rentals')
         } catch(err) {
             return response
                 .status(500)
@@ -43,7 +43,7 @@ export class ImagesController {
     @Post('upload-profile-images')
     async uploadProfileImage(@Req() req, @Res() res) {
         try {
-            await this.imagesService.fileupload(req, res, 'profile')
+            await this.imagesService.fileuploadAndSave(req, res, 'profile')
         } catch(err) {
             return response
                 .status(500)
@@ -110,7 +110,7 @@ export class ImagesController {
     @Post('multer-upload')
     async multerUpload(@Req() req, @Res() res) {
         try {
-            await this.imagesService.fileupload(req, res, 'testing_category')
+            await this.imagesService.fileuploadAndSave(req, res, 'testing_category')
         } catch(err) {
             return response
                 .status(500)

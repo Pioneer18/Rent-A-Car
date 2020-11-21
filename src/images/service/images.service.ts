@@ -180,27 +180,30 @@ export class ImagesService {
    * summary: send the file(s) to the bucket and give each image a random 10 digit 'tag'.
    * the tag ensures no images with the exact same name end up in the same AWS Bucket folder
    */
-  async fileupload(req, res, category) {
-    // create a multer upload
-    const user: JwtPayloadInterface = req.user;
-    const multerUpload = multer({
-      storage: multerS3({
-        s3: this.getS3(),
-        bucket: `rent-a-car-photos/${user.email}/${category}`,
-        acl: 'public-read',
-        key: function( request, file, cb) {
-          cb(null, `${cryptoRandomString({length: 10, type: 'numeric'})}-${file.originalname}`); // unique id generator for file (image tag)
-        },
-      }),
-    }).array('upload', 9);
-    // Upload the image(s)
+  async fileuploadAndSave(req, res, category) {
     try {
-      multerUpload(req, res, function(err){
+      // create a multer upload
+      const user: JwtPayloadInterface = req.user;
+      const multerUpload = multer({
+        storage: multerS3({
+          s3: this.getS3(),
+          bucket: `rent-a-car-photos/${user.email}/${category}`,
+          acl: 'public-read',
+          key: function (request, file, cb) {
+            cb(null, `${cryptoRandomString({ length: 10, type: 'numeric' })}-${file.originalname}`); // unique id generator for file (image tag)
+          },
+        }),
+      }).array('upload', 9);
+      // Upload the image(s)
+      multerUpload(req, res, function (err) {
         if (err) {
           console.log(err);
           return res.status(404).json(`Failed to upload image file: ${err}`);
         }
-        return res.status(201).json(req.files[0].location);
+        res.status(201).json(req.files[0].location);
+        console.log('BIG OLE TEE-HEEEEEEEEEE');
+        // Save Images to DB
+        return;
       });
     } catch (err) {
       return res.status(500).json(`Failed to upload image file: ${err}`)
