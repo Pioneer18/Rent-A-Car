@@ -9,25 +9,52 @@ import { Model } from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interface/jwt-payload';
 import { S3 } from 'aws-sdk';
 import { AppConfigService } from '../../config/configuration.service';
-
+import * as multer from 'multer';
+import * as multerS3 from 'multer-s3';
 
 @Injectable()
 export class ImagesService {
 
+  private s3;
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
     private readonly appConfig: AppConfigService,
-  ) { }
+  ) {
+    this.s3 = this.getS3()
+  }
 
   /**
    * TODO: Save with specific [rental id] as well
    * Upload Images of User's Vehicle
-   * @param files user's selected vehicle image files
+   * @param files array of files
+   * @param category rentals / profile
+   * @param {string} user_id user id to associate with the image
+   * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  async saveImages(files: [any], user: JwtPayloadInterface, category: string) {
+  async saveImages(files, category, user_id, rental_id) {
     try {
-      const packet: ImageInterface[] = [];
+      console.log('Hello from inside saveImages, inside of the multer callback')
+      console.log(files);
+      console.log(category);
+      console.log(user_id);
+      console.log(rental_id)
+      /**
+       * Steps:
+       * 1) check for file and if there is more than one: use insertMany or save()
+
+       * 2) if it's only one file:
+       * - map an image document with all of the arguments
+       * - save the image document
+       * 3) if it's multiple files:
+       * - create an array of mapped image documents
+       * - save the array of mapped image documents
+       */
+
+
+
+      // const packet: ImageInterface[] = [];
       // map files to packet
+      /*
       files.map(item => {
         packet.push({
           data: item.buffer,
@@ -36,16 +63,24 @@ export class ImagesService {
           encoding: item.encoding,
           size: item.size,
           category: category,
-          user_id: user.sub,
+          user_id: user.userId,
         })
       })
+      */
       // insert packet into the database
-      await this.imagesModel.insertMany(packet);
-      return { message: 'These are the images that were uploaded', packet };
+      //await this.imagesModel.insertMany(packet);
+      // return { message: 'These are the images that were uploaded', packet };
     } catch (err) {
       throw new Error(err);
     }
   }
+
+  /**
+   * Get signed url
+  */
+  //const url = await this.getSingedUrl(bucket,originalname);
+  //Logger.log(`Presigned URL: ${url}`);
+  //return {result: result, presigned: url};
 
   /**
    * Find all of user's vehicle images
@@ -58,7 +93,7 @@ export class ImagesService {
       img_id ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: user.sub, category: 'Vehicle' });
+        const images = await this.imagesModel.find({ user_id: user.userId, category: 'Vehicle' });
         return { count: images.length, images: images }
       }
       // find a specific image
@@ -77,7 +112,7 @@ export class ImagesService {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: user.sub })
+        const images = await this.imagesModel.find({ user_id: user.userId })
         return { count: images.length, images: images };
       };
       return await this.imagesModel.findById(img_id);
@@ -92,53 +127,90 @@ export class ImagesService {
    */
   async deleteImages(user: JwtPayloadInterface, category) {
     try {
-      return await this.imagesModel.deleteMany({ user_id: user.sub, category });
+      return await this.imagesModel.deleteMany({ user_id: user.userId, category });
     } catch (err) {
       throw new Error(err);
     }
   }
 
+
   /**
-   * AWS Upload and 
-   * Seems you can actually make folders on the fly
-   * Images making it up there, but access denied when trying to view them?
+   * ////////////////////////////////////////////////// AWS CODE BELOW ///////////////////////////////////////////////////////////////////////////////
    */
-  async upload(file) {
-    console.log('Here is the File:')
-    console.log(file);
-    const { originalname } = file;
-    const bucketS3 = 'rent-a-car-photos/vehicles'; // the base url is rent-a-car-photos/
-    await this.uploadS3(file.buffer, bucketS3, originalname);
-  }
 
-  async uploadS3(file, bucket, name) {
-    const s3 = this.getS3();
-    const params = {
-      Bucket: bucket, // rentals/
-      Key: String(name),
-      Body: file,
-    };
-    const url = s3.getSignedUrl('getObject', params);
-    console.log(`Here is the Url`)
-    console.log(url);
-    console.log('S3 UPLOAD PARAMS:')
-    console.log(params);
-    return new Promise((resolve, reject) => {
-      s3.upload(params, (err, data) => {
-        if (err) {
-          Logger.error(err);
-          reject(err.message);
-        }
-        resolve(data);
-      });
-    });
-  }
 
-  getS3() {
+  /**
+   * Connect to the S3 Bucket
+   */
+  private getS3() {
     return new S3({
-      accessKeyId: process.env.ACCESS_KEY_ID,
-      secretAccessKey: process.env.SECRET_ACCESS_KEY,
+      accessKeyId: this.appConfig.access_key_id, // process.env.ACCESS_KEY_ID,
+      secretAccessKey: this.appConfig.secret_access_key // process.env.SECRET_ACCESS_KEY,
     });
+  }
+
+  // Get Presigned Url to download file
+  /**
+   * @param originalname file name
+   * @param bucket location of the photo
+   */
+  private getSingedUrl = async (bucket, originalname) => {
+    const s3 = this.s3;
+    const params = {
+      Bucket: bucket,
+      Key: originalname,
+      Expires: 60 * 60, //1 hour
+    };
+    try {
+      const url = await new Promise((resolve, reject) => {
+        s3.getSignedUrl('getObject', params, (err, url) => {
+          err ? reject(err) : resolve(url);
+        });
+      });
+      Logger.log(url)
+      return url;
+    } catch (err) {
+      if (err) {
+        throw new Error(err);
+      }
+    }
+  }
+
+  /**
+   * Upload Images to S3 Bucket
+   * @param category rentals or profile
+   * summary: send the file(s) to the bucket and give each image a random 10 digit 'tag'.
+   * the tag ensures no images with the exact same name end up in the same AWS Bucket folder
+   */
+  async fileuploadAndSave(req, res, category, saveimages) {
+    try {
+      // create a multer upload
+      const user: JwtPayloadInterface = req.user;
+      const multerUpload = multer({
+        storage: multerS3({
+          s3: this.getS3(),
+          bucket: `rent-a-car-photos/${user.email}/${category}`,
+          acl: 'public-read',
+          key: function (request, file, cb) {
+            cb(null, `${file.etag}-${file.originalname}`); // unique id generator for file (image tag)
+          },
+        }),
+      }).array('upload', 9);
+      // Upload the image(s)
+      await multerUpload(req, res, function (err) {
+        if (err) {
+          console.log(err);
+          return res.status(404).json(`Failed to upload image file: ${err}`);
+        }
+        // Save the Images
+        console.log(user)
+        saveimages(req.files, category, user.userId, 'iloveunasbigafricanbubblebutt')
+        // return the response
+        return res.status(201).json(req.files[0].location);
+      });
+    } catch (err) {
+      return res.status(500).json(`Failed to upload image file: ${err}`)
+    }
   }
 
 }

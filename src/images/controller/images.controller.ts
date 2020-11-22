@@ -1,8 +1,8 @@
-import { Controller, Post, Req, UseInterceptors, UploadedFiles, UseGuards, Body, Get, Param, Query, Res, UploadedFile } from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { Controller, Post, Req, UseGuards, Body, Get, Query, Res} from '@nestjs/common';
 import { AppConfigService } from '../../config/configuration.service';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
+import { response } from 'express';
 
 @UseGuards(JwtAuthGuard)
 @Controller('images')
@@ -10,36 +10,45 @@ export class ImagesController {
     constructor(private readonly imagesService: ImagesService, private readonly appConfig: AppConfigService) { }
 
     /**
-     * 1) upload vehicle photos to db with reference to the logged in user
-     * 2) find vehicle photos in the db 
+     * 1) upload rental photos to db with reference to the logged in user
      * 3) upload profile photo to db with reference to the logged in user
+     * 2) find rental photos in the db 
      * 4) find profile photos in the db
-     * 5) remove specific photo(s) from vehicle photo db
-     * 6) remove specific photo(s) from profile photo db
+     * 5) remove specific rental photo(s) from db
+     * 6) remove specific profile photo(s) from db
      */
 
 
     /**
-     * Upload a single or multiple vehicle photos to be saved
+     * Upload a single or multiple rental photos to be saved
      * @param files fieldName
      * @param maxCount maxCount
      * @param options option
      */
-    @Post('upload-vehicle-images')
-    @UseInterceptors(FilesInterceptor('files'))
-    async uploadVehicleImages(@UploadedFiles() files: [any], @Req() req) {
-        // pass files to images service to be saved in the db
-        return await this.imagesService.saveImages(files, req.user, 'Vehicle');
+    @Post('upload-rental-images')
+    async uploadRentalImages(@Req() req, @Res() res) {
+        try {
+            await this.imagesService.fileuploadAndSave(req, res, 'rentals', this.imagesService.saveImages)
+        } catch(err) {
+            return response
+                .status(500)
+                .json(`Failed to upload image file: ${err.message}`)
+        }
     }
 
     /**
-     * Upload a single photo to be saved
+     * Upload a single or multiple profile photos to be saved
      * @param files fieldName
      */
     @Post('upload-profile-images')
-    @UseInterceptors(FilesInterceptor('file'))
-    async uploadProfileImage(@UploadedFiles() file, @Req() req) {
-        return await this.imagesService.saveImages(file, req.user, 'Profile');
+    async uploadProfileImage(@Req() req, @Res() res) {
+        try {
+            await this.imagesService.fileuploadAndSave(req, res, 'profile', this.imagesService.saveImages)
+        } catch(err) {
+            return response
+                .status(500)
+                .json(`Failed to upload image file: ${err.message}`)
+        }
     }
 
     /**
@@ -52,7 +61,7 @@ export class ImagesController {
     }
 
     /**
-     * Find vehicle image by id
+     * Find a vehicle image by id
      * @param image the id of the image to find
      */
     @Get('find-vehicle-image')
@@ -61,7 +70,7 @@ export class ImagesController {
     }
 
     /**
-     * Find user profile image
+     * Find a user profile image
      * @param req request object
      */
     @Get('find-profile-images')
@@ -70,7 +79,7 @@ export class ImagesController {
     }
 
     /**
-     * Find user profile image
+     * Find a user profile image
      * @param req request object
      */
     @Get('find-profile-image')
@@ -88,17 +97,25 @@ export class ImagesController {
     }
 
     /**
-    * Delete single image
+    * Delete a single image
     */
 
-    /**
-     * Upload to AWS S3 Bucket
-     */
 
-    @Post('upload')
-    @UseInterceptors(FileInterceptor('file'))
-    async upload(@UploadedFile() file) {
-        return await this.imagesService.upload(file);
+    /**
+     * Upload images to AWS S3 Bucket
+     * Bucket: rent-a-car-photos/{user_email}/{category}/{tag}/
+     * uses handler uses multer to extract file(s) from the Request
+     * TODO: This is 2 Routes - 1) Rentals and 2) Profile image(s) upload
+     */
+    @Post('multer-upload')
+    async multerUpload(@Req() req, @Res() res) {
+        try {
+            await this.imagesService.fileuploadAndSave(req, res, 'testing_category', this.imagesService.saveImages)
+        } catch(err) {
+            return response
+                .status(500)
+                .json(`Failed to upload image file: ${err.message}`)
+        }
     }
 
 }

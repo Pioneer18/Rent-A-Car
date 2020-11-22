@@ -7,15 +7,20 @@ import { ImagesController } from './controller/images.controller';
 import { ImageSchema } from './schema/images.schema';
 import { ImagesService } from './service/images.service';
 
+
 @Module({
     imports: [
         DatabaseModule,
         MongooseModule.forFeature([{ name: 'Images', schema: ImageSchema}]),
-        AppConfigModule
+        AppConfigModule,
     ],
     controllers: [ImagesController],
-    providers: [ImagesService, AppConfigService],
+    providers: [ImagesService, AppConfigService], 
     exports: [ImagesService]
 
 })
-export class ImagesModule {}
+export class ImagesModule {
+    constructor() {
+        ImageSchema.index({tag: 1}); // tag given when image(s) uploaded to AWS
+    }
+}

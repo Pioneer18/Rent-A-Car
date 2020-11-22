@@ -11,9 +11,7 @@ export class ExtractUserUtil {
         const user: JwtPayloadInterface = {
             username: temp.username,
             email: temp.email,
-            sub: temp.sub,
-            iat: temp.iat,
-            exp: temp.exp
+            userId: temp.userId
         }
         return user;
     }
