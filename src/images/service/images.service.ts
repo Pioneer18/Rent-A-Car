@@ -119,7 +119,9 @@ export class ImagesService {
   }
 
   /**
-   * Delete all of a user's images by category
+   * Delete Images
+   * Sumamry: Delete a single or multiple of user's selected images
+   * @param category the images category; rentals or profile
    * @param user the user property of the request object
    */
   deleteImages = async(user: JwtPayloadInterface, category) => {
@@ -128,6 +130,14 @@ export class ImagesService {
     } catch (err) {
       throw new Error(err);
     }
+  }
+
+  /**
+   * Delete All Images
+   * Summary: Delete all images of the selected rental or profile
+   */
+  deleteAllImages = async(user: JwtPayloadInterface, rental_id: string) => {
+    return 'fake news...'
   }
 
   /**

@@ -100,12 +100,30 @@ export class ImagesController {
     }
 
     /**
+     * Delete all Rental Images
+     * Summary: delete all images for a selected rental
+     */
+    @Post('delete-all-rental-images')
+    async deleteAllRentalImages(@Query() params, @Req() req) {
+        return await this.imagesService.deleteAllImages(req.user, params.rental_id);
+    }
+
+    /**
      * Delete Profile Images
      * Summary: Delete a single or multiple of a user's profile images
     */
    @Post('delete-profile-images')
    async deleteProfileImages(@Query() params: { category: string }, @Req() req) {
         return await this.imagesService.deleteImages(req.user, params.category);
+   }
+
+   /**
+    * Delete All Profile Images
+    * Summary: Delete all of the user's profile images
+    */
+   @Post('delete-all-profile-images')
+   async deleteAllProfileImages(@Req() req) {
+        return await this.imagesService.deleteAllImages(req.user, null);
    }
 
 }
