@@ -16,13 +16,10 @@ import { profile, rentals } from '../../common/Const';
 @Injectable()
 export class ImagesService {
 
-  private s3;
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
     private readonly appConfig: AppConfigService,
-  ) {
-    this.s3 = this.getS3()
-  }
+  ) {}
 
   /**
    * TODO: Save with specific [rental id] as well
@@ -32,27 +29,9 @@ export class ImagesService {
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  async saveImages(files, category, user_id, rental_id, model) {
+  saveImages = async(files, category, user_id, rental_id, model) => {
     try {
-      console.log('Hello from inside saveImages, inside of the multer callback')
-      console.log(files);
-      console.log(files.length)
-      console.log(category);
-      console.log(user_id);
-      console.log(rental_id)
-
-      /**
-       * Steps:
-       * 1) check for file and if there is more than one: use insertMany or save()
-
-       * 2) if it's only one file:
-       * - map an image document with all of the arguments
-       * - save the image document
-       * 3) if it's multiple files:
-       * - create an array of mapped image documents
-       * - save the array of mapped image documents
-       */
-
+      // check for files
       if (files && files.length > 0) {
         // single file
         if (files.length === 1) {
@@ -74,6 +53,23 @@ export class ImagesService {
 
         }
         // multiple files
+        const packet = files.map(item => {
+          const image: ImageInterface = {
+            user_id: user_id,
+            rental_id: rental_id,
+            bucket: item.bucket,
+            key: item.key,
+            etag: item.etag,
+            category: category,
+            size: item.size,
+            location: item.location
+          }
+          return image;
+        });
+        console.log(`Here is the packet: ${JSON.stringify(packet)}`);
+        return await model.insertMany(packet, function(err, docs){ 
+          if (err) {throw new Error(err)}
+        });
       }
       throw new Error('Failed to save images, files not found');
     } catch (err) {
@@ -85,7 +81,7 @@ export class ImagesService {
    * Find all of user's vehicle images
    * @param user the user property of the request object
    */
-  async findVehicleImages(user: JwtPayloadInterface, img_id?: string) {
+  findVehicleImages = async (user: JwtPayloadInterface, img_id?: string) => {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
@@ -106,7 +102,7 @@ export class ImagesService {
    * Find all of user's profile images
    * @param user the user property of the request object
    */
-  async findProfileImages(user: JwtPayloadInterface, img_id?: string) {
+  findProfileImages = async(user: JwtPayloadInterface, img_id?: string) => {
     try {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
@@ -124,7 +120,7 @@ export class ImagesService {
    * Delete all of a user's images by category
    * @param user the user property of the request object
    */
-  async deleteImages(user: JwtPayloadInterface, category) {
+  deleteImages = async(user: JwtPayloadInterface, category) => {
     try {
       return await this.imagesModel.deleteMany({ user_id: user.userId, category });
     } catch (err) {
@@ -139,7 +135,7 @@ export class ImagesService {
   /**
    * Connect to the S3 Bucket
    */
-  private getS3() {
+  private getS3 = () => {
     return new S3({
       accessKeyId: this.appConfig.access_key_id, // process.env.ACCESS_KEY_ID,
       secretAccessKey: this.appConfig.secret_access_key // process.env.SECRET_ACCESS_KEY,
@@ -152,7 +148,7 @@ export class ImagesService {
    * summary: send the file(s) to the bucket and give each image a random 10 digit 'tag'.
    * the tag ensures no images with the exact same name end up in the same AWS Bucket folder
    */
-  async fileuploadAndSave(req, res, category, saveimages) {
+  fileuploadAndSave = async(req, res, category, saveimages) => {
     try {
       const model = this.imagesModel;
       // create a multer upload
