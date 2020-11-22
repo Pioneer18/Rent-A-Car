@@ -11,6 +11,7 @@ import { profile, rentals } from '../../common/Const';
 /**
  * Images Service
  * written by: Jonathan Sells
+ * methods: [saveImages, findRentalImages, findProfileImages, deleteImages, getS3, fileUploadAndSave]
  */
 @Injectable()
 export class ImagesService {
@@ -22,6 +23,7 @@ export class ImagesService {
 
   /**
    * Save uploaded images
+   * Summary: Saves uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 
    * @param files array of files
    * @param category rentals / profile
    * @param {string} user_id user id to associate with the image
@@ -79,7 +81,7 @@ export class ImagesService {
    * Find all of user's vehicle images
    * @param user the user property of the request object
    */
-  findVehicleImages = async (user: JwtPayloadInterface, img_id?: string) => {
+  findRentalImages = async (user: JwtPayloadInterface, img_id?: string) => {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
@@ -143,10 +145,9 @@ export class ImagesService {
   /**
    * Upload Images to S3 Bucket
    * @param category rentals or profile
-   * summary: send the file(s) to the bucket and give each image a random 10 digit 'tag'.
-   * the tag ensures no images with the exact same name end up in the same AWS Bucket folder
+   * summary: send the file(s) to the bucket and attach a timestamp to each filename.
    */
-  fileuploadAndSave = async(req, res, category, saveimages) => {
+  fileuploadAndSave = async(req, res, category, rental_id, saveimages) => {
     try {
       const model = this.imagesModel;
       // create a multer upload
@@ -169,7 +170,7 @@ export class ImagesService {
         }
         // Save the Images
         console.log(user)
-        saveimages(req.files, category, user.userId, 'iloveunasbigafricanbubblebutt', model);
+        saveimages(req.files, category, user.userId, rental_id, model);
         return res.status(201).json(req.files[0].location);
       });
 

@@ -23,9 +23,9 @@ export class ImagesController {
      * @param options option
      */
     @Post('upload-rental-images')
-    async uploadRentalImages(@Req() req, @Res() res) {
+    async uploadRentalImages(@Req() req, @Res() res, @Body() rental_id: string) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, rentals, this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, rentals, rental_id, this.imagesService.saveImages)
         } catch(err) {
             return response
                 .status(500)
@@ -38,9 +38,9 @@ export class ImagesController {
      * @param files fieldName
      */
     @Post('upload-profile-images')
-    async uploadProfileImage(@Req() req, @Res() res) {
+    async uploadProfileImage(@Req() req, @Res() res, @Body() rental_id: string) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, profile, this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, profile, rental_id, this.imagesService.saveImages)
         } catch(err) {
             return response
                 .status(500)
@@ -105,9 +105,9 @@ export class ImagesController {
      * TODO: This is 2 Routes - 1) Rentals and 2) Profile image(s) upload
      */
     @Post('multer-upload')
-    async multerUpload(@Req() req, @Res() res) {
+    async multerUpload(@Req() req, @Res() res, @Body() rental_id: string) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, 'testing_category', this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, 'testing_category', rental_id, this.imagesService.saveImages)
         } catch(err) {
             return response
                 .status(500)
