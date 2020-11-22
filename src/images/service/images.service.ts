@@ -78,17 +78,18 @@ export class ImagesService {
   }
 
   /**
-   * Find all of user's vehicle images
+   * Find Rental Images
+   * Summary: query multiple rental images by userId and rental_id
    * @param user the user property of the request object
    */
-  findRentalImages = async (user: JwtPayloadInterface, img_id?: string) => {
+  findRentalImages = async (img_id: string | null, rental_id: string | null) => {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
-      img_id ? flag = 'single' : flag = 'multiple';
+      img_id !== null ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: user.userId, category: rentals });
+        const images = await this.imagesModel.find({category: rentals, rental_id: rental_id });
         return { count: images.length, images: images }
       }
       // find a specific image
@@ -99,7 +100,8 @@ export class ImagesService {
   }
 
   /**
-   * Find all of user's profile images
+   * Find Profile Images
+   * Summary: query multiple profile images by user_id and profile category, or find a specific profile photo by id
    * @param user the user property of the request object
    */
   findProfileImages = async(user: JwtPayloadInterface, img_id?: string) => {
@@ -107,7 +109,7 @@ export class ImagesService {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: user.userId, category: profile })
+        const images = await this.imagesModel.find({category: profile, user_id: user.userId})
         return { count: images.length, images: images };
       };
       return await this.imagesModel.findById(img_id);

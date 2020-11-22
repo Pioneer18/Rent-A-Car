@@ -21,6 +21,7 @@ import { ImagesService } from './service/images.service';
 })
 export class ImagesModule {
     constructor() {
-        ImageSchema.index({tag: 1}); // tag given when image(s) uploaded to AWS
+        ImageSchema.index({rental_id: 1}); 
+        ImageSchema.index({user_id: 1}); 
     }
 }

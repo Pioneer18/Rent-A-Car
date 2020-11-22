@@ -23,9 +23,9 @@ export class ImagesController {
      * @param options option
      */
     @Post('upload-rental-images')
-    async uploadRentalImages(@Req() req, @Res() res, @Body() rental_id: string) {
+    async uploadRentalImages(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, rentals, rental_id, this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, rentals, params.rental_id, this.imagesService.saveImages)
         } catch(err) {
             return response
                 .status(500)
@@ -38,9 +38,9 @@ export class ImagesController {
      * @param files fieldName
      */
     @Post('upload-profile-images')
-    async uploadProfileImage(@Req() req, @Res() res, @Body() rental_id: string) {
+    async uploadProfileImage(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, profile, rental_id, this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, profile, params.rental_id, this.imagesService.saveImages)
         } catch(err) {
             return response
                 .status(500)
@@ -52,18 +52,18 @@ export class ImagesController {
      * Find all vehicle images related to a user
      * @param req the request object, which has a user property
      */
-    @Get('find-all-vehicle-images')
-    async findAllVehilceImages(@Req() req) {
-        return await this.imagesService.findVehicleImages(req.user);
+    @Get('find-rental-images')
+    async findAllVehilceImages(@Query() params) {
+        return await this.imagesService.findRentalImages(null, params.rental_id);
     }
 
     /**
      * Find a vehicle image by id
      * @param image the id of the image to find
      */
-    @Get('find-vehicle-image')
-    async findVehicleImage(@Req() req, @Body() image: { id: string }) {
-        return await this.imagesService.findVehicleImages(req.user, image.id)
+    @Get('find-rental-image')
+    async findVehicleImage(@Query() params: { image_id: string }) {
+        return await this.imagesService.findRentalImages(params.image_id, null)
     }
 
     /**
@@ -105,9 +105,9 @@ export class ImagesController {
      * TODO: This is 2 Routes - 1) Rentals and 2) Profile image(s) upload
      */
     @Post('multer-upload')
-    async multerUpload(@Req() req, @Res() res, @Body() rental_id: string) {
+    async multerUpload(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, 'testing_category', rental_id, this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, 'testing_category', params.rental_id, this.imagesService.saveImages)
         } catch(err) {
             return response
                 .status(500)
