@@ -11,7 +11,6 @@ import { S3 } from 'aws-sdk';
 import { AppConfigService } from '../../config/configuration.service';
 import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
-import * as cryptoRandomString from 'crypto-random-string';
 
 @Injectable()
 export class ImagesService {
@@ -27,15 +26,18 @@ export class ImagesService {
   /**
    * TODO: Save with specific [rental id] as well
    * Upload Images of User's Vehicle
-   * @param bucket bucket name: param for getSignedUrl
-   * @param originalnames name of the uploaded file: param for getSignedUrl
-   * @param expires how long the presigned url will be valid
+   * @param files array of files
    * @param category rentals / profile
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  async saveImages() {
+  async saveImages(files, category, user_id, rental_id) {
     try {
+      console.log('Hello from inside saveImages, inside of the multer callback')
+      console.log(files);
+      console.log(category);
+      console.log(user_id);
+      console.log(rental_id)
       /**
        * Steps:
        * 1) check for file and if there is more than one: use insertMany or save()
@@ -61,7 +63,7 @@ export class ImagesService {
           encoding: item.encoding,
           size: item.size,
           category: category,
-          user_id: user.sub,
+          user_id: user.userId,
         })
       })
       */
@@ -91,7 +93,7 @@ export class ImagesService {
       img_id ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: user.sub, category: 'Vehicle' });
+        const images = await this.imagesModel.find({ user_id: user.userId, category: 'Vehicle' });
         return { count: images.length, images: images }
       }
       // find a specific image
@@ -110,7 +112,7 @@ export class ImagesService {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: user.sub })
+        const images = await this.imagesModel.find({ user_id: user.userId })
         return { count: images.length, images: images };
       };
       return await this.imagesModel.findById(img_id);
@@ -125,7 +127,7 @@ export class ImagesService {
    */
   async deleteImages(user: JwtPayloadInterface, category) {
     try {
-      return await this.imagesModel.deleteMany({ user_id: user.sub, category });
+      return await this.imagesModel.deleteMany({ user_id: user.userId, category });
     } catch (err) {
       throw new Error(err);
     }
@@ -180,7 +182,7 @@ export class ImagesService {
    * summary: send the file(s) to the bucket and give each image a random 10 digit 'tag'.
    * the tag ensures no images with the exact same name end up in the same AWS Bucket folder
    */
-  async fileuploadAndSave(req, res, category) {
+  async fileuploadAndSave(req, res, category, saveimages) {
     try {
       // create a multer upload
       const user: JwtPayloadInterface = req.user;
@@ -190,20 +192,21 @@ export class ImagesService {
           bucket: `rent-a-car-photos/${user.email}/${category}`,
           acl: 'public-read',
           key: function (request, file, cb) {
-            cb(null, `${cryptoRandomString({ length: 10, type: 'numeric' })}-${file.originalname}`); // unique id generator for file (image tag)
+            cb(null, `${file.etag}-${file.originalname}`); // unique id generator for file (image tag)
           },
         }),
       }).array('upload', 9);
       // Upload the image(s)
-      multerUpload(req, res, function (err) {
+      await multerUpload(req, res, function (err) {
         if (err) {
           console.log(err);
           return res.status(404).json(`Failed to upload image file: ${err}`);
         }
-        res.status(201).json(req.files[0].location);
-        console.log('BIG OLE TEE-HEEEEEEEEEE');
-        // Save Images to DB
-        return;
+        // Save the Images
+        console.log(user)
+        saveimages(req.files, category, user.userId, 'iloveunasbigafricanbubblebutt')
+        // return the response
+        return res.status(201).json(req.files[0].location);
       });
     } catch (err) {
       return res.status(500).json(`Failed to upload image file: ${err}`)

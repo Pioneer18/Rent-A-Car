@@ -5,15 +5,18 @@ const Schema = mongoose.Schema;
 
 export const ImageSchema = new Schema({
     user_id: String, // ObjectId of the logged in user
-    tagName: String,
-    originalName: String, 
+    rental_id: {type: String || null }, // null for profile images
     bucket: String, // 'rent-a-car-photos/{user_email}/{category}'
+    key: String, // 'etag-originalname'
+    originalName: String, 
+    etag: String,
     category: String, // rentals or profile
     size: String,
+    location: String, // aws url for image download
 });
 
 
 /**
  * rent-a-car-photos/sellsj14@gmail.com/category
- *  - 'tag-file'
+ *  - 'etag-file'
  */
