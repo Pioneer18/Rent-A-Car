@@ -85,8 +85,7 @@ export class RentalService {
   async createRental(rental: MappedRentalInterface) {
     try {
       const document = await new this.rentalModel(rental);
-      await document.save();
-      return document;
+      return await document.save();
     } catch (err) {
       throw new Error(err);
     }

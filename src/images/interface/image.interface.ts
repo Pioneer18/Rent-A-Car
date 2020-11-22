@@ -1,11 +1,11 @@
-import * as mongoose from 'mongoose'
 
 export interface ImageInterface{
-    data: Buffer;
-    mimeType: string;
-    originalName: string;
-    encoding: string;
-    size: string;
-    category: string;
     user_id: string;
+    rental_id: string;
+    bucket: string;
+    key: string;
+    etag: string;
+    category: string;
+    size: string;
+    location: string;
 }

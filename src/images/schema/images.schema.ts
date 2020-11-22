@@ -7,9 +7,9 @@ export const ImageSchema = new Schema({
     user_id: String, // ObjectId of the logged in user
     rental_id: {type: String || null }, // null for profile images
     bucket: String, // 'rent-a-car-photos/{user_email}/{category}'
-    key: String, // 'etag-originalname'
+    key: String, // 'timestamp-originalname'
     originalName: String, 
-    etag: String,
+    etag: String || null,
     category: String, // rentals or profile
     size: String,
     location: String, // aws url for image download
