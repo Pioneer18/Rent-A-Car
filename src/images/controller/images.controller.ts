@@ -29,7 +29,7 @@ export class ImagesController {
         } catch (err) {
             return response
                 .status(500)
-                .json(`Failed to upload image file: ${err.message}`)
+                .json(`Failed to upload image file: ${err.message}`);
         }
     }
 
@@ -45,7 +45,7 @@ export class ImagesController {
         } catch (err) {
             return response
                 .status(500)
-                .json(`Failed to upload image file: ${err.message}`)
+                .json(`Failed to upload image file: ${err.message}`);
         }
     }
 
@@ -66,7 +66,7 @@ export class ImagesController {
      */
     @Get('find-rental-image')
     async findVehicleImage(@Query() params: { image_id: string }) {
-        return await this.imagesService.findRentalImages(params.image_id, null)
+        return await this.imagesService.findRentalImages(params.image_id, null);
     }
 
     /**
@@ -95,13 +95,17 @@ export class ImagesController {
      * @param category both or a single one
      */
     @Post('delete-rental-images')
-    async deleteAllImages(@Query() params: { category: string }, @Req() req) {
-        return await this.imagesService.deleteImages(req.user, params.category)
+    async deleteRentalImages(@Query() params: { category: string }, @Req() req) {
+        return await this.imagesService.deleteImages(req.user, params.category);
     }
 
     /**
      * Delete Profile Images
      * Summary: Delete a single or multiple of a user's profile images
     */
+   @Post('delete-profile-images')
+   async deleteProfileImages(@Query() params: { category: string }, @Req() req) {
+        return await this.imagesService.deleteImages(req.user, params.category);
+   }
 
 }
