@@ -3,11 +3,15 @@ import { AppConfigService } from '../../config/configuration.service';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
 import { response } from 'express';
+import { profile, rentals } from 'src/common/Const';
 
 @UseGuards(JwtAuthGuard)
 @Controller('images')
 export class ImagesController {
-    constructor(private readonly imagesService: ImagesService, private readonly appConfig: AppConfigService) { }
+    constructor(
+        private readonly imagesService: ImagesService,
+        private readonly appConfig: AppConfigService,
+    ) { }
 
     /**
      * 1) upload rental photos to db with reference to the logged in user
@@ -28,7 +32,7 @@ export class ImagesController {
     @Post('upload-rental-images')
     async uploadRentalImages(@Req() req, @Res() res) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, 'rentals', this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, rentals, this.imagesService.saveImages)
         } catch(err) {
             return response
                 .status(500)
@@ -43,7 +47,7 @@ export class ImagesController {
     @Post('upload-profile-images')
     async uploadProfileImage(@Req() req, @Res() res) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, 'profile', this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, profile, this.imagesService.saveImages)
         } catch(err) {
             return response
                 .status(500)

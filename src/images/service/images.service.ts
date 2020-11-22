@@ -11,6 +11,7 @@ import { S3 } from 'aws-sdk';
 import { AppConfigService } from '../../config/configuration.service';
 import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
+import { profile, rentals } from '../../common/Const';
 
 @Injectable()
 export class ImagesService {
@@ -31,13 +32,15 @@ export class ImagesService {
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  async saveImages(files, category, user_id, rental_id) {
+  async saveImages(files, category, user_id, rental_id, model) {
     try {
       console.log('Hello from inside saveImages, inside of the multer callback')
       console.log(files);
+      console.log(files.length)
       console.log(category);
       console.log(user_id);
       console.log(rental_id)
+
       /**
        * Steps:
        * 1) check for file and if there is more than one: use insertMany or save()
@@ -50,37 +53,33 @@ export class ImagesService {
        * - save the array of mapped image documents
        */
 
+      if (files && files.length > 0) {
+        // single file
+        if (files.length === 1) {
+          const temp = files[0];
+          const image: ImageInterface = {
+            user_id: user_id,
+            rental_id: rental_id,
+            bucket: temp.bucket,
+            key: temp.key,
+            etag: temp.etag,
+            category: category,
+            size: temp.size,
+            location: temp.location
+          }
+          console.log('The Document to be saved')
+          const doc = await new model(image);
+          console.log(doc);
+          return await doc.save();
 
-
-      // const packet: ImageInterface[] = [];
-      // map files to packet
-      /*
-      files.map(item => {
-        packet.push({
-          data: item.buffer,
-          mimeType: item.mimetype,
-          originalName: item.originalname,
-          encoding: item.encoding,
-          size: item.size,
-          category: category,
-          user_id: user.userId,
-        })
-      })
-      */
-      // insert packet into the database
-      //await this.imagesModel.insertMany(packet);
-      // return { message: 'These are the images that were uploaded', packet };
+        }
+        // multiple files
+      }
+      throw new Error('Failed to save images, files not found');
     } catch (err) {
       throw new Error(err);
     }
   }
-
-  /**
-   * Get signed url
-  */
-  //const url = await this.getSingedUrl(bucket,originalname);
-  //Logger.log(`Presigned URL: ${url}`);
-  //return {result: result, presigned: url};
 
   /**
    * Find all of user's vehicle images
@@ -93,7 +92,7 @@ export class ImagesService {
       img_id ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: user.userId, category: 'Vehicle' });
+        const images = await this.imagesModel.find({ user_id: user.userId, category: rentals });
         return { count: images.length, images: images }
       }
       // find a specific image
@@ -112,7 +111,7 @@ export class ImagesService {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: user.userId })
+        const images = await this.imagesModel.find({ user_id: user.userId, category: profile })
         return { count: images.length, images: images };
       };
       return await this.imagesModel.findById(img_id);
@@ -133,11 +132,9 @@ export class ImagesService {
     }
   }
 
-
   /**
    * ////////////////////////////////////////////////// AWS CODE BELOW ///////////////////////////////////////////////////////////////////////////////
    */
-
 
   /**
    * Connect to the S3 Bucket
@@ -149,11 +146,48 @@ export class ImagesService {
     });
   }
 
+  /**
+   * Upload Images to S3 Bucket
+   * @param category rentals or profile
+   * summary: send the file(s) to the bucket and give each image a random 10 digit 'tag'.
+   * the tag ensures no images with the exact same name end up in the same AWS Bucket folder
+   */
+  async fileuploadAndSave(req, res, category, saveimages) {
+    try {
+      const model = this.imagesModel;
+      // create a multer upload
+      const user: JwtPayloadInterface = req.user;
+      const multerUpload = multer({
+        storage: multerS3({
+          s3: this.getS3(),
+          bucket: `rent-a-car-photos/${user.email}/${category}`,
+          acl: 'public-read',
+          key: function (request, file, cb) {
+            cb(null, `${Date.now()}-${file.originalname}`); // unique id generator for file (image tag)
+          },
+        }),
+      }).array('upload', 9);
+      // Upload the image(s)
+      await multerUpload(req, res, function (err) {
+        if (err) {
+          console.log(err);
+          return res.status(404).json(`Failed to upload image file: ${err}`);
+        }
+        // Save the Images
+        console.log(user)
+        saveimages(req.files, category, user.userId, 'iloveunasbigafricanbubblebutt', model);
+        return res.status(201).json(req.files[0].location);
+      });
+
+    } catch (err) {
+      return res.status(500).json(`Failed to upload image file: ${err}`)
+    }
+  }
+
   // Get Presigned Url to download file
   /**
    * @param originalname file name
    * @param bucket location of the photo
-   */
   private getSingedUrl = async (bucket, originalname) => {
     const s3 = this.s3;
     const params = {
@@ -175,42 +209,7 @@ export class ImagesService {
       }
     }
   }
+  */
 
-  /**
-   * Upload Images to S3 Bucket
-   * @param category rentals or profile
-   * summary: send the file(s) to the bucket and give each image a random 10 digit 'tag'.
-   * the tag ensures no images with the exact same name end up in the same AWS Bucket folder
-   */
-  async fileuploadAndSave(req, res, category, saveimages) {
-    try {
-      // create a multer upload
-      const user: JwtPayloadInterface = req.user;
-      const multerUpload = multer({
-        storage: multerS3({
-          s3: this.getS3(),
-          bucket: `rent-a-car-photos/${user.email}/${category}`,
-          acl: 'public-read',
-          key: function (request, file, cb) {
-            cb(null, `${file.etag}-${file.originalname}`); // unique id generator for file (image tag)
-          },
-        }),
-      }).array('upload', 9);
-      // Upload the image(s)
-      await multerUpload(req, res, function (err) {
-        if (err) {
-          console.log(err);
-          return res.status(404).json(`Failed to upload image file: ${err}`);
-        }
-        // Save the Images
-        console.log(user)
-        saveimages(req.files, category, user.userId, 'iloveunasbigafricanbubblebutt')
-        // return the response
-        return res.status(201).json(req.files[0].location);
-      });
-    } catch (err) {
-      return res.status(500).json(`Failed to upload image file: ${err}`)
-    }
-  }
 
 }
