@@ -1,4 +1,4 @@
-import { Controller, Post, Req, UseGuards, Body, Get, Query, Res} from '@nestjs/common';
+import { Controller, Post, Req, UseGuards, Body, Get, Query, Res } from '@nestjs/common';
 import { AppConfigService } from '../../config/configuration.service';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
@@ -26,7 +26,7 @@ export class ImagesController {
     async uploadRentalImages(@Req() req, @Res() res, @Query() params) {
         try {
             await this.imagesService.fileuploadAndSave(req, res, rentals, params.rental_id, this.imagesService.saveImages)
-        } catch(err) {
+        } catch (err) {
             return response
                 .status(500)
                 .json(`Failed to upload image file: ${err.message}`)
@@ -34,14 +34,15 @@ export class ImagesController {
     }
 
     /**
-     * Upload a single or multiple profile photos to be saved
+     * Upload Profile Images
+     * Summary: Upload a single or multiple profile photos to be saved
      * @param files fieldName
      */
     @Post('upload-profile-images')
     async uploadProfileImage(@Req() req, @Res() res, @Query() params) {
         try {
             await this.imagesService.fileuploadAndSave(req, res, profile, params.rental_id, this.imagesService.saveImages)
-        } catch(err) {
+        } catch (err) {
             return response
                 .status(500)
                 .json(`Failed to upload image file: ${err.message}`)
@@ -49,7 +50,8 @@ export class ImagesController {
     }
 
     /**
-     * Find all vehicle images related to a user
+     * Finad Rental Images
+     * Summary: Find all of a rentals images
      * @param req the request object, which has a user property
      */
     @Get('find-rental-images')
@@ -58,7 +60,8 @@ export class ImagesController {
     }
 
     /**
-     * Find a vehicle image by id
+     * Find Rental Image
+     * Summary: Find a vehicle image by id
      * @param image the id of the image to find
      */
     @Get('find-rental-image')
@@ -67,7 +70,8 @@ export class ImagesController {
     }
 
     /**
-     * Find a user profile image
+     * Find Profile Images
+     * Summary: Find a user profile image
      * @param req request object
      */
     @Get('find-profile-images')
@@ -76,7 +80,8 @@ export class ImagesController {
     }
 
     /**
-     * Find a user profile image
+     * Find Profile Image
+     * Summary: Find a user profile image
      * @param req request object
      */
     @Get('find-profile-image')
@@ -85,34 +90,18 @@ export class ImagesController {
     }
 
     /**
-     * TODO: Delete selected images
+     * Delete Rental Images
+     * Summary: Delete a single or multiple images of a rental
      * @param category both or a single one
      */
-    @Post('delete-all-images')
+    @Post('delete-rental-images')
     async deleteAllImages(@Query() params: { category: string }, @Req() req) {
         return await this.imagesService.deleteImages(req.user, params.category)
     }
 
     /**
-    * Delete a single image
+     * Delete Profile Images
+     * Summary: Delete a single or multiple of a user's profile images
     */
-
-
-    /**
-     * Upload images to AWS S3 Bucket
-     * Bucket: rent-a-car-photos/{user_email}/{category}/{tag}/
-     * uses handler uses multer to extract file(s) from the Request
-     * TODO: This is 2 Routes - 1) Rentals and 2) Profile image(s) upload
-     */
-    @Post('multer-upload')
-    async multerUpload(@Req() req, @Res() res, @Query() params) {
-        try {
-            await this.imagesService.fileuploadAndSave(req, res, 'testing_category', params.rental_id, this.imagesService.saveImages)
-        } catch(err) {
-            return response
-                .status(500)
-                .json(`Failed to upload image file: ${err.message}`)
-        }
-    }
 
 }
