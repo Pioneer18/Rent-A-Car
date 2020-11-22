@@ -4,7 +4,10 @@ import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
 import { response } from 'express';
 import { profile, rentals } from 'src/common/Const';
-
+/**
+ * Image Controller
+ * written by: Jonathan Sells
+ */
 @UseGuards(JwtAuthGuard)
 @Controller('images')
 export class ImagesController {
@@ -12,16 +15,6 @@ export class ImagesController {
         private readonly imagesService: ImagesService,
         private readonly appConfig: AppConfigService,
     ) { }
-
-    /**
-     * 1) upload rental photos to db with reference to the logged in user
-     * 3) upload profile photo to db with reference to the logged in user
-     * 2) find rental photos in the db 
-     * 4) find profile photos in the db
-     * 5) remove specific rental photo(s) from db
-     * 6) remove specific profile photo(s) from db
-     */
-
 
     /**
      * Upload a single or multiple rental photos to be saved

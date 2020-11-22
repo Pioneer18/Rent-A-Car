@@ -1,7 +1,3 @@
-/**
- * Save Images
- * Could upload images to AWS S3 bucket and save the links?
- */
 import { Injectable, Logger, Req, Res } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ImageInterface } from '../interface/image.interface';
@@ -12,7 +8,10 @@ import { AppConfigService } from '../../config/configuration.service';
 import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
 import { profile, rentals } from '../../common/Const';
-
+/**
+ * Images Service
+ * written by: Jonathan Sells
+ */
 @Injectable()
 export class ImagesService {
 
@@ -22,8 +21,7 @@ export class ImagesService {
   ) {}
 
   /**
-   * TODO: Save with specific [rental id] as well
-   * Upload Images of User's Vehicle
+   * Save uploaded images
    * @param files array of files
    * @param category rentals / profile
    * @param {string} user_id user id to associate with the image
