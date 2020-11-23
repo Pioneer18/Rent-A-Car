@@ -41,6 +41,8 @@ export class GeoUrlApiPipe {
     const geoUrl = this.appConfig.geo_url;
     try {
       // create the address
+      console.log(`Here is the Value leading to the Error`)
+      console.log(value);
       const address = await this.createAddress(value);
       // request the coordinates from the API
       const coords = await this.getCoordinates(address, geoUrl, appId, appCode);
