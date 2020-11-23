@@ -7,7 +7,7 @@ This project is a demonstration of server-side development skills. Rent-A-Car is
 * will be deployed soon :)
 
 ## Rent-A-Car Route Map
-### Auth: login into and manage account
+### Auth: login and manage account
 - ***@Post(login)***: log user into the application and grant a JWT authentication token
 - ***@Post(logout)***: log user out of the application and expire their JWT authentication token
 - ***@Post(change-password)***: replace user's current password with the new password
