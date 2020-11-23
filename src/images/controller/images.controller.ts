@@ -96,8 +96,8 @@ export class ImagesController {
      * @param category both or a single one
      */
     @Post('delete-images')
-    async deleteRentalImages(@Body() images: ImageDto[]) {
-        return await this.imagesService.deleteImages(images);
+    async deleteRentalImages(@Body() images: ImageDto[], @Req() req) {
+        return await this.imagesService.deleteImages(images, req.user);
     }
 
     /**

@@ -15,6 +15,8 @@ import { ProcessedSaveDataInterface } from '../interface/processed-save-data.int
  * Images Service
  * written by: Jonathan Sells
  * methods: [saveImages, findRentalImages, findProfileImages, deleteImages, getS3, fileUploadAndSave]
+ * note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
+ * this makes queries slightly less selective and less efficient, but more secure.
  */
 @Injectable()
 export class ImagesService {
@@ -97,17 +99,17 @@ export class ImagesService {
    * @param category the images category; rentals or profile
    * @param user_id used to verify the photos belong to the requesting user
    */
-  deleteImages = async (images: ImageDto[]) => {
+  deleteImages = async (images: ImageDto[], user: JwtPayloadInterface) => {
     try {
       if (images && images.length > 0) {
         if (images.length === 1) {
-          return await this.imagesModel.deleteOne({ _id: images[0]._id });
+          return await this.imagesModel.deleteOne({ _id: images[0]._id, user_id: user.userId });
         }
         const ids = [];
         images.map(item => {
           ids.push(item._id);
         });
-        return await this.imagesModel.deleteMany({ _id: { $in: ids } })
+        return await this.imagesModel.deleteMany({ _id: { $in: ids }, user_id: user.userId })
       }
     } catch (err) {
       throw new Error(err);
@@ -123,7 +125,7 @@ export class ImagesService {
   deleteAllImages = async (user: JwtPayloadInterface, rental_id: string) => {
     // delete all images of the selected rental
     if (user && rental_id !== null) {
-      return await this.imagesModel.deleteMany({ rental_id: rental_id });
+      return await this.imagesModel.deleteMany({ rental_id: rental_id, user_id: user.userId });
     }
     // delete all of the user's profile images
     if (user && rental_id === null) {
