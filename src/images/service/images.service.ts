@@ -12,6 +12,7 @@ import { S3Provider } from '../providers/s3.provider';
 import { CreateMulterUploadUtil } from '../util/create-multer-upload.util';
 import { MulterUploadUtil } from '../util/multer-upload.util';
 import { ImageQueryResultsDto } from '../dto/image-query-results.dto';
+import { DeleteS3ImagesUtil } from '../util/delete-s3-images.util';
 /**
  * Images Service
  * written by: Jonathan Sells
@@ -28,6 +29,7 @@ export class ImagesService {
     private readonly s3Provider: S3Provider,
     private readonly createMulterUploadUtil: CreateMulterUploadUtil,
     private readonly multerUploadUtil: MulterUploadUtil,
+    private readonly deleteS3ImagesUtil: DeleteS3ImagesUtil,
   ) { }
   s3 = this.s3Provider.getS3();
 
@@ -73,7 +75,7 @@ export class ImagesService {
       }
       // find a specific image
       const image = await this.imagesModel.findById(img_id);
-      return { count: 1, images: image}
+      return { count: 1, images: image }
     } catch (err) {
       throw new Error(err);
     }
@@ -93,7 +95,7 @@ export class ImagesService {
         return { count: images.length, images: images };
       };
       const image = await this.imagesModel.findById(img_id);
-      return { count: 1, images: image}
+      return { count: 1, images: image }
     } catch (err) {
       throw new Error(err)
     }
@@ -109,32 +111,40 @@ export class ImagesService {
     try {
       if (images && images.length > 0) {
         if (images.length === 1) {
-          // delete image from s3 bucket
-          if (images[0].location.match(/\/rentals\//)){
-            console.log(images[0].location);
-            const split = images[0].location.split(/\/rentals\//);
-            const bucket = `rent-a-car-photos/${user.email}/rentals`;
-            console.log(bucket)
-            const key = split[1];
-            await this.s3.deleteObject({Bucket: bucket, Key: key}, function(err, data) {
-              if (err) { Logger.log(err, err.stack) }
-              Logger.log(data);
-            });
-          }
-          // if stting contains profile/ cut everything from behind there
-          this.s3.deleteObject({Bucket: 'bleeh', Key: 'bleeh' })
+          await this.deleteS3ImagesUtil.deleteS3Image(images, user);
           return await this.imagesModel.deleteOne({ _id: images[0]._id, user_id: user.userId });
         }
-        const ids = [];
-        images.map(item => {
-          ids.push(item._id);
-        });
+        const ids = await this.deleteS3ImagesUtil.deleteS3Images(images, user);
         return await this.imagesModel.deleteMany({ _id: { $in: ids }, user_id: user.userId })
       }
     } catch (err) {
       throw new Error(err);
     }
   }
+
+  /**
+   *
+   * @param user var params = {
+  Bucket: "examplebucket",
+  Delete: {
+   Objects: [
+      {
+     Key: "HappyFace.jpg",
+     VersionId: "2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b"
+    },
+      {
+     Key: "HappyFace.jpg",
+     VersionId: "yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd"
+    }
+   ],
+   Quiet: false
+  }
+  };
+  s3.deleteObjects(params, function(err, data) {
+   if (err) console.log(err, err.stack); // an error occurred
+   else     console.log(data);           // successful response
+   * @param rental_id
+   */
 
   /**
    * Delete All Images

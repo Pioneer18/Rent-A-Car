@@ -8,6 +8,7 @@ import { S3Provider } from './providers/s3.provider';
 import { ImageSchema } from './schema/images.schema';
 import { ImagesService } from './service/images.service';
 import { CreateMulterUploadUtil } from './util/create-multer-upload.util';
+import { DeleteS3ImagesUtil } from './util/delete-s3-images.util';
 import { MulterUploadUtil } from './util/multer-upload.util';
 import { ProcessSaveDataUtil } from './util/process-save-data.util';
 
@@ -26,6 +27,7 @@ import { ProcessSaveDataUtil } from './util/process-save-data.util';
         S3Provider,
         CreateMulterUploadUtil,
         MulterUploadUtil,
+        DeleteS3ImagesUtil,
     ],
     exports: [ImagesService]
 
