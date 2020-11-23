@@ -1,5 +1,5 @@
 # Rent-A-Car
-This project is a demonstration of server-side development skills. Rent-A-Car is a simple demonstrative car rental web application that allows users to login, list their own vehicles, or search for vehicles by address. This app is a minimized version of a previous project I was working on, it is a demonstration of a well tested, secure, streamlined, modular, and scalable web application backend.
+This project is a demonstration of server-side development skills. Rent-A-Car is a simple demonstrative car rental web application that allows users to login, list their own vehicles, or search for vehicles by address, scheduled availability, and other filters. This app is a minimized version of a previous project I was working on, it is a demonstration of a well tested, secure, streamlined, modular, and scalable web application backend.
 
 ## Try the App with Postman:
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/d687e602b7ebb63c6883#?env%5BRent-A-Car%5D=W3sia2V5IjoiYmFzZV91cmwiLCJ2YWx1ZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiUmVzZXRfVG9rZW4iLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiY29va2llIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=)
