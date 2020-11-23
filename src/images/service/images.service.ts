@@ -82,6 +82,9 @@ export class ImagesService {
    * Find Rental Images
    * Summary: query multiple rental images by userId and rental_id
    * @param user the user property of the request object
+   * @param img_id id of an image; if provided only this image will be found
+   * @param rental_id the id of the rental
+   * @param user_id used to verify the image belongs to the requesting user
    */
   findRentalImages = async (img_id: string | null, rental_id: string | null) => {
     // img_id given from findVehicleImage endpoint
@@ -123,10 +126,9 @@ export class ImagesService {
    * Delete Images
    * Sumamry: Delete a single or multiple of user's selected images
    * @param category the images category; rentals or profile
-   * @param user the user property of the request object
+   * @param user_id used to verify the photos belong to the requesting user
    */
   deleteImages = async (images: ImageDto[]) => {
-    console.log(images);
     try {
       if (images && images.length > 0) {
         if (images.length === 1) {
@@ -146,9 +148,17 @@ export class ImagesService {
   /**
    * Delete All Images
    * Summary: Delete all images of the selected rental or profile
+   * @param user_id used to locate the user's photos as well as verify they belong to them
    */
   deleteAllImages = async (user: JwtPayloadInterface, rental_id: string) => {
-    return 'fake news...'
+    // delete all images of the selected rental
+    if (user && rental_id !== null) {
+      return await this.imagesModel.deleteMany({rental_id: rental_id});
+    }
+    // delete all of the user's profile images
+    if (user && rental_id === null ) {
+      return await this.imagesModel.deleteMany({user_id: user.userId, category: profile});
+    }
   }
 
 
