@@ -11,7 +11,7 @@ This project is a demonstration of a scalable, loosely-coupled, testable, server
 
 ## Contributing
 - Jonathan Sells
-- This project is a smaller demonstrative version of the original project **Turrendas** [githublink] that I was working on with Jean Canales (Hakuti: https://github.com/Hakuti)
+- This project is a smaller demonstrative version of the original project **Turrendas** (https://github.com/Pioneer18/turrendas-backend) that I was working on with Jean Canales (Hakuti: https://github.com/Hakuti)
 
 ## License
 This project is licensed under the MIT license. See the LICENSE file for more info.
