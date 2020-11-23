@@ -3,18 +3,18 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ImageInterface } from '../interface/image.interface';
 import { Model } from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interface/jwt-payload';
-import { S3 } from 'aws-sdk';
 import { AppConfigService } from '../../config/configuration.service';
-import * as multer from 'multer';
-import * as multerS3 from 'multer-s3';
-import { profile, rentals } from '../../common/Const';
+import { profile } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
 import { ProcessSaveDataUtil } from '../util/process-save-data.util';
 import { ProcessedSaveDataInterface } from '../interface/processed-save-data.interface';
+import { S3Provider } from '../providers/s3.provider';
+import { CreateMulterUploadUtil } from '../util/create-multer-upload.util';
+import { MulterUploadUtil } from '../util/multer-upload.util';
+import { ImageQueryResultsDto } from '../dto/image-query-results.dto';
 /**
  * Images Service
  * written by: Jonathan Sells
- * methods: [saveImages, findRentalImages, findProfileImages, deleteImages, getS3, fileUploadAndSave]
  * note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
  * this makes queries slightly less selective and less efficient, but more secure.
  */
@@ -24,8 +24,12 @@ export class ImagesService {
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
     private readonly appConfig: AppConfigService,
-    private readonly processSaveDataUtil: ProcessSaveDataUtil
+    private readonly processSaveDataUtil: ProcessSaveDataUtil,
+    private readonly s3Provider: S3Provider,
+    private readonly createMulterUploadUtil: CreateMulterUploadUtil,
+    private readonly multerUploadUtil: MulterUploadUtil,
   ) { }
+  s3 = this.s3Provider.getS3();
 
   /**
    * Save uploaded images
@@ -57,7 +61,7 @@ export class ImagesService {
    * @param rental_id the id of the rental
    * @param user_id used to verify the image belongs to the requesting user
    */
-  findRentalImages = async (img_id: string | null, rental_id: string | null, user_id: string) => {
+  findRentalImages = async (img_id: string | null, rental_id: string | null, user_id: string): Promise<ImageQueryResultsDto> => {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
@@ -68,7 +72,8 @@ export class ImagesService {
         return { count: images.length, images: images }
       }
       // find a specific image
-      return await this.imagesModel.findById(img_id);
+      const image = await this.imagesModel.findById(img_id);
+      return { count: 1, images: image}
     } catch (err) {
       throw new Error(err);
     }
@@ -87,7 +92,8 @@ export class ImagesService {
         const images = await this.imagesModel.find({ user_id: user.userId })
         return { count: images.length, images: images };
       };
-      return await this.imagesModel.findById(img_id);
+      const image = await this.imagesModel.findById(img_id);
+      return { count: 1, images: image}
     } catch (err) {
       throw new Error(err)
     }
@@ -133,17 +139,6 @@ export class ImagesService {
     }
   }
 
-
-  /**
-   * Connect to the S3 Bucket
-   */
-  private getS3 = () => {
-    return new S3({
-      accessKeyId: this.appConfig.access_key_id, // process.env.ACCESS_KEY_ID,
-      secretAccessKey: this.appConfig.secret_access_key // process.env.SECRET_ACCESS_KEY,
-    });
-  }
-
   /**
    * Upload Images to S3 Bucket
    * summary: send the file(s) to the bucket and attach a timestamp to each filename
@@ -157,29 +152,10 @@ export class ImagesService {
     try {
       // create a multer upload
       const user: JwtPayloadInterface = req.user;
-      const multerUpload = multer({
-        storage: multerS3({
-          s3: this.getS3(),
-          bucket: `rent-a-car-photos/${user.email}/${category}`,
-          acl: 'public-read',
-          key: function (request, file, cb) {
-            cb(null, `${Date.now()}-${file.originalname}`); // unique id generator for file (image tag)
-          },
-        }),
-      }).array('upload', 9);
+      const multerUpload = await this.createMulterUploadUtil.create(req, category)
       // Upload the image(s)
       const model = this.imagesModel;
-      await multerUpload(req, res, function (err) {
-        if (err) {
-          console.log(err);
-          return res.status(404).json(`Failed to upload image file: ${err}`);
-        }
-        // Save the Images
-        console.log(user)
-        saveimages(req.files, category, user.userId, rental_id, model);
-        return res.status(201).json(req.files[0].location);
-      });
-
+      await this.multerUploadUtil.upload(req, res, multerUpload, saveimages, category, user, rental_id, model);
     } catch (err) {
       return res.status(500).json(`Failed to upload image file: ${err}`)
     }
