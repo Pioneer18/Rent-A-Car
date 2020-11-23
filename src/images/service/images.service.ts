@@ -109,6 +109,20 @@ export class ImagesService {
     try {
       if (images && images.length > 0) {
         if (images.length === 1) {
+          // delete image from s3 bucket
+          if (images[0].location.match(/\/rentals\//)){
+            console.log(images[0].location);
+            const split = images[0].location.split(/\/rentals\//);
+            const bucket = `rent-a-car-photos/${user.email}/rentals`;
+            console.log(bucket)
+            const key = split[1];
+            await this.s3.deleteObject({Bucket: bucket, Key: key}, function(err, data) {
+              if (err) { Logger.log(err, err.stack) }
+              Logger.log(data);
+            });
+          }
+          // if stting contains profile/ cut everything from behind there
+          this.s3.deleteObject({Bucket: 'bleeh', Key: 'bleeh' })
           return await this.imagesModel.deleteOne({ _id: images[0]._id, user_id: user.userId });
         }
         const ids = [];
