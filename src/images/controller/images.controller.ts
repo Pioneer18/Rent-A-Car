@@ -3,7 +3,8 @@ import { AppConfigService } from '../../config/configuration.service';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
 import { response } from 'express';
-import { profile, rentals } from 'src/common/Const';
+import { profile, rentals } from '../../common/Const';
+import { ImageDto } from '../dto/image.dto';
 /**
  * Image Controller
  * written by: Jonathan Sells
@@ -55,7 +56,7 @@ export class ImagesController {
      * @param req the request object, which has a user property
      */
     @Get('find-rental-images')
-    async findAllVehilceImages(@Query() params) {
+    async findRentalImages(@Query() params) {
         return await this.imagesService.findRentalImages(null, params.rental_id);
     }
 
@@ -65,8 +66,8 @@ export class ImagesController {
      * @param image the id of the image to find
      */
     @Get('find-rental-image')
-    async findVehicleImage(@Query() params: { image_id: string }) {
-        return await this.imagesService.findRentalImages(params.image_id, null);
+    async findRentalImage(@Query() params: ImageDto) {
+        return await this.imagesService.findRentalImages(params._id, null);
     }
 
     /**
@@ -85,8 +86,8 @@ export class ImagesController {
      * @param req request object
      */
     @Get('find-profile-image')
-    async findProfileImage(@Req() req, @Body() image: { id: string }) {
-        return await this.imagesService.findProfileImages(req.user, image.id);
+    async findProfileImage(@Req() req, @Body() image: ImageDto) {
+        return await this.imagesService.findProfileImages(req.user, image._id);
     }
 
     /**
@@ -94,9 +95,9 @@ export class ImagesController {
      * Summary: Delete a single or multiple images of a rental
      * @param category both or a single one
      */
-    @Post('delete-rental-images')
-    async deleteRentalImages(@Query() params: { category: string }, @Req() req) {
-        return await this.imagesService.deleteImages(req.user, params.category);
+    @Post('delete-images')
+    async deleteRentalImages(@Body() images: ImageDto[]) {
+        return await this.imagesService.deleteImages(images);
     }
 
     /**
@@ -107,15 +108,6 @@ export class ImagesController {
     async deleteAllRentalImages(@Query() params, @Req() req) {
         return await this.imagesService.deleteAllImages(req.user, params.rental_id);
     }
-
-    /**
-     * Delete Profile Images
-     * Summary: Delete a single or multiple of a user's profile images
-    */
-   @Post('delete-profile-images')
-   async deleteProfileImages(@Query() params: { category: string }, @Req() req) {
-        return await this.imagesService.deleteImages(req.user, params.category);
-   }
 
    /**
     * Delete All Profile Images
