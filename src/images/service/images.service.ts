@@ -9,6 +9,8 @@ import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
 import { profile, rentals } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
+import { ProcessSaveDataUtil } from '../util/process-save-data.util';
+import { ProcessedSaveDataInterface } from '../interface/processed-save-data.interface';
 /**
  * Images Service
  * written by: Jonathan Sells
@@ -20,6 +22,7 @@ export class ImagesService {
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
     private readonly appConfig: AppConfigService,
+    private readonly processSaveDataUtil: ProcessSaveDataUtil
   ) { }
 
   /**
@@ -32,47 +35,13 @@ export class ImagesService {
    */
   saveImages = async (files, category, user_id, rental_id, model) => {
     try {
-      // check for files
-      if (files && files.length > 0) {
-        // single file
-        if (files.length === 1) {
-          const temp = files[0];
-          const image: ImageInterface = {
-            user_id: user_id,
-            rental_id: rental_id,
-            bucket: temp.bucket,
-            key: temp.key,
-            etag: temp.etag,
-            category: category,
-            size: temp.size,
-            location: temp.location
-          }
-          console.log('The Document to be saved')
-          const doc = await new model(image);
-          console.log(doc);
-          return await doc.save();
-
-        }
-        // multiple files
-        const packet = files.map(item => {
-          const image: ImageInterface = {
-            user_id: user_id,
-            rental_id: rental_id,
-            bucket: item.bucket,
-            key: item.key,
-            etag: item.etag,
-            category: category,
-            size: item.size,
-            location: item.location
-          }
-          return image;
-        });
-        console.log(`Here is the packet: ${JSON.stringify(packet)}`);
-        return await model.insertMany(packet, function (err, docs) {
-          if (err) { throw new Error(err) }
-        });
+      const { packet, image }: ProcessedSaveDataInterface = await this.processSaveDataUtil.process(files, user_id, rental_id, category);
+      let flag;
+      packet === null ? flag = 'single' : flag = 'multiple';
+      if (flag === 'multiple') {
+        return await model.insertMany(packet);
       }
-      throw new Error('Failed to save images, files not found');
+      return await model.save(image)
     } catch (err) {
       throw new Error(err);
     }
@@ -86,14 +55,14 @@ export class ImagesService {
    * @param rental_id the id of the rental
    * @param user_id used to verify the image belongs to the requesting user
    */
-  findRentalImages = async (img_id: string | null, rental_id: string | null) => {
+  findRentalImages = async (img_id: string | null, rental_id: string | null, user_id: string) => {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
       img_id !== null ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({rental_id: rental_id });
+        const images = await this.imagesModel.find({ rental_id: rental_id, user_id: user_id });
         return { count: images.length, images: images }
       }
       // find a specific image
@@ -113,7 +82,7 @@ export class ImagesService {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({user_id: user.userId })
+        const images = await this.imagesModel.find({ user_id: user.userId })
         return { count: images.length, images: images };
       };
       return await this.imagesModel.findById(img_id);
@@ -132,14 +101,14 @@ export class ImagesService {
     try {
       if (images && images.length > 0) {
         if (images.length === 1) {
-          return await this.imagesModel.deleteOne({_id: images[0]._id});
+          return await this.imagesModel.deleteOne({ _id: images[0]._id });
         }
-        const ids = []; 
+        const ids = [];
         images.map(item => {
           ids.push(item._id);
         });
-        return await this.imagesModel.deleteMany({_id: {$in: ids}})
-      } 
+        return await this.imagesModel.deleteMany({ _id: { $in: ids } })
+      }
     } catch (err) {
       throw new Error(err);
     }
@@ -149,15 +118,16 @@ export class ImagesService {
    * Delete All Images
    * Summary: Delete all images of the selected rental or profile
    * @param user_id used to locate the user's photos as well as verify they belong to them
+   * @param rental_id the id of the rental
    */
   deleteAllImages = async (user: JwtPayloadInterface, rental_id: string) => {
     // delete all images of the selected rental
     if (user && rental_id !== null) {
-      return await this.imagesModel.deleteMany({rental_id: rental_id});
+      return await this.imagesModel.deleteMany({ rental_id: rental_id });
     }
     // delete all of the user's profile images
-    if (user && rental_id === null ) {
-      return await this.imagesModel.deleteMany({user_id: user.userId, category: profile});
+    if (user && rental_id === null) {
+      return await this.imagesModel.deleteMany({ user_id: user.userId, category: profile });
     }
   }
 
@@ -174,12 +144,15 @@ export class ImagesService {
 
   /**
    * Upload Images to S3 Bucket
+   * summary: send the file(s) to the bucket and attach a timestamp to each filename
+   * @param req the request
+   * @param res the response
    * @param category rentals or profile
-   * summary: send the file(s) to the bucket and attach a timestamp to each filename.
+   * @param rental_id the rental_id for rental image uploads
+   * @param saveImages the images.service.saveImages method
    */
   fileuploadAndSave = async (req, res, category, rental_id, saveimages) => {
     try {
-      const model = this.imagesModel;
       // create a multer upload
       const user: JwtPayloadInterface = req.user;
       const multerUpload = multer({
@@ -193,6 +166,7 @@ export class ImagesService {
         }),
       }).array('upload', 9);
       // Upload the image(s)
+      const model = this.imagesModel;
       await multerUpload(req, res, function (err) {
         if (err) {
           console.log(err);

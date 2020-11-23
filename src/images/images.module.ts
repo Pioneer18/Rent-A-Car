@@ -6,6 +6,7 @@ import { DatabaseModule } from '../database/database.module';
 import { ImagesController } from './controller/images.controller';
 import { ImageSchema } from './schema/images.schema';
 import { ImagesService } from './service/images.service';
+import { ProcessSaveDataUtil } from './util/process-save-data.util';
 
 
 @Module({
@@ -15,7 +16,7 @@ import { ImagesService } from './service/images.service';
         AppConfigModule,
     ],
     controllers: [ImagesController],
-    providers: [ImagesService, AppConfigService], 
+    providers: [ImagesService, AppConfigService, ProcessSaveDataUtil], 
     exports: [ImagesService]
 
 })
