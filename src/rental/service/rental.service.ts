@@ -9,8 +9,8 @@ import { EditDetailsDto } from '../dto/edit-details.dto';
 import { unavailabilityModel } from '../../common/Const';
 import { Unavailability } from '../interface/unavailability.interface';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
-import { UpdateUnavailabilityDataDto } from '../dto/update-unavailability-data.dto';
-import { RemoveUnavailabilityDto } from '../dto/remove-unavailability.dto';
+import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update-unavailability-data.dto';
+import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailability.dto';
 
 @Injectable()
 export class RentalService {

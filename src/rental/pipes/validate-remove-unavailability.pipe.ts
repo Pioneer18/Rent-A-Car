@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { RemoveUnavailabilityDto } from '../dto/remove-unavailability.dto';
+import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailability.dto';
 
 @Injectable()
 export class ValidateRemoveUnavailabilityPipe implements PipeTransform {

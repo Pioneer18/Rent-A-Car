@@ -21,9 +21,9 @@ import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pip
 import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
 import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
 import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
-import { UpdateUnavailabilityDataDto } from '../dto/update-unavailability-data.dto';
+import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update-unavailability-data.dto' // '../dto/update-unavailability-data.dto';
 import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
-import { RemoveUnavailabilityDto } from '../dto/remove-unavailability.dto';
+import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailability.dto';
 import { AppConfigService } from '../../config/configuration.service';
 import { ConfigService } from '@nestjs/config';
 

@@ -1,7 +1,7 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { RequestCoordinatesPipe } from './request-coordinates.pipe';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
-import { RentalDurationDto } from '../dto/rental-duration.dto';
+import { RentalDurationDto } from '../dto/retnalDuration/rental-duration.dto';
 import { SearchRentalDto } from '../dto/search-rental.dto';
 import { async } from 'rxjs/internal/scheduler/async';
 

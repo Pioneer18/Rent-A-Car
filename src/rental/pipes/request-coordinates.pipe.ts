@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
-import { RentalDurationDto } from '../dto/rental-duration.dto';
+import { RentalDurationDto } from '../dto/retnalDuration/rental-duration.dto';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 import { SearchRentalDto } from '../dto/search-rental.dto';
 
