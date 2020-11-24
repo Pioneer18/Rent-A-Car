@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as axios from 'axios';
-import { RawCoordinatesDto } from '../dto/retnalDuration/geocoding/raw-coordinates.dto';
+import { RawCoordinatesDto } from '../dto/geocoding/raw-coordinates.dto';
 
 /**
  * GECODING & SEARCH API UTILITY
