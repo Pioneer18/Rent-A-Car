@@ -8,11 +8,8 @@ import { ConfigService } from "@nestjs/config";
 export class AppConfigService {
     constructor(private readonly configService: ConfigService) {}
 
-    get geo_id(): string {
-        return this.configService.get<string>('app.geo_id');
-    }
-    get geo_code(): string {
-        return this.configService.get<string>('app.geo_code');
+    get geo_api_key(): string {
+        return this.configService.get<string>('app.geo_api_key');
     }
     get geo_url(): string {
         return this.configService.get<string>('app.geo_url');

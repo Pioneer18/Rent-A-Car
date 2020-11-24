@@ -17,8 +17,7 @@ import { AppConfigService } from "./configuration.service";
                   .default('development'),
                 PORT: Joi.number().default(3000),
                 // GEO LOCATION API
-                GEO_ID: Joi.string().required(),
-                GEO_CODE: Joi.string().required(),
+                GEO_API_KEY: Joi.string().required(),
                 GEO_URL: Joi.string().required(),
                 // DATABASE
                 REMOTE_DB: Joi.string(),

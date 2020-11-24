@@ -1,18 +1,17 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import * as axios from 'axios';
 
 /**
  * @param {string} address the address to request coordinates for
- * @param {string} geoUrl the link to the API that returns a coordinate for a provided address
- * @param {appId} appId the Id for using the API
- * @param {appCode} appCode the code for using the API
+ * @param {string} geoUrl base url of the Geocoder API
+ * @param {string} apiKey 
  */
 @Injectable()
 export class GeoUrlApiUtil {
-  async makeRequest(location, geoUrl, appId, appCode) {
+  private async makeRequest(location, geoUrl, apiKey) {
     try {
       const request: any = await axios.default.get(
-        `${geoUrl}?app_id=${appId}&app_code=${appCode}&searchtext=${location}`,
+        `${geoUrl}?q=${location}&apiKey=${apiKey}`,
       );
       return request;
     } catch (err) {
@@ -21,16 +20,19 @@ export class GeoUrlApiUtil {
   }
 
   // returns an address as a single string, and the corresponding coordinates
-  async getCoordinates(address, geoUrl, appId, appCode) {
+  async getCoordinates(address, geoUrl, apiKey) {
     try {
       const location: string = address.replace(/\s+/g, '+');
       // make the API request
+      console.log('location before the request')
+      console.log(location);
       const response: any = await this.makeRequest(
         location,
         geoUrl,
-        appId,
-        appCode,
+        apiKey
       );
+      console.log(`Here is the Response`)
+      console.log(response);
       // grab the coordinates
       const rawCoordinates =
         response.data.Response.View[0].Result[0].Location.DisplayPosition;

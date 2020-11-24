@@ -19,31 +19,29 @@ export class GeoUrlApiPipe {
     return address;
   }
 
-  async getCoordinates(
-    address: string,
-    geoUrl: string,
-    appId: string,
-    appCode: string,
+  async getCoordinates(address: string, geoUrl: string, apiKey: string,
   ) {
     Logger.log(`geoUrl: ${process.env.GEO_URL}`);
     const coords = await this.geoUrlApiUtil.getCoordinates(
       address,
       geoUrl,
-      appId,
-      appCode,
+     apiKey
     );
     return coords;
   }
 
   async transform(value: CreateRentalDto) {
-    const appId = this.appConfig.geo_id
-    const appCode = this.appConfig.geo_code;
-    const geoUrl = this.appConfig.geo_url;
+    const apiKey = process.env.GEO_API_KEY;
+    const geoUrl = process.env.GEO_URL;
     try {
       // create the address
       const address = await this.createAddress(value);
       // request the coordinates from the API
-      const coords = await this.getCoordinates(address, geoUrl, appId, appCode);
+      console.log(`Data passed to the geocoding api`)
+      console.log(address);
+      console.log(geoUrl);
+      console.log(apiKey);
+      const coords = await this.getCoordinates(address, geoUrl, apiKey);
       return { value, coords, address };
     } catch (err) {
       throw new Error(err);

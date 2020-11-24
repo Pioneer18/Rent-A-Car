@@ -9,8 +9,7 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
 
   async transform(value: RentalDurationDto) {
     const geoUrl = process.env.GEO_URL;
-    const appId = process.env.GEO_ID;
-    const appCode = process.env.GEO_CODE;
+    const apiKey = process.env.GEO_API_KEY; 
     try {
       // Logger.log(`geoUrl: ${geoUrl}`);
       const dto: SearchRentalDto = {
@@ -23,8 +22,7 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
           coordinates: await this.geoUrlApiUtil.getCoordinates(
             value.address,
             geoUrl,
-            appId,
-            appCode,
+            apiKey
           ),
         },
         givenNotice: value.givenNotice,
