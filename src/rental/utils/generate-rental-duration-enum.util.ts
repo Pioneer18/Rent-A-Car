@@ -1,10 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Interval } from 'luxon';
 import { RentalDurations } from '../const';
+import { ProcessRentalTimeDto } from '../dto/retnalDuration/process-rental-time.dto';
 
 @Injectable()
 export class GenerateRentalDurationEnumUtil {
-  private async processRentalTime(startTime, endTime) {
+  private async processRentalTime(startTime, endTime):Promise<ProcessRentalTimeDto> {
     try {
       const base = Interval.fromDateTimes(startTime, endTime);
       const months = base.length('months');
@@ -21,7 +22,7 @@ export class GenerateRentalDurationEnumUtil {
 
   async generateRentalDurationEnum(startTime, endTime) {
     try {
-      const schedule = await this.processRentalTime(startTime, endTime);
+      const schedule: ProcessRentalTimeDto = await this.processRentalTime(startTime, endTime);
       if (schedule.months > 3) {
         return RentalDurations.Any;
       }

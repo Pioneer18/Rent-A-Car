@@ -13,9 +13,7 @@ export class GeoUrlApiPipe {
 
   private async createAddress(value) {
     // create address string from incoming vehicle.address document
-    const address: string = `${value.location.street} ${value.location.city} ${
-      value.location.zip
-    }`;
+    const address: string = `${value.location.street} ${value.location.city} ${value.location.zip}`;
     return address;
   }
 
