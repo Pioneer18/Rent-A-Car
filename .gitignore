@@ -3,6 +3,7 @@
 /node_modules
 .env
 /key.pem
+testfile.ts
 
 # Logs
 logs
