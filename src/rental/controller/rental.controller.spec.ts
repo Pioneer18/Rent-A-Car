@@ -4,8 +4,8 @@ import { RentalService } from '../service/rental.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RentalSchema } from '../schema/rental.schema';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
-import { SearchRentalDto } from '../dto/search-rental.dto';
-import { PricingDto } from '../dto/pricing.dto';
+import { SearchRentalDto } from '../dto/crud/search-rental.dto';
+import { PricingDto } from '../dto/crud/pricing.dto';
 
 describe('Rental Controller', () => {
   let controller: RentalController;

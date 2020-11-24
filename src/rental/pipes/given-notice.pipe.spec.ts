@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GivenNoticePipe } from './given-notice.pipe';
-import { RawSearchRentalDto } from '../dto/raw-search-rental.dto';
+import { RawSearchRentalDto } from '../dto/crud/raw-search-rental.dto';
 import { Logger } from '@nestjs/common';
 import { DateTime } from 'luxon';
 /**

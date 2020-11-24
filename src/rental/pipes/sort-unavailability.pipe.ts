@@ -1,6 +1,6 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { Unavailability } from '../interface/unavailability.interface';
-import { ScheduleUnavailabilityDto } from '../dto/scheduled-unavailability.dto';
+import { ScheduleUnavailabilityDto } from '../dto/unavailability/scheduled-unavailability.dto';
 import { Sorted } from '../interface/sorted.interface';
 import { Ordered } from '../interface/ordered.interface';
 /**

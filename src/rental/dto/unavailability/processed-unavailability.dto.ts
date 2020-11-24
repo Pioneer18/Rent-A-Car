@@ -1,5 +1,5 @@
-import { UnavailabilityQuery } from '../interface/unavailability-query.interface';
-import { ProcessedUnavailabilityInterface } from '../interface/processed-unavailability.interface';
+import { UnavailabilityQuery } from '../../interface/unavailability-query.interface';
+import { ProcessedUnavailabilityInterface } from '../../interface/processed-unavailability.interface';
 
 export class ProcessedUnavailabilityDto {
     y1Query: UnavailabilityQuery;

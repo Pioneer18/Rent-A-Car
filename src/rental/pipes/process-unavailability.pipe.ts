@@ -1,6 +1,6 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
-import { ValidatedUnavailabilityDto } from '../dto/validated-unavailability.dto';
-import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
+import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unavailability.dto';
+import { ProcessedUnavailabilityDto } from '../dto/unavailability/processed-unavailability.dto';
 import { UnavailabilityQuery } from '../interface/unavailability-query.interface';
 import { Processed } from '../interface/processed.interface';
 import { ProcessedUnavailabilityInterface } from '../interface/processed-unavailability.interface';

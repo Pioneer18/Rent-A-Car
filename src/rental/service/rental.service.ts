@@ -3,12 +3,12 @@ import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RentalInterface } from '../interface/rental.interface';
-import { SearchRentalDto } from '../dto/search-rental.dto';
-import { PricingDto } from '../dto/pricing.dto';
-import { EditDetailsDto } from '../dto/edit-details.dto';
+import { SearchRentalDto } from '../dto/crud/search-rental.dto';
+import { PricingDto } from '../dto/crud/pricing.dto';
+import { EditDetailsDto } from '../dto/crud/edit-details.dto';
 import { unavailabilityModel } from '../../common/Const';
 import { Unavailability } from '../interface/unavailability.interface';
-import { ProcessedUnavailabilityDto } from '../dto/processed-unavailability.dto';
+import { ProcessedUnavailabilityDto } from '../dto/unavailability/processed-unavailability.dto';
 import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update-unavailability-data.dto';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailability.dto';
 

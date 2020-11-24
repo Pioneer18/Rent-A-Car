@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { MapRentalDto } from '../dto/map-rental.dto';
+import { MapRentalDto } from '../dto/crud/map-rental.dto';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 
 @Injectable()

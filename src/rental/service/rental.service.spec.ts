@@ -4,7 +4,7 @@ import { MongooseModule, getModelToken } from '@nestjs/mongoose';
 import { RentalSchema } from '../schema/rental.schema';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 import { TestRentalService } from './test-rental.service';
-import { SearchRentalDto } from '../dto/search-rental.dto';
+import { SearchRentalDto } from '../dto/crud/search-rental.dto';
 
 /**
  * Test the properties of the RentalService Class:

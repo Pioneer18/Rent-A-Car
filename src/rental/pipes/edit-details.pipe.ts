@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { EditDetailsDto } from '../dto/edit-details.dto';
+import { EditDetailsDto } from '../dto/crud/edit-details.dto';
 import { PositiveNumber } from '../../common/util/positive-number';
 import { TypeOfValue } from '../../common/util/typeof-value';
 

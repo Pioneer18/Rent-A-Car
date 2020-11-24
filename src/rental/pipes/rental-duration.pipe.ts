@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { PostGivenNoticeDto } from '../dto/post-given-notice.dto';
+import { PostGivenNoticeDto } from '../dto/retnalDuration/post-given-notice.dto';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum.util';
 import { RentalDurationDto } from '../dto/retnalDuration/rental-duration.dto';
 /**

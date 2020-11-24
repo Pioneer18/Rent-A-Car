@@ -1,6 +1,6 @@
 import { Injectable, ArgumentMetadata, Logger } from '@nestjs/common';
 import { AppConfigService } from '../../config/configuration.service';
-import { CreateRentalDto } from '../dto/create-rental-dto';
+import { CreateRentalDto } from '../dto/crud/create-rental-dto';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 
 /**
@@ -35,10 +35,6 @@ export class GeoUrlApiPipe {
       // create the address
       const address = await this.createAddress(value);
       // request the coordinates from the API
-      console.log(`Data passed to the geocoding api`)
-      console.log(address);
-      console.log(geoUrl);
-      console.log(apiKey);
       const coords = await this.getCoordinates(address, geoUrl, apiKey);
       return { value, coords, address };
     } catch (err) {

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GeoUrlApiPipe } from './geo-url-api.pipe';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
-import { CreateRentalDto } from '../dto/create-rental-dto';
+import { CreateRentalDto } from '../dto/crud/create-rental-dto';
 /**
  * Summary:
  * Creates a single address string from the incoming CreateRentalDto to make API Request

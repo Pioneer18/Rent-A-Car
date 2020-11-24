@@ -1,6 +1,6 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { MapNewRentalPipe } from './map-new-rental.pipe';
-import { MapRentalDto } from '../dto/map-rental.dto';
+import { MapRentalDto } from '../dto/crud/map-rental.dto';
 import { MappedRentalInterface } from '../interface/mapped-rental.interface';
 
 describe('MapNewRentalPipe Unit Test', () => {

@@ -4,7 +4,7 @@ import { Ordered } from '../interface/ordered.interface';
 import { Unavailability } from '../interface/unavailability.interface';
 import { toItemIndexes } from '../../common/util/to-item-indexes';
 import { validated } from '../../common/Const';
-import { ValidatedUnavailabilityDto } from '../dto/validated-unavailability.dto';
+import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unavailability.dto';
 
 @Injectable()
 export class ValidateUnavailabilityPipe implements PipeTransform {

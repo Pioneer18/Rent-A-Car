@@ -1,7 +1,7 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { RentalDurationDto } from '../dto/retnalDuration/rental-duration.dto';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
-import { SearchRentalDto } from '../dto/search-rental.dto';
+import { SearchRentalDto } from '../dto/crud/search-rental.dto';
 
 @Injectable()
 export class RequestCoordinatesPipe implements PipeTransform<any> {

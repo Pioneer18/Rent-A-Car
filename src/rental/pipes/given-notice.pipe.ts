@@ -4,8 +4,8 @@ import {
   Logger,
   ArgumentMetadata,
 } from '@nestjs/common';
-import { PostGivenNoticeDto } from '../dto/post-given-notice.dto';
-import { RawSearchRentalDto } from '../dto/raw-search-rental.dto';
+import { PostGivenNoticeDto } from '../dto/retnalDuration/post-given-notice.dto';
+import { RawSearchRentalDto } from '../dto/crud/raw-search-rental.dto';
 import { DateTime } from 'luxon';
 /**
  * Creates a Luxon Interval from the startTime and currentTime

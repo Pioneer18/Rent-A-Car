@@ -1,6 +1,6 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { PricingPipe } from './pricing.pipe';
-import { PricingDto } from '../dto/pricing.dto';
+import { PricingDto } from '../dto/crud/pricing.dto';
 
 describe('PricingPipe Unit Test', () => {
 

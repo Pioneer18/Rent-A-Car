@@ -1,7 +1,7 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { RentalDurationPipe } from './rental-duration.pipe';
 import { RentalDurationDto } from '../dto/retnalDuration/rental-duration.dto';
-import { PostGivenNoticeDto } from '../dto/post-given-notice.dto';
+import { PostGivenNoticeDto } from '../dto/retnalDuration/post-given-notice.dto';
 import { DateTime } from 'luxon';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum.util';
 import { Logger } from '@nestjs/common';
