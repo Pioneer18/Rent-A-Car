@@ -1,0 +1,567 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rent-a-car documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">rent-a-car documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>ValidateUpdateUnavailabilityMiddleware</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/rental/middleware/validate-update-unavailability.middleware.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Validate the incoming dto
+Validate the expected # of unavailability docs are present in the database</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#calculateRange">calculateRange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#validateDto">validateDto</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#validateExpectedUnavailability">validateExpectedUnavailability</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#use">use</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(unavailability: <a href="../interfaces/Unavailability.html">Model<Unavailability></a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:12</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>unavailability</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/Unavailability.html" target="_self" >Model&lt;Unavailability&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="use"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            use
+                        </b>
+                        <a href="#use"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>use(req: Request, res: Response, next: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:125</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                            <code>Request</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>res</td>
+                                    <td>
+                                            <code>Response</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>next</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="calculateRange"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            calculateRange</b>
+                            <a href="#calculateRange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validateDto"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            validateDto</b>
+                            <a href="#validateDto"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validateExpectedUnavailability"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            validateExpectedUnavailability</b>
+                            <a href="#validateExpectedUnavailability"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject, Logger, NestMiddleware } from &#x27;@nestjs/common&#x27;;
+import { Request, Response } from &#x27;express&#x27;;
+import { unavailabilityModel } from &#x27;../../common/Const&#x27;;
+import { Model } from &#x27;mongoose&#x27;;
+import { Unavailability } from &#x27;../interface/unavailability.interface&#x27;;
+import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/validate-update-unavailability.dto&#x27;;
+/**
+ * Validate the incoming dto
+ * Validate the expected # of unavailability docs are present in the database
+ */
+@Injectable()
+export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
+  constructor(
+    @Inject(unavailabilityModel)
+    private readonly unavailability: Model&lt;Unavailability&gt;,
+  ) {}
+
+  private calculateRange &#x3D; async (
+    y1: { sD: number; eD: number },
+    y2: { sD: number; eD: number } | null,
+  ) &#x3D;&gt; {
+    if (y2 !&#x3D;&#x3D; null) {
+      Logger.log(&#x27;This is a 2 year range ****&#x27;);
+      // calculate range for 2 years
+      let temp1: number;
+      let temp2: number;
+      y1.sD &#x3D;&#x3D;&#x3D; y1.eD ? temp1 &#x3D; 1 : temp1 &#x3D; y1.eD - y1.sD + 1;
+      y2.sD &#x3D;&#x3D;&#x3D; y2.eD ? temp2 &#x3D; 1 : temp2 &#x3D; y2.eD - y2.sD + 1;
+      return {range: temp1 + temp2};
+    }
+    if (y1.sD !&#x3D;&#x3D; y1.eD) {
+      return { range: y1.eD - y1.sD + 1 };
+    }
+    return { range: 1 };
+  }
+
+  // validate that the unavailability is present in the db
+  private validateExpectedUnavailability &#x3D; async (
+    value: ValidateUpdateUnavailabilityDto, range: {range: number},
+  ) &#x3D;&gt; {
+    const test &#x3D; await this.unavailability.find({
+      rentalId: value.rentalId,
+      unavailabilityId: value.unavailabilityId,
+    });
+
+    if (test.length &lt; 1) {
+      throw new Error(&#x27;The requested unavailability is not in the database&#x27;);
+    }
+    if (test.length !&#x3D;&#x3D; range.range) {
+      throw new Error(&#x27;The expected # of days of unavailability to update,\
+      does not match the actual number of days in the database; please remove the unavailability and add a new one instead&#x27;);
+    }
+
+  }
+
+  // validate dto data
+  private validateDto &#x3D; async (value: ValidateUpdateUnavailabilityDto) &#x3D;&gt; {
+    if (typeof value.unavailabilityId !&#x3D;&#x3D; &#x27;string&#x27;) {
+      throw new Error(&#x27;invalid unavailabilityId; must be a string&#x27;);
+    }
+    if (typeof value.rentalId !&#x3D;&#x3D; &#x27;string&#x27;) {
+      throw new Error(&#x27;invalid rental ID; must be a string&#x27;);
+    }
+    if (
+      typeof value.newStart !&#x3D;&#x3D; &#x27;number&#x27; ||
+      value.newStart &lt; 0 ||
+      value.newStart &gt; 24
+    ) {
+      throw new Error(&#x27;invalid start time; must be a number&#x27;);
+    }
+    if (
+      typeof value.newEnd !&#x3D;&#x3D; &#x27;number&#x27; ||
+      value.newEnd &lt; 0 ||
+      value.newEnd &gt; 24
+    ) {
+      throw new Error(&#x27;invalid end time; must be a number&#x27;);
+    }
+    if (value.newStart &gt;&#x3D; value.newEnd) {
+      throw new Error(
+        &#x27;start time cannot be the same as, or before, the end time&#x27;,
+      );
+    }
+    if (typeof value.y1.sD !&#x3D;&#x3D; &#x27;number&#x27;) {
+      throw new Error(&#x27;invalid minimum DOY; must be a number&#x27;);
+    }
+    if (typeof value.y1.eD !&#x3D;&#x3D; &#x27;number&#x27;) {
+      throw new Error(&#x27;invalid maximum DOY; must be a number&#x27;);
+    }
+    if (value.y1.sD &gt; value.y1.eD) {
+      throw new Error(&#x27;minimum DOY cannot be larger than maximum DOY&#x27;);
+    }
+    if (typeof value.y2.sD !&#x3D;&#x3D; &#x27;number&#x27;) {
+      throw new Error(&#x27;invalid minimum DOY; must be a number&#x27;);
+    }
+    if (typeof value.y2.eD !&#x3D;&#x3D; &#x27;number&#x27;) {
+      throw new Error(&#x27;invalid maximum DOY; must be a number&#x27;);
+    }
+    if (value.y2.sD &gt; value.y2.eD) {
+      throw new Error(&#x27;minimum DOY cannot be larger than maximum DOY&#x27;);
+    }
+    if (typeof value.newTitle !&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; value.newTitle !&#x3D;&#x3D; null) {
+      throw new Error(&#x27;invalid title; must be a string&#x27;);
+    }
+    if (
+      typeof value.newStart !&#x3D;&#x3D; &#x27;number&#x27; ||
+      value.newStart &lt; 0 ||
+      value.newStart &gt; 24
+    ) {
+      throw new Error(&#x27;invalid update start time; must be a number&#x27;);
+    }
+    if (
+      typeof value.newEnd !&#x3D;&#x3D; &#x27;number&#x27; ||
+      value.newEnd &lt; 0 ||
+      value.newEnd &gt; 24
+    ) {
+      throw new Error(&#x27;invalid update end time; must be a number&#x27;);
+    }
+    if (value.newStart &gt;&#x3D; value.newEnd) {
+      throw new Error(
+        &#x27;update start time cannot be the same as, or before, the update end time&#x27;,
+      );
+    }
+  }
+
+  async use(req: Request, res: Response, next: Function) {
+    // apply only to update-unavailability request
+    if (req.originalUrl &#x3D;&#x3D;&#x3D; &#x27;/v1/rental/update-unavailability&#x27;) {
+      await this.validateDto(req.body);
+      const range &#x3D; await this.calculateRange(req.body.y1, req.body.y2); // to validate expected # of Unavailability docs
+      await this.validateExpectedUnavailability(req.body, range);
+    }
+    next();
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ValidateUpdateUnavailabilityMiddleware.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

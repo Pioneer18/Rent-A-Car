@@ -1,0 +1,1137 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rent-a-car documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">rent-a-car documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>RentalService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/rental/service/rental.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#checkForOverlap">checkForOverlap</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createRental">createRental</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createRentalQuery">createRentalQuery</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#editDetails">editDetails</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#editPricing">editPricing</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeUnavailability">removeUnavailability</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#scheduleUnavailability">scheduleUnavailability</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#searchRental">searchRental</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateUnavailability">updateUnavailability</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(rentalModel: <a href="../interfaces/RentalInterface.html">Model<RentalInterface></a>, unavailability: <a href="../interfaces/Unavailability.html">Model<Unavailability></a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/rental/service/rental.service.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>rentalModel</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/RentalInterface.html" target="_self" >Model&lt;RentalInterface&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>unavailability</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/Unavailability.html" target="_self" >Model&lt;Unavailability&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createRental"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            createRental
+                        </b>
+                        <a href="#createRental"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createRental(rental: <a href="../interfaces/MappedRentalInterface.html">MappedRentalInterface</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/rental/service/rental.service.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Create Rental:
+create a new vehicle rental listing</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rental</td>
+                                    <td>
+                                                <code><a href="../interfaces/MappedRentalInterface.html" target="_self" >MappedRentalInterface</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createRentalQuery"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                            createRentalQuery
+                        </b>
+                        <a href="#createRentalQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createRentalQuery(rental)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/rental/service/rental.service.ts:23</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rental</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editDetails"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            editDetails
+                        </b>
+                        <a href="#editDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>editDetails(data: <a href="../injectables/EditDetailsDto.html">EditDetailsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/rental/service/rental.service.ts:143</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Edit Rental Details:
+edit the details of the Rental (# of seats, color, etc.)</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../injectables/EditDetailsDto.html" target="_self" >EditDetailsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editPricing"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            editPricing
+                        </b>
+                        <a href="#editPricing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>editPricing(data: <a href="../classes/PricingDto.html">PricingDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/rental/service/rental.service.ts:116</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Edit Pricing:
+edit the rental price</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../classes/PricingDto.html" target="_self" >PricingDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeUnavailability"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            removeUnavailability
+                        </b>
+                        <a href="#removeUnavailability"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeUnavailability(data: <a href="../interfaces/Unavailability.html">RemoveUnavailabilityDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/rental/service/rental.service.ts:199</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../interfaces/Unavailability.html" target="_self" >RemoveUnavailabilityDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scheduleUnavailability"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            scheduleUnavailability
+                        </b>
+                        <a href="#scheduleUnavailability"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>scheduleUnavailability(processed: <a href="../classes/ProcessedUnavailabilityDto.html">ProcessedUnavailabilityDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">src/rental/service/rental.service.ts:165</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Schedule Unavailability:
+set a period of unavailability for the rental (e.g. mon - wed)</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>processed</td>
+                                    <td>
+                                                <code><a href="../classes/ProcessedUnavailabilityDto.html" target="_self" >ProcessedUnavailabilityDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchRental"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            searchRental
+                        </b>
+                        <a href="#searchRental"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>searchRental(rental: <a href="../classes/SearchRentalDto.html">SearchRentalDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/rental/service/rental.service.ts:98</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Search Rental:
+find rentals available near a specified locations (user&#39;s location)</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rental</td>
+                                    <td>
+                                                <code><a href="../classes/SearchRentalDto.html" target="_self" >SearchRentalDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUnavailability"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            updateUnavailability
+                        </b>
+                        <a href="#updateUnavailability"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUnavailability(data: <a href="../interfaces/Unavailability.html">UpdateUnavailabilityDataDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">src/rental/service/rental.service.ts:186</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Update Unavailability
+edit the time interval of an unavailability series</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../interfaces/Unavailability.html" target="_self" >UpdateUnavailabilityDataDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkForOverlap"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            checkForOverlap</b>
+                            <a href="#checkForOverlap"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/rental/service/rental.service.ts:60</a></div>
+                            </td>
+                        </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>data</td>
+                                                        <td>
+                                                                <code><p>query for 1 or 2 years
+validate there currently is no Unavailability in the db that overlaps with the requested</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject, Logger } from &#x27;@nestjs/common&#x27;;
+import { MappedRentalInterface } from &#x27;../interface/mapped-rental.interface&#x27;;
+import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
+import { Model } from &#x27;mongoose&#x27;;
+import { RentalInterface } from &#x27;../interface/rental.interface&#x27;;
+import { SearchRentalDto } from &#x27;../dto/crud/search-rental.dto&#x27;;
+import { PricingDto } from &#x27;../dto/crud/pricing.dto&#x27;;
+import { EditDetailsDto } from &#x27;../dto/crud/edit-details.dto&#x27;;
+import { unavailabilityModel } from &#x27;../../common/Const&#x27;;
+import { Unavailability } from &#x27;../interface/unavailability.interface&#x27;;
+import { ProcessedUnavailabilityDto } from &#x27;../dto/unavailability/processed-unavailability.dto&#x27;;
+import { UpdateUnavailabilityDataDto } from &#x27;../dto/unavailability/update-unavailability-data.dto&#x27;;
+import { RemoveUnavailabilityDto } from &#x27;../dto/unavailability/remove-unavailability.dto&#x27;;
+
+@Injectable()
+export class RentalService {
+  constructor(
+    @InjectModel(&#x27;Rental&#x27;) private readonly rentalModel: Model&lt;RentalInterface&gt;,
+    @Inject(unavailabilityModel)
+    private readonly unavailability: Model&lt;Unavailability&gt;,
+  ) {}
+
+  private async createRentalQuery(rental) {
+    try {
+      const query: any &#x3D; {
+        &#x27;scheduling.rentMinDuration&#x27;: { $lte: rental.rentalDuration },
+        &#x27;scheduling.rentMaxDuration&#x27;: { $gte: rental.rentalDuration },
+        &#x27;scheduling.requiredNotice&#x27;: { $lte: rental.givenNotice },
+        &#x27;loc&#x27;: {
+          $near: {
+            $maxDistance: 12875, // 8 miles
+            $geometry: {
+              type: rental.loc.type,
+              coordinates: [
+                rental.loc.coordinates[0], // latitude
+                rental.loc.coordinates[1], // longitude
+              ],
+            },
+          },
+        },
+      };
+      rental.price
+        ? (query.pricing &#x3D; {
+            price: rental.price, // add price as optional search parameter
+          })
+        : (rental.priceRange &#x3D; null);
+      rental.features
+        ? (query.features &#x3D; { $in: rental.features })
+        : (rental.features &#x3D; null);
+      return query;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * @param data query for 1 or 2 years
+   * validate there currently is no Unavailability in the db that overlaps with the requested
+   */
+  private checkForOverlap &#x3D; async (data: ProcessedUnavailabilityDto) &#x3D;&gt; {
+    const { y1Query, y2Query } &#x3D; data;
+    // if there are 2 years
+    if (y2Query !&#x3D;&#x3D; null) {
+      const test1 &#x3D; await this.unavailability.find(y1Query);
+      const test2 &#x3D; await this.unavailability.find(y2Query);
+      Logger.log(&#x60;test1&#x60;);
+      Logger.log(test1);
+      Logger.log(&#x60;test2&#x60;);
+      Logger.log(test2);
+      if (test1.length || test2.length) {
+        throw new Error(&#x27;this request overlaps with existing unavailability&#x27;);
+      }
+    }
+    // else
+    const test &#x3D; await this.unavailability.find(y1Query);
+    if (test.length) {
+      throw new Error(&#x27;this request overlaps with existing unavailability&#x27;);
+    }
+  };
+
+  /**
+   * Create Rental:
+   * create a new vehicle rental listing
+   */
+  async createRental(rental: MappedRentalInterface) {
+    try {
+      const document &#x3D; await new this.rentalModel(rental);
+      return await document.save();
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * Search Rental:
+   * find rentals available near a specified locations (user&#x27;s location)
+   */
+  async searchRental(rental: SearchRentalDto) {
+    try {
+      const query &#x3D; await this.createRentalQuery(rental);
+      const rentals &#x3D; await this.rentalModel.find(query);
+      if (rentals.length &gt; 0) {
+        return rentals;
+      } else {
+        throw new Error(&#x27;No rentals were found&#x27;);
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * Edit Pricing:
+   * edit the rental price
+   */
+  async editPricing(data: PricingDto) {
+    // make an update document
+    try {
+      const filter &#x3D; { _id: data.rentalId };
+      const update &#x3D; {
+        pricing: {
+          price: data.price,
+          discounts: {
+            weekly: data.discounts.weekly,
+            monthly: data.discounts.monthly,
+          },
+        },
+      };
+      const updater &#x3D; {
+        $set: update,
+      };
+      const doc &#x3D; await this.rentalModel.findOneAndUpdate(filter, updater, {new: true});
+      return doc;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * Edit Rental Details:
+   * edit the details of the Rental (# of seats, color, etc.)
+   */
+  async editDetails(data: EditDetailsDto) {
+    // make an update document
+    try {
+      const filter &#x3D; { _id: data.rentalId };
+      const update &#x3D; {
+        specs: data.specs,
+        features: data.features,
+      };
+      const updater &#x3D; {
+        $set: update,
+      };
+      const doc &#x3D; await this.rentalModel.findOneAndUpdate(filter, updater, {new: true});
+      return doc;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * Schedule Unavailability:
+   * set a period of unavailability for the rental (e.g. mon - wed)
+   */
+  async scheduleUnavailability(processed: ProcessedUnavailabilityDto) {
+    try {
+      await this.checkForOverlap(processed);
+      // if it passed, combine data into one array and insert
+      const { y1, y2 } &#x3D; processed.data;
+      if (y2 !&#x3D;&#x3D; null) {
+        const merged &#x3D; y1.concat(y2);
+        Logger.log(&#x60;the merged years&#x60;);
+        Logger.log(merged);
+        return await this.unavailability.insertMany(merged, { ordered: true });
+      }
+      return await this.unavailability.insertMany(y1, { ordered: true });
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * Update Unavailability
+   * edit the time interval of an unavailability series
+   */
+  async updateUnavailability(data: UpdateUnavailabilityDataDto) {
+    // send the update
+    try {
+      const update &#x3D; await this.unavailability.updateMany(
+        data.filter,
+        data.updater,
+      );
+      return update;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  async removeUnavailability(data: RemoveUnavailabilityDto) {
+    try {
+      const remove &#x3D; await this.unavailability.deleteMany({
+        rentalId: data.rentalId,
+        unavailabilityId: data.unavailabilityId,
+      });
+      if (remove.deletedCount &#x3D;&#x3D;&#x3D; 0) {
+        throw new Error(&#x27;No Unavailability documents were found, no documents were deleted&#x27;);
+      }
+      return remove;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'RentalService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

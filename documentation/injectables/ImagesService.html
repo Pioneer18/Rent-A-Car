@@ -1,0 +1,996 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rent-a-car documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">rent-a-car documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>ImagesService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/images/service/images.service.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Images Service
+written by: Jonathan Sells
+note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
+this makes queries slightly less selective and less efficient, but more secure.</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#deleteAllImages">deleteAllImages</a>
+                            </li>
+                            <li>
+                                <a href="#deleteImages">deleteImages</a>
+                            </li>
+                            <li>
+                                <a href="#fileuploadAndSave">fileuploadAndSave</a>
+                            </li>
+                            <li>
+                                <a href="#findProfileImages">findProfileImages</a>
+                            </li>
+                            <li>
+                                <a href="#findRentalImages">findRentalImages</a>
+                            </li>
+                            <li>
+                                <a href="#s3">s3</a>
+                            </li>
+                            <li>
+                                <a href="#saveImages">saveImages</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(imagesModel: <a href="../interfaces/ImageInterface.html">Model<ImageInterface></a>, appConfig: <a href="../injectables/AppConfigService.html">AppConfigService</a>, processSaveDataUtil: <a href="../injectables/ProcessSaveDataUtil.html">ProcessSaveDataUtil</a>, s3Provider: <a href="../injectables/S3Provider.html">S3Provider</a>, createMulterUploadUtil: <a href="../injectables/CreateMulterUploadUtil.html">CreateMulterUploadUtil</a>, multerUploadUtil: <a href="../injectables/MulterUploadUtil.html">MulterUploadUtil</a>, deleteS3ImagesUtil: <a href="../injectables/DeleteS3ImagesUtil.html">DeleteS3ImagesUtil</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/images/service/images.service.ts:23</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>imagesModel</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/ImageInterface.html" target="_self" >Model&lt;ImageInterface&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>appConfig</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AppConfigService.html" target="_self" >AppConfigService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>processSaveDataUtil</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ProcessSaveDataUtil.html" target="_self" >ProcessSaveDataUtil</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>s3Provider</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/S3Provider.html" target="_self" >S3Provider</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>createMulterUploadUtil</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CreateMulterUploadUtil.html" target="_self" >CreateMulterUploadUtil</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>multerUploadUtil</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MulterUploadUtil.html" target="_self" >MulterUploadUtil</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>deleteS3ImagesUtil</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DeleteS3ImagesUtil.html" target="_self" >DeleteS3ImagesUtil</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="deleteAllImages"></a>
+                        <span class="name">
+                            <b>
+                            deleteAllImages</b>
+                            <a href="#deleteAllImages"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/images/service/images.service.ts:155</a></div>
+                            </td>
+                        </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                <code><p>var params = {
+Bucket: &quot;examplebucket&quot;,
+Delete: {
+Objects: [
+{
+Key: &quot;HappyFace.jpg&quot;,
+VersionId: &quot;2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b&quot;
+},
+{
+Key: &quot;HappyFace.jpg&quot;,
+VersionId: &quot;yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd&quot;
+}
+],
+Quiet: false
+}
+};
+s3.deleteObjects(params, function(err, data) {
+if (err) console.log(err, err.stack); // an error occurred
+else     console.log(data);           // successful response</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>rental_id</td>
+                                                        <td>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="deleteImages"></a>
+                        <span class="name">
+                            <b>
+                            deleteImages</b>
+                            <a href="#deleteImages"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/images/service/images.service.ts:110</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Delete Images
+Sumamry: Delete a single or multiple of user&#39;s selected images</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>category</td>
+                                                        <td>
+                                                                <code><p>the images category; rentals or profile</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>user_id</td>
+                                                        <td>
+                                                                <code><p>used to verify the photos belong to the requesting user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fileuploadAndSave"></a>
+                        <span class="name">
+                            <b>
+                            fileuploadAndSave</b>
+                            <a href="#fileuploadAndSave"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/images/service/images.service.ts:175</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Upload Images to S3 Bucket
+summary: send the file(s) to the bucket and attach a timestamp to each filename</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>req</td>
+                                                        <td>
+                                                                <code><p>the request</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>res</td>
+                                                        <td>
+                                                                <code><p>the response</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>category</td>
+                                                        <td>
+                                                                <code><p>rentals or profile</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>rental_id</td>
+                                                        <td>
+                                                                <code><p>the rental_id for rental image uploads</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>saveImages</td>
+                                                        <td>
+                                                                <code><p>the images.service.saveImages method</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="findProfileImages"></a>
+                        <span class="name">
+                            <b>
+                            findProfileImages</b>
+                            <a href="#findProfileImages"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/images/service/images.service.ts:89</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Find Profile Images
+Summary: query multiple profile images by user_id and profile category, or find a specific profile photo by id</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                <code><p>the user property of the request object</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="findRentalImages"></a>
+                        <span class="name">
+                            <b>
+                            findRentalImages</b>
+                            <a href="#findRentalImages"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/images/service/images.service.ts:66</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Find Rental Images
+Summary: query multiple rental images by userId and rental_id</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                <code><p>the user property of the request object</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>img_id</td>
+                                                        <td>
+                                                                <code><p>id of an image; if provided only this image will be found</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>rental_id</td>
+                                                        <td>
+                                                                <code><p>the id of the rental</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>user_id</td>
+                                                        <td>
+                                                                <code><p>used to verify the image belongs to the requesting user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="s3"></a>
+                        <span class="name">
+                            <b>
+                            s3</b>
+                            <a href="#s3"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.s3Provider.getS3()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/images/service/images.service.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="saveImages"></a>
+                        <span class="name">
+                            <b>
+                            saveImages</b>
+                            <a href="#saveImages"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/images/service/images.service.ts:44</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Save uploaded images
+Summary: Saves uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method </p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>files</td>
+                                                        <td>
+                                                                <code><p>array of files</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>category</td>
+                                                        <td>
+                                                                <code><p>rentals / profile</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>user_id</td>
+                                                        <td>
+                                                                <code><p>user id to associate with the image</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>rental_id</td>
+                                                        <td>
+                                                                <code><p>id of the rental (if it&#39;s a rental image): Check for null</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger, Req, Res } from &#x27;@nestjs/common&#x27;;
+import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
+import { ImageInterface } from &#x27;../interface/image.interface&#x27;;
+import { Model } from &#x27;mongoose&#x27;;
+import { JwtPayloadInterface } from &#x27;../../auth/interface/jwt-payload&#x27;;
+import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
+import { profile } from &#x27;../../common/Const&#x27;;
+import { ImageDto } from &#x27;../dto/image.dto&#x27;;
+import { ProcessSaveDataUtil } from &#x27;../util/process-save-data.util&#x27;;
+import { ProcessedSaveDataInterface } from &#x27;../interface/processed-save-data.interface&#x27;;
+import { S3Provider } from &#x27;../providers/s3.provider&#x27;;
+import { CreateMulterUploadUtil } from &#x27;../util/create-multer-upload.util&#x27;;
+import { MulterUploadUtil } from &#x27;../util/multer-upload.util&#x27;;
+import { ImageQueryResultsDto } from &#x27;../dto/image-query-results.dto&#x27;;
+import { DeleteS3ImagesUtil } from &#x27;../util/delete-s3-images.util&#x27;;
+/**
+ * Images Service
+ * written by: Jonathan Sells
+ * note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
+ * this makes queries slightly less selective and less efficient, but more secure.
+ */
+@Injectable()
+export class ImagesService {
+
+  constructor(
+    @InjectModel(&#x27;Images&#x27;) private readonly imagesModel: Model&lt;ImageInterface&gt;,
+    private readonly appConfig: AppConfigService,
+    private readonly processSaveDataUtil: ProcessSaveDataUtil,
+    private readonly s3Provider: S3Provider,
+    private readonly createMulterUploadUtil: CreateMulterUploadUtil,
+    private readonly multerUploadUtil: MulterUploadUtil,
+    private readonly deleteS3ImagesUtil: DeleteS3ImagesUtil,
+  ) { }
+  s3 &#x3D; this.s3Provider.getS3();
+
+  /**
+   * Save uploaded images
+   * Summary: Saves uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 
+   * @param files array of files
+   * @param category rentals / profile
+   * @param {string} user_id user id to associate with the image
+   * @param {string | null} rental_id id of the rental (if it&#x27;s a rental image): Check for null
+   */
+  saveImages &#x3D; async (files, category, user_id, rental_id, model) &#x3D;&gt; {
+    try {
+      const { packet, image }: ProcessedSaveDataInterface &#x3D; await this.processSaveDataUtil.process(files, user_id, rental_id, category);
+      let flag;
+      packet &#x3D;&#x3D;&#x3D; null ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
+      if (flag &#x3D;&#x3D;&#x3D; &#x27;multiple&#x27;) {
+        return await model.insertMany(packet);
+      }
+      return await model.save(image)
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * Find Rental Images
+   * Summary: query multiple rental images by userId and rental_id
+   * @param user the user property of the request object
+   * @param img_id id of an image; if provided only this image will be found
+   * @param rental_id the id of the rental
+   * @param user_id used to verify the image belongs to the requesting user
+   */
+  findRentalImages &#x3D; async (img_id: string | null, rental_id: string | null, user_id: string): Promise&lt;ImageQueryResultsDto&gt; &#x3D;&gt; {
+    // img_id given from findVehicleImage endpoint
+    try {
+      let flag;
+      img_id !&#x3D;&#x3D; null ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
+      // find multiple images
+      if (flag &#x3D;&#x3D;&#x3D; &#x27;multiple&#x27;) {
+        const images &#x3D; await this.imagesModel.find({ rental_id: rental_id, user_id: user_id });
+        return { count: images.length, images: images }
+      }
+      // find a specific image
+      const image &#x3D; await this.imagesModel.findById(img_id);
+      return { count: 1, images: image }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * Find Profile Images
+   * Summary: query multiple profile images by user_id and profile category, or find a specific profile photo by id
+   * @param user the user property of the request object
+   */
+  findProfileImages &#x3D; async (user: JwtPayloadInterface, img_id?: string) &#x3D;&gt; {
+    try {
+      let flag;
+      img_id ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
+      if (flag &#x3D;&#x3D;&#x3D; &#x27;multiple&#x27;) {
+        const images &#x3D; await this.imagesModel.find({ user_id: user.userId })
+        return { count: images.length, images: images };
+      };
+      const image &#x3D; await this.imagesModel.findById(img_id);
+      return { count: 1, images: image }
+    } catch (err) {
+      throw new Error(err)
+    }
+  }
+
+  /**
+   * Delete Images
+   * Sumamry: Delete a single or multiple of user&#x27;s selected images
+   * @param category the images category; rentals or profile
+   * @param user_id used to verify the photos belong to the requesting user
+   */
+  deleteImages &#x3D; async (images: ImageDto[], user: JwtPayloadInterface) &#x3D;&gt; {
+    try {
+      if (images &amp;&amp; images.length &gt; 0) {
+        if (images.length &#x3D;&#x3D;&#x3D; 1) {
+          await this.deleteS3ImagesUtil.deleteS3Image(images, user);
+          return await this.imagesModel.deleteOne({ _id: images[0]._id, user_id: user.userId });
+        }
+        const ids &#x3D; await this.deleteS3ImagesUtil.deleteS3Images(images, user);
+        return await this.imagesModel.deleteMany({ _id: { $in: ids }, user_id: user.userId })
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   *
+   * @param user var params &#x3D; {
+  Bucket: &quot;examplebucket&quot;,
+  Delete: {
+   Objects: [
+      {
+     Key: &quot;HappyFace.jpg&quot;,
+     VersionId: &quot;2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b&quot;
+    },
+      {
+     Key: &quot;HappyFace.jpg&quot;,
+     VersionId: &quot;yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd&quot;
+    }
+   ],
+   Quiet: false
+  }
+  };
+  s3.deleteObjects(params, function(err, data) {
+   if (err) console.log(err, err.stack); // an error occurred
+   else     console.log(data);           // successful response
+   * @param rental_id
+   */
+
+  /**
+   * Delete All Images
+   * Summary: Delete all images of the selected rental or profile
+   * @param user_id used to locate the user&#x27;s photos as well as verify they belong to them
+   * @param rental_id the id of the rental
+   */
+  deleteAllImages &#x3D; async (user: JwtPayloadInterface, rental_id: string) &#x3D;&gt; {
+    // delete all images of the selected rental
+    if (user &amp;&amp; rental_id !&#x3D;&#x3D; null) {
+      return await this.imagesModel.deleteMany({ rental_id: rental_id, user_id: user.userId });
+    }
+    // delete all of the user&#x27;s profile images
+    if (user &amp;&amp; rental_id &#x3D;&#x3D;&#x3D; null) {
+      return await this.imagesModel.deleteMany({ user_id: user.userId, category: profile });
+    }
+  }
+
+  /**
+   * Upload Images to S3 Bucket
+   * summary: send the file(s) to the bucket and attach a timestamp to each filename
+   * @param req the request
+   * @param res the response
+   * @param category rentals or profile
+   * @param rental_id the rental_id for rental image uploads
+   * @param saveImages the images.service.saveImages method
+   */
+  fileuploadAndSave &#x3D; async (req, res, category, rental_id, saveimages) &#x3D;&gt; {
+    try {
+      // create a multer upload
+      const user: JwtPayloadInterface &#x3D; req.user;
+      const multerUpload &#x3D; await this.createMulterUploadUtil.create(req, category)
+      // Upload the image(s)
+      const model &#x3D; this.imagesModel;
+      await this.multerUploadUtil.upload(req, res, multerUpload, saveimages, category, user, rental_id, model);
+    } catch (err) {
+      return res.status(500).json(&#x60;Failed to upload image file: ${err}&#x60;)
+    }
+  }
+
+  // Get Presigned Url to download file
+  /**
+   * @param originalname file name
+   * @param bucket location of the photo
+  private getSingedUrl &#x3D; async (bucket, originalname) &#x3D;&gt; {
+    const s3 &#x3D; this.s3;
+    const params &#x3D; {
+      Bucket: bucket,
+      Key: originalname,
+      Expires: 60 * 60, //1 hour
+    };
+    try {
+      const url &#x3D; await new Promise((resolve, reject) &#x3D;&gt; {
+        s3.getSignedUrl(&#x27;getObject&#x27;, params, (err, url) &#x3D;&gt; {
+          err ? reject(err) : resolve(url);
+        });
+      });
+      Logger.log(url)
+      return url;
+    } catch (err) {
+      if (err) {
+        throw new Error(err);
+      }
+    }
+  }
+  */
+
+
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ImagesService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
