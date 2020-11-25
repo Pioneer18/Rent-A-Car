@@ -1,7 +1,7 @@
 /**
  * Final Search Rental DTO
  */
-export class RentalDurationDto {
+export interface RequestCoordinatesPipeInterface {
   address: string;
   price: number;
   features: string[];

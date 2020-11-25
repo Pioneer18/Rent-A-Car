@@ -1,5 +1,6 @@
 /**
- * Final Search Rental DTO
+ * summary: used to query rentals
+ * - passed to the rental.service.searchRentals method
  */
 export class SearchRentalDto {
     address: string;

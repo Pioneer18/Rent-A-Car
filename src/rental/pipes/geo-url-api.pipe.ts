@@ -1,6 +1,6 @@
 import { Injectable, ArgumentMetadata, Logger } from '@nestjs/common';
 import { AppConfigService } from '../../config/configuration.service';
-import { CreateRentalDto } from '../dto/crud/create-rental-dto';
+import { RawCreateRentalDto } from '../dto/crud/raw-create-rental-dto';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 
 /**
@@ -28,7 +28,7 @@ export class GeoUrlApiPipe {
     return coords;
   }
 
-  async transform(value: CreateRentalDto) {
+  async transform(value: RawCreateRentalDto) {
     const apiKey = process.env.GEO_API_KEY;
     const geoUrl = process.env.GEO_URL;
     try {

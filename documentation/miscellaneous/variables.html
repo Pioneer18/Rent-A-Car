@@ -305,13 +305,16 @@
   specs: joi.object({
     odometer: joi.number().required(),
     transmission: joi.string().required(),
-    cityMpg: joi.number().required(),
-    hwyMpg: joi.number().required(),
+    cityMpg: joi.number().required()
+      .when(&#x27;fuel&#x27;, {is: &#x27;electric&#x27;, then: joi.valid(null)}),
+    hwyMpg: joi.number().required()
+      .when(&#x27;fuel&#x27;, {is: &#x27;electric&#x27;, then: joi.valid(null)}),
     mpgE: joi.number()
-    .when(&#x27;cityMpg&#x27;, {is: null, then: joi.required()})
-    .when(&#x27;hwyMpg&#x27;, {is: null, then: joi.required()}),
+      .when(&#x27;fuel&#x27;, {is: &#x27;electric&#x27;, then: joi.number().required()})
+      .when(&#x27;fuel&#x27;, {not: &#x27;electric&#x27;, then: joi.valid(null) }),
     fuel: joi.string().valid(&#x27;gas&#x27;, &#x27;hybrid&#x27;,&#x27;electric&#x27;).required(),
-    gasGrade: joi.string().valid(&#x27;regular&#x27;, &#x27;mid&#x27;, &#x27;premium&#x27;, &#x27;N/A&#x27;).required(),
+    gasGrade: joi.string().valid(&#x27;regular&#x27;, &#x27;mid&#x27;, &#x27;premium&#x27;, &#x27;N/A&#x27;).required()
+      .when(&#x27;fuel&#x27;, {is: &#x27;electric&#x27;, then: joi.valid(&#x27;N/A&#x27;)}),
     description: joi.string().required(),
     make: joi.string().required(),
     model: joi.string().required(),
@@ -355,6 +358,15 @@
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Validate requested new rental before passing to the handler</p>
+<ul>
+<li>fuel: when the selected fuel type is electric and not gas or hybrid, several fields must change their validation<ul>
+<li>mpgE: the metric for electric mileage. When the selected fuel type is electric, mpgE is required, otherwise it must be null</li>
+<li>cityMpg: the metric for gas mileage in the city. cityMpg must be null if the fuel type is electric</li>
+<li>hwyMpg: the metric for gas mileage on the highway. hwyMpg must be null if the fuel type is electric</li>
+<li>gasGrade: the gas grade must be &#39;N/A&#39; if the selected fuel type is electric</li>
+</ul>
+</li>
+</ul>
 </div>
                     </td>
                 </tr>
@@ -779,6 +791,12 @@
                         </td>
                     </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Rental Schema</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>

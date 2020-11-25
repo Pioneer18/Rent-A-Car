@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -37,9 +37,13 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li>CreateRentalDto</li>
+  <li>Classes</li>
+  <li>RawCreateRentalDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -57,19 +61,30 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/rental/dto/crud/create-rental-dto.ts</code>
+            <code>src/rental/dto/crud/raw-create-rental-dto.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Create Rental DTO:</p>
+                <p>summary:</p>
 <ul>
 <li>The initial values submitted by a user to create a new rental listing</li>
+<li>specs: specifications about the vehicle</li>
+<li>registration: basic vehicle registration data</li>
+<li>features: e.g. &#39;bike rack&#39;, &#39;heated seats&#39;, &#39;auto-pilot&#39;, etc.</li>
+<li>scheduling: list the required advance notice, as well as min &amp; max rental duration</li>
+<li>pricing: the rental rate as well as discount conditions; e.g. weekly rentals get $5 off</li>
+<li>location: the steet, city, and zip of the user</li>
+<li>photos: a max of 10 image references</li>
+<li>listed: hide or show the rental to the application community</li>
+<li>passed to the GeoUrlApiPipe transform method. This is the raw data before the GeoJSON object is added and the final
+CreateRentalDto has not been created</li>
 </ul>
 
             </p>
+
 
 
 
@@ -123,7 +138,6 @@
 </section>
 
 
-
             <section>
     
         <h3 id="inputs">
@@ -149,7 +163,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/rental/dto/crud/create-rental-dto.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/rental/dto/crud/raw-create-rental-dto.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -176,7 +190,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/rental/dto/crud/create-rental-dto.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/rental/dto/crud/raw-create-rental-dto.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -203,7 +217,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/rental/dto/crud/create-rental-dto.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/rental/dto/crud/raw-create-rental-dto.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -230,7 +244,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/rental/dto/crud/create-rental-dto.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/rental/dto/crud/raw-create-rental-dto.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -257,7 +271,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/rental/dto/crud/create-rental-dto.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/rental/dto/crud/raw-create-rental-dto.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -284,7 +298,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/rental/dto/crud/create-rental-dto.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/rental/dto/crud/raw-create-rental-dto.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -311,7 +325,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/rental/dto/crud/create-rental-dto.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/rental/dto/crud/raw-create-rental-dto.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -338,7 +352,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/dto/crud/create-rental-dto.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/rental/dto/crud/raw-create-rental-dto.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -347,23 +361,23 @@
         </table>
 </section>
 
+
+
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-
-/**
- * Create Rental DTO:
- * - The initial values submitted by a user to create a new rental listing
- */
-@Injectable()
-export class CreateRentalDto {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class RawCreateRentalDto {
   specs: {
     odometer: number;
     transmission: string;
-    cityMpg: number;
-    hwyMpg: number;
+    cityMpg: number | null;
+    hwyMpg: number | null;
+    mpgE: number | null;
     fuel: string;
     gasGrade: string;
     description: string;
@@ -402,12 +416,7 @@ export class CreateRentalDto {
 }
 </code></pre>
     </div>
-
 </div>
-
-
-
-
 
 
 
@@ -432,8 +441,8 @@ export class CreateRentalDto {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'CreateRentalDto.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'RawCreateRentalDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

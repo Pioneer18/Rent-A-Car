@@ -1,6 +1,6 @@
 import { Unavailability } from './unavailability.interface';
 
-export interface Ordered {
+export interface ValidateUnavailabilityPipeInterface {
     y1: Unavailability[];
     y2: Unavailability[] | null;
 }

@@ -1,14 +1,14 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { RequestCoordinatesPipe } from './request-coordinates.pipe';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
-import { RentalDurationDto } from '../dto/retnalDuration/rental-duration.dto';
+import { RequestCoordinatesPipeInterface } from '../interface/request-coordinates-pipe.interface';
 import { SearchRentalDto } from '../dto/crud/search-rental.dto';
 import { async } from 'rxjs/internal/scheduler/async';
 
 /**
  * What does this pipe do?
  * Summary:
- * Accepts a RentalDurationDto and returns a SearchRentalDto
+ * Accepts a RequestCoordinatesPipeInterface and returns a SearchRentalDto
  * requests coordinates for the loc.coordinates of the SearchRentalDto
  * Tests:
  * #1 transform
@@ -35,9 +35,9 @@ describe('RequestCoordinatesPipe Unit Test', () => {
   });
 
   describe('transform method test', () => {
-    it('should return a SearchRentalDto if given a RentalDurationDto', async () => {
+    it('should return a SearchRentalDto if given a RequestCoordinatesPipeInterface', async () => {
       const coords: [number, number] = [39, -50];
-      const mockRentalDurationDto: RentalDurationDto = {
+      const mockRentalDurationDto: RequestCoordinatesPipeInterface = {
         address: '204 W Washington St Lexington 24450',
         price: 28,
         features: ['A/C', 'AUX'],

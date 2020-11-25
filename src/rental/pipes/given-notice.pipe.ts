@@ -4,13 +4,13 @@ import {
   Logger,
   ArgumentMetadata,
 } from '@nestjs/common';
-import { PostGivenNoticeDto } from '../dto/retnalDuration/post-given-notice.dto';
+import { RentalDurationPipeInterface } from '../interface/rental-duration-pipe.interface';
 import { RawSearchRentalDto } from '../dto/crud/raw-search-rental.dto';
 import { DateTime } from 'luxon';
 /**
  * Creates a Luxon Interval from the startTime and currentTime
  * Validates the Interval is at least 1 hour long
- * returns a PostGivenNoticeDto
+ * returns a RentalDurationPipeInterface
  */
 @Injectable()
 export class GivenNoticePipe implements PipeTransform {
@@ -47,7 +47,7 @@ export class GivenNoticePipe implements PipeTransform {
       );
       await this.validateRequestedTime(startTime, endTime);
       const givenNotice = await this.createGivenNotice(startTime);
-      const dto: PostGivenNoticeDto = {
+      const dto: RentalDurationPipeInterface = {
         address: value.address,
         rentalStartTime: startTime,
         rentalEndTime: endTime,

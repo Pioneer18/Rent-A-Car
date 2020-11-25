@@ -1,7 +1,8 @@
 /**
- * Interface for a mapped Rental
+ * summary: the final format for a new rental to be created
+ * - passed to the rental.service.createRental method
  */
-export interface CreateRentalDto {
+export class CreateRentalDto {
   rentalDescription: string;
   address: string;
   specs: {

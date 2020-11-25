@@ -1,9 +1,9 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { PostGivenNoticeDto } from '../dto/retnalDuration/post-given-notice.dto';
+import { RentalDurationPipeInterface } from '../interface/rental-duration-pipe.interface';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum.util';
-import { RentalDurationDto } from '../dto/retnalDuration/rental-duration.dto';
+import { RequestCoordinatesPipeInterface } from '../interface/request-coordinates-pipe.interface';
 /**
- * Create a rental Duration from the incoming PostGivenNoticeDto
+ * Create a rental Duration from the incoming RentalDurationPipeInterface
  */
 @Injectable()
 export class RentalDurationPipe implements PipeTransform {
@@ -11,9 +11,9 @@ export class RentalDurationPipe implements PipeTransform {
     this.generateDuration = generateDuration;
   }
 
-  async transform(value: PostGivenNoticeDto) {
+  async transform(value: RentalDurationPipeInterface) {
     try {
-      const dto: RentalDurationDto = {
+      const dto: RequestCoordinatesPipeInterface = {
         address: value.address,
         price: value.price,
         features: value.features,

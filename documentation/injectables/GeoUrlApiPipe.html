@@ -357,7 +357,7 @@ the original value, a single string address, and coordinates</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../injectables/CreateRentalDto.html">CreateRentalDto</a>)</code>
+                    <code>transform(value: <a href="../classes/RawCreateRentalDto.html">RawCreateRentalDto</a>)</code>
                 </td>
             </tr>
 
@@ -387,7 +387,7 @@ the original value, a single string address, and coordinates</p>
                                 <tr>
                                     <td>value</td>
                                     <td>
-                                                <code><a href="../injectables/CreateRentalDto.html" target="_self" >CreateRentalDto</a></code>
+                                                <code><a href="../classes/RawCreateRentalDto.html" target="_self" >RawCreateRentalDto</a></code>
                                     </td>
 
                                     <td>
@@ -420,7 +420,7 @@ the original value, a single string address, and coordinates</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, ArgumentMetadata, Logger } from &#x27;@nestjs/common&#x27;;
 import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
-import { CreateRentalDto } from &#x27;../dto/crud/create-rental-dto&#x27;;
+import { RawCreateRentalDto } from &#x27;../dto/crud/raw-create-rental-dto&#x27;;
 import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
 
 /**
@@ -448,7 +448,7 @@ export class GeoUrlApiPipe {
     return coords;
   }
 
-  async transform(value: CreateRentalDto) {
+  async transform(value: RawCreateRentalDto) {
     const apiKey &#x3D; process.env.GEO_API_KEY;
     const geoUrl &#x3D; process.env.GEO_URL;
     try {

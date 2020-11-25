@@ -163,7 +163,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../classes/RentalDurationDto.html">RentalDurationDto</a>)</code>
+                    <code>transform(value: <a href="../injectables/RequestCoordinatesPipe.html">RequestCoordinatesPipeInterface</a>)</code>
                 </td>
             </tr>
 
@@ -193,7 +193,7 @@
                                 <tr>
                                     <td>value</td>
                                     <td>
-                                                <code><a href="../classes/RentalDurationDto.html" target="_self" >RentalDurationDto</a></code>
+                                                <code><a href="../injectables/RequestCoordinatesPipe.html" target="_self" >RequestCoordinatesPipeInterface</a></code>
                                     </td>
 
                                     <td>
@@ -225,7 +225,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform, Logger } from &#x27;@nestjs/common&#x27;;
-import { RentalDurationDto } from &#x27;../dto/retnalDuration/rental-duration.dto&#x27;;
+import { RequestCoordinatesPipeInterface } from &#x27;../interface/request-coordinates-pipe.interface&#x27;;
 import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
 import { SearchRentalDto } from &#x27;../dto/crud/search-rental.dto&#x27;;
 
@@ -233,7 +233,7 @@ import { SearchRentalDto } from &#x27;../dto/crud/search-rental.dto&#x27;;
 export class RequestCoordinatesPipe implements PipeTransform&lt;any&gt; {
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) {}
 
-  async transform(value: RentalDurationDto) {
+  async transform(value: RequestCoordinatesPipeInterface) {
     const geoUrl &#x3D; process.env.GEO_URL;
     const apiKey &#x3D; process.env.GEO_API_KEY; 
     try {

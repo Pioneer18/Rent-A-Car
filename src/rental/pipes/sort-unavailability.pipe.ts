@@ -1,8 +1,8 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { Unavailability } from '../interface/unavailability.interface';
-import { ScheduleUnavailabilityDto } from '../dto/unavailability/scheduled-unavailability.dto';
+import { SortUnavailabilityPipeInterface } from '../interface/sort-unavailability-pipe.interface';
 import { Sorted } from '../interface/sorted.interface';
-import { Ordered } from '../interface/ordered.interface';
+import { ValidateUnavailabilityPipeInterface } from '../interface/validate-unavailability-pipe.interface';
 /**
  * Sort requested Unavailability into one or two arrays (yearA, yearB)
  * Sort each array's Unavailability by ascending DOY
@@ -27,7 +27,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   // return the sorted (by DOY) years in order, or return a single year
-  private orderYears = async (sorted: Sorted): Promise<Ordered> => {
+  private orderYears = async (sorted: Sorted): Promise<ValidateUnavailabilityPipeInterface> => {
     // return a single year
     if (sorted.yB === null) {
       return { y1: sorted.yA, y2: null };
@@ -42,7 +42,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   // separate years into y1 and y2 array and sort each by DOY
-  private sort = async (value: ScheduleUnavailabilityDto): Promise<Sorted> => {
+  private sort = async (value: SortUnavailabilityPipeInterface): Promise<Sorted> => {
     // grab the year property from the first element
     const iYear: number = value.unavailability[0].year;
     // filter for other year(s)
@@ -66,7 +66,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   // transform incoming
-  async transform(value: ScheduleUnavailabilityDto): Promise<Ordered> {
+  async transform(value: SortUnavailabilityPipeInterface): Promise<ValidateUnavailabilityPipeInterface> {
     try {
       const sorted: Sorted = await this.sort(value);
       const ordered = await this.orderYears(sorted);

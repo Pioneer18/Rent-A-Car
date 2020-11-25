@@ -1,16 +1,16 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { RentalDurationPipe } from './rental-duration.pipe';
-import { RentalDurationDto } from '../dto/retnalDuration/rental-duration.dto';
-import { PostGivenNoticeDto } from '../dto/retnalDuration/post-given-notice.dto';
+import { RequestCoordinatesPipeInterface } from '../interface/request-coordinates-pipe.interface';
+import { RentalDurationPipeInterface } from '../interface/rental-duration-pipe.interface';
 import { DateTime } from 'luxon';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum.util';
 import { Logger } from '@nestjs/common';
 
 /**
  * Summary:
- * accepts a PostGivenNoticeDto and returns a RentalDurationDto
+ * accepts a RentalDurationPipeInterface and returns a RequestCoordinatesPipeInterface
  * uses the GenerateRentalDurationEnumUtil to assign the rentalDuration property
- * of the RentalDurationDto
+ * of the RequestCoordinatesPipeInterface
  */
 describe('RentalDurationPipe Unit Test', () => {
   let app: TestingModule;
@@ -26,7 +26,7 @@ describe('RentalDurationPipe Unit Test', () => {
 
   describe('transform method unit test', () => {
     it('should return a RentalDuration', async () => {
-      const mockPostGivenNoticeDto: PostGivenNoticeDto = {
+      const mockRentalDurationPipeInterface: RentalDurationPipeInterface = {
         address: '204 W Washington St Lexington 24450',
         rentalStartTime: DateTime.fromISO(
           new Date('February 25, 2020 10:46:00').toISOString(),
@@ -38,14 +38,14 @@ describe('RentalDurationPipe Unit Test', () => {
         features: null,
         givenNotice: 2,
       };
-      const mockRentalDurationDto: RentalDurationDto = {
+      const mockRentalDurationDto: RequestCoordinatesPipeInterface = {
         address: '204 W Washington St Lexington 24450',
         rentalDuration: 3,
         price: null,
         features: null,
         givenNotice: 2,
       };
-      const test = await pipe.transform(mockPostGivenNoticeDto);
+      const test = await pipe.transform(mockRentalDurationPipeInterface);
       Logger.log('the test results below');
       Logger.log(test);
       expect(test.address).toBe(mockRentalDurationDto.address);

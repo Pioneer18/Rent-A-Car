@@ -248,7 +248,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/ProcessRentalTimeDto.html" target="_self" >Promise&lt;ProcessRentalTimeDto&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../injectables/GenerateRentalDurationEnumUtil.html" target="_self" >Promise&lt;GenerateRentalDurationEnumUtilInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -267,11 +267,11 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &#x27;@nestjs/common&#x27;;
 import { Interval } from &#x27;luxon&#x27;;
 import { RentalDurations } from &#x27;../const&#x27;;
-import { ProcessRentalTimeDto } from &#x27;../dto/retnalDuration/process-rental-time.dto&#x27;;
+import { GenerateRentalDurationEnumUtilInterface } from &#x27;../interface/generate-rental-duration-enum-util.interface&#x27;;
 
 @Injectable()
 export class GenerateRentalDurationEnumUtil {
-  private async processRentalTime(startTime, endTime):Promise&lt;ProcessRentalTimeDto&gt; {
+  private async processRentalTime(startTime, endTime):Promise&lt;GenerateRentalDurationEnumUtilInterface&gt; {
     try {
       const base &#x3D; Interval.fromDateTimes(startTime, endTime);
       const months &#x3D; base.length(&#x27;months&#x27;);
@@ -288,7 +288,7 @@ export class GenerateRentalDurationEnumUtil {
 
   async generateRentalDurationEnum(startTime, endTime) {
     try {
-      const schedule: ProcessRentalTimeDto &#x3D; await this.processRentalTime(startTime, endTime);
+      const schedule: GenerateRentalDurationEnumUtilInterface &#x3D; await this.processRentalTime(startTime, endTime);
       if (schedule.months &gt; 3) {
         return RentalDurations.Any;
       }

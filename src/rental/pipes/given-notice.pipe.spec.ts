@@ -6,7 +6,7 @@ import { DateTime } from 'luxon';
 /**
  * What does this pipe do?
  * summary:
- * Accepts a RawSearchRentalDto and returns a PostGivenNoticeDto
+ * Accepts a RawSearchRentalDto and returns a RentalDurationPipeInterface
  * creates a givenNotice
  * validatesRequestedTime
  */

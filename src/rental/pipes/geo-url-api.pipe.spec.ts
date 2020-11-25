@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GeoUrlApiPipe } from './geo-url-api.pipe';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
-import { CreateRentalDto } from '../dto/crud/create-rental-dto';
+import { RawCreateRentalDto } from '../dto/crud/raw-create-rental-dto';
 /**
  * Summary:
  * Creates a single address string from the incoming CreateRentalDto to make API Request
@@ -41,7 +41,7 @@ describe('GeoUrlApiPipe Unit Test', () => {
         .spyOn(pipe, 'getCoordinates')
         .mockImplementation(async () => mockedApiReturn);
       // raw value
-      const createRentalDto: CreateRentalDto = {
+      const createRentalDto: RawCreateRentalDto = {
         specs: {
           odometer: 230000,
           transmission: 'Automatic',

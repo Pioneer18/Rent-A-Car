@@ -150,7 +150,7 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../interfaces/Unavailability.html">ScheduleUnavailabilityDto</a>)</code>
+                    <code>transform(value: <a href="../interfaces/Unavailability.html">SortUnavailabilityPipeInterface</a>)</code>
                 </td>
             </tr>
 
@@ -180,7 +180,7 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
                                 <tr>
                                     <td>value</td>
                                     <td>
-                                                <code><a href="../interfaces/Unavailability.html" target="_self" >ScheduleUnavailabilityDto</a></code>
+                                                <code><a href="../interfaces/Unavailability.html" target="_self" >SortUnavailabilityPipeInterface</a></code>
                                     </td>
 
                                     <td>
@@ -327,7 +327,7 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform, Logger } from &#x27;@nestjs/common&#x27;;
 import { Unavailability } from &#x27;../interface/unavailability.interface&#x27;;
-import { ScheduleUnavailabilityDto } from &#x27;../dto/unavailability/scheduled-unavailability.dto&#x27;;
+import { SortUnavailabilityPipeInterface } from &#x27;../dto/unavailability/scheduled-unavailability.dto&#x27;;
 import { Sorted } from &#x27;../interface/sorted.interface&#x27;;
 import { Ordered } from &#x27;../interface/ordered.interface&#x27;;
 /**
@@ -369,7 +369,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   // separate years into y1 and y2 array and sort each by DOY
-  private sort &#x3D; async (value: ScheduleUnavailabilityDto): Promise&lt;Sorted&gt; &#x3D;&gt; {
+  private sort &#x3D; async (value: SortUnavailabilityPipeInterface): Promise&lt;Sorted&gt; &#x3D;&gt; {
     // grab the year property from the first element
     const iYear: number &#x3D; value.unavailability[0].year;
     // filter for other year(s)
@@ -393,7 +393,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   // transform incoming
-  async transform(value: ScheduleUnavailabilityDto): Promise&lt;Ordered&gt; {
+  async transform(value: SortUnavailabilityPipeInterface): Promise&lt;Ordered&gt; {
     try {
       const sorted: Sorted &#x3D; await this.sort(value);
       const ordered &#x3D; await this.orderYears(sorted);

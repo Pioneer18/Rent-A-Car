@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon';
 /**
- * Initial Raw Search Rental DTO
+ * summary: returned by the GivenNoticePipe after processing a RawSearchRentalDto
+ * - a givenNotice value is added to the dto
  */
-export class PostGivenNoticeDto {
+export interface RentalDurationPipeInterface {
   address: string;
   rentalStartTime: DateTime;
   rentalEndTime: DateTime;

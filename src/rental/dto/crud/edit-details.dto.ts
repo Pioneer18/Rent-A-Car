@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
-@Injectable()
+/**
+ * summary: edit the details of a rental
+ * - passed to the rental.service.editDetails method
+ */
 export class EditDetailsDto {
   rentalId: string;
   specs: {

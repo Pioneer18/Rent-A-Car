@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
-import { RentalDurationDto } from '../dto/retnalDuration/rental-duration.dto';
+import { RequestCoordinatesPipeInterface } from '../interface/request-coordinates-pipe.interface';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 import { SearchRentalDto } from '../dto/crud/search-rental.dto';
 
@@ -7,7 +7,7 @@ import { SearchRentalDto } from '../dto/crud/search-rental.dto';
 export class RequestCoordinatesPipe implements PipeTransform<any> {
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) {}
 
-  async transform(value: RentalDurationDto) {
+  async transform(value: RequestCoordinatesPipeInterface) {
     const geoUrl = process.env.GEO_URL;
     const apiKey = process.env.GEO_API_KEY; 
     try {
