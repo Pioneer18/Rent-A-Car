@@ -1,5 +1,3 @@
-
-
 /**
  * summary:
  * - The initial values submitted by a user to create a new rental listing

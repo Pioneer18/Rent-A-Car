@@ -1,4 +1,3 @@
-import { Injectable } from '@nestjs/common';
 
 /**
  * summary: edit the details of a rental
