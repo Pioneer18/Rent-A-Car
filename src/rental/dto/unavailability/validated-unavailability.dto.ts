@@ -1,7 +1,7 @@
-import { Unavailability } from '../../interface/unavailability.interface';
+import { UnavailabilityDto } from '../../dto/unavailability/unavailability.dto';
 
 export class ValidatedUnavailabilityDto {
-    y1: Unavailability[];
-    y2: Unavailability[] | null;
+    y1: UnavailabilityDto[];
+    y2: UnavailabilityDto[] | null;
     validated: string;
 }

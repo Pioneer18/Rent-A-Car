@@ -1,4 +1,3 @@
-
 export interface Unavailability {
     rentalId: string;
     year: number;

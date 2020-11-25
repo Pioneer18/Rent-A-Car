@@ -1,5 +1,5 @@
-import { Unavailability } from './unavailability.interface';
+import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
 
 export interface SortUnavailabilityPipeInterface {
-  unavailability: Unavailability[];
+  unavailability: UnavailabilityDto[];
 }

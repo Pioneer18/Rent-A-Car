@@ -1,6 +1,6 @@
-import { Unavailability } from './unavailability.interface';
+import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
 
 export interface Sorted {
-    yA: Unavailability[];
-    yB: Unavailability[] | null;
+    yA: UnavailabilityDto[];
+    yB: UnavailabilityDto[] | null;
 }

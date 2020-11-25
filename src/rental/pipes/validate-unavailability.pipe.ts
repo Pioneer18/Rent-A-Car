@@ -1,7 +1,7 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { DateTime, Interval } from 'luxon';
 import { ValidateUnavailabilityPipeInterface } from '../interface/validate-unavailability-pipe.interface';
-import { Unavailability } from '../interface/unavailability.interface';
+import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
 import { toItemIndexes } from '../../common/util/to-item-indexes';
 import { validated } from '../../common/Const';
 import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unavailability.dto';
@@ -22,7 +22,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * @param u1 the 1st unavailability
    * apply DateTime.fromObject() to create a new DateTime
    */
-  private convertToDateTime = async (u1: Unavailability): Promise<DateTime> => {
+  private convertToDateTime = async (u1: UnavailabilityDto): Promise<DateTime> => {
     if (!u1) {
       throw new Error('There is no requested unavailability');
     }
@@ -66,8 +66,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   private validateCrossover = async (
-    y1: Unavailability[],
-    y2: Unavailability[],
+    y1: UnavailabilityDto[],
+    y2: UnavailabilityDto[],
     ly: boolean,
   ): Promise<void> => {
     // y1's final Unavailability
@@ -114,7 +114,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   private validateEachUnavailability = async (
-    unavailability: Unavailability[],
+    unavailability: UnavailabilityDto[],
   ) => {
     const base = unavailability[0];
     for (const { item, index } of toItemIndexes(unavailability)) {
@@ -161,8 +161,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
 
   // validate congruence in rentalId, start, end, and title across y1 and y2
   private validateCrossYearCongruence = async (
-    y1: Unavailability,
-    y2: Unavailability,
+    y1: UnavailabilityDto,
+    y2: UnavailabilityDto,
   ) => {
     if (y1.rentalId !== y2.rentalId) {
       throw new Error('request cannot have more than 1 Rental ID');

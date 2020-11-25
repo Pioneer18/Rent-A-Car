@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
-import { Unavailability } from '../interface/unavailability.interface';
+import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
 import { SortUnavailabilityPipeInterface } from '../interface/sort-unavailability-pipe.interface';
 import { Sorted } from '../interface/sorted.interface';
 import { ValidateUnavailabilityPipeInterface } from '../interface/validate-unavailability-pipe.interface';
@@ -10,7 +10,7 @@ import { ValidateUnavailabilityPipeInterface } from '../interface/validate-unava
 @Injectable()
 export class SortUnavailabilityPipe implements PipeTransform {
   // validate there are no more than 2 years
-  private validate2Years = async (yearB: Unavailability[]): Promise<void> => {
+  private validate2Years = async (yearB: UnavailabilityDto[]): Promise<void> => {
     for (const x of yearB) {
       if (x.year !== yearB[0].year) {
         throw new Error('Cannot request 3 years of unavailability');
@@ -46,14 +46,14 @@ export class SortUnavailabilityPipe implements PipeTransform {
     // grab the year property from the first element
     const iYear: number = value.unavailability[0].year;
     // filter for other year(s)
-    const tYearB: Unavailability[] = value.unavailability.filter(
+    const tYearB: UnavailabilityDto[] = value.unavailability.filter(
       val => val.year !== iYear,
     );
     // return 2 sorted years
     if (tYearB && tYearB.length) {
       await this.validate2Years(tYearB);
       const yearB = tYearB.sort((a, b) => a.doy - b.doy);
-      const yearA: Unavailability[] = value.unavailability
+      const yearA: UnavailabilityDto[] = value.unavailability
         .filter(val => val.year === iYear)
         .sort((a, b) => a.doy - b.doy);
       return { yA: yearA, yB: yearB };

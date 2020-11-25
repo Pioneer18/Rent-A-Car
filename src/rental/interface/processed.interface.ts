@@ -1,8 +1,8 @@
-import { Unavailability } from './unavailability.interface';
+import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
 
 export interface Processed {
-    min: Unavailability;
-    max: Unavailability;
+    min: UnavailabilityDto;
+    max: UnavailabilityDto;
     year: number;
     start: number;
     end: number;
