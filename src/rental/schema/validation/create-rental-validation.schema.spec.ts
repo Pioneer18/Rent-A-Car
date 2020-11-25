@@ -1,4 +1,4 @@
-import { CreateRentalDto } from '../../dto/crud/create-rental.dto';
+import { CreateRentalDto } from '../../dto/createRental/create-rental.dto';
 import { JoiValidationPipe } from '../../../common/pipes/joi-validation.pipe';
 import { CreateRentalValidation } from '../validation/create-rental-validation.schema';
 

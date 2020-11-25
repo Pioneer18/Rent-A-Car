@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Interval } from 'luxon';
 import { RentalDurations } from '../const';
-import { ProcessRentalTimeDto } from '../dto/process-rental-time.dto';
+import { ProcessRentalTimeDto } from '../dto/searchRental/process-rental-time.dto';
 
 @Injectable()
 export class GenerateRentalDurationEnumUtil {

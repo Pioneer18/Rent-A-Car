@@ -1,8 +1,8 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
-import { SortUnavailabilityPipeInterface } from '../interface/sort-unavailability-pipe.interface';
-import { Sorted } from '../interface/sorted.interface';
-import { ValidateUnavailabilityPipeInterface } from '../interface/validate-unavailability-pipe.interface';
+import { RawScheduleUnavailabilityDto } from '../dto/unavailability/schedule/raw-schedule-unavailability.dto';
+import { SortedUnavailabilityDto } from '../dto/unavailability/schedule/sorted-unavailability.dto';
+import { ValidateScheduleUnavailabilityDto } from '../dto/unavailability/schedule/validate-schedule-unavailability.dto';
 /**
  * Sort requested Unavailability into one or two arrays (yearA, yearB)
  * Sort each array's Unavailability by ascending DOY
@@ -27,7 +27,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   // return the sorted (by DOY) years in order, or return a single year
-  private orderYears = async (sorted: Sorted): Promise<ValidateUnavailabilityPipeInterface> => {
+  private orderYears = async (sorted: SortedUnavailabilityDto): Promise<ValidateScheduleUnavailabilityDto> => {
     // return a single year
     if (sorted.yB === null) {
       return { y1: sorted.yA, y2: null };
@@ -42,7 +42,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   // separate years into y1 and y2 array and sort each by DOY
-  private sort = async (value: SortUnavailabilityPipeInterface): Promise<Sorted> => {
+  private sort = async (value: RawScheduleUnavailabilityDto): Promise<SortedUnavailabilityDto> => {
     // grab the year property from the first element
     const iYear: number = value.unavailability[0].year;
     // filter for other year(s)
@@ -66,9 +66,9 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   // transform incoming
-  async transform(value: SortUnavailabilityPipeInterface): Promise<ValidateUnavailabilityPipeInterface> {
+  async transform(value: RawScheduleUnavailabilityDto): Promise<ValidateScheduleUnavailabilityDto> {
     try {
-      const sorted: Sorted = await this.sort(value);
+      const sorted: SortedUnavailabilityDto = await this.sort(value);
       const ordered = await this.orderYears(sorted);
       Logger.log(`the ordered data below:`);
       Logger.log(ordered);

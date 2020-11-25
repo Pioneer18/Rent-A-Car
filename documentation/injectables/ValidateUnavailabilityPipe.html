@@ -154,7 +154,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../interfaces/ValidateUnavailabilityPipeInterface.html">ValidateUnavailabilityPipeInterface</a>)</code>
+                    <code>transform(value: <a href="../classes/ValidateScheduleUnavailabilityDto.html">ValidateScheduleUnavailabilityDto</a>)</code>
                 </td>
             </tr>
 
@@ -184,7 +184,7 @@
                                 <tr>
                                     <td>value</td>
                                     <td>
-                                                <code><a href="../interfaces/ValidateUnavailabilityPipeInterface.html" target="_self" >ValidateUnavailabilityPipeInterface</a></code>
+                                                <code><a href="../classes/ValidateScheduleUnavailabilityDto.html" target="_self" >ValidateScheduleUnavailabilityDto</a></code>
                                     </td>
 
                                     <td>
@@ -508,7 +508,7 @@ validate the requested unavailability start time is not in the past</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform, Logger } from &#x27;@nestjs/common&#x27;;
 import { DateTime, Interval } from &#x27;luxon&#x27;;
-import { ValidateUnavailabilityPipeInterface } from &#x27;../interface/validate-unavailability-pipe.interface&#x27;;
+import { ValidateScheduleUnavailabilityDto } from &#x27;../dto/unavailability/schedule/validate-schedule-unavailability.dto&#x27;;
 import { UnavailabilityDto } from &#x27;../dto/unavailability/unavailability.dto&#x27;;
 import { toItemIndexes } from &#x27;../../common/util/to-item-indexes&#x27;;
 import { validated } from &#x27;../../common/Const&#x27;;
@@ -562,7 +562,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * @param value the ordered unavailability from previous pipe
    * validate the requested unavailability start time is not in the past
    */
-  private validateRelevance &#x3D; async (value: ValidateUnavailabilityPipeInterface): Promise&lt;DateTime&gt; &#x3D;&gt; {
+  private validateRelevance &#x3D; async (value: ValidateScheduleUnavailabilityDto): Promise&lt;DateTime&gt; &#x3D;&gt; {
     // should already know y1 and y2
     const currentDateTime &#x3D; DateTime.local();
     Logger.log(&#x60;the current DateTime below:&#x60;);
@@ -689,7 +689,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     }
   }
 
-  async transform(value: ValidateUnavailabilityPipeInterface): Promise&lt;ValidatedUnavailabilityDto&gt; {
+  async transform(value: ValidateScheduleUnavailabilityDto): Promise&lt;ValidatedUnavailabilityDto&gt; {
     try {
       // validate startTime is not in the past
       const start: DateTime &#x3D; await this.validateRelevance(value);

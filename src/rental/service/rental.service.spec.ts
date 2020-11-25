@@ -2,9 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { RentalService } from './rental.service';
 import { MongooseModule, getModelToken } from '@nestjs/mongoose';
 import { RentalSchema } from '../schema/rental.schema';
-import { CreateRentalDto } from '../dto/crud/create-rental.dto';
+import { CreateRentalDto } from '../dto/createRental/create-rental.dto';
 import { TestRentalService } from './test-rental.service';
-import { SearchRentalDto } from '../dto/crud/search-rental.dto';
+import { SearchRentalDto } from '../dto/searchRental/search-rental.dto';
 
 /**
  * Test the properties of the RentalService Class:

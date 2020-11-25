@@ -1,4 +1,4 @@
-import { SearchRentalDto } from '../../dto/crud/search-rental.dto';
+import { SearchRentalDto } from '../../dto/searchRental/search-rental.dto';
 import { JoiValidationPipe } from '../../../common/pipes/joi-validation.pipe';
 import { SearchRentalValidationSchema } from './search-rental-validation.schema';
 import { Logger } from '@nestjs/common';

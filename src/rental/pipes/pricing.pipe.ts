@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform} from '@nestjs/common';
-import { PricingDto } from '../dto/crud/pricing.dto';
+import { PricingDto } from '../dto/pricing/pricing.dto';
 
 /**
  * validate incoming price and discounts

@@ -1,4 +1,4 @@
-import { UnavailabilityDto } from './unavailability.dto';
+import { UnavailabilityDto } from '../unavailability.dto';
 
 export class CreateQueryDto {
     min: UnavailabilityDto;

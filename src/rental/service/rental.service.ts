@@ -1,16 +1,16 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { CreateRentalDto } from '../dto/crud/create-rental.dto';
+import { CreateRentalDto } from '../dto/createRental/create-rental.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RentalInterface } from '../interface/schemaInterface/Rental/rental.interface';
-import { SearchRentalDto } from '../dto/crud/search-rental.dto';
-import { PricingDto } from '../dto/crud/pricing.dto';
-import { EditDetailsDto } from '../dto/crud/edit-details.dto';
+import { SearchRentalDto } from '../dto/searchRental/search-rental.dto';
+import { PricingDto } from '../dto/pricing/pricing.dto';
+import { EditDetailsDto } from '../dto/details/edit-details.dto';
 import { unavailabilityModel } from '../../common/Const';
 import { UnavailabilityInterface } from '../interface/schemaInterface/Unavailability/unavailability.interface';
-import { ProcessedUnavailabilityDto } from '../dto/unavailability/processed-unavailability.dto';
-import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update-unavailability-data.dto';
-import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailability.dto';
+import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
+import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto';
+import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 
 /**
  * **Rental Service**: written by Jonathan Sells 11/24/2020

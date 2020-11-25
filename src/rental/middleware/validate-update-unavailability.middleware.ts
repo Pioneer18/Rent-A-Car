@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { unavailabilityModel } from '../../common/Const';
 import { Model } from 'mongoose';
 import { UnavailabilityInterface } from '../interface/schemaInterface/Unavailability/unavailability.interface';
-import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/validate-update-unavailability.dto';
+import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 /**
  * Validate the incoming dto
  * Validate the expected # of unavailability docs are present in the database

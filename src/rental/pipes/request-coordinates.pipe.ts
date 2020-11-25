@@ -1,13 +1,13 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
-import { RequestCoordinatesPipeInterface } from '../interface/request-coordinates-pipe.interface';
+import { RequestCoordinatesDto } from '../dto/searchRental/request-coordinates.dto';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
-import { SearchRentalDto } from '../dto/crud/search-rental.dto';
+import { SearchRentalDto } from '../dto/searchRental/search-rental.dto';
 
 @Injectable()
 export class RequestCoordinatesPipe implements PipeTransform<any> {
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) {}
 
-  async transform(value: RequestCoordinatesPipeInterface) {
+  async transform(value: RequestCoordinatesDto) {
     const geoUrl = process.env.GEO_URL;
     const apiKey = process.env.GEO_API_KEY; 
     try {

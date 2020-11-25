@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as axios from 'axios';
-import { RawCoordinatesDto } from '../interface/raw-coordinates.dto';
+import { RawCoordinatesDto } from '../dto/createRental/raw-coordinates.dto';
 
 /**
  * GECODING & SEARCH API UTILITY

@@ -1,4 +1,4 @@
-import { RawCreateRentalDto } from './crud/raw-create-rental-dto';
+import { RawCreateRentalDto } from './raw-create-rental-dto';
 /**
  * summary:
  */

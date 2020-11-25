@@ -1,9 +1,9 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unavailability.dto';
-import { ProcessedUnavailabilityDto } from '../dto/unavailability/processed-unavailability.dto';
-import { UnavailabilityQueryDto } from '../dto/unavailability/unavailability-query.dto';
-import { CreateQueryDto } from '../dto/unavailability/create-query.dto';
-import { ProcessedUnavailabilityQueryDto } from '../dto/unavailability/processed-unavailability-query.dto';
+import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
+import { UnavailabilityQueryDto } from '../dto/unavailability/schedule/unavailability-query.dto';
+import { CreateQueryDto } from '../dto/unavailability/schedule/create-query.dto';
+import { ProcessedUnavailabilityQueryDto } from '../dto/unavailability/schedule/processed-unavailability-query.dto';
 /**
  * summary: This query is searching for any scheduled unavailability already in the database that would overlap with this request to add more unavailability
  * - This is to prevent the user on the front-end from accidentally overlapping 'blocks' of scheduled unavailability. The front-end of course should also block this

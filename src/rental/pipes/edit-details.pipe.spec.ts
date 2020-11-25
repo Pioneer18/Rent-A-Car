@@ -1,6 +1,6 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { EditDetailsPipe } from './edit-details.pipe';
-import { EditDetailsDto } from '../dto/crud/edit-details.dto';
+import { EditDetailsDto } from '../dto/details/edit-details.dto';
 import { PositiveNumber } from '../../common/util/positive-number';
 import { TypeOfValue } from '../../common/util/typeof-value';
 import { Logger } from '@nestjs/common';

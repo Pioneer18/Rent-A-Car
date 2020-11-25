@@ -1,7 +1,7 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { UpdateUnavailabilityDto } from '../dto/unavailability/update-unavailability.dto';
-import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/validate-update-unavailability.dto';
-import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update-unavailability-data.dto';
+import { UpdateUnavailabilityDto } from '../dto/unavailability/update/update-unavailability.dto';
+import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
+import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto';
 
 @Injectable()
 export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavailabilityDto, Promise<UpdateUnavailabilityDataDto>> {

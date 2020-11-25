@@ -66,7 +66,7 @@
             <p class="comment">
                 <p>Creates a Luxon Interval from the startTime and currentTime
 Validates the Interval is at least 1 hour long
-returns a RentalDurationPipeInterface</p>
+returns a GivenNoticeSearchRentalDto</p>
 
             </p>
 
@@ -348,13 +348,13 @@ returns a RentalDurationPipeInterface</p>
   Logger,
   ArgumentMetadata,
 } from &#x27;@nestjs/common&#x27;;
-import { RentalDurationPipeInterface } from &#x27;../interface/rental-duration-pipe.interface&#x27;;
-import { RawSearchRentalDto } from &#x27;../dto/crud/raw-search-rental.dto&#x27;;
+import { GivenNoticeSearchRentalDto } from &#x27;../dto/searchRental/given-notice-search-rental-dto&#x27;;
+import { RawSearchRentalDto } from &#x27;../dto/searchRental/raw-search-rental.dto&#x27;;
 import { DateTime } from &#x27;luxon&#x27;;
 /**
  * Creates a Luxon Interval from the startTime and currentTime
  * Validates the Interval is at least 1 hour long
- * returns a RentalDurationPipeInterface
+ * returns a GivenNoticeSearchRentalDto
  */
 @Injectable()
 export class GivenNoticePipe implements PipeTransform {
@@ -391,7 +391,7 @@ export class GivenNoticePipe implements PipeTransform {
       );
       await this.validateRequestedTime(startTime, endTime);
       const givenNotice &#x3D; await this.createGivenNotice(startTime);
-      const dto: RentalDurationPipeInterface &#x3D; {
+      const dto: GivenNoticeSearchRentalDto &#x3D; {
         address: value.address,
         rentalStartTime: startTime,
         rentalEndTime: endTime,

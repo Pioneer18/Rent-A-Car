@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GivenNoticePipe } from './given-notice.pipe';
-import { RawSearchRentalDto } from '../dto/crud/raw-search-rental.dto';
+import { RawSearchRentalDto } from '../dto/searchRental/raw-search-rental.dto';
 import { Logger } from '@nestjs/common';
 import { DateTime } from 'luxon';
 /**
  * What does this pipe do?
  * summary:
- * Accepts a RawSearchRentalDto and returns a RentalDurationPipeInterface
+ * Accepts a RawSearchRentalDto and returns a GivenNoticeSearchRentalDto
  * creates a givenNotice
  * validatesRequestedTime
  */

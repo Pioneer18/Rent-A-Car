@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Create a rental Duration from the incoming RentalDurationPipeInterface</p>
+                <p>Create a rental Duration from the incoming GivenNoticeSearchRentalDto</p>
 
             </p>
 
@@ -170,7 +170,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../injectables/RentalDurationPipe.html">RentalDurationPipeInterface</a>)</code>
+                    <code>transform(value: <a href="../classes/GivenNoticeSearchRentalDto.html">GivenNoticeSearchRentalDto</a>)</code>
                 </td>
             </tr>
 
@@ -200,7 +200,7 @@
                                 <tr>
                                     <td>value</td>
                                     <td>
-                                                <code><a href="../injectables/RentalDurationPipe.html" target="_self" >RentalDurationPipeInterface</a></code>
+                                                <code><a href="../classes/GivenNoticeSearchRentalDto.html" target="_self" >GivenNoticeSearchRentalDto</a></code>
                                     </td>
 
                                     <td>
@@ -232,11 +232,11 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
-import { RentalDurationPipeInterface } from &#x27;../interface/rental-duration-pipe.interface&#x27;;
+import { GivenNoticeSearchRentalDto } from &#x27;../dto/searchRental/given-notice-search-rental-dto&#x27;;
 import { GenerateRentalDurationEnumUtil } from &#x27;../utils/generate-rental-duration-enum.util&#x27;;
-import { RequestCoordinatesPipeInterface } from &#x27;../interface/request-coordinates-pipe.interface&#x27;;
+import { RequestCoordinatesDto } from &#x27;../dto/searchRental/request-coordinates.dto&#x27;;
 /**
- * Create a rental Duration from the incoming RentalDurationPipeInterface
+ * Create a rental Duration from the incoming GivenNoticeSearchRentalDto
  */
 @Injectable()
 export class RentalDurationPipe implements PipeTransform {
@@ -244,9 +244,9 @@ export class RentalDurationPipe implements PipeTransform {
     this.generateDuration &#x3D; generateDuration;
   }
 
-  async transform(value: RentalDurationPipeInterface) {
+  async transform(value: GivenNoticeSearchRentalDto) {
     try {
-      const dto: RequestCoordinatesPipeInterface &#x3D; {
+      const dto: RequestCoordinatesDto &#x3D; {
         address: value.address,
         price: value.price,
         features: value.features,

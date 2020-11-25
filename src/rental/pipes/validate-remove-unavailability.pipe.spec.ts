@@ -1,6 +1,6 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { ValidateRemoveUnavailabilityPipe } from './validate-remove-unavailability.pipe';
-import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailability.dto';
+import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 import { Logger } from '@nestjs/common';
 
 describe('ValidateRemoveUnavailabilityPipe Unit Test', () => {

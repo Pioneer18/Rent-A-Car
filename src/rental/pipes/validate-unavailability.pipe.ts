@@ -1,6 +1,6 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { DateTime, Interval } from 'luxon';
-import { ValidateUnavailabilityPipeInterface } from '../interface/validate-unavailability-pipe.interface';
+import { ValidateScheduleUnavailabilityDto } from '../dto/unavailability/schedule/validate-schedule-unavailability.dto';
 import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
 import { toItemIndexes } from '../../common/util/to-item-indexes';
 import { validated } from '../../common/Const';
@@ -54,7 +54,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * @param value the ordered unavailability from previous pipe
    * validate the requested unavailability start time is not in the past
    */
-  private validateRelevance = async (value: ValidateUnavailabilityPipeInterface): Promise<DateTime> => {
+  private validateRelevance = async (value: ValidateScheduleUnavailabilityDto): Promise<DateTime> => {
     // should already know y1 and y2
     const currentDateTime = DateTime.local();
     Logger.log(`the current DateTime below:`);
@@ -181,7 +181,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     }
   }
 
-  async transform(value: ValidateUnavailabilityPipeInterface): Promise<ValidatedUnavailabilityDto> {
+  async transform(value: ValidateScheduleUnavailabilityDto): Promise<ValidatedUnavailabilityDto> {
     try {
       // validate startTime is not in the past
       const start: DateTime = await this.validateRelevance(value);

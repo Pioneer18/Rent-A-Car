@@ -1,7 +1,7 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { MapNewRentalPipe } from './map-new-rental.pipe';
-import { LocCreateRentalDto } from '../dto/loc-create-rental.dto';
-import { CreateRentalDto } from '../dto/crud/create-rental.dto';
+import { LocCreateRentalDto } from '../dto/createRental/loc-create-rental.dto';
+import { CreateRentalDto } from '../dto/createRental/create-rental.dto';
 
 describe('MapNewRentalPipe Unit Test', () => {
   let pipe: MapNewRentalPipe;

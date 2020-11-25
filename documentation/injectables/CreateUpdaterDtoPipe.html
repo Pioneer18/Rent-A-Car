@@ -256,9 +256,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
-import { UpdateUnavailabilityDto } from &#x27;../dto/unavailability/update-unavailability.dto&#x27;;
-import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/validate-update-unavailability.dto&#x27;;
-import { UpdateUnavailabilityDataDto } from &#x27;../dto/unavailability/update-unavailability-data.dto&#x27;;
+import { UpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/update-unavailability.dto&#x27;;
+import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/validate-update-unavailability.dto&#x27;;
+import { UpdateUnavailabilityDataDto } from &#x27;../dto/unavailability/update/update-unavailability-data.dto&#x27;;
 
 @Injectable()
 export class CreateUpdaterDtoPipe implements PipeTransform&lt;ValidateUpdateUnavailabilityDto, Promise&lt;UpdateUnavailabilityDataDto&gt;&gt; {

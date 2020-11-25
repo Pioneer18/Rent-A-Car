@@ -1,6 +1,6 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
-import { LocCreateRentalDto } from '../dto/loc-create-rental.dto';
-import { CreateRentalDto } from '../dto/crud/create-rental.dto';
+import { LocCreateRentalDto } from '../dto/createRental/loc-create-rental.dto';
+import { CreateRentalDto } from '../dto/createRental/create-rental.dto';
 
 @Injectable()
 export class MapNewRentalPipe implements PipeTransform {

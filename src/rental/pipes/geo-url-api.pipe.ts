@@ -1,6 +1,6 @@
 import { Injectable, ArgumentMetadata, Logger } from '@nestjs/common';
 import { AppConfigService } from '../../config/configuration.service';
-import { RawCreateRentalDto } from '../dto/crud/raw-create-rental-dto';
+import { RawCreateRentalDto } from '../dto/createRental/raw-create-rental-dto';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 
 /**
