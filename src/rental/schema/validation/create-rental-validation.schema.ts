@@ -1,6 +1,11 @@
 import * as joi from '@hapi/joi';
 /**
  * Validate requested new rental before passing to the handler
+ * - fuel: when the selected fuel type is electric and not gas or hybrid, several fields must change their validation
+ *   - mpgE: the metric for electric mileage. When the selected fuel type is electric, mpgE is required, otherwise it must be null
+ *   - cityMpg: the metric for gas mileage in the city. cityMpg must be null if the fuel type is electric
+ *   - hwyMpg: the metric for gas mileage on the highway. hwyMpg must be null if the fuel type is electric
+ *   - gasGrade: the gas grade must be 'N/A' if the selected fuel type is electric
  */
 export const CreateRentalValidation = joi.object({
   rentalDescription: joi.string(),
@@ -8,13 +13,17 @@ export const CreateRentalValidation = joi.object({
   specs: joi.object({
     odometer: joi.number().required(),
     transmission: joi.string().required(),
-    cityMpg: joi.number().allow(null).required(),
-    hwyMpg: joi.number().allow(null).required(),
+    cityMpg: joi.number().required()
+      .when('fuel', {is: 'electric', then: joi.valid(null)}),
+    hwyMpg: joi.number().required()
+      .when('fuel', {is: 'electric', then: joi.valid(null)}),
     mpgE: joi.number()
-    .when('cityMpg', {is: null, then: joi.required()})
-    .when('hwyMpg', {is: null, then: joi.required()}),
-    fuel: joi.string().valid('gas', 'hybrid','electric').required(),
-    gasGrade: joi.string().valid('regular', 'mid', 'premium', 'N/A').required(),
+      .when('fuel', {is: 'electric', then: joi.number().required()})
+      .when('fuel', {not: 'electric', then: joi.valid(null) }),
+    fuel: joi.string().valid('gas', 'hybrid','electric').required()
+      .when('mpgE', {is: joi.number(), then: joi.valid('electric')}),
+    gasGrade: joi.string().valid('regular', 'mid', 'premium', 'N/A').required()
+      .when('fuel', {is: 'electric', then: joi.valid('N/A')}),
     description: joi.string().required(),
     make: joi.string().required(),
     model: joi.string().required(),
