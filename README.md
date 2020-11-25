@@ -16,6 +16,8 @@ This project is a demonstration of a scalable, loosely-coupled, testable, server
 ## License
 This project is licensed under the MIT license. See the LICENSE file for more info.
 
+## Documentation
+
 ## Rent-A-Car Wiki
 please check out the wiki for a more detailed look at the application.
 https://github.com/Pioneer18/Rent-A-Car/wiki
