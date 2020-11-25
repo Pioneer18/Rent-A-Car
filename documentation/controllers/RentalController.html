@@ -162,7 +162,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br />@UsePipes(new JoiValidationPipe())<br />@UsePipes(MapNewRentalPipe)<br />@UsePipes(new GeoUrlApiPipe())<br /></code>
+                    <code>@Post()<br />@UsePipes(new JoiValidationPipe())<br />@UsePipes(new MapNewRentalPipe())<br />@UsePipes(new GeoUrlApiPipe())<br /></code>
                 </td>
             </tr>
 
@@ -760,7 +760,7 @@ export class RentalController {
    */
   @Post()
   @UsePipes(new JoiValidationPipe(CreateRentalValidation))
-  @UsePipes(MapNewRentalPipe)
+  @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
   async createRental(@Body() rental: CreateRentalDto) {
     try {

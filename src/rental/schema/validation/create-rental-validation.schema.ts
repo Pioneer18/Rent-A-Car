@@ -7,7 +7,7 @@ import * as joi from '@hapi/joi';
  *   - hwyMpg: the metric for gas mileage on the highway. hwyMpg must be null if the fuel type is electric
  *   - gasGrade: the gas grade must be 'N/A' if the selected fuel type is electric
  */
-export const CreateRentalValidation = joi.object({
+export const CreateRentalValidationSchema = joi.object({
   rentalDescription: joi.string(),
   address: joi.string().required(),
   specs: joi.object({

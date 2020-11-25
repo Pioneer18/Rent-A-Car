@@ -248,13 +248,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/RentalModule.html" data-type="entity-link">RentalModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' : 'data-target="#xs-controllers-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' }>
+                                            'data-target="#controllers-links-module-RentalModule-6c44b4073c80a40f75dd829910a2d865"' : 'data-target="#xs-controllers-links-module-RentalModule-6c44b4073c80a40f75dd829910a2d865"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' :
-                                            'id="xs-controllers-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-RentalModule-6c44b4073c80a40f75dd829910a2d865"' :
+                                            'id="xs-controllers-links-module-RentalModule-6c44b4073c80a40f75dd829910a2d865"' }>
                                             <li class="link">
                                                 <a href="controllers/RentalController.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">RentalController</a>
@@ -263,24 +263,72 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' : 'data-target="#xs-injectables-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' }>
+                                        'data-target="#injectables-links-module-RentalModule-6c44b4073c80a40f75dd829910a2d865"' : 'data-target="#xs-injectables-links-module-RentalModule-6c44b4073c80a40f75dd829910a2d865"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' :
-                                        'id="xs-injectables-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RentalModule-6c44b4073c80a40f75dd829910a2d865"' :
+                                        'id="xs-injectables-links-module-RentalModule-6c44b4073c80a40f75dd829910a2d865"' }>
+                                        <li class="link">
+                                            <a href="injectables/CreateUpdaterDtoPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>CreateUpdaterDtoPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/EditDetailsPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>EditDetailsPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/GeoUrlApiPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>GeoUrlApiPipe</a>
+                                        </li>
                                         <li class="link">
                                             <a href="injectables/GeoUrlApiUtil.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>GeoUrlApiUtil</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/GivenNoticePipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>GivenNoticePipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/JoiValidationPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>JoiValidationPipe</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/MapNewRentalPipe.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>MapNewRentalPipe</a>
                                         </li>
                                         <li class="link">
+                                            <a href="injectables/PricingPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>PricingPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/ProcessUnavailabilityPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>ProcessUnavailabilityPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/RentalDurationPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>RentalDurationPipe</a>
+                                        </li>
+                                        <li class="link">
                                             <a href="injectables/RentalService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>RentalService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/RequestCoordinatesPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>RequestCoordinatesPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/SortUnavailabilityPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>SortUnavailabilityPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/ValidateRemoveUnavailabilityPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>ValidateRemoveUnavailabilityPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/ValidateUnavailabilityPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>ValidateUnavailabilityPipe</a>
                                         </li>
                                     </ul>
                                 </li>
