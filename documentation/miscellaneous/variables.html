@@ -307,6 +307,9 @@
     transmission: joi.string().required(),
     cityMpg: joi.number().required(),
     hwyMpg: joi.number().required(),
+    mpgE: joi.number()
+    .when(&#x27;cityMpg&#x27;, {is: null, then: joi.required()})
+    .when(&#x27;hwyMpg&#x27;, {is: null, then: joi.required()}),
     fuel: joi.string().valid(&#x27;gas&#x27;, &#x27;hybrid&#x27;,&#x27;electric&#x27;).required(),
     gasGrade: joi.string().valid(&#x27;regular&#x27;, &#x27;mid&#x27;, &#x27;premium&#x27;, &#x27;N/A&#x27;).required(),
     description: joi.string().required(),
@@ -739,8 +742,9 @@
   specs: {
     odometer: Number,
     transmission: String,
-    cityMpg: Number,
-    hwyMpg: Number,
+    cityMpg: Number || null,
+    hwyMpg: Number || null,
+    mpgE: Number || null,
     fuel: String,
     gasGrade: String,
     description: String,
