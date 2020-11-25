@@ -178,13 +178,13 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
 import { MapRentalDto } from &#x27;../dto/crud/map-rental.dto&#x27;;
-import { CreateRentalInterface } from &#x27;../interface/create-rental.interface&#x27;;
+import { CreateRentalDto } from &#x27;../interface/create-rental.interface&#x27;;
 
 @Injectable()
 export class MapNewRentalPipe implements PipeTransform {
   async transform(value: MapRentalDto) {
     try {
-      const data: CreateRentalInterface &#x3D; {
+      const data: CreateRentalDto &#x3D; {
         rentalDescription: &#x27;this is a tokyo grocery getter&#x27;,
         address: value.address,
         specs: value.value.specs,

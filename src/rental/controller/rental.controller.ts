@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req } from '@
 import { RentalService } from '../service/rental.service';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
-import { CreateRentalInterface } from '../interface/create-rental.interface';
+import { CreateRentalDto } from '../dto/crud/create-rental.dto';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateRentalValidation } from '../schema/validation/create-rental-validation.schema';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
@@ -43,7 +43,7 @@ export class RentalController {
   @UsePipes(new JoiValidationPipe(CreateRentalValidation))
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
-  async createRental(@Body() rental: CreateRentalInterface) {
+  async createRental(@Body() rental: CreateRentalDto) {
     try {
       return await this.rentalService.createRental(rental);
     } catch (err) {

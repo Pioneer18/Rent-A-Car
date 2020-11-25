@@ -24,10 +24,6 @@
 <title>cluster_ImagesModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1570,-268 1570,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_ImagesModule_exports</title>
-<polygon fill="none" stroke="black" points="717,-208 717,-260 835,-260 835,-208 717,-208"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_ImagesModule_imports</title>
 <polygon fill="none" stroke="black" points="1295,-78 1295,-130 1562,-130 1562,-78 1295,-78"/>
@@ -35,6 +31,10 @@
 <g id="clust6" class="cluster">
 <title>cluster_ImagesModule_providers</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 1287,-130 1287,-78 16,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_ImagesModule_exports</title>
+<polygon fill="none" stroke="black" points="717,-208 717,-260 835,-260 835,-208 717,-208"/>
 </g>
 <!-- AppConfigModule -->
 <g id="node1" class="node">

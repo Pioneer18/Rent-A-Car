@@ -1,5 +1,5 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { CreateRentalInterface } from '../interface/create-rental.interface';
+import { CreateRentalDto } from '../dto/crud/create-rental.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RentalInterface } from '../interface/rental.interface';
@@ -18,9 +18,160 @@ export class RentalService {
     @InjectModel('Rental') private readonly rentalModel: Model<RentalInterface>,
     @Inject(unavailabilityModel)
     private readonly unavailability: Model<Unavailability>,
-  ) {}
+  ) { }
 
-  private async createRentalQuery(rental) {
+  /**
+   * summary: create a new rental listing with attached geolocation coordinates
+   * so the rental may be found by a geospatial query
+   * @param rental the new rental to be created
+   */
+  async createRental(rental: CreateRentalDto) {
+    try {
+      const document = await new this.rentalModel(rental);
+      return await document.save();
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * summary: find rentals with the data provided in the SearchRentalDto
+   * @param rental SearchRentalDto
+   */
+  async searchRental(rental: SearchRentalDto) {
+    try {
+      const query = await this.createRentalQuery(rental);
+      const rentals = await this.rentalModel.find(query);
+      if (rentals.length > 0) {
+        return rentals;
+      } else {
+        throw new Error('No rentals were found');
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * summary: edit the rental pricing
+   * - price
+   * - discounts:
+   *   - weekly
+   *   - monthly
+   */
+  async editPricing(data: PricingDto) {
+    // make an update document
+    try {
+      const filter = { _id: data.rentalId };
+      const update = {
+        pricing: {
+          price: data.price,
+          discounts: {
+            weekly: data.discounts.weekly,
+            monthly: data.discounts.monthly,
+          },
+        },
+      };
+      const updater = {
+        $set: update,
+      };
+      const doc = await this.rentalModel.findOneAndUpdate(filter, updater, { new: true });
+      return doc;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * summary: edit the details of the Rental (# of seats, color, etc.)
+   * @param data the data comes as an EditDetailsDto
+   */
+  async editDetails(data: EditDetailsDto) {
+    // make an update document
+    try {
+      const filter = { _id: data.rentalId };
+      const update = {
+        specs: data.specs,
+        features: data.features,
+      };
+      const updater = {
+        $set: update,
+      };
+      const doc = await this.rentalModel.findOneAndUpdate(filter, updater, { new: true });
+      return doc;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * summary: set a period of unavailability for the rental (e.g. mon - wed)
+   */
+  async scheduleUnavailability(processed: ProcessedUnavailabilityDto) {
+    try {
+      await this.checkForOverlap(processed);
+      // if it passed, combine data into one array and insert
+      const { y1, y2 } = processed.data;
+      if (y2 !== null) {
+        const merged = y1.concat(y2);
+        Logger.log(`the merged years`);
+        Logger.log(merged);
+        return await this.unavailability.insertMany(merged, { ordered: true });
+      }
+      return await this.unavailability.insertMany(y1, { ordered: true });
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * summary: edit the time interval of an unavailability series
+   */
+  async updateUnavailability(data: UpdateUnavailabilityDataDto) {
+    // send the update
+    try {
+      const update = await this.unavailability.updateMany(
+        data.filter,
+        data.updater,
+      );
+      return update;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * summary:
+   * @param data 
+   */
+  async removeUnavailability(data: RemoveUnavailabilityDto) {
+    try {
+      const remove = await this.unavailability.deleteMany({
+        rentalId: data.rentalId,
+        unavailabilityId: data.unavailabilityId,
+      });
+      if (remove.deletedCount === 0) {
+        throw new Error('No Unavailability documents were found, no documents were deleted');
+      }
+      return remove;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+/**
+ * summary: convert a searchRentalDto into a mongoose query
+ * - The query searchs a maxium 8 mile radius for rentals
+ * - Filters: 
+ *   - rental min duration
+ *   - rental max duration
+ *   - advance notice minimum; e.g. 1 hour
+ *   - loc: GeoJSON object
+ *   - rental price: optional
+ *   - rental features: optional
+ * @param rental searchRentalDto
+ */
+  private async createRentalQuery(rental: SearchRentalDto) {
     try {
       const query: any = {
         'scheduling.rentMinDuration': { $lte: rental.rentalDuration },
@@ -41,9 +192,9 @@ export class RentalService {
       };
       rental.price
         ? (query.pricing = {
-            price: rental.price, // add price as optional search parameter
-          })
-        : (rental.priceRange = null);
+          price: rental.price, // add price as optional search parameter
+        })
+        : (rental.price = null);
       rental.features
         ? (query.features = { $in: rental.features })
         : (rental.features = null);
@@ -54,8 +205,9 @@ export class RentalService {
   }
 
   /**
+   * summary: validate there currently is no scheduled unavailability for the rental in the database that overlaps 
+   * with the requested unavailability 
    * @param data query for 1 or 2 years
-   * validate there currently is no Unavailability in the db that overlaps with the requested
    */
   private checkForOverlap = async (data: ProcessedUnavailabilityDto) => {
     const { y1Query, y2Query } = data;
@@ -77,137 +229,4 @@ export class RentalService {
       throw new Error('this request overlaps with existing unavailability');
     }
   };
-
-  /**
-   * Create Rental:
-   * create a new vehicle rental listing
-   */
-  async createRental(rental: CreateRentalInterface) {
-    try {
-      const document = await new this.rentalModel(rental);
-      return await document.save();
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-
-  /**
-   * Search Rental:
-   * find rentals available near a specified locations (user's location)
-   */
-  async searchRental(rental: SearchRentalDto) {
-    try {
-      const query = await this.createRentalQuery(rental);
-      const rentals = await this.rentalModel.find(query);
-      if (rentals.length > 0) {
-        return rentals;
-      } else {
-        throw new Error('No rentals were found');
-      }
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-
-  /**
-   * Edit Pricing:
-   * edit the rental price
-   */
-  async editPricing(data: PricingDto) {
-    // make an update document
-    try {
-      const filter = { _id: data.rentalId };
-      const update = {
-        pricing: {
-          price: data.price,
-          discounts: {
-            weekly: data.discounts.weekly,
-            monthly: data.discounts.monthly,
-          },
-        },
-      };
-      const updater = {
-        $set: update,
-      };
-      const doc = await this.rentalModel.findOneAndUpdate(filter, updater, {new: true});
-      return doc;
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-
-  /**
-   * Edit Rental Details:
-   * edit the details of the Rental (# of seats, color, etc.)
-   */
-  async editDetails(data: EditDetailsDto) {
-    // make an update document
-    try {
-      const filter = { _id: data.rentalId };
-      const update = {
-        specs: data.specs,
-        features: data.features,
-      };
-      const updater = {
-        $set: update,
-      };
-      const doc = await this.rentalModel.findOneAndUpdate(filter, updater, {new: true});
-      return doc;
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-
-  /**
-   * Schedule Unavailability:
-   * set a period of unavailability for the rental (e.g. mon - wed)
-   */
-  async scheduleUnavailability(processed: ProcessedUnavailabilityDto) {
-    try {
-      await this.checkForOverlap(processed);
-      // if it passed, combine data into one array and insert
-      const { y1, y2 } = processed.data;
-      if (y2 !== null) {
-        const merged = y1.concat(y2);
-        Logger.log(`the merged years`);
-        Logger.log(merged);
-        return await this.unavailability.insertMany(merged, { ordered: true });
-      }
-      return await this.unavailability.insertMany(y1, { ordered: true });
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-
-  /**
-   * Update Unavailability
-   * edit the time interval of an unavailability series
-   */
-  async updateUnavailability(data: UpdateUnavailabilityDataDto) {
-    // send the update
-    try {
-      const update = await this.unavailability.updateMany(
-        data.filter,
-        data.updater,
-      );
-      return update;
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
-
-  async removeUnavailability(data: RemoveUnavailabilityDto) {
-    try {
-      const remove = await this.unavailability.deleteMany({
-        rentalId: data.rentalId,
-        unavailabilityId: data.unavailabilityId,
-      });
-      if (remove.deletedCount === 0) {
-        throw new Error('No Unavailability documents were found, no documents were deleted');
-      }
-      return remove;
-    } catch (err) {
-      throw new Error(err);
-    }
-  }
 }

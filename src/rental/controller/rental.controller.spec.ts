@@ -3,7 +3,7 @@ import { RentalController } from './rental.controller';
 import { RentalService } from '../service/rental.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RentalSchema } from '../schema/rental.schema';
-import { CreateRentalInterface } from '../interface/create-rental.interface';
+import { CreateRentalDto } from '../dto/crud/create-rental.dto';
 import { SearchRentalDto } from '../dto/crud/search-rental.dto';
 import { PricingDto } from '../dto/crud/pricing.dto';
 
@@ -38,7 +38,7 @@ describe('Rental Controller', () => {
   // Spy on the RentalService and mock the createRental method to test continuity of controller and handler
   // currently failing because of Pipes involvement
   describe('createRental endpoint test', () => {
-    const mockedRental: CreateRentalInterface = {
+    const mockedRental: CreateRentalDto = {
       rentalDescription: 'This is a Tokyo grocery getter',
       address: '3489 FakeDale Drive, Fake City, GA',
       specs: {

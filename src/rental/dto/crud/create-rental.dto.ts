@@ -1,7 +1,7 @@
 /**
  * Interface for a mapped Rental
  */
-export interface CreateRentalInterface {
+export interface CreateRentalDto {
   rentalDescription: string;
   address: string;
   specs: {

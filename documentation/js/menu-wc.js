@@ -623,7 +623,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/CreateRentalInterface.html" data-type="entity-link">CreateRentalInterface</a>
+                                <a href="interfaces/CreateRentalDto.html" data-type="entity-link">CreateRentalDto</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ExtractKeyValueUtilInterface.html" data-type="entity-link">ExtractKeyValueUtilInterface</a>

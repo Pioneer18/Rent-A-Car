@@ -1,10 +1,10 @@
-import { CreateRentalInterface } from '../../interface/create-rental.interface';
+import { CreateRentalDto } from '../../dto/crud/create-rental.dto';
 import { JoiValidationPipe } from '../../../common/pipes/joi-validation.pipe';
 import { CreateRentalValidation } from '../validation/create-rental-validation.schema';
 
 describe('CreateRentalValidationSchema Unit Test', () => {
   it('should only accept objects that fit the MapRentalInterface', () => {
-    const rental: CreateRentalInterface = {
+    const rental: CreateRentalDto = {
       rentalDescription: 'Tokyo grocery getter',
       address: '204 W Washington St, Lexington, VA 24450',
       specs: {
