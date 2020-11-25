@@ -24,13 +24,13 @@
 <title>cluster_RentalModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="21.5,-70 21.5,-268 474.5,-268 474.5,-70 21.5,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_RentalModule_imports</title>
-<polygon fill="none" stroke="black" points="340.5,-78 340.5,-130 466.5,-130 466.5,-78 340.5,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_RentalModule_exports</title>
 <polygon fill="none" stroke="black" points="198.5,-208 198.5,-260 312.5,-260 312.5,-208 198.5,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_RentalModule_imports</title>
+<polygon fill="none" stroke="black" points="340.5,-78 340.5,-130 466.5,-130 466.5,-78 340.5,-78"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_RentalModule_providers</title>

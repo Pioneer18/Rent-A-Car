@@ -5,7 +5,7 @@
   "author": "Jonathan Sells",
   "license": "MIT",
   "scripts": {
-    "start-compodocs":"npx @compodoc/compodoc -p tsconfig.json -s",
+    "doc:serve":"npx @compodoc/compodoc -p tsconfig.json -s",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
