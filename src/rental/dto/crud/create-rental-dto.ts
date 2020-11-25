@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 /**
- * Create Rental DTO
+ * Create Rental DTO:
+ * - The initial values submitted by a user to create a new rental listing
  */
 @Injectable()
 export class CreateRentalDto {

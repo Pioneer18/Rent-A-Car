@@ -8,8 +8,11 @@ export const CreateRentalValidation = joi.object({
   specs: joi.object({
     odometer: joi.number().required(),
     transmission: joi.string().required(),
-    cityMpg: joi.number().required(),
-    hwyMpg: joi.number().required(),
+    cityMpg: joi.number().allow(null).required(),
+    hwyMpg: joi.number().allow(null).required(),
+    mpgE: joi.number()
+    .when('cityMpg', {is: null, then: joi.required()})
+    .when('hwyMpg', {is: null, then: joi.required()}),
     fuel: joi.string().valid('gas', 'hybrid','electric').required(),
     gasGrade: joi.string().valid('regular', 'mid', 'premium', 'N/A').required(),
     description: joi.string().required(),

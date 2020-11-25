@@ -3,6 +3,9 @@ import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const ObjectID = mongoose.ObjectId;
 
+/**
+ * Rental Schema
+ */
 export const RentalSchema = new Schema({
   rentalId: ObjectID,
   rentalTitle: String,
@@ -15,8 +18,9 @@ export const RentalSchema = new Schema({
   specs: {
     odometer: Number,
     transmission: String,
-    cityMpg: Number,
-    hwyMpg: Number,
+    cityMpg: Number || null,
+    hwyMpg: Number || null,
+    mpgE: Number || null,
     fuel: String,
     gasGrade: String,
     description: String,
