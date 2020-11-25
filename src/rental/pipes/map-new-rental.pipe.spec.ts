@@ -1,6 +1,6 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { MapNewRentalPipe } from './map-new-rental.pipe';
-import { MapNewRentalPipeInterface } from '../interface/map-new-rental-pipe.interface';
+import { LocCreateRentalDto } from '../dto/loc-create-rental.dto';
 import { CreateRentalDto } from '../dto/crud/create-rental.dto';
 
 describe('MapNewRentalPipe Unit Test', () => {
@@ -24,7 +24,7 @@ describe('MapNewRentalPipe Unit Test', () => {
   describe('test the functionality of the pipe', () => {
     it('should should return a mapped object that fits the CreateRentalDto ', async () => {
       // do stuffs
-      const mockValue: MapNewRentalPipeInterface = {
+      const mockValue: LocCreateRentalDto = {
         value: {
           specs: {
             odometer: 230000,

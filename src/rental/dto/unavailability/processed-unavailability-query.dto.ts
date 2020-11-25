@@ -1,4 +1,7 @@
-export interface ProcessedUnavailabilityInterface {
+/**
+ * summary: 
+ */
+export class ProcessedUnavailabilityQueryDto {
     unavailabilityId: string; // for updating and quick indexing
     rentalId: string;
     year: number;

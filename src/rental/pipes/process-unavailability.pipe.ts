@@ -1,15 +1,19 @@
 import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unavailability.dto';
 import { ProcessedUnavailabilityDto } from '../dto/unavailability/processed-unavailability.dto';
-import { UnavailabilityQuery } from '../interface/unavailability-query.interface';
-import { Processed } from '../interface/processed.interface';
-import { ProcessedUnavailabilityInterface } from '../interface/processed-unavailability.interface';
-
+import { UnavailabilityQueryDto } from '../dto/unavailability/unavailability-query.dto';
+import { CreateQueryDto } from '../dto/unavailability/create-query.dto';
+import { ProcessedUnavailabilityQueryDto } from '../dto/unavailability/processed-unavailability-query.dto';
+/**
+ * summary: This query is searching for any scheduled unavailability already in the database that would overlap with this request to add more unavailability
+ * - This is to prevent the user on the front-end from accidentally overlapping 'blocks' of scheduled unavailability. The front-end of course should also block this
+ * @param year 
+ */
 @Injectable()
 export class ProcessUnavailabilityPipe implements PipeTransform {
-  private createQuery = async (
-    year: Processed,
-  ): Promise<UnavailabilityQuery> => {
+  protected createQuery = async (
+    year: CreateQueryDto,
+  ): Promise<UnavailabilityQueryDto> => {
     return {
       rentalId: year.min.rentalId,
       year: year.year,
@@ -39,12 +43,17 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
     };
   }
 
-  // add unavailabilityId for this Unavailability series to be quickly queried
-  private addUnavailabilityId = async (
+  /**
+   * summary: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto
+   * - this method checks if the user is schedling time only for this year or into the next year as well
+   * - the uuid identifies a series of unavailability, allowing the entire block of time to be identified in the database
+   * @param value 
+   */
+  protected addUnavailabilityId = async (
     value: ValidatedUnavailabilityDto,
   ): Promise<{
-    pY1: ProcessedUnavailabilityInterface[];
-    pY2: ProcessedUnavailabilityInterface[] | null;
+    pY1: ProcessedUnavailabilityQueryDto[];
+    pY2: ProcessedUnavailabilityQueryDto[] | null;
   }> => {
     // temp arrays for transformation
     const tY1 = [];
@@ -77,8 +86,8 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
         });
       });
       // return processedUnavailabilityDto
-      const pY1: ProcessedUnavailabilityInterface[] = tY1;
-      const pY2: ProcessedUnavailabilityInterface[] = tY2;
+      const pY1: ProcessedUnavailabilityQueryDto[] = tY1;
+      const pY2: ProcessedUnavailabilityQueryDto[] = tY2;
       return { pY1, pY2 };
     }
     // process 1 year
@@ -95,13 +104,14 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
         title: x.title,
       });
     });
-    const py1: ProcessedUnavailabilityInterface[] = ty1;
+    const py1: ProcessedUnavailabilityQueryDto[] = ty1;
     return { pY1: py1, pY2: null };
   }
 
   /**
-   * map data for given years
-   * @param value the validated unavailability array(s)
+   * summary: process the request to update a rental's 'scheduled unavailability'
+   * - the user may schedule as far as a year ahead. To easily track the data as a single 'block' of unavailable time for the rental, each Unavailability document related to this query is given the same 'uuid'
+   * @param value the validated unavailability request dto
    */
   async transform(
     value: ValidatedUnavailabilityDto,
@@ -109,15 +119,16 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
     // add uuid
     const {pY1, pY2} = await this.addUnavailabilityId(value);
     const { y1, y2 } = value;
+    // create Unavailability model queries for each year
     if (y2 !== null) {
-      const a1 = {
+      const createQuery1: CreateQueryDto = {
         min: y1[0],
         max: y1[y1.length - 1],
         year: y1[0].year,
         start: y1[0].start,
         end: y1[0].end,
       };
-      const a2 = {
+      const createQuery2: CreateQueryDto = {
         min: y2[0],
         max: y2[y2.length - 1],
         year: y2[0].year,
@@ -125,15 +136,16 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
         end: y2[0].end,
       };
       return {
-        y1Query: await this.createQuery(a1),
-        y2Query: await this.createQuery(a2),
+        y1Query: await this.createQuery(createQuery1),
+        y2Query: await this.createQuery(createQuery2),
         data: {
           y1: pY1,
           y2: pY2,
         },
       };
     }
-    const b = {
+    // create an Unavailability model query for just one year
+    const createQuery = {
       min: y1[0],
       max: y1[y1.length - 1],
       year: y1[0].year,
@@ -141,7 +153,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
       end: y1[0].end,
     };
     return {
-      y1Query: await this.createQuery(b),
+      y1Query: await this.createQuery(createQuery),
       y2Query: null,
       data: {
         y1: pY1,

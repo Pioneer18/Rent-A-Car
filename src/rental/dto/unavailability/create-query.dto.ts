@@ -1,6 +1,6 @@
-import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
+import { UnavailabilityDto } from './unavailability.dto';
 
-export interface Processed {
+export class CreateQueryDto {
     min: UnavailabilityDto;
     max: UnavailabilityDto;
     year: number;

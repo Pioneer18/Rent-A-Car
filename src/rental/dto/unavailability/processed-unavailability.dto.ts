@@ -1,13 +1,13 @@
-import { UnavailabilityQuery } from '../../interface/unavailability-query.interface';
-import { ProcessedUnavailabilityInterface } from '../../interface/processed-unavailability.interface';
+import { UnavailabilityQueryDto } from './unavailability-query.dto';
+import { ProcessedUnavailabilityQueryDto } from './processed-unavailability-query.dto';
 /**
  * summary:
  */
 export class ProcessedUnavailabilityDto {
-    y1Query: UnavailabilityQuery;
-    y2Query: UnavailabilityQuery | null;
+    y1Query: UnavailabilityQueryDto;
+    y2Query: UnavailabilityQueryDto | null;
     data: {
-        y1: ProcessedUnavailabilityInterface[];
-        y2: ProcessedUnavailabilityInterface[] | null;
+        y1: ProcessedUnavailabilityQueryDto[];
+        y2: ProcessedUnavailabilityQueryDto[] | null;
     };
 }

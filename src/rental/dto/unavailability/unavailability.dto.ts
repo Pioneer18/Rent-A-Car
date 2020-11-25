@@ -1,3 +1,7 @@
+/**
+ * summary: schedule a block of unavilable time for the rental on a given day and year
+ * - a user may schedule up to a year in the future so the specific "year" and "day of the year" is required
+ */
 export class UnavailabilityDto {
     rentalId: string;
     year: number;

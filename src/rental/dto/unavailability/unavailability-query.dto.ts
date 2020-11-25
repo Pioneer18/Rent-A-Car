@@ -1,4 +1,4 @@
-export interface UnavailabilityQuery {
+export class UnavailabilityQueryDto {
   rentalId: string;
   year: number;
   doy: { $lte: number; $gte: number };
