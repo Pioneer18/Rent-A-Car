@@ -13,8 +13,8 @@ import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update-unavai
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailability.dto';
 
 /**
- * Rental Service: written by Jonathan Sells 11/24/2020
- * Create rentals, edit their scheduling and details, and search for rentals within a specified radius; e.g. 8 miles
+ * **Rental Service**: written by Jonathan Sells 11/24/2020
+ * - Create rentals, edit their scheduling and details, and search for rentals within a specified radius; e.g. 8 miles
  */
 @Injectable()
 export class RentalService {
@@ -25,7 +25,7 @@ export class RentalService {
   ) { }
 
   /**
-   * summary: create a new rental listing with attached geolocation coordinates
+   * **summary**: create a new rental listing with attached geolocation coordinates
    * so the rental may be found by a geospatial query
    * @param rental the new rental to be created
    */
@@ -39,7 +39,7 @@ export class RentalService {
   }
 
   /**
-   * summary: query rentals in the database with the data provided in the SearchRentalDto
+   * **summary**: query rentals in the database with the data provided in the SearchRentalDto
    * @param rental SearchRentalDto
    */
   async searchRental(rental: SearchRentalDto) {
@@ -57,7 +57,7 @@ export class RentalService {
   }
 
   /**
-   * summary: edit the rental pricing
+   * **summary**: edit the rental pricing
    * - price
    * - discounts:
    *   - weekly
@@ -87,7 +87,7 @@ export class RentalService {
   }
 
   /**
-   * summary: edit the details of the Rental (# of seats, color, etc.)
+   * **summary**: edit the details of the Rental (# of seats, color, etc.)
    * @param data the data comes as an EditDetailsDto
    */
   async editDetails(data: EditDetailsDto) {
@@ -109,7 +109,7 @@ export class RentalService {
   }
 
   /**
-   * summary: set a period of unavailability for the rental (e.g. mon - wed)
+   * **summary**: set a period of unavailability for the rental (e.g. mon - wed)
    */
   async scheduleUnavailability(processed: ProcessedUnavailabilityDto) {
     try {
@@ -129,7 +129,7 @@ export class RentalService {
   }
 
   /**
-   * summary: edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
+   * **summary**: edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
    * @param data 
    */
   async updateUnavailability(data: UpdateUnavailabilityDataDto) {
@@ -146,7 +146,7 @@ export class RentalService {
   }
 
   /**
-   * summary: remove an amount of time from a scheduled duration of unavailability on the rental
+   * **summary**: remove an amount of time from a scheduled duration of unavailability on the rental
    * @param data 
    */
   async removeUnavailability(data: RemoveUnavailabilityDto) {
@@ -165,7 +165,7 @@ export class RentalService {
   }
 
   /**
-   * summary: convert a searchRentalDto into a mongoose query for the searchRental method
+   * **summary**: convert a searchRentalDto into a mongoose query for the searchRental method
    * - The query searchs a maxium 8 mile radius for rentals
    * - Filters: 
    *   - rental min duration
@@ -210,7 +210,7 @@ export class RentalService {
   }
 
   /**
-   * summary: validate there currently is no scheduled unavailability for the rental in the database that overlaps 
+   * **summary**: validate there currently is no scheduled unavailability for the rental in the database that overlaps 
    * with the requested unavailability 
    * @param data query for 1 or 2 years
    */
