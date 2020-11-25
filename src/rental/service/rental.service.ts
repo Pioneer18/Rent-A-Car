@@ -164,18 +164,18 @@ export class RentalService {
     }
   }
 
-/**
- * summary: convert a searchRentalDto into a mongoose query for the searchRental method
- * - The query searchs a maxium 8 mile radius for rentals
- * - Filters: 
- *   - rental min duration
- *   - rental max duration
- *   - advance notice minimum; e.g. 1 hour
- *   - loc: GeoJSON object
- *   - rental price: optional
- *   - rental features: optional
- * @param rental searchRentalDto
- */
+  /**
+   * summary: convert a searchRentalDto into a mongoose query for the searchRental method
+   * - The query searchs a maxium 8 mile radius for rentals
+   * - Filters: 
+   *   - rental min duration
+   *   - rental max duration
+   *   - advance notice minimum; e.g. 1 hour
+   *   - loc: GeoJSON object
+   *   - rental price: optional
+   *   - rental features: optional
+   * @param rental searchRentalDto
+   */
   private async createRentalQuery(rental: SearchRentalDto) {
     try {
       const query: any = {
