@@ -12,6 +12,10 @@ import { ProcessedUnavailabilityDto } from '../dto/unavailability/processed-unav
 import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update-unavailability-data.dto';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailability.dto';
 
+/**
+ * Rental Service: written by Jonathan Sells 11/24/2020
+ * Create rentals, edit their scheduling and details, and search for rentals within a specified radius; e.g. 8 miles
+ */
 @Injectable()
 export class RentalService {
   constructor(
@@ -35,7 +39,7 @@ export class RentalService {
   }
 
   /**
-   * summary: find rentals with the data provided in the SearchRentalDto
+   * summary: query rentals in the database with the data provided in the SearchRentalDto
    * @param rental SearchRentalDto
    */
   async searchRental(rental: SearchRentalDto) {
@@ -125,7 +129,8 @@ export class RentalService {
   }
 
   /**
-   * summary: edit the time interval of an unavailability series
+   * summary: edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
+   * @param data 
    */
   async updateUnavailability(data: UpdateUnavailabilityDataDto) {
     // send the update
@@ -141,7 +146,7 @@ export class RentalService {
   }
 
   /**
-   * summary:
+   * summary: remove an amount of time from a scheduled duration of unavailability on the rental
    * @param data 
    */
   async removeUnavailability(data: RemoveUnavailabilityDto) {
@@ -160,7 +165,7 @@ export class RentalService {
   }
 
 /**
- * summary: convert a searchRentalDto into a mongoose query
+ * summary: convert a searchRentalDto into a mongoose query for the searchRental method
  * - The query searchs a maxium 8 mile radius for rentals
  * - Filters: 
  *   - rental min duration

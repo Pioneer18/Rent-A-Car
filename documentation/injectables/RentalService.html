@@ -219,7 +219,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createRental(rental: <a href="../interfaces/CreateRentalDto.html">CreateRentalDto</a>)</code>
+                    <code>createRental(rental: <a href="../injectables/CreateRentalDto.html">CreateRentalDto</a>)</code>
                 </td>
             </tr>
 
@@ -253,7 +253,7 @@ so the rental may be found by a geospatial query</p>
                                 <tr>
                                     <td>rental</td>
                                     <td>
-                                                <code><a href="../interfaces/CreateRentalDto.html" target="_self" >CreateRentalDto</a></code>
+                                                <code><a href="../injectables/CreateRentalDto.html" target="_self" >CreateRentalDto</a></code>
                                     </td>
 
                                     <td>
@@ -300,15 +300,15 @@ so the rental may be found by a geospatial query</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createRentalQuery(rental)</code>
+                    <code>createRentalQuery(rental: <a href="../classes/SearchRentalDto.html">SearchRentalDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="165"
-                            class="link-to-prism">src/rental/service/rental.service.ts:165</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/rental/service/rental.service.ts:174</a></div>
                 </td>
             </tr>
 
@@ -321,6 +321,10 @@ so the rental may be found by a geospatial query</p>
 <li>Filters: <ul>
 <li>rental min duration</li>
 <li>rental max duration</li>
+<li>advance notice minimum; e.g. 1 hour</li>
+<li>loc: GeoJSON object</li>
+<li>rental price: optional</li>
+<li>rental features: optional</li>
 </ul>
 </li>
 </ul>
@@ -332,6 +336,7 @@ so the rental may be found by a geospatial query</p>
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                     <td>Description</td>
                                 </tr>
@@ -339,6 +344,9 @@ so the rental may be found by a geospatial query</p>
                             <tbody>
                                 <tr>
                                     <td>rental</td>
+                                    <td>
+                                                <code><a href="../classes/SearchRentalDto.html" target="_self" >SearchRentalDto</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -390,16 +398,15 @@ so the rental may be found by a geospatial query</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/rental/service/rental.service.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/rental/service/rental.service.ts:89</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Edit Rental Details:
-edit the details of the Rental (# of seats, color, etc.)</p>
+                    <div class="io-description"><p>summary: edit the details of the Rental (# of seats, color, etc.)</p>
 </div>
 
                     <div class="io-description">
@@ -410,6 +417,7 @@ edit the details of the Rental (# of seats, color, etc.)</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -424,6 +432,10 @@ edit the details of the Rental (# of seats, color, etc.)</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the data comes as an EditDetailsDto</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -465,16 +477,23 @@ edit the details of the Rental (# of seats, color, etc.)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/rental/service/rental.service.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/rental/service/rental.service.ts:62</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Edit Pricing:
-edit the rental price</p>
+                    <div class="io-description"><p>summary: edit the rental pricing</p>
+<ul>
+<li>price</li>
+<li>discounts:<ul>
+<li>weekly</li>
+<li>monthly</li>
+</ul>
+</li>
+</ul>
 </div>
 
                     <div class="io-description">
@@ -540,14 +559,16 @@ edit the rental price</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/rental/service/rental.service.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/rental/service/rental.service.ts:147</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary:</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -612,16 +633,15 @@ edit the rental price</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/rental/service/rental.service.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/rental/service/rental.service.ts:110</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Schedule Unavailability:
-set a period of unavailability for the rental (e.g. mon - wed)</p>
+                    <div class="io-description"><p>summary: set a period of unavailability for the rental (e.g. mon - wed)</p>
 </div>
 
                     <div class="io-description">
@@ -695,8 +715,7 @@ set a period of unavailability for the rental (e.g. mon - wed)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Search Rental:
-find rentals available near a specified locations (user&#39;s location)</p>
+                    <div class="io-description"><p>summary: find rentals with the data provided in the SearchRentalDto</p>
 </div>
 
                     <div class="io-description">
@@ -707,6 +726,7 @@ find rentals available near a specified locations (user&#39;s location)</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -721,6 +741,10 @@ find rentals available near a specified locations (user&#39;s location)</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>SearchRentalDto</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -762,16 +786,15 @@ find rentals available near a specified locations (user&#39;s location)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">src/rental/service/rental.service.ts:129</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/rental/service/rental.service.ts:130</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Update Unavailability
-edit the time interval of an unavailability series</p>
+                    <div class="io-description"><p>summary: edit the time interval of an unavailability series</p>
 </div>
 
                     <div class="io-description">
@@ -839,10 +862,17 @@ edit the time interval of an unavailability series</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/rental/service/rental.service.ts:202</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/rental/service/rental.service.ts:212</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: validate there currently is no scheduled unavailability for the rental in the database that overlaps 
+with the requested unavailability </p>
+</div>
+                    </td>
+                </tr>
 
                     <tr>
                         <td class="col-md-4">
@@ -859,8 +889,7 @@ edit the time interval of an unavailability series</p>
                                                 <tr>
                                                         <td>data</td>
                                                         <td>
-                                                                <code><p>query for 1 or 2 years
-validate there currently is no Unavailability in the db that overlaps with the requested</p>
+                                                                <code><p>query for 1 or 2 years</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -878,7 +907,7 @@ validate there currently is no Unavailability in the db that overlaps with the r
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject, Logger } from &#x27;@nestjs/common&#x27;;
-import { CreateRentalDto } from &#x27;../interface/create-rental.interface&#x27;;
+import { CreateRentalDto } from &#x27;../dto/crud/create-rental.dto&#x27;;
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
 import { RentalInterface } from &#x27;../interface/rental.interface&#x27;;
@@ -914,8 +943,8 @@ export class RentalService {
   }
 
   /**
-   * Search Rental:
-   * find rentals available near a specified locations (user&#x27;s location)
+   * summary: find rentals with the data provided in the SearchRentalDto
+   * @param rental SearchRentalDto
    */
   async searchRental(rental: SearchRentalDto) {
     try {
@@ -932,8 +961,11 @@ export class RentalService {
   }
 
   /**
-   * Edit Pricing:
-   * edit the rental price
+   * summary: edit the rental pricing
+   * - price
+   * - discounts:
+   *   - weekly
+   *   - monthly
    */
   async editPricing(data: PricingDto) {
     // make an update document
@@ -959,8 +991,8 @@ export class RentalService {
   }
 
   /**
-   * Edit Rental Details:
-   * edit the details of the Rental (# of seats, color, etc.)
+   * summary: edit the details of the Rental (# of seats, color, etc.)
+   * @param data the data comes as an EditDetailsDto
    */
   async editDetails(data: EditDetailsDto) {
     // make an update document
@@ -981,8 +1013,7 @@ export class RentalService {
   }
 
   /**
-   * Schedule Unavailability:
-   * set a period of unavailability for the rental (e.g. mon - wed)
+   * summary: set a period of unavailability for the rental (e.g. mon - wed)
    */
   async scheduleUnavailability(processed: ProcessedUnavailabilityDto) {
     try {
@@ -1002,8 +1033,7 @@ export class RentalService {
   }
 
   /**
-   * Update Unavailability
-   * edit the time interval of an unavailability series
+   * summary: edit the time interval of an unavailability series
    */
   async updateUnavailability(data: UpdateUnavailabilityDataDto) {
     // send the update
@@ -1018,6 +1048,10 @@ export class RentalService {
     }
   }
 
+  /**
+   * summary:
+   * @param data 
+   */
   async removeUnavailability(data: RemoveUnavailabilityDto) {
     try {
       const remove &#x3D; await this.unavailability.deleteMany({
@@ -1039,9 +1073,13 @@ export class RentalService {
  * - Filters: 
  *   - rental min duration
  *   - rental max duration
+ *   - advance notice minimum; e.g. 1 hour
+ *   - loc: GeoJSON object
+ *   - rental price: optional
+ *   - rental features: optional
  * @param rental searchRentalDto
  */
-  private async createRentalQuery(rental) {
+  private async createRentalQuery(rental: SearchRentalDto) {
     try {
       const query: any &#x3D; {
         &#x27;scheduling.rentMinDuration&#x27;: { $lte: rental.rentalDuration },
@@ -1064,7 +1102,7 @@ export class RentalService {
         ? (query.pricing &#x3D; {
           price: rental.price, // add price as optional search parameter
         })
-        : (rental.priceRange &#x3D; null);
+        : (rental.price &#x3D; null);
       rental.features
         ? (query.features &#x3D; { $in: rental.features })
         : (rental.features &#x3D; null);
@@ -1075,8 +1113,9 @@ export class RentalService {
   }
 
   /**
+   * summary: validate there currently is no scheduled unavailability for the rental in the database that overlaps 
+   * with the requested unavailability 
    * @param data query for 1 or 2 years
-   * validate there currently is no Unavailability in the db that overlaps with the requested
    */
   private checkForOverlap &#x3D; async (data: ProcessedUnavailabilityDto) &#x3D;&gt; {
     const { y1Query, y2Query } &#x3D; data;
