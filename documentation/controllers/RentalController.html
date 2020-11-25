@@ -162,14 +162,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br />@UsePipes(new JoiValidationPipe())<br />@UsePipes(new MapNewRentalPipe())<br />@UsePipes(new GeoUrlApiPipe())<br /></code>
+                    <code>@Post()<br />@UsePipes(new JoiValidationPipe())<br />@UsePipes(MapNewRentalPipe)<br />@UsePipes(new GeoUrlApiPipe())<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:48</a></div>
                 </td>
             </tr>
 
@@ -250,8 +250,8 @@ create a new vehicle rental listing</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:85</a></div>
                 </td>
             </tr>
 
@@ -332,8 +332,8 @@ edit the details of the Rental (# of seats, color, etc.)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:75</a></div>
                 </td>
             </tr>
 
@@ -414,8 +414,8 @@ edit the rental price</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:117</a></div>
                 </td>
             </tr>
 
@@ -496,8 +496,8 @@ remove existing unavailability</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="95"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:95</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:97</a></div>
                 </td>
             </tr>
 
@@ -578,8 +578,8 @@ set a period of unavailability for the rental</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:65</a></div>
                 </td>
             </tr>
 
@@ -660,8 +660,8 @@ find rentals available near a specified location (user&#39;s location)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:107</a></div>
                 </td>
             </tr>
 
@@ -750,7 +750,9 @@ import { ConfigService } from &#x27;@nestjs/config&#x27;;
  */
 @Controller(&#x27;rental&#x27;)
 export class RentalController {
-  constructor(private readonly rentalService: RentalService) {}
+  constructor(
+    private readonly rentalService: RentalService,
+    ) {}
 
   /**
    * Create Rental:
@@ -758,7 +760,7 @@ export class RentalController {
    */
   @Post()
   @UsePipes(new JoiValidationPipe(CreateRentalValidation))
-  @UsePipes(new MapNewRentalPipe())
+  @UsePipes(MapNewRentalPipe)
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
   async createRental(@Body() rental: CreateRentalDto) {
     try {

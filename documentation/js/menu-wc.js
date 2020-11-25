@@ -248,13 +248,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/RentalModule.html" data-type="entity-link">RentalModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-RentalModule-3ec9c052e863a1ea364034f9db566a2f"' : 'data-target="#xs-controllers-links-module-RentalModule-3ec9c052e863a1ea364034f9db566a2f"' }>
+                                            'data-target="#controllers-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' : 'data-target="#xs-controllers-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-RentalModule-3ec9c052e863a1ea364034f9db566a2f"' :
-                                            'id="xs-controllers-links-module-RentalModule-3ec9c052e863a1ea364034f9db566a2f"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' :
+                                            'id="xs-controllers-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' }>
                                             <li class="link">
                                                 <a href="controllers/RentalController.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">RentalController</a>
@@ -263,16 +263,20 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-RentalModule-3ec9c052e863a1ea364034f9db566a2f"' : 'data-target="#xs-injectables-links-module-RentalModule-3ec9c052e863a1ea364034f9db566a2f"' }>
+                                        'data-target="#injectables-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' : 'data-target="#xs-injectables-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RentalModule-3ec9c052e863a1ea364034f9db566a2f"' :
-                                        'id="xs-injectables-links-module-RentalModule-3ec9c052e863a1ea364034f9db566a2f"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' :
+                                        'id="xs-injectables-links-module-RentalModule-613a74f2bf6a97a37b24078eb093ac9c"' }>
                                         <li class="link">
                                             <a href="injectables/GeoUrlApiUtil.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>GeoUrlApiUtil</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/MapNewRentalPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>MapNewRentalPipe</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/RentalService.html"

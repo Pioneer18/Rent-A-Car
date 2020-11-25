@@ -33,7 +33,9 @@ import { ConfigService } from '@nestjs/config';
  */
 @Controller('rental')
 export class RentalController {
-  constructor(private readonly rentalService: RentalService) {}
+  constructor(
+    private readonly rentalService: RentalService,
+    ) {}
 
   /**
    * Create Rental:

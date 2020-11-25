@@ -8,6 +8,19 @@ import { UnavailabilitySchema } from './schema/unavailability-schema';
 import { DatabaseModule } from '../database/database.module';
 import { unavailabilityProvider } from '../database/providers/unavailability-model.provider';
 import { ValidateUpdateUnavailabilityMiddleware } from './middleware/validate-update-unavailability.middleware';
+import { MapNewRentalPipe } from './pipes/map-new-rental.pipe';
+import { JoiValidationPipe } from 'src/common/pipes/joi-validation.pipe';
+import { GeoUrlApiPipe } from './pipes/geo-url-api.pipe';
+import { RequestCoordinatesPipe } from './pipes/request-coordinates.pipe';
+import { RentalDurationPipe } from './pipes/rental-duration.pipe';
+import { GivenNoticePipe } from './pipes/given-notice.pipe';
+import { PricingPipe } from './pipes/pricing.pipe';
+import { EditDetailsPipe } from './pipes/edit-details.pipe';
+import { ProcessUnavailabilityPipe } from './pipes/process-unavailability.pipe';
+import { ValidateUnavailabilityPipe } from './pipes/validate-unavailability.pipe';
+import { SortUnavailabilityPipe } from './pipes/sort-unavailability.pipe';
+import { CreateUpdaterDtoPipe } from './pipes/create-updater-dto.pipe';
+import { ValidateRemoveUnavailabilityPipe } from './pipes/validate-remove-unavailability.pipe';
 /**
  * - **Rental Module**: This module provides all of the functionality for working with Rentals
  * - **Middleware**: This module consumes the **ValidateUpdateUnavailability** middleware; for more details, in the documentation checkout the **Injectables** ValidateUpdateUnavailability tab
@@ -20,7 +33,24 @@ import { ValidateUpdateUnavailabilityMiddleware } from './middleware/validate-up
     DatabaseModule,
   ],
   controllers: [RentalController],
-  providers: [RentalService, GeoUrlApiUtil, ...unavailabilityProvider],
+  providers: [
+    RentalService,
+    GeoUrlApiUtil,
+    ...unavailabilityProvider,
+    MapNewRentalPipe,
+    JoiValidationPipe,
+    GeoUrlApiPipe,
+    RequestCoordinatesPipe,
+    RentalDurationPipe,
+    GivenNoticePipe,
+    PricingPipe,
+    EditDetailsPipe,
+    ProcessUnavailabilityPipe,
+    ValidateUnavailabilityPipe,
+    SortUnavailabilityPipe,
+    CreateUpdaterDtoPipe,
+    ValidateRemoveUnavailabilityPipe,
+  ],
   exports: [RentalService],
 })
 export class RentalModule implements NestModule {
