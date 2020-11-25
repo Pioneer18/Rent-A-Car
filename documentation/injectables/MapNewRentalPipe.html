@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>rent-a-car documentation</title>
+        <title>Rent-A-Car</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">rent-a-car documentation</a>
+            <a href="../" class="navbar-brand">Rent-A-Car</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -177,13 +177,13 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
 import { MapRentalDto } from &#x27;../dto/crud/map-rental.dto&#x27;;
-import { MappedRentalInterface } from &#x27;../interface/mapped-rental.interface&#x27;;
+import { CreateRentalInterface } from &#x27;../interface/create-rental.interface&#x27;;
 
 @Injectable()
 export class MapNewRentalPipe implements PipeTransform {
   async transform(value: MapRentalDto) {
     try {
-      const data: MappedRentalInterface &#x3D; {
+      const data: CreateRentalInterface &#x3D; {
         rentalDescription: &#x27;this is a tokyo grocery getter&#x27;,
         address: value.address,
         specs: value.value.specs,

@@ -1,5 +1,5 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { MappedRentalInterface } from '../interface/mapped-rental.interface';
+import { CreateRentalInterface } from '../interface/create-rental.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RentalInterface } from '../interface/rental.interface';
@@ -82,7 +82,7 @@ export class RentalService {
    * Create Rental:
    * create a new vehicle rental listing
    */
-  async createRental(rental: MappedRentalInterface) {
+  async createRental(rental: CreateRentalInterface) {
     try {
       const document = await new this.rentalModel(rental);
       return await document.save();

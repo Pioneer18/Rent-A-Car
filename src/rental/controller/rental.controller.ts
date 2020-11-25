@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req } from '@
 import { RentalService } from '../service/rental.service';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
-import { MappedRentalInterface } from '../interface/mapped-rental.interface';
+import { CreateRentalInterface } from '../interface/create-rental.interface';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateRentalValidation } from '../schema/validation/create-rental-validation.schema';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
@@ -27,6 +27,10 @@ import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailabi
 import { AppConfigService } from '../../config/configuration.service';
 import { ConfigService } from '@nestjs/config';
 
+/**
+ * - **Rental Controller**: Handle incoming requests and return responses for managing Rentals
+ * - **Middleware**: The ValidateUpdateUnavailabilityMiddleware class is applied to the updateUnavailability method
+ */
 @Controller('rental')
 export class RentalController {
   constructor(private readonly rentalService: RentalService) {}
@@ -39,7 +43,7 @@ export class RentalController {
   @UsePipes(new JoiValidationPipe(CreateRentalValidation))
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
-  async createRental(@Body() rental: MappedRentalInterface) {
+  async createRental(@Body() rental: CreateRentalInterface) {
     try {
       return await this.rentalService.createRental(rental);
     } catch (err) {

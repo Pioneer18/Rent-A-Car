@@ -1,7 +1,7 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { MapNewRentalPipe } from './map-new-rental.pipe';
 import { MapRentalDto } from '../dto/crud/map-rental.dto';
-import { MappedRentalInterface } from '../interface/mapped-rental.interface';
+import { CreateRentalInterface } from '../interface/create-rental.interface';
 
 describe('MapNewRentalPipe Unit Test', () => {
   let pipe: MapNewRentalPipe;
@@ -22,7 +22,7 @@ describe('MapNewRentalPipe Unit Test', () => {
   });
 
   describe('test the functionality of the pipe', () => {
-    it('should should return a mapped object that fits the MappedRentalInterface ', async () => {
+    it('should should return a mapped object that fits the CreateRentalInterface ', async () => {
       // do stuffs
       const mockValue: MapRentalDto = {
         value: {
@@ -71,7 +71,7 @@ describe('MapNewRentalPipe Unit Test', () => {
         address: '204 W Washington St Lexington 24450',
       };
       const mapped = await pipe.transform(mockValue);
-      const expected: MappedRentalInterface = {
+      const expected: CreateRentalInterface = {
         rentalDescription: 'this is a tokyo grocery getter',
         address: '204 W Washington St Lexington 24450',
         specs: {

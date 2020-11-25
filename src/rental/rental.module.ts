@@ -8,7 +8,11 @@ import { UnavailabilitySchema } from './schema/unavailability-schema';
 import { DatabaseModule } from '../database/database.module';
 import { unavailabilityProvider } from '../database/providers/unavailability-model.provider';
 import { ValidateUpdateUnavailabilityMiddleware } from './middleware/validate-update-unavailability.middleware';
-
+/**
+ * - **Rental Module**: This module provides all of the functionality for working with Rentals
+ * - **Middleware**: This module consumes the **ValidateUpdateUnavailability** middleware; for more details, in the documentation checkout the **Injectables** ValidateUpdateUnavailability tab
+ * - **Database**: This module applies indexing to the **Unavailability** model of the database
+ */
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),

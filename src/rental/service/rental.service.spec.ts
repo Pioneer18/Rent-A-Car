@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { RentalService } from './rental.service';
 import { MongooseModule, getModelToken } from '@nestjs/mongoose';
 import { RentalSchema } from '../schema/rental.schema';
-import { MappedRentalInterface } from '../interface/mapped-rental.interface';
+import { CreateRentalInterface } from '../interface/create-rental.interface';
 import { TestRentalService } from './test-rental.service';
 import { SearchRentalDto } from '../dto/crud/search-rental.dto';
 
@@ -45,8 +45,8 @@ describe('RentalService Unit Tests', () => {
   describe('createRental method test', () => {
     it('should return a Rental document, or throw an error', async () => {
       const mockRentalModel = await testService.returnRentalModel();
-      // a mocked MappedRentalInterface object to pass to the createRental method
-      const mockedRental: MappedRentalInterface = {
+      // a mocked CreateRentalInterface object to pass to the createRental method
+      const mockedRental: CreateRentalInterface = {
         rentalDescription: 'This is a Tokyo grocery getter',
         address: '3489 FakeDale Drive, Fake City, GA',
         specs: {

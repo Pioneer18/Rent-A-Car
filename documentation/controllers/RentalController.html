@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>rent-a-car documentation</title>
+        <title>Rent-A-Car</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">rent-a-car documentation</a>
+            <a href="../" class="navbar-brand">Rent-A-Car</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -64,6 +64,16 @@
                 <code>rental</code>
             </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <ul>
+<li><strong>Rental Controller</strong>: Handle incoming requests and return responses for managing Rentals</li>
+<li><strong>Middleware</strong>: The ValidateUpdateUnavailabilityMiddleware class is applied to the updateUnavailability method</li>
+</ul>
+
+            </p>
 
 
 
@@ -143,7 +153,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createRental(rental: <a href="../interfaces/MappedRentalInterface.html">MappedRentalInterface</a>)</code>
+                    <code>createRental(rental: <a href="../interfaces/CreateRentalInterface.html">CreateRentalInterface</a>)</code>
                 </td>
             </tr>
 
@@ -157,8 +167,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -183,7 +193,7 @@ create a new vehicle rental listing</p>
                                 <tr>
                                     <td>rental</td>
                                     <td>
-                                                <code><a href="../interfaces/MappedRentalInterface.html" target="_self" >MappedRentalInterface</a></code>
+                                                <code><a href="../interfaces/CreateRentalInterface.html" target="_self" >CreateRentalInterface</a></code>
                                     </td>
 
                                     <td>
@@ -239,8 +249,8 @@ create a new vehicle rental listing</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:83</a></div>
                 </td>
             </tr>
 
@@ -321,8 +331,8 @@ edit the details of the Rental (# of seats, color, etc.)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -403,8 +413,8 @@ edit the rental price</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:115</a></div>
                 </td>
             </tr>
 
@@ -485,8 +495,8 @@ remove existing unavailability</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:95</a></div>
                 </td>
             </tr>
 
@@ -567,8 +577,8 @@ set a period of unavailability for the rental</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:63</a></div>
                 </td>
             </tr>
 
@@ -649,8 +659,8 @@ find rentals available near a specified location (user&#39;s location)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:105</a></div>
                 </td>
             </tr>
 
@@ -708,7 +718,7 @@ edit current unavailability</p>
 import { RentalService } from &#x27;../service/rental.service&#x27;;
 import { GeoUrlApiPipe } from &#x27;../pipes/geo-url-api.pipe&#x27;;
 import { MapNewRentalPipe } from &#x27;../pipes/map-new-rental.pipe&#x27;;
-import { MappedRentalInterface } from &#x27;../interface/mapped-rental.interface&#x27;;
+import { CreateRentalInterface } from &#x27;../interface/create-rental.interface&#x27;;
 import { JoiValidationPipe } from &#x27;../../common/pipes/joi-validation.pipe&#x27;;
 import { CreateRentalValidation } from &#x27;../schema/validation/create-rental-validation.schema&#x27;;
 import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
@@ -733,6 +743,10 @@ import { RemoveUnavailabilityDto } from &#x27;../dto/unavailability/remove-unava
 import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
 import { ConfigService } from &#x27;@nestjs/config&#x27;;
 
+/**
+ * - **Rental Controller**: Handle incoming requests and return responses for managing Rentals
+ * - **Middleware**: The ValidateUpdateUnavailabilityMiddleware class is applied to the updateUnavailability method
+ */
 @Controller(&#x27;rental&#x27;)
 export class RentalController {
   constructor(private readonly rentalService: RentalService) {}
@@ -745,7 +759,7 @@ export class RentalController {
   @UsePipes(new JoiValidationPipe(CreateRentalValidation))
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
-  async createRental(@Body() rental: MappedRentalInterface) {
+  async createRental(@Body() rental: CreateRentalInterface) {
     try {
       return await this.rentalService.createRental(rental);
     } catch (err) {

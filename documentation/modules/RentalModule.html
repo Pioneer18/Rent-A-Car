@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>rent-a-car documentation</title>
+        <title>Rent-A-Car</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">rent-a-car documentation</a>
+            <a href="../" class="navbar-brand">Rent-A-Car</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -65,10 +65,6 @@
 <title>cluster_RentalModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="21.5,-70 21.5,-268 474.5,-268 474.5,-70 21.5,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_RentalModule_exports</title>
-<polygon fill="none" stroke="black" points="198.5,-208 198.5,-260 312.5,-260 312.5,-208 198.5,-208"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_RentalModule_imports</title>
 <polygon fill="none" stroke="black" points="340.5,-78 340.5,-130 466.5,-130 466.5,-78 340.5,-78"/>
@@ -76,6 +72,10 @@
 <g id="clust6" class="cluster">
 <title>cluster_RentalModule_providers</title>
 <polygon fill="none" stroke="black" points="29.5,-78 29.5,-130 332.5,-130 332.5,-78 29.5,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_RentalModule_exports</title>
+<polygon fill="none" stroke="black" points="198.5,-208 198.5,-260 312.5,-260 312.5,-208 198.5,-208"/>
 </g>
 <!-- DatabaseModule -->
 <g id="node1" class="node">
@@ -165,6 +165,17 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <ul>
+<li><strong>Rental Module</strong>: This module provides all of the functionality for working with Rentals</li>
+<li><strong>Middleware</strong>: This module consumes the <strong>ValidateUpdateUnavailability</strong> middleware; for more details, in the documentation checkout the <strong>Injectables</strong> ValidateUpdateUnavailability tab</li>
+<li><strong>Database</strong>: This module applies indexing to the <strong>Unavailability</strong> model of the database</li>
+</ul>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -238,8 +249,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/rental/rental.module.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/rental/rental.module.ts:32</a></div>
                 </td>
             </tr>
 
@@ -301,7 +312,11 @@ import { UnavailabilitySchema } from &#x27;./schema/unavailability-schema&#x27;;
 import { DatabaseModule } from &#x27;../database/database.module&#x27;;
 import { unavailabilityProvider } from &#x27;../database/providers/unavailability-model.provider&#x27;;
 import { ValidateUpdateUnavailabilityMiddleware } from &#x27;./middleware/validate-update-unavailability.middleware&#x27;;
-
+/**
+ * - **Rental Module**: This module provides all of the functionality for working with Rentals
+ * - **Middleware**: This module consumes the **ValidateUpdateUnavailability** middleware; for more details, in the documentation checkout the **Injectables** ValidateUpdateUnavailability tab
+ * - **Database**: This module applies indexing to the **Unavailability** model of the database
+ */
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: &#x27;Rental&#x27;, schema: RentalSchema }]),
