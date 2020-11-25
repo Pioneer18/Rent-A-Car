@@ -250,14 +250,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/rental/rental.module.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/rental/rental.module.ts:36</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: applies the ValidateUpdateUnavailability which validates a user&#39;s request to the rental.controller.updateUnavaialability method</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -267,6 +269,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -281,6 +284,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>interfacing defining method for applying user defined middleware to routes</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -334,6 +341,10 @@ export class RentalModule implements NestModule {
     UnavailabilitySchema.index({rentalId: 1});
     UnavailabilitySchema.index({UnavailabilityId: 1});
   }
+  /**
+   * summary: applies the ValidateUpdateUnavailability which validates a user&#x27;s request to the rental.controller.updateUnavaialability method
+   * @param consumer interfacing defining method for applying user defined middleware to routes
+   */
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(ValidateUpdateUnavailabilityMiddleware)
