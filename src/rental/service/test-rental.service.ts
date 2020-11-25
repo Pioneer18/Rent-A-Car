@@ -1,6 +1,6 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RentalInterface } from '../interface/rental.interface';
+import { RentalInterface } from '../interface/schemaInterface/Rental/rental.interface';
 import { Injectable } from '@nestjs/common';
 
 /**

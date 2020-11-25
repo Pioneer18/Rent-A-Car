@@ -154,7 +154,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../interfaces/Ordered.html">Ordered</a>)</code>
+                    <code>transform(value: <a href="../interfaces/ValidateUnavailabilityPipeInterface.html">ValidateUnavailabilityPipeInterface</a>)</code>
                 </td>
             </tr>
 
@@ -184,7 +184,7 @@
                                 <tr>
                                     <td>value</td>
                                     <td>
-                                                <code><a href="../interfaces/Ordered.html" target="_self" >Ordered</a></code>
+                                                <code><a href="../interfaces/ValidateUnavailabilityPipeInterface.html" target="_self" >ValidateUnavailabilityPipeInterface</a></code>
                                     </td>
 
                                     <td>
@@ -199,7 +199,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/Unavailability.html" target="_self" >Promise&lt;ValidatedUnavailabilityDto&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;ValidatedUnavailabilityDto&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -508,8 +508,8 @@ validate the requested unavailability start time is not in the past</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform, Logger } from &#x27;@nestjs/common&#x27;;
 import { DateTime, Interval } from &#x27;luxon&#x27;;
-import { Ordered } from &#x27;../interface/ordered.interface&#x27;;
-import { Unavailability } from &#x27;../interface/unavailability.interface&#x27;;
+import { ValidateUnavailabilityPipeInterface } from &#x27;../interface/validate-unavailability-pipe.interface&#x27;;
+import { UnavailabilityDto } from &#x27;../dto/unavailability/unavailability.dto&#x27;;
 import { toItemIndexes } from &#x27;../../common/util/to-item-indexes&#x27;;
 import { validated } from &#x27;../../common/Const&#x27;;
 import { ValidatedUnavailabilityDto } from &#x27;../dto/unavailability/validated-unavailability.dto&#x27;;
@@ -530,7 +530,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * @param u1 the 1st unavailability
    * apply DateTime.fromObject() to create a new DateTime
    */
-  private convertToDateTime &#x3D; async (u1: Unavailability): Promise&lt;DateTime&gt; &#x3D;&gt; {
+  private convertToDateTime &#x3D; async (u1: UnavailabilityDto): Promise&lt;DateTime&gt; &#x3D;&gt; {
     if (!u1) {
       throw new Error(&#x27;There is no requested unavailability&#x27;);
     }
@@ -562,7 +562,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * @param value the ordered unavailability from previous pipe
    * validate the requested unavailability start time is not in the past
    */
-  private validateRelevance &#x3D; async (value: Ordered): Promise&lt;DateTime&gt; &#x3D;&gt; {
+  private validateRelevance &#x3D; async (value: ValidateUnavailabilityPipeInterface): Promise&lt;DateTime&gt; &#x3D;&gt; {
     // should already know y1 and y2
     const currentDateTime &#x3D; DateTime.local();
     Logger.log(&#x60;the current DateTime below:&#x60;);
@@ -574,8 +574,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   private validateCrossover &#x3D; async (
-    y1: Unavailability[],
-    y2: Unavailability[],
+    y1: UnavailabilityDto[],
+    y2: UnavailabilityDto[],
     ly: boolean,
   ): Promise&lt;void&gt; &#x3D;&gt; {
     // y1&#x27;s final Unavailability
@@ -622,7 +622,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   private validateEachUnavailability &#x3D; async (
-    unavailability: Unavailability[],
+    unavailability: UnavailabilityDto[],
   ) &#x3D;&gt; {
     const base &#x3D; unavailability[0];
     for (const { item, index } of toItemIndexes(unavailability)) {
@@ -669,8 +669,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
 
   // validate congruence in rentalId, start, end, and title across y1 and y2
   private validateCrossYearCongruence &#x3D; async (
-    y1: Unavailability,
-    y2: Unavailability,
+    y1: UnavailabilityDto,
+    y2: UnavailabilityDto,
   ) &#x3D;&gt; {
     if (y1.rentalId !&#x3D;&#x3D; y2.rentalId) {
       throw new Error(&#x27;request cannot have more than 1 Rental ID&#x27;);
@@ -689,7 +689,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     }
   }
 
-  async transform(value: Ordered): Promise&lt;ValidatedUnavailabilityDto&gt; {
+  async transform(value: ValidateUnavailabilityPipeInterface): Promise&lt;ValidatedUnavailabilityDto&gt; {
     try {
       // validate startTime is not in the past
       const start: DateTime &#x3D; await this.validateRelevance(value);

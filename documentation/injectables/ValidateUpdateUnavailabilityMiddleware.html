@@ -129,7 +129,7 @@ Validate the expected # of unavailability docs are present in the database</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(unavailability: <a href="../interfaces/Unavailability.html">Model<Unavailability></a>)</code>
+<code>constructor(unavailability: <a href="../classes/UnavailabilityInterface.html">Model<UnavailabilityInterface></a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -155,7 +155,7 @@ Validate the expected # of unavailability docs are present in the database</p>
                                                         <td>unavailability</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../interfaces/Unavailability.html" target="_self" >Model&lt;Unavailability&gt;</a></code>
+                                                                        <code><a href="../classes/UnavailabilityInterface.html" target="_self" >Model&lt;UnavailabilityInterface&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -370,7 +370,7 @@ Validate the expected # of unavailability docs are present in the database</p>
 import { Request, Response } from &#x27;express&#x27;;
 import { unavailabilityModel } from &#x27;../../common/Const&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
-import { Unavailability } from &#x27;../interface/unavailability.interface&#x27;;
+import { UnavailabilityInterface } from &#x27;../interface/schemaInterface/Unavailability/unavailability.interface&#x27;;
 import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/validate-update-unavailability.dto&#x27;;
 /**
  * Validate the incoming dto
@@ -380,7 +380,7 @@ import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/vali
 export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   constructor(
     @Inject(unavailabilityModel)
-    private readonly unavailability: Model&lt;Unavailability&gt;,
+    private readonly unavailability: Model&lt;UnavailabilityInterface&gt;,
   ) {}
 
   private calculateRange &#x3D; async (

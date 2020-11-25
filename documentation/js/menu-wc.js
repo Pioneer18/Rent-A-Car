@@ -368,6 +368,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CheckPasswordTypoDto.html" data-type="entity-link">CheckPasswordTypoDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CreateQueryDto.html" data-type="entity-link">CreateQueryDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CreateRentalDto.html" data-type="entity-link">CreateRentalDto</a>
                             </li>
                             <li class="link">
@@ -389,6 +392,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ImageQueryResultsDto.html" data-type="entity-link">ImageQueryResultsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/LocCreateRentalDto.html" data-type="entity-link">LocCreateRentalDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/LoginUserDto.html" data-type="entity-link">LoginUserDto</a>
                             </li>
                             <li class="link">
@@ -396,6 +402,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/ProcessedUnavailabilityDto.html" data-type="entity-link">ProcessedUnavailabilityDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ProcessedUnavailabilityQueryDto.html" data-type="entity-link">ProcessedUnavailabilityQueryDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ProcessRentalTimeDto.html" data-type="entity-link">ProcessRentalTimeDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/RawCreateRentalDto.html" data-type="entity-link">RawCreateRentalDto</a>
@@ -410,9 +422,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ResetPasswordDto.html" data-type="entity-link">ResetPasswordDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SortUnavailabilityPipeInterface.html" data-type="entity-link">SortUnavailabilityPipeInterface</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/SearchRentalDto.html" data-type="entity-link">SearchRentalDto</a>
                             </li>
                             <li class="link">
@@ -420,6 +429,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/UnavailabilityDto.html" data-type="entity-link">UnavailabilityDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UnavailabilityInterface.html" data-type="entity-link">UnavailabilityInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UnavailabilityQueryDto.html" data-type="entity-link">UnavailabilityQueryDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateUnavailabilityDataDto.html" data-type="entity-link">UpdateUnavailabilityDataDto</a>
@@ -620,9 +635,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/ExtractKeyValueUtilInterface.html" data-type="entity-link">ExtractKeyValueUtilInterface</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/GenerateRentalDurationEnumUtilInterface.html" data-type="entity-link">GenerateRentalDurationEnumUtilInterface</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/ImageInterface.html" data-type="entity-link">ImageInterface</a>
                             </li>
                             <li class="link">
@@ -635,19 +647,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/MailOptionsInterface.html" data-type="entity-link">MailOptionsInterface</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/MapNewRentalPipeInterface.html" data-type="entity-link">MapNewRentalPipeInterface</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Ordered.html" data-type="entity-link">Ordered</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Processed.html" data-type="entity-link">Processed</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/ProcessedSaveDataInterface.html" data-type="entity-link">ProcessedSaveDataInterface</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/ProcessedUnavailabilityInterface.html" data-type="entity-link">ProcessedUnavailabilityInterface</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ProcessedUploadDataInterface.html" data-type="entity-link">ProcessedUploadDataInterface</a>
@@ -668,19 +668,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/Sorted.html" data-type="entity-link">Sorted</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/SortUnavailabilityPipeInterface.html" data-type="entity-link">SortUnavailabilityPipeInterface</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/TransporterInterface.html" data-type="entity-link">TransporterInterface</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/Unavailability.html" data-type="entity-link">Unavailability</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/UnavailabilityQuery.html" data-type="entity-link">UnavailabilityQuery</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/UserInterface.html" data-type="entity-link">UserInterface</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/UserPropertyInterface.html" data-type="entity-link">UserPropertyInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ValidateUnavailabilityPipeInterface.html" data-type="entity-link">ValidateUnavailabilityPipeInterface</a>
                             </li>
                         </ul>
                     </li>

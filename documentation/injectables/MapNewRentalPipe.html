@@ -115,7 +115,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../injectables/MapNewRentalPipe.html">MapNewRentalPipeInterface</a>)</code>
+                    <code>transform(value: <a href="../classes/LocCreateRentalDto.html">LocCreateRentalDto</a>)</code>
                 </td>
             </tr>
 
@@ -145,7 +145,7 @@
                                 <tr>
                                     <td>value</td>
                                     <td>
-                                                <code><a href="../injectables/MapNewRentalPipe.html" target="_self" >MapNewRentalPipeInterface</a></code>
+                                                <code><a href="../classes/LocCreateRentalDto.html" target="_self" >LocCreateRentalDto</a></code>
                                     </td>
 
                                     <td>
@@ -177,12 +177,12 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
-import { MapNewRentalPipeInterface } from &#x27;../interface/map-new-rental-pipe.interface&#x27;;
+import { LocCreateRentalDto } from &#x27;../dto/loc-create-rental.dto&#x27;;
 import { CreateRentalDto } from &#x27;../dto/crud/create-rental.dto&#x27;;
 
 @Injectable()
 export class MapNewRentalPipe implements PipeTransform {
-  async transform(value: MapNewRentalPipeInterface) {
+  async transform(value: LocCreateRentalDto) {
     try {
       const data: CreateRentalDto &#x3D; {
         rentalDescription: &#x27;this is a tokyo grocery getter&#x27;,

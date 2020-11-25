@@ -2,12 +2,12 @@ import { Injectable, Inject, Logger } from '@nestjs/common';
 import { CreateRentalDto } from '../dto/crud/create-rental.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RentalInterface } from '../interface/rental.interface';
+import { RentalInterface } from '../interface/schemaInterface/Rental/rental.interface';
 import { SearchRentalDto } from '../dto/crud/search-rental.dto';
 import { PricingDto } from '../dto/crud/pricing.dto';
 import { EditDetailsDto } from '../dto/crud/edit-details.dto';
 import { unavailabilityModel } from '../../common/Const';
-import { Unavailability } from '../interface/unavailability.interface';
+import { UnavailabilityInterface } from '../interface/schemaInterface/Unavailability/unavailability.interface';
 import { ProcessedUnavailabilityDto } from '../dto/unavailability/processed-unavailability.dto';
 import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update-unavailability-data.dto';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove-unavailability.dto';
@@ -21,7 +21,7 @@ export class RentalService {
   constructor(
     @InjectModel('Rental') private readonly rentalModel: Model<RentalInterface>,
     @Inject(unavailabilityModel)
-    private readonly unavailability: Model<Unavailability>,
+    private readonly unavailability: Model<UnavailabilityInterface>,
   ) { }
 
   /**

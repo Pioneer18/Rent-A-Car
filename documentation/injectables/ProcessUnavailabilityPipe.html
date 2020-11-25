@@ -60,8 +60,23 @@
             <code>src/rental/pipes/process-unavailability.pipe.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: This query is searching for any scheduled unavailability already in the database that would overlap with this request to add more unavailability</p>
+<ul>
+<li>This is to prevent the user on the front-end from accidentally overlapping &#39;blocks&#39; of scheduled unavailability. The front-end of course should also block this</li>
+</ul>
+
+            </p>
 
 
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -76,11 +91,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Protected</span>
                                 <a href="#addUnavailabilityId">addUnavailabilityId</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Protected</span>
                                 <a href="#createQuery">createQuery</a>
                             </li>
                         </ul>
@@ -134,22 +149,25 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../interfaces/Unavailability.html">ValidatedUnavailabilityDto</a>)</code>
+                    <code>transform(value: <a href="../classes/ValidatedUnavailabilityDto.html">ValidatedUnavailabilityDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/rental/pipes/process-unavailability.pipe.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/rental/pipes/process-unavailability.pipe.ts:116</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>map data for given years</p>
+                    <div class="io-description"><p>summary: process the request to update a rental&#39;s &#39;scheduled unavailability&#39;</p>
+<ul>
+<li>the user may schedule as far as a year ahead. To easily track the data as a single &#39;block&#39; of unavailable time for the rental, each Unavailability document related to this query is given the same &#39;uuid&#39;</li>
+</ul>
 </div>
 
                     <div class="io-description">
@@ -167,7 +185,7 @@
                                 <tr>
                                     <td>value</td>
                                     <td>
-                                                <code><a href="../interfaces/Unavailability.html" target="_self" >ValidatedUnavailabilityDto</a></code>
+                                                <code><a href="../classes/ValidatedUnavailabilityDto.html" target="_self" >ValidatedUnavailabilityDto</a></code>
                                     </td>
 
                                     <td>
@@ -176,7 +194,7 @@
 
 
                                     <td>
-                                        <p>the validated unavailability array(s)</p>
+                                        <p>the validated unavailability request dto</p>
 
                                     </td>
                                 </tr>
@@ -209,7 +227,7 @@
                         <a name="addUnavailabilityId"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Private</span>
+                                <span class="modifier">Protected</span>
                             addUnavailabilityId</b>
                             <a href="#addUnavailabilityId"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -222,11 +240,40 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/rental/pipes/process-unavailability.pipe.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/rental/pipes/process-unavailability.pipe.ts:52</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto</p>
+<ul>
+<li>this method checks if the user is schedling time only for this year or into the next year as well</li>
+<li>the uuid identifies a series of unavailability, allowing the entire block of time to be identified in the database</li>
+</ul>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -236,7 +283,7 @@
                         <a name="createQuery"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Private</span>
+                                <span class="modifier">Protected</span>
                             createQuery</b>
                             <a href="#createQuery"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -249,7 +296,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/pipes/process-unavailability.pipe.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/rental/pipes/process-unavailability.pipe.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -265,15 +312,19 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform, Logger } from &#x27;@nestjs/common&#x27;;
 import { ValidatedUnavailabilityDto } from &#x27;../dto/unavailability/validated-unavailability.dto&#x27;;
 import { ProcessedUnavailabilityDto } from &#x27;../dto/unavailability/processed-unavailability.dto&#x27;;
-import { UnavailabilityQuery } from &#x27;../interface/unavailability-query.interface&#x27;;
-import { Processed } from &#x27;../interface/processed.interface&#x27;;
-import { ProcessedUnavailabilityInterface } from &#x27;../interface/processed-unavailability.interface&#x27;;
-
+import { UnavailabilityQueryDto } from &#x27;../dto/unavailability/unavailability-query.dto&#x27;;
+import { CreateQueryDto } from &#x27;../dto/unavailability/create-query.dto&#x27;;
+import { ProcessedUnavailabilityQueryDto } from &#x27;../dto/unavailability/processed-unavailability-query.dto&#x27;;
+/**
+ * summary: This query is searching for any scheduled unavailability already in the database that would overlap with this request to add more unavailability
+ * - This is to prevent the user on the front-end from accidentally overlapping &#x27;blocks&#x27; of scheduled unavailability. The front-end of course should also block this
+ * @param year 
+ */
 @Injectable()
 export class ProcessUnavailabilityPipe implements PipeTransform {
-  private createQuery &#x3D; async (
-    year: Processed,
-  ): Promise&lt;UnavailabilityQuery&gt; &#x3D;&gt; {
+  protected createQuery &#x3D; async (
+    year: CreateQueryDto,
+  ): Promise&lt;UnavailabilityQueryDto&gt; &#x3D;&gt; {
     return {
       rentalId: year.min.rentalId,
       year: year.year,
@@ -303,12 +354,17 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
     };
   }
 
-  // add unavailabilityId for this Unavailability series to be quickly queried
-  private addUnavailabilityId &#x3D; async (
+  /**
+   * summary: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto
+   * - this method checks if the user is schedling time only for this year or into the next year as well
+   * - the uuid identifies a series of unavailability, allowing the entire block of time to be identified in the database
+   * @param value 
+   */
+  protected addUnavailabilityId &#x3D; async (
     value: ValidatedUnavailabilityDto,
   ): Promise&lt;{
-    pY1: ProcessedUnavailabilityInterface[];
-    pY2: ProcessedUnavailabilityInterface[] | null;
+    pY1: ProcessedUnavailabilityQueryDto[];
+    pY2: ProcessedUnavailabilityQueryDto[] | null;
   }&gt; &#x3D;&gt; {
     // temp arrays for transformation
     const tY1 &#x3D; [];
@@ -341,8 +397,8 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
         });
       });
       // return processedUnavailabilityDto
-      const pY1: ProcessedUnavailabilityInterface[] &#x3D; tY1;
-      const pY2: ProcessedUnavailabilityInterface[] &#x3D; tY2;
+      const pY1: ProcessedUnavailabilityQueryDto[] &#x3D; tY1;
+      const pY2: ProcessedUnavailabilityQueryDto[] &#x3D; tY2;
       return { pY1, pY2 };
     }
     // process 1 year
@@ -359,13 +415,14 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
         title: x.title,
       });
     });
-    const py1: ProcessedUnavailabilityInterface[] &#x3D; ty1;
+    const py1: ProcessedUnavailabilityQueryDto[] &#x3D; ty1;
     return { pY1: py1, pY2: null };
   }
 
   /**
-   * map data for given years
-   * @param value the validated unavailability array(s)
+   * summary: process the request to update a rental&#x27;s &#x27;scheduled unavailability&#x27;
+   * - the user may schedule as far as a year ahead. To easily track the data as a single &#x27;block&#x27; of unavailable time for the rental, each Unavailability document related to this query is given the same &#x27;uuid&#x27;
+   * @param value the validated unavailability request dto
    */
   async transform(
     value: ValidatedUnavailabilityDto,
@@ -373,15 +430,16 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
     // add uuid
     const {pY1, pY2} &#x3D; await this.addUnavailabilityId(value);
     const { y1, y2 } &#x3D; value;
+    // create Unavailability model queries for each year
     if (y2 !&#x3D;&#x3D; null) {
-      const a1 &#x3D; {
+      const createQuery1: CreateQueryDto &#x3D; {
         min: y1[0],
         max: y1[y1.length - 1],
         year: y1[0].year,
         start: y1[0].start,
         end: y1[0].end,
       };
-      const a2 &#x3D; {
+      const createQuery2: CreateQueryDto &#x3D; {
         min: y2[0],
         max: y2[y2.length - 1],
         year: y2[0].year,
@@ -389,15 +447,16 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
         end: y2[0].end,
       };
       return {
-        y1Query: await this.createQuery(a1),
-        y2Query: await this.createQuery(a2),
+        y1Query: await this.createQuery(createQuery1),
+        y2Query: await this.createQuery(createQuery2),
         data: {
           y1: pY1,
           y2: pY2,
         },
       };
     }
-    const b &#x3D; {
+    // create an Unavailability model query for just one year
+    const createQuery &#x3D; {
       min: y1[0],
       max: y1[y1.length - 1],
       year: y1[0].year,
@@ -405,7 +464,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
       end: y1[0].end,
     };
     return {
-      y1Query: await this.createQuery(b),
+      y1Query: await this.createQuery(createQuery),
       y2Query: null,
       data: {
         y1: pY1,
