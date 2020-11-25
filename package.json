@@ -5,7 +5,7 @@
   "author": "Jonathan Sells",
   "license": "MIT",
   "scripts": {
-    "doc:serve":"npx @compodoc/compodoc -p tsconfig.json -s",
+    "doc:serve":"npx @compodoc/compodoc -p tsconfig.json -n 'Rent-A-Car Documentation' -s",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
