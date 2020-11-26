@@ -5,8 +5,7 @@ import { Model } from 'mongoose';
 import { UnavailabilityInterface } from '../interface/schemaInterface/Unavailability/unavailability.interface';
 import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 /**
- * Validate the incoming dto
- * Validate the expected # of unavailability docs are present in the database
+ * summary: validate that incoming request to update a rental's already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database
  */
 @Injectable()
 export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {

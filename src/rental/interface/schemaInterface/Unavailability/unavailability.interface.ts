@@ -1,5 +1,5 @@
 /**
- * summary: interface for the UnavailabilitySchema
+ * summary: interface for the 'Unavailability' Model
  */
 export class UnavailabilityInterface {
     rentalId: string;

@@ -1,5 +1,5 @@
 /**
- * Rental Interface
+ * summary: interface for the 'Rental' Model
  */
 export interface RentalInterface {
   rentalDescription: string;
