@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon';
 /**
  * summary: returned by the GivenNoticePipe after processing a RawSearchRentalDto
- * - a givenNotice value is added to the dto
+ * - The GivenNoticePipe added the 'givenNotice' property
+ * - passed to the RentalDurationPipe
  */
 export class GivenNoticeSearchRentalDto {
   address: string;

@@ -1,7 +1,10 @@
+/**
+ * summary: this data is used to query and validate that the Rental actually has the scheduled Unavailability
+ * that the user is requesting to update
+ */
 export class ValidateUpdateUnavailabilityDto {
   unavailabilityId: string;
   rentalId: string;
-  // for validating the expected unavailability range is actually in the DB
   y1: {
     sD: number;
     eD: number;
