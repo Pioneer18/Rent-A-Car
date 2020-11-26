@@ -717,7 +717,7 @@ Summary: Saves uploaded images to the database. This method is passed as an argu
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
 import { ImageInterface } from &#x27;../interface/image.interface&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
-import { JwtPayloadInterface } from &#x27;../../auth/interface/jwt-payload&#x27;;
+import { JwtPayloadDto } from &#x27;../../auth/dto/jwt-payload&#x27;;
 import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
 import { profile } from &#x27;../../common/Const&#x27;;
 import { ImageDto } from &#x27;../dto/image.dto&#x27;;
@@ -801,7 +801,7 @@ export class ImagesService {
    * Summary: query multiple profile images by user_id and profile category, or find a specific profile photo by id
    * @param user the user property of the request object
    */
-  findProfileImages &#x3D; async (user: JwtPayloadInterface, img_id?: string) &#x3D;&gt; {
+  findProfileImages &#x3D; async (user: JwtPayloadDto, img_id?: string) &#x3D;&gt; {
     try {
       let flag;
       img_id ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
@@ -822,7 +822,7 @@ export class ImagesService {
    * @param category the images category; rentals or profile
    * @param user_id used to verify the photos belong to the requesting user
    */
-  deleteImages &#x3D; async (images: ImageDto[], user: JwtPayloadInterface) &#x3D;&gt; {
+  deleteImages &#x3D; async (images: ImageDto[], user: JwtPayloadDto) &#x3D;&gt; {
     try {
       if (images &amp;&amp; images.length &gt; 0) {
         if (images.length &#x3D;&#x3D;&#x3D; 1) {
@@ -867,7 +867,7 @@ export class ImagesService {
    * @param user_id used to locate the user&#x27;s photos as well as verify they belong to them
    * @param rental_id the id of the rental
    */
-  deleteAllImages &#x3D; async (user: JwtPayloadInterface, rental_id: string) &#x3D;&gt; {
+  deleteAllImages &#x3D; async (user: JwtPayloadDto, rental_id: string) &#x3D;&gt; {
     // delete all images of the selected rental
     if (user &amp;&amp; rental_id !&#x3D;&#x3D; null) {
       return await this.imagesModel.deleteMany({ rental_id: rental_id, user_id: user.userId });
@@ -890,7 +890,7 @@ export class ImagesService {
   fileuploadAndSave &#x3D; async (req, res, category, rental_id, saveimages) &#x3D;&gt; {
     try {
       // create a multer upload
-      const user: JwtPayloadInterface &#x3D; req.user;
+      const user: JwtPayloadDto &#x3D; req.user;
       const multerUpload &#x3D; await this.createMulterUploadUtil.create(req, category)
       // Upload the image(s)
       const model &#x3D; this.imagesModel;

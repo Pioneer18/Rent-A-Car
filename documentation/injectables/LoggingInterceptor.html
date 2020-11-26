@@ -64,12 +64,14 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Interceptors capabilities:
-wraps the request/response stream so we can bind extra logic before / after method execution
-transform the result returned from a function
-extend the basic function behavior
-completely override a function depending on specific conditions
-Aspect Interception: log user interaction (e.g. storing user calls, async dispatching events, calculating a timestamp)</p>
+                <p><strong>summary</strong>: Interceptors capabilities:</p>
+<ul>
+<li>wraps the request/response stream so we can bind extra logic before / after method execution</li>
+<li>transform the result returned from a function</li>
+<li>extend the basic function behavior</li>
+<li>completely override a function depending on specific conditions</li>
+<li>Aspect Interception: log user interaction (e.g. storing user calls, async dispatching events, calculating a timestamp)</li>
+</ul>
 
             </p>
 
@@ -209,12 +211,12 @@ import { tap } from &#x27;rxjs/operators&#x27;;
 import { DateTime } from &#x27;luxon&#x27;;
 
 /**
- * Interceptors capabilities:
- * wraps the request/response stream so we can bind extra logic before / after method execution
- * transform the result returned from a function
- * extend the basic function behavior
- * completely override a function depending on specific conditions
- * Aspect Interception: log user interaction (e.g. storing user calls, async dispatching events, calculating a timestamp)
+ * **summary**: Interceptors capabilities:
+ * - wraps the request/response stream so we can bind extra logic before / after method execution
+ * - transform the result returned from a function
+ * - extend the basic function behavior
+ * - completely override a function depending on specific conditions
+ * - Aspect Interception: log user interaction (e.g. storing user calls, async dispatching events, calculating a timestamp)
  */
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {

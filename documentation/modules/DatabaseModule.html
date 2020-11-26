@@ -59,6 +59,16 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>import and export the database provider</p>
+<ul>
+<li>note: other specific model providers may be registered here as well as exports of the database module</li>
+</ul>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -74,7 +84,10 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
 import { databaseProvider } from &#x27;./providers/database.provider&#x27;;
 import { ConfigModule } from &#x27;@nestjs/config&#x27;;
-
+/**
+ * import and export the database provider
+ * - note: other specific model providers may be registered here as well as exports of the database module
+ */
 @Module({
   imports: [ConfigModule],
   providers: [...databaseProvider],

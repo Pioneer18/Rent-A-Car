@@ -170,14 +170,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/auth/strategies/local.strategy.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">src/auth/strategies/local.strategy.ts:21</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: every passport strategy calls the validate method (which calls the validateUser function in the auth.service) for any strategy. 
+if the user is found, Passport will create a user property on the request object</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -187,6 +190,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -201,6 +205,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the user email</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>password</td>
@@ -213,6 +221,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the user password</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -247,8 +259,12 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         super({usernameField: &#x27;email&#x27; }); // use email instead of username
     }
 
-    // every passport strategy calls the validate method (which calls the validateUser function in the auth.service)
-    // for any strategy, if the user is found, Passport will create a user property on the request object
+    /**
+     * **summary**: every passport strategy calls the validate method (which calls the validateUser function in the auth.service) for any strategy. 
+     * if the user is found, Passport will create a user property on the request object
+     * @param email the user email
+     * @param password the user password
+     */
     async validate(email: string, password: string): Promise&lt;any&gt; {
         const user &#x3D; await this.authService.validateUser(email, password);
         if (!user) {

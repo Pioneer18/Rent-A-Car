@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Email Service</p>
+                <p><strong>summary</strong>: this email service uses the gmail nodemailer to send emails to the provided email; used to send the forgot password email to registered users</p>
 
             </p>
 
@@ -166,14 +166,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/email/email.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/email/email.service.ts:29</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: create the mail options to be used to send the email</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -243,14 +245,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/email/email.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/email/email.service.ts:44</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: use the nodemailer transporter to send the email</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -319,10 +323,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/email/email.service.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/email/email.service.ts:17</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: the gmail nodemailer transporter used to send emails</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -338,14 +348,16 @@ import * as smtpTransport from &#x27;nodemailer-smtp-transport&#x27;;
 import { MailOptionsInterface } from &#x27;./interface/mailoptions.interface&#x27;;
 import { TransporterInterface } from &#x27;./interface/transporter.interface&#x27;;
 /**
- * Email Service
+ * **summary**: this email service uses the gmail nodemailer to send emails to the provided email; used to send the forgot password email to registered users
  */
 @Injectable()
 export class EmailService {
     constructor() {}
 
 
-
+    /**
+     * **summary**: the gmail nodemailer transporter used to send emails
+     */
     private transporter &#x3D; nodemailer.createTransport( {
         service: &#x27;gmail&#x27;, 
         auth: {
@@ -355,6 +367,7 @@ export class EmailService {
     })
 
     /**
+     * **summary**: create the mail options to be used to send the email
      * @param email user&#x27;s email
      */
     async createMailOptions (email: string): Promise&lt;MailOptionsInterface&gt; {
@@ -368,6 +381,10 @@ export class EmailService {
         return mailOptions;
     }
 
+    /**
+     * **summary**: use the nodemailer transporter to send the email
+     * @param mailOptions 
+     */
     async sendMail(mailOptions): Promise&lt;any&gt; {
         try{
             this.transporter.sendMail(mailOptions);

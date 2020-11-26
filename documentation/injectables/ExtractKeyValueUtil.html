@@ -64,8 +64,10 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Grab the JWT from the Authorization header (should be cookie)
-Extract the key and the JWT</p>
+                <p>summary: grab the Authorization header Cookie and the extract JWT and the <strong>key</strong> used for caching the token</p>
+<ul>
+<li>note: the key is simply the last 8 digits of the this sessions JWT</li>
+</ul>
 
             </p>
 
@@ -188,7 +190,7 @@ Extract the key and the JWT</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../injectables/ExtractKeyValueUtil.html" target="_self" >Promise&lt;ExtractKeyValueUtilInterface&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../injectables/ExtractKeyValueUtil.html" target="_self" >Promise&lt;ExtractKeyValueUtilDto&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -206,16 +208,16 @@ Extract the key and the JWT</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
 import { Request } from &quot;express&quot;;
-import { ExtractKeyValueUtilInterface } from &quot;../interface/extract-key-value-util.interface&quot;;
+import { ExtractKeyValueUtilDto } from &quot;../dto/extract-key-value-util.dto&quot;;
 /**
- * Grab the JWT from the Authorization header (should be cookie)
- * Extract the key and the JWT
+ * summary: grab the Authorization header Cookie and the extract JWT and the **key** used for caching the token
+ * - note: the key is simply the last 8 digits of the this sessions JWT
  */
 @Injectable()
 export class ExtractKeyValueUtil {
     constructor() {}
     
-    public async extract(req: Request): Promise&lt;ExtractKeyValueUtilInterface&gt; {
+    public async extract(req: Request): Promise&lt;ExtractKeyValueUtilDto&gt; {
         if (req){
             const rawAuth: string &#x3D; req.headers.cookie
             return {

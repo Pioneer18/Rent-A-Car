@@ -59,6 +59,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: does not provide any realy functionality for the app</p>
+
+            </p>
 
 
 
@@ -125,8 +132,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app.controller.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/app.controller.ts:13</a></div>
                 </td>
             </tr>
 
@@ -176,10 +183,11 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, UseGuards, Get, Post, Request, Req, HttpCode } from &#x27;@nestjs/common&#x27;;
 import { JwtAuthGuard } from &#x27;./auth/gaurds/jwt-auth.guard&#x27;;
 import { LoggedOutGaurd } from &#x27;./auth/gaurds/logged-out.guard&#x27;;
-
+/**
+ * **summary**: does not provide any realy functionality for the app
+ */
 @Controller()
 export class AppController {
-  // constructor() {}
 
   @UseGuards(JwtAuthGuard)
   @UseGuards(LoggedOutGaurd)

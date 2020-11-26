@@ -64,9 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Passport Local
-Retrieve a user and verify their password with ValidateUser()
-Create a JWT from the validated user&#39;s id and username</p>
+                <p><strong>summary</strong>: provide the functionality to authenticate and authorize a user</p>
 
             </p>
 
@@ -132,7 +130,7 @@ Create a JWT from the validated user&#39;s id and username</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/auth/service/auth.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/auth/service/auth.service.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -283,15 +281,15 @@ Create a JWT from the validated user&#39;s id and username</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/auth/service/auth.service.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/auth/service/auth.service.ts:97</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Change Password</p>
+                    <div class="io-description"><p><strong>summary</strong>: change the logged in user&#39;s password</p>
 </div>
 
                     <div class="io-description">
@@ -369,15 +367,15 @@ Create a JWT from the validated user&#39;s id and username</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/auth/service/auth.service.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/auth/service/auth.service.ts:130</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Forgot Password</p>
+                    <div class="io-description"><p>summary: send an email to a valid user email address to request resetting their forgotten password</p>
 </div>
 
                     <div class="io-description">
@@ -443,15 +441,15 @@ Create a JWT from the validated user&#39;s id and username</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/auth/service/auth.service.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/auth/service/auth.service.ts:59</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Login (Assign a JWT)</p>
+                    <div class="io-description"><p>summary: return a JWT inside of a Cookie, which may only be interacted with by Http and not Javascript, to the now authenticated user</p>
 </div>
 
                     <div class="io-description">
@@ -462,6 +460,7 @@ Create a JWT from the validated user&#39;s id and username</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -476,6 +475,10 @@ Create a JWT from the validated user&#39;s id and username</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the user logging into the application</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -517,15 +520,15 @@ Create a JWT from the validated user&#39;s id and username</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/auth/service/auth.service.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/auth/service/auth.service.ts:78</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Logout</p>
+                    <div class="io-description"><p><strong>summary</strong>: set the user&#39;s JWT in the redis &#39;dead-list&#39; to log the user out prior to the JWT expiration</p>
 </div>
 
                     <div class="io-description">
@@ -591,15 +594,15 @@ Create a JWT from the validated user&#39;s id and username</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="157"
-                            class="link-to-prism">src/auth/service/auth.service.ts:157</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">src/auth/service/auth.service.ts:154</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Reset Password </p>
+                    <div class="io-description"><p><strong>summary</strong>: reset a user&#39;s password with the information submitted by a forgot-and-reset email</p>
 </div>
 
                     <div class="io-description">
@@ -665,15 +668,18 @@ Create a JWT from the validated user&#39;s id and username</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/auth/service/auth.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/auth/service/auth.service.ts:41</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Initial User Validation</p>
+                    <div class="io-description"><p><strong>summary</strong>:  find the user in the database and authenticate their access to the application by verifying the present user credentials in the database</p>
+<ul>
+<li>note: depends on the userService.findUser() and verifyNewPasswordUtil.verifyMatch() methods</li>
+</ul>
 </div>
 
                     <div class="io-description">
@@ -684,6 +690,7 @@ Create a JWT from the validated user&#39;s id and username</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -698,6 +705,10 @@ Create a JWT from the validated user&#39;s id and username</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the user email</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pass</td>
@@ -710,6 +721,10 @@ Create a JWT from the validated user&#39;s id and username</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the user password</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -737,7 +752,7 @@ Create a JWT from the validated user&#39;s id and username</p>
 import { UserService } from &#x27;../../user/service/user.service&#x27;;
 import { JwtService } from &#x27;@nestjs/jwt&#x27;;
 import { FindUserDto } from &#x27;../../user/dto/find-user.dto&#x27;;
-import { UserPropertyInterface } from &#x27;../interface/user-property.interface&#x27;;
+import { UserPropertyDto } from &#x27;../dto/user-property.dto&#x27;;
 import * as bcrypt from &#x27;bcrypt&#x27;;
 import { UserInterface } from &#x27;../../user/interface/user.interface&#x27;;
 import { Request } from &#x27;express&#x27;;
@@ -752,9 +767,7 @@ import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
 import { ExtractUserUtil } from &#x27;../../user/util/extract-user.util&#x27;;
 
 /**
- * Passport Local
- * Retrieve a user and verify their password with ValidateUser()
- * Create a JWT from the validated user&#x27;s id and username
+ * **summary**: provide the functionality to authenticate and authorize a user
  */
 @Injectable()
 export class AuthService {
@@ -770,9 +783,10 @@ export class AuthService {
     ) { }
 
     /**
-     * Initial User Validation
-     * @param email 
-     * @param pass 
+     * **summary**:  find the user in the database and authenticate their access to the application by verifying the present user credentials in the database
+     * - note: depends on the userService.findUser() and verifyNewPasswordUtil.verifyMatch() methods
+     * @param email the user email
+     * @param pass the user password
      */
     async validateUser(email: string, pass: string): Promise&lt;any&gt; {
         try {
@@ -789,13 +803,13 @@ export class AuthService {
     }
 
     /**
-     * Login (Assign a JWT)
-     * @param user 
+     * summary: return a JWT inside of a Cookie, which may only be interacted with by Http and not Javascript, to the now authenticated user
+     * @param user the user logging into the application
      */
     async login(user: any) {
         console.log(&#x60;here is the user property created by Passport&#x60;)
         console.log(user._doc)
-        const packet: UserPropertyInterface &#x3D; user._doc;
+        const packet: UserPropertyDto &#x3D; user._doc;
         // create the JWT payload
         const payload &#x3D; {
             username: packet.username,
@@ -808,9 +822,8 @@ export class AuthService {
     }
 
     /**
-     * Logout
+     * **summary**: set the user&#x27;s JWT in the redis &#x27;dead-list&#x27; to log the user out prior to the JWT expiration
      * @param user user property from the request object
-     * **summary**: set the user&#x27;s JWT in the redis &#x27;dead-list&#x27;
      */
     async logout(req: Request) {
         try {
@@ -826,7 +839,7 @@ export class AuthService {
     }
 
     /**
-     * Change Password
+     * **summary**: change the logged in user&#x27;s password
      * @param new_password
      * @param confirm_password
      * @param req
@@ -860,7 +873,7 @@ export class AuthService {
 
 
     /**
-     * Forgot Password
+     * summary: send an email to a valid user email address to request resetting their forgotten password
      * @param email the email for resetting the password
      * **summary**: sends user a reset password link to the provided email, if it&#x27;s an account associated email
      */
@@ -883,11 +896,10 @@ export class AuthService {
     }
 
     /**
-     * Reset Password 
-     * @param email
-     * @param newPassword
-     * @param confirmPassword
-     * **summary**: resets the password from a submitted forgot-password email
+     * **summary**: reset a user&#x27;s password with the information submitted by a forgot-and-reset email
+     * @param email the valid user email
+     * @param newPassword the new password entered the 1st time
+     * @param confirmPassword the identical new password entered a second time
      */
     async resetPassword(data: ResetPasswordDto) {
         // check new password for typos

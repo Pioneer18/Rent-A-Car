@@ -68,8 +68,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Error Filter catches all 500 INTERNAL_SERVER_ERRORs
-It logs the Error, reveals the Error object, and reutrns a custom err message to the client</p>
+                <p><strong>summary</strong>: this Error Filter catches all 500 INTERNAL_SERVER_ERRORs. It logs the Error, reveals the Error object, and reutrns a custom err message to the client</p>
 
             </p>
 
@@ -139,14 +138,16 @@ It logs the Error, reveals the Error object, and reutrns a custom err message to
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/common/filters/error.filters.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/common/filters/error.filters.ts:20</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: catch http errors and use the Logger to log the appropiate error and data</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -219,11 +220,15 @@ It logs the Error, reveals the Error object, and reutrns a custom err message to
 } from &#x27;@nestjs/common&#x27;;
 import { DateTime } from &#x27;luxon&#x27;;
 /**
- * Error Filter catches all 500 INTERNAL_SERVER_ERRORs
- * It logs the Error, reveals the Error object, and reutrns a custom err message to the client
+ * **summary**: this Error Filter catches all 500 INTERNAL_SERVER_ERRORs. It logs the Error, reveals the Error object, and reutrns a custom err message to the client
  */
 @Catch()
 export class ErrorFilter implements ExceptionFilter {
+  /**
+   * **summary**: catch http errors and use the Logger to log the appropiate error and data
+   * @param error 
+   * @param host 
+   */
   catch(error: Error, host: ArgumentsHost) {
     const response &#x3D; host.switchToHttp().getResponse();
     const request &#x3D; host.switchToHttp().getRequest();

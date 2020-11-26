@@ -796,7 +796,7 @@ import { ExtractKeyValueUtil } from &#x27;../../auth/util/extract-key-value.util
 import { DeleteUserDto } from &#x27;../dto/delete-user.dto&#x27;;
 import { VerifyNewPasswordUtil } from &#x27;src/auth/util/verify-new-password.util&#x27;;
 import { RedisService } from &#x27;../../redis/service/redis.service&#x27;;
-import { JwtPayloadInterface } from &#x27;src/auth/interface/jwt-payload&#x27;;
+import { JwtPayloadDto } from &#x27;src/auth/dto/jwt-payload&#x27;;
 import { ExtractUserUtil } from &#x27;../util/extract-user.util&#x27;;
 
 @Injectable()
@@ -862,7 +862,7 @@ export class UserService {
     async updateUser(data: UpdateUserDto, req: Request ) {
         try {
             // extract user email
-            const user: JwtPayloadInterface &#x3D; await this.extractUserUtil.extract(req);
+            const user: JwtPayloadDto &#x3D; await this.extractUserUtil.extract(req);
             const filter &#x3D; {email: user.email };
             // create an update object
             let update &#x3D; this.createUserUpdate(data);

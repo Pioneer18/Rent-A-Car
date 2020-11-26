@@ -178,7 +178,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/JwtPayloadInterface.html" target="_self" >Promise&lt;JwtPayloadInterface&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/JwtPayloadDto.html" target="_self" >Promise&lt;JwtPayloadDto&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -196,15 +196,15 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
 import { Request } from &quot;express&quot;;
-import { JwtPayloadInterface } from &quot;../../auth/interface/jwt-payload&quot;;
+import { JwtPayloadDto } from &quot;../../auth/dto/jwt-payload&quot;;
 
 @Injectable()
 export class ExtractUserUtil {
     constructor() {}
 
-    async extract(req: Request): Promise&lt;JwtPayloadInterface&gt; {
+    async extract(req: Request): Promise&lt;JwtPayloadDto&gt; {
         const temp: any &#x3D; req.user;
-        const user: JwtPayloadInterface &#x3D; {
+        const user: JwtPayloadDto &#x3D; {
             username: temp.username,
             email: temp.email,
             userId: temp.userId

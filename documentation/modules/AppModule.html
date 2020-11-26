@@ -192,6 +192,13 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p><strong>summary</strong>: register every module in the app and their dependencies </p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -283,6 +290,9 @@ import { AppConfigService } from &#x27;./config/configuration.service&#x27;;
 import { AuthController } from &#x27;./auth/controller/auth.controller&#x27;;
 import { RedisModule } from &#x27;./redis/redis.module&#x27;;
 
+/**
+ * **summary**: register every module in the app and their dependencies 
+ */
 @Module({
   imports: [
     AppModule,
