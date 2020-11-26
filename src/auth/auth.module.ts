@@ -16,7 +16,9 @@ import { VerifyNewPasswordUtil } from './util/verify-new-password.util';
 import { EmailService } from '../email/email.service';
 import { AppConfigService } from '../config/configuration.service';
 import { ExtractUserUtil } from '../user/util/extract-user.util';
-
+/**
+ * **summary**: This module provides all of the functionality for authenticating and authorizing a user
+ */
 @Module({
   imports: [
     AppConfigModule,

@@ -2,7 +2,7 @@ import { Injectable, Logger, Req, Res } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ImageInterface } from '../interface/image.interface';
 import { Model } from 'mongoose';
-import { JwtPayloadInterface } from '../../auth/interface/jwt-payload';
+import { JwtPayloadDto } from '../../auth/dto/jwt-payload';
 import { AppConfigService } from '../../config/configuration.service';
 import { profile } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
@@ -86,7 +86,7 @@ export class ImagesService {
    * Summary: query multiple profile images by user_id and profile category, or find a specific profile photo by id
    * @param user the user property of the request object
    */
-  findProfileImages = async (user: JwtPayloadInterface, img_id?: string) => {
+  findProfileImages = async (user: JwtPayloadDto, img_id?: string) => {
     try {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
@@ -107,7 +107,7 @@ export class ImagesService {
    * @param category the images category; rentals or profile
    * @param user_id used to verify the photos belong to the requesting user
    */
-  deleteImages = async (images: ImageDto[], user: JwtPayloadInterface) => {
+  deleteImages = async (images: ImageDto[], user: JwtPayloadDto) => {
     try {
       if (images && images.length > 0) {
         if (images.length === 1) {
@@ -152,7 +152,7 @@ export class ImagesService {
    * @param user_id used to locate the user's photos as well as verify they belong to them
    * @param rental_id the id of the rental
    */
-  deleteAllImages = async (user: JwtPayloadInterface, rental_id: string) => {
+  deleteAllImages = async (user: JwtPayloadDto, rental_id: string) => {
     // delete all images of the selected rental
     if (user && rental_id !== null) {
       return await this.imagesModel.deleteMany({ rental_id: rental_id, user_id: user.userId });
@@ -175,7 +175,7 @@ export class ImagesService {
   fileuploadAndSave = async (req, res, category, rental_id, saveimages) => {
     try {
       // create a multer upload
-      const user: JwtPayloadInterface = req.user;
+      const user: JwtPayloadDto = req.user;
       const multerUpload = await this.createMulterUploadUtil.create(req, category)
       // Upload the image(s)
       const model = this.imagesModel;

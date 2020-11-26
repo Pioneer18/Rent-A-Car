@@ -1,6 +1,8 @@
-/* Data Transfer Object (check Serializers in other languages) for resetPassword method */
+/**
+ * **summary**: the data transer object for resetting a user password
+ */
 export class ResetPasswordDto {
 	readonly resetPass: string;
 	readonly confirmPass: string;
-	readonly resetPasswordToken: string; //should be in request body?
+	readonly resetPasswordToken: string;
 }

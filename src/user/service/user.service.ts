@@ -11,7 +11,7 @@ import { ExtractKeyValueUtil } from '../../auth/util/extract-key-value.util';
 import { DeleteUserDto } from '../dto/delete-user.dto';
 import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
 import { RedisService } from '../../redis/service/redis.service';
-import { JwtPayloadInterface } from 'src/auth/interface/jwt-payload';
+import { JwtPayloadDto } from 'src/auth/dto/jwt-payload';
 import { ExtractUserUtil } from '../util/extract-user.util';
 
 @Injectable()
@@ -77,7 +77,7 @@ export class UserService {
     async updateUser(data: UpdateUserDto, req: Request ) {
         try {
             // extract user email
-            const user: JwtPayloadInterface = await this.extractUserUtil.extract(req);
+            const user: JwtPayloadDto = await this.extractUserUtil.extract(req);
             const filter = {email: user.email };
             // create an update object
             let update = this.createUserUpdate(data);

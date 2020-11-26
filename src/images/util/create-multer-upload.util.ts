@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
-import { JwtPayloadInterface } from "src/auth/interface/jwt-payload";
+import { JwtPayloadDto } from "src/auth/dto/jwt-payload";
 import { S3Provider } from "../providers/s3.provider";
 
 @Injectable()
@@ -12,7 +12,7 @@ export class CreateMulterUploadUtil {
     create = async (req, category) => {
         try {
             // create a multer upload
-            const user: JwtPayloadInterface = req.user;
+            const user: JwtPayloadDto = req.user;
             return multer({
                 storage: multerS3({
                     s3: this.s3,

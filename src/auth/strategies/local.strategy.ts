@@ -1,5 +1,5 @@
 /**
- * Passport Local Strategy
+ * summary: setup the [**Passport Local Strategy**](http://www.passportjs.org/packages/passport-local/)
  */
 import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
@@ -12,8 +12,12 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         super({usernameField: 'email' }); // use email instead of username
     }
 
-    // every passport strategy calls the validate method (which calls the validateUser function in the auth.service)
-    // for any strategy, if the user is found, Passport will create a user property on the request object
+    /**
+     * **summary**: every passport strategy calls the validate method (which calls the validateUser function in the auth.service) for any strategy. 
+     * if the user is found, Passport will create a user property on the request object
+     * @param email the user email
+     * @param password the user password
+     */
     async validate(email: string, password: string): Promise<any> {
         const user = await this.authService.validateUser(email, password);
         if (!user) {

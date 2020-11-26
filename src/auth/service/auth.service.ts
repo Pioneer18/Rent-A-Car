@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from '../../user/service/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { FindUserDto } from '../../user/dto/find-user.dto';
-import { UserPropertyInterface } from '../interface/user-property.interface';
+import { UserPropertyDto } from '../dto/user-property.dto';
 import * as bcrypt from 'bcrypt';
 import { UserInterface } from '../../user/interface/user.interface';
 import { Request } from 'express';
@@ -17,9 +17,7 @@ import { AppConfigService } from '../../config/configuration.service';
 import { ExtractUserUtil } from '../../user/util/extract-user.util';
 
 /**
- * Passport Local
- * Retrieve a user and verify their password with ValidateUser()
- * Create a JWT from the validated user's id and username
+ * **summary**: provide the functionality to authenticate and authorize a user
  */
 @Injectable()
 export class AuthService {
@@ -35,9 +33,10 @@ export class AuthService {
     ) { }
 
     /**
-     * Initial User Validation
-     * @param email 
-     * @param pass 
+     * **summary**:  find the user in the database and authenticate their access to the application by verifying the present user credentials in the database
+     * - note: depends on the userService.findUser() and verifyNewPasswordUtil.verifyMatch() methods
+     * @param email the user email
+     * @param pass the user password
      */
     async validateUser(email: string, pass: string): Promise<any> {
         try {
@@ -54,13 +53,13 @@ export class AuthService {
     }
 
     /**
-     * Login (Assign a JWT)
-     * @param user 
+     * summary: return a JWT inside of a Cookie, which may only be interacted with by Http and not Javascript, to the now authenticated user
+     * @param user the user logging into the application
      */
     async login(user: any) {
         console.log(`here is the user property created by Passport`)
         console.log(user._doc)
-        const packet: UserPropertyInterface = user._doc;
+        const packet: UserPropertyDto = user._doc;
         // create the JWT payload
         const payload = {
             username: packet.username,
@@ -73,9 +72,8 @@ export class AuthService {
     }
 
     /**
-     * Logout
+     * **summary**: set the user's JWT in the redis 'dead-list' to log the user out prior to the JWT expiration
      * @param user user property from the request object
-     * **summary**: set the user's JWT in the redis 'dead-list'
      */
     async logout(req: Request) {
         try {
@@ -91,7 +89,7 @@ export class AuthService {
     }
 
     /**
-     * Change Password
+     * **summary**: change the logged in user's password
      * @param new_password
      * @param confirm_password
      * @param req
@@ -125,7 +123,7 @@ export class AuthService {
 
 
     /**
-     * Forgot Password
+     * summary: send an email to a valid user email address to request resetting their forgotten password
      * @param email the email for resetting the password
      * **summary**: sends user a reset password link to the provided email, if it's an account associated email
      */
@@ -148,11 +146,10 @@ export class AuthService {
     }
 
     /**
-     * Reset Password 
-     * @param email
-     * @param newPassword
-     * @param confirmPassword
-     * **summary**: resets the password from a submitted forgot-password email
+     * **summary**: reset a user's password with the information submitted by a forgot-and-reset email
+     * @param email the valid user email
+     * @param newPassword the new password entered the 1st time
+     * @param confirmPassword the identical new password entered a second time
      */
     async resetPassword(data: ResetPasswordDto) {
         // check new password for typos

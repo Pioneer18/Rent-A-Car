@@ -3,13 +3,13 @@ import { VerifyNewPasswordDto } from "../dto/verify-new-password.dto";
 import * as bcrypt from 'bcrypt';
 import { CheckPasswordTypoDto } from "../dto/check-password-typo.dto";
 /**
- * Password Verification functions
+ * **summary**: validate incoming new password data
  */
 @Injectable()
 export class VerifyNewPasswordUtil {
 
     /**
-     * Verify the new password does not match the database password
+     * **summary**: verify the new password does not match the database password
      * @param data 
      */
     async verifyNew(data: VerifyNewPasswordDto): Promise<void>{
@@ -18,6 +18,10 @@ export class VerifyNewPasswordUtil {
         return;
     }
 
+    /**
+     * **summary**: verify the entered password matches the password saved in the database for this user
+     * @param data 
+     */
     async verifyMatch(data: VerifyNewPasswordDto): Promise<void>{
         const check = await bcrypt.compare(data.newPassword, data.oldPassword);
         if (!check) { throw new Error('Error: incorrect password entered')};
@@ -25,7 +29,7 @@ export class VerifyNewPasswordUtil {
     }
 
     /**
-     * Verify the user entered the same password twice
+     * **summary**: verify the user entered the same password twice
      * @param data 
      */
     checkTypos(data: CheckPasswordTypoDto): Promise<void> {

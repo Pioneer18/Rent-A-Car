@@ -1,14 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { Request } from "express";
-import { JwtPayloadInterface } from "../../auth/interface/jwt-payload";
+import { JwtPayloadDto } from "../../auth/dto/jwt-payload";
 
 @Injectable()
 export class ExtractUserUtil {
     constructor() {}
 
-    async extract(req: Request): Promise<JwtPayloadInterface> {
+    async extract(req: Request): Promise<JwtPayloadDto> {
         const temp: any = req.user;
-        const user: JwtPayloadInterface = {
+        const user: JwtPayloadDto = {
             username: temp.username,
             email: temp.email,
             userId: temp.userId

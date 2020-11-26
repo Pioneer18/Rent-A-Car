@@ -7,15 +7,18 @@ import { JwtAuthGuard } from "../gaurds/jwt-auth.guard";
 import { LocalAuthGuard } from "../gaurds/local-auth.guard";
 import { LoggedOutGaurd } from "../gaurds/logged-out.guard";
 import { AuthService } from "../service/auth.service";
-
+/**
+ * **summary**: controller for handling the authentication and authorization of a registered user
+ * - note: some methods in this controller are protected by JwtAuthGuard and LoggedOutGuard, which verify a user is Authorized
+ */
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
 
     /**
-     * Login
-     * @param email
-     * @param password 
+     * **summary**: authenticate and login a user
+     * @param email the user's email
+     * @param password the user's submitted password to be validated
      */
     @HttpCode(200)
     @UseGuards(LocalAuthGuard)
@@ -28,8 +31,8 @@ export class AuthController {
     }
 
     /**
-     * Logout
-     * @param req
+     * **summary**: logout a user by adding their JWT to a Redis 'dead-list' that will end the user's authorized session prior to the JWT expiration time
+     * @param req the request containing the user's JWT payload to be added to the logged-out 'dead-list' in the Redis cache
      */
     @UseGuards(JwtAuthGuard)
     @Redirect('http://localhost:3000/auth/login')
@@ -39,7 +42,9 @@ export class AuthController {
     }
 
     /**
-     * Change Password
+     * **summary**: change the password of a logged in and authorized user
+     * @param req the request with the user JWT payload
+     * @param data the new password data
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
@@ -49,7 +54,8 @@ export class AuthController {
     }
 
     /**
-     * Forgot Password
+     * **summary**: request to reset a forgotten password
+     * @param data the email address to send the forgot-password email to
      */
     @Post('forgot-password')
     async forgotPassword(@Body() data: ForgotPasswordDto) {
@@ -57,8 +63,8 @@ export class AuthController {
     }
 
     /**
-     * Reset Password
      * **summary**: resets the user's password with the data submitted from the email redirect
+     * @param data the data submitted by the user to the reset-password email form
      */
     @Post('reset-password')
     async resetPassword(@Body() data: ResetPasswordDto) {
