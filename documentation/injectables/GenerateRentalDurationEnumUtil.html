@@ -60,6 +60,13 @@
             <code>src/rental/utils/generate-rental-duration-enum.util.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: generate RentalDuration Enums for the rentalDuration propery of the RequestCoordinatesDto</p>
+
+            </p>
 
 
 
@@ -127,14 +134,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:36</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: create a RentalDuration <a href="https://www.typescriptlang.org/docs/handbook/enums.html"><strong>Enum</strong></a> from the given start and end time </p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -205,14 +214,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="8"
-                            class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:8</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:16</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: using the [<strong>Luxon Interval.fromDateTimes(<a href="https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes">https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes</a>)</strong>] method return the 
+duration of the rental in months, weeks, and days</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -268,9 +280,17 @@
 import { Interval } from &#x27;luxon&#x27;;
 import { RentalDurations } from &#x27;../const&#x27;;
 import { ProcessRentalTimeDto } from &#x27;../dto/searchRental/process-rental-time.dto&#x27;;
-
+/**
+ * summary: generate RentalDuration Enums for the rentalDuration propery of the RequestCoordinatesDto
+ */
 @Injectable()
 export class GenerateRentalDurationEnumUtil {
+  /**
+   * **summary**: using the [**Luxon Interval.fromDateTimes(https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes)**] method return the 
+   * duration of the rental in months, weeks, and days
+   * @param startTime 
+   * @param endTime 
+   */
   private async processRentalTime(startTime, endTime):Promise&lt;ProcessRentalTimeDto&gt; {
     try {
       const base &#x3D; Interval.fromDateTimes(startTime, endTime);
@@ -286,6 +306,11 @@ export class GenerateRentalDurationEnumUtil {
     }
   }
 
+  /**
+   * **summary**: create a RentalDuration [**Enum**](https://www.typescriptlang.org/docs/handbook/enums.html) from the given start and end time 
+   * @param startTime 
+   * @param endTime 
+   */
   async generateRentalDurationEnum(startTime, endTime) {
     try {
       const schedule: ProcessRentalTimeDto &#x3D; await this.processRentalTime(startTime, endTime);

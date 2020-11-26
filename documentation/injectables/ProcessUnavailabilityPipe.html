@@ -261,11 +261,16 @@ This is to prevent the user on the front-end from accidentally overlapping &#39;
                                       <thead>
                                           <tr>
                                                 <td>Name</td>
+                                                    <td>Description</td>
                                           </tr>
                                       </thead>
                                       <tbody>
                                                 <tr>
                                                         <td>value</td>
+                                                        <td>
+                                                                <code><p>the semi processed and validate client request data</p>
+</code>
+                                                        </td>
                                                 </tr>
                                       </tbody>
                                   </table>
@@ -391,7 +396,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
    * **summary**: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto
    * - this method checks if the user is schedling time only for this year or into the next year as well
    * - the uuid identifies a series of unavailability, allowing the entire block of time to be identified in the database
-   * @param value 
+   * @param value the semi processed and validate client request data
    */
   protected addUnavailabilityId &#x3D; async (
     value: ValidatedUnavailabilityDto,
