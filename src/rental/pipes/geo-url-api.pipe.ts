@@ -11,6 +11,10 @@ import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 export class GeoUrlApiPipe {
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil, private readonly appConfig: AppConfigService) {}
 
+  /**
+   * summary: ....
+   * @param value the raw form data inputed by user to creat a new Rental listing
+   */
   private async createAddress(value) {
     // create address string from incoming vehicle.address document
     const address: string = `${value.location.street} ${value.location.city} ${value.location.zip}`;

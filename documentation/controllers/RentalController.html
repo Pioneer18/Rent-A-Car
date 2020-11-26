@@ -721,7 +721,7 @@ import { GeoUrlApiPipe } from &#x27;../pipes/geo-url-api.pipe&#x27;;
 import { MapNewRentalPipe } from &#x27;../pipes/map-new-rental.pipe&#x27;;
 import { CreateRentalDto } from &#x27;../dto/createRental/create-rental.dto&#x27;;
 import { JoiValidationPipe } from &#x27;../../common/pipes/joi-validation.pipe&#x27;;
-import { CreateRentalValidation } from &#x27;../schema/validation/create-rental-validation.schema&#x27;;
+import { CreateRentalValidationSchema } from &#x27;../schema/validation/create-rental-validation.schema&#x27;;
 import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
 import { RentalDurationPipe } from &#x27;../pipes/rental-duration.pipe&#x27;;
 import { GenerateRentalDurationEnumUtil } from &#x27;../utils/generate-rental-duration-enum.util&#x27;;
@@ -759,7 +759,7 @@ export class RentalController {
    * create a new vehicle rental listing
    */
   @Post()
-  @UsePipes(new JoiValidationPipe(CreateRentalValidation))
+  @UsePipes(new JoiValidationPipe(CreateRentalValidationSchema))
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
   async createRental(@Body() rental: CreateRentalDto) {

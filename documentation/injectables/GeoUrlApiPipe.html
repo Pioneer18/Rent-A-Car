@@ -200,14 +200,16 @@ the original value, a single string address, and coordinates</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:18</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: ....</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -216,6 +218,7 @@ the original value, a single string address, and coordinates</p>
                                 <tr>
                                     <td>Name</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -227,6 +230,10 @@ the original value, a single string address, and coordinates</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the raw form data inputed by user to creat a new Rental listing</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -268,8 +275,8 @@ the original value, a single string address, and coordinates</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:24</a></div>
                 </td>
             </tr>
 
@@ -364,8 +371,8 @@ the original value, a single string address, and coordinates</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:35</a></div>
                 </td>
             </tr>
 
@@ -431,6 +438,10 @@ import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
 export class GeoUrlApiPipe {
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil, private readonly appConfig: AppConfigService) {}
 
+  /**
+   * summary: ....
+   * @param value the raw form data inputed by user to creat a new Rental listing
+   */
   private async createAddress(value) {
     // create address string from incoming vehicle.address document
     const address: string &#x3D; &#x60;${value.location.street} ${value.location.city} ${value.location.zip}&#x60;;
