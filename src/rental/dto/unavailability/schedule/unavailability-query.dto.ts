@@ -1,5 +1,5 @@
 /**
- * summary: this data is used to check if the request to schedule Unavailability will overlap with Unavailability already scheduled for the rental in the database.
+ * **summary**: this data is used to check if the request to schedule Unavailability will overlap with Unavailability already scheduled for the rental in the database.
  * This dto uses a MongoDB $or aggregator to check the following Unavailability overlap conditions:
  *  - 1: verify the requested Unavailability does not 'enclose' an already scheduled Unavailability for this rental
  *  - 2: verify the requested Unavailability does not 'overlap' the end of an already scheduled Unavailability for this rental

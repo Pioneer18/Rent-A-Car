@@ -60,6 +60,13 @@
             <code>src/rental/pipes/request-coordinates.pipe.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: create a SearchRentalDto with the GeoJSON loc property with the <a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html"><strong>HERE Geocoding &amp; Searching API</strong></a></p>
+
+            </p>
 
 
 
@@ -103,7 +110,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/rental/pipes/request-coordinates.pipe.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/pipes/request-coordinates.pipe.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -170,14 +177,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/rental/pipes/request-coordinates.pipe.ts:10</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/rental/pipes/request-coordinates.pipe.ts:17</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: finish transforming the client request into a SearchRentalDto using the geoUrlApiUtil.getCoordinates() method</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -187,6 +196,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -201,6 +211,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the semi-processed client request data to search for Rentals</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -229,15 +243,21 @@ import { RequestCoordinatesDto } from &#x27;../dto/searchRental/request-coordina
 import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
 import { SearchRentalDto } from &#x27;../dto/searchRental/search-rental.dto&#x27;;
 
+/**
+ * summary: create a SearchRentalDto with the GeoJSON loc property with the [**HERE Geocoding &amp; Searching API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html)
+ */
 @Injectable()
 export class RequestCoordinatesPipe implements PipeTransform&lt;any&gt; {
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) {}
 
+  /**
+   * summary: finish transforming the client request into a SearchRentalDto using the geoUrlApiUtil.getCoordinates() method
+   * @param value the semi-processed client request data to search for Rentals
+   */
   async transform(value: RequestCoordinatesDto) {
     const geoUrl &#x3D; process.env.GEO_URL;
     const apiKey &#x3D; process.env.GEO_API_KEY; 
     try {
-      // Logger.log(&#x60;geoUrl: ${geoUrl}&#x60;);
       const dto: SearchRentalDto &#x3D; {
         address: value.address,
         price: value.price,

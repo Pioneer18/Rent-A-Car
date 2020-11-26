@@ -1,6 +1,6 @@
 
 /**
- * summary: edit the details of a rental
+ * **summary**: edit the details of a rental
  * - passed to the rental.service.editDetails method
  */
 export class EditDetailsDto {

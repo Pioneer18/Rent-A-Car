@@ -1,5 +1,5 @@
 /**
- * summary: the final format for a new rental to be created
+ * **summary**: the final format for a new rental to be created
  * - passed to the rental.service.createRental method
  */
 export class CreateRentalDto {

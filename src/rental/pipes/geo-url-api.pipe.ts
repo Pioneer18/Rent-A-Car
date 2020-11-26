@@ -5,7 +5,7 @@ import { RawCreateRentalDto } from '../dto/createRental/raw-create-rental-dto';
 import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
 
 /**
- * summary: create an address from the incoming RawCreateRentalDto and then use the [**HERE Geocoding & Searching API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html)
+ * **summary**: create an address from the incoming RawCreateRentalDto and then use the [**HERE Geocoding & Searching API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html)
  * to get the coordinates of the address. The coordinates allow Rentals to be geospatially queried in a radius near a user or selected location; e.g. 8 mile radius
  */
 @Injectable()
@@ -13,7 +13,7 @@ export class GeoUrlApiPipe {
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil, private readonly appConfig: AppConfigService) {}
 
   /**
-   * summary: convert the location property object into a single address property string; will be passed to this.getCoordinates method
+   * **summary**: convert the location property object into a single address property string; will be passed to this.getCoordinates method
    * @param value the raw form data inputed by user to create a new Rental listing
    */
   private async createAddress(value) {
@@ -23,7 +23,7 @@ export class GeoUrlApiPipe {
   }
 
   /**
-   * summary: request coordinates for the provided address
+   * **summary**: request coordinates for the provided address
    * @param address the address to fetch coordinates for from the API
    * @param geoUrl the url for accessing the API
    * @param apiKey the key for accessing the API
@@ -40,7 +40,7 @@ export class GeoUrlApiPipe {
   }
 
   /**
-   * summary: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string
+   * **summary**: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string
    * @param value the raw request from a client to create a new Rental listing
    */
   async transform(value: RawCreateRentalDto):Promise<LocCreateRentalDto> {

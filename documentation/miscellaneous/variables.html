@@ -107,13 +107,13 @@
                             <a href="#Schema" title="src/images/schema/images.schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../images.schema.ts)</a>
                         </li>
                         <li>
+                            <a href="#Schema" title="src/user/schema/user.schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../user.schema.ts)</a>
+                        </li>
+                        <li>
                             <a href="#Schema" title="src/rental/schema/rental.schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../rental.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#Schema" title="src/rental/schema/unavailability-schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../unavailability-schema.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#Schema" title="src/user/schema/user.schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../user.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#SearchRentalValidationSchema" title="src/rental/schema/validation/search-rental-validation.schema.ts"><b>SearchRentalValidationSchema</b>&nbsp;&nbsp;&nbsp;(src/.../search-rental-validation.schema.ts)</a>
@@ -822,59 +822,6 @@
             </tbody>
         </table>
 </section>
-    <h3>src/rental/schema/unavailability-schema.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="Schema"></a>
-                        <span class="name">
-                            <b>
-                            Schema</b>
-                            <a href="#Schema"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>mongoose.Schema</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="UnavailabilitySchema"></a>
-                        <span class="name">
-                            <b>
-                            UnavailabilitySchema</b>
-                            <a href="#UnavailabilitySchema"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new Schema({
-    unavailabilityId: String,
-    rentalId: String,
-    year: Number,
-    doy: Number, // day of the year
-    start: {type: Number, min: 0, max: 24}, // min: 0; max: 24 military time
-    end: {type: Number, min: 0, max: 24}, // min: 0; max: 24 military time
-    title: String, // e.g. Christmas Break
-})</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-</section>
     <h3>src/user/schema/user.schema.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -921,6 +868,59 @@
     password: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
+})</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/rental/schema/unavailability-schema.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="Schema"></a>
+                        <span class="name">
+                            <b>
+                            Schema</b>
+                            <a href="#Schema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>mongoose.Schema</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="UnavailabilitySchema"></a>
+                        <span class="name">
+                            <b>
+                            UnavailabilitySchema</b>
+                            <a href="#UnavailabilitySchema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Schema({
+    unavailabilityId: String,
+    rentalId: String,
+    year: Number,
+    doy: Number, // day of the year
+    start: {type: Number, min: 0, max: 24}, // min: 0; max: 24 military time
+    end: {type: Number, min: 0, max: 24}, // min: 0; max: 24 military time
+    title: String, // e.g. Christmas Break
 })</code>
                         </td>
                     </tr>
@@ -1026,6 +1026,12 @@
                         </td>
                     </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: map the passed array, of any Type, into a new array of tuples with the index for each value</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>

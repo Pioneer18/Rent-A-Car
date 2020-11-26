@@ -2,6 +2,9 @@ import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
+/**
+ * Unavailability Schema
+ */
 export const UnavailabilitySchema = new Schema({
     unavailabilityId: String,
     rentalId: String,

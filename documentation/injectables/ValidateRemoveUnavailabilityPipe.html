@@ -60,6 +60,13 @@
             <code>src/rental/pipes/validate-remove-unavailability.pipe.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: validate a client request to remove (unschedule) Unavailability from a Rental</p>
+
+            </p>
 
 
 
@@ -127,21 +134,23 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>transform(value)</code>
+<code>transform(value: <a href="../classes/RemoveUnavailabilityDto.html">RemoveUnavailabilityDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/rental/pipes/validate-remove-unavailability.pipe.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/rental/pipes/validate-remove-unavailability.pipe.ts:24</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: use the validateDto method to validate the request before passing it on</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -149,18 +158,27 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>value</td>
+                                    <td>
+                                                <code><a href="../classes/RemoveUnavailabilityDto.html" target="_self" >RemoveUnavailabilityDto</a></code>
+                                    </td>
 
                                     <td>
                                         No
                                     </td>
 
 
+                                    <td>
+                                        <p>the raw client request</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -168,7 +186,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/RemoveUnavailabilityDto.html" target="_self" >RemoveUnavailabilityDto</a></code>
 
                     </div>
                     <div class="io-description">
@@ -204,11 +222,41 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/rental/pipes/validate-remove-unavailability.pipe.ts:6</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/pipes/validate-remove-unavailability.pipe.ts:12</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: check the request has a valid rentalId and unavailabilityId</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the raw client request to remove Unavailability from a Rental</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
 </section>
@@ -219,9 +267,15 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
 import { RemoveUnavailabilityDto } from &#x27;../dto/unavailability/remove/remove-unavailability.dto&#x27;;
-
+/**
+ * summary: validate a client request to remove (unschedule) Unavailability from a Rental
+ */
 @Injectable()
 export class ValidateRemoveUnavailabilityPipe implements PipeTransform {
+    /**
+     * summary: check the request has a valid rentalId and unavailabilityId
+     * @param value the raw client request to remove Unavailability from a Rental
+     */
     private validateDto &#x3D; (value: RemoveUnavailabilityDto) &#x3D;&gt; {
         if (typeof value.rentalId !&#x3D;&#x3D; &#x27;string&#x27;) {
             throw new Error(&#x27;invalid rental ID; must be a string&#x27;);
@@ -230,8 +284,11 @@ export class ValidateRemoveUnavailabilityPipe implements PipeTransform {
             throw new Error(&#x27;invalid unavailability ID; must be a string&#x27;);
         }
     }
-    transform(value) {
-        // validate stuffs
+    /**
+     * summary: use the validateDto method to validate the request before passing it on
+     * @param value the raw client request
+     */
+    transform(value: RemoveUnavailabilityDto):RemoveUnavailabilityDto {
         this.validateDto(value);
         return value;
     }

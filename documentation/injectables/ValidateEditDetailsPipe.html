@@ -169,14 +169,16 @@ RentalSchemaValidation</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/rental/pipes/validate-edit-details.pipe.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/rental/pipes/validate-edit-details.pipe.ts:99</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: use the validateDetails() method to validate the request before passing to the handler</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -186,6 +188,7 @@ RentalSchemaValidation</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -200,6 +203,10 @@ RentalSchemaValidation</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the raw client request to edit the details (spec property) of a Rental</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -207,7 +214,7 @@ RentalSchemaValidation</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../classes/EditDetailsDto.html" target="_self" >Promise&lt;EditDetailsDto&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -434,8 +441,11 @@ export class ValidateEditDetailsPipe implements PipeTransform {
         }
     }
 
-    // apply validation
-    async transform(value: EditDetailsDto) {
+    /**
+     * summary: use the validateDetails() method to validate the request before passing to the handler
+     * @param value the raw client request to edit the details (spec property) of a Rental
+     */
+    async transform(value: EditDetailsDto):Promise&lt;EditDetailsDto&gt; {
         await this.validateDetails(value);
         return value;
     }

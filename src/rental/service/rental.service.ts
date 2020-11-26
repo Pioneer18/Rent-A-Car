@@ -13,8 +13,7 @@ import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 
 /**
- * **Rental Service**: written by Jonathan Sells 11/24/2020
- * - Create rentals, edit their scheduling and details, and search for rentals within a specified radius; e.g. 8 miles
+ * **summary**: create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
  */
 @Injectable()
 export class RentalService {

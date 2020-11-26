@@ -60,6 +60,13 @@
             <code>src/rental/pipes/map-new-rental.pipe.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: create the final CreateRentalDto that will be passed to the rental.service.createRental() method</p>
+
+            </p>
 
 
 
@@ -122,14 +129,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="9"
-                            class="link-to-prism">src/rental/pipes/map-new-rental.pipe.ts:9</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/rental/pipes/map-new-rental.pipe.ts:13</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: transform the raw data into a CreateRentalDto</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -139,6 +148,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -153,6 +163,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request to create a rental with all of the necessary raw data</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -180,10 +194,14 @@
 import { LocCreateRentalDto } from &#x27;../dto/createRental/loc-create-rental.dto&#x27;;
 import { CreateRentalDto } from &#x27;../dto/createRental/create-rental.dto&#x27;;
 /**
- * 
+ * summary: create the final CreateRentalDto that will be passed to the rental.service.createRental() method
  */
 @Injectable()
 export class MapNewRentalPipe implements PipeTransform {
+  /**
+   * summary: transform the raw data into a CreateRentalDto
+   * @param value the request to create a rental with all of the necessary raw data
+   */
   async transform(value: LocCreateRentalDto) {
     try {
       const data: CreateRentalDto &#x3D; {

@@ -1,5 +1,5 @@
 /**
- * summary: edit the pricing of a rental
+ * **summary**: edit the pricing of a rental
  * - passed to the rental.service.editPricing method
  */
 export class PricingDto {

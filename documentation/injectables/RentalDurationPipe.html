@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Create a rental Duration from the incoming GivenNoticeSearchRentalDto</p>
+                <p>summary: create a rental Duration from the incoming GivenNoticeSearchRentalDto</p>
 
             </p>
 
@@ -177,14 +177,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/rental/pipes/rental-duration.pipe.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/rental/pipes/rental-duration.pipe.ts:19</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: use the generateRentalDurationEnumUtil() to create a RentalDuration <a href="https://www.typescriptlang.org/docs/handbook/enums.html"><strong>Enum</strong></a> for the
+Rental query</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -194,6 +197,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -208,6 +212,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the semi processed client request data to query a rental near their, or a specified, locaion</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -236,7 +244,7 @@ import { GivenNoticeSearchRentalDto } from &#x27;../dto/searchRental/given-notic
 import { GenerateRentalDurationEnumUtil } from &#x27;../utils/generate-rental-duration-enum.util&#x27;;
 import { RequestCoordinatesDto } from &#x27;../dto/searchRental/request-coordinates.dto&#x27;;
 /**
- * Create a rental Duration from the incoming GivenNoticeSearchRentalDto
+ * summary: create a rental Duration from the incoming GivenNoticeSearchRentalDto
  */
 @Injectable()
 export class RentalDurationPipe implements PipeTransform {
@@ -244,6 +252,11 @@ export class RentalDurationPipe implements PipeTransform {
     this.generateDuration &#x3D; generateDuration;
   }
 
+  /**
+   * summary: use the generateRentalDurationEnumUtil() to create a RentalDuration [**Enum**](https://www.typescriptlang.org/docs/handbook/enums.html) for the
+   * Rental query
+   * @param value the semi processed client request data to query a rental near their, or a specified, locaion
+   */
   async transform(value: GivenNoticeSearchRentalDto) {
     try {
       const dto: RequestCoordinatesDto &#x3D; {

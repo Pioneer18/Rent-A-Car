@@ -9,18 +9,21 @@ import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unav
 @Injectable()
 export class ValidateUnavailabilityPipe implements PipeTransform {
   /**
-   * validate requested rental start DateTime is not before the current DateTime - DONE
-   * if 2 years
-   * - validate each unavailability for y1 and y2 (private validateUnavailability)
-   * - check if y1 is a leap year, validate num of DOY if it is a leap year
-   * - validate DOY crossover from y1 to y2; validate the extra DOY if it's a leap year
-   * else validate each unavailability in the single year
-   * return the validated year(s)
+   * **summary**: confirm that the user is requesting to schedule a single block of Unavailable time for their Rental that is logically and will
+   * not cause an error in the application
+   * -validate requested rental start DateTime is not before the current DateTime
+   * - if 2 years
+   *   - validate each unavailability for y1 and y2 (private validateUnavailability)
+   *   - check if y1 is a leap year, validate the number of days in the year (DOY) if it is a leap year
+   *   - validate DOY crossover from y1 to y2; validate the extra DOY if it's a leap year
+   * - else: 
+   *   - validate each unavailability in the single year
+   * - return the validated year(s)
    */
 
   /**
-   * @param u1 the 1st unavailability
-   * apply DateTime.fromObject() to create a new DateTime
+   * **summary**: use the [**Luxon DateTime.fromObject()**]() method to create a new DateTime from the raw client requested startTime
+   * @param u1 the 1st unavailabilityDto
    */
   private convertToDateTime = async (u1: UnavailabilityDto): Promise<DateTime> => {
     if (!u1) {
@@ -37,9 +40,9 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
+   * **summary**: validate that the requested unavailability is not before the current date & time
    * @param a = request start DateTime
    * @param b = current DateTime
-   * requested unavailability cannot be before current date & time
    */
   private validateMinNotice = async (a: DateTime, b: DateTime) => {
     const notice: Interval = Interval.fromDateTimes(a, b).count('hours');
@@ -51,8 +54,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
+   * **summary**: validate the requested unavailability start time is not in the past
    * @param value the ordered unavailability from previous pipe
-   * validate the requested unavailability start time is not in the past
    */
   private validateRelevance = async (value: ValidateScheduleUnavailabilityDto): Promise<DateTime> => {
     // should already know y1 and y2
@@ -65,6 +68,14 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     return start;
   }
 
+  /**
+   * **summary**: this method is called when the requested Unavailability spans into the next year. this method verifies that the crossover into the next year
+   * includes the extra day if it's a leapYear. Even if it's not a leap year, this method verifies there are no missing or extra days as the Unavailability enters the
+   * start of the next year
+   * @param y1 
+   * @param y2 
+   * @param ly 
+   */
   private validateCrossover = async (
     y1: UnavailabilityDto[],
     y2: UnavailabilityDto[],
@@ -104,8 +115,9 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
+   * **summary**: use the [*Luxon DateTime.isInLeapYear()*](https://moment.github.io/luxon/docs/class/src/datetime.js~DateTime.html#instance-get-isInLeapYear) method
+   * to check if the this current year is a [**leap year**](https://www.timeanddate.com/date/leapyear.html). For example, this year 2020 is actually a leap year!
    * @param u1 the initial unavailability's DateTime
-   * return if it's a leap year or not
    */
   private checkLeapYear = async (u1: DateTime) => {
     const check = u1.isInLeapYear;
@@ -113,6 +125,11 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     return check; // true or false
   }
 
+  /**
+   * **summary**: validate the data inisde of each UnavailabilityDto that will be used to schedule a sequential single 'block of Unavailability' for the Rental
+   * - note: uses the toItemIndexes() util to map a new array of **tuples** conataining an UnavailabilityDto and it's index in the array
+   * @param unavailability an array of UnavailabilityDtos, which is the data to create an individual Unavailability Document in the database
+   */
   private validateEachUnavailability = async (
     unavailability: UnavailabilityDto[],
   ) => {
@@ -159,7 +176,11 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     }
   }
 
-  // validate congruence in rentalId, start, end, and title across y1 and y2
+  /**
+   * **summary**: validate congruence in rentalId, start, end, and title across y1 and y2
+   * @param y1 the first year of the requested Unavailability
+   * @param y2 the second year of the requested Unavailability
+   */
   private validateCrossYearCongruence = async (
     y1: UnavailabilityDto,
     y2: UnavailabilityDto,
@@ -181,16 +202,17 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     }
   }
 
+  /**
+   * **summary**: use the validateRelevance(), validateEachUnavailability(), validateCrossover(), validateCrossYearCongruence(),
+   * validateMinNotice(), and checkLeapYear() methods to validate the client request and return a ValidatedUnavailabilityDto
+   * @param value the sorted but unvalidated client request data
+   */
   async transform(value: ValidateScheduleUnavailabilityDto): Promise<ValidatedUnavailabilityDto> {
     try {
-      // validate startTime is not in the past
       const start: DateTime = await this.validateRelevance(value);
-      Logger.log('it is valid!!!!!!');
       // if 2 years; if there are 2 years we know y1 must include the final doy of y1
       if (value.y2 !== null) {
         // validate 2 years
-        Logger.log(`this is the second year of Unavailability`);
-        Logger.log(value.y2);
         await this.validateEachUnavailability(value.y1);
         await this.validateEachUnavailability(value.y2);
         // check if y1 is a leap year

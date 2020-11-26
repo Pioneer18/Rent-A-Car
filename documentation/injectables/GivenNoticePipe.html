@@ -64,8 +64,11 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: creates a <a href="https://moment.github.io/luxon/docs/"><strong>Luxon</strong></a> <a href="https://moment.github.io/luxon/docs/manual/tour.html#intervals"><strong>Interval</strong></a> from the startTime and currentTime
+                <p>summary: creates a <a href="https://moment.github.io/luxon/"><strong>Luxon</strong></a> <a href="https://moment.github.io/luxon/docs/manual/tour.html#intervals"><strong>Interval</strong></a> from the startTime and currentTime
 and then uses Luxon methods to validate the Given Notice is at least 1 hour in duration; this is the minimum allowed for any user</p>
+<ul>
+<li>Luxon is &quot;a powerful, modern, and friendly wrapper for Javacript dates and times&quot;</li>
+</ul>
 
             </p>
 
@@ -141,8 +144,8 @@ and then uses Luxon methods to validate the Given Notice is at least 1 hour in d
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:20</a></div>
                 </td>
             </tr>
 
@@ -216,8 +219,8 @@ and then uses Luxon methods to validate the Given Notice is at least 1 hour in d
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:51</a></div>
                 </td>
             </tr>
 
@@ -296,8 +299,8 @@ and then uses Luxon methods to validate the Given Notice is at least 1 hour in d
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:36</a></div>
                 </td>
             </tr>
 
@@ -370,15 +373,14 @@ this is just another level of validation.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   Injectable,
   PipeTransform,
-  Logger,
-  ArgumentMetadata,
 } from &#x27;@nestjs/common&#x27;;
 import { GivenNoticeSearchRentalDto } from &#x27;../dto/searchRental/given-notice-search-rental-dto&#x27;;
 import { RawSearchRentalDto } from &#x27;../dto/searchRental/raw-search-rental.dto&#x27;;
 import { DateTime } from &#x27;luxon&#x27;;
 /**
- * summary: creates a [**Luxon**](https://moment.github.io/luxon/docs/) [**Interval**](https://moment.github.io/luxon/docs/manual/tour.html#intervals) from the startTime and currentTime
+ * summary: creates a [**Luxon**](https://moment.github.io/luxon/) [**Interval**](https://moment.github.io/luxon/docs/manual/tour.html#intervals) from the startTime and currentTime
  * and then uses Luxon methods to validate the Given Notice is at least 1 hour in duration; this is the minimum allowed for any user
+ * - Luxon is &quot;a powerful, modern, and friendly wrapper for Javacript dates and times&quot;
  */
 @Injectable()
 export class GivenNoticePipe implements PipeTransform {

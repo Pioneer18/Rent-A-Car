@@ -200,14 +200,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:144</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
+rental.controller.updateUnavailability() method. Validate the request before passing the data to the handler</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -217,6 +220,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -231,6 +235,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -243,6 +251,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>next</td>
@@ -255,6 +267,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the next method to continue onto the next handler</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -262,7 +278,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -298,11 +314,48 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:22</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: calculate the <a href="https://www.mathsisfun.com/data/range.html"><strong>range</strong></a> of the requested Unavailability to update for the Rental</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>y1</td>
+                                                        <td>
+                                                                <code><p>the start and end day of the first year that the Unavailability is scheduled across</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>y2</td>
+                                                        <td>
+                                                                <code><p>the start and end day of the second yaer that the Unavailability is scheduled across; if there is a second year</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -325,11 +378,41 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:69</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: validate the incoming dto data does not break the below validation tree</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the sorted request to update already scheduled Unavailability on a Rental</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -352,11 +435,50 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:47</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: validate that the unavailability to be updated is present in the database, and verify that the expected <strong>range</strong> (number of days) of the Unavailability to update
+matches the actual range of the Unavailability as it&#39;s saved in the database. Use the results of the calculateRange() method, to compare the range of the Unavailability in
+the database to the range of the request</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the raw request data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>range</td>
+                                                        <td>
+                                                                <code><p>the range of the requested update Unavailability data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
 </section>
@@ -381,12 +503,16 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
     private readonly unavailability: Model&lt;UnavailabilityInterface&gt;,
   ) {}
 
+  /**
+   * summary: calculate the [**range**](https://www.mathsisfun.com/data/range.html) of the requested Unavailability to update for the Rental
+   * @param y1 the start and end day of the first year that the Unavailability is scheduled across
+   * @param y2 the start and end day of the second yaer that the Unavailability is scheduled across; if there is a second year
+   */
   private calculateRange &#x3D; async (
     y1: { sD: number; eD: number },
     y2: { sD: number; eD: number } | null,
   ) &#x3D;&gt; {
     if (y2 !&#x3D;&#x3D; null) {
-      Logger.log(&#x27;This is a 2 year range ****&#x27;);
       // calculate range for 2 years
       let temp1: number;
       let temp2: number;
@@ -400,7 +526,13 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
     return { range: 1 };
   }
 
-  // validate that the unavailability is present in the db
+  /**
+   * summary: validate that the unavailability to be updated is present in the database, and verify that the expected **range** (number of days) of the Unavailability to update
+   * matches the actual range of the Unavailability as it&#x27;s saved in the database. Use the results of the calculateRange() method, to compare the range of the Unavailability in
+   * the database to the range of the request
+   * @param value the raw request data
+   * @param range the range of the requested update Unavailability data
+   */
   private validateExpectedUnavailability &#x3D; async (
     value: ValidateUpdateUnavailabilityDto, range: {range: number},
   ) &#x3D;&gt; {
@@ -419,7 +551,10 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
 
   }
 
-  // validate dto data
+  /**
+   * summary: validate the incoming dto data does not break the below validation tree
+   * @param value the sorted request to update already scheduled Unavailability on a Rental
+   */
   private validateDto &#x3D; async (value: ValidateUpdateUnavailabilityDto) &#x3D;&gt; {
     if (typeof value.unavailabilityId !&#x3D;&#x3D; &#x27;string&#x27;) {
       throw new Error(&#x27;invalid unavailabilityId; must be a string&#x27;);
@@ -488,7 +623,14 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
     }
   }
 
-  async use(req: Request, res: Response, next: Function) {
+  /**
+   * summary: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
+   * rental.controller.updateUnavailability() method. Validate the request before passing the data to the handler
+   * @param req the request object
+   * @param res the response object
+   * @param next the next method to continue onto the next handler
+   */
+  async use(req: Request, res: Response, next: Function):Promise&lt;void&gt; {
     // apply only to update-unavailability request
     if (req.originalUrl &#x3D;&#x3D;&#x3D; &#x27;/v1/rental/update-unavailability&#x27;) {
       await this.validateDto(req.body);

@@ -5,7 +5,7 @@ import { Logger } from '@nestjs/common';
 import { DateTime } from 'luxon';
 /**
  * What does this pipe do?
- * summary:
+ * **summary**:
  * Accepts a RawSearchRentalDto and returns a GivenNoticeSearchRentalDto
  * creates a givenNotice
  * validatesRequestedTime

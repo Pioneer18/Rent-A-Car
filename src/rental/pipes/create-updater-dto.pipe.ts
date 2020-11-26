@@ -3,13 +3,13 @@ import { UpdateUnavailabilityDto } from '../dto/unavailability/update/update-una
 import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto';
 /**
- * summary: create the data the request UpdateUnavailabilityDataDto the rental.service.updateUnavailability() method needs
+ * **summary**: create the data the request UpdateUnavailabilityDataDto the rental.service.updateUnavailability() method needs
  */
 @Injectable()
 export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavailabilityDto, Promise<UpdateUnavailabilityDataDto>> {
 
     /**
-     * summary: map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
+     * **summary**: map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
      * @param value ValidateUpdateUnavailabilityDto
      */
     private distillDto = async (value: ValidateUpdateUnavailabilityDto) => {
@@ -24,7 +24,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavail
     }
 
     /**
-     * summary: create a MongoDB update object from the UpdateUnavailabilityDto
+     * **summary**: create a MongoDB update object from the UpdateUnavailabilityDto
      * @param value UpdateUnavailabilityDto
      */
     private createUpdateData = async (value: UpdateUnavailabilityDto) => {
@@ -52,7 +52,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavail
     }
 
     /**
-     * summary: use the private methods to return a UpdateUnavailabilityDto
+     * **summary**: use the private methods to return a UpdateUnavailabilityDto
      * @param value a validated UpdateUnavailabilityDto
      */
     async transform(value: ValidateUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataDto> {

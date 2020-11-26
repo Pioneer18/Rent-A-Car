@@ -1,5 +1,5 @@
 /**
- * summary: search for retnals by address, a start and end time, price, and features
+ * **summary**: search for retnals by address, a start and end time, price, and features
  * - passed to the GivenNoticePipe
  */
 export class RawSearchRentalDto {

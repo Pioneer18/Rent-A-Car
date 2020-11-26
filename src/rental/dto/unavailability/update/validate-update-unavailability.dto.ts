@@ -1,5 +1,5 @@
 /**
- * summary: this data is used to query and validate that the Rental actually has the scheduled Unavailability
+ * **summary**: this data is used to query and validate that the Rental actually has the scheduled Unavailability
  * that the user is requesting to update
  */
 export class ValidateUpdateUnavailabilityDto {

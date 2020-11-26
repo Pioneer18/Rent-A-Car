@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 /**
- * summary: returned by the GivenNoticePipe after processing a RawSearchRentalDto
+ * **summary**: returned by the GivenNoticePipe after processing a RawSearchRentalDto
  * - The GivenNoticePipe added the 'givenNotice' property
  * - passed to the RentalDurationPipe
  */

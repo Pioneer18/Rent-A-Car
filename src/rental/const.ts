@@ -1,5 +1,5 @@
 /**
- * summary: an enum for easily storing and working with the time duration of a rental
+ * **summary**: an enum for easily storing and working with the time duration of a rental
  */
 export enum RentalDurations {
   'Any', // start from 0

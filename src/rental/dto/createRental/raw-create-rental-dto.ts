@@ -1,5 +1,5 @@
 /**
- * summary:
+ * **summary**:
  * - The initial values submitted by a user to create a new rental listing
  * - specs: specifications about the vehicle
  * - registration: basic vehicle registration data

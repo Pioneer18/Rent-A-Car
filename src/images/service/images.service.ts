@@ -165,7 +165,7 @@ export class ImagesService {
 
   /**
    * Upload Images to S3 Bucket
-   * summary: send the file(s) to the bucket and attach a timestamp to each filename
+   * **summary**: send the file(s) to the bucket and attach a timestamp to each filename
    * @param req the request
    * @param res the response
    * @param category rentals or profile

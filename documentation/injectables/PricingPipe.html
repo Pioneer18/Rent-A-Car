@@ -64,8 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>validate incoming price and discounts
-map the dto before sending to handler</p>
+                <p>summary: validate incoming price and discounts and map data into a PricingDto before sending to handler</p>
 
             </p>
 
@@ -149,14 +148,16 @@ map the dto before sending to handler</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/rental/pipes/pricing.pipe.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/rental/pipes/pricing.pipe.ts:51</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -166,6 +167,7 @@ map the dto before sending to handler</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -180,6 +182,10 @@ map the dto before sending to handler</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the raw request from a user to update the pricing of a Rental</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -223,11 +229,36 @@ map the dto before sending to handler</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/rental/pipes/pricing.pipe.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/rental/pipes/pricing.pipe.ts:35</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: map the final values of the PricingDto before passing to the handler</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>[object Object]</td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -250,11 +281,41 @@ map the dto before sending to handler</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/pipes/pricing.pipe.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/rental/pipes/pricing.pipe.ts:14</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: validate the price and discounts do not have negative values nor violate common sense</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>data</td>
+                                                        <td>
+                                                                <code><p>the raw user request to update the Rental&#39;s pricing</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
 </section>
@@ -267,13 +328,15 @@ map the dto before sending to handler</p>
 import { PricingDto } from &#x27;../dto/pricing/pricing.dto&#x27;;
 
 /**
- * validate incoming price and discounts
- * map the dto before sending to handler
+ * summary: validate incoming price and discounts and map data into a PricingDto before sending to handler
  */
 @Injectable()
 export class PricingPipe implements PipeTransform {
 
-    // validate the incoming pricing
+    /**
+     * summary: validate the price and discounts do not have negative values nor violate common sense
+     * @param data the raw user request to update the Rental&#x27;s pricing
+     */
     private validatePricingDto &#x3D; async (data: PricingDto) &#x3D;&gt; {
         const minPrice: number &#x3D; parseInt(process.env.MIN_PRICE, 10);
         // check rentalId
@@ -291,7 +354,10 @@ export class PricingPipe implements PipeTransform {
         }
     }
 
-    // map the pricing dto before returning
+    /**
+     * summary: map the final values of the PricingDto before passing to the handler
+     * @param 
+     */
     private mapPricingDto &#x3D; async (data: PricingDto) &#x3D;&gt; {
         const value: PricingDto &#x3D; {
             rentalId: data.rentalId,
@@ -304,6 +370,10 @@ export class PricingPipe implements PipeTransform {
         return value;
     }
 
+    /**
+     * summary: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler
+     * @param value the raw request from a user to update the pricing of a Rental
+     */
     async transform(value: PricingDto) {
         try {
             await this.validatePricingDto(value);

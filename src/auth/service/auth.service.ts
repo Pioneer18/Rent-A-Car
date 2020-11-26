@@ -75,7 +75,7 @@ export class AuthService {
     /**
      * Logout
      * @param user user property from the request object
-     * summary: set the user's JWT in the redis 'dead-list'
+     * **summary**: set the user's JWT in the redis 'dead-list'
      */
     async logout(req: Request) {
         try {
@@ -127,7 +127,7 @@ export class AuthService {
     /**
      * Forgot Password
      * @param email the email for resetting the password
-     * summary: sends user a reset password link to the provided email, if it's an account associated email
+     * **summary**: sends user a reset password link to the provided email, if it's an account associated email
      */
     async forgotPassword(data: ForgotPasswordDto) {
         try {
@@ -152,7 +152,7 @@ export class AuthService {
      * @param email
      * @param newPassword
      * @param confirmPassword
-     * summary: resets the password from a submitted forgot-password email
+     * **summary**: resets the password from a submitted forgot-password email
      */
     async resetPassword(data: ResetPasswordDto) {
         // check new password for typos

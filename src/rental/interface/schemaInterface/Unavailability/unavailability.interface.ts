@@ -1,5 +1,5 @@
 /**
- * summary: interface for the 'Unavailability' Model
+ * **summary**: interface for the 'Unavailability' Model
  */
 export class UnavailabilityInterface {
     rentalId: string;

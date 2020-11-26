@@ -1,5 +1,5 @@
 /**
- * summary: interface for the 'Rental' Model
+ * **summary**: interface for the 'Rental' Model
  */
 export interface RentalInterface {
   rentalDescription: string;

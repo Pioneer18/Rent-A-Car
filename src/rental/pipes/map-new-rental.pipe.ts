@@ -2,10 +2,14 @@ import { Injectable, PipeTransform } from '@nestjs/common';
 import { LocCreateRentalDto } from '../dto/createRental/loc-create-rental.dto';
 import { CreateRentalDto } from '../dto/createRental/create-rental.dto';
 /**
- * 
+ * **summary**: create the final CreateRentalDto that will be passed to the rental.service.createRental() method
  */
 @Injectable()
 export class MapNewRentalPipe implements PipeTransform {
+  /**
+   * **summary**: transform the raw data into a CreateRentalDto
+   * @param value the request to create a rental with all of the necessary raw data
+   */
   async transform(value: LocCreateRentalDto) {
     try {
       const data: CreateRentalDto = {

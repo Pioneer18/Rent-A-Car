@@ -64,8 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Sort requested Unavailability into one or two arrays (yearA, yearB)
-Sort each array&#39;s Unavailability by ascending DOY</p>
+                <p>summary: sort the requested Rental Unavailability into a single or 2 year groupings (arrays). Sort each year&#39;s (array&#39;s) UnavailabilityDtos by ascending DOY (Day of the Year)</p>
 
             </p>
 
@@ -157,14 +156,16 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:85</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -174,6 +175,7 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -188,6 +190,10 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the raw client request data</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -231,11 +237,41 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:40</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: return the sorted (by DOY) years in order, or return a single year</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>sorted</td>
+                                                        <td>
+                                                                <code><p>the incoming data to be sorted</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -258,11 +294,41 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:58</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: separate years into y1 and y2 array and sort each by DOY</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the raw client request to schedule Unavailability on a Rental</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -285,11 +351,41 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:16</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: validate that the requested Unavailability does not cross more than a one year duration</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>yearB</td>
+                                                        <td>
+                                                                <code><p>this value is exactly 1 year from the current date</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -312,11 +408,48 @@ Sort each array&#39;s Unavailability by ascending DOY</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/rental/pipes/sort-unavailability.pipe.ts:30</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>summary: validate that the request to schedule unavailability is sequential and not two separate blocks of time</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>a</td>
+                                                        <td>
+                                                                <code><p>year 1</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>b</td>
+                                                        <td>
+                                                                <code><p>year 2</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
 </section>
@@ -331,12 +464,15 @@ import { RawScheduleUnavailabilityDto } from &#x27;../dto/unavailability/schedul
 import { SortedUnavailabilityDto } from &#x27;../dto/unavailability/schedule/sorted-unavailability.dto&#x27;;
 import { ValidateScheduleUnavailabilityDto } from &#x27;../dto/unavailability/schedule/validate-schedule-unavailability.dto&#x27;;
 /**
- * Sort requested Unavailability into one or two arrays (yearA, yearB)
- * Sort each array&#x27;s Unavailability by ascending DOY
+ * summary: sort the requested Rental Unavailability into a single or 2 year groupings (arrays). Sort each year&#x27;s (array&#x27;s) UnavailabilityDtos by ascending DOY (Day of the Year)
  */
 @Injectable()
 export class SortUnavailabilityPipe implements PipeTransform {
-  // validate there are no more than 2 years
+  
+  /**
+   * summary: validate that the requested Unavailability does not cross more than a one year duration
+   * @param yearB this value is exactly 1 year from the current date
+   */
   private validate2Years &#x3D; async (yearB: UnavailabilityDto[]): Promise&lt;void&gt; &#x3D;&gt; {
     for (const x of yearB) {
       if (x.year !&#x3D;&#x3D; yearB[0].year) {
@@ -346,14 +482,21 @@ export class SortUnavailabilityPipe implements PipeTransform {
     return;
   }
 
-  // validate years are sequential
+  /**
+   * summary: validate that the request to schedule unavailability is sequential and not two separate blocks of time
+   * @param a year 1
+   * @param b year 2
+   */
   private validateSequential &#x3D; async (a, b): Promise&lt;void&gt; &#x3D;&gt; {
     if (a + 1 !&#x3D;&#x3D; b) {
       throw new Error(&#x27;years must be sequential&#x27;);
     }
   }
 
-  // return the sorted (by DOY) years in order, or return a single year
+  /**
+   * summary: return the sorted (by DOY) years in order, or return a single year
+   * @param sorted the incoming data to be sorted
+   */
   private orderYears &#x3D; async (sorted: SortedUnavailabilityDto): Promise&lt;ValidateScheduleUnavailabilityDto&gt; &#x3D;&gt; {
     // return a single year
     if (sorted.yB &#x3D;&#x3D;&#x3D; null) {
@@ -368,7 +511,10 @@ export class SortUnavailabilityPipe implements PipeTransform {
     return { y1: sorted.yB, y2: sorted.yA };
   }
 
-  // separate years into y1 and y2 array and sort each by DOY
+  /**
+   * summary: separate years into y1 and y2 array and sort each by DOY
+   * @param value the raw client request to schedule Unavailability on a Rental
+   */
   private sort &#x3D; async (value: RawScheduleUnavailabilityDto): Promise&lt;SortedUnavailabilityDto&gt; &#x3D;&gt; {
     // grab the year property from the first element
     const iYear: number &#x3D; value.unavailability[0].year;
@@ -392,7 +538,10 @@ export class SortUnavailabilityPipe implements PipeTransform {
     };
   }
 
-  // transform incoming
+  /**
+   * summary: use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto
+   * @param value the raw client request data
+   */
   async transform(value: RawScheduleUnavailabilityDto): Promise&lt;ValidateScheduleUnavailabilityDto&gt; {
     try {
       const sorted: SortedUnavailabilityDto &#x3D; await this.sort(value);

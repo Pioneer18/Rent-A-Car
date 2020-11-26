@@ -626,9 +626,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/ProcessUnavailabilityPipe.html" data-type="entity-link">ProcessUnavailabilityPipe</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ProcessUpdateUnavailabilityPipe.html" data-type="entity-link">ProcessUpdateUnavailabilityPipe</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/RentalDurationPipe.html" data-type="entity-link">RentalDurationPipe</a>
                                 </li>
                                 <li class="link">
@@ -648,9 +645,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/TestRentalService.html" data-type="entity-link">TestRentalService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/UnavailabilityPipe.html" data-type="entity-link">UnavailabilityPipe</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/UpdateUserDto.html" data-type="entity-link">UpdateUserDto</a>

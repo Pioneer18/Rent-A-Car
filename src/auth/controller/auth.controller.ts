@@ -58,7 +58,7 @@ export class AuthController {
 
     /**
      * Reset Password
-     * summary: resets the user's password with the data submitted from the email redirect
+     * **summary**: resets the user's password with the data submitted from the email redirect
      */
     @Post('reset-password')
     async resetPassword(@Body() data: ResetPasswordDto) {

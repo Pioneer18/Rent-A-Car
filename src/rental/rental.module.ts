@@ -65,7 +65,7 @@ export class RentalModule implements NestModule {
     UnavailabilitySchema.index({UnavailabilityId: 1});
   }
   /**
-   * summary: applies the ValidateUpdateUnavailability which validates a user's request to the rental.controller.updateUnavaialability method
+   * **summary**: applies the ValidateUpdateUnavailability which validates a user's request to the rental.controller.updateUnavaialability method
    * @param consumer interfacing defining method for applying user defined middleware to routes
    */
   configure(consumer: MiddlewareConsumer) {

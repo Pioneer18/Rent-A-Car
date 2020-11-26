@@ -1,5 +1,5 @@
 /**
- * summary: this is a modified version of the UnavailabilityDto that is ready to be used in the CreateQueryDto
+ * **summary**: this is a modified version of the UnavailabilityDto that is ready to be used in the CreateQueryDto
  * - passed as a property of the CreateQueryDto
  */
 export class ProcessedUnavailabilityQueryDto {
