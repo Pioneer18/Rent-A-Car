@@ -14,7 +14,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
 
   /**
    * **summary**: create a MongoDB query object from the provided CreateQueryDto
-   * @param year 
+   * @param year data for creating a MongoDB update object
    */
   protected createQuery = async (
     year: CreateQueryDto,
@@ -52,7 +52,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
    * **summary**: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto
    * - this method checks if the user is schedling time only for this year or into the next year as well
    * - the uuid identifies a series of unavailability, allowing the entire block of time to be identified in the database
-   * @param value 
+   * @param value the semi processed and validate client request data
    */
   protected addUnavailabilityId = async (
     value: ValidatedUnavailabilityDto,

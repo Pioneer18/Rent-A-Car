@@ -68,7 +68,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
+                <p><strong>summary</strong>: the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
 to create the ProcessedUnavailabilityQueryDtos as well as the returned ProcessedUnavailabilityQueryDto[]s that will be used by the handler
 to schedule the new unavailability.</p>
 <ul>
@@ -216,7 +216,7 @@ to schedule the new unavailability.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnavailabilityQueryDto } from &#x27;./unavailability-query.dto&#x27;;
 import { ProcessedUnavailabilityQueryDto } from &#x27;./processed-unavailability-query.dto&#x27;;
 /**
- * summary: the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
+ * **summary**: the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
  * to create the ProcessedUnavailabilityQueryDtos as well as the returned ProcessedUnavailabilityQueryDto[]s that will be used by the handler
  * to schedule the new unavailability.
  * - passed to the rental.service.scheduleUnavailability() method

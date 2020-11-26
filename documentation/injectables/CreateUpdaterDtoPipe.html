@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: create the data the request UpdateUnavailabilityDataDto the rental.service.updateUnavailability() method needs</p>
+                <p><strong>summary</strong>: create the data the request UpdateUnavailabilityDataDto the rental.service.updateUnavailability() method needs</p>
 
             </p>
 
@@ -156,7 +156,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: use the private methods to return a UpdateUnavailabilityDto</p>
+                    <div class="io-description"><p><strong>summary</strong>: use the private methods to return a UpdateUnavailabilityDto</p>
 </div>
 
                     <div class="io-description">
@@ -235,7 +235,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: create a MongoDB update object from the UpdateUnavailabilityDto</p>
+                        <div class="io-description"><p><strong>summary</strong>: create a MongoDB update object from the UpdateUnavailabilityDto</p>
 </div>
                     </td>
                 </tr>
@@ -292,7 +292,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format</p>
+                        <div class="io-description"><p><strong>summary</strong>: map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format</p>
 </div>
                     </td>
                 </tr>
@@ -334,13 +334,13 @@ import { UpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/updat
 import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/validate-update-unavailability.dto&#x27;;
 import { UpdateUnavailabilityDataDto } from &#x27;../dto/unavailability/update/update-unavailability-data.dto&#x27;;
 /**
- * summary: create the data the request UpdateUnavailabilityDataDto the rental.service.updateUnavailability() method needs
+ * **summary**: create the data the request UpdateUnavailabilityDataDto the rental.service.updateUnavailability() method needs
  */
 @Injectable()
 export class CreateUpdaterDtoPipe implements PipeTransform&lt;ValidateUpdateUnavailabilityDto, Promise&lt;UpdateUnavailabilityDataDto&gt;&gt; {
 
     /**
-     * summary: map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
+     * **summary**: map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
      * @param value ValidateUpdateUnavailabilityDto
      */
     private distillDto &#x3D; async (value: ValidateUpdateUnavailabilityDto) &#x3D;&gt; {
@@ -355,7 +355,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform&lt;ValidateUpdateUnav
     }
 
     /**
-     * summary: create a MongoDB update object from the UpdateUnavailabilityDto
+     * **summary**: create a MongoDB update object from the UpdateUnavailabilityDto
      * @param value UpdateUnavailabilityDto
      */
     private createUpdateData &#x3D; async (value: UpdateUnavailabilityDto) &#x3D;&gt; {
@@ -383,7 +383,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform&lt;ValidateUpdateUnav
     }
 
     /**
-     * summary: use the private methods to return a UpdateUnavailabilityDto
+     * **summary**: use the private methods to return a UpdateUnavailabilityDto
      * @param value a validated UpdateUnavailabilityDto
      */
     async transform(value: ValidateUpdateUnavailabilityDto): Promise&lt;UpdateUnavailabilityDataDto&gt; {

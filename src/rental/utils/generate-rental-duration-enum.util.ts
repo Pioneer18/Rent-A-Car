@@ -2,9 +2,17 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Interval } from 'luxon';
 import { RentalDurations } from '../const';
 import { ProcessRentalTimeDto } from '../dto/searchRental/process-rental-time.dto';
-
+/**
+ * summary: generate RentalDuration Enums for the rentalDuration propery of the RequestCoordinatesDto
+ */
 @Injectable()
 export class GenerateRentalDurationEnumUtil {
+  /**
+   * **summary**: using the [**Luxon Interval.fromDateTimes(https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes)**] method return the 
+   * duration of the rental in months, weeks, and days
+   * @param startTime 
+   * @param endTime 
+   */
   private async processRentalTime(startTime, endTime):Promise<ProcessRentalTimeDto> {
     try {
       const base = Interval.fromDateTimes(startTime, endTime);
@@ -20,6 +28,11 @@ export class GenerateRentalDurationEnumUtil {
     }
   }
 
+  /**
+   * **summary**: create a RentalDuration [**Enum**](https://www.typescriptlang.org/docs/handbook/enums.html) from the given start and end time 
+   * @param startTime 
+   * @param endTime 
+   */
   async generateRentalDurationEnum(startTime, endTime) {
     try {
       const schedule: ProcessRentalTimeDto = await this.processRentalTime(startTime, endTime);

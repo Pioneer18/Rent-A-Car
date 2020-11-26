@@ -3,21 +3,21 @@ import * as axios from 'axios';
 import { RawCoordinatesDto } from '../dto/createRental/raw-coordinates.dto';
 
 /**
- * GECODING & SEARCH API UTILITY
+ * **summary**: use [**Geocoding & Search API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html) to get coordinates for an address
+ * - [Respose Object] = response.data.items[0]
+ *  - .title: the complete address as a string
+ *  - .address the complete address as an object
+ *  - .position: {lat: number, lng: number}
+ *  - .mapView: {west: -number, south: number, east: -number, north: number}
  * @param {string} address the address to request coordinates for
  * @param {string} geoUrl base url of the Geocoding and Search geocoding request
  * @param {string} apiKey Geocoding and Search v7 API Key
- * [Respose Object] = response.data.items[0]
- *  .title: the complete address as a string
- *  .address the complete address as an object
- *  .position: {lat: number, lng: number}
- *  .mapView: {west: -number, south: number, east: -number, north: number}
  * 
  */
 @Injectable()
 export class GeoUrlApiUtil {
   /**
-   * Send Geocoder Request
+   * Send Geocoding & Search API request
    * @param location the address string
    * @param geoUrl the base HERE geocoding and search v7 api url
    * @param apiKey the api key
@@ -34,7 +34,12 @@ export class GeoUrlApiUtil {
     }
   }
 
-  // returns an address as a single string, and the corresponding coordinates
+  /**
+   * **summary**: returns an address as a single string, and the corresponding coordinates
+   * @param address replace the spaces in the address with + symbols for the api request
+   * @param geoUrl the url for the api
+   * @param apiKey the key for the api
+   */
   async getCoordinates(address, geoUrl, apiKey):Promise<[number, number]> {
     try {
       const location: string = address.replace(/\s+/g, '+');

@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: create a rental Duration from the incoming GivenNoticeSearchRentalDto</p>
+                <p><strong>summary</strong>: create a rental Duration from the incoming GivenNoticeSearchRentalDto</p>
 
             </p>
 
@@ -185,7 +185,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: use the generateRentalDurationEnumUtil() to create a RentalDuration <a href="https://www.typescriptlang.org/docs/handbook/enums.html"><strong>Enum</strong></a> for the
+                    <div class="io-description"><p><strong>summary</strong>: use the generateRentalDurationEnumUtil() to create a RentalDuration <a href="https://www.typescriptlang.org/docs/handbook/enums.html"><strong>Enum</strong></a> for the
 Rental query</p>
 </div>
 
@@ -244,7 +244,7 @@ import { GivenNoticeSearchRentalDto } from &#x27;../dto/searchRental/given-notic
 import { GenerateRentalDurationEnumUtil } from &#x27;../utils/generate-rental-duration-enum.util&#x27;;
 import { RequestCoordinatesDto } from &#x27;../dto/searchRental/request-coordinates.dto&#x27;;
 /**
- * summary: create a rental Duration from the incoming GivenNoticeSearchRentalDto
+ * **summary**: create a rental Duration from the incoming GivenNoticeSearchRentalDto
  */
 @Injectable()
 export class RentalDurationPipe implements PipeTransform {
@@ -253,7 +253,7 @@ export class RentalDurationPipe implements PipeTransform {
   }
 
   /**
-   * summary: use the generateRentalDurationEnumUtil() to create a RentalDuration [**Enum**](https://www.typescriptlang.org/docs/handbook/enums.html) for the
+   * **summary**: use the generateRentalDurationEnumUtil() to create a RentalDuration [**Enum**](https://www.typescriptlang.org/docs/handbook/enums.html) for the
    * Rental query
    * @param value the semi processed client request data to query a rental near their, or a specified, locaion
    */

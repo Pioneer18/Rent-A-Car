@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: validate that the request to update the Rental&#39;s details (the spec property) will not violate the
+                <p><strong>summary</strong>: validate that the request to update the Rental&#39;s details (the spec property) will not violate the
 RentalSchemaValidation</p>
 
             </p>
@@ -177,7 +177,7 @@ RentalSchemaValidation</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: use the validateDetails() method to validate the request before passing to the handler</p>
+                    <div class="io-description"><p><strong>summary</strong>: use the validateDetails() method to validate the request before passing to the handler</p>
 </div>
 
                     <div class="io-description">
@@ -310,7 +310,7 @@ RentalSchemaValidation</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: validate EditDetailsDto</p>
+                        <div class="io-description"><p><strong>summary</strong>: validate EditDetailsDto</p>
 </div>
                     </td>
                 </tr>
@@ -352,7 +352,7 @@ import { EditDetailsDto } from &#x27;../dto/details/edit-details.dto&#x27;;
 import { PositiveNumber } from &#x27;../../common/util/positive-number&#x27;;
 import { TypeOfValue } from &#x27;../../common/util/typeof-value&#x27;;
 /**
- * summary: validate that the request to update the Rental&#x27;s details (the spec property) will not violate the
+ * **summary**: validate that the request to update the Rental&#x27;s details (the spec property) will not violate the
  * RentalSchemaValidation
  */
 @Injectable()
@@ -366,7 +366,7 @@ export class ValidateEditDetailsPipe implements PipeTransform {
     }
 
     /**
-     * summary: validate EditDetailsDto
+     * **summary**: validate EditDetailsDto
      * @param value the request data to edit the rental
      */
     private validateDetails &#x3D; async (value: EditDetailsDto) &#x3D;&gt; {
@@ -442,7 +442,7 @@ export class ValidateEditDetailsPipe implements PipeTransform {
     }
 
     /**
-     * summary: use the validateDetails() method to validate the request before passing to the handler
+     * **summary**: use the validateDetails() method to validate the request before passing to the handler
      * @param value the raw client request to edit the details (spec property) of a Rental
      */
     async transform(value: EditDetailsDto):Promise&lt;EditDetailsDto&gt; {

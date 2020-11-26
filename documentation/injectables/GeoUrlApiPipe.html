@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: create an address from the incoming RawCreateRentalDto and then use the <a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html"><strong>HERE Geocoding &amp; Searching API</strong></a>
+                <p><strong>summary</strong>: create an address from the incoming RawCreateRentalDto and then use the <a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html"><strong>HERE Geocoding &amp; Searching API</strong></a>
 to get the coordinates of the address. The coordinates allow Rentals to be geospatially queried in a radius near a user or selected location; e.g. 8 mile radius</p>
 
             </p>
@@ -208,7 +208,7 @@ to get the coordinates of the address. The coordinates allow Rentals to be geosp
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: convert the location property object into a single address property string; will be passed to this.getCoordinates method</p>
+                    <div class="io-description"><p><strong>summary</strong>: convert the location property object into a single address property string; will be passed to this.getCoordinates method</p>
 </div>
 
                     <div class="io-description">
@@ -283,7 +283,7 @@ to get the coordinates of the address. The coordinates allow Rentals to be geosp
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: request coordinates for the provided address</p>
+                    <div class="io-description"><p><strong>summary</strong>: request coordinates for the provided address</p>
 </div>
 
                     <div class="io-description">
@@ -394,7 +394,7 @@ to get the coordinates of the address. The coordinates allow Rentals to be geosp
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string</p>
+                    <div class="io-description"><p><strong>summary</strong>: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string</p>
 </div>
 
                     <div class="io-description">
@@ -454,7 +454,7 @@ import { RawCreateRentalDto } from &#x27;../dto/createRental/raw-create-rental-d
 import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
 
 /**
- * summary: create an address from the incoming RawCreateRentalDto and then use the [**HERE Geocoding &amp; Searching API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html)
+ * **summary**: create an address from the incoming RawCreateRentalDto and then use the [**HERE Geocoding &amp; Searching API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html)
  * to get the coordinates of the address. The coordinates allow Rentals to be geospatially queried in a radius near a user or selected location; e.g. 8 mile radius
  */
 @Injectable()
@@ -462,7 +462,7 @@ export class GeoUrlApiPipe {
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil, private readonly appConfig: AppConfigService) {}
 
   /**
-   * summary: convert the location property object into a single address property string; will be passed to this.getCoordinates method
+   * **summary**: convert the location property object into a single address property string; will be passed to this.getCoordinates method
    * @param value the raw form data inputed by user to create a new Rental listing
    */
   private async createAddress(value) {
@@ -472,7 +472,7 @@ export class GeoUrlApiPipe {
   }
 
   /**
-   * summary: request coordinates for the provided address
+   * **summary**: request coordinates for the provided address
    * @param address the address to fetch coordinates for from the API
    * @param geoUrl the url for accessing the API
    * @param apiKey the key for accessing the API
@@ -489,7 +489,7 @@ export class GeoUrlApiPipe {
   }
 
   /**
-   * summary: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string
+   * **summary**: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string
    * @param value the raw request from a client to create a new Rental listing
    */
   async transform(value: RawCreateRentalDto):Promise&lt;LocCreateRentalDto&gt; {

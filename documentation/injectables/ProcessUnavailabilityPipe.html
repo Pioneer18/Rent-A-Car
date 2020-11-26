@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: query for any scheduled unavailability already in the database that would overlap with this request to add more unavailability to the Rental
+                <p><strong>summary</strong>: query for any scheduled unavailability already in the database that would overlap with this request to add more unavailability to the Rental
 This is to prevent the user on the front-end from accidentally overlapping &#39;blocks&#39; of scheduled unavailability. The front-end of course should also block this</p>
 
             </p>
@@ -162,7 +162,7 @@ This is to prevent the user on the front-end from accidentally overlapping &#39;
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: process the request to update a rental&#39;s &#39;scheduled unavailability&#39;</p>
+                    <div class="io-description"><p><strong>summary</strong>: process the request to update a rental&#39;s &#39;scheduled unavailability&#39;</p>
 <ul>
 <li>the user may schedule as far as a year ahead. To easily track the data as a single &#39;block&#39; of unavailable time for the rental, each Unavailability document related to this query is given the same &#39;uuid&#39;</li>
 </ul>
@@ -244,7 +244,7 @@ This is to prevent the user on the front-end from accidentally overlapping &#39;
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto</p>
+                        <div class="io-description"><p><strong>summary</strong>: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto</p>
 <ul>
 <li>this method checks if the user is schedling time only for this year or into the next year as well</li>
 <li>the uuid identifies a series of unavailability, allowing the entire block of time to be identified in the database</li>
@@ -300,7 +300,7 @@ This is to prevent the user on the front-end from accidentally overlapping &#39;
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: create a MongoDB query object from the provided CreateQueryDto</p>
+                        <div class="io-description"><p><strong>summary</strong>: create a MongoDB query object from the provided CreateQueryDto</p>
 </div>
                     </td>
                 </tr>
@@ -313,11 +313,16 @@ This is to prevent the user on the front-end from accidentally overlapping &#39;
                                       <thead>
                                           <tr>
                                                 <td>Name</td>
+                                                    <td>Description</td>
                                           </tr>
                                       </thead>
                                       <tbody>
                                                 <tr>
                                                         <td>year</td>
+                                                        <td>
+                                                                <code><p>data for creating a MongoDB update object</p>
+</code>
+                                                        </td>
                                                 </tr>
                                       </tbody>
                                   </table>
@@ -339,7 +344,7 @@ import { UnavailabilityQueryDto } from &#x27;../dto/unavailability/schedule/unav
 import { CreateQueryDto } from &#x27;../dto/unavailability/schedule/create-query.dto&#x27;;
 import { ProcessedUnavailabilityQueryDto } from &#x27;../dto/unavailability/schedule/processed-unavailability-query.dto&#x27;;
 /**
- * summary: query for any scheduled unavailability already in the database that would overlap with this request to add more unavailability to the Rental
+ * **summary**: query for any scheduled unavailability already in the database that would overlap with this request to add more unavailability to the Rental
  * This is to prevent the user on the front-end from accidentally overlapping &#x27;blocks&#x27; of scheduled unavailability. The front-end of course should also block this
  * @param year 
  */
@@ -347,8 +352,8 @@ import { ProcessedUnavailabilityQueryDto } from &#x27;../dto/unavailability/sche
 export class ProcessUnavailabilityPipe implements PipeTransform {
 
   /**
-   * summary: create a MongoDB query object from the provided CreateQueryDto
-   * @param year 
+   * **summary**: create a MongoDB query object from the provided CreateQueryDto
+   * @param year data for creating a MongoDB update object
    */
   protected createQuery &#x3D; async (
     year: CreateQueryDto,
@@ -383,7 +388,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * summary: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto
+   * **summary**: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto
    * - this method checks if the user is schedling time only for this year or into the next year as well
    * - the uuid identifies a series of unavailability, allowing the entire block of time to be identified in the database
    * @param value 
@@ -448,7 +453,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * summary: process the request to update a rental&#x27;s &#x27;scheduled unavailability&#x27;
+   * **summary**: process the request to update a rental&#x27;s &#x27;scheduled unavailability&#x27;
    * - the user may schedule as far as a year ahead. To easily track the data as a single &#x27;block&#x27; of unavailable time for the rental, each Unavailability document related to this query is given the same &#x27;uuid&#x27;
    * @param value the validated unavailability request dto
    */

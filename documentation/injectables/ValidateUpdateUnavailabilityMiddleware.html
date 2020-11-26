@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: validate that incoming request to update a rental&#39;s already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database</p>
+                <p><strong>summary</strong>: validate that incoming request to update a rental&#39;s already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database</p>
 
             </p>
 
@@ -208,7 +208,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
+                    <div class="io-description"><p><strong>summary</strong>: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
 rental.controller.updateUnavailability() method. Validate the request before passing the data to the handler</p>
 </div>
 
@@ -320,7 +320,7 @@ rental.controller.updateUnavailability() method. Validate the request before pas
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: calculate the <a href="https://www.mathsisfun.com/data/range.html"><strong>range</strong></a> of the requested Unavailability to update for the Rental</p>
+                        <div class="io-description"><p><strong>summary</strong>: calculate the <a href="https://www.mathsisfun.com/data/range.html"><strong>range</strong></a> of the requested Unavailability to update for the Rental</p>
 </div>
                     </td>
                 </tr>
@@ -384,7 +384,7 @@ rental.controller.updateUnavailability() method. Validate the request before pas
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: validate the incoming dto data does not break the below validation tree</p>
+                        <div class="io-description"><p><strong>summary</strong>: validate the incoming dto data does not break the below validation tree</p>
 </div>
                     </td>
                 </tr>
@@ -441,7 +441,7 @@ rental.controller.updateUnavailability() method. Validate the request before pas
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: validate that the unavailability to be updated is present in the database, and verify that the expected <strong>range</strong> (number of days) of the Unavailability to update
+                        <div class="io-description"><p><strong>summary</strong>: validate that the unavailability to be updated is present in the database, and verify that the expected <strong>range</strong> (number of days) of the Unavailability to update
 matches the actual range of the Unavailability as it&#39;s saved in the database. Use the results of the calculateRange() method, to compare the range of the Unavailability in
 the database to the range of the request</p>
 </div>
@@ -494,7 +494,7 @@ import { Model } from &#x27;mongoose&#x27;;
 import { UnavailabilityInterface } from &#x27;../interface/schemaInterface/Unavailability/unavailability.interface&#x27;;
 import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/validate-update-unavailability.dto&#x27;;
 /**
- * summary: validate that incoming request to update a rental&#x27;s already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database
+ * **summary**: validate that incoming request to update a rental&#x27;s already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database
  */
 @Injectable()
 export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
@@ -504,7 +504,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   ) {}
 
   /**
-   * summary: calculate the [**range**](https://www.mathsisfun.com/data/range.html) of the requested Unavailability to update for the Rental
+   * **summary**: calculate the [**range**](https://www.mathsisfun.com/data/range.html) of the requested Unavailability to update for the Rental
    * @param y1 the start and end day of the first year that the Unavailability is scheduled across
    * @param y2 the start and end day of the second yaer that the Unavailability is scheduled across; if there is a second year
    */
@@ -527,7 +527,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   }
 
   /**
-   * summary: validate that the unavailability to be updated is present in the database, and verify that the expected **range** (number of days) of the Unavailability to update
+   * **summary**: validate that the unavailability to be updated is present in the database, and verify that the expected **range** (number of days) of the Unavailability to update
    * matches the actual range of the Unavailability as it&#x27;s saved in the database. Use the results of the calculateRange() method, to compare the range of the Unavailability in
    * the database to the range of the request
    * @param value the raw request data
@@ -552,7 +552,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   }
 
   /**
-   * summary: validate the incoming dto data does not break the below validation tree
+   * **summary**: validate the incoming dto data does not break the below validation tree
    * @param value the sorted request to update already scheduled Unavailability on a Rental
    */
   private validateDto &#x3D; async (value: ValidateUpdateUnavailabilityDto) &#x3D;&gt; {
@@ -624,7 +624,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   }
 
   /**
-   * summary: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
+   * **summary**: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
    * rental.controller.updateUnavailability() method. Validate the request before passing the data to the handler
    * @param req the request object
    * @param res the response object

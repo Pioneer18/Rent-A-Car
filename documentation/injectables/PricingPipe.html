@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: validate incoming price and discounts and map data into a PricingDto before sending to handler</p>
+                <p><strong>summary</strong>: validate incoming price and discounts and map data into a PricingDto before sending to handler</p>
 
             </p>
 
@@ -156,7 +156,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler</p>
+                    <div class="io-description"><p><strong>summary</strong>: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler</p>
 </div>
 
                     <div class="io-description">
@@ -235,7 +235,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: map the final values of the PricingDto before passing to the handler</p>
+                        <div class="io-description"><p><strong>summary</strong>: map the final values of the PricingDto before passing to the handler</p>
 </div>
                     </td>
                 </tr>
@@ -287,7 +287,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: validate the price and discounts do not have negative values nor violate common sense</p>
+                        <div class="io-description"><p><strong>summary</strong>: validate the price and discounts do not have negative values nor violate common sense</p>
 </div>
                     </td>
                 </tr>
@@ -328,13 +328,13 @@
 import { PricingDto } from &#x27;../dto/pricing/pricing.dto&#x27;;
 
 /**
- * summary: validate incoming price and discounts and map data into a PricingDto before sending to handler
+ * **summary**: validate incoming price and discounts and map data into a PricingDto before sending to handler
  */
 @Injectable()
 export class PricingPipe implements PipeTransform {
 
     /**
-     * summary: validate the price and discounts do not have negative values nor violate common sense
+     * **summary**: validate the price and discounts do not have negative values nor violate common sense
      * @param data the raw user request to update the Rental&#x27;s pricing
      */
     private validatePricingDto &#x3D; async (data: PricingDto) &#x3D;&gt; {
@@ -355,7 +355,7 @@ export class PricingPipe implements PipeTransform {
     }
 
     /**
-     * summary: map the final values of the PricingDto before passing to the handler
+     * **summary**: map the final values of the PricingDto before passing to the handler
      * @param 
      */
     private mapPricingDto &#x3D; async (data: PricingDto) &#x3D;&gt; {
@@ -371,7 +371,7 @@ export class PricingPipe implements PipeTransform {
     }
 
     /**
-     * summary: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler
+     * **summary**: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler
      * @param value the raw request from a user to update the pricing of a Rental
      */
     async transform(value: PricingDto) {
