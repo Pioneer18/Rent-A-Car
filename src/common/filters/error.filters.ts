@@ -8,11 +8,15 @@ import {
 } from '@nestjs/common';
 import { DateTime } from 'luxon';
 /**
- * Error Filter catches all 500 INTERNAL_SERVER_ERRORs
- * It logs the Error, reveals the Error object, and reutrns a custom err message to the client
+ * **summary**: this Error Filter catches all 500 INTERNAL_SERVER_ERRORs. It logs the Error, reveals the Error object, and reutrns a custom err message to the client
  */
 @Catch()
 export class ErrorFilter implements ExceptionFilter {
+  /**
+   * **summary**: catch http errors and use the Logger to log the appropiate error and data
+   * @param error 
+   * @param host 
+   */
   catch(error: Error, host: ArgumentsHost) {
     const response = host.switchToHttp().getResponse();
     const request = host.switchToHttp().getRequest();

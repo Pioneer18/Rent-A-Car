@@ -4,7 +4,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import configuration from "./configuration";
 import { AppConfigService } from "./configuration.service";
 /**
- * Import and provide app configuration related classes
+ * **summary**: import and provide app configuration related classes
  */
 @Module({
     imports: [

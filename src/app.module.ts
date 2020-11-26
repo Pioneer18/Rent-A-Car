@@ -23,6 +23,9 @@ import { AppConfigService } from './config/configuration.service';
 import { AuthController } from './auth/controller/auth.controller';
 import { RedisModule } from './redis/redis.module';
 
+/**
+ * **summary**: register every module in the app and their dependencies 
+ */
 @Module({
   imports: [
     AppModule,

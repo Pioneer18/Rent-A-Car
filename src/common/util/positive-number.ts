@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 /**
- * Confirm number is positive
+ * **summary**: confirm the provided number is positive
  */
 @Injectable()
 export class PositiveNumber {

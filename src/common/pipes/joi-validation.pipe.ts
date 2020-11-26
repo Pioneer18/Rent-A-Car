@@ -7,8 +7,7 @@ import {
 import { Schema } from '@hapi/joi';
 
 /**
- * This class accepts a joi validationSchema when instantiated
- * It will validate an incoming value against the provided validation schema
+ * **summary**: this class accepts a joi validationSchema when instantiated. It will validate an incoming value against the provided validation schema
  */
 @Injectable()
 export class JoiValidationPipe implements PipeTransform {

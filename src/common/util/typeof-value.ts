@@ -1,5 +1,5 @@
 /**
- * Confirm give value is the expected type or null
+ * **summary**: confirm the provided value is the expected type or null
  */
 export class TypeOfValue {
     validate = (value: any, expected: string) => {

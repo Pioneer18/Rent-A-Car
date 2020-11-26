@@ -4,14 +4,16 @@ import * as smtpTransport from 'nodemailer-smtp-transport';
 import { MailOptionsInterface } from './interface/mailoptions.interface';
 import { TransporterInterface } from './interface/transporter.interface';
 /**
- * Email Service
+ * **summary**: this email service uses the gmail nodemailer to send emails to the provided email; used to send the forgot password email to registered users
  */
 @Injectable()
 export class EmailService {
     constructor() {}
 
 
-
+    /**
+     * **summary**: the gmail nodemailer transporter used to send emails
+     */
     private transporter = nodemailer.createTransport( {
         service: 'gmail', 
         auth: {
@@ -21,6 +23,7 @@ export class EmailService {
     })
 
     /**
+     * **summary**: create the mail options to be used to send the email
      * @param email user's email
      */
     async createMailOptions (email: string): Promise<MailOptionsInterface> {
@@ -34,6 +37,10 @@ export class EmailService {
         return mailOptions;
     }
 
+    /**
+     * **summary**: use the nodemailer transporter to send the email
+     * @param mailOptions 
+     */
     async sendMail(mailOptions): Promise<any> {
         try{
             this.transporter.sendMail(mailOptions);

@@ -2,7 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 
 /**
- * This class provides the configservice 'getter' functionality
+ * **summary**: this class provides the configservice 'getter' functionality to get variables from the environment
+ * that are registered to this custom configuration module
  */
 @Injectable()
 export class AppConfigService {

@@ -3,7 +3,9 @@ import { RentalModule } from '../rental/rental.module';
 import { UserModule } from '../user/user.module';
 import { ImagesModule } from '../images/images.module';
 import { AuthModule } from '../auth/auth.module';
-
+/**
+ * **summary**: register the modules of the application that handle requests directly with controllers
+ */
 export const routes: Routes = [
   {
     path: '/v1',

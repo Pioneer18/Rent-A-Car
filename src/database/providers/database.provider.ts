@@ -1,7 +1,9 @@
 import * as mongoose from 'mongoose';
 import { databaseConnection } from '../../common/Const';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
+/**
+ * **summary**: provide a connection to the remote database
+ */
 export const databaseProvider = [
   {
     provide: databaseConnection,

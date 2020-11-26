@@ -1,3 +1,6 @@
+/**
+ * **summary**: transport interface for the gmail NodeMailer
+ */
 export interface TransporterInterface {
     host: string;
     secureConnection: boolean // TLS requires secureConnection to be false
