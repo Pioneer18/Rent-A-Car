@@ -248,13 +248,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/RentalModule.html" data-type="entity-link">RentalModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-RentalModule-5e0a9564db38514ec7e45fa7068dc7f4"' : 'data-target="#xs-controllers-links-module-RentalModule-5e0a9564db38514ec7e45fa7068dc7f4"' }>
+                                            'data-target="#controllers-links-module-RentalModule-70da86e3b29a003d06186651f5a137d4"' : 'data-target="#xs-controllers-links-module-RentalModule-70da86e3b29a003d06186651f5a137d4"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-RentalModule-5e0a9564db38514ec7e45fa7068dc7f4"' :
-                                            'id="xs-controllers-links-module-RentalModule-5e0a9564db38514ec7e45fa7068dc7f4"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-RentalModule-70da86e3b29a003d06186651f5a137d4"' :
+                                            'id="xs-controllers-links-module-RentalModule-70da86e3b29a003d06186651f5a137d4"' }>
                                             <li class="link">
                                                 <a href="controllers/RentalController.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">RentalController</a>
@@ -263,13 +263,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-RentalModule-5e0a9564db38514ec7e45fa7068dc7f4"' : 'data-target="#xs-injectables-links-module-RentalModule-5e0a9564db38514ec7e45fa7068dc7f4"' }>
+                                        'data-target="#injectables-links-module-RentalModule-70da86e3b29a003d06186651f5a137d4"' : 'data-target="#xs-injectables-links-module-RentalModule-70da86e3b29a003d06186651f5a137d4"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RentalModule-5e0a9564db38514ec7e45fa7068dc7f4"' :
-                                        'id="xs-injectables-links-module-RentalModule-5e0a9564db38514ec7e45fa7068dc7f4"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-RentalModule-70da86e3b29a003d06186651f5a137d4"' :
+                                        'id="xs-injectables-links-module-RentalModule-70da86e3b29a003d06186651f5a137d4"' }>
                                         <li class="link">
                                             <a href="injectables/AppConfigService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>AppConfigService</a>
@@ -277,10 +277,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <li class="link">
                                             <a href="injectables/CreateUpdaterDtoPipe.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>CreateUpdaterDtoPipe</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="injectables/EditDetailsPipe.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>EditDetailsPipe</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/GenerateRentalDurationEnumUtil.html"
@@ -297,10 +293,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <li class="link">
                                             <a href="injectables/GivenNoticePipe.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>GivenNoticePipe</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="injectables/JoiValidationPipe.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>JoiValidationPipe</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/MapNewRentalPipe.html"
@@ -329,6 +321,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <li class="link">
                                             <a href="injectables/SortUnavailabilityPipe.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>SortUnavailabilityPipe</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/ValidateEditDetailsPipe.html"
+                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>ValidateEditDetailsPipe</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/ValidateRemoveUnavailabilityPipe.html"
@@ -564,9 +560,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/DeleteUserDto.html" data-type="entity-link">DeleteUserDto</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/EditDetailsPipe.html" data-type="entity-link">EditDetailsPipe</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/EmailService.html" data-type="entity-link">EmailService</a>
                                 </li>
                                 <li class="link">
@@ -664,6 +657,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/UserService.html" data-type="entity-link">UserService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ValidateEditDetailsPipe.html" data-type="entity-link">ValidateEditDetailsPipe</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ValidateEmailMiddleware.html" data-type="entity-link">ValidateEmailMiddleware</a>

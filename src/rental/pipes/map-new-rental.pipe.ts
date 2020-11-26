@@ -1,7 +1,9 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
 import { LocCreateRentalDto } from '../dto/createRental/loc-create-rental.dto';
 import { CreateRentalDto } from '../dto/createRental/create-rental.dto';
-
+/**
+ * 
+ */
 @Injectable()
 export class MapNewRentalPipe implements PipeTransform {
   async transform(value: LocCreateRentalDto) {

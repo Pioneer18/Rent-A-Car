@@ -8,13 +8,17 @@ import { GivenNoticeSearchRentalDto } from '../dto/searchRental/given-notice-sea
 import { RawSearchRentalDto } from '../dto/searchRental/raw-search-rental.dto';
 import { DateTime } from 'luxon';
 /**
- * Creates a Luxon Interval from the startTime and currentTime
- * Validates the Interval is at least 1 hour long
- * returns a GivenNoticeSearchRentalDto
+ * summary: creates a [**Luxon**](https://moment.github.io/luxon/) [**Interval**](https://moment.github.io/luxon/docs/manual/tour.html#intervals) from the startTime and currentTime
+ * and then uses Luxon methods to validate the Given Notice is at least 1 hour in duration; this is the minimum allowed for any user
+ * - Luxon is "a powerful, modern, and friendly wrapper for Javacript dates and times"
  */
 @Injectable()
 export class GivenNoticePipe implements PipeTransform {
 
+  /**
+   * summary: create the **givenNotice** property value, it must be at least one hour
+   * @param startTime the request start time of the rental
+   */
   private async createGivenNotice(startTime) {
     const givenNotice: number = startTime.diffNow().toObject().milliseconds;
     if (givenNotice >= 3600000) {
@@ -25,6 +29,12 @@ export class GivenNoticePipe implements PipeTransform {
     );
   }
 
+  /**
+   * summary: validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
+   * this is just another level of validation.
+   * @param startTime the requested time for the Rental to begin
+   * @param endTime the requested time for the Rental to end
+   */
   private async validateRequestedTime(startTime, endTime) {
     if (startTime > endTime) {
       throw new Error(
@@ -36,7 +46,11 @@ export class GivenNoticePipe implements PipeTransform {
     }
   }
 
-  async transform(value: RawSearchRentalDto) {
+  /**
+   * summary: use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto
+   * @param value the raw client request data to search for rentals
+   */
+  async transform(value: RawSearchRentalDto):Promise<GivenNoticeSearchRentalDto> {
     try {
       // make start and end time into DateTimes
       const startTime: DateTime = DateTime.fromISO(

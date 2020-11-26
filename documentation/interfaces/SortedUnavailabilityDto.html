@@ -65,6 +65,17 @@
             <code>src/rental/dto/unavailability/schedule/sorted-unavailability.dto.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: the raw unavailability request has now been sorted into two year groupings, if the requested unavailability
+spans across two years; e.g. December 20 2020 - January 5 2021</p>
+<ul>
+<li>passed to the ValidateUnavailabilityPipe</li>
+</ul>
+
+            </p>
 
 
         <section>
@@ -160,7 +171,11 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnavailabilityDto } from &#x27;../unavailability.dto&#x27;;
-
+/**
+ * summary: the raw unavailability request has now been sorted into two year groupings, if the requested unavailability
+ * spans across two years; e.g. December 20 2020 - January 5 2021
+ * - passed to the ValidateUnavailabilityPipe
+ */
 export interface SortedUnavailabilityDto {
     yA: UnavailabilityDto[];
     yB: UnavailabilityDto[] | null;

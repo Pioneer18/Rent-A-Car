@@ -64,8 +64,8 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Requests coordinates from the incoming CreateRentalDto data and returns
-the original value, a single string address, and coordinates</p>
+                <p>summary: create an address from the incoming RawCreateRentalDto and then use the <a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html"><strong>HERE Geocoding &amp; Searching API</strong></a>
+to get the coordinates of the address. The coordinates allow Rentals to be geospatially queried in a radius near a user or selected location; e.g. 8 mile radius</p>
 
             </p>
 
@@ -120,7 +120,7 @@ the original value, a single string address, and coordinates</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -200,15 +200,15 @@ the original value, a single string address, and coordinates</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:19</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: ....</p>
+                    <div class="io-description"><p>summary: convert the location property object into a single address property string; will be passed to this.getCoordinates method</p>
 </div>
 
                     <div class="io-description">
@@ -231,7 +231,7 @@ the original value, a single string address, and coordinates</p>
 
 
                                     <td>
-                                        <p>the raw form data inputed by user to creat a new Rental listing</p>
+                                        <p>the raw form data inputed by user to create a new Rental listing</p>
 
                                     </td>
                                 </tr>
@@ -275,14 +275,16 @@ the original value, a single string address, and coordinates</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:31</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: request coordinates for the provided address</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -292,6 +294,7 @@ the original value, a single string address, and coordinates</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -306,6 +309,10 @@ the original value, a single string address, and coordinates</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the address to fetch coordinates for from the API</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>geoUrl</td>
@@ -318,6 +325,10 @@ the original value, a single string address, and coordinates</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the url for accessing the API</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>apiKey</td>
@@ -330,6 +341,10 @@ the original value, a single string address, and coordinates</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the key for accessing the API</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -371,14 +386,16 @@ the original value, a single string address, and coordinates</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:46</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>summary: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -388,6 +405,7 @@ the original value, a single string address, and coordinates</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -402,6 +420,10 @@ the original value, a single string address, and coordinates</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>the raw request from a client to create a new Rental listing</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -409,7 +431,7 @@ the original value, a single string address, and coordinates</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;LocCreateRentalDto&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -425,22 +447,23 @@ the original value, a single string address, and coordinates</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, ArgumentMetadata, Logger } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &#x27;@nestjs/common&#x27;;
 import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
+import { LocCreateRentalDto } from &#x27;../dto/createRental/loc-create-rental.dto&#x27;;
 import { RawCreateRentalDto } from &#x27;../dto/createRental/raw-create-rental-dto&#x27;;
 import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
 
 /**
- * Requests coordinates from the incoming CreateRentalDto data and returns
- * the original value, a single string address, and coordinates
+ * summary: create an address from the incoming RawCreateRentalDto and then use the [**HERE Geocoding &amp; Searching API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html)
+ * to get the coordinates of the address. The coordinates allow Rentals to be geospatially queried in a radius near a user or selected location; e.g. 8 mile radius
  */
 @Injectable()
 export class GeoUrlApiPipe {
   constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil, private readonly appConfig: AppConfigService) {}
 
   /**
-   * summary: ....
-   * @param value the raw form data inputed by user to creat a new Rental listing
+   * summary: convert the location property object into a single address property string; will be passed to this.getCoordinates method
+   * @param value the raw form data inputed by user to create a new Rental listing
    */
   private async createAddress(value) {
     // create address string from incoming vehicle.address document
@@ -448,6 +471,12 @@ export class GeoUrlApiPipe {
     return address;
   }
 
+  /**
+   * summary: request coordinates for the provided address
+   * @param address the address to fetch coordinates for from the API
+   * @param geoUrl the url for accessing the API
+   * @param apiKey the key for accessing the API
+   */
   async getCoordinates(address: string, geoUrl: string, apiKey: string,
   ) {
     Logger.log(&#x60;geoUrl: ${process.env.GEO_URL}&#x60;);
@@ -459,7 +488,11 @@ export class GeoUrlApiPipe {
     return coords;
   }
 
-  async transform(value: RawCreateRentalDto) {
+  /**
+   * summary: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string
+   * @param value the raw request from a client to create a new Rental listing
+   */
+  async transform(value: RawCreateRentalDto):Promise&lt;LocCreateRentalDto&gt; {
     const apiKey &#x3D; process.env.GEO_API_KEY;
     const geoUrl &#x3D; process.env.GEO_URL;
     try {

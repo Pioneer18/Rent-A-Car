@@ -64,6 +64,16 @@
             <code>src/rental/dto/unavailability/schedule/raw-schedule-unavailability.dto.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: the initial form data submitted from the client to request to schedule Unavailability for a rental</p>
+<ul>
+<li>passed to the SortUnavailabilityPipe</li>
+</ul>
+
+            </p>
 
 
 
@@ -122,7 +132,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/rental/dto/unavailability/schedule/raw-schedule-unavailability.dto.ts:4</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/rental/dto/unavailability/schedule/raw-schedule-unavailability.dto.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -142,7 +152,10 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnavailabilityDto } from &#x27;../unavailability.dto&#x27;;
-
+/**
+ * summary: the initial form data submitted from the client to request to schedule Unavailability for a rental
+ * - passed to the SortUnavailabilityPipe
+ */
 export class RawScheduleUnavailabilityDto {
   unavailability: UnavailabilityDto[];
 }

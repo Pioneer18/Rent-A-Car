@@ -68,7 +68,11 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary:</p>
+                <p>summary: contains the initial data submitted by a user to create a new rental listing. It also
+contains the raw location information as a single &quot;address&quot; string ad the coordinates for the address</p>
+<ul>
+<li>passed to the MapNewRentalPipe</li>
+</ul>
 
             </p>
 
@@ -135,7 +139,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -162,7 +166,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:7</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -189,7 +193,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:6</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -210,7 +214,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { RawCreateRentalDto } from &#x27;./raw-create-rental-dto&#x27;;
 /**
- * summary:
+ * summary: contains the initial data submitted by a user to create a new rental listing. It also
+ * contains the raw location information as a single &quot;address&quot; string ad the coordinates for the address
+ * - passed to the MapNewRentalPipe
  */
 export class LocCreateRentalDto {
   value: RawCreateRentalDto;

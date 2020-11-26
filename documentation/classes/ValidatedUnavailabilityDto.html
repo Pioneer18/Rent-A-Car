@@ -64,6 +64,17 @@
             <code>src/rental/dto/unavailability/validated-unavailability.dto.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: this data is the now validated UnavailabilityDto that will be used to create the final dto to be passed to
+the rental.service.scheduleUnavailability() method</p>
+<ul>
+<li>passed to the ProcessUnavailabilityPipe, the last pipe before the rental.service.scheduleUnavailability() handler method</li>
+</ul>
+
+            </p>
 
 
 
@@ -128,7 +139,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/rental/dto/unavailability/validated-unavailability.dto.ts:6</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/unavailability/validated-unavailability.dto.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -155,7 +166,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/rental/dto/unavailability/validated-unavailability.dto.ts:4</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/rental/dto/unavailability/validated-unavailability.dto.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -182,7 +193,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/rental/dto/unavailability/validated-unavailability.dto.ts:5</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/dto/unavailability/validated-unavailability.dto.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -202,7 +213,11 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnavailabilityDto } from &#x27;../../dto/unavailability/unavailability.dto&#x27;;
-
+/**
+ * summary: this data is the now validated UnavailabilityDto that will be used to create the final dto to be passed to
+ * the rental.service.scheduleUnavailability() method
+ * - passed to the ProcessUnavailabilityPipe, the last pipe before the rental.service.scheduleUnavailability() handler method
+ */
 export class ValidatedUnavailabilityDto {
     y1: UnavailabilityDto[];
     y2: UnavailabilityDto[] | null;

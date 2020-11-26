@@ -64,6 +64,18 @@
             <code>src/rental/dto/unavailability/schedule/validate-schedule-unavailability.dto.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: returned by the SortUnavailabilityPipe, this dto contains the raw request to schedule Unavailability
+for a rental sorted into two year groupings; if the requested Unavailability spans across 2 years. This would usually occur
+near the end of a year, such as from Decemeber 20, 2020 - January 5, 2021</p>
+<ul>
+<li>passed to the ValidateUnavailabilityPipe</li>
+</ul>
+
+            </p>
 
 
 
@@ -125,7 +137,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/rental/dto/unavailability/schedule/validate-schedule-unavailability.dto.ts:4</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/dto/unavailability/schedule/validate-schedule-unavailability.dto.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -152,7 +164,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/rental/dto/unavailability/schedule/validate-schedule-unavailability.dto.ts:5</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/unavailability/schedule/validate-schedule-unavailability.dto.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -172,7 +184,12 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnavailabilityDto } from &#x27;../unavailability.dto&#x27;;
-
+/**
+ * summary: returned by the SortUnavailabilityPipe, this dto contains the raw request to schedule Unavailability
+ * for a rental sorted into two year groupings; if the requested Unavailability spans across 2 years. This would usually occur
+ * near the end of a year, such as from Decemeber 20, 2020 - January 5, 2021
+ * - passed to the ValidateUnavailabilityPipe
+ */
 export class ValidateScheduleUnavailabilityDto {
     y1: UnavailabilityDto[];
     y2: UnavailabilityDto[] | null;

@@ -2,13 +2,15 @@ import { Injectable, PipeTransform} from '@nestjs/common';
 import { PricingDto } from '../dto/pricing/pricing.dto';
 
 /**
- * validate incoming price and discounts
- * map the dto before sending to handler
+ * summary: validate incoming price and discounts and map data into a PricingDto before sending to handler
  */
 @Injectable()
 export class PricingPipe implements PipeTransform {
 
-    // validate the incoming pricing
+    /**
+     * summary: validate the price and discounts do not have negative values nor violate common sense
+     * @param data the raw user request to update the Rental's pricing
+     */
     private validatePricingDto = async (data: PricingDto) => {
         const minPrice: number = parseInt(process.env.MIN_PRICE, 10);
         // check rentalId
@@ -26,7 +28,10 @@ export class PricingPipe implements PipeTransform {
         }
     }
 
-    // map the pricing dto before returning
+    /**
+     * summary: map the final values of the PricingDto before passing to the handler
+     * @param 
+     */
     private mapPricingDto = async (data: PricingDto) => {
         const value: PricingDto = {
             rentalId: data.rentalId,
@@ -39,6 +44,10 @@ export class PricingPipe implements PipeTransform {
         return value;
     }
 
+    /**
+     * summary: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler
+     * @param value the raw request from a user to update the pricing of a Rental
+     */
     async transform(value: PricingDto) {
         try {
             await this.validatePricingDto(value);

@@ -2,9 +2,12 @@ import { Injectable, PipeTransform } from '@nestjs/common';
 import { EditDetailsDto } from '../dto/details/edit-details.dto';
 import { PositiveNumber } from '../../common/util/positive-number';
 import { TypeOfValue } from '../../common/util/typeof-value';
-
+/**
+ * summary: validate that the request to update the Rental's details (the spec property) will not violate the
+ * RentalSchemaValidation
+ */
 @Injectable()
-export class EditDetailsPipe implements PipeTransform {
+export class ValidateEditDetailsPipe implements PipeTransform {
 
     positiveNumber: PositiveNumber;
     typeOfValue: TypeOfValue;
@@ -13,7 +16,10 @@ export class EditDetailsPipe implements PipeTransform {
         this.typeOfValue = new TypeOfValue();
     }
 
-    // validate EditDetailsDto
+    /**
+     * summary: validate EditDetailsDto
+     * @param value the request data to edit the rental
+     */
     private validateDetails = async (value: EditDetailsDto) => {
         // check rentalId
         if (!value.rentalId || !this.typeOfValue.validate(value.rentalId, 'string')) {

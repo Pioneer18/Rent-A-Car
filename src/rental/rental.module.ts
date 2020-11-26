@@ -14,7 +14,7 @@ import { RequestCoordinatesPipe } from './pipes/request-coordinates.pipe';
 import { RentalDurationPipe } from './pipes/rental-duration.pipe';
 import { GivenNoticePipe } from './pipes/given-notice.pipe';
 import { PricingPipe } from './pipes/pricing.pipe';
-import { EditDetailsPipe } from './pipes/edit-details.pipe';
+import { ValidateEditDetailsPipe } from './pipes/validate-edit-details.pipe';
 import { ProcessUnavailabilityPipe } from './pipes/process-unavailability.pipe';
 import { ValidateUnavailabilityPipe } from './pipes/validate-unavailability.pipe';
 import { SortUnavailabilityPipe } from './pipes/sort-unavailability.pipe';
@@ -47,7 +47,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     GenerateRentalDurationEnumUtil,
     GivenNoticePipe,
     PricingPipe,
-    EditDetailsPipe,
+    ValidateEditDetailsPipe,
     ProcessUnavailabilityPipe,
     ValidateUnavailabilityPipe,
     SortUnavailabilityPipe,

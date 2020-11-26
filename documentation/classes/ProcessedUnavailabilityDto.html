@@ -68,7 +68,12 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary:</p>
+                <p>summary: the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
+to create the ProcessedUnavailabilityQueryDtos as well as the returned ProcessedUnavailabilityQueryDto[]s that will be used by the handler
+to schedule the new unavailability.</p>
+<ul>
+<li>passed to the rental.service.scheduleUnavailability() method</li>
+</ul>
 
             </p>
 
@@ -135,7 +140,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -162,7 +167,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:7</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -189,7 +194,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -211,7 +216,10 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnavailabilityQueryDto } from &#x27;./unavailability-query.dto&#x27;;
 import { ProcessedUnavailabilityQueryDto } from &#x27;./processed-unavailability-query.dto&#x27;;
 /**
- * summary:
+ * summary: the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
+ * to create the ProcessedUnavailabilityQueryDtos as well as the returned ProcessedUnavailabilityQueryDto[]s that will be used by the handler
+ * to schedule the new unavailability.
+ * - passed to the rental.service.scheduleUnavailability() method
  */
 export class ProcessedUnavailabilityDto {
     y1Query: UnavailabilityQueryDto;

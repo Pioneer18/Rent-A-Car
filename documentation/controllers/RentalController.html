@@ -244,7 +244,7 @@ create a new vehicle rental listing</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;edit-details&#x27;)<br />@UsePipes(new EditDetailsPipe())<br /></code>
+                    <code>@Post(&#x27;edit-details&#x27;)<br />@UsePipes(new ValidateEditDetailsPipe())<br /></code>
                 </td>
             </tr>
 
@@ -731,7 +731,7 @@ import { GivenNoticePipe } from &#x27;../pipes/given-notice.pipe&#x27;;
 import { SearchRentalValidationSchema } from &#x27;../schema/validation/search-rental-validation.schema&#x27;;
 import { PricingPipe } from &#x27;../pipes/pricing.pipe&#x27;;
 import { PricingDto } from &#x27;../dto/pricing/pricing.dto&#x27;;
-import { EditDetailsPipe } from &#x27;../pipes/edit-details.pipe&#x27;;
+import { ValidateEditDetailsPipe } from &#x27;../pipes/validate-edit-details.pipe&#x27;;
 import { EditDetailsDto } from &#x27;../dto/details/edit-details.dto&#x27;;
 import { SortUnavailabilityPipe } from &#x27;../pipes/sort-unavailability.pipe&#x27;;
 import { ValidateUnavailabilityPipe } from &#x27;../pipes/validate-unavailability.pipe&#x27;;
@@ -798,7 +798,7 @@ export class RentalController {
    * edit the details of the Rental (# of seats, color, etc.)
    */
   @Post(&#x27;edit-details&#x27;)
-  @UsePipes(new EditDetailsPipe())
+  @UsePipes(new ValidateEditDetailsPipe())
   async editDetails(@Body() editDetailsDto: EditDetailsDto) {
       return await this.rentalService.editDetails(editDetailsDto);
   }

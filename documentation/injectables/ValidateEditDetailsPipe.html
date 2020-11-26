@@ -39,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>CreateUpdaterDtoPipe</li>
+  <li>ValidateEditDetailsPipe</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -57,14 +57,15 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/rental/pipes/create-updater-dto.pipe.ts</code>
+            <code>src/rental/pipes/validate-edit-details.pipe.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: create the data the request UpdateUnavailabilityDataDto the rental.service.updateUnavailability() method needs</p>
+                <p>summary: validate that the request to update the Rental&#39;s details (the spec property) will not violate the
+RentalSchemaValidation</p>
 
             </p>
 
@@ -83,12 +84,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#createUpdateData">createUpdateData</a>
+                                <a href="#positiveNumber">positiveNumber</a>
+                            </li>
+                            <li>
+                                <a href="#typeOfValue">typeOfValue</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#distillDto">distillDto</a>
+                                <a href="#validateDetails">validateDetails</a>
                             </li>
                         </ul>
                     </td>
@@ -118,6 +121,24 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/rental/pipes/validate-edit-details.pipe.ts:13</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -141,23 +162,21 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../classes/ValidateUpdateUnavailabilityDto.html">ValidateUpdateUnavailabilityDto</a>)</code>
+                    <code>transform(value: <a href="../classes/EditDetailsDto.html">EditDetailsDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/rental/pipes/create-updater-dto.pipe.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/rental/pipes/validate-edit-details.pipe.ts:96</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: use the private methods to return a UpdateUnavailabilityDto</p>
-</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -167,14 +186,13 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>value</td>
                                     <td>
-                                                <code><a href="../classes/ValidateUpdateUnavailabilityDto.html" target="_self" >ValidateUpdateUnavailabilityDto</a></code>
+                                                <code><a href="../classes/EditDetailsDto.html" target="_self" >EditDetailsDto</a></code>
                                     </td>
 
                                     <td>
@@ -182,10 +200,6 @@
                                     </td>
 
 
-                                    <td>
-                                        <p>a validated UpdateUnavailabilityDto</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -193,7 +207,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/UpdateUnavailabilityDataDto.html" target="_self" >Promise&lt;UpdateUnavailabilityDataDto&gt;</a></code>
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                     <div class="io-description">
@@ -213,69 +227,66 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="createUpdateData"></a>
+                        <a name="positiveNumber"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Private</span>
-                            createUpdateData</b>
-                            <a href="#createUpdateData"><span class="icon ion-ios-link"></span></a>
+                            positiveNumber</b>
+                            <a href="#positiveNumber"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                            <i>Type : </i>        <code><a href="../injectables/PositiveNumber.html" target="_self" >PositiveNumber</a></code>
+
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/rental/pipes/create-updater-dto.pipe.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/pipes/validate-edit-details.pipe.ts:12</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>summary: create a MongoDB update object from the UpdateUnavailabilityDto</p>
-</div>
-                    </td>
-                </tr>
 
-                    <tr>
-                        <td class="col-md-4">
-                          <div class="io-description">
-                                  <b>Parameters :</b>
-                                  <table class="params">
-                                      <thead>
-                                          <tr>
-                                                <td>Name</td>
-                                                    <td>Description</td>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                                <tr>
-                                                        <td>value</td>
-                                                        <td>
-                                                                <code><p>UpdateUnavailabilityDto</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                      </tbody>
-                                  </table>
-                          </div>
-                        </td>
-                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="distillDto"></a>
+                        <a name="typeOfValue"></a>
+                        <span class="name">
+                            <b>
+                            typeOfValue</b>
+                            <a href="#typeOfValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/TypeOfValue.html" target="_self" >TypeOfValue</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/rental/pipes/validate-edit-details.pipe.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validateDetails"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            distillDto</b>
-                            <a href="#distillDto"><span class="icon ion-ios-link"></span></a>
+                            validateDetails</b>
+                            <a href="#validateDetails"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -286,13 +297,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/rental/pipes/create-updater-dto.pipe.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/rental/pipes/validate-edit-details.pipe.ts:23</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>summary: map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format</p>
+                        <div class="io-description"><p>summary: validate EditDetailsDto</p>
 </div>
                     </td>
                 </tr>
@@ -312,7 +323,7 @@
                                                 <tr>
                                                         <td>value</td>
                                                         <td>
-                                                                <code><p>ValidateUpdateUnavailabilityDto</p>
+                                                                <code><p>the request data to edit the rental</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -330,67 +341,103 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
-import { UpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/update-unavailability.dto&#x27;;
-import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/validate-update-unavailability.dto&#x27;;
-import { UpdateUnavailabilityDataDto } from &#x27;../dto/unavailability/update/update-unavailability-data.dto&#x27;;
+import { EditDetailsDto } from &#x27;../dto/details/edit-details.dto&#x27;;
+import { PositiveNumber } from &#x27;../../common/util/positive-number&#x27;;
+import { TypeOfValue } from &#x27;../../common/util/typeof-value&#x27;;
 /**
- * summary: create the data the request UpdateUnavailabilityDataDto the rental.service.updateUnavailability() method needs
+ * summary: validate that the request to update the Rental&#x27;s details (the spec property) will not violate the
+ * RentalSchemaValidation
  */
 @Injectable()
-export class CreateUpdaterDtoPipe implements PipeTransform&lt;ValidateUpdateUnavailabilityDto, Promise&lt;UpdateUnavailabilityDataDto&gt;&gt; {
+export class ValidateEditDetailsPipe implements PipeTransform {
 
-    /**
-     * summary: map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
-     * @param value ValidateUpdateUnavailabilityDto
-     */
-    private distillDto &#x3D; async (value: ValidateUpdateUnavailabilityDto) &#x3D;&gt; {
-        const data: UpdateUnavailabilityDto &#x3D; {
-            unavailabilityId: value.unavailabilityId,
-            rentalId: value.rentalId,
-            newStart: value.newStart,
-            newEnd: value.newEnd,
-            newTitle: value.newTitle,
-        };
-        return data;
+    positiveNumber: PositiveNumber;
+    typeOfValue: TypeOfValue;
+    constructor() {
+        this.positiveNumber &#x3D; new PositiveNumber();
+        this.typeOfValue &#x3D; new TypeOfValue();
     }
 
     /**
-     * summary: create a MongoDB update object from the UpdateUnavailabilityDto
-     * @param value UpdateUnavailabilityDto
+     * summary: validate EditDetailsDto
+     * @param value the request data to edit the rental
      */
-    private createUpdateData &#x3D; async (value: UpdateUnavailabilityDto) &#x3D;&gt; {
-        const filter &#x3D; {
-            rentalId: value.rentalId,
-            unavailabilityId: value.unavailabilityId,
-        };
-        if (value.newTitle &#x3D;&#x3D;&#x3D; null) {
-          const updater1 &#x3D; {
-              $set: {
-                start: value.newStart,
-                end: value.newEnd,
-              },
-          };
-          return {filter, updater: updater1};
+    private validateDetails &#x3D; async (value: EditDetailsDto) &#x3D;&gt; {
+        // check rentalId
+        if (!value.rentalId || !this.typeOfValue.validate(value.rentalId, &#x27;string&#x27;)) {
+            throw new Error(&#x27;Invalid rental id&#x27;);
         }
-        const updater2 &#x3D; {
-            $set: {
-                start: value.newStart,
-                end: value.newEnd,
-                title: value.newTitle,
-            },
-        };
-        return { filter, updater: updater2};
+        // must have at least one detail to update
+        if (!value.specs &amp;&amp; !value.features) {
+            throw new Error(&#x27;Invalid request, no details given&#x27;);
+        }
+        // validate each spec value
+        if (value.specs) {
+            if (value.specs.odometer &amp;&amp;
+                !this.typeOfValue.validate(value.specs.odometer, &#x27;number&#x27;) || !this.positiveNumber.validate(value.specs.odometer)
+                ) {
+                    throw new Error(&#x27;Odometer must be a positive number&#x27;);
+                }
+            if (value.specs.transmission &amp;&amp;
+                !this.typeOfValue.validate(value.specs.transmission, &#x27;string&#x27;)) {
+                    throw new Error(&#x27;transmission must be a valid value (string)&#x27;);
+                }
+            if (value.specs.cityMpg &amp;&amp;
+                !this.typeOfValue.validate(value.specs.cityMpg, &#x27;number&#x27;) || !this.positiveNumber.validate(value.specs.cityMpg)) {
+                    throw new Error(&#x27;cityMpg must be a positive number&#x27;);
+                }
+            if (value.specs.hwyMpg &amp;&amp;
+                !this.typeOfValue.validate(value.specs.hwyMpg, &#x27;number&#x27;) || !this.positiveNumber.validate(value.specs.hwyMpg)) {
+                    throw new Error(&#x27;hwyMpg must be a positive number&#x27;);
+                }
+            if (value.specs.fuel &amp;&amp;
+                !this.typeOfValue.validate(value.specs.fuel, &#x27;string&#x27;)) {
+                    throw new Error(&#x27;fuel must be a valid value (string)&#x27;);
+                }
+            if (value.specs.gasGrade &amp;&amp;
+                !this.typeOfValue.validate(value.specs.gasGrade, &#x27;string&#x27;)) {
+                    throw new Error(&#x27;gasGrade must be a valid value (string)&#x27;);
+                }
+            if (value.specs.description &amp;&amp;
+                !this.typeOfValue.validate(value.specs.description, &#x27;string&#x27;)) {
+                    throw new Error(&#x27;description must be a valid value (string)&#x27;);
+                }
+            if (value.specs.model &amp;&amp;
+                !this.typeOfValue.validate(value.specs.model, &#x27;string&#x27;)) {
+                    throw new Error(&#x27;model must be a valid value (string)&#x27;);
+                }
+            if (value.specs.style &amp;&amp;
+                !this.typeOfValue.validate(value.specs.style, &#x27;string&#x27;)) {
+                    throw new Error(&#x27;style must be a valid value (string)&#x27;);
+                }
+            if (value.specs.color &amp;&amp;
+                !this.typeOfValue.validate(value.specs.color, &#x27;string&#x27;)) {
+                    throw new Error(&#x27;color must be a valid value (string)&#x27;);
+                }
+            if (value.specs.numOfSeats &amp;&amp;
+                !this.typeOfValue.validate(value.specs.numOfSeats, &#x27;number&#x27;) || !this.positiveNumber.validate(value.specs.numOfSeats)) {
+                    throw new Error(&#x27;numOfSeats must be a positive number&#x27;);
+                }
+            if (value.specs.numDoors &amp;&amp;
+                !this.typeOfValue.validate(value.specs.numDoors, &#x27;number&#x27;) || !this.positiveNumber.validate(value.specs.numDoors)) {
+                    throw new Error(&#x27;numDoors must be a positive number&#x27;);
+                }
+        }
+        if (value.features) {
+            if (value.features.length &gt; 0) {
+                for (const x of value.features) {
+                    if (!this.typeOfValue.validate(x, &#x27;string&#x27;)) {
+                        throw new Error(&#x27;features must be valid values (string)&#x27;);
+                    }
+                }
+            }
+        }
     }
 
-    /**
-     * summary: use the private methods to return a UpdateUnavailabilityDto
-     * @param value a validated UpdateUnavailabilityDto
-     */
-    async transform(value: ValidateUpdateUnavailabilityDto): Promise&lt;UpdateUnavailabilityDataDto&gt; {
-        // return an UpdateUnavailabilityDto
-        const raw &#x3D;  await this.distillDto(value);
-        const data &#x3D; await this.createUpdateData(raw);
-        return data;
+    // apply validation
+    async transform(value: EditDetailsDto) {
+        await this.validateDetails(value);
+        return value;
     }
 }
 </code></pre>
@@ -426,7 +473,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform&lt;ValidateUpdateUnav
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'CreateUpdaterDtoPipe.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ValidateEditDetailsPipe.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

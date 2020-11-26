@@ -5,12 +5,17 @@ import { UnavailabilityQueryDto } from '../dto/unavailability/schedule/unavailab
 import { CreateQueryDto } from '../dto/unavailability/schedule/create-query.dto';
 import { ProcessedUnavailabilityQueryDto } from '../dto/unavailability/schedule/processed-unavailability-query.dto';
 /**
- * summary: This query is searching for any scheduled unavailability already in the database that would overlap with this request to add more unavailability
+ * summary: query for any scheduled unavailability already in the database that would overlap with this request to add more unavailability to the Rental
  * - This is to prevent the user on the front-end from accidentally overlapping 'blocks' of scheduled unavailability. The front-end of course should also block this
  * @param year 
  */
 @Injectable()
 export class ProcessUnavailabilityPipe implements PipeTransform {
+
+  /**
+   * create a MongoDB query object from the provided CreateQueryDto
+   * @param year 
+   */
   protected createQuery = async (
     year: CreateQueryDto,
   ): Promise<UnavailabilityQueryDto> => {

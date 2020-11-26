@@ -4,9 +4,9 @@
  */
 export class PricingDto {
     rentalId: string;
-    price: number;
+    price: number | null;
     discounts: {
-        weekly: number;
-        monthly: number;
+        weekly: number | null;
+        monthly: number | null;
     };
 }

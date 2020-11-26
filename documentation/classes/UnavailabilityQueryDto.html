@@ -64,6 +64,20 @@
             <code>src/rental/dto/unavailability/schedule/unavailability-query.dto.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>summary: this data is used to check if the request to schedule Unavailability will overlap with Unavailability already scheduled for the rental in the database.
+This dto uses a MongoDB $or aggregator to check the following Unavailability overlap conditions:</p>
+<ul>
+<li>1: verify the requested Unavailability does not &#39;enclose&#39; an already scheduled Unavailability for this rental</li>
+<li>2: verify the requested Unavailability does not &#39;overlap&#39; the end of an already scheduled Unavailability for this rental</li>
+<li>3: verify the requested Unavailability does not &#39;overlap&#39; the start of an already scheduled Unavailability for this rental</li>
+<li>4: verify the requested Unavailability is not &#39;enclosed by&#39; an already scheduled Unavailability for this rental</li>
+</ul>
+
+            </p>
 
 
 
@@ -131,7 +145,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/rental/dto/unavailability/schedule/unavailability-query.dto.ts:5</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/rental/dto/unavailability/schedule/unavailability-query.dto.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -158,7 +172,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/rental/dto/unavailability/schedule/unavailability-query.dto.ts:4</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/dto/unavailability/schedule/unavailability-query.dto.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -185,7 +199,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="2" class="link-to-prism">src/rental/dto/unavailability/schedule/unavailability-query.dto.ts:2</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/unavailability/schedule/unavailability-query.dto.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -212,7 +226,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/rental/dto/unavailability/schedule/unavailability-query.dto.ts:3</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/dto/unavailability/schedule/unavailability-query.dto.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -255,16 +269,6 @@
   ];
 }
 
-/**
- * between start &gt;&#x3D; init &amp;&amp; start &lt;&#x3D; final and end  &lt;&#x3D; final &amp;&amp; end &gt;&#x3D; init
- * or: start &lt; init and end &gt;&#x3D; init &amp;&amp; end &lt;&#x3D; final; it starts earlier but overlaps
- * or: start &gt;&#x3D; init &amp;&amp; start &#x3D;&lt; final and end &gt; end; it overhangs the end
- * or: start &lt; init and end &gt; end
- */
-
-/**
- *
- */
 </code></pre>
     </div>
 </div>

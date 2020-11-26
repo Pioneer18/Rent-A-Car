@@ -1,22 +1,22 @@
 import { TestingModule, Test } from '@nestjs/testing';
-import { EditDetailsPipe } from './edit-details.pipe';
+import { ValidateEditDetailsPipe } from './validate-edit-details.pipe';
 import { EditDetailsDto } from '../dto/details/edit-details.dto';
 import { PositiveNumber } from '../../common/util/positive-number';
 import { TypeOfValue } from '../../common/util/typeof-value';
 import { Logger } from '@nestjs/common';
 
-describe('EditDetailsPipe Unit Test', () => {
+describe('ValidateEditDetailsPipe Unit Test', () => {
     let app: TestingModule;
-    let pipe: EditDetailsPipe;
+    let pipe: ValidateEditDetailsPipe;
     let val: TypeOfValue;
     let pos: PositiveNumber;
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
             imports: [PositiveNumber, TypeOfValue],
-            providers: [EditDetailsPipe],
+            providers: [ValidateEditDetailsPipe],
         }).compile();
         app = module;
-        pipe = module.get<EditDetailsPipe>(EditDetailsPipe);
+        pipe = module.get<ValidateEditDetailsPipe>(ValidateEditDetailsPipe);
         val = module.get<TypeOfValue>(TypeOfValue);
         pos = module.get<PositiveNumber>(PositiveNumber);
     });
@@ -111,7 +111,7 @@ describe('EditDetailsPipe Unit Test', () => {
         return result;
     };
 
-    describe('EditDetailsPipe definition test', () => {
+    describe('ValidateEditDetailsPipe definition test', () => {
         it('should be defined', () => {
             expect(pipe).toBeDefined();
         });
