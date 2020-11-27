@@ -12,9 +12,10 @@ import { AppConfigModule } from '../config/configuration.module';
 import { VerifyNewPasswordUtil } from '../auth/util/verify-new-password.util';
 import { RedisService } from '../redis/service/redis.service';
 import { ExtractUserUtil } from './util/extract-user.util';
-
-
-
+/**
+ * - **summary**: this module provides all of the functionality for managing user profiles
+ *   - **Middleware**: this module consumes the **ValidateEmailMiddleware** middleware
+ */
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema}]),

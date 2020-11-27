@@ -1,5 +1,8 @@
 import { Injectable } from "@nestjs/common";
-
+/**
+ * **summary**: throw an error if the user email already exists
+ * @param check the results of a find user by email query
+ */
 @Injectable()
 export class ValidateEmailUtil {
     constructor() {}
