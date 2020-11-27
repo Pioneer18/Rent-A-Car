@@ -8,6 +8,6 @@ export interface ImageInterface{
     key: string;
     etag: string;
     category: string;
-    size: string;
+    size: number;
     location: string;
 }
