@@ -4,7 +4,7 @@ import { PositiveNumber } from '../../common/util/positive-number';
 import { TypeOfValue } from '../../common/util/typeof-value';
 /**
  * **summary**: validate that the request to update the Rental's details (the spec property) will not violate the
- * RentalSchemaValidation
+ * RentalSchemaValidation.
  */
 @Injectable()
 export class ValidateEditDetailsPipe implements PipeTransform {
@@ -17,7 +17,7 @@ export class ValidateEditDetailsPipe implements PipeTransform {
     }
 
     /**
-     * **summary**: validate EditDetailsDto
+     * **summary**: validate EditDetailsDto using the TypeOfValue utility
      * @param value the request data to edit the rental
      */
     private validateDetails = async (value: EditDetailsDto) => {
