@@ -128,7 +128,7 @@ export class AuthService {
             user.setExpirationDate();
             user.save();
             // create mail options
-            const mailOptions = await this.emailService.createMailOptions(user.email);
+            const mailOptions = await this.emailService.createMailOptions({email: user.email});
             const result = await this.emailService.sendMail(mailOptions);
             return user.resetPasswordToken;
         } catch(err) { 
