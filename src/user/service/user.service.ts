@@ -12,7 +12,9 @@ import { DeleteUserDto } from '../dto/delete-user.dto';
 import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
 import { RedisService } from '../../redis/service/redis.service';
 import { JwtPayloadDto } from 'src/auth/dto/jwt-payload';
-
+/**
+ * **summary**: contains all of the functionality to manage a user profile
+ */
 @Injectable()
 export class UserService {
     constructor(
@@ -23,7 +25,7 @@ export class UserService {
     ) { }
 
     /**
-     * Create User
+     * **summary**: create a new user
      * @param user 
      */
     async createUser(user: CreateUserDto) {
@@ -31,8 +33,6 @@ export class UserService {
             const document = await new this.userModel(user);
             await document.save();
             document.password = undefined;
-            console.log('CREATE USER: RETURN');
-            console.log(document);
             return document;
         } catch (err) {
             throw new Error(err);
@@ -40,14 +40,12 @@ export class UserService {
     }
 
     /**
-     * Find User by email
+     * **summary**: find a user by email
      * @param data email
      */
     async findUser(data: FindUserDto) {
         try {
             const user = await this.userModel.findOne({ email: data.email });
-            console.log('FIND USER: RETURN')
-            console.log(user);
             return user;
         } catch (err) {
             throw new Error(err);
@@ -55,14 +53,12 @@ export class UserService {
     }
 
     /**
-     * Find User by resetPasswordToken
+     * **summary**: find a user by their resetPasswordToken once they have submitted the reset password email
      * @param data the token
      */
     async findUserByResetPasswordToken(data: ResetPasswordTokenDto) {
         try {
             const user = await this.userModel.findOne({ resetPasswordToken: data.token });
-            console.log('FIND USER BY RESET PASSWORD TOKEN: RETURN')
-            console.log(user);
             return user;
         } catch (err) {
             throw new Error(err)
@@ -70,7 +66,9 @@ export class UserService {
     }
 
     /**
-     * Update User
+     * **summary**: update an existing user's information
+     * @param data the update user data
+     * @param req the client request
      */
     async updateUser(data: UpdateUserDto, req ) {
         try {
@@ -93,9 +91,9 @@ export class UserService {
     }
 
     /**
-     * Delete User Profile
+     * **summary**: delete a user's account
      * @param data user credentials
-     * @param req
+     * @param req the client request
      */
     async deleteUser(data: DeleteUserDto, req) {
         try {
@@ -121,6 +119,10 @@ export class UserService {
      ************************ Private Functions ************************
     */
 
+    /**
+     * **summary**: create a MongoDB update object for updating a user profile
+     * @param data raw request data to update a user
+     */
     private createUserUpdate(data: UpdateUserDto) {
         let update: UpdateUserDto = {}
         data.username ? update.username = data.username : data.username = null;
@@ -130,6 +132,10 @@ export class UserService {
         return update;
     }
 
+    /**
+     * **summary**: log a user out of the application by adding their JWT to the Redis cache 'dead-list'
+     * @param req the client request
+     */
     private async logoutUser(req: Request){
         const {jwt, key} = await this.extractKeyValueUtil.extract(req);
         await this.redisService.set(key, jwt);

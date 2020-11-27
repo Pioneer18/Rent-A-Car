@@ -7,6 +7,10 @@ import { Injectable } from "@nestjs/common";
 export class ValidateEmailUtil {
     constructor() {}
 
+    /**
+     * **summary**: if the array has a length greater than 0, a user with the email already exists
+     * @param check 
+     */
     validateEmail(check){
         if(check.length === 0 || check.length === undefined) return
         throw new Error('A User exists that is already using this email');

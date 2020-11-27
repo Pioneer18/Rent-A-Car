@@ -1,9 +1,10 @@
 import * as mongoose from 'mongoose';
 import * as crypto from 'crypto';
-import * as bcrypt from 'bcrypt'; // move password encryption to the schema
 
 const Schema = mongoose.Schema;
-
+/**
+ * **summary**: schema for the User model
+ */
 export const UserSchema = new Schema({
     username: String,
     email: { 

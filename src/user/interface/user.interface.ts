@@ -1,5 +1,5 @@
 /**
- * User Interface
+ * **summary**: interface for the User model
  */
 export interface UserInterface {
     username: string;

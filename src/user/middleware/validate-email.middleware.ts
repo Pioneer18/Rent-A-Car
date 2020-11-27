@@ -6,7 +6,9 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { ValidateEmailUtil } from '../util/validate-email.util';
 /**
- * Validate the requested email is unique to the database
+ * **summary**: before creating a new user, validate that their email is not already in the database. this middleware is only applied to the 
+ * user.controller.createUser() method
+ * - note: uses the ValidateEmailUtil class
  */
 @Injectable()
 export class ValidateEmailMiddleware implements NestMiddleware {
@@ -19,11 +21,21 @@ export class ValidateEmailMiddleware implements NestMiddleware {
         this.validateEmailUtil = new ValidateEmailUtil()
     }
 
-    private async validateEmail(value: CreateUserDto){
-        const check = await this.user.find({email: value.email});
+    /**
+     * **summary**: query the databse to valdiate the requested new email is unique to the database
+     * @param value the requested new user email
+     */
+    private async validateEmail(value: CreateUserDto) {
+        const check = await this.user.find({ email: value.email });
         this.validateEmailUtil.validateEmail(check)
     }
 
+    /**
+     * **summary**: use the validateEmail method to validate the requested new user email does not already exist before continuing to the handler
+     * @param req the client request
+     * @param res the response
+     * @param next the next method to continue to the request handler
+     */
     async use(req: Request, res: Response, next: Function) {
         // apply to create-user route
         if (req.originalUrl === '/v1/user/create-user') {

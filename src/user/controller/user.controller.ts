@@ -1,5 +1,4 @@
 import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect } from '@nestjs/common';
-import { Request } from 'express';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { LoggedOutGaurd } from '../../auth/gaurds/logged-out.guard';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
@@ -10,14 +9,16 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 import { BcryptHashPipe } from '../pipes/bcrypt.pipe';
 import { CreateUserValidation } from '../schema/validation/create-user-validation.schema';
 import { UserService } from '../service/user.service';
-
+/**
+ * 
+ */
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
     
     /**
-     * Create User
-     * @param user new user
+     * **summary**: create a new user profile
+     * @param user new user data
      */
     @UsePipes(new BcryptHashPipe())
     @UsePipes(new JoiValidationPipe(CreateUserValidation))
@@ -27,9 +28,9 @@ export class UserController {
     }
 
     /**
-     * Update User
+     * **summary**: update a user's profile data
      * @param update updates
-     * @param req 
+     * @param req client request
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
@@ -39,24 +40,20 @@ export class UserController {
         return await this.userService.updateUser(update, req);
     }
 
-    /*
-     * See Images Controller for Upload User Image(s)
-    */
-
     /**
-     * Find User by Email
-     * @param user 
+     * summary: find a user by email
+     * @param email 
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Get('find-user')
-    async findUser(@Body() user: FindUserDto) {
-        return await this.userService.findUser(user)
+    async findUser(@Body() email: FindUserDto) {
+        return await this.userService.findUser(email)
     }
 
 
     /**
-     * Delete User Profile
+     * **summary**: delete a user profile
      * @param data user credentials
      */
     @UseGuards(JwtAuthGuard)

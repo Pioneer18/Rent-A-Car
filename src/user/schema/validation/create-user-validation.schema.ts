@@ -1,6 +1,6 @@
 import * as joi from '@hapi/joi';
 /**
- * Validate requested new User before passing to handler
+ * **summary**: validate the requested new User data confirms to the User model
  */
 export const CreateUserValidation = joi.object({
     username: joi.string().required(),

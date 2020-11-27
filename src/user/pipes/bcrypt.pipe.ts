@@ -1,21 +1,21 @@
 import { Injectable, PipeTransform } from "@nestjs/common";
 import { CreateUserDto } from "../dto/create-user.dto";
 import * as bcrypt from 'bcrypt';
-
+/**
+ * **summary**: encrypt the user's password 
+ */
 @Injectable()
 export class BcryptHashPipe implements PipeTransform {
 
     /**
-     * Use bcrypt to hash and salt the user's password
+     * **summary**: use bcrypt to hash and salt the user's password
      * @param value new user info
      */
     async transform(value: CreateUserDto) {
         try {
-            console.log(`I Love Unathi!`);
             const hash = await bcrypt.hash(value.password, 10);
             const verified = await bcrypt.compare(value.password, hash);
             if (verified) {
-                console.log('verified :)')
                 value.password = hash;
                 return value;
             }

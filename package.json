@@ -1,7 +1,7 @@
 {
   "name": "rent-a-car",
   "version": "0.0.1",
-  "description": "",
+  "description": "A NestJS, TypeScript, SOLID, testable, extendable, and documented backend application: for a demonstration of technical skills",
   "author": "Jonathan Sells",
   "license": "MIT",
   "scripts": {
