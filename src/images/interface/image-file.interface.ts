@@ -1,3 +1,6 @@
+/**
+ * **summary**: Interface for the individual image files uploaded to the applicaiton
+ */
 export interface ImageFileInterface {
     fieldname: string;
     originalname: string;

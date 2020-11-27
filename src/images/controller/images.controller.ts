@@ -25,7 +25,7 @@ export class ImagesController {
     @Post('upload-rental-images')
     async uploadRentalImages(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, rentals, params.rental_id)
+            await this.imagesService.fileuploadAndSave({req, res, category: rentals, rental_id: params.rental_id})
         } catch (err) {
             return response
                 .status(500)
@@ -41,7 +41,7 @@ export class ImagesController {
     @Post('upload-profile-images')
     async uploadProfileImage(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, profile, params.rental_id)
+            await this.imagesService.fileuploadAndSave({req, res, category: profile, rental_id: params.rental_id})
         } catch (err) {
             return response
                 .status(500)
@@ -56,7 +56,7 @@ export class ImagesController {
      */
     @Get('find-rental-images')
     async findRentalImages(@Query() params, @Req() req) {
-        return await this.imagesService.findRentalImages({img_id: null, rental_id: params.rental_id, user: req.user});
+        return await this.imagesService.findRentalImages({ img_id: null, rental_id: params.rental_id, user: req.user });
     }
 
     /**
@@ -66,7 +66,7 @@ export class ImagesController {
      */
     @Get('find-rental-image')
     async findRentalImage(@Query() params: ImageDto, @Req() req) {
-        return await this.imagesService.findRentalImages({img_id: params._id, rental_id: null, user: req.user});
+        return await this.imagesService.findRentalImages({ img_id: params._id, rental_id: null, user: req.user });
     }
 
     /**
@@ -76,7 +76,7 @@ export class ImagesController {
      */
     @Get('find-profile-images')
     async findProfileImages(@Req() req) {
-        return await this.imagesService.findProfileImages(req.user);
+        return await this.imagesService.findProfileImages({ user: req.user });
     }
 
     /**
@@ -86,7 +86,7 @@ export class ImagesController {
      */
     @Get('find-profile-image')
     async findProfileImage(@Req() req, @Body() image: ImageDto) {
-        return await this.imagesService.findProfileImages(req.user, image._id);
+        return await this.imagesService.findProfileImages({ user: req.user, img_id: image._id });
     }
 
     /**
@@ -96,7 +96,7 @@ export class ImagesController {
      */
     @Post('delete-images')
     async deleteRentalImages(@Body() images: ImageDto[], @Req() req) {
-        return await this.imagesService.deleteImages(images, req.user);
+        return await this.imagesService.deleteImages({ images, user: req.user });
     }
 
     /**
@@ -105,7 +105,7 @@ export class ImagesController {
      */
     @Post('delete-all-rental-images')
     async deleteAllRentalImages(@Query() params, @Req() req) {
-        return await this.imagesService.deleteAllImages(req.user, params.rental_id);
+        return await this.imagesService.deleteAllImages({ user: req.user, rental_id: params.rental_id });
     }
 
     /**
@@ -114,7 +114,7 @@ export class ImagesController {
      */
     @Post('delete-all-profile-images')
     async deleteAllProfileImages(@Req() req) {
-        return await this.imagesService.deleteAllImages(req.user, null);
+        return await this.imagesService.deleteAllImages({ user: req.user });
     }
 
 }

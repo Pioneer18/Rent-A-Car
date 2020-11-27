@@ -1,6 +1,6 @@
 import { ImageInterface } from "./modelInterface/image.interface";
 /**
- * **summary**: the dto for image data to be passed to the images.service.saveImages() method
+ * **summary**: Interface for the values returned by the ProcessSaveDataUtil.process() method
  */
 export interface ProcessedSaveDataInterface {
     packet: ImageInterface[];
