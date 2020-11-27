@@ -79,10 +79,9 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
+                        <h6><b>Properties</b></h6>
                     </td>
                 </tr>
                 <tr>
@@ -94,6 +93,7 @@
                         </ul>
                     </td>
                 </tr>
+
 
 
 
@@ -122,79 +122,63 @@
         </table>
 </section>
 
+
             <section>
     
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="validateEmail"></a>
-                    <span class="name">
-                        <b>
-                            validateEmail
-                        </b>
-                        <a href="#validateEmail"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>validateEmail(check)</code>
-                </td>
-            </tr>
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validateEmail"></a>
+                        <span class="name">
+                            <b>
+                            validateEmail</b>
+                            <a href="#validateEmail"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user/util/validate-email.util.ts:14</a></div>
+                            </td>
+                        </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/user/util/validate-email.util.ts:14</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: if the array has a length greater than 0, a user with the email already exists</p>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: if the array has a length greater than 0, a user with the email already exists</p>
 </div>
+                    </td>
+                </tr>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>check</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>check</td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
 </section>
 
     </div>
@@ -214,7 +198,7 @@ export class ValidateEmailUtil {
      * **summary**: if the array has a length greater than 0, a user with the email already exists
      * @param check 
      */
-    validateEmail(check){
+    validateEmail &#x3D; (check) &#x3D;&gt; {
         if(check.length &#x3D;&#x3D;&#x3D; 0 || check.length &#x3D;&#x3D;&#x3D; undefined) return
         throw new Error(&#x27;A User exists that is already using this email&#x27;);
     }

@@ -83,6 +83,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#transform">transform</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#validateDto">validateDto</a>
                             </li>
@@ -90,20 +93,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#transform">transform</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -114,94 +103,68 @@
 </section>
 
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="transform"></a>
-                    <span class="name">
-                        <b>
-                            transform
-                        </b>
-                        <a href="#transform"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>transform(value: <a href="../classes/RemoveUnavailabilityDto.html">RemoveUnavailabilityDto</a>)</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/rental/pipes/validate-remove-unavailability.pipe.ts:24</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: use the validateDto method to validate the request before passing it on</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="../classes/RemoveUnavailabilityDto.html" target="_self" >RemoveUnavailabilityDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the raw client request</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/RemoveUnavailabilityDto.html" target="_self" >RemoveUnavailabilityDto</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section>
     
         <h3 id="inputs">
             Properties
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="transform"></a>
+                        <span class="name">
+                            <b>
+                            transform</b>
+                            <a href="#transform"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/rental/pipes/validate-remove-unavailability.pipe.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: use the validateDto method to validate the request before passing it on</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the raw client request</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -288,7 +251,7 @@ export class ValidateRemoveUnavailabilityPipe implements PipeTransform {
      * **summary**: use the validateDto method to validate the request before passing it on
      * @param value the raw client request
      */
-    transform(value: RemoveUnavailabilityDto):RemoveUnavailabilityDto {
+    transform &#x3D; (value: RemoveUnavailabilityDto):RemoveUnavailabilityDto &#x3D;&gt; {
         this.validateDto(value);
         return value;
     }

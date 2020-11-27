@@ -96,20 +96,7 @@ This is to prevent the user on the front-end from accidentally overlapping &#39;
                                     <span class="modifier">Protected</span>
                                 <a href="#createQuery">createQuery</a>
                             </li>
-                        </ul>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#transform">transform</a>
                             </li>
                         </ul>
@@ -120,99 +107,13 @@ This is to prevent the user on the front-end from accidentally overlapping &#39;
 
 
 
+
         </tbody>
     </table>
 </section>
 
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="transform"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            transform
-                        </b>
-                        <a href="#transform"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../classes/ValidatedUnavailabilityDto.html">ValidatedUnavailabilityDto</a>)</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="121"
-                            class="link-to-prism">src/rental/pipes/process-unavailability.pipe.ts:121</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: process the request to update a rental&#39;s &#39;scheduled unavailability&#39;</p>
-<ul>
-<li>the user may schedule as far as a year ahead. To easily track the data as a single &#39;block&#39; of unavailable time for the rental, each Unavailability document related to this query is given the same &#39;uuid&#39;</li>
-</ul>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="../classes/ValidatedUnavailabilityDto.html" target="_self" >ValidatedUnavailabilityDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the validated unavailability request dto</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;ProcessedUnavailabilityDto&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section>
     
         <h3 id="inputs">
@@ -326,6 +227,65 @@ This is to prevent the user on the front-end from accidentally overlapping &#39;
                                                         <td>year</td>
                                                         <td>
                                                                 <code><p>data for creating a MongoDB update object</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="transform"></a>
+                        <span class="name">
+                            <b>
+                            transform</b>
+                            <a href="#transform"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/rental/pipes/process-unavailability.pipe.ts:121</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: process the request to update a rental&#39;s &#39;scheduled unavailability&#39;</p>
+<ul>
+<li>the user may schedule as far as a year ahead. To easily track the data as a single &#39;block&#39; of unavailable time for the rental, each Unavailability document related to this query is given the same &#39;uuid&#39;</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the validated unavailability request dto</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -462,9 +422,9 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
    * - the user may schedule as far as a year ahead. To easily track the data as a single &#x27;block&#x27; of unavailable time for the rental, each Unavailability document related to this query is given the same &#x27;uuid&#x27;
    * @param value the validated unavailability request dto
    */
-  async transform(
+  transform &#x3D; async(
     value: ValidatedUnavailabilityDto,
-  ): Promise&lt;ProcessedUnavailabilityDto&gt; {
+  ): Promise&lt;ProcessedUnavailabilityDto&gt; &#x3D;&gt; {
     // add uuid
     const {pY1, pY2} &#x3D; await this.addUnavailabilityId(value);
     const { y1, y2 } &#x3D; value;

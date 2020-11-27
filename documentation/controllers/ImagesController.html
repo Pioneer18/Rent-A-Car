@@ -992,7 +992,7 @@ export class ImagesController {
     @Post(&#x27;upload-rental-images&#x27;)
     async uploadRentalImages(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, rentals, params.rental_id, this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, rentals, params.rental_id)
         } catch (err) {
             return response
                 .status(500)
@@ -1008,7 +1008,7 @@ export class ImagesController {
     @Post(&#x27;upload-profile-images&#x27;)
     async uploadProfileImage(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, profile, params.rental_id, this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, profile, params.rental_id)
         } catch (err) {
             return response
                 .status(500)
@@ -1075,14 +1075,14 @@ export class ImagesController {
         return await this.imagesService.deleteAllImages(req.user, params.rental_id);
     }
 
-   /**
-    * Delete All Profile Images
-    * Summary: Delete all of the user&#x27;s profile images
-    */
-   @Post(&#x27;delete-all-profile-images&#x27;)
-   async deleteAllProfileImages(@Req() req) {
+    /**
+     * Delete All Profile Images
+     * Summary: Delete all of the user&#x27;s profile images
+     */
+    @Post(&#x27;delete-all-profile-images&#x27;)
+    async deleteAllProfileImages(@Req() req) {
         return await this.imagesService.deleteAllImages(req.user, null);
-   }
+    }
 
 }
 </code></pre>

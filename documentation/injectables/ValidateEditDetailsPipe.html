@@ -87,6 +87,9 @@ RentalSchemaValidation</p>
                                 <a href="#positiveNumber">positiveNumber</a>
                             </li>
                             <li>
+                                <a href="#transform">transform</a>
+                            </li>
+                            <li>
                                 <a href="#typeOfValue">typeOfValue</a>
                             </li>
                             <li>
@@ -97,21 +100,6 @@ RentalSchemaValidation</p>
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#transform">transform</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -140,91 +128,7 @@ RentalSchemaValidation</p>
         </table>
 </section>
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="transform"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            transform
-                        </b>
-                        <a href="#transform"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../classes/EditDetailsDto.html">EditDetailsDto</a>)</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/rental/pipes/validate-edit-details.pipe.ts:99</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: use the validateDetails() method to validate the request before passing to the handler</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="../classes/EditDetailsDto.html" target="_self" >EditDetailsDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the raw client request to edit the details (spec property) of a Rental</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditDetailsDto.html" target="_self" >Promise&lt;EditDetailsDto&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section>
     
         <h3 id="inputs">
@@ -255,6 +159,62 @@ RentalSchemaValidation</p>
                         </tr>
 
 
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="transform"></a>
+                        <span class="name">
+                            <b>
+                            transform</b>
+                            <a href="#transform"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/rental/pipes/validate-edit-details.pipe.ts:99</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: use the validateDetails() method to validate the request before passing to the handler</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the raw client request to edit the details (spec property) of a Rental</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -445,7 +405,7 @@ export class ValidateEditDetailsPipe implements PipeTransform {
      * **summary**: use the validateDetails() method to validate the request before passing to the handler
      * @param value the raw client request to edit the details (spec property) of a Rental
      */
-    async transform(value: EditDetailsDto):Promise&lt;EditDetailsDto&gt; {
+    transform &#x3D; async(value: EditDetailsDto):Promise&lt;EditDetailsDto&gt; &#x3D;&gt; {
         await this.validateDetails(value);
         return value;
     }

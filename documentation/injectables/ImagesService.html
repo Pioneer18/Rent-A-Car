@@ -102,9 +102,6 @@ this makes queries slightly less selective and less efficient, but more secure.<
                                 <a href="#findRentalImages">findRentalImages</a>
                             </li>
                             <li>
-                                <a href="#s3">s3</a>
-                            </li>
-                            <li>
                                 <a href="#saveImages">saveImages</a>
                             </li>
                         </ul>
@@ -126,7 +123,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(imagesModel: <a href="../interfaces/ImageInterface.html">Model<ImageInterface></a>, appConfig: <a href="../injectables/AppConfigService.html">AppConfigService</a>, processSaveDataUtil: <a href="../injectables/ProcessSaveDataUtil.html">ProcessSaveDataUtil</a>, s3Provider: <a href="../injectables/S3Provider.html">S3Provider</a>, createMulterUploadUtil: <a href="../injectables/CreateMulterUploadUtil.html">CreateMulterUploadUtil</a>, multerUploadUtil: <a href="../injectables/MulterUploadUtil.html">MulterUploadUtil</a>, deleteS3ImagesUtil: <a href="../injectables/DeleteS3ImagesUtil.html">DeleteS3ImagesUtil</a>)</code>
+<code>constructor(imagesModel: <a href="../interfaces/ImageInterface.html">Model<ImageInterface></a>, processSaveDataUtil: <a href="../injectables/ProcessSaveDataUtil.html">ProcessSaveDataUtil</a>, createMulterUploadUtil: <a href="../injectables/CreateMulterUploadUtil.html">CreateMulterUploadUtil</a>, multerUploadUtil: <a href="../injectables/MulterUploadUtil.html">MulterUploadUtil</a>, deleteS3ImagesUtil: <a href="../injectables/DeleteS3ImagesUtil.html">DeleteS3ImagesUtil</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -161,34 +158,10 @@ this makes queries slightly less selective and less efficient, but more secure.<
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>appConfig</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AppConfigService.html" target="_self" >AppConfigService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
                                                         <td>processSaveDataUtil</td>
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/ProcessSaveDataUtil.html" target="_self" >ProcessSaveDataUtil</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>s3Provider</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/S3Provider.html" target="_self" >S3Provider</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -266,7 +239,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/images/service/images.service.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/images/service/images.service.ts:123</a></div>
                             </td>
                         </tr>
 
@@ -329,7 +302,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/images/service/images.service.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/images/service/images.service.ts:103</a></div>
                             </td>
                         </tr>
 
@@ -392,7 +365,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/images/service/images.service.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/images/service/images.service.ts:142</a></div>
                             </td>
                         </tr>
 
@@ -476,7 +449,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/images/service/images.service.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/images/service/images.service.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -532,7 +505,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/images/service/images.service.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/images/service/images.service.ts:61</a></div>
                             </td>
                         </tr>
 
@@ -595,32 +568,6 @@ is just to ensure only the user&#39;s photos are returned and not another user&#
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="s3"></a>
-                        <span class="name">
-                            <b>
-                            s3</b>
-                            <a href="#s3"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>this.s3Provider.getS3()</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/images/service/images.service.ts:33</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="saveImages"></a>
                         <span class="name">
                             <b>
@@ -636,7 +583,7 @@ is just to ensure only the user&#39;s photos are returned and not another user&#
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/images/service/images.service.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/images/service/images.service.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -725,14 +672,11 @@ export class ImagesService {
 
   constructor(
     @InjectModel(&#x27;Images&#x27;) private readonly imagesModel: Model&lt;ImageInterface&gt;,
-    private readonly appConfig: AppConfigService,
     private readonly processSaveDataUtil: ProcessSaveDataUtil,
-    private readonly s3Provider: S3Provider,
     private readonly createMulterUploadUtil: CreateMulterUploadUtil,
     private readonly multerUploadUtil: MulterUploadUtil,
     private readonly deleteS3ImagesUtil: DeleteS3ImagesUtil,
   ) { }
-  s3 &#x3D; this.s3Provider.getS3();
 
   /**
    * **summary**: saves AWS uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 
@@ -741,15 +685,15 @@ export class ImagesService {
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it&#x27;s a rental image): Check for null
    */
-  saveImages &#x3D; async (files, category, user_id, rental_id, model) &#x3D;&gt; {
+  saveImages &#x3D; async (files, category, user_id, rental_id) &#x3D;&gt; {
     try {
       const { packet, image }: ProcessedSaveDataDto &#x3D; await this.processSaveDataUtil.process(files, user_id, rental_id, category);
       let flag;
       packet &#x3D;&#x3D;&#x3D; null ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
       if (flag &#x3D;&#x3D;&#x3D; &#x27;multiple&#x27;) {
-        return await model.insertMany(packet);
+        return await this.imagesModel.insertMany(packet);
       }
-      return await model.save(image)
+      return await this.imagesModel.save(image)
     } catch (err) {
       throw new Error(err);
     }
@@ -844,47 +788,17 @@ export class ImagesService {
    * @param rental_id the rental_id for rental image uploads
    * @param saveImages the images.service.saveImages method
    */
-  fileuploadAndSave &#x3D; async (req, res, category, rental_id, saveimages) &#x3D;&gt; {
+  fileuploadAndSave &#x3D; async (req, res, category, rental_id) &#x3D;&gt; {
     try {
       // create a multer upload
       const user: JwtPayloadDto &#x3D; req.user;
       const multerUpload &#x3D; await this.createMulterUploadUtil.create(req, category)
       // Upload the image(s)
-      const model &#x3D; this.imagesModel;
-      await this.multerUploadUtil.upload(req, res, multerUpload, saveimages, category, user, rental_id, model);
+      await this.multerUploadUtil.upload(req, res, multerUpload, this.saveImages, category, user, rental_id);
     } catch (err) {
       return res.status(500).json(&#x60;Failed to upload image file: ${err}&#x60;)
     }
   }
-
-  // Get Presigned Url to download file
-  /**
-   * @param originalname file name
-   * @param bucket location of the photo
-  private getSingedUrl &#x3D; async (bucket, originalname) &#x3D;&gt; {
-    const s3 &#x3D; this.s3;
-    const params &#x3D; {
-      Bucket: bucket,
-      Key: originalname,
-      Expires: 60 * 60, //1 hour
-    };
-    try {
-      const url &#x3D; await new Promise((resolve, reject) &#x3D;&gt; {
-        s3.getSignedUrl(&#x27;getObject&#x27;, params, (err, url) &#x3D;&gt; {
-          err ? reject(err) : resolve(url);
-        });
-      });
-      Logger.log(url)
-      return url;
-    } catch (err) {
-      if (err) {
-        throw new Error(err);
-      }
-    }
-  }
-  */
-
-
 }
 </code></pre>
     </div>

@@ -87,6 +87,9 @@
                                 <a href="#mapPricingDto">mapPricingDto</a>
                             </li>
                             <li>
+                                <a href="#transform">transform</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#validatePricingDto">validatePricingDto</a>
                             </li>
@@ -94,21 +97,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#transform">transform</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -119,91 +107,7 @@
 </section>
 
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="transform"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            transform
-                        </b>
-                        <a href="#transform"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../classes/PricingDto.html">PricingDto</a>)</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/rental/pipes/pricing.pipe.ts:51</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="../classes/PricingDto.html" target="_self" >PricingDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the raw request from a user to update the pricing of a Rental</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section>
     
         <h3 id="inputs">
@@ -253,6 +157,62 @@
                                       <tbody>
                                                 <tr>
                                                         <td>[object Object]</td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="transform"></a>
+                        <span class="name">
+                            <b>
+                            transform</b>
+                            <a href="#transform"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/rental/pipes/pricing.pipe.ts:51</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the raw request from a user to update the pricing of a Rental</p>
+</code>
+                                                        </td>
                                                 </tr>
                                       </tbody>
                                   </table>
@@ -374,7 +334,7 @@ export class PricingPipe implements PipeTransform {
      * **summary**: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler
      * @param value the raw request from a user to update the pricing of a Rental
      */
-    async transform(value: PricingDto) {
+    transform &#x3D; async(value: PricingDto) &#x3D;&gt; {
         try {
             await this.validatePricingDto(value);
             const data: PricingDto &#x3D; await this.mapPricingDto(value);

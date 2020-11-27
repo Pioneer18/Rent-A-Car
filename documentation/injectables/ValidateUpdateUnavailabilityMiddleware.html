@@ -87,6 +87,9 @@
                                 <a href="#calculateRange">calculateRange</a>
                             </li>
                             <li>
+                                <a href="#use">use</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#validateDto">validateDto</a>
                             </li>
@@ -98,21 +101,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#use">use</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -171,124 +159,7 @@
         </table>
 </section>
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="use"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            use
-                        </b>
-                        <a href="#use"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>use(req: Request, res: Response, next: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>)</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="144"
-                            class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:144</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
-rental.controller.updateUnavailability() method. Validate the request before passing the data to the handler</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>req</td>
-                                    <td>
-                                            <code>Request</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the request object</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>res</td>
-                                    <td>
-                                            <code>Response</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the response object</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>next</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the next method to continue onto the next handler</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section>
     
         <h3 id="inputs">
@@ -348,6 +219,77 @@ rental.controller.updateUnavailability() method. Validate the request before pas
                                                         <td>y2</td>
                                                         <td>
                                                                 <code><p>the start and end day of the second yaer that the Unavailability is scheduled across; if there is a second year</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="use"></a>
+                        <span class="name">
+                            <b>
+                            use</b>
+                            <a href="#use"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:144</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
+rental.controller.updateUnavailability() method. Validate the request before passing the data to the handler</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>req</td>
+                                                        <td>
+                                                                <code><p>the request object</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>res</td>
+                                                        <td>
+                                                                <code><p>the response object</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>next</td>
+                                                        <td>
+                                                                <code><p>the next method to continue onto the next handler</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -630,7 +572,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
    * @param res the response object
    * @param next the next method to continue onto the next handler
    */
-  async use(req: Request, res: Response, next: Function):Promise&lt;void&gt; {
+  use &#x3D; async(req: Request, res: Response, next: Function):Promise&lt;void&gt; &#x3D;&gt; {
     // apply only to update-unavailability request
     if (req.originalUrl &#x3D;&#x3D;&#x3D; &#x27;/v1/rental/update-unavailability&#x27;) {
       await this.validateDto(req.body);

@@ -86,54 +86,35 @@
                                     <span class="modifier">Private</span>
                                 <a href="#checkForOverlap">checkForOverlap</a>
                             </li>
-                        </ul>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#createRental">createRental</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#createRentalQuery">createRentalQuery</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#editDetails">editDetails</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#editPricing">editPricing</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#removeUnavailability">removeUnavailability</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#scheduleUnavailability">scheduleUnavailability</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#searchRental">searchRental</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#updateUnavailability">updateUnavailability</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+
 
 
 
@@ -204,646 +185,7 @@
         </table>
 </section>
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="createRental"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            createRental
-                        </b>
-                        <a href="#createRental"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createRental(rental: <a href="../classes/CreateRentalDto.html">CreateRentalDto</a>)</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/rental/service/rental.service.ts:31</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: create a new rental listing with attached geolocation coordinates
-so the rental may be found by a geospatial query</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>rental</td>
-                                    <td>
-                                                <code><a href="../classes/CreateRentalDto.html" target="_self" >CreateRentalDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the new rental to be created</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="createRentalQuery"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Async</span>
-                            createRentalQuery
-                        </b>
-                        <a href="#createRentalQuery"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createRentalQuery(rental: <a href="../classes/SearchRentalDto.html">SearchRentalDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="178"
-                            class="link-to-prism">src/rental/service/rental.service.ts:178</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: convert a searchRentalDto into a mongoose query for the searchRental method</p>
-<ul>
-<li>The query searchs a maxium 8 mile radius for rentals</li>
-<li>Filters: <ul>
-<li>rental min duration</li>
-<li>rental max duration</li>
-<li>advance notice minimum; e.g. 1 hour</li>
-<li>loc: GeoJSON object</li>
-<li>rental price: optional</li>
-<li>rental features: optional</li>
-</ul>
-</li>
-</ul>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>rental</td>
-                                    <td>
-                                                <code><a href="../classes/SearchRentalDto.html" target="_self" >SearchRentalDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>searchRentalDto</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="editDetails"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            editDetails
-                        </b>
-                        <a href="#editDetails"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>editDetails(data: <a href="../classes/EditDetailsDto.html">EditDetailsDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/rental/service/rental.service.ts:92</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: edit the details of the Rental (# of seats, color, etc.)</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/EditDetailsDto.html" target="_self" >EditDetailsDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the data comes as an EditDetailsDto</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="editPricing"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            editPricing
-                        </b>
-                        <a href="#editPricing"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>editPricing(data: <a href="../classes/PricingDto.html">PricingDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/rental/service/rental.service.ts:65</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: edit the rental pricing</p>
-<ul>
-<li>price</li>
-<li>discounts:<ul>
-<li>weekly</li>
-<li>monthly</li>
-</ul>
-</li>
-</ul>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/PricingDto.html" target="_self" >PricingDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="removeUnavailability"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            removeUnavailability
-                        </b>
-                        <a href="#removeUnavailability"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removeUnavailability(data: <a href="../classes/RemoveUnavailabilityDto.html">RemoveUnavailabilityDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="151"
-                            class="link-to-prism">src/rental/service/rental.service.ts:151</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: remove an amount of time from a scheduled duration of unavailability on the rental</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/RemoveUnavailabilityDto.html" target="_self" >RemoveUnavailabilityDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="scheduleUnavailability"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            scheduleUnavailability
-                        </b>
-                        <a href="#scheduleUnavailability"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>scheduleUnavailability(processed: <a href="../classes/ProcessedUnavailabilityDto.html">ProcessedUnavailabilityDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/rental/service/rental.service.ts:113</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: set a period of unavailability for the rental (e.g. mon - wed)</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>processed</td>
-                                    <td>
-                                                <code><a href="../classes/ProcessedUnavailabilityDto.html" target="_self" >ProcessedUnavailabilityDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="searchRental"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            searchRental
-                        </b>
-                        <a href="#searchRental"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>searchRental(rental: <a href="../classes/SearchRentalDto.html">SearchRentalDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/rental/service/rental.service.ts:44</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: query rentals in the database with the data provided in the SearchRentalDto</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>rental</td>
-                                    <td>
-                                                <code><a href="../classes/SearchRentalDto.html" target="_self" >SearchRentalDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>SearchRentalDto</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updateUnavailability"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            updateUnavailability
-                        </b>
-                        <a href="#updateUnavailability"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateUnavailability(data: <a href="../classes/UpdateUnavailabilityDataDto.html">UpdateUnavailabilityDataDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">src/rental/service/rental.service.ts:134</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/UpdateUnavailabilityDataDto.html" target="_self" >UpdateUnavailabilityDataDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section>
     
         <h3 id="inputs">
@@ -869,7 +211,7 @@ so the rental may be found by a geospatial query</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/rental/service/rental.service.ts:216</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/rental/service/rental.service.ts:217</a></div>
                             </td>
                         </tr>
 
@@ -899,6 +241,442 @@ with the requested unavailability </p>
                                                                 <code><p>query for 1 or 2 years</p>
 </code>
                                                         </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createRental"></a>
+                        <span class="name">
+                            <b>
+                            createRental</b>
+                            <a href="#createRental"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/rental/service/rental.service.ts:31</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: create a new rental listing with attached geolocation coordinates
+so the rental may be found by a geospatial query</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>rental</td>
+                                                        <td>
+                                                                <code><p>the new rental to be created</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createRentalQuery"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            createRentalQuery</b>
+                            <a href="#createRentalQuery"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/rental/service/rental.service.ts:179</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: convert a searchRentalDto into a mongoose query for the searchRental method</p>
+<ul>
+<li>The query searchs a maxium 8 mile radius for rentals</li>
+<li>Filters: <ul>
+<li>rental min duration</li>
+<li>rental max duration</li>
+<li>advance notice minimum; e.g. 1 hour</li>
+<li>loc: GeoJSON object</li>
+<li>rental price: optional</li>
+<li>rental features: optional</li>
+</ul>
+</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>rental</td>
+                                                        <td>
+                                                                <code><p>searchRentalDto</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editDetails"></a>
+                        <span class="name">
+                            <b>
+                            editDetails</b>
+                            <a href="#editDetails"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/rental/service/rental.service.ts:93</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: edit the details of the Rental (# of seats, color, etc.)</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>data</td>
+                                                        <td>
+                                                                <code><p>the data comes as an EditDetailsDto</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editPricing"></a>
+                        <span class="name">
+                            <b>
+                            editPricing</b>
+                            <a href="#editPricing"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/rental/service/rental.service.ts:66</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: edit the rental pricing</p>
+<ul>
+<li>price</li>
+<li>discounts:<ul>
+<li>weekly</li>
+<li>monthly</li>
+</ul>
+</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>data</td>
+                                                        <td>
+                                                                <code><p>the request dto</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="removeUnavailability"></a>
+                        <span class="name">
+                            <b>
+                            removeUnavailability</b>
+                            <a href="#removeUnavailability"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/rental/service/rental.service.ts:152</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: remove an amount of time from a scheduled duration of unavailability on the rental</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>data</td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="scheduleUnavailability"></a>
+                        <span class="name">
+                            <b>
+                            scheduleUnavailability</b>
+                            <a href="#scheduleUnavailability"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/rental/service/rental.service.ts:114</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: set a period of unavailability for the rental (e.g. mon - wed)</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchRental"></a>
+                        <span class="name">
+                            <b>
+                            searchRental</b>
+                            <a href="#searchRental"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/rental/service/rental.service.ts:44</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: query rentals in the database with the data provided in the SearchRentalDto</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>rental</td>
+                                                        <td>
+                                                                <code><p>SearchRentalDto</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateUnavailability"></a>
+                        <span class="name">
+                            <b>
+                            updateUnavailability</b>
+                            <a href="#updateUnavailability"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/rental/service/rental.service.ts:135</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>data</td>
                                                 </tr>
                                       </tbody>
                                   </table>
@@ -943,7 +721,7 @@ export class RentalService {
    * so the rental may be found by a geospatial query
    * @param rental the new rental to be created
    */
-  async createRental(rental: CreateRentalDto) {
+  createRental &#x3D; async(rental: CreateRentalDto) &#x3D;&gt; {
     try {
       const document &#x3D; await new this.rentalModel(rental);
       return await document.save();
@@ -956,7 +734,7 @@ export class RentalService {
    * **summary**: query rentals in the database with the data provided in the SearchRentalDto
    * @param rental SearchRentalDto
    */
-  async searchRental(rental: SearchRentalDto) {
+  searchRental &#x3D; async(rental: SearchRentalDto) &#x3D;&gt; {
     try {
       const query &#x3D; await this.createRentalQuery(rental);
       const rentals &#x3D; await this.rentalModel.find(query);
@@ -976,8 +754,9 @@ export class RentalService {
    * - discounts:
    *   - weekly
    *   - monthly
+   * @param data the request dto
    */
-  async editPricing(data: PricingDto) {
+  editPricing &#x3D; async(data: PricingDto) &#x3D;&gt; {
     // make an update document
     try {
       const filter &#x3D; { _id: data.rentalId };
@@ -1004,7 +783,7 @@ export class RentalService {
    * **summary**: edit the details of the Rental (# of seats, color, etc.)
    * @param data the data comes as an EditDetailsDto
    */
-  async editDetails(data: EditDetailsDto) {
+  editDetails &#x3D; async(data: EditDetailsDto) &#x3D;&gt; {
     // make an update document
     try {
       const filter &#x3D; { _id: data.rentalId };
@@ -1025,7 +804,7 @@ export class RentalService {
   /**
    * **summary**: set a period of unavailability for the rental (e.g. mon - wed)
    */
-  async scheduleUnavailability(processed: ProcessedUnavailabilityDto) {
+  scheduleUnavailability &#x3D; async(processed: ProcessedUnavailabilityDto) &#x3D;&gt; {
     try {
       await this.checkForOverlap(processed);
       // if it passed, combine data into one array and insert
@@ -1046,7 +825,7 @@ export class RentalService {
    * **summary**: edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
    * @param data 
    */
-  async updateUnavailability(data: UpdateUnavailabilityDataDto) {
+  updateUnavailability &#x3D; async(data: UpdateUnavailabilityDataDto) &#x3D;&gt; {
     // send the update
     try {
       const update &#x3D; await this.unavailability.updateMany(
@@ -1063,7 +842,7 @@ export class RentalService {
    * **summary**: remove an amount of time from a scheduled duration of unavailability on the rental
    * @param data 
    */
-  async removeUnavailability(data: RemoveUnavailabilityDto) {
+  removeUnavailability &#x3D; async(data: RemoveUnavailabilityDto) &#x3D;&gt; {
     try {
       const remove &#x3D; await this.unavailability.deleteMany({
         rentalId: data.rentalId,
@@ -1090,7 +869,7 @@ export class RentalService {
    *   - rental features: optional
    * @param rental searchRentalDto
    */
-  private async createRentalQuery(rental: SearchRentalDto) {
+  private createRentalQuery &#x3D; async(rental: SearchRentalDto) &#x3D;&gt; {
     try {
       const query: any &#x3D; {
         &#x27;scheduling.rentMinDuration&#x27;: { $lte: rental.rentalDuration },

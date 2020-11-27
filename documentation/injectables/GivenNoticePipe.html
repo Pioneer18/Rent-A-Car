@@ -78,10 +78,9 @@ and then uses Luxon methods to validate the Given Notice is at least 1 hour in d
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
+                        <h6><b>Properties</b></h6>
                     </td>
                 </tr>
                 <tr>
@@ -89,16 +88,13 @@ and then uses Luxon methods to validate the Given Notice is at least 1 hour in d
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#createGivenNotice">createGivenNotice</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#transform">transform</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#validateRequestedTime">validateRequestedTime</a>
                             </li>
                         </ul>
@@ -109,261 +105,196 @@ and then uses Luxon methods to validate the Given Notice is at least 1 hour in d
 
 
 
+
         </tbody>
     </table>
 </section>
 
 
+
             <section>
     
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="createGivenNotice"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Async</span>
-                            createGivenNotice
-                        </b>
-                        <a href="#createGivenNotice"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createGivenNotice(startTime)</code>
-                </td>
-            </tr>
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createGivenNotice"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            createGivenNotice</b>
+                            <a href="#createGivenNotice"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:20</a></div>
+                            </td>
+                        </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:20</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: create the <strong>givenNotice</strong> property value, it must be at least one hour</p>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: create the <strong>givenNotice</strong> property value, it must be at least one hour</p>
 </div>
+                    </td>
+                </tr>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>startTime</td>
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>startTime</td>
+                                                        <td>
+                                                                <code><p>the request start time of the rental</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="transform"></a>
+                        <span class="name">
+                            <b>
+                            transform</b>
+                            <a href="#transform"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:51</a></div>
+                            </td>
+                        </tr>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the request start time of the rental</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="transform"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            transform
-                        </b>
-                        <a href="#transform"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../classes/RawSearchRentalDto.html">RawSearchRentalDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:51</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto</p>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto</p>
 </div>
+                    </td>
+                </tr>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="../classes/RawSearchRentalDto.html" target="_self" >RawSearchRentalDto</a></code>
-                                    </td>
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the raw client request data to search for rentals</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validateRequestedTime"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            validateRequestedTime</b>
+                            <a href="#validateRequestedTime"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:36</a></div>
+                            </td>
+                        </tr>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the raw client request data to search for rentals</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;GivenNoticeSearchRentalDto&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="validateRequestedTime"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Async</span>
-                            validateRequestedTime
-                        </b>
-                        <a href="#validateRequestedTime"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>validateRequestedTime(startTime, endTime)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/rental/pipes/given-notice.pipe.ts:36</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
 this is just another level of validation.</p>
 </div>
+                    </td>
+                </tr>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>startTime</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the requested time for the Rental to begin</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>endTime</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the requested time for the Rental to end</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>startTime</td>
+                                                        <td>
+                                                                <code><p>the requested time for the Rental to begin</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>endTime</td>
+                                                        <td>
+                                                                <code><p>the requested time for the Rental to end</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
 </section>
 
     </div>
@@ -389,7 +320,7 @@ export class GivenNoticePipe implements PipeTransform {
    * **summary**: create the **givenNotice** property value, it must be at least one hour
    * @param startTime the request start time of the rental
    */
-  private async createGivenNotice(startTime) {
+  private createGivenNotice &#x3D; async(startTime) &#x3D;&gt; {
     const givenNotice: number &#x3D; startTime.diffNow().toObject().milliseconds;
     if (givenNotice &gt;&#x3D; 3600000) {
       return givenNotice;
@@ -405,7 +336,7 @@ export class GivenNoticePipe implements PipeTransform {
    * @param startTime the requested time for the Rental to begin
    * @param endTime the requested time for the Rental to end
    */
-  private async validateRequestedTime(startTime, endTime) {
+  private validateRequestedTime &#x3D; async(startTime, endTime) &#x3D;&gt; {
     if (startTime &gt; endTime) {
       throw new Error(
         &#x27;The rental start time cannot be after the rental end time&#x27;,
@@ -420,7 +351,7 @@ export class GivenNoticePipe implements PipeTransform {
    * **summary**: use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto
    * @param value the raw client request data to search for rentals
    */
-  async transform(value: RawSearchRentalDto):Promise&lt;GivenNoticeSearchRentalDto&gt; {
+  transform &#x3D; async(value: RawSearchRentalDto):Promise&lt;GivenNoticeSearchRentalDto&gt; &#x3D;&gt; {
     try {
       // make start and end time into DateTimes
       const startTime: DateTime &#x3D; DateTime.fromISO(

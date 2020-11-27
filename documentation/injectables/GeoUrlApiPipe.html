@@ -75,10 +75,9 @@ to get the coordinates of the address. The coordinates allow Rentals to be geosp
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
+                        <h6><b>Properties</b></h6>
                     </td>
                 </tr>
                 <tr>
@@ -86,20 +85,19 @@ to get the coordinates of the address. The coordinates allow Rentals to be geosp
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#createAddress">createAddress</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
+                                    <span class="modifier">Private</span>
                                 <a href="#getCoordinates">getCoordinates</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#transform">transform</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+
 
 
 
@@ -170,277 +168,196 @@ to get the coordinates of the address. The coordinates allow Rentals to be geosp
         </table>
 </section>
 
+
             <section>
     
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="createAddress"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Async</span>
-                            createAddress
-                        </b>
-                        <a href="#createAddress"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createAddress(value)</code>
-                </td>
-            </tr>
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createAddress"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            createAddress</b>
+                            <a href="#createAddress"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:19</a></div>
+                            </td>
+                        </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:19</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: convert the location property object into a single address property string; will be passed to this.getCoordinates method</p>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: convert the location property object into a single address property string; will be passed to this.getCoordinates method</p>
 </div>
+                    </td>
+                </tr>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the raw form data inputed by user to create a new Rental listing</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getCoordinates"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            getCoordinates</b>
+                            <a href="#getCoordinates"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:31</a></div>
+                            </td>
+                        </tr>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the raw form data inputed by user to create a new Rental listing</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getCoordinates"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            getCoordinates
-                        </b>
-                        <a href="#getCoordinates"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getCoordinates(address: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, geoUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, apiKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:31</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: request coordinates for the provided address</p>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: request coordinates for the provided address</p>
 </div>
+                    </td>
+                </tr>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>address</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>address</td>
+                                                        <td>
+                                                                <code><p>the address to fetch coordinates for from the API</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>geoUrl</td>
+                                                        <td>
+                                                                <code><p>the url for accessing the API</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>apiKey</td>
+                                                        <td>
+                                                                <code><p>the key for accessing the API</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="transform"></a>
+                        <span class="name">
+                            <b>
+                            transform</b>
+                            <a href="#transform"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:46</a></div>
+                            </td>
+                        </tr>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the address to fetch coordinates for from the API</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>geoUrl</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the url for accessing the API</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>apiKey</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the key for accessing the API</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="transform"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            transform
-                        </b>
-                        <a href="#transform"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>transform(value: <a href="../classes/RawCreateRentalDto.html">RawCreateRentalDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/rental/pipes/geo-url-api.pipe.ts:46</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string</p>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string</p>
 </div>
+                    </td>
+                </tr>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="../classes/RawCreateRentalDto.html" target="_self" >RawCreateRentalDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the raw request from a client to create a new Rental listing</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;LocCreateRentalDto&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>value</td>
+                                                        <td>
+                                                                <code><p>the raw request from a client to create a new Rental listing</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
 </section>
 
     </div>
@@ -465,7 +382,7 @@ export class GeoUrlApiPipe {
    * **summary**: convert the location property object into a single address property string; will be passed to this.getCoordinates method
    * @param value the raw form data inputed by user to create a new Rental listing
    */
-  private async createAddress(value) {
+  private createAddress &#x3D; async(value) &#x3D;&gt; {
     // create address string from incoming vehicle.address document
     const address: string &#x3D; &#x60;${value.location.street} ${value.location.city} ${value.location.zip}&#x60;;
     return address;
@@ -477,8 +394,8 @@ export class GeoUrlApiPipe {
    * @param geoUrl the url for accessing the API
    * @param apiKey the key for accessing the API
    */
-  async getCoordinates(address: string, geoUrl: string, apiKey: string,
-  ) {
+  private getCoordinates &#x3D; async(address: string, geoUrl: string, apiKey: string,
+  ) &#x3D;&gt; {
     Logger.log(&#x60;geoUrl: ${process.env.GEO_URL}&#x60;);
     const coords &#x3D; await this.geoUrlApiUtil.getCoordinates(
       address,
@@ -492,7 +409,7 @@ export class GeoUrlApiPipe {
    * **summary**: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string
    * @param value the raw request from a client to create a new Rental listing
    */
-  async transform(value: RawCreateRentalDto):Promise&lt;LocCreateRentalDto&gt; {
+  transform &#x3D; async(value: RawCreateRentalDto):Promise&lt;LocCreateRentalDto&gt; &#x3D;&gt; {
     const apiKey &#x3D; process.env.GEO_API_KEY;
     const geoUrl &#x3D; process.env.GEO_URL;
     try {

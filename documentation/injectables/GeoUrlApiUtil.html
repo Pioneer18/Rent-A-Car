@@ -88,22 +88,19 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
+                        <h6><b>Properties</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#getCoordinates">getCoordinates</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#makeRequest">makeRequest</a>
                             </li>
                         </ul>
@@ -114,219 +111,159 @@
 
 
 
+
         </tbody>
     </table>
 </section>
 
 
+
             <section>
     
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getCoordinates"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            getCoordinates
-                        </b>
-                        <a href="#getCoordinates"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getCoordinates(address, geoUrl, apiKey)</code>
-                </td>
-            </tr>
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getCoordinates"></a>
+                        <span class="name">
+                            <b>
+                            getCoordinates</b>
+                            <a href="#getCoordinates"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/rental/utils/geo-url-api.util.ts:43</a></div>
+                            </td>
+                        </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/rental/utils/geo-url-api.util.ts:43</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: returns an address as a single string, and the corresponding coordinates</p>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: returns an address as a single string, and the corresponding coordinates</p>
 </div>
+                    </td>
+                </tr>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>address</td>
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>address</td>
+                                                        <td>
+                                                                <code><p>replace the spaces in the address with + symbols for the api request</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>geoUrl</td>
+                                                        <td>
+                                                                <code><p>the url for the api</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>apiKey</td>
+                                                        <td>
+                                                                <code><p>the key for the api</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="makeRequest"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            makeRequest</b>
+                            <a href="#makeRequest"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/rental/utils/geo-url-api.util.ts:25</a></div>
+                            </td>
+                        </tr>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>replace the spaces in the address with + symbols for the api request</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>geoUrl</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the url for the api</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>apiKey</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the key for the api</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="makeRequest"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Async</span>
-                            makeRequest
-                        </b>
-                        <a href="#makeRequest"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>makeRequest(location, geoUrl, apiKey)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/rental/utils/geo-url-api.util.ts:25</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Send Geocoding &amp; Search API request</p>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Send Geocoding &amp; Search API request</p>
 </div>
+                    </td>
+                </tr>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>location</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the address string</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>geoUrl</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the base HERE geocoding and search v7 api url</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>apiKey</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>the api key</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>location</td>
+                                                        <td>
+                                                                <code><p>the address string</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>geoUrl</td>
+                                                        <td>
+                                                                <code><p>the base HERE geocoding and search v7 api url</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>apiKey</td>
+                                                        <td>
+                                                                <code><p>the api key</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
 </section>
 
     </div>
@@ -357,7 +294,7 @@ export class GeoUrlApiUtil {
    * @param geoUrl the base HERE geocoding and search v7 api url
    * @param apiKey the api key
    */
-  private async makeRequest(location, geoUrl, apiKey) {
+  private makeRequest &#x3D; async(location, geoUrl, apiKey) &#x3D;&gt; {
     try {
       console.log(&#x60;Geocoding &amp; Search API Request: ${geoUrl}?q&#x3D;${location}&amp;apiKey&#x3D;${apiKey}&#x60;)
       const request: any &#x3D; await axios.default.get(
@@ -375,7 +312,7 @@ export class GeoUrlApiUtil {
    * @param geoUrl the url for the api
    * @param apiKey the key for the api
    */
-  async getCoordinates(address, geoUrl, apiKey):Promise&lt;[number, number]&gt; {
+  getCoordinates &#x3D; async(address, geoUrl, apiKey):Promise&lt;[number, number]&gt; &#x3D;&gt; {
     try {
       const location: string &#x3D; address.replace(/\s+/g, &#x27;+&#x27;);
       // make the API request
