@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { UserInterface } from '../interface/user.interface';
+import { UserInterface } from '../interface/modelInterface/user.interface';
 import { FindUserDto } from '../dto/find-user.dto';
 import { ResetPasswordTokenDto } from '../dto/find-user-by-reset-password-token.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';

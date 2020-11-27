@@ -1,22 +1,21 @@
 import { Injectable, Logger, Req, Res } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ImageInterface } from '../interface/image.interface';
+import { ImageInterface } from '../interface/modelInterface/image.interface';
 import { Model } from 'mongoose';
 import { JwtPayloadDto } from '../../auth/dto/jwt-payload';
 import { AppConfigService } from '../../config/configuration.service';
 import { profile } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
 import { ProcessSaveDataUtil } from '../util/process-save-data.util';
-import { ProcessedSaveDataInterface } from '../interface/processed-save-data.interface';
+import { ProcessedSaveDataDto } from '../dto/processed-save-data.dto';
 import { S3Provider } from '../providers/s3.provider';
 import { CreateMulterUploadUtil } from '../util/create-multer-upload.util';
 import { MulterUploadUtil } from '../util/multer-upload.util';
 import { ImageQueryResultsDto } from '../dto/image-query-results.dto';
 import { DeleteS3ImagesUtil } from '../util/delete-s3-images.util';
 /**
- * Images Service
- * written by: Jonathan Sells
- * note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
+ * **summary**: contains all of the functionality for uploading and managing photos in the application.
+ * - note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
  * this makes queries slightly less selective and less efficient, but more secure.
  */
 @Injectable()
@@ -34,8 +33,7 @@ export class ImagesService {
   s3 = this.s3Provider.getS3();
 
   /**
-   * Save uploaded images
-   * Summary: Saves uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 
+   * **summary**: saves AWS uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 
    * @param files array of files
    * @param category rentals / profile
    * @param {string} user_id user id to associate with the image
@@ -43,7 +41,7 @@ export class ImagesService {
    */
   saveImages = async (files, category, user_id, rental_id, model) => {
     try {
-      const { packet, image }: ProcessedSaveDataInterface = await this.processSaveDataUtil.process(files, user_id, rental_id, category);
+      const { packet, image }: ProcessedSaveDataDto = await this.processSaveDataUtil.process(files, user_id, rental_id, category);
       let flag;
       packet === null ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
@@ -56,8 +54,7 @@ export class ImagesService {
   }
 
   /**
-   * Find Rental Images
-   * Summary: query multiple rental images by userId and rental_id. The userId
+   * **summary**: query multiple rental images by userId and rental_id. The userId
    * is just to ensure only the user's photos are returned and not another user's rental images
    * @param user the user property of the request object
    * @param img_id id of an image; if provided only this image will be found
@@ -83,8 +80,7 @@ export class ImagesService {
   }
 
   /**
-   * Find Profile Images
-   * Summary: query multiple profile images by user_id and profile category, or find a specific profile photo by id
+   * **summary**: query multiple profile images by user_id and profile category, or find a specific profile photo by id
    * @param user the user property of the request object
    */
   findProfileImages = async (user: JwtPayloadDto, img_id?: string) => {
@@ -103,8 +99,7 @@ export class ImagesService {
   }
 
   /**
-   * Delete Images
-   * Sumamry: Delete a single or multiple of user's selected images
+   * **sumamry**: Delete a single or multiple of a user's selected images from the S3 Bucket and database
    * @param category the images category; rentals or profile
    * @param user_id used to verify the photos belong to the requesting user
    */
@@ -124,32 +119,7 @@ export class ImagesService {
   }
 
   /**
-   *
-   * @param user var params = {
-  Bucket: "examplebucket",
-  Delete: {
-   Objects: [
-      {
-     Key: "HappyFace.jpg",
-     VersionId: "2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b"
-    },
-      {
-     Key: "HappyFace.jpg",
-     VersionId: "yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd"
-    }
-   ],
-   Quiet: false
-  }
-  };
-  s3.deleteObjects(params, function(err, data) {
-   if (err) console.log(err, err.stack); // an error occurred
-   else     console.log(data);           // successful response
-   * @param rental_id
-   */
-
-  /**
-   * Delete All Images
-   * Summary: Delete all images of the selected rental or profile
+   * **summary**: delete all images of the selected rental or profile from the S3 bucket and database
    * @param user_id used to locate the user's photos as well as verify they belong to them
    * @param rental_id the id of the rental
    */
@@ -165,7 +135,6 @@ export class ImagesService {
   }
 
   /**
-   * Upload Images to S3 Bucket
    * **summary**: send the file(s) to the bucket and attach a timestamp to each filename
    * @param req the request
    * @param res the response

@@ -1,16 +1,19 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { S3Provider } from "../providers/s3.provider";
 /**
- * Bucket Name: 'rent-a-car-photos`
- * Key: user_email/category
+ * **summary**: utility for removing images from an AWS S3 Bucket
  */
 @Injectable()
 export class DeleteS3ImagesUtil {
     constructor(private readonly s3Provider: S3Provider) { }
     private s3 = this.s3Provider.getS3();
 
+    /**
+     * **summary**: delete the selected image from their AWS S3 Bucket
+     * @param images the image to be delete
+     * @param user the requesting user
+     */
     deleteS3Image = async (images, user): Promise<void> => {
-        // delete rental image from s3 bucket
         const bucket = `rent-a-car-photos`;
         if (images[0].location.match(/\/rentals\//)) {
             console.log('Delete Single Image Location')
@@ -37,6 +40,11 @@ export class DeleteS3ImagesUtil {
         return;
     }
 
+    /**
+     * **summary**: deleted the selected images from their AWS S3 Bucket
+     * @param images the images to be deleted
+     * @param user the requesting user
+     */
     deleteS3Images = async (images, user): Promise<string[]> => {
         // multiple images
         const ids: string[] = [];

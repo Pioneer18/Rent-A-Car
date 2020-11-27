@@ -1,7 +1,7 @@
 import { Inject, Injectable, NestMiddleware } from '@nestjs/common'
 import { Request, Response } from 'express';
 import { userModel } from '../../common/Const';
-import { UserInterface } from '../interface/user.interface';
+import { UserInterface } from '../interface/modelInterface/user.interface';
 import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { ValidateEmailUtil } from '../util/validate-email.util';

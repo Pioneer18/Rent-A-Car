@@ -11,8 +11,9 @@ import { CreateMulterUploadUtil } from './util/create-multer-upload.util';
 import { DeleteS3ImagesUtil } from './util/delete-s3-images.util';
 import { MulterUploadUtil } from './util/multer-upload.util';
 import { ProcessSaveDataUtil } from './util/process-save-data.util';
-
-
+/**
+ * **summary**: contians all of the functionality for managing images in the application
+ */
 @Module({
     imports: [
         DatabaseModule,

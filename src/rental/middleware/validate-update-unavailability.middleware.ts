@@ -2,7 +2,7 @@ import { Injectable, Inject, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { unavailabilityModel } from '../../common/Const';
 import { Model } from 'mongoose';
-import { UnavailabilityInterface } from '../interface/schemaInterface/Unavailability/unavailability.interface';
+import { UnavailabilityInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
 import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 /**
  * **summary**: validate that incoming request to update a rental's already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database

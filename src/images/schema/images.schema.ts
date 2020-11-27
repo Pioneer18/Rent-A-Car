@@ -2,7 +2,9 @@ import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-
+/**
+ * **summary**: the schema for the Image Model
+ */
 export const ImageSchema = new Schema({
     user_id: String, // ObjectId of the logged in user
     rental_id: {type: String || null }, // null for profile images

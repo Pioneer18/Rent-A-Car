@@ -1,21 +1,18 @@
 import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { ImageInterface } from "../interface/image.interface";
-import { Model } from 'mongoose';
-import { ProcessedSaveDataInterface } from "../interface/processed-save-data.interface";
+import { ImageInterface } from "../interface/modelInterface/image.interface";
+import { ProcessedSaveDataDto } from "../dto/processed-save-data.dto";
 
 @Injectable()
 export class ProcessSaveDataUtil {
 
   /**
-   * Process
-   * Summary: create a new Image Document or an array of Image Documents to be saved
+   * **summary**: create a new Image Document or an array of Image Documents to be saved
    * @param files the incoming file(s) to be saved
    * @param user_id the user id
    * @param rental_id the rental id
    * @param category the category of the image: rentals or photos
    */
-  process = async (files, user_id, rental_id, category): Promise<ProcessedSaveDataInterface> => {
+  process = async (files, user_id, rental_id, category): Promise<ProcessedSaveDataDto> => {
     if (files && files.length > 0) {
       // single file
       if (files.length === 1) {

@@ -1,8 +1,21 @@
 import { Injectable } from "@nestjs/common";
-
+/**
+ * **summary**: upload a single or multiple files as a multerUpload
+ */
 @Injectable()
 export class MulterUploadUtil {
 
+    /**
+     * **summary**: upload the provided files with the multerUpload object
+     * @param req the client request
+     * @param res the response
+     * @param multerUpload uploader
+     * @param saveImages this.saveImages() method to save the uploaded image data
+     * @param category the image category: rentals || profile
+     * @param user the user
+     * @param rental_id id of the rental if this is a rental images upload
+     * @param model the database model which the this.saveImages() method will save images to
+     */
     upload = async (req, res, multerUpload, saveImages, category, user, rental_id, model): Promise<void> => {
         try {
             await multerUpload(req, res, function (err) {

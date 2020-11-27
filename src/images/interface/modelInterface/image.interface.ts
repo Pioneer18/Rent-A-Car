@@ -1,4 +1,6 @@
-
+/**
+ * **summary**: interface for the Image Model
+ */
 export interface ImageInterface{
     user_id: string;
     rental_id: string;

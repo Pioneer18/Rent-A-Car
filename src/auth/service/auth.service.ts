@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { FindUserDto } from '../../user/dto/find-user.dto';
 import { UserPropertyDto } from '../dto/user-property.dto';
 import * as bcrypt from 'bcrypt';
-import { UserInterface } from '../../user/interface/user.interface';
+import { UserInterface } from '../../user/interface/modelInterface/user.interface';
 import { Request } from 'express';
 import { RedisService } from '../../redis/service/redis.service';
 import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
