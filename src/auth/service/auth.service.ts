@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from '../../user/service/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { FindUserDto } from '../../user/dto/find-user.dto';
-import { UserPropertyDto } from '../dto/user-property.dto';
 import * as bcrypt from 'bcrypt';
 import { UserInterface } from '../../user/interface/modelInterface/user.interface';
 import { Request } from 'express';
@@ -57,7 +56,7 @@ export class AuthService {
     login = async(user: any) => {
         console.log(`here is the user property created by Passport`)
         console.log(user._doc)
-        const packet: UserPropertyDto = user._doc;
+        const packet: UserInterface = user._doc;
         // create the JWT payload
         const payload = {
             username: packet.username,
