@@ -24,7 +24,7 @@ export class EmailService {
      * **summary**: create the mail options to be used to send the email
      * @param email user's email
      */
-    async createMailOptions (email: string): Promise<MailOptionsInterface> {
+    createMailOptions = async(email: string): Promise<MailOptionsInterface> => {
         const mailOptions: MailOptionsInterface = {
             from: 'rentacar.team2020@gmail.com',
             to: email,
@@ -39,7 +39,7 @@ export class EmailService {
      * **summary**: use the nodemailer transporter to send the email
      * @param mailOptions 
      */
-    async sendMail(mailOptions): Promise<any> {
+    sendMail = async(mailOptions): Promise<any> => {
         try{
             this.transporter.sendMail(mailOptions);
         } catch(err) {

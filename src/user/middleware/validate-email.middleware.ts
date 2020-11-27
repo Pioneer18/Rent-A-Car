@@ -25,7 +25,7 @@ export class ValidateEmailMiddleware implements NestMiddleware {
      * **summary**: query the databse to valdiate the requested new email is unique to the database
      * @param value the requested new user email
      */
-    private async validateEmail(value: CreateUserDto) {
+    private validateEmail = async(value: CreateUserDto) => {
         const check = await this.user.find({ email: value.email });
         this.validateEmailUtil.validateEmail(check)
     }
@@ -36,7 +36,7 @@ export class ValidateEmailMiddleware implements NestMiddleware {
      * @param res the response
      * @param next the next method to continue to the request handler
      */
-    async use(req: Request, res: Response, next: Function) {
+    use = async(req: Request, res: Response, next: Function) => {
         // apply to create-user route
         if (req.originalUrl === '/v1/user/create-user') {
             await this.validateEmail(req.body);

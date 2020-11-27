@@ -19,7 +19,7 @@ import { DateTime } from 'luxon';
  */
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  intercept = (context: ExecutionContext, next: CallHandler): Observable<any> => {
 
     const req = context.switchToHttp().getRequest();
     const method = req.method;

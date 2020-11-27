@@ -13,7 +13,7 @@ import { Schema } from '@hapi/joi';
 export class JoiValidationPipe implements PipeTransform {
   constructor(private readonly schema: Schema) {}
 
-  transform(value: any) {
+  transform = (value: any) => {
     const { error } = this.schema.validate(value);
     if (error) {
       Logger.error(error);

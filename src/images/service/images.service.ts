@@ -24,12 +24,10 @@ export class ImagesService {
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
     private readonly processSaveDataUtil: ProcessSaveDataUtil,
-    private readonly s3Provider: S3Provider,
     private readonly createMulterUploadUtil: CreateMulterUploadUtil,
     private readonly multerUploadUtil: MulterUploadUtil,
     private readonly deleteS3ImagesUtil: DeleteS3ImagesUtil,
   ) { }
-  private s3 = this.s3Provider.getS3();
 
   /**
    * **summary**: saves AWS uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 

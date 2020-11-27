@@ -28,7 +28,7 @@ export class UserService {
      * **summary**: create a new user
      * @param user 
      */
-    async createUser(user: CreateUserDto) {
+    createUser = async(user: CreateUserDto) => {
         try {
             const document = await new this.userModel(user);
             await document.save();
@@ -43,7 +43,7 @@ export class UserService {
      * **summary**: find a user by email
      * @param data email
      */
-    async findUser(data: FindUserDto) {
+    findUser = async (data: FindUserDto) => {
         try {
             const user = await this.userModel.findOne({ email: data.email });
             return user;
@@ -56,7 +56,7 @@ export class UserService {
      * **summary**: find a user by their resetPasswordToken once they have submitted the reset password email
      * @param data the token
      */
-    async findUserByResetPasswordToken(data: ResetPasswordTokenDto) {
+    findUserByResetPasswordToken = async(data: ResetPasswordTokenDto) => {
         try {
             const user = await this.userModel.findOne({ resetPasswordToken: data.token });
             return user;
@@ -70,7 +70,7 @@ export class UserService {
      * @param data the update user data
      * @param req the client request
      */
-    async updateUser(data: UpdateUserDto, req ) {
+    updateUser = async(data: UpdateUserDto, req ) => {
         try {
             // extract user email
             const user: JwtPayloadDto = req.user;
@@ -95,7 +95,7 @@ export class UserService {
      * @param data user credentials
      * @param req the client request
      */
-    async deleteUser(data: DeleteUserDto, req) {
+    deleteUser = async(data: DeleteUserDto, req) => {
         try {
             // extract user email
             const doc:JwtPayloadDto = req.user;
@@ -123,7 +123,7 @@ export class UserService {
      * **summary**: create a MongoDB update object for updating a user profile
      * @param data raw request data to update a user
      */
-    private createUserUpdate(data: UpdateUserDto) {
+    private createUserUpdate = (data: UpdateUserDto) => {
         let update: UpdateUserDto = {}
         data.username ? update.username = data.username : data.username = null;
         data.email ? update.email = data.email : data.email = null;
@@ -136,7 +136,7 @@ export class UserService {
      * **summary**: log a user out of the application by adding their JWT to the Redis cache 'dead-list'
      * @param req the client request
      */
-    private async logoutUser(req: Request){
+    private logoutUser = async(req: Request) => {
         const {jwt, key} = await this.extractKeyValueUtil.extract(req);
         await this.redisService.set(key, jwt);
     }

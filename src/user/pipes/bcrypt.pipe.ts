@@ -11,7 +11,7 @@ export class BcryptHashPipe implements PipeTransform {
      * **summary**: use bcrypt to hash and salt the user's password
      * @param value new user info
      */
-    async transform(value: CreateUserDto) {
+    transform = async(value: CreateUserDto) => {
         try {
             const hash = await bcrypt.hash(value.password, 10);
             const verified = await bcrypt.compare(value.password, hash);

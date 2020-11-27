@@ -36,7 +36,7 @@ export class AuthService {
      * @param email the user email
      * @param pass the user password
      */
-    async validateUser(email: string, pass: string): Promise<any> {
+    validateUser = async(email: string, pass: string): Promise<any> => {
         try {
             const query: FindUserDto = { email: email };
             const user: UserInterface = await this.userService.findUser(query); // find user in db by username
@@ -54,7 +54,7 @@ export class AuthService {
      * summary: return a JWT inside of a Cookie, which may only be interacted with by Http and not Javascript, to the now authenticated user
      * @param user the user logging into the application
      */
-    async login(user: any) {
+    login = async(user: any) => {
         console.log(`here is the user property created by Passport`)
         console.log(user._doc)
         const packet: UserPropertyDto = user._doc;
@@ -73,7 +73,7 @@ export class AuthService {
      * **summary**: set the user's JWT in the redis 'dead-list' to log the user out prior to the JWT expiration
      * @param user user property from the request object
      */
-    async logout(req: Request) {
+    logout = async(req: Request) => {
         try {
             // extract the jwt and the cachce key
             const { key, jwt } = await this.extractKeyValueUtil.extract(req);
@@ -92,7 +92,7 @@ export class AuthService {
      * @param confirm_password
      * @param req
      */
-    async changePassword(data: ChangePasswordDto, req) {
+    changePassword = async(data: ChangePasswordDto, req) => {
         try {
             // verify user submitted same pw twice
             await this.verifyNewPasswordUtil.checkTypos({ newPassword: data.newPassword, confirmPassword: data.confirmPassword });
@@ -121,7 +121,7 @@ export class AuthService {
      * @param email the email for resetting the password
      * **summary**: sends user a reset password link to the provided email, if it's an account associated email
      */
-    async forgotPassword(data: ForgotPasswordDto) {
+    forgotPassword = async(data: ForgotPasswordDto) => {
         try {
             // query user and confirm they exist
             const user = await this.userService.findUser({email: data.email});
@@ -145,7 +145,7 @@ export class AuthService {
      * @param newPassword the new password entered the 1st time
      * @param confirmPassword the identical new password entered a second time
      */
-    async resetPassword(data: ResetPasswordDto) {
+    resetPassword = async(data: ResetPasswordDto) => {
         // check new password for typos
         await this.verifyNewPasswordUtil.checkTypos({newPassword: data.confirmPass, confirmPassword: data.resetPass});
         // query user by resetToken

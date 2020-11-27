@@ -9,7 +9,7 @@ import { ExtractKeyValueUtilDto } from "../dto/extract-key-value-util.dto";
 export class ExtractKeyValueUtil {
     constructor() {}
     
-    public async extract(req: Request): Promise<ExtractKeyValueUtilDto> {
+    public extract = async(req: Request): Promise<ExtractKeyValueUtilDto> => {
         if (req){
             const rawAuth: string = req.headers.cookie
             return {
