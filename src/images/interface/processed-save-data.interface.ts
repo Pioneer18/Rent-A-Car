@@ -1,8 +1,8 @@
-import { ImageInterface } from "../interface/modelInterface/image.interface";
+import { ImageInterface } from "./modelInterface/image.interface";
 /**
  * **summary**: the dto for image data to be passed to the images.service.saveImages() method
  */
-export class ProcessedSaveDataDto {
+export interface ProcessedSaveDataInterface {
     packet: ImageInterface[];
     image: ImageInterface;
 }
