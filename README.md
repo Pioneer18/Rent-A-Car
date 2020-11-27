@@ -10,7 +10,7 @@ This project is a demonstration of a scalable, loosely-coupled, testable, server
 * will be deployed soon :)
 
 ## Contributing
-- Jonathan Sells
+- [**Jonathan Sells**](https://github.com/Pioneer18)
 - This project is a smaller demonstrative version of the original project [**Turrendas**](https://github.com/Pioneer18/turrendas-backend) that I was working on with [**Jean Canales**](https://github.com/Hakuti), who was creating the React frontend.
 
 ## License
