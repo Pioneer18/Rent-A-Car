@@ -154,33 +154,4 @@ export class ImagesService {
       return res.status(500).json(`Failed to upload image file: ${err}`)
     }
   }
-
-  // Get Presigned Url to download file
-  /**
-   * @param originalname file name
-   * @param bucket location of the photo
-  private getSingedUrl = async (bucket, originalname) => {
-    const s3 = this.s3;
-    const params = {
-      Bucket: bucket,
-      Key: originalname,
-      Expires: 60 * 60, //1 hour
-    };
-    try {
-      const url = await new Promise((resolve, reject) => {
-        s3.getSignedUrl('getObject', params, (err, url) => {
-          err ? reject(err) : resolve(url);
-        });
-      });
-      Logger.log(url)
-      return url;
-    } catch (err) {
-      if (err) {
-        throw new Error(err);
-      }
-    }
-  }
-  */
-
-
 }

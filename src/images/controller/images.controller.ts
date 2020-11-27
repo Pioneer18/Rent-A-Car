@@ -108,13 +108,13 @@ export class ImagesController {
         return await this.imagesService.deleteAllImages(req.user, params.rental_id);
     }
 
-   /**
-    * Delete All Profile Images
-    * Summary: Delete all of the user's profile images
-    */
-   @Post('delete-all-profile-images')
-   async deleteAllProfileImages(@Req() req) {
+    /**
+     * Delete All Profile Images
+     * Summary: Delete all of the user's profile images
+     */
+    @Post('delete-all-profile-images')
+    async deleteAllProfileImages(@Req() req) {
         return await this.imagesService.deleteAllImages(req.user, null);
-   }
+    }
 
 }
