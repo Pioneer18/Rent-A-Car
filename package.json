@@ -31,6 +31,7 @@
     "@nestjs/serve-static": "^2.1.0",
     "@types/bcrypt": "^3.0.0",
     "@types/cookie-parser": "^1.4.2",
+    "@types/jest": "^26.0.15",
     "@types/node": "11.13.4",
     "aws-sdk": "^2.635.0",
     "axios": "^0.19.2",
