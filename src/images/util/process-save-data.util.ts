@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { ImageInterface } from "../interface/modelInterface/image.interface";
-import { ProcessedSaveDataInterface } from "../interface/processed-save-data.interface";
-import { SaveImagesInterface } from "../interface/save-images.interface";
+import { ImageInterface } from "../interfaces/modelInterface/image.interface";
+import { ProcessedSaveDataInterface } from "../interfaces/utils/processed-save-data.interface";
+import { SaveImagesInterface } from "../interfaces/service/save-images.interface";
 /**
  * **summary**: utility to process the save image request data before passing it to the handler
  */

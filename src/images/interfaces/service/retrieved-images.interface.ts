@@ -1,4 +1,4 @@
-import { ImageInterface } from "./modelInterface/image.interface";
+import { ImageInterface } from "../modelInterface/image.interface";
 
 export interface RetrievedImagesInterface {
     count: number;

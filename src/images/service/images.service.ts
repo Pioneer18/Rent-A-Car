@@ -1,22 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ImageInterface } from '../interface/modelInterface/image.interface';
+import { ImageInterface } from '../interfaces/modelInterface/image.interface';
 import { Model } from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
 import { profile } from '../../common/Const';
-import { SaveImagesInterface } from '../interface/save-images.interface'
+import { SaveImagesInterface } from '../interfaces/service/save-images.interface'
 import { ProcessSaveDataUtil } from '../util/process-save-data.util';
-import { ProcessedSaveDataInterface } from '../interface/processed-save-data.interface';
+import { ProcessedSaveDataInterface } from '../interfaces/utils/processed-save-data.interface';
 import { CreateMulterUploadUtil } from '../util/create-multer-upload.util';
 import { MulterUploadUtil } from '../util/multer-upload.util';
 import { DeleteS3ImagesUtil } from '../util/delete-s3-images.util';
-import { FindRentalImagesInterface } from '../interface/find-rental-images.interface';
-import { DeleteImagesInterface } from '../interface/delete-images.interface';
-import { FindProfileImageInterface } from '../interface/find-profile-image.interface';
-import { DeleteAllImagesInterface } from '../interface/delete-all-images.interface';
-import { FileUploadAndSaveInterface } from '../interface/fileupload-and-save.interface';
-import { RetrievedImagesInterface } from '../interface/retrieved-images.interface';
-import { DeleteImagesResponseInterface } from '../interface/delete-images-response.interface';
+import { FindRentalImagesInterface } from '../interfaces/service/find-rental-images.interface';
+import { DeleteImagesInterface } from '../interfaces/service/delete-images.interface';
+import { FindProfileImageInterface } from '../interfaces/service/find-profile-image.interface';
+import { DeleteAllImagesInterface } from '../interfaces/service/delete-all-images.interface';
+import { FileUploadAndSaveInterface } from '../interfaces/service/fileupload-and-save.interface';
+import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
+import { DeleteImagesResponseInterface } from '../interfaces/service/delete-images-response.interface';
 /**
  * **summary**: contains all of the functionality for uploading and managing photos in the application.
  * - note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
