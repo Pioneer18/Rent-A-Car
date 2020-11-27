@@ -11,7 +11,6 @@ import { ExtractKeyValueUtil } from '../auth/util/extract-key-value.util';
 import { AppConfigModule } from '../config/configuration.module';
 import { VerifyNewPasswordUtil } from '../auth/util/verify-new-password.util';
 import { RedisService } from '../redis/service/redis.service';
-import { ExtractUserUtil } from './util/extract-user.util';
 /**
  * - **summary**: this module provides all of the functionality for managing user profiles
  *   - **Middleware**: this module consumes the **ValidateEmailMiddleware** middleware
@@ -24,7 +23,7 @@ import { ExtractUserUtil } from './util/extract-user.util';
     AppConfigModule,
     RedisModule
   ],
-  providers: [UserService,...userProvider, ExtractKeyValueUtil, VerifyNewPasswordUtil, RedisService, ExtractUserUtil],
+  providers: [UserService,...userProvider, ExtractKeyValueUtil, VerifyNewPasswordUtil, RedisService],
   controllers: [UserController],
   exports: [UserService], // used in the AuthService
 })

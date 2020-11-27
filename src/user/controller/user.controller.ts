@@ -35,7 +35,7 @@ export class UserController {
     @UseGuards(LoggedOutGaurd)
     @Post('update-user')
     @Redirect('http://localhost:3000/auth/login')
-    async updateProfile(@Body() update: UpdateUserDto, @Req() req: Request) {
+    async updateProfile(@Body() update: UpdateUserDto, @Req() req) {
         return await this.userService.updateUser(update, req);
     }
 
@@ -63,7 +63,7 @@ export class UserController {
     @UseGuards(LoggedOutGaurd)
     @Redirect('http://localhost:3000/auth/login', 302)
     @Post('delete-profile')
-    async deleteProfile(@Body() data: DeleteUserDto, @Req() req: Request) {
+    async deleteProfile(@Body() data: DeleteUserDto, @Req() req) {
         return this.userService.deleteUser(data, req);
     }
 }

@@ -14,7 +14,6 @@ import { ForgotPasswordDto } from '../dto/forgot-password.dto';
 import { EmailService } from '../../email/email.service';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
 import { AppConfigService } from '../../config/configuration.service';
-import { ExtractUserUtil } from '../../user/util/extract-user.util';
 
 /**
  * **summary**: provide the functionality to authenticate and authorize a user
@@ -29,7 +28,6 @@ export class AuthService {
         private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
         private readonly emailService: EmailService,
         private readonly appConfig: AppConfigService,
-        private readonly extractUserUtil: ExtractUserUtil
     ) { }
 
     /**
@@ -94,18 +92,14 @@ export class AuthService {
      * @param confirm_password
      * @param req
      */
-    async changePassword(data: ChangePasswordDto, req: Request) {
+    async changePassword(data: ChangePasswordDto, req) {
         try {
-            console.log('Change Password Data:')
-            console.log(data);
             // verify user submitted same pw twice
             await this.verifyNewPasswordUtil.checkTypos({ newPassword: data.newPassword, confirmPassword: data.confirmPassword });
-            // extract the user
-            const doc = await this.extractUserUtil.extract(req)
-            // extract the jwt and key
+            // extract the jwt and it's key (last 8 digits)
             const { jwt, key } = await this.extractKeyValueUtil.extract(req);
             // find user document
-            const user = await this.userService.findUser({email: doc.email});
+            const user = await this.userService.findUser({email: req.user.email});
             // verify new password does not match current password
             await this.verifyNewPasswordUtil.verifyNew({ newPassword: data.newPassword, oldPassword: user.password });
             // update the user's password

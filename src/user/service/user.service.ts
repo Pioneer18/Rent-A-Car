@@ -12,7 +12,6 @@ import { DeleteUserDto } from '../dto/delete-user.dto';
 import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
 import { RedisService } from '../../redis/service/redis.service';
 import { JwtPayloadDto } from 'src/auth/dto/jwt-payload';
-import { ExtractUserUtil } from '../util/extract-user.util';
 
 @Injectable()
 export class UserService {
@@ -21,7 +20,6 @@ export class UserService {
         private readonly extractKeyValueUtil: ExtractKeyValueUtil,
         private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
         private readonly redisService: RedisService,
-        private readonly extractUserUtil: ExtractUserUtil,
     ) { }
 
     /**
@@ -74,10 +72,10 @@ export class UserService {
     /**
      * Update User
      */
-    async updateUser(data: UpdateUserDto, req: Request ) {
+    async updateUser(data: UpdateUserDto, req ) {
         try {
             // extract user email
-            const user: JwtPayloadDto = await this.extractUserUtil.extract(req);
+            const user: JwtPayloadDto = req.user;
             const filter = {email: user.email };
             // create an update object
             let update = this.createUserUpdate(data);
@@ -99,10 +97,10 @@ export class UserService {
      * @param data user credentials
      * @param req
      */
-    async deleteUser(data: DeleteUserDto, req: Request) {
+    async deleteUser(data: DeleteUserDto, req) {
         try {
             // extract user email
-            const doc = await this.extractUserUtil.extract(req);
+            const doc:JwtPayloadDto = req.user;
             // query the user
             const user = await this.findUser({email: doc.email});
             // verify their password matches the current
