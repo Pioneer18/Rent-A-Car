@@ -1,14 +1,13 @@
-import { Injectable, Logger, Req, Res } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ImageInterface } from '../interface/modelInterface/image.interface';
 import { Model } from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
-import { AppConfigService } from '../../config/configuration.service';
 import { profile } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
+import { SaveImagesInterface } from '../interface/save-images.interface'
 import { ProcessSaveDataUtil } from '../util/process-save-data.util';
-import { ProcessedSaveDataDto } from '../dto/processed-save-data.dto';
-import { S3Provider } from '../providers/s3.provider';
+import { ProcessedSaveDataInterface } from '../interface/processed-save-data.interface';
 import { CreateMulterUploadUtil } from '../util/create-multer-upload.util';
 import { MulterUploadUtil } from '../util/multer-upload.util';
 import { ImageQueryResultsDto } from '../dto/image-query-results.dto';
@@ -36,9 +35,9 @@ export class ImagesService {
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  saveImages = async (files, category, user_id, rental_id) => {
+  saveImages = async (data: SaveImagesInterface) => {
     try {
-      const { packet, image }: ProcessedSaveDataDto = await this.processSaveDataUtil.process(files, user_id, rental_id, category);
+      const { packet, image }: ProcessedSaveDataInterface = await this.processSaveDataUtil.process(data);
       let flag;
       packet === null ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {

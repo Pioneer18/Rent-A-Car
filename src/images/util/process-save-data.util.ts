@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ImageInterface } from "../interface/modelInterface/image.interface";
-import { ProcessedSaveDataDto } from "../dto/processed-save-data.dto";
+import { ProcessedSaveDataInterface } from "../interface/processed-save-data.interface";
+import { SaveImagesInterface } from "../interface/save-images.interface";
 /**
  * **summary**: utility to process the save image request data before passing it to the handler
  */
@@ -14,18 +15,18 @@ export class ProcessSaveDataUtil {
    * @param rental_id the rental id
    * @param category the category of the image: rentals or photos
    */
-  process = async (files, user_id, rental_id, category): Promise<ProcessedSaveDataDto> => {
-    if (files && files.length > 0) {
+  process = async (data: SaveImagesInterface): Promise<ProcessedSaveDataInterface> => {
+    if (data.files && data.files.length > 0) {
       // single file
-      if (files.length === 1) {
-        const temp = files[0];
+      if (data.files.length === 1) {
+        const temp = data.files[0];
         const image: ImageInterface = {
-          user_id: user_id,
-          rental_id: rental_id,
+          user_id: data.user_id,
+          rental_id: data.rental_id,
           bucket: temp.bucket,
           key: temp.key,
           etag: temp.etag,
-          category: category,
+          category: data.category,
           size: temp.size,
           location: temp.location
         }
@@ -33,14 +34,14 @@ export class ProcessSaveDataUtil {
 
       }
       // multiple files
-      const packet = files.map(item => {
+      const packet = data.files.map(item => {
         const image: ImageInterface = {
-          user_id: user_id,
-          rental_id: rental_id,
+          user_id: data.user_id,
+          rental_id: data.rental_id,
           bucket: item.bucket,
           key: item.key,
           etag: item.etag,
-          category: category,
+          category: data.category,
           size: item.size,
           location: item.location
         }

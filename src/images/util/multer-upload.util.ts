@@ -24,8 +24,7 @@ export class MulterUploadUtil {
                     return res.status(404).json(`Failed to upload image file: ${err}`);
                 }
                 // Save the Images
-                console.log(user)
-                saveImages(req.files, category, user.userId, rental_id);
+                saveImages({files: req.files, category, user_id: user.userId, rental_id});
                 return res.status(201).json(req.files[0].location);
             });
         } catch (err) {
