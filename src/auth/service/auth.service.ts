@@ -7,12 +7,13 @@ import { UserInterface } from '../../user/interface/modelInterface/user.interfac
 import { Request } from 'express';
 import { RedisService } from '../../redis/service/redis.service';
 import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
-import { ChangePasswordDto } from '../dto/change-password.dto';
 import { VerifyNewPasswordUtil } from '../util/verify-new-password.util';
-import { ForgotPasswordDto } from '../dto/forgot-password.dto';
 import { EmailService } from '../../email/email.service';
-import { ResetPasswordDto } from '../dto/reset-password.dto';
 import { AppConfigService } from '../../config/configuration.service';
+import { ValidateUserInterface } from '../interfaces/validate-user.interface';
+import { ChangePasswordInterface } from '../interfaces/change-password.interface';
+import { ForgotPasswordInterface } from '../interfaces/forgot-password.interface';
+import { ResetPasswordInterface } from '../interfaces/reset-password.interface';
 
 /**
  * **summary**: provide the functionality to authenticate and authorize a user
@@ -35,12 +36,12 @@ export class AuthService {
      * @param email the user email
      * @param pass the user password
      */
-    validateUser = async(email: string, pass: string): Promise<any> => {
+    validateUser = async(data: ValidateUserInterface): Promise<any> => {
         try {
-            const query: FindUserDto = { email: email };
+            const query: FindUserDto = { email: data.email };
             const user: UserInterface = await this.userService.findUser(query); // find user in db by username
             // validate the given password
-            await this.verifyNewPasswordUtil.verifyMatch({newPassword: pass, oldPassword: user.password});
+            await this.verifyNewPasswordUtil.verifyMatch({newPassword: data.pass, oldPassword: user.password});
             const { password, ...result } = user;
             return result;
         } catch (err) {
@@ -53,15 +54,12 @@ export class AuthService {
      * summary: return a JWT inside of a Cookie, which may only be interacted with by Http and not Javascript, to the now authenticated user
      * @param user the user logging into the application
      */
-    login = async(user: any) => {
-        console.log(`here is the user property created by Passport`)
-        console.log(user._doc)
-        const packet: UserInterface = user._doc;
+    login = async(user: UserInterface) => {
         // create the JWT payload
         const payload = {
-            username: packet.username,
-            email: packet.email,
-            sub: packet._id,
+            username: user.username,
+            email: user.email,
+            sub: user._id,
         };
         // create JWT and return as a Cookie string
         const token = await this.jwtService.sign(payload);
@@ -91,7 +89,7 @@ export class AuthService {
      * @param confirm_password
      * @param req
      */
-    changePassword = async(data: ChangePasswordDto, req) => {
+    changePassword = async(data: ChangePasswordInterface, req) => {
         try {
             // verify user submitted same pw twice
             await this.verifyNewPasswordUtil.checkTypos({ newPassword: data.newPassword, confirmPassword: data.confirmPassword });
@@ -120,7 +118,7 @@ export class AuthService {
      * @param email the email for resetting the password
      * **summary**: sends user a reset password link to the provided email, if it's an account associated email
      */
-    forgotPassword = async(data: ForgotPasswordDto) => {
+    forgotPassword = async(data: ForgotPasswordInterface) => {
         try {
             // query user and confirm they exist
             const user = await this.userService.findUser({email: data.email});
@@ -144,7 +142,7 @@ export class AuthService {
      * @param newPassword the new password entered the 1st time
      * @param confirmPassword the identical new password entered a second time
      */
-    resetPassword = async(data: ResetPasswordDto) => {
+    resetPassword = async(data: ResetPasswordInterface) => {
         // check new password for typos
         await this.verifyNewPasswordUtil.checkTypos({newPassword: data.confirmPass, confirmPassword: data.resetPass});
         // query user by resetToken

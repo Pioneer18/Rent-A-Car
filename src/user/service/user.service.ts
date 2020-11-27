@@ -11,7 +11,7 @@ import { ExtractKeyValueUtil } from '../../auth/util/extract-key-value.util';
 import { DeleteUserDto } from '../dto/delete-user.dto';
 import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
 import { RedisService } from '../../redis/service/redis.service';
-import { JwtPayloadDto } from 'src/auth/dto/jwt-payload';
+import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
 /**
  * **summary**: contains all of the functionality to manage a user profile
  */
@@ -73,7 +73,7 @@ export class UserService {
     updateUser = async(data: UpdateUserDto, req ) => {
         try {
             // extract user email
-            const user: JwtPayloadDto = req.user;
+            const user: JwtPayloadInterface = req.user;
             const filter = {email: user.email };
             // create an update object
             let update = this.createUserUpdate(data);
@@ -98,7 +98,7 @@ export class UserService {
     deleteUser = async(data: DeleteUserDto, req) => {
         try {
             // extract user email
-            const doc:JwtPayloadDto = req.user;
+            const doc:JwtPayloadInterface = req.user;
             // query the user
             const user = await this.findUser({email: doc.email});
             // verify their password matches the current

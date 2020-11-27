@@ -2,7 +2,7 @@ import { Injectable, Logger, Req, Res } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ImageInterface } from '../interface/modelInterface/image.interface';
 import { Model } from 'mongoose';
-import { JwtPayloadDto } from '../../auth/dto/jwt-payload';
+import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
 import { AppConfigService } from '../../config/configuration.service';
 import { profile } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
@@ -58,7 +58,7 @@ export class ImagesService {
    * @param rental_id the id of the rental
    * @param user_id used to verify the image belongs to the requesting user
    */
-  findRentalImages = async (img_id: string | null, rental_id: string | null, user: JwtPayloadDto): Promise<ImageQueryResultsDto> => {
+  findRentalImages = async (img_id: string | null, rental_id: string | null, user: JwtPayloadInterface): Promise<ImageQueryResultsDto> => {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
@@ -80,7 +80,7 @@ export class ImagesService {
    * **summary**: query multiple profile images by user_id and profile category, or find a specific profile photo by id
    * @param user the user property of the request object
    */
-  findProfileImages = async (user: JwtPayloadDto, img_id?: string) => {
+  findProfileImages = async (user: JwtPayloadInterface, img_id?: string) => {
     try {
       let flag;
       img_id ? flag = 'single' : flag = 'multiple';
@@ -100,7 +100,7 @@ export class ImagesService {
    * @param category the images category; rentals or profile
    * @param user_id used to verify the photos belong to the requesting user
    */
-  deleteImages = async (images: ImageDto[], user: JwtPayloadDto) => {
+  deleteImages = async (images: ImageDto[], user: JwtPayloadInterface) => {
     try {
       if (images && images.length > 0) {
         if (images.length === 1) {
@@ -120,7 +120,7 @@ export class ImagesService {
    * @param user_id used to locate the user's photos as well as verify they belong to them
    * @param rental_id the id of the rental
    */
-  deleteAllImages = async (user: JwtPayloadDto, rental_id: string) => {
+  deleteAllImages = async (user: JwtPayloadInterface, rental_id: string) => {
     // delete all images of the selected rental
     if (user && rental_id !== null) {
       return await this.imagesModel.deleteMany({ rental_id: rental_id, user_id: user.userId });
@@ -142,7 +142,7 @@ export class ImagesService {
   fileuploadAndSave = async (req, res, category, rental_id) => {
     try {
       // create a multer upload
-      const user: JwtPayloadDto = req.user;
+      const user: JwtPayloadInterface = req.user;
       const multerUpload = await this.createMulterUploadUtil.create(req, category)
       // Upload the image(s)
       await this.multerUploadUtil.upload(req, res, multerUpload, this.saveImages, category, user, rental_id);

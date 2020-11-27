@@ -24,7 +24,7 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('login')
     async login(@Request() req, @Res() res: Response) {
-        const cookie = await this.authService.login(req.user);
+        const cookie = await this.authService.login(req.user._doc);
         res.setHeader('Set-Cookie', cookie);
         req.user._doc.password = undefined;
         return res.send(req.user._doc);

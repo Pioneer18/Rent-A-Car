@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Request } from "express";
-import { ExtractKeyValueUtilDto } from "../dto/extract-key-value-util.dto";
+import { ExtractKeyValueUtilInterface } from "../interfaces/extract-key-value-util.interface";
 /**
  * summary: grab the Authorization header Cookie and the extract JWT and the **key** used for caching the token
  * - note: the key is simply the last 8 digits of the this sessions JWT
@@ -9,7 +9,7 @@ import { ExtractKeyValueUtilDto } from "../dto/extract-key-value-util.dto";
 export class ExtractKeyValueUtil {
     constructor() {}
     
-    public extract = async(req: Request): Promise<ExtractKeyValueUtilDto> => {
+    public extract = async(req: Request): Promise<ExtractKeyValueUtilInterface> => {
         if (req){
             const rawAuth: string = req.headers.cookie
             return {
