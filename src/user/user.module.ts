@@ -13,7 +13,7 @@ import { VerifyNewPasswordUtil } from '../auth/util/verify-new-password.util';
 import { RedisService } from '../redis/service/redis.service';
 /**
  * - **summary**: this module provides all of the functionality for managing user profiles
- *   - **Middleware**: this module consumes the **ValidateEmailMiddleware** middleware
+ * - **Middleware**: this module consumes the **ValidateEmailMiddleware** middleware
  */
 @Module({
   imports: [
