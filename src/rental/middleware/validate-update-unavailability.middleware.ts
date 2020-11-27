@@ -141,7 +141,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
    * @param res the response object
    * @param next the next method to continue onto the next handler
    */
-  async use(req: Request, res: Response, next: Function):Promise<void> {
+  use = async(req: Request, res: Response, next: Function):Promise<void> => {
     // apply only to update-unavailability request
     if (req.originalUrl === '/v1/rental/update-unavailability') {
       await this.validateDto(req.body);

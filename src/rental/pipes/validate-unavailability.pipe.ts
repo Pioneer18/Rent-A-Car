@@ -207,7 +207,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * validateMinNotice(), and checkLeapYear() methods to validate the client request and return a ValidatedUnavailabilityDto
    * @param value the sorted but unvalidated client request data
    */
-  async transform(value: ValidateScheduleUnavailabilityDto): Promise<ValidatedUnavailabilityDto> {
+  transform = async(value: ValidateScheduleUnavailabilityDto): Promise<ValidatedUnavailabilityDto> => {
     try {
       const start: DateTime = await this.validateRelevance(value);
       // if 2 years; if there are 2 years we know y1 must include the final doy of y1

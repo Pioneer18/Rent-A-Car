@@ -82,7 +82,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
    * **summary**: use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto
    * @param value the raw client request data
    */
-  async transform(value: RawScheduleUnavailabilityDto): Promise<ValidateScheduleUnavailabilityDto> {
+  transform = async(value: RawScheduleUnavailabilityDto): Promise<ValidateScheduleUnavailabilityDto> => {
     try {
       const sorted: SortedUnavailabilityDto = await this.sort(value);
       const ordered = await this.orderYears(sorted);

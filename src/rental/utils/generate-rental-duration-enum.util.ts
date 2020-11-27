@@ -13,7 +13,7 @@ export class GenerateRentalDurationEnumUtil {
    * @param startTime 
    * @param endTime 
    */
-  private async processRentalTime(startTime, endTime):Promise<ProcessRentalTimeDto> {
+  private processRentalTime = async(startTime, endTime):Promise<ProcessRentalTimeDto> => {
     try {
       const base = Interval.fromDateTimes(startTime, endTime);
       const months = base.length('months');
@@ -33,7 +33,7 @@ export class GenerateRentalDurationEnumUtil {
    * @param startTime 
    * @param endTime 
    */
-  async generateRentalDurationEnum(startTime, endTime) {
+  generateRentalDurationEnum = async(startTime, endTime) => {
     try {
       const schedule: ProcessRentalTimeDto = await this.processRentalTime(startTime, endTime);
       if (schedule.months > 3) {

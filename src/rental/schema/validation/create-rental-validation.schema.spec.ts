@@ -1,6 +1,6 @@
 import { CreateRentalDto } from '../../dto/createRental/create-rental.dto';
 import { JoiValidationPipe } from '../../../common/pipes/joi-validation.pipe';
-import { CreateRentalValidation } from '../validation/create-rental-validation.schema';
+import { CreateRentalValidationSchema } from '../validation/create-rental-validation.schema';
 
 describe('CreateRentalValidationSchema Unit Test', () => {
   it('should only accept objects that fit the MapRentalInterface', () => {
@@ -47,7 +47,7 @@ describe('CreateRentalValidationSchema Unit Test', () => {
       },
       listed: true,
     };
-    const check = new JoiValidationPipe(CreateRentalValidation);
+    const check = new JoiValidationPipe(CreateRentalValidationSchema);
     expect(check.transform(rental)).toEqual(rental);
   });
 });

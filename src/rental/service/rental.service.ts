@@ -28,7 +28,7 @@ export class RentalService {
    * so the rental may be found by a geospatial query
    * @param rental the new rental to be created
    */
-  async createRental(rental: CreateRentalDto) {
+  createRental = async(rental: CreateRentalDto) => {
     try {
       const document = await new this.rentalModel(rental);
       return await document.save();
@@ -41,7 +41,7 @@ export class RentalService {
    * **summary**: query rentals in the database with the data provided in the SearchRentalDto
    * @param rental SearchRentalDto
    */
-  async searchRental(rental: SearchRentalDto) {
+  searchRental = async(rental: SearchRentalDto) => {
     try {
       const query = await this.createRentalQuery(rental);
       const rentals = await this.rentalModel.find(query);
@@ -61,8 +61,9 @@ export class RentalService {
    * - discounts:
    *   - weekly
    *   - monthly
+   * @param data the request dto
    */
-  async editPricing(data: PricingDto) {
+  editPricing = async(data: PricingDto) => {
     // make an update document
     try {
       const filter = { _id: data.rentalId };
@@ -89,7 +90,7 @@ export class RentalService {
    * **summary**: edit the details of the Rental (# of seats, color, etc.)
    * @param data the data comes as an EditDetailsDto
    */
-  async editDetails(data: EditDetailsDto) {
+  editDetails = async(data: EditDetailsDto) => {
     // make an update document
     try {
       const filter = { _id: data.rentalId };
@@ -110,7 +111,7 @@ export class RentalService {
   /**
    * **summary**: set a period of unavailability for the rental (e.g. mon - wed)
    */
-  async scheduleUnavailability(processed: ProcessedUnavailabilityDto) {
+  scheduleUnavailability = async(processed: ProcessedUnavailabilityDto) => {
     try {
       await this.checkForOverlap(processed);
       // if it passed, combine data into one array and insert
@@ -131,7 +132,7 @@ export class RentalService {
    * **summary**: edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
    * @param data 
    */
-  async updateUnavailability(data: UpdateUnavailabilityDataDto) {
+  updateUnavailability = async(data: UpdateUnavailabilityDataDto) => {
     // send the update
     try {
       const update = await this.unavailability.updateMany(
@@ -148,7 +149,7 @@ export class RentalService {
    * **summary**: remove an amount of time from a scheduled duration of unavailability on the rental
    * @param data 
    */
-  async removeUnavailability(data: RemoveUnavailabilityDto) {
+  removeUnavailability = async(data: RemoveUnavailabilityDto) => {
     try {
       const remove = await this.unavailability.deleteMany({
         rentalId: data.rentalId,
@@ -175,7 +176,7 @@ export class RentalService {
    *   - rental features: optional
    * @param rental searchRentalDto
    */
-  private async createRentalQuery(rental: SearchRentalDto) {
+  private createRentalQuery = async(rental: SearchRentalDto) => {
     try {
       const query: any = {
         'scheduling.rentMinDuration': { $lte: rental.rentalDuration },

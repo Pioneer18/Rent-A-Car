@@ -22,7 +22,7 @@ export class GeoUrlApiUtil {
    * @param geoUrl the base HERE geocoding and search v7 api url
    * @param apiKey the api key
    */
-  private async makeRequest(location, geoUrl, apiKey) {
+  private makeRequest = async(location, geoUrl, apiKey) => {
     try {
       console.log(`Geocoding & Search API Request: ${geoUrl}?q=${location}&apiKey=${apiKey}`)
       const request: any = await axios.default.get(
@@ -40,7 +40,7 @@ export class GeoUrlApiUtil {
    * @param geoUrl the url for the api
    * @param apiKey the key for the api
    */
-  async getCoordinates(address, geoUrl, apiKey):Promise<[number, number]> {
+  getCoordinates = async(address, geoUrl, apiKey):Promise<[number, number]> => {
     try {
       const location: string = address.replace(/\s+/g, '+');
       // make the API request

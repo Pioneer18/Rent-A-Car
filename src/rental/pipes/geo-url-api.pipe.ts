@@ -16,7 +16,7 @@ export class GeoUrlApiPipe {
    * **summary**: convert the location property object into a single address property string; will be passed to this.getCoordinates method
    * @param value the raw form data inputed by user to create a new Rental listing
    */
-  private async createAddress(value) {
+  private createAddress = async(value) => {
     // create address string from incoming vehicle.address document
     const address: string = `${value.location.street} ${value.location.city} ${value.location.zip}`;
     return address;
@@ -28,8 +28,8 @@ export class GeoUrlApiPipe {
    * @param geoUrl the url for accessing the API
    * @param apiKey the key for accessing the API
    */
-  async getCoordinates(address: string, geoUrl: string, apiKey: string,
-  ) {
+  private getCoordinates = async(address: string, geoUrl: string, apiKey: string,
+  ) => {
     Logger.log(`geoUrl: ${process.env.GEO_URL}`);
     const coords = await this.geoUrlApiUtil.getCoordinates(
       address,
@@ -43,7 +43,7 @@ export class GeoUrlApiPipe {
    * **summary**: use the createAddress() and getCoordinates() methods to return the request data with coordinates and an address string
    * @param value the raw request from a client to create a new Rental listing
    */
-  async transform(value: RawCreateRentalDto):Promise<LocCreateRentalDto> {
+  transform = async(value: RawCreateRentalDto):Promise<LocCreateRentalDto> => {
     const apiKey = process.env.GEO_API_KEY;
     const geoUrl = process.env.GEO_URL;
     try {

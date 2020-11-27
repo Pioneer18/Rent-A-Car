@@ -16,7 +16,7 @@ export class RentalDurationPipe implements PipeTransform {
    * Rental query
    * @param value the semi processed client request data to query a rental near their, or a specified, locaion
    */
-  async transform(value: GivenNoticeSearchRentalDto) {
+  transform = async(value: GivenNoticeSearchRentalDto) => {
     try {
       const dto: RequestCoordinatesDto = {
         address: value.address,

@@ -118,9 +118,9 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
    * - the user may schedule as far as a year ahead. To easily track the data as a single 'block' of unavailable time for the rental, each Unavailability document related to this query is given the same 'uuid'
    * @param value the validated unavailability request dto
    */
-  async transform(
+  transform = async(
     value: ValidatedUnavailabilityDto,
-  ): Promise<ProcessedUnavailabilityDto> {
+  ): Promise<ProcessedUnavailabilityDto> => {
     // add uuid
     const {pY1, pY2} = await this.addUnavailabilityId(value);
     const { y1, y2 } = value;

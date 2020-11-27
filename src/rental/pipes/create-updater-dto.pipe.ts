@@ -55,7 +55,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavail
      * **summary**: use the private methods to return a UpdateUnavailabilityDto
      * @param value a validated UpdateUnavailabilityDto
      */
-    async transform(value: ValidateUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataDto> {
+    transform = async (value: ValidateUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataDto> => {
         // return an UpdateUnavailabilityDto
         const raw =  await this.distillDto(value);
         const data = await this.createUpdateData(raw);

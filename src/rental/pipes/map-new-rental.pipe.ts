@@ -10,7 +10,7 @@ export class MapNewRentalPipe implements PipeTransform {
    * **summary**: transform the raw data into a CreateRentalDto
    * @param value the request to create a rental with all of the necessary raw data
    */
-  async transform(value: LocCreateRentalDto) {
+  transform = async(value: LocCreateRentalDto) => {
     try {
       const data: CreateRentalDto = {
         rentalDescription: 'this is a tokyo grocery getter',
