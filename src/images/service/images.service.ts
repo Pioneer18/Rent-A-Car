@@ -12,6 +12,7 @@ import { CreateMulterUploadUtil } from '../util/create-multer-upload.util';
 import { MulterUploadUtil } from '../util/multer-upload.util';
 import { ImageQueryResultsDto } from '../dto/image-query-results.dto';
 import { DeleteS3ImagesUtil } from '../util/delete-s3-images.util';
+import { FindRentalImagesInterface } from '../interface/find-rental-images.interface';
 /**
  * **summary**: contains all of the functionality for uploading and managing photos in the application.
  * - note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
@@ -57,18 +58,18 @@ export class ImagesService {
    * @param rental_id the id of the rental
    * @param user_id used to verify the image belongs to the requesting user
    */
-  findRentalImages = async (img_id: string | null, rental_id: string | null, user: JwtPayloadInterface): Promise<ImageQueryResultsDto> => {
+  findRentalImages = async (data: FindRentalImagesInterface): Promise<ImageQueryResultsDto> => {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
-      img_id !== null ? flag = 'single' : flag = 'multiple';
+      data.img_id !== null ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ rental_id: rental_id, user_id: user.userId });
+        const images = await this.imagesModel.find({ rental_id: data.rental_id, user_id: data.user.userId });
         return { count: images.length, images: images }
       }
       // find a specific image
-      const image = await this.imagesModel.findById(img_id);
+      const image = await this.imagesModel.findById(data.img_id);
       return { count: 1, images: image }
     } catch (err) {
       throw new Error(err);

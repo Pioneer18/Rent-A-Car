@@ -56,7 +56,7 @@ export class ImagesController {
      */
     @Get('find-rental-images')
     async findRentalImages(@Query() params, @Req() req) {
-        return await this.imagesService.findRentalImages(null, params.rental_id, req.user);
+        return await this.imagesService.findRentalImages({img_id: null, rental_id: params.rental_id, user: req.user});
     }
 
     /**
@@ -66,7 +66,7 @@ export class ImagesController {
      */
     @Get('find-rental-image')
     async findRentalImage(@Query() params: ImageDto, @Req() req) {
-        return await this.imagesService.findRentalImages(params._id, null, req.user);
+        return await this.imagesService.findRentalImages({img_id: params._id, rental_id: null, user: req.user});
     }
 
     /**
