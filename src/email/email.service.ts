@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
-import * as smtpTransport from 'nodemailer-smtp-transport';
 import { MailOptionsInterface } from './interface/mailoptions.interface';
-import { TransporterInterface } from './interface/transporter.interface';
 /**
  * **summary**: this email service uses the gmail nodemailer to send emails to the provided email; used to send the forgot password email to registered users
  */

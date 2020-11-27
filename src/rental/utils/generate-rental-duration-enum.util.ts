@@ -3,7 +3,7 @@ import { Interval } from 'luxon';
 import { RentalDurations } from '../const';
 import { ProcessRentalTimeDto } from '../dto/searchRental/process-rental-time.dto';
 /**
- * summary: generate RentalDuration Enums for the rentalDuration propery of the RequestCoordinatesDto
+ * **summary**: generate RentalDuration Enums for the rentalDuration propery of the RequestCoordinatesDto
  */
 @Injectable()
 export class GenerateRentalDurationEnumUtil {

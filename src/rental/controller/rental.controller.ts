@@ -28,7 +28,7 @@ import { AppConfigService } from '../../config/configuration.service';
 import { ConfigService } from '@nestjs/config';
 
 /**
- * - **Rental Controller**: Handle incoming requests and return responses for managing Rentals
+ * - **summary**: controller for managing rentals in the application
  * - **Middleware**: The ValidateUpdateUnavailabilityMiddleware class is applied to the updateUnavailability method
  */
 @Controller('rental')

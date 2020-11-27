@@ -1,7 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { ImageInterface } from "../interface/modelInterface/image.interface";
 import { ProcessedSaveDataDto } from "../dto/processed-save-data.dto";
-
+/**
+ * **summary**: utility to process the save image request data before passing it to the handler
+ */
 @Injectable()
 export class ProcessSaveDataUtil {
 

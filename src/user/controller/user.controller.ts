@@ -10,7 +10,7 @@ import { BcryptHashPipe } from '../pipes/bcrypt.pipe';
 import { CreateUserValidation } from '../schema/validation/create-user-validation.schema';
 import { UserService } from '../service/user.service';
 /**
- * 
+ * **summary**: controller for managing users in the application
  */
 @Controller('user')
 export class UserController {
