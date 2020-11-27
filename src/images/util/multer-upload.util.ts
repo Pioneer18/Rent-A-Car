@@ -16,7 +16,7 @@ export class MulterUploadUtil {
      * @param rental_id id of the rental if this is a rental images upload
      * @param model the database model which the this.saveImages() method will save images to
      */
-    upload = async (req, res, multerUpload, saveImages, category, user, rental_id, model): Promise<void> => {
+    upload = async (req, res, multerUpload, saveImages, category, user, rental_id): Promise<void> => {
         try {
             await multerUpload(req, res, function (err) {
                 if (err) {
@@ -25,7 +25,7 @@ export class MulterUploadUtil {
                 }
                 // Save the Images
                 console.log(user)
-                saveImages(req.files, category, user.userId, rental_id, model);
+                saveImages(req.files, category, user.userId, rental_id);
                 return res.status(201).json(req.files[0].location);
             });
         } catch (err) {

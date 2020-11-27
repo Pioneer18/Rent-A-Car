@@ -23,14 +23,13 @@ export class ImagesService {
 
   constructor(
     @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
-    private readonly appConfig: AppConfigService,
     private readonly processSaveDataUtil: ProcessSaveDataUtil,
     private readonly s3Provider: S3Provider,
     private readonly createMulterUploadUtil: CreateMulterUploadUtil,
     private readonly multerUploadUtil: MulterUploadUtil,
     private readonly deleteS3ImagesUtil: DeleteS3ImagesUtil,
   ) { }
-  s3 = this.s3Provider.getS3();
+  private s3 = this.s3Provider.getS3();
 
   /**
    * **summary**: saves AWS uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 
@@ -39,15 +38,15 @@ export class ImagesService {
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  saveImages = async (files, category, user_id, rental_id, model) => {
+  saveImages = async (files, category, user_id, rental_id) => {
     try {
       const { packet, image }: ProcessedSaveDataDto = await this.processSaveDataUtil.process(files, user_id, rental_id, category);
       let flag;
       packet === null ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        return await model.insertMany(packet);
+        return await this.imagesModel.insertMany(packet);
       }
-      return await model.save(image)
+      return await this.imagesModel.save(image)
     } catch (err) {
       throw new Error(err);
     }
@@ -142,14 +141,13 @@ export class ImagesService {
    * @param rental_id the rental_id for rental image uploads
    * @param saveImages the images.service.saveImages method
    */
-  fileuploadAndSave = async (req, res, category, rental_id, saveimages) => {
+  fileuploadAndSave = async (req, res, category, rental_id) => {
     try {
       // create a multer upload
       const user: JwtPayloadDto = req.user;
       const multerUpload = await this.createMulterUploadUtil.create(req, category)
       // Upload the image(s)
-      const model = this.imagesModel;
-      await this.multerUploadUtil.upload(req, res, multerUpload, saveimages, category, user, rental_id, model);
+      await this.multerUploadUtil.upload(req, res, multerUpload, this.saveImages, category, user, rental_id);
     } catch (err) {
       return res.status(500).json(`Failed to upload image file: ${err}`)
     }

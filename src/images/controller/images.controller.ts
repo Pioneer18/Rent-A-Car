@@ -25,7 +25,7 @@ export class ImagesController {
     @Post('upload-rental-images')
     async uploadRentalImages(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, rentals, params.rental_id, this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, rentals, params.rental_id)
         } catch (err) {
             return response
                 .status(500)
@@ -41,7 +41,7 @@ export class ImagesController {
     @Post('upload-profile-images')
     async uploadProfileImage(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, profile, params.rental_id, this.imagesService.saveImages)
+            await this.imagesService.fileuploadAndSave(req, res, profile, params.rental_id)
         } catch (err) {
             return response
                 .status(500)
