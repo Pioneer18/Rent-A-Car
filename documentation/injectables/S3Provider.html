@@ -60,6 +60,13 @@
             <code>src/images/providers/s3.provider.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: provide connection to the AWS S3 bucket</p>
+
+            </p>
 
 
 
@@ -102,7 +109,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/images/providers/s3.provider.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/images/providers/s3.provider.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -165,10 +172,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/images/providers/s3.provider.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/images/providers/s3.provider.ts:14</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: connect to the S3 bucket with the access key and it&#39;s ID</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -181,12 +194,16 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
 import { AppConfigService } from &quot;src/config/configuration.service&quot;;
 import { S3 } from &#x27;aws-sdk&#x27;
-
+/**
+ * **summary**: provide connection to the AWS S3 bucket
+ */
 @Injectable()
 export class S3Provider {
     constructor(private readonly appConfig: AppConfigService) {
     }
-
+    /**
+     * **summary**: connect to the S3 bucket with the access key and it&#x27;s ID
+     */
     getS3 &#x3D; () &#x3D;&gt; {
         return new S3({
             accessKeyId: this.appConfig.access_key_id,

@@ -60,8 +60,20 @@
             <code>src/user/util/validate-email.util.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: throw an error if the user email already exists</p>
+
+            </p>
 
 
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -102,7 +114,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/user/util/validate-email.util.ts:4</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/user/util/validate-email.util.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -137,14 +149,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="7"
-                            class="link-to-prism">src/user/util/validate-email.util.ts:7</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/user/util/validate-email.util.ts:14</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: if the array has a length greater than 0, a user with the email already exists</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -188,11 +202,18 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-
+/**
+ * **summary**: throw an error if the user email already exists
+ * @param check the results of a find user by email query
+ */
 @Injectable()
 export class ValidateEmailUtil {
     constructor() {}
 
+    /**
+     * **summary**: if the array has a length greater than 0, a user with the email already exists
+     * @param check 
+     */
     validateEmail(check){
         if(check.length &#x3D;&#x3D;&#x3D; 0 || check.length &#x3D;&#x3D;&#x3D; undefined) return
         throw new Error(&#x27;A User exists that is already using this email&#x27;);

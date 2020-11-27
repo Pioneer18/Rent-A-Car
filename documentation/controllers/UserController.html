@@ -65,6 +65,13 @@
                 <code>user</code>
             </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: controller for managing users in the application</p>
+
+            </p>
 
 
 
@@ -146,15 +153,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/user/controller/user.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/user/controller/user.controller.ts:26</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Create User</p>
+                    <div class="io-description"><p><strong>summary</strong>: create a new user profile</p>
 </div>
 
                     <div class="io-description">
@@ -181,7 +188,7 @@
 
 
                                     <td>
-                                        <p>new user</p>
+                                        <p>new user data</p>
 
                                     </td>
                                 </tr>
@@ -218,7 +225,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteProfile(data: <a href="../injectables/DeleteUserDto.html">DeleteUserDto</a>, req: Request)</code>
+                    <code>deleteProfile(data: <a href="../injectables/DeleteUserDto.html">DeleteUserDto</a>, req)</code>
                 </td>
             </tr>
 
@@ -232,15 +239,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/user/controller/user.controller.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/user/controller/user.controller.ts:63</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Delete User Profile</p>
+                    <div class="io-description"><p><strong>summary</strong>: delete a user profile</p>
 </div>
 
                     <div class="io-description">
@@ -274,7 +281,6 @@
                                 <tr>
                                     <td>req</td>
                                     <td>
-                                            <code>Request</code>
                                     </td>
 
                                     <td>
@@ -318,7 +324,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findUser(user: <a href="../injectables/FindUserDto.html">FindUserDto</a>)</code>
+                    <code>findUser(email: <a href="../injectables/FindUserDto.html">FindUserDto</a>)</code>
                 </td>
             </tr>
 
@@ -332,15 +338,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/user/controller/user.controller.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/user/controller/user.controller.ts:50</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Find User by Email</p>
+                    <div class="io-description"><p>summary: find a user by email</p>
 </div>
 
                     <div class="io-description">
@@ -355,7 +361,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>user</td>
+                                    <td>email</td>
                                     <td>
                                                 <code><a href="../injectables/FindUserDto.html" target="_self" >FindUserDto</a></code>
                                     </td>
@@ -399,7 +405,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateProfile(update: <a href="../injectables/UpdateUserDto.html">UpdateUserDto</a>, req: Request)</code>
+                    <code>updateProfile(update: <a href="../injectables/UpdateUserDto.html">UpdateUserDto</a>, req)</code>
                 </td>
             </tr>
 
@@ -413,15 +419,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/user/controller/user.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/user/controller/user.controller.ts:39</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Update User</p>
+                    <div class="io-description"><p><strong>summary</strong>: update a user&#39;s profile data</p>
 </div>
 
                     <div class="io-description">
@@ -455,7 +461,6 @@
                                 <tr>
                                     <td>req</td>
                                     <td>
-                                            <code>Request</code>
                                     </td>
 
                                     <td>
@@ -464,6 +469,8 @@
 
 
                                     <td>
+                                        <p>client request</p>
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -487,7 +494,6 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect } from &#x27;@nestjs/common&#x27;;
-import { Request } from &#x27;express&#x27;;
 import { JwtAuthGuard } from &#x27;../../auth/gaurds/jwt-auth.guard&#x27;;
 import { LoggedOutGaurd } from &#x27;../../auth/gaurds/logged-out.guard&#x27;;
 import { JoiValidationPipe } from &#x27;../../common/pipes/joi-validation.pipe&#x27;;
@@ -498,14 +504,16 @@ import { UpdateUserDto } from &#x27;../dto/update-user.dto&#x27;;
 import { BcryptHashPipe } from &#x27;../pipes/bcrypt.pipe&#x27;;
 import { CreateUserValidation } from &#x27;../schema/validation/create-user-validation.schema&#x27;;
 import { UserService } from &#x27;../service/user.service&#x27;;
-
+/**
+ * **summary**: controller for managing users in the application
+ */
 @Controller(&#x27;user&#x27;)
 export class UserController {
     constructor(private readonly userService: UserService) {}
     
     /**
-     * Create User
-     * @param user new user
+     * **summary**: create a new user profile
+     * @param user new user data
      */
     @UsePipes(new BcryptHashPipe())
     @UsePipes(new JoiValidationPipe(CreateUserValidation))
@@ -515,43 +523,39 @@ export class UserController {
     }
 
     /**
-     * Update User
+     * **summary**: update a user&#x27;s profile data
      * @param update updates
-     * @param req 
+     * @param req client request
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Post(&#x27;update-user&#x27;)
     @Redirect(&#x27;http://localhost:3000/auth/login&#x27;)
-    async updateProfile(@Body() update: UpdateUserDto, @Req() req: Request) {
+    async updateProfile(@Body() update: UpdateUserDto, @Req() req) {
         return await this.userService.updateUser(update, req);
     }
 
-    /*
-     * See Images Controller for Upload User Image(s)
-    */
-
     /**
-     * Find User by Email
-     * @param user 
+     * summary: find a user by email
+     * @param email 
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Get(&#x27;find-user&#x27;)
-    async findUser(@Body() user: FindUserDto) {
-        return await this.userService.findUser(user)
+    async findUser(@Body() email: FindUserDto) {
+        return await this.userService.findUser(email)
     }
 
 
     /**
-     * Delete User Profile
+     * **summary**: delete a user profile
      * @param data user credentials
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Redirect(&#x27;http://localhost:3000/auth/login&#x27;, 302)
     @Post(&#x27;delete-profile&#x27;)
-    async deleteProfile(@Body() data: DeleteUserDto, @Req() req: Request) {
+    async deleteProfile(@Body() data: DeleteUserDto, @Req() req) {
         return this.userService.deleteUser(data, req);
     }
 }

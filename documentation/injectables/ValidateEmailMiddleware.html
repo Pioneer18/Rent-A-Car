@@ -64,7 +64,11 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Validate the requested email is unique to the database</p>
+                <p><strong>summary</strong>: before creating a new user, validate that their email is not already in the database. this middleware is only applied to the 
+user.controller.createUser() method</p>
+<ul>
+<li>note: uses the ValidateEmailUtil class</li>
+</ul>
 
             </p>
 
@@ -129,7 +133,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user/middleware/validate-email.middleware.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user/middleware/validate-email.middleware.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -196,14 +200,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/user/middleware/validate-email.middleware.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/user/middleware/validate-email.middleware.ts:39</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: use the validateEmail method to validate the requested new user email does not already exist before continuing to the handler</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -213,6 +219,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -227,6 +234,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the client request</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -239,6 +250,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>next</td>
@@ -251,6 +266,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the next method to continue to the request handler</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -293,14 +312,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/user/middleware/validate-email.middleware.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/user/middleware/validate-email.middleware.ts:28</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: query the databse to valdiate the requested new email is unique to the database</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -310,6 +331,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -324,6 +346,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the requested new user email</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -367,7 +393,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user/middleware/validate-email.middleware.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user/middleware/validate-email.middleware.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -383,12 +409,14 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, NestMiddleware } from &#x27;@nestjs/common&#x27;
 import { Request, Response } from &#x27;express&#x27;;
 import { userModel } from &#x27;../../common/Const&#x27;;
-import { UserInterface } from &#x27;../interface/user.interface&#x27;;
+import { UserInterface } from &#x27;../interface/modelInterface/user.interface&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
 import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
 import { ValidateEmailUtil } from &#x27;../util/validate-email.util&#x27;;
 /**
- * Validate the requested email is unique to the database
+ * **summary**: before creating a new user, validate that their email is not already in the database. this middleware is only applied to the 
+ * user.controller.createUser() method
+ * - note: uses the ValidateEmailUtil class
  */
 @Injectable()
 export class ValidateEmailMiddleware implements NestMiddleware {
@@ -401,11 +429,21 @@ export class ValidateEmailMiddleware implements NestMiddleware {
         this.validateEmailUtil &#x3D; new ValidateEmailUtil()
     }
 
-    private async validateEmail(value: CreateUserDto){
-        const check &#x3D; await this.user.find({email: value.email});
+    /**
+     * **summary**: query the databse to valdiate the requested new email is unique to the database
+     * @param value the requested new user email
+     */
+    private async validateEmail(value: CreateUserDto) {
+        const check &#x3D; await this.user.find({ email: value.email });
         this.validateEmailUtil.validateEmail(check)
     }
 
+    /**
+     * **summary**: use the validateEmail method to validate the requested new user email does not already exist before continuing to the handler
+     * @param req the client request
+     * @param res the response
+     * @param next the next method to continue to the request handler
+     */
     async use(req: Request, res: Response, next: Function) {
         // apply to create-user route
         if (req.originalUrl &#x3D;&#x3D;&#x3D; &#x27;/v1/user/create-user&#x27;) {

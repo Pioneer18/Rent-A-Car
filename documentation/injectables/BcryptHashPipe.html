@@ -60,6 +60,13 @@
             <code>src/user/pipes/bcrypt.pipe.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: encrypt the user&#39;s password </p>
+
+            </p>
 
 
 
@@ -122,15 +129,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/user/pipes/bcrypt.pipe.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/user/pipes/bcrypt.pipe.ts:14</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Use bcrypt to hash and salt the user&#39;s password</p>
+                    <div class="io-description"><p><strong>summary</strong>: use bcrypt to hash and salt the user&#39;s password</p>
 </div>
 
                     <div class="io-description">
@@ -186,21 +193,21 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &quot;@nestjs/common&quot;;
 import { CreateUserDto } from &quot;../dto/create-user.dto&quot;;
 import * as bcrypt from &#x27;bcrypt&#x27;;
-
+/**
+ * **summary**: encrypt the user&#x27;s password 
+ */
 @Injectable()
 export class BcryptHashPipe implements PipeTransform {
 
     /**
-     * Use bcrypt to hash and salt the user&#x27;s password
+     * **summary**: use bcrypt to hash and salt the user&#x27;s password
      * @param value new user info
      */
     async transform(value: CreateUserDto) {
         try {
-            console.log(&#x60;I Love Unathi!&#x60;);
             const hash &#x3D; await bcrypt.hash(value.password, 10);
             const verified &#x3D; await bcrypt.compare(value.password, hash);
             if (verified) {
-                console.log(&#x27;verified :)&#x27;)
                 value.password &#x3D; hash;
                 return value;
             }

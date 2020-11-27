@@ -68,11 +68,13 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Exception filters give full control over the exceptions layer
-Add Logging
-Control exact flow of control and the content of the response sent
-This filter is responsible for catching exceptions which are an instance of the HttpException
-Grants us access to the underlying platform &#39;Request&#39; &amp; &#39;Response&#39; objects</p>
+                <ul>
+<li>Exception filters give full control over the exceptions layer</li>
+<li>Add Logging</li>
+<li>Control exact flow of control and the content of the response sent</li>
+<li>This filter is responsible for catching exceptions which are an instance of the HttpException</li>
+<li>Grants us access to the underlying platform &#39;Request&#39; &amp; &#39;Response&#39; objects</li>
+</ul>
 
             </p>
 
@@ -222,11 +224,11 @@ Grants us access to the underlying platform &#39;Request&#39; &amp; &#39;Respons
 import { DateTime } from &#x27;luxon&#x27;;
 
 /**
- * Exception filters give full control over the exceptions layer
- * Add Logging
- * Control exact flow of control and the content of the response sent
- * This filter is responsible for catching exceptions which are an instance of the HttpException
- * Grants us access to the underlying platform &#x27;Request&#x27; &amp; &#x27;Response&#x27; objects
+ * - Exception filters give full control over the exceptions layer
+ * - Add Logging
+ * - Control exact flow of control and the content of the response sent
+ * - This filter is responsible for catching exceptions which are an instance of the HttpException
+ * - Grants us access to the underlying platform &#x27;Request&#x27; &amp; &#x27;Response&#x27; objects
  */
 @Catch(HttpException)
 export class HttpErrorFilter implements ExceptionFilter&lt;HttpException&gt; {

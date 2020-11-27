@@ -60,6 +60,13 @@
             <code>src/images/util/process-save-data.util.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: utility to process the save image request data before passing it to the handler</p>
+
+            </p>
 
 
 
@@ -117,14 +124,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/images/util/process-save-data.util.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/images/util/process-save-data.util.ts:17</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Process
-Summary: create a new Image Document or an array of Image Documents to be saved</p>
+                        <div class="io-description"><p><strong>summary</strong>: create a new Image Document or an array of Image Documents to be saved</p>
 </div>
                     </td>
                 </tr>
@@ -183,23 +189,22 @@ Summary: create a new Image Document or an array of Image Documents to be saved<
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { InjectModel } from &quot;@nestjs/mongoose&quot;;
-import { ImageInterface } from &quot;../interface/image.interface&quot;;
-import { Model } from &#x27;mongoose&#x27;;
-import { ProcessedSaveDataInterface } from &quot;../interface/processed-save-data.interface&quot;;
-
+import { ImageInterface } from &quot;../interface/modelInterface/image.interface&quot;;
+import { ProcessedSaveDataDto } from &quot;../dto/processed-save-data.dto&quot;;
+/**
+ * **summary**: utility to process the save image request data before passing it to the handler
+ */
 @Injectable()
 export class ProcessSaveDataUtil {
 
   /**
-   * Process
-   * Summary: create a new Image Document or an array of Image Documents to be saved
+   * **summary**: create a new Image Document or an array of Image Documents to be saved
    * @param files the incoming file(s) to be saved
    * @param user_id the user id
    * @param rental_id the rental id
    * @param category the category of the image: rentals or photos
    */
-  process &#x3D; async (files, user_id, rental_id, category): Promise&lt;ProcessedSaveDataInterface&gt; &#x3D;&gt; {
+  process &#x3D; async (files, user_id, rental_id, category): Promise&lt;ProcessedSaveDataDto&gt; &#x3D;&gt; {
     if (files &amp;&amp; files.length &gt; 0) {
       // single file
       if (files.length &#x3D;&#x3D;&#x3D; 1) {

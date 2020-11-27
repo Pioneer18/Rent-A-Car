@@ -64,10 +64,11 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Images Service
-written by: Jonathan Sells
-note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
-this makes queries slightly less selective and less efficient, but more secure.</p>
+                <p><strong>summary</strong>: contains all of the functionality for uploading and managing photos in the application.</p>
+<ul>
+<li>note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
+this makes queries slightly less selective and less efficient, but more secure.</li>
+</ul>
 
             </p>
 
@@ -130,7 +131,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/images/service/images.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/images/service/images.service.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -265,10 +266,16 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/images/service/images.service.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/images/service/images.service.ts:126</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: delete all images of the selected rental or profile from the S3 bucket and database</p>
+</div>
+                    </td>
+                </tr>
 
                     <tr>
                         <td class="col-md-4">
@@ -283,33 +290,17 @@ this makes queries slightly less selective and less efficient, but more secure.<
                                       </thead>
                                       <tbody>
                                                 <tr>
-                                                        <td>user</td>
+                                                        <td>user_id</td>
                                                         <td>
-                                                                <code><p>var params = {
-Bucket: &quot;examplebucket&quot;,
-Delete: {
-Objects: [
-{
-Key: &quot;HappyFace.jpg&quot;,
-VersionId: &quot;2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b&quot;
-},
-{
-Key: &quot;HappyFace.jpg&quot;,
-VersionId: &quot;yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd&quot;
-}
-],
-Quiet: false
-}
-};
-s3.deleteObjects(params, function(err, data) {
-if (err) console.log(err, err.stack); // an error occurred
-else     console.log(data);           // successful response</p>
+                                                                <code><p>used to locate the user&#39;s photos as well as verify they belong to them</p>
 </code>
                                                         </td>
                                                 </tr>
                                                 <tr>
                                                         <td>rental_id</td>
                                                         <td>
+                                                                <code><p>the id of the rental</p>
+</code>
                                                         </td>
                                                 </tr>
                                       </tbody>
@@ -338,14 +329,13 @@ else     console.log(data);           // successful response</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/images/service/images.service.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/images/service/images.service.ts:106</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Delete Images
-Sumamry: Delete a single or multiple of user&#39;s selected images</p>
+                        <div class="io-description"><p><strong>sumamry</strong>: Delete a single or multiple of a user&#39;s selected images from the S3 Bucket and database</p>
 </div>
                     </td>
                 </tr>
@@ -402,14 +392,13 @@ Sumamry: Delete a single or multiple of user&#39;s selected images</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/images/service/images.service.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/images/service/images.service.ts:145</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Upload Images to S3 Bucket
-<strong>summary</strong>: send the file(s) to the bucket and attach a timestamp to each filename</p>
+                        <div class="io-description"><p><strong>summary</strong>: send the file(s) to the bucket and attach a timestamp to each filename</p>
 </div>
                     </td>
                 </tr>
@@ -487,14 +476,13 @@ Sumamry: Delete a single or multiple of user&#39;s selected images</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/images/service/images.service.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/images/service/images.service.ts:86</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Find Profile Images
-Summary: query multiple profile images by user_id and profile category, or find a specific profile photo by id</p>
+                        <div class="io-description"><p><strong>summary</strong>: query multiple profile images by user_id and profile category, or find a specific profile photo by id</p>
 </div>
                     </td>
                 </tr>
@@ -544,14 +532,14 @@ Summary: query multiple profile images by user_id and profile category, or find 
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/images/service/images.service.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/images/service/images.service.ts:64</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Find Rental Images
-Summary: query multiple rental images by userId and rental_id</p>
+                        <div class="io-description"><p><strong>summary</strong>: query multiple rental images by userId and rental_id. The userId
+is just to ensure only the user&#39;s photos are returned and not another user&#39;s rental images</p>
 </div>
                     </td>
                 </tr>
@@ -622,7 +610,7 @@ Summary: query multiple rental images by userId and rental_id</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/images/service/images.service.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/images/service/images.service.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -648,14 +636,13 @@ Summary: query multiple rental images by userId and rental_id</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/images/service/images.service.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/images/service/images.service.ts:42</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Save uploaded images
-Summary: Saves uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method </p>
+                        <div class="io-description"><p><strong>summary</strong>: saves AWS uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method </p>
 </div>
                     </td>
                 </tr>
@@ -715,23 +702,22 @@ Summary: Saves uploaded images to the database. This method is passed as an argu
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger, Req, Res } from &#x27;@nestjs/common&#x27;;
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
-import { ImageInterface } from &#x27;../interface/image.interface&#x27;;
+import { ImageInterface } from &#x27;../interface/modelInterface/image.interface&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
 import { JwtPayloadDto } from &#x27;../../auth/dto/jwt-payload&#x27;;
 import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
 import { profile } from &#x27;../../common/Const&#x27;;
 import { ImageDto } from &#x27;../dto/image.dto&#x27;;
 import { ProcessSaveDataUtil } from &#x27;../util/process-save-data.util&#x27;;
-import { ProcessedSaveDataInterface } from &#x27;../interface/processed-save-data.interface&#x27;;
+import { ProcessedSaveDataDto } from &#x27;../dto/processed-save-data.dto&#x27;;
 import { S3Provider } from &#x27;../providers/s3.provider&#x27;;
 import { CreateMulterUploadUtil } from &#x27;../util/create-multer-upload.util&#x27;;
 import { MulterUploadUtil } from &#x27;../util/multer-upload.util&#x27;;
 import { ImageQueryResultsDto } from &#x27;../dto/image-query-results.dto&#x27;;
 import { DeleteS3ImagesUtil } from &#x27;../util/delete-s3-images.util&#x27;;
 /**
- * Images Service
- * written by: Jonathan Sells
- * note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
+ * **summary**: contains all of the functionality for uploading and managing photos in the application.
+ * - note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
  * this makes queries slightly less selective and less efficient, but more secure.
  */
 @Injectable()
@@ -749,8 +735,7 @@ export class ImagesService {
   s3 &#x3D; this.s3Provider.getS3();
 
   /**
-   * Save uploaded images
-   * Summary: Saves uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 
+   * **summary**: saves AWS uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 
    * @param files array of files
    * @param category rentals / profile
    * @param {string} user_id user id to associate with the image
@@ -758,7 +743,7 @@ export class ImagesService {
    */
   saveImages &#x3D; async (files, category, user_id, rental_id, model) &#x3D;&gt; {
     try {
-      const { packet, image }: ProcessedSaveDataInterface &#x3D; await this.processSaveDataUtil.process(files, user_id, rental_id, category);
+      const { packet, image }: ProcessedSaveDataDto &#x3D; await this.processSaveDataUtil.process(files, user_id, rental_id, category);
       let flag;
       packet &#x3D;&#x3D;&#x3D; null ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
       if (flag &#x3D;&#x3D;&#x3D; &#x27;multiple&#x27;) {
@@ -771,21 +756,21 @@ export class ImagesService {
   }
 
   /**
-   * Find Rental Images
-   * Summary: query multiple rental images by userId and rental_id
+   * **summary**: query multiple rental images by userId and rental_id. The userId
+   * is just to ensure only the user&#x27;s photos are returned and not another user&#x27;s rental images
    * @param user the user property of the request object
    * @param img_id id of an image; if provided only this image will be found
    * @param rental_id the id of the rental
    * @param user_id used to verify the image belongs to the requesting user
    */
-  findRentalImages &#x3D; async (img_id: string | null, rental_id: string | null, user_id: string): Promise&lt;ImageQueryResultsDto&gt; &#x3D;&gt; {
+  findRentalImages &#x3D; async (img_id: string | null, rental_id: string | null, user: JwtPayloadDto): Promise&lt;ImageQueryResultsDto&gt; &#x3D;&gt; {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
       img_id !&#x3D;&#x3D; null ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
       // find multiple images
       if (flag &#x3D;&#x3D;&#x3D; &#x27;multiple&#x27;) {
-        const images &#x3D; await this.imagesModel.find({ rental_id: rental_id, user_id: user_id });
+        const images &#x3D; await this.imagesModel.find({ rental_id: rental_id, user_id: user.userId });
         return { count: images.length, images: images }
       }
       // find a specific image
@@ -797,8 +782,7 @@ export class ImagesService {
   }
 
   /**
-   * Find Profile Images
-   * Summary: query multiple profile images by user_id and profile category, or find a specific profile photo by id
+   * **summary**: query multiple profile images by user_id and profile category, or find a specific profile photo by id
    * @param user the user property of the request object
    */
   findProfileImages &#x3D; async (user: JwtPayloadDto, img_id?: string) &#x3D;&gt; {
@@ -817,8 +801,7 @@ export class ImagesService {
   }
 
   /**
-   * Delete Images
-   * Sumamry: Delete a single or multiple of user&#x27;s selected images
+   * **sumamry**: Delete a single or multiple of a user&#x27;s selected images from the S3 Bucket and database
    * @param category the images category; rentals or profile
    * @param user_id used to verify the photos belong to the requesting user
    */
@@ -838,32 +821,7 @@ export class ImagesService {
   }
 
   /**
-   *
-   * @param user var params &#x3D; {
-  Bucket: &quot;examplebucket&quot;,
-  Delete: {
-   Objects: [
-      {
-     Key: &quot;HappyFace.jpg&quot;,
-     VersionId: &quot;2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b&quot;
-    },
-      {
-     Key: &quot;HappyFace.jpg&quot;,
-     VersionId: &quot;yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd&quot;
-    }
-   ],
-   Quiet: false
-  }
-  };
-  s3.deleteObjects(params, function(err, data) {
-   if (err) console.log(err, err.stack); // an error occurred
-   else     console.log(data);           // successful response
-   * @param rental_id
-   */
-
-  /**
-   * Delete All Images
-   * Summary: Delete all images of the selected rental or profile
+   * **summary**: delete all images of the selected rental or profile from the S3 bucket and database
    * @param user_id used to locate the user&#x27;s photos as well as verify they belong to them
    * @param rental_id the id of the rental
    */
@@ -879,7 +837,6 @@ export class ImagesService {
   }
 
   /**
-   * Upload Images to S3 Bucket
    * **summary**: send the file(s) to the bucket and attach a timestamp to each filename
    * @param req the request
    * @param res the response

@@ -60,6 +60,13 @@
             <code>src/images/util/multer-upload.util.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: upload a single or multiple files as a multerUpload</p>
+
+            </p>
 
 
 
@@ -117,11 +124,90 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/images/util/multer-upload.util.ts:6</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/images/util/multer-upload.util.ts:19</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: upload the provided files with the multerUpload object</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>req</td>
+                                                        <td>
+                                                                <code><p>the client request</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>res</td>
+                                                        <td>
+                                                                <code><p>the response</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>multerUpload</td>
+                                                        <td>
+                                                                <code><p>uploader</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>saveImages</td>
+                                                        <td>
+                                                                <code><p>this.saveImages() method to save the uploaded image data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>category</td>
+                                                        <td>
+                                                                <code><p>the image category: rentals || profile</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                <code><p>the user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>rental_id</td>
+                                                        <td>
+                                                                <code><p>id of the rental if this is a rental images upload</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>model</td>
+                                                        <td>
+                                                                <code><p>the database model which the this.saveImages() method will save images to</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
 </section>
@@ -131,10 +217,23 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-
+/**
+ * **summary**: upload a single or multiple files as a multerUpload
+ */
 @Injectable()
 export class MulterUploadUtil {
 
+    /**
+     * **summary**: upload the provided files with the multerUpload object
+     * @param req the client request
+     * @param res the response
+     * @param multerUpload uploader
+     * @param saveImages this.saveImages() method to save the uploaded image data
+     * @param category the image category: rentals || profile
+     * @param user the user
+     * @param rental_id id of the rental if this is a rental images upload
+     * @param model the database model which the this.saveImages() method will save images to
+     */
     upload &#x3D; async (req, res, multerUpload, saveImages, category, user, rental_id, model): Promise&lt;void&gt; &#x3D;&gt; {
         try {
             await multerUpload(req, res, function (err) {

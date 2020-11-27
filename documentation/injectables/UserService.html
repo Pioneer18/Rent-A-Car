@@ -60,6 +60,13 @@
             <code>src/user/service/user.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: contains all of the functionality to manage a user profile</p>
+
+            </p>
 
 
 
@@ -123,12 +130,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userModel: <a href="../interfaces/UserInterface.html">Model<UserInterface></a>, extractKeyValueUtil: <a href="../injectables/ExtractKeyValueUtil.html">ExtractKeyValueUtil</a>, verifyNewPasswordUtil: <a href="../injectables/VerifyNewPasswordUtil.html">VerifyNewPasswordUtil</a>, redisService: RedisService, extractUserUtil: <a href="../injectables/ExtractUserUtil.html">ExtractUserUtil</a>)</code>
+<code>constructor(userModel: <a href="../interfaces/UserInterface.html">Model<UserInterface></a>, extractKeyValueUtil: <a href="../injectables/ExtractKeyValueUtil.html">ExtractKeyValueUtil</a>, verifyNewPasswordUtil: <a href="../injectables/VerifyNewPasswordUtil.html">VerifyNewPasswordUtil</a>, redisService: RedisService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/user/service/user.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/user/service/user.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -193,18 +200,6 @@
                                                     </td>
                                                     
                                                 </tr>
-                                                <tr>
-                                                        <td>extractUserUtil</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/ExtractUserUtil.html" target="_self" >ExtractUserUtil</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -251,7 +246,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Create User</p>
+                    <div class="io-description"><p><strong>summary</strong>: create a new user</p>
 </div>
 
                     <div class="io-description">
@@ -384,22 +379,22 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteUser(data: <a href="../injectables/DeleteUserDto.html">DeleteUserDto</a>, req: Request)</code>
+                    <code>deleteUser(data: <a href="../injectables/DeleteUserDto.html">DeleteUserDto</a>, req)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/user/service/user.service.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/user/service/user.service.ts:98</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Delete User Profile</p>
+                    <div class="io-description"><p><strong>summary</strong>: delete a user&#39;s account</p>
 </div>
 
                     <div class="io-description">
@@ -433,7 +428,6 @@
                                 <tr>
                                     <td>req</td>
                                     <td>
-                                            <code>Request</code>
                                     </td>
 
                                     <td>
@@ -442,6 +436,8 @@
 
 
                                     <td>
+                                        <p>the client request</p>
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -484,15 +480,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/user/service/user.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/user/service/user.service.ts:46</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Find User by email</p>
+                    <div class="io-description"><p><strong>summary</strong>: find a user by email</p>
 </div>
 
                     <div class="io-description">
@@ -563,15 +559,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/user/service/user.service.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/user/service/user.service.ts:59</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Find User by resetPasswordToken</p>
+                    <div class="io-description"><p><strong>summary</strong>: find a user by their resetPasswordToken once they have submitted the reset password email</p>
 </div>
 
                     <div class="io-description">
@@ -643,14 +639,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="135"
-                            class="link-to-prism">src/user/service/user.service.ts:135</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/user/service/user.service.ts:139</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p><strong>summary</strong>: log a user out of the application by adding their JWT to the Redis cache &#39;dead-list&#39;</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -660,6 +658,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -674,6 +673,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the client request</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -708,22 +711,22 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateUser(data: <a href="../injectables/UpdateUserDto.html">UpdateUserDto</a>, req: Request)</code>
+                    <code>updateUser(data: <a href="../injectables/UpdateUserDto.html">UpdateUserDto</a>, req)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/user/service/user.service.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/user/service/user.service.ts:73</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Update User</p>
+                    <div class="io-description"><p><strong>summary</strong>: update an existing user&#39;s information</p>
 </div>
 
                     <div class="io-description">
@@ -734,6 +737,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -748,11 +752,14 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the update user data</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>req</td>
                                     <td>
-                                            <code>Request</code>
                                     </td>
 
                                     <td>
@@ -760,6 +767,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the client request</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -787,7 +798,7 @@
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
 import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
-import { UserInterface } from &#x27;../interface/user.interface&#x27;;
+import { UserInterface } from &#x27;../interface/modelInterface/user.interface&#x27;;
 import { FindUserDto } from &#x27;../dto/find-user.dto&#x27;;
 import { ResetPasswordTokenDto } from &#x27;../dto/find-user-by-reset-password-token.dto&#x27;;
 import { UpdateUserDto } from &#x27;../dto/update-user.dto&#x27;;
@@ -797,8 +808,9 @@ import { DeleteUserDto } from &#x27;../dto/delete-user.dto&#x27;;
 import { VerifyNewPasswordUtil } from &#x27;src/auth/util/verify-new-password.util&#x27;;
 import { RedisService } from &#x27;../../redis/service/redis.service&#x27;;
 import { JwtPayloadDto } from &#x27;src/auth/dto/jwt-payload&#x27;;
-import { ExtractUserUtil } from &#x27;../util/extract-user.util&#x27;;
-
+/**
+ * **summary**: contains all of the functionality to manage a user profile
+ */
 @Injectable()
 export class UserService {
     constructor(
@@ -806,11 +818,10 @@ export class UserService {
         private readonly extractKeyValueUtil: ExtractKeyValueUtil,
         private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
         private readonly redisService: RedisService,
-        private readonly extractUserUtil: ExtractUserUtil,
     ) { }
 
     /**
-     * Create User
+     * **summary**: create a new user
      * @param user 
      */
     async createUser(user: CreateUserDto) {
@@ -818,8 +829,6 @@ export class UserService {
             const document &#x3D; await new this.userModel(user);
             await document.save();
             document.password &#x3D; undefined;
-            console.log(&#x27;CREATE USER: RETURN&#x27;);
-            console.log(document);
             return document;
         } catch (err) {
             throw new Error(err);
@@ -827,14 +836,12 @@ export class UserService {
     }
 
     /**
-     * Find User by email
+     * **summary**: find a user by email
      * @param data email
      */
     async findUser(data: FindUserDto) {
         try {
             const user &#x3D; await this.userModel.findOne({ email: data.email });
-            console.log(&#x27;FIND USER: RETURN&#x27;)
-            console.log(user);
             return user;
         } catch (err) {
             throw new Error(err);
@@ -842,14 +849,12 @@ export class UserService {
     }
 
     /**
-     * Find User by resetPasswordToken
+     * **summary**: find a user by their resetPasswordToken once they have submitted the reset password email
      * @param data the token
      */
     async findUserByResetPasswordToken(data: ResetPasswordTokenDto) {
         try {
             const user &#x3D; await this.userModel.findOne({ resetPasswordToken: data.token });
-            console.log(&#x27;FIND USER BY RESET PASSWORD TOKEN: RETURN&#x27;)
-            console.log(user);
             return user;
         } catch (err) {
             throw new Error(err)
@@ -857,12 +862,14 @@ export class UserService {
     }
 
     /**
-     * Update User
+     * **summary**: update an existing user&#x27;s information
+     * @param data the update user data
+     * @param req the client request
      */
-    async updateUser(data: UpdateUserDto, req: Request ) {
+    async updateUser(data: UpdateUserDto, req ) {
         try {
             // extract user email
-            const user: JwtPayloadDto &#x3D; await this.extractUserUtil.extract(req);
+            const user: JwtPayloadDto &#x3D; req.user;
             const filter &#x3D; {email: user.email };
             // create an update object
             let update &#x3D; this.createUserUpdate(data);
@@ -880,14 +887,14 @@ export class UserService {
     }
 
     /**
-     * Delete User Profile
+     * **summary**: delete a user&#x27;s account
      * @param data user credentials
-     * @param req
+     * @param req the client request
      */
-    async deleteUser(data: DeleteUserDto, req: Request) {
+    async deleteUser(data: DeleteUserDto, req) {
         try {
             // extract user email
-            const doc &#x3D; await this.extractUserUtil.extract(req);
+            const doc:JwtPayloadDto &#x3D; req.user;
             // query the user
             const user &#x3D; await this.findUser({email: doc.email});
             // verify their password matches the current
@@ -908,6 +915,10 @@ export class UserService {
      ************************ Private Functions ************************
     */
 
+    /**
+     * **summary**: create a MongoDB update object for updating a user profile
+     * @param data raw request data to update a user
+     */
     private createUserUpdate(data: UpdateUserDto) {
         let update: UpdateUserDto &#x3D; {}
         data.username ? update.username &#x3D; data.username : data.username &#x3D; null;
@@ -917,6 +928,10 @@ export class UserService {
         return update;
     }
 
+    /**
+     * **summary**: log a user out of the application by adding their JWT to the Redis cache &#x27;dead-list&#x27;
+     * @param req the client request
+     */
     private async logoutUser(req: Request){
         const {jwt, key} &#x3D; await this.extractKeyValueUtil.extract(req);
         await this.redisService.set(key, jwt);

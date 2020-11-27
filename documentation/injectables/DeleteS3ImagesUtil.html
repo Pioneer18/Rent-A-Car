@@ -64,11 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Bucket Name: &#39;rent-a-car-photos`</p>
-<ul>
-<li>Key: user_email/category</li>
-<li></li>
-</ul>
+                <p><strong>summary</strong>: utility for removing images from an AWS S3 Bucket</p>
 
             </p>
 
@@ -120,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/images/util/delete-s3-images.util.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/images/util/delete-s3-images.util.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -183,11 +179,48 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/images/util/delete-s3-images.util.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/images/util/delete-s3-images.util.ts:16</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: delete the selected image from their AWS S3 Bucket</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>images</td>
+                                                        <td>
+                                                                <code><p>the image to be delete</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                <code><p>the requesting user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -209,11 +242,48 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/images/util/delete-s3-images.util.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/images/util/delete-s3-images.util.ts:48</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: deleted the selected images from their AWS S3 Bucket</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>images</td>
+                                                        <td>
+                                                                <code><p>the images to be deleted</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                <code><p>the requesting user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -236,7 +306,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/images/util/delete-s3-images.util.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/images/util/delete-s3-images.util.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -252,16 +322,19 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &quot;@nestjs/common&quot;;
 import { S3Provider } from &quot;../providers/s3.provider&quot;;
 /**
- * Bucket Name: &#x27;rent-a-car-photos&#x60;
- * Key: user_email/category
+ * **summary**: utility for removing images from an AWS S3 Bucket
  */
 @Injectable()
 export class DeleteS3ImagesUtil {
     constructor(private readonly s3Provider: S3Provider) { }
     private s3 &#x3D; this.s3Provider.getS3();
 
+    /**
+     * **summary**: delete the selected image from their AWS S3 Bucket
+     * @param images the image to be delete
+     * @param user the requesting user
+     */
     deleteS3Image &#x3D; async (images, user): Promise&lt;void&gt; &#x3D;&gt; {
-        // delete rental image from s3 bucket
         const bucket &#x3D; &#x60;rent-a-car-photos&#x60;;
         if (images[0].location.match(/\/rentals\//)) {
             console.log(&#x27;Delete Single Image Location&#x27;)
@@ -288,6 +361,11 @@ export class DeleteS3ImagesUtil {
         return;
     }
 
+    /**
+     * **summary**: deleted the selected images from their AWS S3 Bucket
+     * @param images the images to be deleted
+     * @param user the requesting user
+     */
     deleteS3Images &#x3D; async (images, user): Promise&lt;string[]&gt; &#x3D;&gt; {
         // multiple images
         const ids: string[] &#x3D; [];

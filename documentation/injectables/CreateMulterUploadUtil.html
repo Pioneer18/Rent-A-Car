@@ -60,6 +60,13 @@
             <code>src/images/util/create-multer-upload.util.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: create a multerUpload object</p>
+
+            </p>
 
 
 
@@ -106,7 +113,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/images/util/create-multer-upload.util.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/images/util/create-multer-upload.util.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -169,11 +176,39 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/images/util/create-multer-upload.util.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/images/util/create-multer-upload.util.ts:19</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: create the Multer upload object</p>
+</div>
+                    </td>
+                </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>req</td>
+                                                </tr>
+                                                <tr>
+                                                        <td>category</td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
             </tbody>
         </table>
         <table class="table table-sm table-bordered">
@@ -196,7 +231,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/images/util/create-multer-upload.util.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/images/util/create-multer-upload.util.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -214,12 +249,19 @@ import * as multer from &#x27;multer&#x27;;
 import * as multerS3 from &#x27;multer-s3&#x27;;
 import { JwtPayloadDto } from &quot;src/auth/dto/jwt-payload&quot;;
 import { S3Provider } from &quot;../providers/s3.provider&quot;;
-
+/**
+ * **summary**: create a multerUpload object
+ */
 @Injectable()
 export class CreateMulterUploadUtil {
     constructor(private readonly s3Provider: S3Provider) { }
     private s3 &#x3D; this.s3Provider.getS3();
 
+    /**
+     * **summary**: create the Multer upload object
+     * @param req 
+     * @param category 
+     */
     create &#x3D; async (req, category) &#x3D;&gt; {
         try {
             // create a multer upload
