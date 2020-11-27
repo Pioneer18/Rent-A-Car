@@ -57,20 +57,21 @@ export class ImagesService {
 
   /**
    * Find Rental Images
-   * Summary: query multiple rental images by userId and rental_id
+   * Summary: query multiple rental images by userId and rental_id. The userId
+   * is just to ensure only the user's photos are returned and not another user's rental images
    * @param user the user property of the request object
    * @param img_id id of an image; if provided only this image will be found
    * @param rental_id the id of the rental
    * @param user_id used to verify the image belongs to the requesting user
    */
-  findRentalImages = async (img_id: string | null, rental_id: string | null, user_id: string): Promise<ImageQueryResultsDto> => {
+  findRentalImages = async (img_id: string | null, rental_id: string | null, user: JwtPayloadDto): Promise<ImageQueryResultsDto> => {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
       img_id !== null ? flag = 'single' : flag = 'multiple';
       // find multiple images
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ rental_id: rental_id, user_id: user_id });
+        const images = await this.imagesModel.find({ rental_id: rental_id, user_id: user.userId });
         return { count: images.length, images: images }
       }
       // find a specific image
