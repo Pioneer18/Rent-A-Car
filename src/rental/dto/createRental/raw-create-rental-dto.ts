@@ -1,6 +1,5 @@
 /**
- * **summary**:
- * - The initial values submitted by a user to create a new rental listing
+ * **summary**: The initial dto submitted by a user to create a new rental listing.This dto is passed to the GeoUrlApiPipe transform method which will add coordinates from the location property information
  * - specs: specifications about the vehicle
  * - registration: basic vehicle registration data
  * - features: e.g. 'bike rack', 'heated seats', 'auto-pilot', etc.
@@ -9,8 +8,8 @@
  * - location: the steet, city, and zip of the user
  * - photos: a max of 10 image references
  * - listed: hide or show the rental to the application community
- * - passed to the GeoUrlApiPipe transform method. This is the raw data before the GeoJSON object is added and the final
  * CreateRentalDto has not been created
+ * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
 export class RawCreateRentalDto {
   specs: {

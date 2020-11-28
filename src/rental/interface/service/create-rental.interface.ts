@@ -1,10 +1,7 @@
-import { CreateRentalInterface } from "src/rental/interface/service/create-rental.interface";
-
 /**
- * **summary**: Dto for the rental.controller.createRentalMethod()
- * -  - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
+ * **summary**: Interface for the rental.service.createRental() method
  */
-export class CreateRentalDto implements CreateRentalInterface {
+export interface CreateRentalInterface {
   rentalDescription: string;
   address: string;
   specs: {

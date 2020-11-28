@@ -1,16 +1,17 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
-import { CreateRentalDto } from '../dto/createRental/create-rental.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RentalInterface } from '../interface/modelInterface/Rental/rental.interface';
-import { SearchRentalDto } from '../dto/searchRental/search-rental.dto';
-import { PricingDto } from '../dto/pricing/pricing.dto';
+import { SearchRentalInterface } from '../interface/service/search-rental.interface';
 import { EditDetailsDto } from '../dto/details/edit-details.dto';
 import { unavailabilityModel } from '../../common/Const';
 import { UnavailabilityInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
 import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
 import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
+import { CreateRentalInterface } from '../interface/service/create-rental.interface';
+import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
+import { CreateRentalReturn } from '../interface/service/create-rental-return.interface';
 
 /**
  * **summary**: create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
@@ -28,7 +29,7 @@ export class RentalService {
    * so the rental may be found by a geospatial query
    * @param rental the new rental to be created
    */
-  createRental = async(rental: CreateRentalDto) => {
+  createRental = async(rental: CreateRentalInterface): Promise<CreateRentalReturn> => {
     try {
       const document = await new this.rentalModel(rental);
       return await document.save();
@@ -41,7 +42,8 @@ export class RentalService {
    * **summary**: query rentals in the database with the data provided in the SearchRentalDto
    * @param rental SearchRentalDto
    */
-  searchRental = async(rental: SearchRentalDto) => {
+  searchRental = async(rental: SearchRentalInterface) => {
+    console.log(rental)
     try {
       const query = await this.createRentalQuery(rental);
       const rentals = await this.rentalModel.find(query);
@@ -63,7 +65,7 @@ export class RentalService {
    *   - monthly
    * @param data the request dto
    */
-  editPricing = async(data: PricingDto) => {
+  editPricing = async(data: EditPricingInterface) => {
     // make an update document
     try {
       const filter = { _id: data.rentalId };
@@ -176,7 +178,7 @@ export class RentalService {
    *   - rental features: optional
    * @param rental searchRentalDto
    */
-  private createRentalQuery = async(rental: SearchRentalDto) => {
+  private createRentalQuery = async(rental: SearchRentalInterface) => {
     try {
       const query: any = {
         'scheduling.rentMinDuration': { $lte: rental.rentalDuration },

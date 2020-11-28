@@ -38,8 +38,7 @@ export class RentalController {
     ) {}
 
   /**
-   * Create Rental:
-   * create a new vehicle rental listing
+   * **summary**: Create a new vehicle rental listing
    */
   @Post()
   @UsePipes(new JoiValidationPipe(CreateRentalValidationSchema))
@@ -54,21 +53,19 @@ export class RentalController {
   }
 
   /**
-   * Search Rental:
-   * find rentals available near a specified location (user's location)
+   * **summary**: Find rentals available near a specified location (user's location)
    */
   @Get()
   @UsePipes(new JoiValidationPipe(SearchRentalValidationSchema))
   @UsePipes(new RequestCoordinatesPipe(new GeoUrlApiUtil()))
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
   @UsePipes(new GivenNoticePipe())
-  async searchRental(@Query() searchRentalDto: SearchRentalDto) {
+  async searchRental(@Body() searchRentalDto: SearchRentalDto) {
       return await this.rentalService.searchRental(searchRentalDto);
   }
 
   /**
-   * Edit Pricing:
-   * edit the rental price
+   * **summary** Edit the selected rental price
    */
   @Post('edit-price')
   @UsePipes(new PricingPipe())
@@ -117,12 +114,6 @@ export class RentalController {
    async removeUnavailability(@Body() data: RemoveUnavailabilityDto) {
      return await this.rentalService.removeUnavailability(data);
    }
-
-   /**
-    * Upload Rental Photos
-    * upload photos of your rental listing
-    * ! see the images/controller
-    */
 
     /**
      * Toggle Rental listed status

@@ -1,8 +1,9 @@
+import { EditPricingInterface } from '../../interface/service/edit-pricing.interface';
 /**
- * **summary**: edit the pricing of a rental
- * - passed to the rental.service.editPricing method
+ * **summary**: Dto for the rental.controller.editPrice() handler
+ * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
-export class PricingDto {
+export class PricingDto implements EditPricingInterface {
     rentalId: string;
     price: number | null;
     discounts: {
