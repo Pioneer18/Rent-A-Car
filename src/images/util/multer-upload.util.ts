@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { MulterUploadUtilInterface } from "../interfaces/utils/multerUploadUtil/multer-upload-util.interface";
 /**
  * **summary**: upload a single or multiple files as a multerUpload
  */
@@ -16,16 +17,21 @@ export class MulterUploadUtil {
      * @param rental_id id of the rental if this is a rental images upload
      * @param model the database model which the this.saveImages() method will save images to
      */
-    upload = async (req, res, multerUpload, saveImages, category, user, rental_id): Promise<void> => {
+    upload = async (data: MulterUploadUtilInterface): Promise<void> => {
         try {
-            await multerUpload(req, res, function (err) {
+            await data.multerUpload(data.req, data.res, function (err) {
                 if (err) {
                     console.log(err);
-                    return res.status(404).json(`Failed to upload image file: ${err}`);
+                    return data.res.status(404).json(`Failed to upload image file: ${err}`);
                 }
                 // Save the Images
-                saveImages({files: req.files, category, user_id: user.userId, rental_id});
-                return res.status(201).json(req.files[0].location);
+                data.saveImages({
+                    files: data.req.files,
+                    category: data.category,
+                    user_id: data.user.userId,
+                    rental_id: data.rental_id
+                });
+                return data.res.status(201).json(data.req.files[0].location);
             });
         } catch (err) {
             throw new Error(err)
