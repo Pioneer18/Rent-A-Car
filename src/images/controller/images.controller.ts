@@ -6,7 +6,7 @@ import { response } from 'express';
 import { profile, rentals } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
 /**
- * **summary**: controller for managing images in the application
+ * **summary**: Controller for managing images in the application
  */
 @UseGuards(JwtAuthGuard)
 @Controller('images')

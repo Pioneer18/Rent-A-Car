@@ -6,7 +6,7 @@ import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface
 import { profile } from '../../common/Const';
 import { SaveImagesInterface } from '../interfaces/service/save-images.interface'
 import { ProcessSaveDataUtil } from '../util/process-save-data.util';
-import { ProcessedSaveDataInterface } from '../interfaces/utils/processed-save-data.interface';
+import { ProcessedSaveDataInterface } from '../interfaces/utils/processSaveData/processed-save-data.interface';
 import { CreateMulterUploadUtil } from '../util/create-multer-upload.util';
 import { MulterUploadUtil } from '../util/multer-upload.util';
 import { DeleteS3ImagesUtil } from '../util/delete-s3-images.util';

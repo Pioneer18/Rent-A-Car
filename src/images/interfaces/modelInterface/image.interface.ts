@@ -1,5 +1,5 @@
 /**
- * **summary**: interface for the Image Model
+ * **summary**: Interface for the Image Model
  */
 export interface ImageInterface{
     _id?: string;

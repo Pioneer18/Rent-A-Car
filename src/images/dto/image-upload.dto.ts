@@ -1,5 +1,5 @@
 /**
- * **summary**: dto for uploading images to AWS
+ * **summary**: Dto for uploading images to AWS
  */
 export class ImageUploadDto {
     Bucket: string; // bucket name and folder
