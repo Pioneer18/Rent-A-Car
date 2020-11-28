@@ -108,10 +108,10 @@ export class ImagesService {
     try {
       if (data.images && data.images.length > 0) {
         if (data.images.length === 1) {
-          await this.deleteS3ImagesUtil.deleteS3Image(data.images, data.user);
+          await this.deleteS3ImagesUtil.deleteS3Image({images: data.images, user: data.user});
           return await this.imagesModel.deleteOne({ _id: data.images[0]._id, user_id: data.user.userId });
         }
-        const ids = await this.deleteS3ImagesUtil.deleteS3Images(data.images, data.user);
+        const ids = await this.deleteS3ImagesUtil.deleteS3Images({images:data.images, user: data.user});
         return await this.imagesModel.deleteMany({ _id: { $in: ids }, user_id: data.user.userId })
       }
     } catch (err) {
@@ -147,9 +147,17 @@ export class ImagesService {
     try {
       // create a multer upload
       const user: JwtPayloadInterface = data.req.user;
-      const multerUpload = await this.createMulterUploadUtil.create(data.req, data.category)
+      const multerUpload = await this.createMulterUploadUtil.create({req: data.req, category: data.category})
       // Upload the image(s)
-      await this.multerUploadUtil.upload(data.req, data.res, multerUpload, this.saveImages, data.category, user, data.rental_id);
+      await this.multerUploadUtil.upload({
+        req: data.req,
+        res: data.res,
+        multerUpload,
+        saveImages: this.saveImages,
+        category: data.category,
+        user,
+        rental_id: data.rental_id
+      });
     } catch (err) {
       return data.res.status(500).json(`Failed to upload image file: ${err}`)
     }
