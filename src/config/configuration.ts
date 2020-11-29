@@ -1,5 +1,5 @@
 /**
- * **summary**: this method registers the values in the environement to the App Configuration module
+ * **summary**: This method registers the values in the environement to the App Configuration module
  */
 import { registerAs } from '@nestjs/config';
 

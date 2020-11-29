@@ -16,7 +16,7 @@ import { ForgotPasswordInterface } from '../interfaces/forgot-password.interface
 import { ResetPasswordInterface } from '../interfaces/reset-password.interface';
 
 /**
- * **summary**: provide the functionality to authenticate and authorize a user
+ * **summary**: Provides the functionality to authenticate and authorize a user
  */
 @Injectable()
 export class AuthService {
@@ -31,10 +31,10 @@ export class AuthService {
     ) { }
 
     /**
-     * **summary**:  find the user in the database and authenticate their access to the application by verifying the present user credentials in the database
-     * - note: depends on the userService.findUser() and verifyNewPasswordUtil.verifyMatch() methods
-     * @param email the user email
-     * @param pass the user password
+     * **summary**:  Find the user in the database and authenticate their access to the application by verifying the present user credentials in the database
+     * - note: Depends on the userService.findUser() and verifyNewPasswordUtil.verifyMatch() methods
+     * @param email The user email
+     * @param pass The user password
      */
     validateUser = async(data: ValidateUserInterface): Promise<any> => {
         try {
@@ -51,8 +51,8 @@ export class AuthService {
     }
 
     /**
-     * summary: return a JWT inside of a Cookie, which may only be interacted with by Http and not Javascript, to the now authenticated user
-     * @param user the user logging into the application
+     * summary: Return a JWT inside of a Cookie, which may only be interacted with by Http and not Javascript, to the now authenticated user
+     * @param user The user logging into the application
      */
     login = async(user: UserInterface) => {
         // create the JWT payload
@@ -67,8 +67,8 @@ export class AuthService {
     }
 
     /**
-     * **summary**: set the user's JWT in the redis 'dead-list' to log the user out prior to the JWT expiration
-     * @param user user property from the request object
+     * **summary**: Set the user's JWT in the redis 'dead-list' to log the user out prior to the JWT expiration
+     * @param user User property from the request object
      */
     logout = async(req: Request) => {
         try {
@@ -84,7 +84,7 @@ export class AuthService {
     }
 
     /**
-     * **summary**: change the logged in user's password
+     * **summary**: Change the logged in user's password
      * @param new_password
      * @param confirm_password
      * @param req
@@ -114,9 +114,9 @@ export class AuthService {
 
 
     /**
-     * summary: send an email to a valid user email address to request resetting their forgotten password
-     * @param email the email for resetting the password
-     * **summary**: sends user a reset password link to the provided email, if it's an account associated email
+     * summary: Send an email to a valid user email address to request resetting their forgotten password
+     * @param email The email for resetting the password
+     * **summary**: Sends user a reset password link to the provided email, if it's an account associated email
      */
     forgotPassword = async(data: ForgotPasswordInterface) => {
         try {
@@ -137,10 +137,10 @@ export class AuthService {
     }
 
     /**
-     * **summary**: reset a user's password with the information submitted by a forgot-and-reset email
-     * @param email the valid user email
-     * @param newPassword the new password entered the 1st time
-     * @param confirmPassword the identical new password entered a second time
+     * **summary**: Reset a user's password with the information submitted by a forgot-and-reset email
+     * @param email The valid user email
+     * @param newPassword The new password entered the 1st time
+     * @param confirmPassword The identical new password entered a second time
      */
     resetPassword = async(data: ResetPasswordInterface) => {
         // check new password for typos

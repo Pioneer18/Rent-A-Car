@@ -1,5 +1,5 @@
 /**
- * **summary**: export constants to be used in the application. These are mostly names of providers
+ * **summary**: Export constants to be used in the application. These are mostly names of providers
  */
 export const userModel: string = 'USER_MODEL';
 export const rentals: string = 'rentals';

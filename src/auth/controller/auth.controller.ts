@@ -8,17 +8,17 @@ import { LocalAuthGuard } from "../gaurds/local-auth.guard";
 import { LoggedOutGaurd } from "../gaurds/logged-out.guard";
 import { AuthService } from "../service/auth.service";
 /**
- * **summary**: controller for handling the authentication and authorization of a registered user
- * - note: some methods in this controller are protected by JwtAuthGuard and LoggedOutGuard, which verify a user is Authorized
+ * **summary**: Controller for handling the authentication and authorization of a registered user
+ * - note: Some methods in this controller are protected by JwtAuthGuard and LoggedOutGuard, which verify a user is Authorized
  */
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
 
     /**
-     * **summary**: authenticate and login a user
-     * @param email the user's email
-     * @param password the user's submitted password to be validated
+     * **summary**: Authenticate and login a user
+     * @param email The user's email
+     * @param password The user's submitted password to be validated
      */
     @HttpCode(200)
     @UseGuards(LocalAuthGuard)
@@ -31,8 +31,8 @@ export class AuthController {
     }
 
     /**
-     * **summary**: logout a user by adding their JWT to a Redis 'dead-list' that will end the user's authorized session prior to the JWT expiration time
-     * @param req the request containing the user's JWT payload to be added to the logged-out 'dead-list' in the Redis cache
+     * **summary**: Logout a user by adding their JWT to a Redis 'dead-list' that will end the user's authorized session prior to the JWT expiration time
+     * @param req The request containing the user's JWT payload to be added to the logged-out 'dead-list' in the Redis cache
      */
     @UseGuards(JwtAuthGuard)
     @Redirect('http://localhost:3000/auth/login')
@@ -42,9 +42,9 @@ export class AuthController {
     }
 
     /**
-     * **summary**: change the password of a logged in and authorized user
-     * @param req the request with the user JWT payload
-     * @param data the new password data
+     * **summary**: Change the password of a logged in and authorized user
+     * @param req The request with the user JWT payload
+     * @param data The new password data
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
@@ -54,8 +54,8 @@ export class AuthController {
     }
 
     /**
-     * **summary**: request to reset a forgotten password
-     * @param data the email address to send the forgot-password email to
+     * **summary**: Request to reset a forgotten password
+     * @param data The email address to send the forgot-password email to
      */
     @Post('forgot-password')
     async forgotPassword(@Body() data: ForgotPasswordDto) {
@@ -63,8 +63,8 @@ export class AuthController {
     }
 
     /**
-     * **summary**: resets the user's password with the data submitted from the email redirect
-     * @param data the data submitted by the user to the reset-password email form
+     * **summary**: Resets the user's password with the data submitted from the email redirect
+     * @param data The data submitted by the user to the reset-password email form
      */
     @Post('reset-password')
     async resetPassword(@Body() data: ResetPasswordDto) {

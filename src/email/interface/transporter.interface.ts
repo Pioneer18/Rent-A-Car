@@ -1,5 +1,5 @@
 /**
- * **summary**: transport interface for the gmail NodeMailer
+ * **summary**: Transporter Interface for the gmail NodeMailer
  */
 export interface TransporterInterface {
     host: string;

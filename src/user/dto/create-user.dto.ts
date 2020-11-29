@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 /**
- * **summary**: data for creating a new user
+ * **summary**: Dto for creating a new user
  */
 @Injectable()
 export class CreateUserDto {

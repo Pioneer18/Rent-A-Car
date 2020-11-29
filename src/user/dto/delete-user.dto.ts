@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 /**
- * **summary**: user password to confirm delteing their profile
+ * **summary**: Dto to confirm delteing a user's profile
  */
 @Injectable()
 export class DeleteUserDto {

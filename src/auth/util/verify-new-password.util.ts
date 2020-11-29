@@ -3,13 +3,13 @@ import { VerifyNewPasswordInterface } from "../interfaces/verify-new-password.in
 import * as bcrypt from 'bcrypt';
 import { CheckPasswordTypoInterface } from "../interfaces/check-password-typo.interface";
 /**
- * **summary**: validate incoming new password data
+ * **summary**: Validate incoming new password data
  */
 @Injectable()
 export class VerifyNewPasswordUtil {
 
     /**
-     * **summary**: verify the new password does not match the database password
+     * **summary**: Verify the new password does not match the database password
      * @param data the new passowrd data
      */
     verifyNew = async(data: VerifyNewPasswordInterface): Promise<void> => {
@@ -19,7 +19,7 @@ export class VerifyNewPasswordUtil {
     }
 
     /**
-     * **summary**: verify the entered password matches the password saved in the database for this user
+     * **summary**: Verify the entered password matches the password saved in the database for this user
      * @param data the new password data
      */
     verifyMatch = async(data: VerifyNewPasswordInterface): Promise<void> => {
@@ -29,7 +29,7 @@ export class VerifyNewPasswordUtil {
     }
 
     /**
-     * **summary**: verify the user entered the same password twice
+     * **summary**: Verify the user entered the same password twice
      * @param data new password data
      */
     checkTypos = (data: CheckPasswordTypoInterface): Promise<void> => {

@@ -1,5 +1,5 @@
 /**
- * Interface for the auth.service.changePassword() method
+ * **summary**: Interface for the auth.service.changePassword() method
  */
 export interface ChangePasswordInterface {
     readonly newPassword: string;

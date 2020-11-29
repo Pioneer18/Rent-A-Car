@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 /**
- * **summary**: user credentials for logging into the application
+ * **summary**: Dto for logging into the application
  */
 @Injectable()
 export class LoginDto {

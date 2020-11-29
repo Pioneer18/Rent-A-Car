@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 /**
- * **summary**: find a user profile by email
+ * **summary**: Dto to find a user profile by email
  */
 @Injectable()
 export class FindUserDto {

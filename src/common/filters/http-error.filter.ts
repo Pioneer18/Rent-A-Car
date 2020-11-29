@@ -17,18 +17,18 @@ import { DateTime } from 'luxon';
 @Catch(HttpException)
 export class HttpErrorFilter implements ExceptionFilter<HttpException> {
   /**
+   * **summary**: Access the appropriate underlying arguments for any execution context with ArgumentHost
    * @param {} exception
    * @param {ArgumentsHost} host
    */
   catch = (exception: HttpException, host: ArgumentsHost) => {
-    // note: access the appropriate underlying arguments for any execution context with ArgumentHost
     const context = host.switchToHttp();
     const request = context.getRequest();
     const response = context.getResponse();
     const status = exception.getStatus();
 
     /**
-     * error responses
+     * Error responses
      */
     const errorResponse = {
       http_code: status,
@@ -39,7 +39,7 @@ export class HttpErrorFilter implements ExceptionFilter<HttpException> {
     };
 
     /**
-     * error logging
+     * Error logging
      */
     Logger.error(
       `${request.method} ${request.url}`,
@@ -48,7 +48,7 @@ export class HttpErrorFilter implements ExceptionFilter<HttpException> {
     );
 
     /**
-     * take direct control of the response with the json method
+     * Take direct control of the response with the json method
      */
     response.status(status).json(errorResponse);
   }

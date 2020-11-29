@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { databaseProvider } from './providers/database.provider';
 import { ConfigModule } from '@nestjs/config';
 /**
- * **summary**: import and export the database provider
- * - note: other specific model providers may be registered here as well as exports of the database module
+ * **summary**: Import and export the database provider
+ * - note: Other specific model providers may be registered here as well as exports of the database module
  */
 @Module({
   imports: [ConfigModule],

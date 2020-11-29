@@ -8,12 +8,12 @@ import {
 } from '@nestjs/common';
 import { DateTime } from 'luxon';
 /**
- * **summary**: this Error Filter catches all 500 INTERNAL_SERVER_ERRORs. It logs the Error, reveals the Error object, and reutrns a custom err message to the client
+ * **summary**: This Error Filter catches all 500 INTERNAL_SERVER_ERRORs. It logs the Error, reveals the Error object, and reutrns a custom err message to the client
  */
 @Catch()
 export class ErrorFilter implements ExceptionFilter {
   /**
-   * **summary**: catch http errors and use the Logger to log the appropiate error and data
+   * **summary**: Catch http errors and use the Logger to log the appropiate error and data
    * @param error 
    * @param host 
    */

@@ -11,7 +11,7 @@ export class EmailService {
 
 
     /**
-     * **summary**: the gmail nodemailer transporter used to send emails
+     * **summary**: The gmail nodemailer transporter used to send emails
      */
     private transporter = nodemailer.createTransport( {
         service: 'gmail', 
@@ -22,8 +22,8 @@ export class EmailService {
     })
 
     /**
-     * **summary**: create the mail options to be used to send the email
-     * @param email user's email
+     * **summary**: Create the mail options to be used to send the email
+     * @param email User's email
      */
     createMailOptions = async(data: CreateMailOptionsInterface): Promise<MailOptionsInterface> => {
         const mailOptions: MailOptionsInterface = {
@@ -37,7 +37,7 @@ export class EmailService {
     }
 
     /**
-     * **summary**: use the nodemailer transporter to send the email
+     * **summary**: Use the nodemailer transporter to send the email
      * @param mailOptions 
      */
     sendMail = async(mailOptions: MailOptionsInterface): Promise<any> => {

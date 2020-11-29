@@ -1,5 +1,5 @@
 /**
- * **summary**: the mail options for the gmail NodeMailer
+ * **summary**: Interface for the mail options for the gmail NodeMailer
  */
 export interface MailOptionsInterface {
     from: string;

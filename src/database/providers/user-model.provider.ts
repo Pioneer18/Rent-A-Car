@@ -2,7 +2,7 @@ import { Connection } from 'mongoose';
 import { UserSchema } from '../../user/schema/user.schema';
 import { databaseConnection, userModel } from '../../common/Const';
 /**
- * **summary**: provide connection to the User Model
+ * **summary**: Provide connection to the User Model
  */
 export const userProvider = [
   {

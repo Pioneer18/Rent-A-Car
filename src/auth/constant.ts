@@ -1,5 +1,5 @@
 /**
- * **summary**: holds the secret key and expiration time of the JWT token for the Passport Jwt-Strategy
+ * **summary**: Holds the secret key and expiration time of the JWT token for the Passport Jwt-Strategy
  */
 export const jwtConstants = {
     secret: process.env.SECRET_KEY,

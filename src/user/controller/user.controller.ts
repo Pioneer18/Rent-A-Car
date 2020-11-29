@@ -10,7 +10,7 @@ import { BcryptHashPipe } from '../pipes/bcrypt.pipe';
 import { CreateUserValidation } from '../schema/validation/create-user-validation.schema';
 import { UserService } from '../service/user.service';
 /**
- * **summary**: controller for managing users in the application
+ * **summary**: Controller for managing users in the application
  */
 @Controller('user')
 export class UserController {
@@ -18,7 +18,7 @@ export class UserController {
     
     /**
      * **summary**: create a new user profile
-     * @param user new user data
+     * @param user New user data
      */
     @UsePipes(new BcryptHashPipe())
     @UsePipes(new JoiValidationPipe(CreateUserValidation))
@@ -28,9 +28,9 @@ export class UserController {
     }
 
     /**
-     * **summary**: update a user's profile data
+     * **summary**: Update a user's profile data
      * @param update updates
-     * @param req client request
+     * @param req Client request
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
@@ -41,8 +41,8 @@ export class UserController {
     }
 
     /**
-     * summary: find a user by email
-     * @param email 
+     * summary: Find a user by email
+     * @param email User's email
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
@@ -53,8 +53,8 @@ export class UserController {
 
 
     /**
-     * **summary**: delete a user profile
-     * @param data user credentials
+     * **summary**: Delete a user profile
+     * @param data User credentials
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
