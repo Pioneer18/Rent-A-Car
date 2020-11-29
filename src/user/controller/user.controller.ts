@@ -17,7 +17,7 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
     
     /**
-     * **summary**: create a new user profile
+     * **summary**: Create a new user profile
      * @param user New user data
      */
     @UsePipes(new BcryptHashPipe())
