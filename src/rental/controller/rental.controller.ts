@@ -74,8 +74,7 @@ export class RentalController {
   }
 
   /**
-   * Edit Rental Details:
-   * edit the details of the Rental (# of seats, color, etc.)
+   * **summary**: Edit the details of the Rental (# of seats, color, etc.)
    */
   @Post('edit-details')
   @UsePipes(new ValidateEditDetailsPipe())
@@ -84,8 +83,7 @@ export class RentalController {
   }
 
   /**
-   * Schedule Unavailability
-   * set a period of unavailability for the rental
+   * **summary**: Set a period of unavailability for the rental
    */
   @Post('schedule-unavailability')
   @UsePipes(new ProcessUnavailabilityPipe())
@@ -96,8 +94,7 @@ export class RentalController {
   }
 
   /**
-   * Update Unavailability
-   * edit current unavailability
+   * **summary**: Edit current unavailability
    */
   @Post('update-unavailability')
   @UsePipes(new CreateUpdaterDtoPipe())
@@ -106,8 +103,7 @@ export class RentalController {
   }
 
    /**
-    * Remove Unavailability
-    * remove existing unavailability
+    * **summary**: Remove existing unavailability
     */
    @Post('remove-unavailability')
    @UsePipes(new ValidateRemoveUnavailabilityPipe())

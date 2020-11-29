@@ -1,15 +1,15 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
 import { UpdateUnavailabilityDto } from '../dto/unavailability/update/update-unavailability.dto';
 import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
-import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto';
+import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
 /**
- * **summary**: create the data the request UpdateUnavailabilityDataDto the rental.service.updateUnavailability() method needs
+ * **summary**: Transforms incoming data into the UpdateUnavailabilityDto, then passes it to the rental.service.updateUnavailability() method
  */
 @Injectable()
-export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavailabilityDto, Promise<UpdateUnavailabilityDataDto>> {
+export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavailabilityDto, Promise<UpdateUnavailabilityDataInterface>> {
 
     /**
-     * **summary**: map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
+     * **summary**: Map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
      * @param value ValidateUpdateUnavailabilityDto
      */
     private distillDto = async (value: ValidateUpdateUnavailabilityDto) => {
@@ -24,7 +24,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavail
     }
 
     /**
-     * **summary**: create a MongoDB update object from the UpdateUnavailabilityDto
+     * **summary**: Create a MongoDB update object from the UpdateUnavailabilityDto
      * @param value UpdateUnavailabilityDto
      */
     private createUpdateData = async (value: UpdateUnavailabilityDto) => {
@@ -52,10 +52,10 @@ export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavail
     }
 
     /**
-     * **summary**: use the private methods to return a UpdateUnavailabilityDto
+     * **summary**: Use the private methods to return a UpdateUnavailabilityDto
      * @param value a validated UpdateUnavailabilityDto
      */
-    transform = async (value: ValidateUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataDto> => {
+    transform = async (value: ValidateUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataInterface> => {
         // return an UpdateUnavailabilityDto
         const raw =  await this.distillDto(value);
         const data = await this.createUpdateData(raw);

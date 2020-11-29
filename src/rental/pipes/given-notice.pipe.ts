@@ -6,7 +6,7 @@ import { GivenNoticeSearchRentalDto } from '../dto/searchRental/given-notice-sea
 import { RawSearchRentalDto } from '../dto/searchRental/raw-search-rental.dto';
 import { DateTime } from 'luxon';
 /**
- * **summary**: creates a [**Luxon**](https://moment.github.io/luxon/) [**Interval**](https://moment.github.io/luxon/docs/manual/tour.html#intervals) from the startTime and currentTime
+ * **summary**: Creates a [**Luxon**](https://moment.github.io/luxon/) [**Interval**](https://moment.github.io/luxon/docs/manual/tour.html#intervals) from the startTime and currentTime
  * and then uses Luxon methods to validate the Given Notice is at least 1 hour in duration; this is the minimum allowed for any user
  * - Luxon is "a powerful, modern, and friendly wrapper for Javacript dates and times"
  */
@@ -14,7 +14,7 @@ import { DateTime } from 'luxon';
 export class GivenNoticePipe implements PipeTransform {
 
   /**
-   * **summary**: create the **givenNotice** property value, it must be at least one hour
+   * **summary**: Create the **givenNotice** property value, it must be at least one hour
    * @param startTime the request start time of the rental
    */
   private createGivenNotice = async(startTime) => {
@@ -28,7 +28,7 @@ export class GivenNoticePipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
+   * **summary**: Validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
    * this is just another level of validation.
    * @param startTime the requested time for the Rental to begin
    * @param endTime the requested time for the Rental to end
@@ -45,7 +45,7 @@ export class GivenNoticePipe implements PipeTransform {
   }
 
   /**
-   * **summary**: use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto
+   * **summary**: Use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto
    * @param value the raw client request data to search for rentals
    */
   transform = async(value: RawSearchRentalDto):Promise<GivenNoticeSearchRentalDto> => {

@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 /**
- * **summary**: the schema for the Unavailability Model
+ * **summary**: The schema for the Unavailability Model
  */
 export const UnavailabilitySchema = new Schema({
     unavailabilityId: String,

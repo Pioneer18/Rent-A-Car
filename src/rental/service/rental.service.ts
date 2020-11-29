@@ -3,18 +3,23 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RentalInterface } from '../interface/modelInterface/Rental/rental.interface';
 import { SearchRentalInterface } from '../interface/service/search-rental.interface';
-import { EditDetailsDto } from '../dto/details/edit-details.dto';
 import { unavailabilityModel } from '../../common/Const';
 import { UnavailabilityInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
-import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
-import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto';
-import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 import { CreateRentalInterface } from '../interface/service/create-rental.interface';
 import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
 import { CreateRentalReturn } from '../interface/service/create-rental-return.interface';
+import { RentalQuery } from '../interface/service/create-rental-query.interface';
+import { EditPricingUpdater } from '../interface/service/edit-pricing-updater.interface';
+import { EditDetailsInterface } from '../interface/service/edit-details.interface';
+import { EditDetailsUpdater } from '../interface/service/edit-details-updater.interface';
+import { ScheduleUnavailabilityInterface } from '../interface/service/schedule-unavailability.interface';
+import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
+import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
+import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
+import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
 
 /**
- * **summary**: create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
+ * **summary**: Create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
  */
 @Injectable()
 export class RentalService {
@@ -25,11 +30,11 @@ export class RentalService {
   ) { }
 
   /**
-   * **summary**: create a new rental listing with attached geolocation coordinates
+   * **summary**: Create a new rental listing with attached geolocation coordinates
    * so the rental may be found by a geospatial query
-   * @param rental the new rental to be created
+   * @param rental The new rental to be created
    */
-  createRental = async(rental: CreateRentalInterface): Promise<CreateRentalReturn> => {
+  createRental = async (rental: CreateRentalInterface): Promise<CreateRentalReturn> => {
     try {
       const document = await new this.rentalModel(rental);
       return await document.save();
@@ -39,13 +44,13 @@ export class RentalService {
   }
 
   /**
-   * **summary**: query rentals in the database with the data provided in the SearchRentalDto
+   * **summary**: Query rentals in the database with the data provided in the SearchRentalDto
    * @param rental SearchRentalDto
    */
-  searchRental = async(rental: SearchRentalInterface) => {
+  searchRental = async (rental: SearchRentalInterface): Promise<RentalInterface[]> => {
     console.log(rental)
     try {
-      const query = await this.createRentalQuery(rental);
+      const query: RentalQuery = await this.createRentalQuery(rental);
       const rentals = await this.rentalModel.find(query);
       if (rentals.length > 0) {
         return rentals;
@@ -58,14 +63,14 @@ export class RentalService {
   }
 
   /**
-   * **summary**: edit the rental pricing
+   * **summary**: Edit the rental pricing
    * - price
    * - discounts:
    *   - weekly
    *   - monthly
-   * @param data the request dto
+   * @param data The request dto
    */
-  editPricing = async(data: EditPricingInterface) => {
+  editPricing = async (data: EditPricingInterface): Promise<RentalInterface> => {
     // make an update document
     try {
       const filter = { _id: data.rentalId };
@@ -78,7 +83,7 @@ export class RentalService {
           },
         },
       };
-      const updater = {
+      const updater: EditPricingUpdater = {
         $set: update,
       };
       const doc = await this.rentalModel.findOneAndUpdate(filter, updater, { new: true });
@@ -89,10 +94,10 @@ export class RentalService {
   }
 
   /**
-   * **summary**: edit the details of the Rental (# of seats, color, etc.)
-   * @param data the data comes as an EditDetailsDto
+   * **summary**: Edit the details of the Rental (# of seats, color, etc.)
+   * @param data The data comes as an EditDetailsDto
    */
-  editDetails = async(data: EditDetailsDto) => {
+  editDetails = async (data: EditDetailsInterface): Promise<RentalInterface> => {
     // make an update document
     try {
       const filter = { _id: data.rentalId };
@@ -100,7 +105,7 @@ export class RentalService {
         specs: data.specs,
         features: data.features,
       };
-      const updater = {
+      const updater: EditDetailsUpdater = {
         $set: update,
       };
       const doc = await this.rentalModel.findOneAndUpdate(filter, updater, { new: true });
@@ -111,9 +116,10 @@ export class RentalService {
   }
 
   /**
-   * **summary**: set a period of unavailability for the rental (e.g. mon - wed)
+   * **summary**: Set a period of unavailability for the rental (e.g. mon - wed)
+   * @param processed The validated and organized requested unavailability
    */
-  scheduleUnavailability = async(processed: ProcessedUnavailabilityDto) => {
+  scheduleUnavailability = async (processed: ScheduleUnavailabilityInterface): Promise<UnavailabilityInterface[]> => {
     try {
       await this.checkForOverlap(processed);
       // if it passed, combine data into one array and insert
@@ -131,10 +137,10 @@ export class RentalService {
   }
 
   /**
-   * **summary**: edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
-   * @param data 
+   * **summary**: Edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
+   * @param data The mongoDB updater and filter
    */
-  updateUnavailability = async(data: UpdateUnavailabilityDataDto) => {
+  updateUnavailability = async (data: UpdateUnavailabilityDataInterface): Promise<UpdateResponseInterface> => {
     // send the update
     try {
       const update = await this.unavailability.updateMany(
@@ -149,9 +155,9 @@ export class RentalService {
 
   /**
    * **summary**: remove an amount of time from a scheduled duration of unavailability on the rental
-   * @param data 
+   * @param data rental_id and unavailability_id
    */
-  removeUnavailability = async(data: RemoveUnavailabilityDto) => {
+  removeUnavailability = async (data: RemoveUnavailabilityInterface): Promise<DeleteResponseInterface> => {
     try {
       const remove = await this.unavailability.deleteMany({
         rentalId: data.rentalId,
@@ -167,7 +173,7 @@ export class RentalService {
   }
 
   /**
-   * **summary**: convert a searchRentalDto into a mongoose query for the searchRental method
+   * **summary**: Convert a searchRentalDto into a mongoose query for the searchRental method
    * - The query searchs a maxium 8 mile radius for rentals
    * - Filters: 
    *   - rental min duration
@@ -176,11 +182,11 @@ export class RentalService {
    *   - loc: GeoJSON object
    *   - rental price: optional
    *   - rental features: optional
-   * @param rental searchRentalDto
+   * @param rental SearchRentalDto
    */
-  private createRentalQuery = async(rental: SearchRentalInterface) => {
+  private createRentalQuery = async (rental: SearchRentalInterface): Promise<RentalQuery> => {
     try {
-      const query: any = {
+      const query: RentalQuery = {
         'scheduling.rentMinDuration': { $lte: rental.rentalDuration },
         'scheduling.rentMaxDuration': { $gte: rental.rentalDuration },
         'scheduling.requiredNotice': { $lte: rental.givenNotice },
@@ -212,11 +218,11 @@ export class RentalService {
   }
 
   /**
-   * **summary**: validate there currently is no scheduled unavailability for the rental in the database that overlaps 
+   * **summary**: Validate there currently is no scheduled unavailability for the rental in the database that overlaps 
    * with the requested unavailability 
-   * @param data query for 1 or 2 years
+   * @param data Query for 1 or 2 years
    */
-  private checkForOverlap = async (data: ProcessedUnavailabilityDto) => {
+  private checkForOverlap = async (data: ScheduleUnavailabilityInterface): Promise<void> => {
     const { y1Query, y2Query } = data;
     // if there are 2 years
     if (y2Query !== null) {

@@ -1,9 +1,10 @@
+import { EditDetailsInterface } from "src/rental/interface/service/edit-details.interface";
 
 /**
- * **summary**: edit the details of a rental
- * - passed to the rental.service.editDetails method
+ * **summary**: Dto to edit the details of a rental, passed to the rental.controller.editDetails method.
+ * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
-export class EditDetailsDto {
+export class EditDetailsDto implements EditDetailsInterface {
   rentalId: string;
   specs: {
     odometer: number;

@@ -1,7 +1,8 @@
 /**
- * **summary**: interface for the 'Rental' Model
+ * **summary**: Interface for the 'Rental' Model
  */
 export interface RentalInterface {
+  _id?: string;
   rentalDescription: string;
   address: string;
   loc: {

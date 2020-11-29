@@ -4,6 +4,7 @@ import { unavailabilityModel } from '../../common/Const';
 import { Model } from 'mongoose';
 import { UnavailabilityInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
 import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
+import { CalculateRangeDto } from '../dto/unavailability/update/calculate-range.dto';
 /**
  * **summary**: validate that incoming request to update a rental's already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database
  */
@@ -12,27 +13,24 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   constructor(
     @Inject(unavailabilityModel)
     private readonly unavailability: Model<UnavailabilityInterface>,
-  ) {}
+  ) { }
 
   /**
    * **summary**: calculate the [**range**](https://www.mathsisfun.com/data/range.html) of the requested Unavailability to update for the Rental
    * @param y1 the start and end day of the first year that the Unavailability is scheduled across
    * @param y2 the start and end day of the second yaer that the Unavailability is scheduled across; if there is a second year
    */
-  private calculateRange = async (
-    y1: { sD: number; eD: number },
-    y2: { sD: number; eD: number } | null,
-  ) => {
-    if (y2 !== null) {
+  private calculateRange = async (data: CalculateRangeDto) => {
+    if (data.y2 !== null) {
       // calculate range for 2 years
       let temp1: number;
       let temp2: number;
-      y1.sD === y1.eD ? temp1 = 1 : temp1 = y1.eD - y1.sD + 1;
-      y2.sD === y2.eD ? temp2 = 1 : temp2 = y2.eD - y2.sD + 1;
-      return {range: temp1 + temp2};
+      data.y1.sD === data.y1.eD ? temp1 = 1 : temp1 = data.y1.eD - data.y1.sD + 1;
+      data.y2.sD === data.y2.eD ? temp2 = 1 : temp2 = data.y2.eD - data.y2.sD + 1;
+      return { range: temp1 + temp2 };
     }
-    if (y1.sD !== y1.eD) {
-      return { range: y1.eD - y1.sD + 1 };
+    if (data.y1.sD !== data.y1.eD) {
+      return { range: data.y1.eD - data.y1.sD + 1 };
     }
     return { range: 1 };
   }
@@ -45,7 +43,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
    * @param range the range of the requested update Unavailability data
    */
   private validateExpectedUnavailability = async (
-    value: ValidateUpdateUnavailabilityDto, range: {range: number},
+    value: ValidateUpdateUnavailabilityDto, range: { range: number },
   ) => {
     const test = await this.unavailability.find({
       rentalId: value.rentalId,
@@ -141,11 +139,14 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
    * @param res the response object
    * @param next the next method to continue onto the next handler
    */
-  use = async(req: Request, res: Response, next: Function):Promise<void> => {
+  use = async (req: Request, res: Response, next: Function): Promise<void> => {
     // apply only to update-unavailability request
     if (req.originalUrl === '/v1/rental/update-unavailability') {
       await this.validateDto(req.body);
-      const range = await this.calculateRange(req.body.y1, req.body.y2); // to validate expected # of Unavailability docs
+      const range = await this.calculateRange({
+        y1: req.body.y1,
+        y2: req.body.y2
+      }); // to validate expected # of Unavailability docs
       await this.validateExpectedUnavailability(req.body, range);
     }
     next();

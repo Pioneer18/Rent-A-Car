@@ -16,7 +16,7 @@ import { FindProfileImageInterface } from '../interfaces/service/find-profile-im
 import { DeleteAllImagesInterface } from '../interfaces/service/delete-all-images.interface';
 import { FileUploadAndSaveInterface } from '../interfaces/service/fileupload-and-save.interface';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
-import { DeleteImagesResponseInterface } from '../interfaces/service/delete-images-response.interface';
+import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 /**
  * **summary**: contains all of the functionality for uploading and managing photos in the application.
  * - note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
@@ -104,7 +104,7 @@ export class ImagesService {
    * @param category the images category; rentals or profile
    * @param user_id used to verify the photos belong to the requesting user
    */
-  deleteImages = async (data: DeleteImagesInterface): Promise<DeleteImagesResponseInterface> => {
+  deleteImages = async (data: DeleteImagesInterface): Promise<DeleteResponseInterface> => {
     try {
       if (data.images && data.images.length > 0) {
         if (data.images.length === 1) {
@@ -124,7 +124,7 @@ export class ImagesService {
    * @param user_id used to locate the user's photos as well as verify they belong to them
    * @param rental_id the id of the rental
    */
-  deleteAllImages = async (data: DeleteAllImagesInterface): Promise<DeleteImagesResponseInterface> => {
+  deleteAllImages = async (data: DeleteAllImagesInterface): Promise<DeleteResponseInterface> => {
     // delete all images of the selected rental
     if (data.user && typeof data.rental_id === 'string') {
       return await this.imagesModel.deleteMany({ rental_id: data.rental_id, user_id: data.user.userId });

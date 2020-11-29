@@ -1,12 +1,12 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 /**
- * **summary**: validate a client request to remove (unschedule) Unavailability from a Rental
+ * **summary**: Validate a client request to remove (unschedule) Unavailability from a Rental
  */
 @Injectable()
 export class ValidateRemoveUnavailabilityPipe implements PipeTransform {
     /**
-     * **summary**: check the request has a valid rentalId and unavailabilityId
+     * **summary**: Check the request has a valid rentalId and unavailabilityId
      * @param value the raw client request to remove Unavailability from a Rental
      */
     private validateDto = (value: RemoveUnavailabilityDto) => {
@@ -18,7 +18,7 @@ export class ValidateRemoveUnavailabilityPipe implements PipeTransform {
         }
     }
     /**
-     * **summary**: use the validateDto method to validate the request before passing it on
+     * **summary**: Use the validateDto method to validate the request before passing it on
      * @param value the raw client request
      */
     transform = (value: RemoveUnavailabilityDto):RemoveUnavailabilityDto => {

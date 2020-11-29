@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Interval } from 'luxon';
 import { RentalDurations } from '../const';
 import { ProcessRentalTimeDto } from '../dto/searchRental/process-rental-time.dto';
+import { GenerateRentalDurationEnumInterface } from '../interface/utils/generateRentalDuration/generate-rental-duration-enum.interface';
 /**
  * **summary**: generate RentalDuration Enums for the rentalDuration propery of the RequestCoordinatesDto
  */
@@ -13,9 +14,9 @@ export class GenerateRentalDurationEnumUtil {
    * @param startTime 
    * @param endTime 
    */
-  private processRentalTime = async(startTime, endTime):Promise<ProcessRentalTimeDto> => {
+  private processRentalTime = async (data: GenerateRentalDurationEnumInterface): Promise<ProcessRentalTimeDto> => {
     try {
-      const base = Interval.fromDateTimes(startTime, endTime);
+      const base = Interval.fromDateTimes(data.startTime, data.endTime);
       const months = base.length('months');
       const weeks = base.length('weeks');
       const days = base.length('days');
@@ -33,9 +34,9 @@ export class GenerateRentalDurationEnumUtil {
    * @param startTime 
    * @param endTime 
    */
-  generateRentalDurationEnum = async(startTime, endTime) => {
+  generateRentalDurationEnum = async (data: GenerateRentalDurationEnumInterface) => {
     try {
-      const schedule: ProcessRentalTimeDto = await this.processRentalTime(startTime, endTime);
+      const schedule: ProcessRentalTimeDto = await this.processRentalTime({ startTime: data.startTime, endTime: data.endTime });
       if (schedule.months > 3) {
         return RentalDurations.Any;
       }

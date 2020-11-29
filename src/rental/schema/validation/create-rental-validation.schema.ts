@@ -1,6 +1,6 @@
 import * as joi from '@hapi/joi';
 /**
- * **summary**: validate requested new rental before passing to the handler
+ * **summary**: Validate requested new rental before passing to the handler
  * - fuel: when the selected fuel type is electric and not gas or hybrid, several fields must change their validation
  *   - mpgE: the metric for electric mileage. When the selected fuel type is electric, mpgE is required, otherwise it must be null
  *   - cityMpg: the metric for gas mileage in the city. cityMpg must be null if the fuel type is electric

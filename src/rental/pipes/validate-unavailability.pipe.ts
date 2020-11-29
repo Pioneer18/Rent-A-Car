@@ -9,7 +9,7 @@ import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unav
 @Injectable()
 export class ValidateUnavailabilityPipe implements PipeTransform {
   /**
-   * **summary**: confirm that the user is requesting to schedule a single block of Unavailable time for their Rental that is logically and will
+   * **summary**: Confirm that the user is requesting to schedule a single block of Unavailable time for their Rental that is logically and will
    * not cause an error in the application
    * -validate requested rental start DateTime is not before the current DateTime
    * - if 2 years
@@ -22,8 +22,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    */
 
   /**
-   * **summary**: use the [**Luxon DateTime.fromObject()**]() method to create a new DateTime from the raw client requested startTime
-   * @param u1 the 1st unavailabilityDto
+   * **summary**: Use the [**Luxon DateTime.fromObject()**]() method to create a new DateTime from the raw client requested startTime
+   * @param u1 The 1st unavailabilityDto
    */
   private convertToDateTime = async (u1: UnavailabilityDto): Promise<DateTime> => {
     if (!u1) {
@@ -40,9 +40,9 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate that the requested unavailability is not before the current date & time
-   * @param a = request start DateTime
-   * @param b = current DateTime
+   * **summary**: Validate that the requested unavailability is not before the current date & time
+   * @param a = Request start DateTime
+   * @param b = Current DateTime
    */
   private validateMinNotice = async (a: DateTime, b: DateTime) => {
     const notice: Interval = Interval.fromDateTimes(a, b).count('hours');
@@ -54,8 +54,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate the requested unavailability start time is not in the past
-   * @param value the ordered unavailability from previous pipe
+   * **summary**: Validate the requested unavailability start time is not in the past
+   * @param value The ordered unavailability from previous pipe
    */
   private validateRelevance = async (value: ValidateScheduleUnavailabilityDto): Promise<DateTime> => {
     // should already know y1 and y2
@@ -69,7 +69,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: this method is called when the requested Unavailability spans into the next year. this method verifies that the crossover into the next year
+   * **summary**: This method is called when the requested Unavailability spans into the next year. this method verifies that the crossover into the next year
    * includes the extra day if it's a leapYear. Even if it's not a leap year, this method verifies there are no missing or extra days as the Unavailability enters the
    * start of the next year
    * @param y1 
@@ -115,9 +115,9 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: use the [*Luxon DateTime.isInLeapYear()*](https://moment.github.io/luxon/docs/class/src/datetime.js~DateTime.html#instance-get-isInLeapYear) method
+   * **summary**: Use the [*Luxon DateTime.isInLeapYear()*](https://moment.github.io/luxon/docs/class/src/datetime.js~DateTime.html#instance-get-isInLeapYear) method
    * to check if the this current year is a [**leap year**](https://www.timeanddate.com/date/leapyear.html). For example, this year 2020 is actually a leap year!
-   * @param u1 the initial unavailability's DateTime
+   * @param u1 The initial unavailability's DateTime
    */
   private checkLeapYear = async (u1: DateTime) => {
     const check = u1.isInLeapYear;
@@ -126,9 +126,9 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate the data inisde of each UnavailabilityDto that will be used to schedule a sequential single 'block of Unavailability' for the Rental
-   * - note: uses the toItemIndexes() util to map a new array of **tuples** conataining an UnavailabilityDto and it's index in the array
-   * @param unavailability an array of UnavailabilityDtos, which is the data to create an individual Unavailability Document in the database
+   * **summary**: Validate the data inisde of each UnavailabilityDto that will be used to schedule a sequential single 'block of Unavailability' for the Rental
+   * - note: Uses the toItemIndexes() util to map a new array of **tuples** conataining an UnavailabilityDto and it's index in the array
+   * @param unavailability An array of UnavailabilityDtos, which is the data to create an individual Unavailability Document in the database
    */
   private validateEachUnavailability = async (
     unavailability: UnavailabilityDto[],
@@ -177,9 +177,9 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate congruence in rentalId, start, end, and title across y1 and y2
-   * @param y1 the first year of the requested Unavailability
-   * @param y2 the second year of the requested Unavailability
+   * **summary**: Validate congruence in rentalId, start, end, and title across y1 and y2
+   * @param y1 The first year of the requested Unavailability
+   * @param y2 The second year of the requested Unavailability
    */
   private validateCrossYearCongruence = async (
     y1: UnavailabilityDto,
@@ -203,9 +203,9 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: use the validateRelevance(), validateEachUnavailability(), validateCrossover(), validateCrossYearCongruence(),
+   * **summary**: Use the validateRelevance(), validateEachUnavailability(), validateCrossover(), validateCrossYearCongruence(),
    * validateMinNotice(), and checkLeapYear() methods to validate the client request and return a ValidatedUnavailabilityDto
-   * @param value the sorted but unvalidated client request data
+   * @param value The sorted but unvalidated client request data
    */
   transform = async(value: ValidateScheduleUnavailabilityDto): Promise<ValidatedUnavailabilityDto> => {
     try {

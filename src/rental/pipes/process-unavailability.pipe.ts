@@ -5,7 +5,7 @@ import { UnavailabilityQueryDto } from '../dto/unavailability/schedule/unavailab
 import { CreateQueryDto } from '../dto/unavailability/schedule/create-query.dto';
 import { ProcessedUnavailabilityQueryDto } from '../dto/unavailability/schedule/processed-unavailability-query.dto';
 /**
- * **summary**: query for any scheduled unavailability already in the database that would overlap with this request to add more unavailability to the Rental
+ * **summary**: Query for any scheduled unavailability already in the database that would overlap with this request to add more unavailability to the Rental
  * This is to prevent the user on the front-end from accidentally overlapping 'blocks' of scheduled unavailability. The front-end of course should also block this
  * @param year 
  */
@@ -13,7 +13,7 @@ import { ProcessedUnavailabilityQueryDto } from '../dto/unavailability/schedule/
 export class ProcessUnavailabilityPipe implements PipeTransform {
 
   /**
-   * **summary**: create a MongoDB query object from the provided CreateQueryDto
+   * **summary**: Create a MongoDB query object from the provided CreateQueryDto
    * @param year data for creating a MongoDB update object
    */
   protected createQuery = async (
@@ -49,7 +49,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto
+   * **summary**: Add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto
    * - this method checks if the user is schedling time only for this year or into the next year as well
    * - the uuid identifies a series of unavailability, allowing the entire block of time to be identified in the database
    * @param value the semi processed and validate client request data
@@ -114,7 +114,7 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: process the request to update a rental's 'scheduled unavailability'
+   * **summary**: Process the request to update a rental's 'scheduled unavailability'
    * - the user may schedule as far as a year ahead. To easily track the data as a single 'block' of unavailable time for the rental, each Unavailability document related to this query is given the same 'uuid'
    * @param value the validated unavailability request dto
    */

@@ -4,13 +4,13 @@ import { RawScheduleUnavailabilityDto } from '../dto/unavailability/schedule/raw
 import { SortedUnavailabilityDto } from '../dto/unavailability/schedule/sorted-unavailability.dto';
 import { ValidateScheduleUnavailabilityDto } from '../dto/unavailability/schedule/validate-schedule-unavailability.dto';
 /**
- * **summary**: sort the requested Rental Unavailability into a single or 2 year groupings (arrays). Sort each year's (array's) UnavailabilityDtos by ascending DOY (Day of the Year)
+ * **summary**: Sort the requested Rental Unavailability into a single or 2 year groupings (arrays). Sort each year's (array's) UnavailabilityDtos by ascending DOY (Day of the Year)
  */
 @Injectable()
 export class SortUnavailabilityPipe implements PipeTransform {
   
   /**
-   * **summary**: validate that the requested Unavailability does not cross more than a one year duration
+   * **summary**: Validate that the requested Unavailability does not cross more than a one year duration
    * @param yearB this value is exactly 1 year from the current date
    */
   private validate2Years = async (yearB: UnavailabilityDto[]): Promise<void> => {
@@ -23,7 +23,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate that the request to schedule unavailability is sequential and not two separate blocks of time
+   * **summary**: Validate that the request to schedule unavailability is sequential and not two separate blocks of time
    * @param a year 1
    * @param b year 2
    */
@@ -34,7 +34,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: return the sorted (by DOY) years in order, or return a single year
+   * **summary**: Return the sorted (by DOY) years in order, or return a single year
    * @param sorted the incoming data to be sorted
    */
   private orderYears = async (sorted: SortedUnavailabilityDto): Promise<ValidateScheduleUnavailabilityDto> => {
@@ -52,7 +52,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: separate years into y1 and y2 array and sort each by DOY
+   * **summary**: Separate years into y1 and y2 array and sort each by DOY
    * @param value the raw client request to schedule Unavailability on a Rental
    */
   private sort = async (value: RawScheduleUnavailabilityDto): Promise<SortedUnavailabilityDto> => {
@@ -79,7 +79,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto
+   * **summary**: Use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto
    * @param value the raw client request data
    */
   transform = async(value: RawScheduleUnavailabilityDto): Promise<ValidateScheduleUnavailabilityDto> => {

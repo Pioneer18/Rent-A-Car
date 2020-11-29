@@ -3,7 +3,7 @@ import { EditDetailsDto } from '../dto/details/edit-details.dto';
 import { PositiveNumber } from '../../common/util/positive-number';
 import { TypeOfValue } from '../../common/util/typeof-value';
 /**
- * **summary**: validate that the request to update the Rental's details (the spec property) will not violate the
+ * **summary**: Validate that the request to update the Rental's details (the spec property) will not violate the
  * RentalSchemaValidation.
  */
 @Injectable()
@@ -17,7 +17,7 @@ export class ValidateEditDetailsPipe implements PipeTransform {
     }
 
     /**
-     * **summary**: validate EditDetailsDto using the TypeOfValue utility
+     * **summary**: Validate EditDetailsDto using the TypeOfValue utility
      * @param value the request data to edit the rental
      */
     private validateDetails = async (value: EditDetailsDto) => {
@@ -93,7 +93,7 @@ export class ValidateEditDetailsPipe implements PipeTransform {
     }
 
     /**
-     * **summary**: use the validateDetails() method to validate the request before passing to the handler
+     * **summary**: Use the validateDetails() method to validate the request before passing to the handler
      * @param value the raw client request to edit the details (spec property) of a Rental
      */
     transform = async(value: EditDetailsDto):Promise<EditDetailsDto> => {

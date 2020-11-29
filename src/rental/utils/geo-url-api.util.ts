@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as axios from 'axios';
 import { RawCoordinatesDto } from '../dto/createRental/raw-coordinates.dto';
+import { GetCoordinatesInterface } from '../interface/utils/geoUrlApi/get-coordinates.interface';
+import { MakeRequestInterface } from '../interface/utils/geoUrlApi/make-request.interface'
 
 /**
  * **summary**: use [**Geocoding & Search API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html) to get coordinates for an address
@@ -22,11 +24,10 @@ export class GeoUrlApiUtil {
    * @param geoUrl the base HERE geocoding and search v7 api url
    * @param apiKey the api key
    */
-  private makeRequest = async(location, geoUrl, apiKey) => {
+  private makeRequest = async (data: MakeRequestInterface) => {
     try {
-      console.log(`Geocoding & Search API Request: ${geoUrl}?q=${location}&apiKey=${apiKey}`)
       const request: any = await axios.default.get(
-        `${geoUrl}?q=${location}&apiKey=${apiKey}`,
+        `${data.geoUrl}?q=${data.location}&apiKey=${data.apiKey}`,
       );
       return request;
     } catch (err) {
@@ -40,17 +41,17 @@ export class GeoUrlApiUtil {
    * @param geoUrl the url for the api
    * @param apiKey the key for the api
    */
-  getCoordinates = async(address, geoUrl, apiKey):Promise<[number, number]> => {
+  getCoordinates = async (data: GetCoordinatesInterface): Promise<[number, number]> => {
     try {
-      const location: string = address.replace(/\s+/g, '+');
+      const location: string = data.address.replace(/\s+/g, '+');
       // make the API request
       console.log('location before the request')
       console.log(location);
-      const response: any = await this.makeRequest(
+      const response: any = await this.makeRequest({
         location,
-        geoUrl,
-        apiKey
-      );
+        geoUrl: data.geoUrl,
+        apiKey: data.apiKey
+      });
       // grab the coordinates
       const rawCoordinates: RawCoordinatesDto =
         response.data.items[0].position;

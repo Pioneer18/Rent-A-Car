@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ObjectID = mongoose.ObjectId;
 
 /**
- * **summary**: the schema for the Rental Model
+ * **summary**: The schema for the Rental Model
  */
 export const RentalSchema = new Schema({
   rentalId: ObjectID,

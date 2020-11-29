@@ -1,7 +1,7 @@
 import { RentalDurations } from '../../const';
 import * as joi from '@hapi/joi';
 /**
- * **summary**: validate an incoming SearchRentalDto
+ * **summary**: Validate an incoming SearchRentalDto
  */
 export const SearchRentalValidationSchema = joi.object({
   address: joi.string().required(),

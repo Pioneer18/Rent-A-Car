@@ -1,8 +1,9 @@
+import { RemoveUnavailabilityInterface } from "src/rental/interface/service/remove-unavailability.interface";
 /**
- * **summary**: the information necessary to delte an Unavailability document from the database
- * - passed to the rental.service.removeUnavailability() method
+ * **summary**: This Dto contains the data necessary to delte an Unavailability document from the database, it's passed to the rental.controller.removeUnavailability() method
+ * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
-export class RemoveUnavailabilityDto {
+export class RemoveUnavailabilityDto implements RemoveUnavailabilityInterface {
   rentalId: string;
   unavailabilityId: string;
 }
