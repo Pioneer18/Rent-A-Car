@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { UserInterface } from '../interface/modelInterface/user.interface';
+import { CreateQuery, Model } from 'mongoose';
+import { UserModelInterface } from '../interface/modelInterface/user.interface';
 import { Request } from 'express';
 import { ExtractKeyValueUtil } from '../../auth/util/extract-key-value.util';
 import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
@@ -12,13 +12,14 @@ import { FindUserInterface } from '../interface/service/find-user.interface';
 import { FindUserByResetPwTokenInterface } from '../interface/service/find-user-by-reset-pw-token.interface';
 import { UpdateUserInterface } from '../interface/service/update-user.interface';
 import { DeleteUserInterface } from '../interface/service/delete-user.interface';
+import { UserInterface } from '../interface/user.interface';
 /**
  * **summary**: contains all of the functionality to manage a user profile
  */
 @Injectable()
 export class UserService {
     constructor(
-        @InjectModel('User') private readonly userModel: Model<UserInterface>,
+        @InjectModel('User') private readonly userModel: Model<UserModelInterface>,
         private readonly extractKeyValueUtil: ExtractKeyValueUtil,
         private readonly verifyNewPasswordUtil: VerifyNewPasswordUtil,
         private readonly redisService: RedisService,
@@ -28,10 +29,9 @@ export class UserService {
      * **summary**: Create a new user
      * @param user New user data
      */
-    createUser = async(user: CreateUserInterface) => {
+    createUser = async(user: CreateQuery<UserInterface>): Promise<UserModelInterface> => {
         try {
-            const document = await new this.userModel(user);
-            await document.save();
+            const document = await this.userModel.create(user);
             document.password = undefined;
             return document;
         } catch (err) {
@@ -43,7 +43,7 @@ export class UserService {
      * **summary**: Find a user by email
      * @param data Email
      */
-    findUser = async (data: FindUserInterface) => {
+    findUser = async (data: FindUserInterface): Promise<UserModelInterface> => {
         try {
             const user = await this.userModel.findOne({ email: data.email });
             return user;
@@ -56,7 +56,7 @@ export class UserService {
      * **summary**: Find a user by their resetPasswordToken once they have submitted the reset password email
      * @param data The token
      */
-    findUserByResetPasswordToken = async(data: FindUserByResetPwTokenInterface) => {
+    findUserByResetPasswordToken = async(data: FindUserByResetPwTokenInterface): Promise<UserModelInterface> => {
         try {
             const user = await this.userModel.findOne({ resetPasswordToken: data.token });
             return user;
@@ -70,7 +70,7 @@ export class UserService {
      * @param data The update user data
      * @param req The client request
      */
-    updateUser = async(data: UpdateUserInterface, req ) => {
+    updateUser = async(data: UpdateUserInterface, req ): Promise<UserModelInterface> => {
         try {
             // extract user email
             const user: JwtPayloadInterface = req.user;
@@ -82,7 +82,7 @@ export class UserService {
             }
             // logout the user and return the data before redirecting to login
             await this.logoutUser(req);
-            return await this.userModel.findOneAndUpdate(filter, updater, {new: true});
+            return await this.userModel.findOneAndUpdate(filter, {updater}, {useFindAndModify: false});
        } catch(err) {
            throw new Error(err)
        }
@@ -93,7 +93,7 @@ export class UserService {
      * @param data user credentials
      * @param req The client request
      */
-    deleteUser = async(data: DeleteUserInterface, req) => {
+    deleteUser = async(data: DeleteUserInterface, req): Promise<UserModelInterface> => {
         try {
             // extract user email
             const doc:JwtPayloadInterface = req.user;
@@ -104,8 +104,7 @@ export class UserService {
             // logout
             await this.logoutUser(req);
             // delete
-            const res = await user.remove();
-            return res.deletedCount;
+            return await user.remove();
         } catch(err) {
             throw new Error(err);
         }
