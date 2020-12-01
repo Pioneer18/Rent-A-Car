@@ -11,7 +11,7 @@ export class PricingPipe implements PipeTransform {
      * **summary**: Validate the price and discounts do not have negative values nor violate common sense
      * @param data the raw user request to update the Rental's pricing
      */
-    private validatePricingDto = async (data: PricingDto) => {
+    private validatePricingDto = async (data: PricingDto): Promise<void> => {
         const minPrice: number = parseInt(process.env.MIN_PRICE, 10);
         // check rentalId
         if (!data.rentalId || (typeof data.rentalId !== 'string')) {
@@ -32,7 +32,7 @@ export class PricingPipe implements PipeTransform {
      * **summary**: Map the final values of the PricingDto before passing to the handler
      * @param 
      */
-    private mapPricingDto = async (data: PricingDto) => {
+    private mapPricingDto = async (data: PricingDto): Promise<PricingDto> => {
         const value: PricingDto = {
             rentalId: data.rentalId,
             price: data.price ? data.price : null,
@@ -48,7 +48,7 @@ export class PricingPipe implements PipeTransform {
      * **summary**: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler
      * @param value the raw request from a user to update the pricing of a Rental
      */
-    transform = async(value: PricingDto) => {
+    transform = async(value: PricingDto): Promise<PricingDto> => {
         try {
             await this.validatePricingDto(value);
             const data: PricingDto = await this.mapPricingDto(value);

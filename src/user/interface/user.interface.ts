@@ -1,12 +1,8 @@
-/**
- * **summary**: interface for the User model
- */
-export interface UserInterface {
+export interface UserInterface{
     _id: string;
     username: string;
     email: string;
     password: string;
     resetPasswordToken: string;
     resetPasswordExpires: Date;
-  }
-  
+}

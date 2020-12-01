@@ -12,7 +12,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavail
      * **summary**: Map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
      * @param value ValidateUpdateUnavailabilityDto
      */
-    private distillDto = async (value: ValidateUpdateUnavailabilityDto) => {
+    private distillDto = async (value: ValidateUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDto> => {
         const data: UpdateUnavailabilityDto = {
             unavailabilityId: value.unavailabilityId,
             rentalId: value.rentalId,
@@ -27,7 +27,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavail
      * **summary**: Create a MongoDB update object from the UpdateUnavailabilityDto
      * @param value UpdateUnavailabilityDto
      */
-    private createUpdateData = async (value: UpdateUnavailabilityDto) => {
+    private createUpdateData = async (value: UpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataInterface> => {
         const filter = {
             rentalId: value.rentalId,
             unavailabilityId: value.unavailabilityId,

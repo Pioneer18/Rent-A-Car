@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { ImageInterface } from '../interfaces/modelInterface/image.interface';
-import { Model } from 'mongoose';
+import { ImageModelInterface } from '../interfaces/modelInterface/image-model.interface';
+import { Model, Query } from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
 import { profile } from '../../common/Const';
 import { SaveImagesInterface } from '../interfaces/service/save-images.interface'
@@ -17,6 +17,7 @@ import { DeleteAllImagesInterface } from '../interfaces/service/delete-all-image
 import { FileUploadAndSaveInterface } from '../interfaces/service/fileupload-and-save.interface';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
+import { Image } from '../interfaces/image.interface';
 /**
  * **summary**: contains all of the functionality for uploading and managing photos in the application.
  * - note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
@@ -26,7 +27,7 @@ import { DeleteResponseInterface } from '../../common/interfaces/delete-response
 export class ImagesService {
 
   constructor(
-    @InjectModel('Images') private readonly imagesModel: Model<ImageInterface>,
+    @InjectModel('Images') private readonly imagesModel: Model<ImageModelInterface>,
     private readonly processSaveDataUtil: ProcessSaveDataUtil,
     private readonly createMulterUploadUtil: CreateMulterUploadUtil,
     private readonly multerUploadUtil: MulterUploadUtil,
@@ -40,7 +41,7 @@ export class ImagesService {
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  saveImages = async (data: SaveImagesInterface): Promise<void> => {
+  saveImages = async (data: SaveImagesInterface): Promise<Image[] | Image> => {
     try {
       const { packet, image }: ProcessedSaveDataInterface = await this.processSaveDataUtil.process(data);
       let flag;
@@ -48,12 +49,11 @@ export class ImagesService {
       if (flag === 'multiple') {
         return await this.imagesModel.insertMany(packet);
       }
-      return await this.imagesModel.create(image);
-      //const document = new this.imagesModel(image);
-      //document.save(function(err) {
-       // if (err) throw new Error(err);
-       // return;
-      ///});
+      const document = new this.imagesModel(image);
+      document.save(function(err) {
+       if (err) throw new Error(err);
+       return;
+      });
     } catch (err) {
       throw new Error(err);
     }
@@ -78,7 +78,7 @@ export class ImagesService {
         return { count: images.length, images: images }
       }
       // find a specific image
-      const image = await this.imagesModel.findById(data.img_id);
+      const image = await this.imagesModel.findOne({ _id: data.img_id });
       return { count: 1, images: image }
     } catch (err) {
       throw new Error(err);
@@ -97,7 +97,7 @@ export class ImagesService {
         const images = await this.imagesModel.find({ user_id: data.user.userId, category: profile })
         return { count: images.length, images: images };
       };
-      const image = await this.imagesModel.findById(data.img_id);
+      const image = await this.imagesModel.findOne({ _id: data.img_id });
       return { count: 1, images: image }
     } catch (err) {
       throw new Error(err)
@@ -113,11 +113,11 @@ export class ImagesService {
     try {
       if (data.images && data.images.length > 0) {
         if (data.images.length === 1) {
-          await this.deleteS3ImagesUtil.deleteS3Image({images: data.images, user: data.user});
-          return await this.imagesModel.deleteOne({ _id: data.images[0]._id, user_id: data.user.userId });
+          await this.deleteS3ImagesUtil.deleteS3Image({ images: data.images, user: data.user });
+          return await this.imagesModel.remove({ _id: data.images[0]._id, user_id: data.user.userId });
         }
-        const ids = await this.deleteS3ImagesUtil.deleteS3Images({images:data.images, user: data.user});
-        return await this.imagesModel.deleteMany({ _id: { $in: ids }, user_id: data.user.userId })
+        const ids = await this.deleteS3ImagesUtil.deleteS3Images({ images: data.images, user: data.user });
+        return await this.imagesModel.remove({ _id: { $in: ids }, user_id: data.user.userId })
       }
     } catch (err) {
       throw new Error(err);
@@ -135,11 +135,11 @@ export class ImagesService {
       console.log('DELETING ALL RENTAL IMAGES NOW')
       console.log(data.rental_id);
       console.log(data.user);
-      return await this.imagesModel.deleteMany({ user_id: data.user.userId, rental_id: data.rental_id });
+      return await this.imagesModel.remove({ user_id: data.user.userId, rental_id: data.rental_id });
     }
     // delete all of the user's profile images
     if (data.user && data.rental_id === undefined || typeof data.rental_id !== 'string') {
-      return await this.imagesModel.deleteMany({ user_id: data.user.userId, category: profile });
+      return await this.imagesModel.remove({ user_id: data.user.userId, category: profile });
     }
   }
 
@@ -155,7 +155,7 @@ export class ImagesService {
     try {
       // create a multer upload
       const user: JwtPayloadInterface = data.req.user;
-      const multerUpload = await this.createMulterUploadUtil.create({req: data.req, category: data.category})
+      const multerUpload = await this.createMulterUploadUtil.create({ req: data.req, category: data.category })
       // Upload the image(s)
       await this.multerUploadUtil.upload({
         req: data.req,

@@ -20,7 +20,7 @@ export class ValidateEditDetailsPipe implements PipeTransform {
      * **summary**: Validate EditDetailsDto using the TypeOfValue utility
      * @param value the request data to edit the rental
      */
-    private validateDetails = async (value: EditDetailsDto) => {
+    private validateDetails = async (value: EditDetailsDto): Promise<void> => {
         // check rentalId
         if (!value.rentalId || !this.typeOfValue.validate(value.rentalId, 'string')) {
             throw new Error('Invalid rental id');

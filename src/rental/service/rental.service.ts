@@ -1,13 +1,13 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RentalInterface } from '../interface/modelInterface/Rental/rental.interface';
+import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-model.interface';
+import { RentalInterface } from '../interface/rental.interface';
 import { SearchRentalInterface } from '../interface/service/search-rental.interface';
 import { unavailabilityModel } from '../../common/Const';
 import { UnavailabilityInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
 import { CreateRentalInterface } from '../interface/service/create-rental.interface';
-import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
-import { CreateRentalReturn } from '../interface/service/create-rental-return.interface';
+import { EditPricingInterface } from '../interface/service/edit-pricing.interface';;
 import { RentalQuery } from '../interface/service/create-rental-query.interface';
 import { EditPricingUpdater } from '../interface/service/edit-pricing-updater.interface';
 import { EditDetailsInterface } from '../interface/service/edit-details.interface';
@@ -17,7 +17,7 @@ import { UpdateUnavailabilityDataInterface } from '../interface/service/update-u
 import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
-import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
+
 
 /**
  * **summary**: Create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
@@ -25,7 +25,7 @@ import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
 @Injectable()
 export class RentalService {
   constructor(
-    @InjectModel('Rental') private readonly rentalModel: Model<RentalInterface>,
+    @InjectModel('Rental') private readonly rentalModel: Model<RentalModelInterface>,
     @Inject(unavailabilityModel)
     private readonly unavailability: Model<UnavailabilityInterface>,
   ) { }
@@ -35,7 +35,7 @@ export class RentalService {
    * so the rental may be found by a geospatial query
    * @param rental The new rental to be created
    */
-  createRental = async (rental: CreateRentalInterface, user) => {
+  createRental = async (rental: CreateRentalInterface, user): Promise<RentalModelInterface> => {
     try {
       console.log('The Create Rental User')
       console.log(user)
@@ -60,7 +60,7 @@ export class RentalService {
     console.log(rental)
     try {
       const query: RentalQuery = await this.createRentalQuery(rental);
-      const rentals = await this.rentalModel.find(query);
+      const rentals = await this.rentalModel.find({query}).lean();
       if (rentals.length > 0) {
         return rentals;
       } else {
@@ -95,7 +95,7 @@ export class RentalService {
       const updater: EditPricingUpdater = {
         $set: update,
       };
-      const doc = await this.rentalModel.findOneAndUpdate(filter, updater, { new: true });
+      const doc = await this.rentalModel.findOneAndUpdate({filter}, {updater}, {useFindAndModify: false}).lean();
       return doc;
     } catch (err) {
       throw new Error(err);
@@ -117,7 +117,7 @@ export class RentalService {
       const updater: EditDetailsUpdater = {
         $set: update,
       };
-      const doc = await this.rentalModel.findOneAndUpdate(filter, updater, { new: true });
+      const doc = await this.rentalModel.findOneAndUpdate(filter, {updater}, {useFindAndModify: false }).lean();
       return doc;
     } catch (err) {
       throw new Error(err);
@@ -154,7 +154,7 @@ export class RentalService {
     try {
       const update = await this.unavailability.updateMany(
         data.filter,
-        data.updater,
+        {upater: data.updater},
       );
       return update;
     } catch (err) {
@@ -168,7 +168,7 @@ export class RentalService {
    */
   removeUnavailability = async (data: RemoveUnavailabilityInterface): Promise<DeleteResponseInterface> => {
     try {
-      const remove = await this.unavailability.deleteMany({
+      const remove = await this.unavailability.remove({
         rentalId: data.rentalId,
         unavailabilityId: data.unavailabilityId,
       });

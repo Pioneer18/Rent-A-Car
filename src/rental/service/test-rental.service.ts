@@ -1,6 +1,6 @@
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { RentalInterface } from '../interface/modelInterface/Rental/rental.interface';
+import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-model.interface';
 import { Injectable } from '@nestjs/common';
 
 /**
@@ -9,7 +9,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class TestRentalService {
   constructor(
-    @InjectModel('Rental') private readonly rentalModel: Model<RentalInterface>,
+    @InjectModel('Rental') private readonly rentalModel: Model<RentalModelInterface>,
   ) {}
 
   async returnRentalModel() {

@@ -5,6 +5,7 @@ import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { AuthService } from '../service/auth.service';
+import { ValidateUserReturn } from '../interfaces/service/validate-user-return.interface';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -18,7 +19,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
      * @param email the user email
      * @param password the user password
      */
-    validate = async(email: string, password: string): Promise<any> => {
+    validate = async(email: string, password: string): Promise<ValidateUserReturn> => {
         const user = await this.authService.validateUser({email: email, pass: password});
         if (!user) {
             throw new Error('invalid credentials');

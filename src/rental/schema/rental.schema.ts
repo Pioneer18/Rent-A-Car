@@ -1,22 +1,20 @@
 import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
-const ObjectID = mongoose.ObjectId;
 
 /**
  * **summary**: The schema for the Rental Model
  */
 export const RentalSchema = new Schema({
-  rentalId: ObjectID,
   userId: String,
   rentalTitle: String,
   rentalDescription: String,
   address: String,
-  loc: {
+  loc:<{}>{
     type: { type: String },
-    coordinates: Object,
+    coordinates: [Number, Number],
   },
-  specs: {
+  specs:<{}> {
     odometer: Number,
     transmission: String,
     cityMpg: Number || null,
@@ -32,24 +30,24 @@ export const RentalSchema = new Schema({
     numOfSeats: Number,
     numDoors: Number,
   },
-  registration: {
+  registration: <{}>{
     vin: String,
     licensePlate: String,
     state: String,
   },
-  features: [String],
-  scheduling: {
+  features: [{type: String}],
+  scheduling: <{}> {
     requiredNotice: Number,
     rentMinDuration: Number,
     rentMaxDuration: Number,
   },
-  pricing: {
+  pricing: <{}> {
     price: { type: Number /*, default: DEFAULT_PRICE*/ },
     discounts: {
       weekly: { type: Number, default: null },
       monthly: { type: Number, default: null },
     },
   },
-  photos: [String],
+  photos: [{type: String}],
   listed: Boolean,
 });

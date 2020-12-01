@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateQuery, Model } from 'mongoose';
-import { UserModelInterface } from '../interface/modelInterface/user.interface';
+import { UserModelInterface } from '../interface/modelInterface/user-model.interface';
 import { Request } from 'express';
 import { ExtractKeyValueUtil } from '../../auth/util/extract-key-value.util';
 import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
@@ -29,9 +29,10 @@ export class UserService {
      * **summary**: Create a new user
      * @param user New user data
      */
-    createUser = async(user: CreateQuery<UserInterface>): Promise<UserModelInterface> => {
+    createUser = async(user: CreateQuery<CreateUserInterface>): Promise<CreateQuery<UserModelInterface>> => {
         try {
-            const document = await this.userModel.create(user);
+            const document = await new this.userModel(user);
+            document.save();
             document.password = undefined;
             return document;
         } catch (err) {
@@ -70,7 +71,7 @@ export class UserService {
      * @param data The update user data
      * @param req The client request
      */
-    updateUser = async(data: UpdateUserInterface, req ): Promise<UserModelInterface> => {
+    updateUser = async(data: UpdateUserInterface, req ): Promise<UserInterface> => {
         try {
             // extract user email
             const user: JwtPayloadInterface = req.user;
@@ -82,7 +83,7 @@ export class UserService {
             }
             // logout the user and return the data before redirecting to login
             await this.logoutUser(req);
-            return await this.userModel.findOneAndUpdate(filter, {updater}, {useFindAndModify: false});
+            return await this.userModel.findOneAndUpdate(filter, {updater}, {useFindAndModify: false}).lean();
        } catch(err) {
            throw new Error(err)
        }
@@ -93,7 +94,7 @@ export class UserService {
      * @param data user credentials
      * @param req The client request
      */
-    deleteUser = async(data: DeleteUserInterface, req): Promise<UserModelInterface> => {
+    deleteUser = async(data: DeleteUserInterface, req): Promise<UserInterface> => {
         try {
             // extract user email
             const doc:JwtPayloadInterface = req.user;

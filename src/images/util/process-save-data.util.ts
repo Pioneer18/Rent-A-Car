@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { ImageInterface } from "../interfaces/modelInterface/image.interface";
 import { ProcessedSaveDataInterface } from "../interfaces/utils/processSaveData/processed-save-data.interface";
 import { SaveImagesInterface } from "../interfaces/service/save-images.interface";
+import { Image } from "../interfaces/image.interface";
 /**
  * **summary**: utility to process the save image request data before passing it to the handler
  */
@@ -20,7 +20,7 @@ export class ProcessSaveDataUtil {
       // single file
       if (data.files.length === 1) {
         const temp = data.files[0];
-        const image: ImageInterface = {
+        const image: Image = {
           user_id: data.user_id,
           rental_id: data.rental_id,
           bucket: temp.bucket,
@@ -35,7 +35,7 @@ export class ProcessSaveDataUtil {
       }
       // multiple files
       const packet = data.files.map(item => {
-        const image: ImageInterface = {
+        const image: Image = {
           user_id: data.user_id,
           rental_id: data.rental_id,
           bucket: item.bucket,

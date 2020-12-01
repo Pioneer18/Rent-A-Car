@@ -14,7 +14,7 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
    * **summary**: Finish transforming the client request into a SearchRentalDto using the geoUrlApiUtil.getCoordinates() method
    * @param value the semi-processed client request data to search for Rentals
    */
-  transform = async (value: RequestCoordinatesDto) => {
+  transform = async (value: RequestCoordinatesDto): Promise<SearchRentalDto> => {
     const geoUrl = process.env.GEO_URL;
     const apiKey = process.env.GEO_API_KEY;
     try {

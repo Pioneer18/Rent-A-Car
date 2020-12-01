@@ -91,43 +91,43 @@ describe('GenerateRentalDurationEnumUtil Unit Test', () => {
   describe('generateRentalDurationEnum method test', () => {
     it('should generate the correct enum for 1 day', async () => {
       const { now, oneDay } = await createTime();
-      expect(await util.generateRentalDurationEnum(now, oneDay)).toBe(
+      expect(await util.generateRentalDurationEnum({startTime: now, endTime: oneDay})).toBe(
         RentalDurations['1 Day'],
       );
     });
     it('should generate the correct enum for 3 days', async () => {
       const { now, threeDays } = await createTime();
-      expect(await util.generateRentalDurationEnum(now, threeDays)).toBe(
+      expect(await util.generateRentalDurationEnum({startTime: now, endTime: threeDays})).toBe(
         RentalDurations['3 Days'],
       );
     });
     it('should generate the correct enum for 5 days', async () => {
       const { now, fiveDays } = await createTime();
-      expect(await util.generateRentalDurationEnum(now, fiveDays)).toBe(
+      expect(await util.generateRentalDurationEnum({startTime: now, endTime: fiveDays})).toBe(
         RentalDurations['5 Days'],
       );
     });
     it('should generate the correct enum for 1 week', async () => {
       const { now, oneWeek } = await createTime();
-      expect(await util.generateRentalDurationEnum(now, oneWeek)).toBe(
+      expect(await util.generateRentalDurationEnum({startTime: now, endTime: oneWeek})).toBe(
         RentalDurations['1 Week'],
       );
     });
     it('should generate the correct enum for 3 weeks', async () => {
       const { now, threeWeeks } = await createTime();
-      expect(await util.generateRentalDurationEnum(now, threeWeeks)).toBe(
+      expect(await util.generateRentalDurationEnum({startTime: now, endTime: threeWeeks})).toBe(
         RentalDurations['3 Weeks'],
       );
     });
     it('should generate the correct enum for 1 month', async () => {
       const { now, oneMonth } = await createTime();
-      expect(await util.generateRentalDurationEnum(now, oneMonth)).toBe(
+      expect(await util.generateRentalDurationEnum({startTime: now, endTime: oneMonth})).toBe(
         RentalDurations['1 Month'],
       );
     });
     it('should generate the correct enum for 3 months', async () => {
       const { now, threeMonths } = await createTime();
-      expect(await util.generateRentalDurationEnum(now, threeMonths)).toBe(
+      expect(await util.generateRentalDurationEnum({startTime: now, endTime: threeMonths})).toBe(
         RentalDurations['3 Months'],
       );
     });

@@ -27,6 +27,11 @@ import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-una
 import { AppConfigService } from '../../config/configuration.service';
 import { ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
+import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-model.interface';
+import { RentalInterface } from '../interface/rental.interface';
+import { UnavailabilityInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
+import { UpdateResponseInterface } from 'src/common/interfaces/update-response.interface';
+import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
 
 /**
  * - **summary**: controller for managing rentals in the application
@@ -46,7 +51,7 @@ export class RentalController {
   @UsePipes(new JoiValidationPipe(CreateRentalValidationSchema))
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
-  async createRental(@Body() rental: CreateRentalDto, @Req() req) {
+  async createRental(@Body() rental: CreateRentalDto, @Req() req): Promise<RentalModelInterface> {
     try {
       return await this.rentalService.createRental(rental, req.user);
     } catch (err) {
@@ -62,7 +67,7 @@ export class RentalController {
   @UsePipes(new RequestCoordinatesPipe(new GeoUrlApiUtil()))
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
   @UsePipes(new GivenNoticePipe())
-  async searchRental(@Body() searchRentalDto: SearchRentalDto) {
+  async searchRental(@Body() searchRentalDto: SearchRentalDto): Promise<RentalInterface[]> {
       return await this.rentalService.searchRental(searchRentalDto);
   }
 
@@ -71,7 +76,7 @@ export class RentalController {
    */
   @Post('edit-price')
   @UsePipes(new PricingPipe())
-  async editPricing(@Body() pricingDto: PricingDto) {
+  async editPricing(@Body() pricingDto: PricingDto): Promise<RentalInterface> {
       return await this.rentalService.editPricing(pricingDto);
   }
 
@@ -80,7 +85,7 @@ export class RentalController {
    */
   @Post('edit-details')
   @UsePipes(new ValidateEditDetailsPipe())
-  async editDetails(@Body() editDetailsDto: EditDetailsDto) {
+  async editDetails(@Body() editDetailsDto: EditDetailsDto): Promise<RentalInterface> {
       return await this.rentalService.editDetails(editDetailsDto);
   }
 
@@ -91,7 +96,7 @@ export class RentalController {
   @UsePipes(new ProcessUnavailabilityPipe())
   @UsePipes(new ValidateUnavailabilityPipe())
   @UsePipes(new SortUnavailabilityPipe())
-  async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto ) {
+  async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto):Promise<UnavailabilityInterface[]> {
     return await this.rentalService.scheduleUnavailability(processed);
   }
 
@@ -100,7 +105,7 @@ export class RentalController {
    */
   @Post('update-unavailability')
   @UsePipes(new CreateUpdaterDtoPipe())
-  async updateUnavailability(@Body() data: UpdateUnavailabilityDataDto) {
+  async updateUnavailability(@Body() data: UpdateUnavailabilityDataDto): Promise<UpdateResponseInterface> {
     return await this.rentalService.updateUnavailability(data);
   }
 
@@ -109,7 +114,7 @@ export class RentalController {
     */
    @Post('remove-unavailability')
    @UsePipes(new ValidateRemoveUnavailabilityPipe())
-   async removeUnavailability(@Body() data: RemoveUnavailabilityDto) {
+   async removeUnavailability(@Body() data: RemoveUnavailabilityDto): Promise<DeleteResponseInterface> {
      return await this.rentalService.removeUnavailability(data);
    }
 

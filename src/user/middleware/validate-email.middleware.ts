@@ -1,7 +1,7 @@
 import { Inject, Injectable, NestMiddleware } from '@nestjs/common'
 import { Request, Response } from 'express';
 import { userModel } from '../../common/Const';
-import { UserInterface } from '../interface/modelInterface/user.interface';
+import { UserModelInterface } from '../interface/modelInterface/user-model.interface';
 import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { ValidateEmailUtil } from '../utils/validate-email.util';
@@ -16,7 +16,7 @@ export class ValidateEmailMiddleware implements NestMiddleware {
     validateEmailUtil: ValidateEmailUtil;
     constructor(
         @Inject(userModel)
-        private readonly user: Model<UserInterface>,
+        private readonly user: Model<UserModelInterface>,
     ) {
         this.validateEmailUtil = new ValidateEmailUtil()
     }

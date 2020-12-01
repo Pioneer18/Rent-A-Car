@@ -9,7 +9,7 @@ export class ValidateRemoveUnavailabilityPipe implements PipeTransform {
      * **summary**: Check the request has a valid rentalId and unavailabilityId
      * @param value the raw client request to remove Unavailability from a Rental
      */
-    private validateDto = (value: RemoveUnavailabilityDto) => {
+    private validateDto = (value: RemoveUnavailabilityDto): void => {
         if (typeof value.rentalId !== 'string') {
             throw new Error('invalid rental ID; must be a string');
         }

@@ -6,6 +6,7 @@ import { ResetPasswordDto } from "../dto/reset-password.dto";
 import { JwtAuthGuard } from "../gaurds/jwt-auth.guard";
 import { LocalAuthGuard } from "../gaurds/local-auth.guard";
 import { LoggedOutGaurd } from "../gaurds/logged-out.guard";
+import { ExtractKeyValueUtilInterface } from "../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface";
 import { AuthService } from "../service/auth.service";
 /**
  * **summary**: Controller for handling the authentication and authorization of a registered user
@@ -23,7 +24,7 @@ export class AuthController {
     @HttpCode(200)
     @UseGuards(LocalAuthGuard)
     @Post('login')
-    async login(@Request() req, @Res() res: Response) {
+    async login(@Request() req, @Res() res: Response): Promise<Response> {
         const cookie = await this.authService.login(req.user._doc);
         res.setHeader('Set-Cookie', cookie);
         req.user._doc.password = undefined;
@@ -37,7 +38,7 @@ export class AuthController {
     @UseGuards(JwtAuthGuard)
     @Redirect('http://localhost:3000/auth/login')
     @Post('logout')
-    async logout(@Request() req) {
+    async logout(@Request() req): Promise<ExtractKeyValueUtilInterface> {
         return await this.authService.logout(req);
     }
 
@@ -49,7 +50,7 @@ export class AuthController {
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Post('change-password')
-    async changePassword(@Req() req, @Body() data: ChangePasswordDto) {
+    async changePassword(@Req() req, @Body() data: ChangePasswordDto): Promise<void> {
         return this.authService.changePassword(data, req)
     }
 
@@ -58,7 +59,7 @@ export class AuthController {
      * @param data The email address to send the forgot-password email to
      */
     @Post('forgot-password')
-    async forgotPassword(@Body() data: ForgotPasswordDto) {
+    async forgotPassword(@Body() data: ForgotPasswordDto): Promise<string> {
         return this.authService.forgotPassword(data)
     }
 
@@ -67,7 +68,7 @@ export class AuthController {
      * @param data The data submitted by the user to the reset-password email form
      */
     @Post('reset-password')
-    async resetPassword(@Body() data: ResetPasswordDto) {
+    async resetPassword(@Body() data: ResetPasswordDto): Promise<void> {
         return await this.authService.resetPassword(data)
     }
 }

@@ -1,4 +1,5 @@
 import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect } from '@nestjs/common';
+import { CreateQuery } from 'mongoose';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { LoggedOutGaurd } from '../../auth/gaurds/logged-out.guard';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
@@ -6,9 +7,11 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { DeleteUserDto } from '../dto/delete-user.dto';
 import { FindUserDto } from '../dto/find-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { UserModelInterface } from '../interface/modelInterface/user-model.interface';
 import { BcryptHashPipe } from '../pipes/bcrypt.pipe';
 import { CreateUserValidation } from '../schema/validation/create-user-validation.schema';
 import { UserService } from '../service/user.service';
+import { UserInterface } from '../interface/user.interface';
 /**
  * **summary**: Controller for managing users in the application
  */
@@ -23,7 +26,7 @@ export class UserController {
     @UsePipes(new BcryptHashPipe())
     @UsePipes(new JoiValidationPipe(CreateUserValidation))
     @Post('create-user')
-    async createProfile(@Body() user: CreateUserDto) {
+    async createProfile(@Body() user: CreateUserDto): Promise<CreateQuery<UserModelInterface>> {
         return await this.userService.createUser(user);
     }
 
@@ -36,7 +39,7 @@ export class UserController {
     @UseGuards(LoggedOutGaurd)
     @Post('update-user')
     @Redirect('http://localhost:3000/auth/login')
-    async updateProfile(@Body() update: UpdateUserDto, @Req() req) {
+    async updateProfile(@Body() update: UpdateUserDto, @Req() req): Promise<UserInterface> {
         return await this.userService.updateUser(update, req);
     }
 
@@ -47,7 +50,7 @@ export class UserController {
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Get('find-user')
-    async findUser(@Body() email: FindUserDto) {
+    async findUser(@Body() email: FindUserDto): Promise<UserModelInterface> {
         return await this.userService.findUser(email)
     }
 
@@ -60,7 +63,7 @@ export class UserController {
     @UseGuards(LoggedOutGaurd)
     @Redirect('http://localhost:3000/auth/login', 302)
     @Post('delete-profile')
-    async deleteProfile(@Body() data: DeleteUserDto, @Req() req) {
+    async deleteProfile(@Body() data: DeleteUserDto, @Req() req): Promise<UserInterface> {
         return this.userService.deleteUser(data, req);
     }
 }

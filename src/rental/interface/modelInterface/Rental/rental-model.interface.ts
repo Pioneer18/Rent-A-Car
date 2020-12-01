@@ -1,14 +1,15 @@
+import * as mongoose from 'mongoose';
 /**
  * **summary**: Interface for the 'Rental' Model
  */
-export interface RentalInterface {
-  _id?: string;
+export interface RentalModelInterface extends mongoose.Document {
+  _id: string;
   userId: string;
   rentalDescription: string;
   address: string;
   loc: {
     type: string;
-    coordinates: string;
+    coordinates: [number, number];
   };
   specs: {
     odometer: number;

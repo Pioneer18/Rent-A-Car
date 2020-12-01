@@ -21,7 +21,7 @@ export class HttpErrorFilter implements ExceptionFilter<HttpException> {
    * @param {} exception
    * @param {ArgumentsHost} host
    */
-  catch = (exception: HttpException, host: ArgumentsHost) => {
+  catch = (exception: HttpException, host: ArgumentsHost): void => {
     const context = host.switchToHttp();
     const request = context.getRequest();
     const response = context.getResponse();

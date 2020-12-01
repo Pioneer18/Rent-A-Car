@@ -44,7 +44,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * @param a = Request start DateTime
    * @param b = Current DateTime
    */
-  private validateMinNotice = async (a: DateTime, b: DateTime) => {
+  private validateMinNotice = async (a: DateTime, b: DateTime): Promise<void> => {
     const notice: Interval = Interval.fromDateTimes(a, b).count('hours');
     if (isNaN(notice) || notice < 0) {
       throw new Error('requested unavailability cannot be in the past');
@@ -119,9 +119,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * to check if the this current year is a [**leap year**](https://www.timeanddate.com/date/leapyear.html). For example, this year 2020 is actually a leap year!
    * @param u1 The initial unavailability's DateTime
    */
-  private checkLeapYear = async (u1: DateTime) => {
+  private checkLeapYear = async (u1: DateTime): Promise<boolean> => {
     const check = u1.isInLeapYear;
-
     return check; // true or false
   }
 
@@ -132,7 +131,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    */
   private validateEachUnavailability = async (
     unavailability: UnavailabilityDto[],
-  ) => {
+  ): Promise<void> => {
     const base = unavailability[0];
     for (const { item, index } of toItemIndexes(unavailability)) {
       // rentalId congruence
@@ -184,7 +183,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   private validateCrossYearCongruence = async (
     y1: UnavailabilityDto,
     y2: UnavailabilityDto,
-  ) => {
+  ): Promise<void> => {
     if (y1.rentalId !== y2.rentalId) {
       throw new Error('request cannot have more than 1 Rental ID');
     }

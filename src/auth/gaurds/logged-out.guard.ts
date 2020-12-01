@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
 import { Request } from "express";
 import { Observable } from "rxjs";
-import { RedisService } from "src/redis/service/redis.service";
+import { RedisService } from "../../redis/service/redis.service";
 /**
  * **summary**: Override the JWT expiration time and 'logout' a user by adding their JWT to a Redis cache 'dead-list'
  */

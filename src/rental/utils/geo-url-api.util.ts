@@ -3,6 +3,7 @@ import * as axios from 'axios';
 import { RawCoordinatesDto } from '../dto/createRental/raw-coordinates.dto';
 import { GetCoordinatesInterface } from '../interface/utils/geoUrlApi/get-coordinates.interface';
 import { MakeRequestInterface } from '../interface/utils/geoUrlApi/make-request.interface'
+import { ApiResponseData } from '../interface/utils/geoUrlApi/api-response-data';
 
 /**
  * **summary**: use [**Geocoding & Search API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html) to get coordinates for an address
@@ -24,12 +25,12 @@ export class GeoUrlApiUtil {
    * @param geoUrl the base HERE geocoding and search v7 api url
    * @param apiKey the api key
    */
-  private makeRequest = async (data: MakeRequestInterface) => {
+  private makeRequest = async (data: MakeRequestInterface): Promise<ApiResponseData> => {
     try {
       const request: any = await axios.default.get(
         `${data.geoUrl}?q=${data.location}&apiKey=${data.apiKey}`,
       );
-      return request;
+      return request.data;
     } catch (err) {
       throw new Error(err);
     }
@@ -54,7 +55,7 @@ export class GeoUrlApiUtil {
       });
       // grab the coordinates
       const rawCoordinates: RawCoordinatesDto =
-        response.data.items[0].position;
+        response.items[0].position;
       // map the coords object to return
       const coords: [number, number] = [
         rawCoordinates.lat,

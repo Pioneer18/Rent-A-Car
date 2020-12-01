@@ -17,7 +17,7 @@ export class ErrorFilter implements ExceptionFilter {
    * @param error 
    * @param host 
    */
-  catch = (error: Error, host: ArgumentsHost) => {
+  catch = (error: Error, host: ArgumentsHost): any => {
     const response = host.switchToHttp().getResponse();
     const request = host.switchToHttp().getRequest();
     const method = request.method;

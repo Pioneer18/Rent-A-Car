@@ -16,7 +16,7 @@ export const UserSchema = new Schema({
     resetPasswordExpires: Date,
 });
 
-UserSchema.methods.setExpirationDate = function() {
+UserSchema.method.prototype.setExpirationDate = function() {
     let user = this;
     // grab current date and time
     const timestamp = Date.now();
@@ -25,7 +25,7 @@ UserSchema.methods.setExpirationDate = function() {
     user.resetPasswordExpires = expir;
 }
 
-UserSchema.methods.setResetToken = function() {
+UserSchema.method.prototype.setResetToken = function() {
     let user = this;
     // generate random token
     let buf = crypto.randomBytes(20);
