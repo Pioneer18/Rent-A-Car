@@ -10,11 +10,11 @@ export const RentalSchema = new Schema({
   rentalTitle: String,
   rentalDescription: String,
   address: String,
-  loc:<{}>{
+  loc: {
     type: { type: String },
     coordinates: [Number, Number],
   },
-  specs:<{}> {
+  specs: {
     odometer: Number,
     transmission: String,
     cityMpg: Number || null,
@@ -30,18 +30,18 @@ export const RentalSchema = new Schema({
     numOfSeats: Number,
     numDoors: Number,
   },
-  registration: <{}>{
+  registration: {
     vin: String,
     licensePlate: String,
     state: String,
   },
   features: [{type: String}],
-  scheduling: <{}> {
+  scheduling: {
     requiredNotice: Number,
     rentMinDuration: Number,
     rentMaxDuration: Number,
   },
-  pricing: <{}> {
+  pricing: {
     price: { type: Number /*, default: DEFAULT_PRICE*/ },
     discounts: {
       weekly: { type: Number, default: null },
