@@ -13,7 +13,6 @@ import { ImageDto } from '../dto/image.dto';
 export class ImagesController {
     constructor(
         private readonly imagesService: ImagesService,
-        private readonly appConfig: AppConfigService,
     ) { }
 
     /**
@@ -25,7 +24,7 @@ export class ImagesController {
     @Post('upload-rental-images')
     async uploadRentalImages(@Req() req, @Res() res, @Query() params) {
         try {
-            await this.imagesService.fileuploadAndSave({req, res, category: rentals, rental_id: params.rental_id})
+            await this.imagesService.fileuploadAndSave({req, res, category: rentals, rental_id: params.rental_id});
         } catch (err) {
             return response
                 .status(500)

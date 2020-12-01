@@ -4,7 +4,7 @@ import { userModel } from '../../common/Const';
 import { UserInterface } from '../interface/modelInterface/user.interface';
 import { Model } from 'mongoose';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { ValidateEmailUtil } from '../util/validate-email.util';
+import { ValidateEmailUtil } from '../utils/validate-email.util';
 /**
  * **summary**: before creating a new user, validate that their email is not already in the database. this middleware is only applied to the 
  * user.controller.createUser() method
@@ -27,7 +27,7 @@ export class ValidateEmailMiddleware implements NestMiddleware {
      */
     private validateEmail = async(value: CreateUserDto) => {
         const check = await this.user.find({ email: value.email });
-        this.validateEmailUtil.validateEmail(check)
+        this.validateEmailUtil.validateEmail({check})
     }
 
     /**

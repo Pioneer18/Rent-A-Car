@@ -17,6 +17,7 @@ import { UpdateUnavailabilityDataInterface } from '../interface/service/update-u
 import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
+import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
 
 /**
  * **summary**: Create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
@@ -34,9 +35,17 @@ export class RentalService {
    * so the rental may be found by a geospatial query
    * @param rental The new rental to be created
    */
-  createRental = async (rental: CreateRentalInterface) => {
+  createRental = async (rental: CreateRentalInterface, user) => {
     try {
-      const document = await new this.rentalModel(rental);
+      console.log('The Create Rental User')
+      console.log(user)
+      let temp: any;
+      temp = rental;
+      temp.userId = user.userId;
+      const upload: RentalInterface = temp;
+      console.log('Create Rental Upload');
+      console.log(upload)
+      const document = await new this.rentalModel(upload);
       return await document.save();
     } catch (err) {
       throw new Error(err);
@@ -154,8 +163,8 @@ export class RentalService {
   }
 
   /**
-   * **summary**: remove an amount of time from a scheduled duration of unavailability on the rental
-   * @param data rental_id and unavailability_id
+   * **summary**: Remove an amount of time from a scheduled duration of unavailability on the rental
+   * @param data Rental_id and unavailability_id
    */
   removeUnavailability = async (data: RemoveUnavailabilityInterface): Promise<DeleteResponseInterface> => {
     try {

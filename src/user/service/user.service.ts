@@ -8,13 +8,10 @@ import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
 import { RedisService } from '../../redis/service/redis.service';
 import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
 import { CreateUserInterface } from '../interface/service/create-user.interface';
-import { CreatedUserInterface } from '../interface/service/created-user.interface'
 import { FindUserInterface } from '../interface/service/find-user.interface';
 import { FindUserByResetPwTokenInterface } from '../interface/service/find-user-by-reset-pw-token.interface';
 import { UpdateUserInterface } from '../interface/service/update-user.interface';
 import { DeleteUserInterface } from '../interface/service/delete-user.interface';
-import { ReturnedUserInterface } from '../interface/service/returned-user.interface';
-import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
 /**
  * **summary**: contains all of the functionality to manage a user profile
  */

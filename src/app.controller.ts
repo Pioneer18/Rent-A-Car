@@ -2,7 +2,7 @@ import { Controller, UseGuards, Get, Post, Request, Req, HttpCode } from '@nestj
 import { JwtAuthGuard } from './auth/gaurds/jwt-auth.guard';
 import { LoggedOutGaurd } from './auth/gaurds/logged-out.guard';
 /**
- * **summary**: does not provide any real functionality for the app
+ * **summary**: Does not provide any real functionality for the app
  */
 @Controller()
 export class AppController {

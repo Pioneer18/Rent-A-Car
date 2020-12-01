@@ -3,6 +3,7 @@
  */
 export interface RentalInterface {
   _id?: string;
+  userId: string;
   rentalDescription: string;
   address: string;
   loc: {

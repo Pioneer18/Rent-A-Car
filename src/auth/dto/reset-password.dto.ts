@@ -1,4 +1,4 @@
-import { ResetPasswordInterface } from "../interfaces/reset-password.interface";
+import { ResetPasswordInterface } from "../interfaces/service/reset-password.interface";
 
 /**
  * **summary**: The data transer object for resetting a user password

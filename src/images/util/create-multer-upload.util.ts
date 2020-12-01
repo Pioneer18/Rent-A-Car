@@ -13,7 +13,8 @@ export class CreateMulterUploadUtil {
     private s3 = this.s3Provider.getS3();
 
     /**
-     * **summary**: create the Multer upload object
+     * **summary**: create the Multer upload object for the S3 Bucket. The user's email and the category are used to store the images in the correct location.
+     * A maximum of 9 photos may be uploaded at once
      * @param req 
      * @param category 
      */

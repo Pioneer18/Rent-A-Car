@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { VerifyNewPasswordInterface } from "../interfaces/verify-new-password.interface";
+import { VerifyNewPasswordInterface } from "../interfaces/utils/verifyNewPasswordUtil/verify-new-password.interface";
 import * as bcrypt from 'bcrypt';
-import { CheckPasswordTypoInterface } from "../interfaces/check-password-typo.interface";
+import { CheckPasswordTypoInterface } from "../interfaces/utils/verifyNewPasswordUtil/check-password-typo.interface";
 /**
  * **summary**: Validate incoming new password data
  */

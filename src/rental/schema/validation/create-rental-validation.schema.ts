@@ -8,6 +8,7 @@ import * as joi from '@hapi/joi';
  *   - gasGrade: the gas grade must be 'N/A' if the selected fuel type is electric
  */
 export const CreateRentalValidationSchema = joi.object({
+  userId: joi.string().required,
   rentalDescription: joi.string(),
   address: joi.string().required(),
   specs: joi.object({

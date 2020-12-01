@@ -10,10 +10,10 @@ import { ExtractKeyValueUtil } from '../util/extract-key-value.util';
 import { VerifyNewPasswordUtil } from '../util/verify-new-password.util';
 import { EmailService } from '../../email/email.service';
 import { AppConfigService } from '../../config/configuration.service';
-import { ValidateUserInterface } from '../interfaces/validate-user.interface';
-import { ChangePasswordInterface } from '../interfaces/change-password.interface';
-import { ForgotPasswordInterface } from '../interfaces/forgot-password.interface';
-import { ResetPasswordInterface } from '../interfaces/reset-password.interface';
+import { ValidateUserInterface } from '../interfaces/service/validate-user.interface';
+import { ChangePasswordInterface } from '../interfaces/service/change-password.interface';
+import { ForgotPasswordInterface } from '../interfaces/service/forgot-password.interface';
+import { ResetPasswordInterface } from '../interfaces/service/reset-password.interface';
 
 /**
  * **summary**: Provides the functionality to authenticate and authorize a user

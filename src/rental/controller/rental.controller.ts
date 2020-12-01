@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req, UseGuards } from '@nestjs/common';
 import { RentalService } from '../service/rental.service';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
@@ -26,11 +26,13 @@ import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unava
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 import { AppConfigService } from '../../config/configuration.service';
 import { ConfigService } from '@nestjs/config';
+import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 
 /**
  * - **summary**: controller for managing rentals in the application
  * - **Middleware**: The ValidateUpdateUnavailabilityMiddleware class is applied to the updateUnavailability method
  */
+@UseGuards(JwtAuthGuard)
 @Controller('rental')
 export class RentalController {
   constructor(
@@ -44,9 +46,9 @@ export class RentalController {
   @UsePipes(new JoiValidationPipe(CreateRentalValidationSchema))
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
-  async createRental(@Body() rental: CreateRentalDto) {
+  async createRental(@Body() rental: CreateRentalDto, @Req() req) {
     try {
-      return await this.rentalService.createRental(rental);
+      return await this.rentalService.createRental(rental, req.user);
     } catch (err) {
       throw new Error(err);
     }

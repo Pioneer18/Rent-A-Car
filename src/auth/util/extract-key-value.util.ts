@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Request } from "express";
-import { ExtractKeyValueUtilInterface } from "../interfaces/extract-key-value-util.interface";
+import { ExtractKeyValueUtilInterface } from "../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface";
 /**
  * summary: Grab the Authorization header Cookie and the extract JWT and the **key** used for caching the token
  * - note: the key is simply the last 8 digits of the this sessions JWT

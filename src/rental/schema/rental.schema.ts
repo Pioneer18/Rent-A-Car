@@ -8,6 +8,7 @@ const ObjectID = mongoose.ObjectId;
  */
 export const RentalSchema = new Schema({
   rentalId: ObjectID,
+  userId: String,
   rentalTitle: String,
   rentalDescription: String,
   address: String,

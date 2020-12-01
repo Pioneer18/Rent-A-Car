@@ -40,7 +40,7 @@ export class ImagesService {
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  saveImages = async (data: SaveImagesInterface) => {
+  saveImages = async (data: SaveImagesInterface): Promise<void> => {
     try {
       const { packet, image }: ProcessedSaveDataInterface = await this.processSaveDataUtil.process(data);
       let flag;
@@ -48,7 +48,12 @@ export class ImagesService {
       if (flag === 'multiple') {
         return await this.imagesModel.insertMany(packet);
       }
-      return await this.imagesModel.save(image)
+      return await this.imagesModel.create(image);
+      //const document = new this.imagesModel(image);
+      //document.save(function(err) {
+       // if (err) throw new Error(err);
+       // return;
+      ///});
     } catch (err) {
       throw new Error(err);
     }
@@ -89,7 +94,7 @@ export class ImagesService {
       let flag;
       data.img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: data.user.userId })
+        const images = await this.imagesModel.find({ user_id: data.user.userId, category: profile })
         return { count: images.length, images: images };
       };
       const image = await this.imagesModel.findById(data.img_id);
@@ -127,7 +132,10 @@ export class ImagesService {
   deleteAllImages = async (data: DeleteAllImagesInterface): Promise<DeleteResponseInterface> => {
     // delete all images of the selected rental
     if (data.user && typeof data.rental_id === 'string') {
-      return await this.imagesModel.deleteMany({ rental_id: data.rental_id, user_id: data.user.userId });
+      console.log('DELETING ALL RENTAL IMAGES NOW')
+      console.log(data.rental_id);
+      console.log(data.user);
+      return await this.imagesModel.deleteMany({ user_id: data.user.userId, rental_id: data.rental_id });
     }
     // delete all of the user's profile images
     if (data.user && data.rental_id === undefined || typeof data.rental_id !== 'string') {
