@@ -80,6 +80,7 @@ describe('MapNewRentalPipe Unit Test', () => {
           transmission: 'Automatic',
           cityMpg: 28,
           hwyMpg: 33,
+          mpgE: null,
           fuel: 'gas',
           gasGrade: 'regular',
           description: 'Tokyo grocery getter',

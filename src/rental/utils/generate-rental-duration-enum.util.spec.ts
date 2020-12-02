@@ -4,7 +4,6 @@ import { DateTime, Interval } from 'luxon';
 import { Logger } from '@nestjs/common';
 import { RentalDurations } from '../const';
 /**
- * What does this util do?
  * Summary:
  * returns RentalDuration from given rentalTimes
  * processes the rental time into months, weeks, and days
@@ -82,7 +81,7 @@ describe('GenerateRentalDurationEnumUtil Unit Test', () => {
           test.months
         } test ------------------------------`,
       );
-      expect(test.days).toBe(29);
+      expect(test.days).toBe(31);
       expect(test.weeks).toBeGreaterThan(4); // 4.14 weeks
       expect(test.months).toBe(1);
     });

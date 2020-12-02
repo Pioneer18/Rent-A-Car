@@ -10,8 +10,9 @@ export class CreateRentalDto implements CreateRentalInterface {
   specs: {
     odometer: number;
     transmission: string;
-    cityMpg: number;
-    hwyMpg: number;
+    cityMpg: number | null;
+    hwyMpg: number | null;
+    mpgE: number | null;
     fuel: string;
     gasGrade: string;
     description: string;
