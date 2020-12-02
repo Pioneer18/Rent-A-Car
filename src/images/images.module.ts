@@ -30,7 +30,7 @@ import { ProcessSaveDataUtil } from './util/process-save-data.util';
         MulterUploadUtil,
         DeleteS3ImagesUtil,
     ],
-    exports: [ImagesService]
+    exports: [ImagesService],
 
 })
 export class ImagesModule {

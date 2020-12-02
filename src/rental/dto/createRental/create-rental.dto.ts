@@ -1,4 +1,4 @@
-import { CreateRentalInterface } from "src/rental/interface/service/create-rental.interface";
+import { CreateRentalInterface } from 'src/rental/interface/service/create-rental.interface';
 
 /**
  * **summary**: Dto for the rental.controller.createRentalMethod()

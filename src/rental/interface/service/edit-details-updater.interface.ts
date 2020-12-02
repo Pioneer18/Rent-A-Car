@@ -19,5 +19,5 @@ export interface EditDetailsUpdater {
             numDoors: number;
         }
         features: string[];
-    }
+    };
 }

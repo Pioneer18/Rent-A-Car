@@ -26,7 +26,7 @@ export class RentalDurationPipe implements PipeTransform {
           {
             startTime: value.rentalStartTime,
             endTime: value.rentalEndTime,
-          }
+          },
         ),
         givenNotice: value.givenNotice,
       };

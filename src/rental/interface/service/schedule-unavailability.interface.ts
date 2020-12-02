@@ -1,5 +1,5 @@
-import { ProcessedUnavailabilityQueryDto } from "../../dto/unavailability/schedule/processed-unavailability-query.dto";
-import { UnavailabilityQueryDto } from "../../dto/unavailability/schedule/unavailability-query.dto";
+import { ProcessedUnavailabilityQueryDto } from '../../dto/unavailability/schedule/processed-unavailability-query.dto';
+import { UnavailabilityQueryDto } from '../../dto/unavailability/schedule/unavailability-query.dto';
 /**
  * **summary**: Interface for the rental.service.scheduleUnavailability() method
  */

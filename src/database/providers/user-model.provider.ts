@@ -6,7 +6,7 @@ import { databaseConnection, userModel } from '../../common/Const';
  */
 export const userProvider = [
   {
-    provide: userModel,// USER_MODEL
+    provide: userModel, // USER_MODEL
     useFactory: (connection: Connection) => connection.model('User', UserSchema),
     inject: [databaseConnection],
   },

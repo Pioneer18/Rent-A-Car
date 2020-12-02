@@ -34,7 +34,7 @@ export class GeoUrlApiPipe {
     const coords = await this.geoUrlApiUtil.getCoordinates({
       address,
       geoUrl,
-      apiKey
+      apiKey,
     });
     return coords;
   }

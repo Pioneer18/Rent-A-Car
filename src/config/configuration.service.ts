@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 /**
  * **summary**: This class provides the configservice 'getter' functionality to get variables from the environment
@@ -10,7 +10,7 @@ export class AppConfigService {
 
     /**
      * **summary**: The [**ConfigService**](https://docs.nestjs.com/techniques/configuration#using-the-configservice) is used to access the environment variables
-     * @param configService 
+     * @param configService
      */
     constructor(private readonly configService: ConfigService) {}
 
@@ -53,29 +53,29 @@ export class AppConfigService {
     /**
      * **summary**: Retrieve the **PORT** environment variable
      */
-    get port(): number { 
+    get port(): number {
         return this.configService.get<number>('app.port');
     }
     /**
      * **summary**: Retrieve the **REDIS_HOST** environment variable
      */
-    get redis_host(): string { 
+    get redis_host(): string {
         return this.configService.get<string>('app.redis_host');
     }
     /**
      * **summary**: Retrieve the **REDIS_PORT** environment variable
      */
-    get redis_port(): string { 
+    get redis_port(): string {
         return this.configService.get<string>('app.redis_port');
     }
     /**
      * **summary**: Retrieve the **CACHE_TTL** environment variable
      */
-    get cache_ttl(): string { 
+    get cache_ttl(): string {
         return this.configService.get<string>('app.cache_ttl');
     }
    /**
-    * **summary**: Retrieve the **SECRET_ACCESS_KEY** environment variable */ 
+    * **summary**: Retrieve the **SECRET_ACCESS_KEY** environment variable */
    get secret_access_key(): string {
        return this.configService.get<string>('app.secret_access_key');
    }

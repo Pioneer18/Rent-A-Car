@@ -1,8 +1,8 @@
 /**
  * **summary**: Interface for a decoded JWT
  */
-export interface JwtPayloadInterface { 
+export interface JwtPayloadInterface {
     username: string;
-    email: string; 
+    email: string;
     userId: string;
 }

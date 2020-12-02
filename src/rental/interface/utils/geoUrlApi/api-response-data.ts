@@ -45,5 +45,5 @@ export interface ApiResponseData {
           }
         }
       }
-    ]
+    ];
   }

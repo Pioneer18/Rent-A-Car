@@ -1,7 +1,7 @@
-import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
-import { Request } from "express";
-import { Observable } from "rxjs";
-import { RedisService } from "../../redis/service/redis.service";
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { Request } from 'express';
+import { Observable } from 'rxjs';
+import { RedisService } from '../../redis/service/redis.service';
 /**
  * **summary**: Override the JWT expiration time and 'logout' a user by adding their JWT to a Redis cache 'dead-list'
  */
@@ -21,18 +21,18 @@ export class LoggedOutGaurd implements CanActivate {
         const key = rawAuth.slice(-8);
         const check = await this.redisService.get(key);
         console.log(`LOGGED-OUT Guard Check Results: `);
-        console.log(check)
+        console.log(check);
         // if the key is found, deny access; User is Logged Out
         if (check && check !== null) {
             throw new Error('You are logged out, log back in to continue');
             // REDIRECT to login
         }
-        console.log('You are logged in :)')
+        console.log('You are logged in :)');
         return true;
     }
 
     /**
-     * **summary**: Method that decides if the request will continue to the handler or be blocked 
+     * **summary**: Method that decides if the request will continue to the handler or be blocked
      * @param context the execution context
      */
     canActivate(

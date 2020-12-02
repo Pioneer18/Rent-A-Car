@@ -41,7 +41,7 @@ export class ImagesController {
     @Post('upload-profile-images')
     async uploadProfileImage(@Req() req, @Res() res, @Query() params): Promise<Response> {
         try {
-            await this.imagesService.fileuploadAndSave({req, res, category: profile, rental_id: params.rental_id})
+            await this.imagesService.fileuploadAndSave({req, res, category: profile, rental_id: params.rental_id});
         } catch (err) {
             return response
                 .status(500)

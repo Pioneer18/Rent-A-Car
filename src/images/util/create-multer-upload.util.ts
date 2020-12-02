@@ -1,9 +1,9 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
 import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
-import { JwtPayloadInterface } from "src/auth/interfaces/jwt-payload.interface";
-import { CreateInterface } from "../interfaces/utils/createMulterUploadUtil/create.interface";
-import { S3Provider } from "../providers/s3.provider";
+import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
+import { CreateInterface } from '../interfaces/utils/createMulterUploadUtil/create.interface';
+import { S3Provider } from '../providers/s3.provider';
 /**
  * **summary**: create a multerUpload object
  */
@@ -15,8 +15,8 @@ export class CreateMulterUploadUtil {
     /**
      * **summary**: create the Multer upload object for the S3 Bucket. The user's email and the category are used to store the images in the correct location.
      * A maximum of 9 photos may be uploaded at once
-     * @param req 
-     * @param category 
+     * @param req
+     * @param category
      */
     create = async (data: CreateInterface) => {
         try {
@@ -27,13 +27,13 @@ export class CreateMulterUploadUtil {
                     s3: this.s3,
                     bucket: `rent-a-car-photos/${user.email}/${data.category}`,
                     acl: 'public-read',
-                    key: function (request, file, cb) {
+                    key(request, file, cb) {
                         cb(null, `${Date.now()}-${file.originalname}`); // unique id generator for file (image tag)
                     },
                 }),
             }).array('upload', 9);
         } catch (err) {
-            throw new Error(err)
+            throw new Error(err);
         }
     }
 

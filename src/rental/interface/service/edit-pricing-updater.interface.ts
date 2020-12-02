@@ -9,6 +9,6 @@ export interface EditPricingUpdater {
                 weekly: number;
                 monthly: number;
             }
-        }
-    }
+        },
+    };
 }

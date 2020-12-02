@@ -38,7 +38,7 @@ export class AuthService {
      * @param email The user email
      * @param pass The user password
      */
-    validateUser = async(data: ValidateUserInterface): Promise<ValidateUserReturn> => {
+    validateUser = async (data: ValidateUserInterface): Promise<ValidateUserReturn> => {
         try {
             const query: FindUserDto = { email: data.email };
             const user: UserInterface = await this.userService.findUser(query); // find user in db by username
@@ -56,7 +56,7 @@ export class AuthService {
      * summary: Return a JWT inside of a Cookie, which may only be interacted with by Http and not Javascript, to the now authenticated user
      * @param user The user logging into the application
      */
-    login = async(user: UserInterface): Promise<string> => {
+    login = async (user: UserInterface): Promise<string> => {
         // create the JWT payload
         const payload = {
             username: user.username,
@@ -72,12 +72,12 @@ export class AuthService {
      * **summary**: Set the user's JWT in the redis 'dead-list' to log the user out prior to the JWT expiration
      * @param user User property from the request object
      */
-    logout = async(req: Request): Promise<ExtractKeyValueUtilInterface> => {
+    logout = async (req: Request): Promise<ExtractKeyValueUtilInterface> => {
         try {
             // extract the jwt and the cachce key, then save the jwt to redis dead-list with the key
             const { key, jwt } = await this.extractKeyValueUtil.extract(req);
             await this.redisService.set(key, jwt);
-            return { key: key, jwt: jwt };
+            return { key, jwt };
         } catch (err) {
             throw new Error(err);
         }
@@ -89,7 +89,7 @@ export class AuthService {
      * @param confirm_password
      * @param req
      */
-    changePassword = async(data: ChangePasswordInterface, req): Promise<void> => {
+    changePassword = async (data: ChangePasswordInterface, req): Promise<void> => {
         try {
             // verify user submitted same pw twice, extract the jwt and it's key (last 8 digits)
             await this.verifyNewPasswordUtil.checkTypos({ newPassword: data.newPassword, confirmPassword: data.confirmPassword });
@@ -104,20 +104,19 @@ export class AuthService {
             return;
         } catch (err) {
             throw new Error(err);
-        };
+        }
     }
-
 
     /**
      * summary: Send an email to a valid user email address to request resetting their forgotten password
      * @param email The email for resetting the password
      * **summary**: Sends user a reset password link to the provided email, if it's an account associated email
      */
-    forgotPassword = async(data: ForgotPasswordInterface): Promise<string> => {
+    forgotPassword = async (data: ForgotPasswordInterface): Promise<string> => {
         try {
             // query user and confirm they exist
             const user = await this.userService.findUser({email: data.email});
-            if (!user) { throw new Error('There is no User registered with the provided email')}
+            if (!user) { throw new Error('There is no User registered with the provided email'); }
             // set the reset-token and it's expiration on the user document
             user.setResetToken();
             user.setExpirationDate();
@@ -126,7 +125,7 @@ export class AuthService {
             const mailOptions = await this.emailService.createMailOptions({email: user.email});
             const result = await this.emailService.sendMail(mailOptions);
             return user.resetPasswordToken;
-        } catch(err) { 
+        } catch (err) {
             throw new Error(err);
         }
     }
@@ -137,12 +136,12 @@ export class AuthService {
      * @param newPassword The new password entered the 1st time
      * @param confirmPassword The identical new password entered a second time
      */
-    resetPassword = async(data: ResetPasswordInterface): Promise<void> => {
+    resetPassword = async (data: ResetPasswordInterface): Promise<void> => {
         // check new password for typos, verify resetPasswordToken is active, and verify the new password does not match current
         await this.verifyNewPasswordUtil.checkTypos({newPassword: data.confirmPass, confirmPassword: data.resetPass});
         const user = await this.userService.findUserByResetPasswordToken({token: data.resetPasswordToken});
-        if (new Date >= user.resetPasswordExpires) { throw new Error('This passowrd reset request has expired, please make a new request.')}
-        await this.verifyNewPasswordUtil.verifyNew({newPassword: data.resetPass, oldPassword: user.password})
+        if (new Date >= user.resetPasswordExpires) { throw new Error('This passowrd reset request has expired, please make a new request.'); }
+        await this.verifyNewPasswordUtil.verifyNew({newPassword: data.resetPass, oldPassword: user.password});
         // reset the password and the 'reset tokens' to null
         user.password = await bcrypt.hash(data.resetPass, 10);
         user.resetPasswordToken = null;

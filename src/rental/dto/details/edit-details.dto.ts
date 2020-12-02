@@ -1,4 +1,4 @@
-import { EditDetailsInterface } from "src/rental/interface/service/edit-details.interface";
+import { EditDetailsInterface } from 'src/rental/interface/service/edit-details.interface';
 
 /**
  * **summary**: Dto to edit the details of a rental, passed to the rental.controller.editDetails method.

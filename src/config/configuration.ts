@@ -17,4 +17,4 @@ export default registerAs('app', () => ({
     secret_access_key: process.env.SECRET_ACCESS_KEY,
     aws_s3_bucket_rentals: process.env.AWS_S3_BUCKET_RENTALS,
     aws_s3_bucket_profile: process.env.AWS_S3_BUCKET_PROFILE,
-}))
+}));

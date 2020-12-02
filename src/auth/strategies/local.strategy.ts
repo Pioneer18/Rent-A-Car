@@ -14,13 +14,13 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
 
     /**
-     * **summary**: Every passport strategy calls the validate method (which calls the validateUser function in the auth.service) for any strategy. 
+     * **summary**: Every passport strategy calls the validate method (which calls the validateUser function in the auth.service) for any strategy.
      * if the user is found, Passport will create a user property on the request object
      * @param email the user email
      * @param password the user password
      */
-    validate = async(email: string, password: string): Promise<ValidateUserReturn> => {
-        const user = await this.authService.validateUser({email: email, pass: password});
+    validate = async (email: string, password: string): Promise<ValidateUserReturn> => {
+        const user = await this.authService.validateUser({email, pass: password});
         if (!user) {
             throw new Error('invalid credentials');
             // throw new UnauthorizedException('invalid credentials');

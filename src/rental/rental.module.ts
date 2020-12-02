@@ -54,7 +54,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     CreateUpdaterDtoPipe,
     ValidateRemoveUnavailabilityPipe,
     AppConfigService,
-    ConfigService
+    ConfigService,
   ],
   exports: [RentalService],
 })

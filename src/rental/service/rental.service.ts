@@ -7,7 +7,7 @@ import { SearchRentalInterface } from '../interface/service/search-rental.interf
 import { unavailabilityModel } from '../../common/Const';
 import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
 import { CreateRentalInterface } from '../interface/service/create-rental.interface';
-import { EditPricingInterface } from '../interface/service/edit-pricing.interface';;
+import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
 import { RentalQuery } from '../interface/service/create-rental-query.interface';
 import { EditPricingUpdater } from '../interface/service/edit-pricing-updater.interface';
 import { EditDetailsInterface } from '../interface/service/edit-details.interface';
@@ -18,7 +18,6 @@ import { RemoveUnavailabilityInterface } from '../interface/service/remove-unava
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
-
 
 /**
  * **summary**: Create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
@@ -38,14 +37,14 @@ export class RentalService {
    */
   createRental = async (rental: CreateRentalInterface, user): Promise<RentalModelInterface> => {
     try {
-      console.log('The Create Rental User')
-      console.log(user)
+      console.log('The Create Rental User');
+      console.log(user);
       let temp: any;
       temp = rental;
       temp.userId = user.userId;
       const upload: RentalInterface = temp;
       console.log('Create Rental Upload');
-      console.log(upload)
+      console.log(upload);
       const document = await new this.rentalModel(upload);
       return await document.save();
     } catch (err) {
@@ -58,7 +57,7 @@ export class RentalService {
    * @param rental SearchRentalDto
    */
   searchRental = async (rental: SearchRentalInterface): Promise<RentalInterface[]> => {
-    console.log(rental)
+    console.log(rental);
     try {
       const query: RentalQuery = await this.createRentalQuery(rental);
       const rentals = await this.rentalModel.find({query}).lean();
@@ -185,7 +184,7 @@ export class RentalService {
   /**
    * **summary**: Convert a searchRentalDto into a mongoose query for the searchRental method
    * - The query searchs a maxium 8 mile radius for rentals
-   * - Filters: 
+   * - Filters:
    *   - rental min duration
    *   - rental max duration
    *   - advance notice minimum; e.g. 1 hour
@@ -228,8 +227,8 @@ export class RentalService {
   }
 
   /**
-   * **summary**: Validate there currently is no scheduled unavailability for the rental in the database that overlaps 
-   * with the requested unavailability 
+   * **summary**: Validate there currently is no scheduled unavailability for the rental in the database that overlaps
+   * with the requested unavailability
    * @param data Query for 1 or 2 years
    */
   private checkForOverlap = async (data: ScheduleUnavailabilityInterface): Promise<void> => {
@@ -251,5 +250,5 @@ export class RentalService {
     if (test.length) {
       throw new Error('this request overlaps with existing unavailability');
     }
-  };
+  }
 }

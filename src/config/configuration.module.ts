@@ -1,8 +1,8 @@
-import Joi = require("@hapi/joi");
-import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import configuration from "./configuration";
-import { AppConfigService } from "./configuration.service";
+import Joi = require('@hapi/joi');
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import configuration from './configuration';
+import { AppConfigService } from './configuration.service';
 /**
  * **summary**: Import and provide app configuration related classes
  */
@@ -38,10 +38,10 @@ import { AppConfigService } from "./configuration.service";
             validationOptions: {
                 allowUnkown: false, // enforce validation, don't allow unknown keys in the env variables
                 abortEarly: true, // stop validation on first error
-            }
-        })
+            },
+        }),
     ],
     providers: [ConfigService, AppConfigService],
-    exports: [ConfigService, AppConfigService]
+    exports: [ConfigService, AppConfigService],
 })
 export class AppConfigModule {}

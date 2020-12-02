@@ -29,7 +29,7 @@ export class UserService {
      * **summary**: Create a new user
      * @param user New user data
      */
-    createUser = async(user: CreateQuery<CreateUserInterface>): Promise<CreateQuery<UserModelInterface>> => {
+    createUser = async (user: CreateQuery<CreateUserInterface>): Promise<CreateQuery<UserModelInterface>> => {
         try {
             const document = await new this.userModel(user);
             document.save();
@@ -57,12 +57,12 @@ export class UserService {
      * **summary**: Find a user by their resetPasswordToken once they have submitted the reset password email
      * @param data The token
      */
-    findUserByResetPasswordToken = async(data: FindUserByResetPwTokenInterface): Promise<UserModelInterface> => {
+    findUserByResetPasswordToken = async (data: FindUserByResetPwTokenInterface): Promise<UserModelInterface> => {
         try {
             const user = await this.userModel.findOne({ resetPasswordToken: data.token });
             return user;
         } catch (err) {
-            throw new Error(err)
+            throw new Error(err);
         }
     }
 
@@ -71,21 +71,21 @@ export class UserService {
      * @param data The update user data
      * @param req The client request
      */
-    updateUser = async(data: UpdateUserInterface, req ): Promise<UserInterface> => {
+    updateUser = async (data: UpdateUserInterface, req ): Promise<UserInterface> => {
         try {
             // extract user email
             const user: JwtPayloadInterface = req.user;
             const filter = {email: user.email };
             // create an update object
-            let update = this.createUserUpdate(data);
+            const update = this.createUserUpdate(data);
             const updater = {
                 $set: update,
-            }
+            };
             // logout the user and return the data before redirecting to login
             await this.logoutUser(req);
             return await this.userModel.findOneAndUpdate(filter, {updater}, {useFindAndModify: false}).lean();
-       } catch(err) {
-           throw new Error(err)
+       } catch (err) {
+           throw new Error(err);
        }
     }
 
@@ -94,19 +94,19 @@ export class UserService {
      * @param data user credentials
      * @param req The client request
      */
-    deleteUser = async(data: DeleteUserInterface, req): Promise<UserInterface> => {
+    deleteUser = async (data: DeleteUserInterface, req): Promise<UserInterface> => {
         try {
             // extract user email
-            const doc:JwtPayloadInterface = req.user;
+            const doc: JwtPayloadInterface = req.user;
             // query the user
             const user = await this.findUser({email: doc.email});
             // verify their password matches the current
-            await this.verifyNewPasswordUtil.verifyMatch({newPassword: data.password, oldPassword: user.password})
+            await this.verifyNewPasswordUtil.verifyMatch({newPassword: data.password, oldPassword: user.password});
             // logout
             await this.logoutUser(req);
             // delete
             return await user.remove();
-        } catch(err) {
+        } catch (err) {
             throw new Error(err);
         }
     }
@@ -120,7 +120,7 @@ export class UserService {
      * @param data Client request data to update a user
      */
     private createUserUpdate = (data: UpdateUserInterface): UpdateUserInterface => {
-        let update: UpdateUserInterface = {}
+        const update: UpdateUserInterface = {};
         data.username ? update.username = data.username : data.username = null;
         data.email ? update.email = data.email : data.email = null;
         return update;
@@ -130,7 +130,7 @@ export class UserService {
      * **summary**: Log a user out of the application by adding their JWT to the Redis cache 'dead-list'
      * @param req The client request
      */
-    private logoutUser = async(req: Request): Promise<void> => {
+    private logoutUser = async (req: Request): Promise<void> => {
         const {jwt, key} = await this.extractKeyValueUtil.extract(req);
         await this.redisService.set(key, jwt);
     }

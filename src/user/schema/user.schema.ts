@@ -7,9 +7,9 @@ const Schema = mongoose.Schema;
  */
 export const UserSchema = new Schema({
     username: String,
-    email: { 
-        type: String, 
-        unique: true
+    email: {
+        type: String,
+        unique: true,
     },
     password: String,
     resetPasswordToken: String,
@@ -17,19 +17,19 @@ export const UserSchema = new Schema({
 });
 
 UserSchema.method.prototype.setExpirationDate = function() {
-    let user = this;
+    const user = this;
     // grab current date and time
     const timestamp = Date.now();
     // set expiration date
     const expir = timestamp + 1800000; // 30 minutes
     user.resetPasswordExpires = expir;
-}
+};
 
 UserSchema.method.prototype.setResetToken = function() {
-    let user = this;
+    const user = this;
     // generate random token
-    let buf = crypto.randomBytes(20);
+    const buf = crypto.randomBytes(20);
     // convert to hexadecimal string
     const token = buf.toString('hex');
     user.resetPasswordToken = token;
-}
+};

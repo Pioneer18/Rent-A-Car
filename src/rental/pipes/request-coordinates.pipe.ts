@@ -28,7 +28,7 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
           coordinates: await this.geoUrlApiUtil.getCoordinates({
             address: value.address,
             geoUrl,
-            apiKey
+            apiKey,
           }),
         },
         givenNotice: value.givenNotice,

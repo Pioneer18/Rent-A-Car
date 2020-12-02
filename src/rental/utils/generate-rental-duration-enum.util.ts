@@ -9,10 +9,10 @@ import { GenerateRentalDurationEnumInterface } from '../interface/utils/generate
 @Injectable()
 export class GenerateRentalDurationEnumUtil {
   /**
-   * **summary**: using the [**Luxon Interval.fromDateTimes(https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes)**] method return the 
+   * **summary**: using the [**Luxon Interval.fromDateTimes(https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes)**] method return the
    * duration of the rental in months, weeks, and days
-   * @param startTime 
-   * @param endTime 
+   * @param startTime
+   * @param endTime
    */
   private processRentalTime = async (data: GenerateRentalDurationEnumInterface): Promise<ProcessRentalTimeDto> => {
     try {
@@ -30,9 +30,9 @@ export class GenerateRentalDurationEnumUtil {
   }
 
   /**
-   * **summary**: create a RentalDuration [**Enum**](https://www.typescriptlang.org/docs/handbook/enums.html) from the given start and end time 
-   * @param startTime 
-   * @param endTime 
+   * **summary**: create a RentalDuration [**Enum**](https://www.typescriptlang.org/docs/handbook/enums.html) from the given start and end time
+   * @param startTime
+   * @param endTime
    */
   generateRentalDurationEnum = async (data: GenerateRentalDurationEnumInterface): Promise<RentalDurations> => {
     try {

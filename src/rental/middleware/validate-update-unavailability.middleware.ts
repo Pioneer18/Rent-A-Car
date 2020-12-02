@@ -145,7 +145,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
       await this.validateDto(req.body);
       const range = await this.calculateRange({
         y1: req.body.y1,
-        y2: req.body.y2
+        y2: req.body.y2,
       }); // to validate expected # of Unavailability docs
       await this.validateExpectedUnavailability(req.body, range);
     }

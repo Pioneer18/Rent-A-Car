@@ -1,4 +1,4 @@
-import { ForgotPasswordInterface } from "../interfaces/service/forgot-password.interface";
+import { ForgotPasswordInterface } from '../interfaces/service/forgot-password.interface';
 
 /**
  * **summary**: Data tranfer object for requesting to reset a forgotten passowrd. A reset passoword email is sent to only valid email addresses

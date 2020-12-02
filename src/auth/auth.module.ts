@@ -32,6 +32,6 @@ import { AppConfigService } from '../config/configuration.service';
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, VerifyNewPasswordUtil, EmailService, AppConfigService],
   exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, VerifyNewPasswordUtil, EmailService],
-  controllers:[AuthController],
+  controllers: [AuthController],
 })
 export class AuthModule {}

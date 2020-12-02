@@ -1,4 +1,4 @@
-import { Image } from "../image.interface";
+import { Image } from '../image.interface';
 /**
  * **summary**: Interface for the response object of the images.Service.findRentalImages() and .findProfileImages() methods
  */

@@ -1,13 +1,13 @@
-import { Controller, HttpCode, Post, UseGuards, Request, Body, Req, Redirect, Res } from "@nestjs/common";
-import { Response } from "express";
-import { ChangePasswordDto } from "../dto/change-password.dto";
-import { ForgotPasswordDto } from "../dto/forgot-password.dto";
-import { ResetPasswordDto } from "../dto/reset-password.dto";
-import { JwtAuthGuard } from "../gaurds/jwt-auth.guard";
-import { LocalAuthGuard } from "../gaurds/local-auth.guard";
-import { LoggedOutGaurd } from "../gaurds/logged-out.guard";
-import { ExtractKeyValueUtilInterface } from "../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface";
-import { AuthService } from "../service/auth.service";
+import { Controller, HttpCode, Post, UseGuards, Request, Body, Req, Redirect, Res } from '@nestjs/common';
+import { Response } from 'express';
+import { ChangePasswordDto } from '../dto/change-password.dto';
+import { ForgotPasswordDto } from '../dto/forgot-password.dto';
+import { ResetPasswordDto } from '../dto/reset-password.dto';
+import { JwtAuthGuard } from '../gaurds/jwt-auth.guard';
+import { LocalAuthGuard } from '../gaurds/local-auth.guard';
+import { LoggedOutGaurd } from '../gaurds/logged-out.guard';
+import { ExtractKeyValueUtilInterface } from '../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface';
+import { AuthService } from '../service/auth.service';
 /**
  * **summary**: Controller for handling the authentication and authorization of a registered user
  * - note: Some methods in this controller are protected by JwtAuthGuard and LoggedOutGuard, which verify a user is Authorized
@@ -51,7 +51,7 @@ export class AuthController {
     @UseGuards(LoggedOutGaurd)
     @Post('change-password')
     async changePassword(@Req() req, @Body() data: ChangePasswordDto): Promise<void> {
-        return this.authService.changePassword(data, req)
+        return this.authService.changePassword(data, req);
     }
 
     /**
@@ -60,7 +60,7 @@ export class AuthController {
      */
     @Post('forgot-password')
     async forgotPassword(@Body() data: ForgotPasswordDto): Promise<string> {
-        return this.authService.forgotPassword(data)
+        return this.authService.forgotPassword(data);
     }
 
     /**
@@ -69,6 +69,6 @@ export class AuthController {
      */
     @Post('reset-password')
     async resetPassword(@Body() data: ResetPasswordDto): Promise<void> {
-        return await this.authService.resetPassword(data)
+        return await this.authService.resetPassword(data);
     }
 }

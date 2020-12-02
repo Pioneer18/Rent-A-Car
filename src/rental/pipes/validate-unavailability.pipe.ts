@@ -16,7 +16,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    *   - validate each unavailability for y1 and y2 (private validateUnavailability)
    *   - check if y1 is a leap year, validate the number of days in the year (DOY) if it is a leap year
    *   - validate DOY crossover from y1 to y2; validate the extra DOY if it's a leap year
-   * - else: 
+   * - else:
    *   - validate each unavailability in the single year
    * - return the validated year(s)
    */
@@ -72,9 +72,9 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * **summary**: This method is called when the requested Unavailability spans into the next year. this method verifies that the crossover into the next year
    * includes the extra day if it's a leapYear. Even if it's not a leap year, this method verifies there are no missing or extra days as the Unavailability enters the
    * start of the next year
-   * @param y1 
-   * @param y2 
-   * @param ly 
+   * @param y1
+   * @param y2
+   * @param ly
    */
   private validateCrossover = async (
     y1: UnavailabilityDto[],
@@ -206,7 +206,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    * validateMinNotice(), and checkLeapYear() methods to validate the client request and return a ValidatedUnavailabilityDto
    * @param value The sorted but unvalidated client request data
    */
-  transform = async(value: ValidateScheduleUnavailabilityDto): Promise<ValidatedUnavailabilityDto> => {
+  transform = async (value: ValidateScheduleUnavailabilityDto): Promise<ValidatedUnavailabilityDto> => {
     try {
       const start: DateTime = await this.validateRelevance(value);
       // if 2 years; if there are 2 years we know y1 must include the final doy of y1

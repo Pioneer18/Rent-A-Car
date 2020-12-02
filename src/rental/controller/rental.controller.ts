@@ -21,7 +21,7 @@ import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pip
 import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
 import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
 import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
-import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto' // '../dto/update-unavailability-data.dto';
+import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto'; // '../dto/update-unavailability-data.dto';
 import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 import { AppConfigService } from '../../config/configuration.service';
@@ -96,7 +96,7 @@ export class RentalController {
   @UsePipes(new ProcessUnavailabilityPipe())
   @UsePipes(new ValidateUnavailabilityPipe())
   @UsePipes(new SortUnavailabilityPipe())
-  async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto):Promise<UnavailabilityInterface[]> {
+  async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto): Promise<UnavailabilityInterface[]> {
     return await this.rentalService.scheduleUnavailability(processed);
   }
 

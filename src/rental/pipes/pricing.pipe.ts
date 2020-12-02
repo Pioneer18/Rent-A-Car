@@ -30,7 +30,7 @@ export class PricingPipe implements PipeTransform {
 
     /**
      * **summary**: Map the final values of the PricingDto before passing to the handler
-     * @param 
+     * @param
      */
     private mapPricingDto = async (data: PricingDto): Promise<PricingDto> => {
         const value: PricingDto = {
@@ -48,7 +48,7 @@ export class PricingPipe implements PipeTransform {
      * **summary**: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler
      * @param value the raw request from a user to update the pricing of a Rental
      */
-    transform = async(value: PricingDto): Promise<PricingDto> => {
+    transform = async (value: PricingDto): Promise<PricingDto> => {
         try {
             await this.validatePricingDto(value);
             const data: PricingDto = await this.mapPricingDto(value);

@@ -21,7 +21,7 @@ export const CreateRentalValidationSchema = joi.object({
     mpgE: joi.number()
       .when('fuel', {is: 'electric', then: joi.number().required()})
       .when('fuel', {not: 'electric', then: joi.valid(null) }),
-    fuel: joi.string().valid('gas', 'hybrid','electric').required(),
+    fuel: joi.string().valid('gas', 'hybrid', 'electric').required(),
     gasGrade: joi.string().valid('regular', 'mid', 'premium', 'N/A').required()
       .when('fuel', {is: 'electric', then: joi.valid('N/A')}),
     description: joi.string().required(),

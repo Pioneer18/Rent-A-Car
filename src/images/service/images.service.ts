@@ -4,7 +4,7 @@ import { ImageModelInterface } from '../interfaces/modelInterface/image-model.in
 import { Model, Query } from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
 import { profile } from '../../common/Const';
-import { SaveImagesInterface } from '../interfaces/service/save-images.interface'
+import { SaveImagesInterface } from '../interfaces/service/save-images.interface';
 import { ProcessSaveDataUtil } from '../util/process-save-data.util';
 import { ProcessedSaveDataInterface } from '../interfaces/utils/processSaveData/processed-save-data.interface';
 import { CreateMulterUploadUtil } from '../util/create-multer-upload.util';
@@ -35,7 +35,7 @@ export class ImagesService {
   ) { }
 
   /**
-   * **summary**: saves AWS uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method 
+   * **summary**: saves AWS uploaded images to the database. This method is passed as an argument to the fileUploadAndSave method
    * @param files array of files
    * @param category rentals / profile
    * @param {string} user_id user id to associate with the image
@@ -51,7 +51,7 @@ export class ImagesService {
       }
       const document = new this.imagesModel(image);
       document.save(function(err) {
-       if (err) throw new Error(err);
+       if (err) { throw new Error(err); }
        return;
       });
     } catch (err) {
@@ -75,11 +75,11 @@ export class ImagesService {
       // find multiple images
       if (flag === 'multiple') {
         const images = await this.imagesModel.find({ rental_id: data.rental_id, user_id: data.user.userId });
-        return { count: images.length, images: images }
+        return { count: images.length, images };
       }
       // find a specific image
       const image = await this.imagesModel.findOne({ _id: data.img_id });
-      return { count: 1, images: image }
+      return { count: 1, images: image };
     } catch (err) {
       throw new Error(err);
     }
@@ -94,13 +94,13 @@ export class ImagesService {
       let flag;
       data.img_id ? flag = 'single' : flag = 'multiple';
       if (flag === 'multiple') {
-        const images = await this.imagesModel.find({ user_id: data.user.userId, category: profile })
-        return { count: images.length, images: images };
-      };
+        const images = await this.imagesModel.find({ user_id: data.user.userId, category: profile });
+        return { count: images.length, images };
+      }
       const image = await this.imagesModel.findOne({ _id: data.img_id });
-      return { count: 1, images: image }
+      return { count: 1, images: image };
     } catch (err) {
-      throw new Error(err)
+      throw new Error(err);
     }
   }
 
@@ -117,7 +117,7 @@ export class ImagesService {
           return await this.imagesModel.remove({ _id: data.images[0]._id, user_id: data.user.userId });
         }
         const ids = await this.deleteS3ImagesUtil.deleteS3Images({ images: data.images, user: data.user });
-        return await this.imagesModel.remove({ _id: { $in: ids }, user_id: data.user.userId })
+        return await this.imagesModel.remove({ _id: { $in: ids }, user_id: data.user.userId });
       }
     } catch (err) {
       throw new Error(err);
@@ -132,7 +132,7 @@ export class ImagesService {
   deleteAllImages = async (data: DeleteAllImagesInterface): Promise<DeleteResponseInterface> => {
     // delete all images of the selected rental
     if (data.user && typeof data.rental_id === 'string') {
-      console.log('DELETING ALL RENTAL IMAGES NOW')
+      console.log('DELETING ALL RENTAL IMAGES NOW');
       console.log(data.rental_id);
       console.log(data.user);
       return await this.imagesModel.remove({ user_id: data.user.userId, rental_id: data.rental_id });
@@ -155,7 +155,7 @@ export class ImagesService {
     try {
       // create a multer upload
       const user: JwtPayloadInterface = data.req.user;
-      const multerUpload = await this.createMulterUploadUtil.create({ req: data.req, category: data.category })
+      const multerUpload = await this.createMulterUploadUtil.create({ req: data.req, category: data.category });
       // Upload the image(s)
       await this.multerUploadUtil.upload({
         req: data.req,
@@ -164,10 +164,10 @@ export class ImagesService {
         saveImages: this.saveImages,
         category: data.category,
         user,
-        rental_id: data.rental_id
+        rental_id: data.rental_id,
       });
     } catch (err) {
-      return data.res.status(500).json(`Failed to upload image file: ${err}`)
+      return data.res.status(500).json(`Failed to upload image file: ${err}`);
     }
   }
 }

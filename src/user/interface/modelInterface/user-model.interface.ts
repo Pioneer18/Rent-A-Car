@@ -1,4 +1,4 @@
-import * as mongoose from "mongoose";
+import * as mongoose from 'mongoose';
 /**
  * **summary**: interface for the User model
  */
@@ -12,4 +12,4 @@ export interface UserModelInterface extends mongoose.Document {
     setExpirationDate: Function;
     setResetToken: Function;
   }
-  
+

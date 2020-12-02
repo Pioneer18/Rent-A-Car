@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { MulterUploadUtilInterface } from "../interfaces/utils/multerUploadUtil/multer-upload-util.interface";
+import { Injectable } from '@nestjs/common';
+import { MulterUploadUtilInterface } from '../interfaces/utils/multerUploadUtil/multer-upload-util.interface';
 /**
  * **summary**: upload a single or multiple files as a multerUpload
  */
@@ -19,7 +19,7 @@ export class MulterUploadUtil {
      */
     upload = async (data: MulterUploadUtilInterface): Promise<void> => {
         try {
-            await data.multerUpload(data.req, data.res, function (err) {
+            await data.multerUpload(data.req, data.res, function(err) {
                 if (err) {
                     console.log(err);
                     return data.res.status(404).json(`Failed to upload image file: ${err}`);
@@ -29,12 +29,12 @@ export class MulterUploadUtil {
                     files: data.req.files,
                     category: data.category,
                     user_id: data.user.userId,
-                    rental_id: data.rental_id
+                    rental_id: data.rental_id,
                 });
                 return data.res.status(201).json(data.req.files[0].location);
             });
         } catch (err) {
-            throw new Error(err)
+            throw new Error(err);
         }
     }
 }

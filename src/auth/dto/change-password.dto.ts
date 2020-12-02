@@ -1,4 +1,4 @@
-import { ChangePasswordInterface } from "../interfaces/service/change-password.interface";
+import { ChangePasswordInterface } from '../interfaces/service/change-password.interface';
 
 /**
  * **summary**: Dto for the @post('change-password') endpoint. Implements the ChangePasswordInterface for the

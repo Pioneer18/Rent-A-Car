@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { ProcessedSaveDataInterface } from "../interfaces/utils/processSaveData/processed-save-data.interface";
-import { SaveImagesInterface } from "../interfaces/service/save-images.interface";
-import { Image } from "../interfaces/image.interface";
+import { Injectable } from '@nestjs/common';
+import { ProcessedSaveDataInterface } from '../interfaces/utils/processSaveData/processed-save-data.interface';
+import { SaveImagesInterface } from '../interfaces/service/save-images.interface';
+import { Image } from '../interfaces/image.interface';
 /**
  * **summary**: utility to process the save image request data before passing it to the handler
  */
@@ -28,9 +28,9 @@ export class ProcessSaveDataUtil {
           etag: temp.etag,
           category: data.category,
           size: temp.size,
-          location: temp.location
-        }
-       return {packet: null, image: image}
+          location: temp.location,
+        };
+        return {packet: null, image};
 
       }
       // multiple files
@@ -43,12 +43,12 @@ export class ProcessSaveDataUtil {
           etag: item.etag,
           category: data.category,
           size: item.size,
-          location: item.location
-        }
-        return image
+          location: item.location,
+        };
+        return image;
       });
-      return {packet: packet, image: null}
+      return {packet, image: null};
     }
-    throw new Error('Failed to save: files were not found')
+    throw new Error('Failed to save: files were not found');
   }
 }

@@ -8,7 +8,7 @@ export interface CreateRentalReturn {
             monthly: number;
         },
         price: number;
-    },
+    };
     features: string[];
     photos: any[];
     _id: string;
@@ -29,21 +29,21 @@ export interface CreateRentalReturn {
         color: string;
         numOfSeats: number;
         numDoors: number;
-    },
+    };
     registration: {
         vin: string;
         licensePlate: string;
         state: string;
-    },
+    };
     scheduling: {
         requiredNotice: number;
         rentMinDuration: number;
         rentMaxDuration: number;
-    },
+    };
     loc: {
         type: string;
         coordinates: [number, number]
-    },
-    listed: true,
+    };
+    listed: true;
     __v: number;
 }

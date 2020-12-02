@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { UpdateUserInterface } from "../interface/service/update-user.interface";
+import { Injectable } from '@nestjs/common';
+import { UpdateUserInterface } from '../interface/service/update-user.interface';
 /**
  * **summary**: Dto for updating a user profile
  */

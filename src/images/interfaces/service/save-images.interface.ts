@@ -1,4 +1,4 @@
-import { ImageFileInterface } from "../image-file.interface";
+import { ImageFileInterface } from '../image-file.interface';
 /**
  * **summary**: Interface for the image.service.saveImages method
  */

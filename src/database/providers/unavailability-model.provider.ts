@@ -6,7 +6,7 @@ import { databaseConnection, unavailabilityModel } from '../../common/Const';
  */
 export const unavailabilityProvider = [
   {
-    provide: unavailabilityModel,// UNAVAILABILITY_MODEL
+    provide: unavailabilityModel, // UNAVAILABILITY_MODEL
     useFactory: (connection: Connection) => connection.model('Unavailability', UnavailabilitySchema),
     inject: [databaseConnection],
   },

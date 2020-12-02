@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserSchema } from '../user/schema/user.schema'
+import { UserSchema } from '../user/schema/user.schema';
 import { UserController } from './controller/user.controller';
 import { UserService } from './service/user.service';
 import { DatabaseModule } from '../database/database.module';
@@ -21,9 +21,9 @@ import { RedisService } from '../redis/service/redis.service';
     DatabaseModule,
     RedisModule,
     AppConfigModule,
-    RedisModule
+    RedisModule,
   ],
-  providers: [UserService,...userProvider, ExtractKeyValueUtil, VerifyNewPasswordUtil, RedisService],
+  providers: [UserService, ...userProvider, ExtractKeyValueUtil, VerifyNewPasswordUtil, RedisService],
   controllers: [UserController],
   exports: [UserService], // used in the AuthService
 })
@@ -33,6 +33,6 @@ export class UserModule  {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(ValidateEmailMiddleware)
-      .forRoutes('v1/user')
+      .forRoutes('v1/user');
   }
 }

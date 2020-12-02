@@ -22,7 +22,7 @@ describe('ValidateEditDetailsPipe Unit Test', () => {
     });
 
     const validateDetails = async (value: EditDetailsDto) => {
-        let result: any = {
+        const result: any = {
             rentalId: null,
             noVal: null,
             odometer: null,

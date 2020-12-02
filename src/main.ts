@@ -8,19 +8,19 @@ import * as helmet from 'helmet';
 import { Secrets } from './secrets/secrets';
 import * as cookieParser from 'cookie-parser';
 /**
- * **summary**: Bootstrap the application. It will run as an Https server in production and 
+ * **summary**: Bootstrap the application. It will run as an Https server in production and
  * it will run as an Http server in development
  */
 dotenv.config();
 async function bootstrap() {
   const httpsOptions = {
     key: Secrets.key,
-    cert: fs.readFileSync(path.resolve(__dirname, './secrets/server.crt')), 
+    cert: fs.readFileSync(path.resolve(__dirname, './secrets/server.crt')),
   };
   console.log(`The Environment: ${process.env.NODE_ENV}`);
   // Development HTTP
   if (process.env.NODE_ENV === 'development') {
-    console.log("Running in Dev: Http");
+    console.log('Running in Dev: Http');
     const app = await NestFactory.create(AppModule);
     const appConfig = await app.get(AppConfigService);
     app.enableCors();
@@ -30,11 +30,11 @@ async function bootstrap() {
   }
   // Production HTTPS
   if (process.env.NODE_ENV === 'production') {
-    console.log('Running in Prod: Https')
+    console.log('Running in Prod: Https');
     const app = await NestFactory.create(AppModule, {
       httpsOptions,
     });
-      const appConfig = await app.get(AppConfigService);
+    const appConfig = await app.get(AppConfigService);
     app.enableCors();
     app.use(helmet());
     app.use(cookieParser());

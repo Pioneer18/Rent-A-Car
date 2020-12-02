@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { CreateUserInterface } from "../interface/service/create-user.interface";
+import { Injectable } from '@nestjs/common';
+import { CreateUserInterface } from '../interface/service/create-user.interface';
 /**
  * **summary**: Dto for creating a new user
  */

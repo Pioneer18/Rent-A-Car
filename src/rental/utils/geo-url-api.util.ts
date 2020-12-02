@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as axios from 'axios';
 import { RawCoordinatesDto } from '../dto/createRental/raw-coordinates.dto';
 import { GetCoordinatesInterface } from '../interface/utils/geoUrlApi/get-coordinates.interface';
-import { MakeRequestInterface } from '../interface/utils/geoUrlApi/make-request.interface'
+import { MakeRequestInterface } from '../interface/utils/geoUrlApi/make-request.interface';
 import { ApiResponseData } from '../interface/utils/geoUrlApi/api-response-data';
 
 /**
@@ -15,7 +15,7 @@ import { ApiResponseData } from '../interface/utils/geoUrlApi/api-response-data'
  * @param {string} address the address to request coordinates for
  * @param {string} geoUrl base url of the Geocoding and Search geocoding request
  * @param {string} apiKey Geocoding and Search v7 API Key
- * 
+ *
  */
 @Injectable()
 export class GeoUrlApiUtil {
@@ -46,12 +46,12 @@ export class GeoUrlApiUtil {
     try {
       const location: string = data.address.replace(/\s+/g, '+');
       // make the API request
-      console.log('location before the request')
+      console.log('location before the request');
       console.log(location);
       const response: any = await this.makeRequest({
         location,
         geoUrl: data.geoUrl,
-        apiKey: data.apiKey
+        apiKey: data.apiKey,
       });
       // grab the coordinates
       const rawCoordinates: RawCoordinatesDto =

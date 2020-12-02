@@ -18,7 +18,7 @@ import { UserInterface } from '../interface/user.interface';
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
-    
+
     /**
      * **summary**: Create a new user profile
      * @param user New user data
@@ -51,9 +51,8 @@ export class UserController {
     @UseGuards(LoggedOutGaurd)
     @Get('find-user')
     async findUser(@Body() email: FindUserDto): Promise<UserModelInterface> {
-        return await this.userService.findUser(email)
+        return await this.userService.findUser(email);
     }
-
 
     /**
      * **summary**: Delete a user profile
