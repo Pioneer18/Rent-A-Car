@@ -5,7 +5,7 @@ import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-
 import { RentalInterface } from '../interface/rental.interface';
 import { SearchRentalInterface } from '../interface/service/search-rental.interface';
 import { unavailabilityModel } from '../../common/Const';
-import { UnavailabilityInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
+import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
 import { CreateRentalInterface } from '../interface/service/create-rental.interface';
 import { EditPricingInterface } from '../interface/service/edit-pricing.interface';;
 import { RentalQuery } from '../interface/service/create-rental-query.interface';
@@ -17,6 +17,7 @@ import { UpdateUnavailabilityDataInterface } from '../interface/service/update-u
 import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
+import { UnavailabilityInterface } from '../interface/unavailability.interface';
 
 
 /**
@@ -27,7 +28,7 @@ export class RentalService {
   constructor(
     @InjectModel('Rental') private readonly rentalModel: Model<RentalModelInterface>,
     @Inject(unavailabilityModel)
-    private readonly unavailability: Model<UnavailabilityInterface>,
+    private readonly unavailability: Model<UnavailabilityModelInterface>,
   ) { }
 
   /**

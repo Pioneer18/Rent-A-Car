@@ -1,3 +1,6 @@
+/**
+ * **summary**: This is a lean version of the ImageModelInterface
+ */
 export interface Image {
     user_id: string;
     rental_id: string;

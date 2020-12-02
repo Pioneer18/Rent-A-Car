@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 /**
  * **summary**: Interface for the 'Unavailability' Model
  */
-export class UnavailabilityInterface extends mongoose.Document {
+export class UnavailabilityModelInterface extends mongoose.Document {
     rentalId: string;
     year: number;
     doy: number; // day of the year

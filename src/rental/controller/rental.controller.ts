@@ -29,7 +29,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-model.interface';
 import { RentalInterface } from '../interface/rental.interface';
-import { UnavailabilityInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
+import { UnavailabilityInterface } from '../interface/unavailability.interface';
 import { UpdateResponseInterface } from 'src/common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
 

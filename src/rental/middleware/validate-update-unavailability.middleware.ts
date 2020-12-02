@@ -2,7 +2,7 @@ import { Injectable, Inject, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { unavailabilityModel } from '../../common/Const';
 import { Model } from 'mongoose';
-import { UnavailabilityInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
+import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
 import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 import { CalculateRangeDto } from '../dto/unavailability/update/calculate-range.dto';
 /**
@@ -12,7 +12,7 @@ import { CalculateRangeDto } from '../dto/unavailability/update/calculate-range.
 export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   constructor(
     @Inject(unavailabilityModel)
-    private readonly unavailability: Model<UnavailabilityInterface>,
+    private readonly unavailability: Model<UnavailabilityModelInterface>,
   ) { }
 
   /**

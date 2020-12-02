@@ -1,4 +1,4 @@
-import { UnavailabilityInterface } from "../../interface/modelInterface/Unavailability/unavailability.interface";
+import { UnavailabilityInterface } from "../../interface/unavailability.interface";
 
 /**
  * **summary**: This dto is used to schedule a block of unavilable time for the rental on a given day and year. A user may schedule up to a year in the future so the specific "year" and "day of the year" is required

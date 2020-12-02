@@ -1,3 +1,6 @@
+/**
+ * **summary**: Interface for the response of an update query
+ */
 export interface UpdateResponseInterface {
     n: number;
     nModified: number;
