@@ -32,7 +32,8 @@ export class AuthController {
     }
 
     /**
-     * **summary**: Logout a user by adding their JWT to a Redis 'dead-list' that will end the user's authorized session prior to the JWT expiration time
+     * **summary**: Logout a user by adding their JWT to a Redis 'dead-list' that will end the user's authorized
+     * session prior to the JWT expiration time
      * @param req The request containing the user's JWT payload to be added to the logged-out 'dead-list' in the Redis cache
      */
     @UseGuards(JwtAuthGuard)

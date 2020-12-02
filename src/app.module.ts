@@ -23,7 +23,8 @@ import { AuthController } from './auth/controller/auth.controller';
 import { RedisModule } from './redis/redis.module';
 
 /**
- * **summary**: Registers every module in the app and their dependencies. provide the HttpFilter, LoggingInterceptor, and the ErrorFilter for the application
+ * **summary**: Registers every module in the app and their dependencies. provide the HttpFilter,
+ * LoggingInterceptor, and the ErrorFilter for the application
  */
 @Module({
   imports: [
