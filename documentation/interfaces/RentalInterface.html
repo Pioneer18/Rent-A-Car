@@ -62,14 +62,14 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/rental/interface/modelInterface/Rental/rental.interface.ts</code>
+            <code>src/rental/interface/rental.interface.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: interface for the &#39;Rental&#39; Model</p>
+                <p><strong>summary</strong>: This interface is a lean version of the RentalModelInterface</p>
 
             </p>
 
@@ -86,6 +86,10 @@
                     <tr>
                         <td class="col-md-4">
                             <ul class="index-list">
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#_id">_id</a>
+                                </li>
                                 <li>
                                         <a href="#address">address</a>
                                 </li>
@@ -116,6 +120,9 @@
                                 <li>
                                         <a href="#specs">specs</a>
                                 </li>
+                                <li>
+                                        <a href="#userId">userId</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -127,6 +134,40 @@
 
             <section>
                 <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="_id"></a>
+                                        <span class="name"><b>_id</b><a href="#_id"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>_id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
@@ -417,55 +458,85 @@
 
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="userId"></a>
+                                        <span class="name"><b>userId</b><a href="#userId"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>userId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
             </section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface RentalInterface {
-  rentalDescription: string;
-  address: string;
-  loc: {
-    type: string;
-    coordinates: string;
-  };
-  specs: {
-    odometer: number;
-    transmission: string;
-    cityMpg: number;
-    hwyMpg: number;
-    fuel: string;
-    gasGrade: string;
-    description: string;
-    make: string;
-    model: string;
-    style: string;
-    color: string;
-    numOfSeats: number;
-    numDoors: number;
-  };
-  registration: {
-    vin: string;
-    licensePlate: string;
-    state: string;
-  };
-  features: [string];
-  scheduling: {
-    requiredNotice: number;
-    rentMinDuration: number;
-    rentMaxDuration: number;
-  };
-  pricing: {
-    price: { type: number /*; default: DEFAULT_PRICE*/ };
-    discounts: {
-      weekly: { type: number; default: null };
-      monthly: { type: number; default: null };
+    _id?: string;
+    userId: string;
+    rentalDescription: string;
+    address: string;
+    loc: {
+      type: string;
+      coordinates: [number, number];
     };
-  };
-  photos: [string];
-  listed: boolean;
-}
-</code></pre>
+    specs: {
+      odometer: number;
+      transmission: string;
+      cityMpg: number;
+      hwyMpg: number;
+      fuel: string;
+      gasGrade: string;
+      description: string;
+      make: string;
+      model: string;
+      style: string;
+      color: string;
+      numOfSeats: number;
+      numDoors: number;
+    };
+    registration: {
+      vin: string;
+      licensePlate: string;
+      state: string;
+    };
+    features: [string];
+    scheduling: {
+      requiredNotice: number;
+      rentMinDuration: number;
+      rentMaxDuration: number;
+    };
+    pricing: {
+      price: { type: number /*; default: DEFAULT_PRICE*/ };
+      discounts: {
+        weekly: { type: number; default: null };
+        monthly: { type: number; default: null };
+      };
+    };
+    photos: [string];
+    listed: boolean;
+}</code></pre>
     </div>
 </div>
 

@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: create a SearchRentalDto with the GeoJSON loc property with the <a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html"><strong>HERE Geocoding &amp; Searching API</strong></a></p>
+                <p><strong>summary</strong>: Create a SearchRentalDto with the GeoJSON loc property with the <a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html"><strong>HERE Geocoding &amp; Searching API</strong></a></p>
 
             </p>
 
@@ -178,7 +178,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: finish transforming the client request into a SearchRentalDto using the geoUrlApiUtil.getCoordinates() method</p>
+                        <div class="io-description"><p><strong>summary</strong>: Finish transforming the client request into a SearchRentalDto using the geoUrlApiUtil.getCoordinates() method</p>
 </div>
                     </td>
                 </tr>
@@ -221,19 +221,19 @@ import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
 import { SearchRentalDto } from &#x27;../dto/searchRental/search-rental.dto&#x27;;
 
 /**
- * **summary**: create a SearchRentalDto with the GeoJSON loc property with the [**HERE Geocoding &amp; Searching API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html)
+ * **summary**: Create a SearchRentalDto with the GeoJSON loc property with the [**HERE Geocoding &amp; Searching API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html)
  */
 @Injectable()
 export class RequestCoordinatesPipe implements PipeTransform&lt;any&gt; {
-  constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) {}
+  constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) { }
 
   /**
-   * **summary**: finish transforming the client request into a SearchRentalDto using the geoUrlApiUtil.getCoordinates() method
+   * **summary**: Finish transforming the client request into a SearchRentalDto using the geoUrlApiUtil.getCoordinates() method
    * @param value the semi-processed client request data to search for Rentals
    */
-  transform &#x3D; async(value: RequestCoordinatesDto) &#x3D;&gt; {
+  transform &#x3D; async (value: RequestCoordinatesDto): Promise&lt;SearchRentalDto&gt; &#x3D;&gt; {
     const geoUrl &#x3D; process.env.GEO_URL;
-    const apiKey &#x3D; process.env.GEO_API_KEY; 
+    const apiKey &#x3D; process.env.GEO_API_KEY;
     try {
       const dto: SearchRentalDto &#x3D; {
         address: value.address,
@@ -242,11 +242,11 @@ export class RequestCoordinatesPipe implements PipeTransform&lt;any&gt; {
         rentalDuration: value.rentalDuration,
         loc: {
           type: &#x27;Point&#x27;,
-          coordinates: await this.geoUrlApiUtil.getCoordinates(
-            value.address,
+          coordinates: await this.geoUrlApiUtil.getCoordinates({
+            address: value.address,
             geoUrl,
             apiKey
-          ),
+          }),
         },
         givenNotice: value.givenNotice,
       };

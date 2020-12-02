@@ -68,9 +68,9 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: the initial form data submitted from the client to request to schedule Unavailability for a rental</p>
+                <p><strong>summary</strong>: The initial dto submitted from the client to request to schedule Unavailability for a rental. It&#39;s passed to the SortUnavailabilityPipe</p>
 <ul>
-<li>passed to the SortUnavailabilityPipe</li>
+<li>note: <a href="https://docs.nestjs.com/controllers#request-payloads"><strong>request payloads</strong></a> are dto classes and not interfaces so they can be accessed by NestJS at runtime</li>
 </ul>
 
             </p>
@@ -153,8 +153,8 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnavailabilityDto } from &#x27;../unavailability.dto&#x27;;
 /**
- * **summary**: the initial form data submitted from the client to request to schedule Unavailability for a rental
- * - passed to the SortUnavailabilityPipe
+ * **summary**: The initial dto submitted from the client to request to schedule Unavailability for a rental. It&#x27;s passed to the SortUnavailabilityPipe
+ * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
 export class RawScheduleUnavailabilityDto {
   unavailability: UnavailabilityDto[];

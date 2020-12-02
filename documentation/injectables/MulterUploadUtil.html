@@ -124,7 +124,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/images/util/multer-upload.util.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/images/util/multer-upload.util.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -217,6 +217,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+import { MulterUploadUtilInterface } from &quot;../interfaces/utils/multerUploadUtil/multer-upload-util.interface&quot;;
 /**
  * **summary**: upload a single or multiple files as a multerUpload
  */
@@ -234,17 +235,21 @@ export class MulterUploadUtil {
      * @param rental_id id of the rental if this is a rental images upload
      * @param model the database model which the this.saveImages() method will save images to
      */
-    upload &#x3D; async (req, res, multerUpload, saveImages, category, user, rental_id): Promise&lt;void&gt; &#x3D;&gt; {
+    upload &#x3D; async (data: MulterUploadUtilInterface): Promise&lt;void&gt; &#x3D;&gt; {
         try {
-            await multerUpload(req, res, function (err) {
+            await data.multerUpload(data.req, data.res, function (err) {
                 if (err) {
                     console.log(err);
-                    return res.status(404).json(&#x60;Failed to upload image file: ${err}&#x60;);
+                    return data.res.status(404).json(&#x60;Failed to upload image file: ${err}&#x60;);
                 }
                 // Save the Images
-                console.log(user)
-                saveImages(req.files, category, user.userId, rental_id);
-                return res.status(201).json(req.files[0].location);
+                data.saveImages({
+                    files: data.req.files,
+                    category: data.category,
+                    user_id: data.user.userId,
+                    rental_id: data.rental_id
+                });
+                return data.res.status(201).json(data.req.files[0].location);
             });
         } catch (err) {
             throw new Error(err)

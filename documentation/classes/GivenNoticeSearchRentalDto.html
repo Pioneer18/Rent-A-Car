@@ -68,10 +68,10 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: returned by the GivenNoticePipe after processing a RawSearchRentalDto</p>
+                <p><strong>summary</strong>: Dto returned by the GivenNoticePipe after processing a RawSearchRentalDto; The GivenNoticePipe adds the &#39;givenNotice&#39; property</p>
 <ul>
-<li>The GivenNoticePipe added the &#39;givenNotice&#39; property</li>
 <li>passed to the RentalDurationPipe</li>
+<li>note: <a href="https://docs.nestjs.com/controllers#request-payloads"><strong>request payloads</strong></a> are dto classes and not interfaces so they can be accessed by NestJS at runtime</li>
 </ul>
 
             </p>
@@ -304,9 +304,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DateTime } from &#x27;luxon&#x27;;
 /**
- * **summary**: returned by the GivenNoticePipe after processing a RawSearchRentalDto
- * - The GivenNoticePipe added the &#x27;givenNotice&#x27; property
+ * **summary**: Dto returned by the GivenNoticePipe after processing a RawSearchRentalDto; The GivenNoticePipe adds the &#x27;givenNotice&#x27; property
  * - passed to the RentalDurationPipe
+ * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
 export class GivenNoticeSearchRentalDto {
   address: string;

@@ -109,7 +109,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(rentalModel: <a href="../interfaces/RentalInterface.html">Model<RentalInterface></a>)</code>
+<code>constructor(rentalModel: <a href="../interfaces/RentalModelInterface.html">Model<RentalModelInterface></a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -135,7 +135,7 @@
                                                         <td>rentalModel</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../interfaces/RentalInterface.html" target="_self" >Model&lt;RentalInterface&gt;</a></code>
+                                                                        <code><a href="../interfaces/RentalModelInterface.html" target="_self" >Model&lt;RentalModelInterface&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -274,7 +274,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
-import { RentalInterface } from &#x27;../interface/modelInterface/Rental/rental.interface&#x27;;
+import { RentalModelInterface } from &#x27;../interface/modelInterface/Rental/rental-model.interface&#x27;;
 import { Injectable } from &#x27;@nestjs/common&#x27;;
 
 /**
@@ -283,7 +283,7 @@ import { Injectable } from &#x27;@nestjs/common&#x27;;
 @Injectable()
 export class TestRentalService {
   constructor(
-    @InjectModel(&#x27;Rental&#x27;) private readonly rentalModel: Model&lt;RentalInterface&gt;,
+    @InjectModel(&#x27;Rental&#x27;) private readonly rentalModel: Model&lt;RentalModelInterface&gt;,
   ) {}
 
   async returnRentalModel() {

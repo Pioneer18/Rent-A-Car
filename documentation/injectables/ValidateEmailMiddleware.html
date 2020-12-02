@@ -115,7 +115,7 @@ user.controller.createUser() method</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(user: <a href="../interfaces/UserInterface.html">Model<UserInterface></a>)</code>
+<code>constructor(user: <a href="../interfaces/UserModelInterface.html">Model<UserModelInterface></a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -141,7 +141,7 @@ user.controller.createUser() method</p>
                                                         <td>user</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../interfaces/UserInterface.html" target="_self" >Model&lt;UserInterface&gt;</a></code>
+                                                                        <code><a href="../interfaces/UserModelInterface.html" target="_self" >Model&lt;UserModelInterface&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -327,10 +327,10 @@ user.controller.createUser() method</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, NestMiddleware } from &#x27;@nestjs/common&#x27;
 import { Request, Response } from &#x27;express&#x27;;
 import { userModel } from &#x27;../../common/Const&#x27;;
-import { UserInterface } from &#x27;../interface/modelInterface/user.interface&#x27;;
+import { UserModelInterface } from &#x27;../interface/modelInterface/user-model.interface&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
 import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
-import { ValidateEmailUtil } from &#x27;../util/validate-email.util&#x27;;
+import { ValidateEmailUtil } from &#x27;../utils/validate-email.util&#x27;;
 /**
  * **summary**: before creating a new user, validate that their email is not already in the database. this middleware is only applied to the 
  * user.controller.createUser() method
@@ -342,7 +342,7 @@ export class ValidateEmailMiddleware implements NestMiddleware {
     validateEmailUtil: ValidateEmailUtil;
     constructor(
         @Inject(userModel)
-        private readonly user: Model&lt;UserInterface&gt;,
+        private readonly user: Model&lt;UserModelInterface&gt;,
     ) {
         this.validateEmailUtil &#x3D; new ValidateEmailUtil()
     }
@@ -353,7 +353,7 @@ export class ValidateEmailMiddleware implements NestMiddleware {
      */
     private validateEmail &#x3D; async(value: CreateUserDto) &#x3D;&gt; {
         const check &#x3D; await this.user.find({ email: value.email });
-        this.validateEmailUtil.validateEmail(check)
+        this.validateEmailUtil.validateEmail({check})
     }
 
     /**

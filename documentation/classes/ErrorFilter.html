@@ -68,7 +68,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: this Error Filter catches all 500 INTERNAL_SERVER_ERRORs. It logs the Error, reveals the Error object, and reutrns a custom err message to the client</p>
+                <p><strong>summary</strong>: This Error Filter catches all 500 INTERNAL_SERVER_ERRORs. It logs the Error, reveals the Error object, and reutrns a custom err message to the client</p>
 
             </p>
 
@@ -140,7 +140,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: catch http errors and use the Logger to log the appropiate error and data</p>
+                        <div class="io-description"><p><strong>summary</strong>: Catch http errors and use the Logger to log the appropiate error and data</p>
 </div>
                     </td>
                 </tr>
@@ -191,16 +191,16 @@
 } from &#x27;@nestjs/common&#x27;;
 import { DateTime } from &#x27;luxon&#x27;;
 /**
- * **summary**: this Error Filter catches all 500 INTERNAL_SERVER_ERRORs. It logs the Error, reveals the Error object, and reutrns a custom err message to the client
+ * **summary**: This Error Filter catches all 500 INTERNAL_SERVER_ERRORs. It logs the Error, reveals the Error object, and reutrns a custom err message to the client
  */
 @Catch()
 export class ErrorFilter implements ExceptionFilter {
   /**
-   * **summary**: catch http errors and use the Logger to log the appropiate error and data
+   * **summary**: Catch http errors and use the Logger to log the appropiate error and data
    * @param error 
    * @param host 
    */
-  catch &#x3D; (error: Error, host: ArgumentsHost) &#x3D;&gt; {
+  catch &#x3D; (error: Error, host: ArgumentsHost): any &#x3D;&gt; {
     const response &#x3D; host.switchToHttp().getResponse();
     const request &#x3D; host.switchToHttp().getRequest();
     const method &#x3D; request.method;

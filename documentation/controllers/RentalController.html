@@ -154,7 +154,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createRental(rental: <a href="../classes/CreateRentalDto.html">CreateRentalDto</a>)</code>
+                    <code>createRental(rental: <a href="../classes/CreateRentalDto.html">CreateRentalDto</a>, req)</code>
                 </td>
             </tr>
 
@@ -168,16 +168,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:54</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Create Rental:
-create a new vehicle rental listing</p>
+                    <div class="io-description"><p><strong>summary</strong>: Create a new vehicle rental listing</p>
 </div>
 
                     <div class="io-description">
@@ -203,13 +202,24 @@ create a new vehicle rental listing</p>
 
 
                                 </tr>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/RentalModelInterface.html" target="_self" >Promise&lt;RentalModelInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -250,16 +260,15 @@ create a new vehicle rental listing</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:88</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Edit Rental Details:
-edit the details of the Rental (# of seats, color, etc.)</p>
+                    <div class="io-description"><p><strong>summary</strong>: Edit the details of the Rental (# of seats, color, etc.)</p>
 </div>
 
                     <div class="io-description">
@@ -291,7 +300,7 @@ edit the details of the Rental (# of seats, color, etc.)</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/RentalInterface.html" target="_self" >Promise&lt;RentalInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -332,16 +341,15 @@ edit the details of the Rental (# of seats, color, etc.)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:79</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Edit Pricing:
-edit the rental price</p>
+                    <div class="io-description"><p><strong>summary</strong> Edit the selected rental price</p>
 </div>
 
                     <div class="io-description">
@@ -373,7 +381,7 @@ edit the rental price</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/RentalInterface.html" target="_self" >Promise&lt;RentalInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -422,8 +430,7 @@ edit the rental price</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Remove Unavailability
-remove existing unavailability</p>
+                    <div class="io-description"><p><strong>summary</strong>: Remove existing unavailability</p>
 </div>
 
                     <div class="io-description">
@@ -455,7 +462,7 @@ remove existing unavailability</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/DeleteResponseInterface.html" target="_self" >Promise&lt;DeleteResponseInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -496,16 +503,15 @@ remove existing unavailability</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:99</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Schedule Unavailability
-set a period of unavailability for the rental</p>
+                    <div class="io-description"><p><strong>summary</strong>: Set a period of unavailability for the rental</p>
 </div>
 
                     <div class="io-description">
@@ -537,7 +543,7 @@ set a period of unavailability for the rental</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/UnavailabilityInterface.html" target="_self" >Promise&lt;UnavailabilityInterface[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -578,16 +584,15 @@ set a period of unavailability for the rental</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:70</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Search Rental:
-find rentals available near a specified location (user&#39;s location)</p>
+                    <div class="io-description"><p><strong>summary</strong>: Find rentals available near a specified location (user&#39;s location)</p>
 </div>
 
                     <div class="io-description">
@@ -619,7 +624,7 @@ find rentals available near a specified location (user&#39;s location)</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/RentalInterface.html" target="_self" >Promise&lt;RentalInterface[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -660,16 +665,15 @@ find rentals available near a specified location (user&#39;s location)</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:108</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Update Unavailability
-edit current unavailability</p>
+                    <div class="io-description"><p><strong>summary</strong>: Edit current unavailability</p>
 </div>
 
                     <div class="io-description">
@@ -701,7 +705,7 @@ edit current unavailability</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/UpdateResponseInterface.html" target="_self" >Promise&lt;UpdateResponseInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -715,7 +719,7 @@ edit current unavailability</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req, UseGuards } from &#x27;@nestjs/common&#x27;;
 import { RentalService } from &#x27;../service/rental.service&#x27;;
 import { GeoUrlApiPipe } from &#x27;../pipes/geo-url-api.pipe&#x27;;
 import { MapNewRentalPipe } from &#x27;../pipes/map-new-rental.pipe&#x27;;
@@ -743,11 +747,18 @@ import { ValidateRemoveUnavailabilityPipe } from &#x27;../pipes/validate-remove-
 import { RemoveUnavailabilityDto } from &#x27;../dto/unavailability/remove/remove-unavailability.dto&#x27;;
 import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
 import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import { JwtAuthGuard } from &#x27;../../auth/gaurds/jwt-auth.guard&#x27;;
+import { RentalModelInterface } from &#x27;../interface/modelInterface/Rental/rental-model.interface&#x27;;
+import { RentalInterface } from &#x27;../interface/rental.interface&#x27;;
+import { UnavailabilityInterface } from &#x27;../interface/unavailability.interface&#x27;;
+import { UpdateResponseInterface } from &#x27;src/common/interfaces/update-response.interface&#x27;;
+import { DeleteResponseInterface } from &#x27;src/common/interfaces/delete-response.interface&#x27;;
 
 /**
  * - **summary**: controller for managing rentals in the application
  * - **Middleware**: The ValidateUpdateUnavailabilityMiddleware class is applied to the updateUnavailability method
  */
+@UseGuards(JwtAuthGuard)
 @Controller(&#x27;rental&#x27;)
 export class RentalController {
   constructor(
@@ -755,91 +766,78 @@ export class RentalController {
     ) {}
 
   /**
-   * Create Rental:
-   * create a new vehicle rental listing
+   * **summary**: Create a new vehicle rental listing
    */
   @Post()
   @UsePipes(new JoiValidationPipe(CreateRentalValidationSchema))
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
-  async createRental(@Body() rental: CreateRentalDto) {
+  async createRental(@Body() rental: CreateRentalDto, @Req() req): Promise&lt;RentalModelInterface&gt; {
     try {
-      return await this.rentalService.createRental(rental);
+      return await this.rentalService.createRental(rental, req.user);
     } catch (err) {
       throw new Error(err);
     }
   }
 
   /**
-   * Search Rental:
-   * find rentals available near a specified location (user&#x27;s location)
+   * **summary**: Find rentals available near a specified location (user&#x27;s location)
    */
   @Get()
   @UsePipes(new JoiValidationPipe(SearchRentalValidationSchema))
   @UsePipes(new RequestCoordinatesPipe(new GeoUrlApiUtil()))
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
   @UsePipes(new GivenNoticePipe())
-  async searchRental(@Query() searchRentalDto: SearchRentalDto) {
+  async searchRental(@Body() searchRentalDto: SearchRentalDto): Promise&lt;RentalInterface[]&gt; {
       return await this.rentalService.searchRental(searchRentalDto);
   }
 
   /**
-   * Edit Pricing:
-   * edit the rental price
+   * **summary** Edit the selected rental price
    */
   @Post(&#x27;edit-price&#x27;)
   @UsePipes(new PricingPipe())
-  async editPricing(@Body() pricingDto: PricingDto) {
+  async editPricing(@Body() pricingDto: PricingDto): Promise&lt;RentalInterface&gt; {
       return await this.rentalService.editPricing(pricingDto);
   }
 
   /**
-   * Edit Rental Details:
-   * edit the details of the Rental (# of seats, color, etc.)
+   * **summary**: Edit the details of the Rental (# of seats, color, etc.)
    */
   @Post(&#x27;edit-details&#x27;)
   @UsePipes(new ValidateEditDetailsPipe())
-  async editDetails(@Body() editDetailsDto: EditDetailsDto) {
+  async editDetails(@Body() editDetailsDto: EditDetailsDto): Promise&lt;RentalInterface&gt; {
       return await this.rentalService.editDetails(editDetailsDto);
   }
 
   /**
-   * Schedule Unavailability
-   * set a period of unavailability for the rental
+   * **summary**: Set a period of unavailability for the rental
    */
   @Post(&#x27;schedule-unavailability&#x27;)
   @UsePipes(new ProcessUnavailabilityPipe())
   @UsePipes(new ValidateUnavailabilityPipe())
   @UsePipes(new SortUnavailabilityPipe())
-  async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto ) {
+  async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto):Promise&lt;UnavailabilityInterface[]&gt; {
     return await this.rentalService.scheduleUnavailability(processed);
   }
 
   /**
-   * Update Unavailability
-   * edit current unavailability
+   * **summary**: Edit current unavailability
    */
   @Post(&#x27;update-unavailability&#x27;)
   @UsePipes(new CreateUpdaterDtoPipe())
-  async updateUnavailability(@Body() data: UpdateUnavailabilityDataDto) {
+  async updateUnavailability(@Body() data: UpdateUnavailabilityDataDto): Promise&lt;UpdateResponseInterface&gt; {
     return await this.rentalService.updateUnavailability(data);
   }
 
    /**
-    * Remove Unavailability
-    * remove existing unavailability
+    * **summary**: Remove existing unavailability
     */
    @Post(&#x27;remove-unavailability&#x27;)
    @UsePipes(new ValidateRemoveUnavailabilityPipe())
-   async removeUnavailability(@Body() data: RemoveUnavailabilityDto) {
+   async removeUnavailability(@Body() data: RemoveUnavailabilityDto): Promise&lt;DeleteResponseInterface&gt; {
      return await this.rentalService.removeUnavailability(data);
    }
-
-   /**
-    * Upload Rental Photos
-    * upload photos of your rental listing
-    * ! see the images/controller
-    */
 
     /**
      * Toggle Rental listed status

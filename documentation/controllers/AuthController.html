@@ -69,9 +69,9 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: controller for handling the authentication and authorization of a registered user</p>
+                <p><strong>summary</strong>: Controller for handling the authentication and authorization of a registered user</p>
 <ul>
-<li>note: some methods in this controller are protected by JwtAuthGuard and LoggedOutGuard, which verify a user is Authorized</li>
+<li>note: Some methods in this controller are protected by JwtAuthGuard and LoggedOutGuard, which verify a user is Authorized</li>
 </ul>
 
             </p>
@@ -160,15 +160,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/auth/controller/auth.controller.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/auth/controller/auth.controller.ts:53</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: change the password of a logged in and authorized user</p>
+                    <div class="io-description"><p><strong>summary</strong>: Change the password of a logged in and authorized user</p>
 </div>
 
                     <div class="io-description">
@@ -194,7 +194,7 @@
 
 
                                     <td>
-                                        <p>the request with the user JWT payload</p>
+                                        <p>The request with the user JWT payload</p>
 
                                     </td>
                                 </tr>
@@ -210,7 +210,7 @@
 
 
                                     <td>
-                                        <p>the new password data</p>
+                                        <p>The new password data</p>
 
                                     </td>
                                 </tr>
@@ -220,7 +220,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -261,15 +261,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/auth/controller/auth.controller.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/auth/controller/auth.controller.ts:62</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: request to reset a forgotten password</p>
+                    <div class="io-description"><p><strong>summary</strong>: Request to reset a forgotten password</p>
 </div>
 
                     <div class="io-description">
@@ -296,7 +296,7 @@
 
 
                                     <td>
-                                        <p>the email address to send the forgot-password email to</p>
+                                        <p>The email address to send the forgot-password email to</p>
 
                                     </td>
                                 </tr>
@@ -306,7 +306,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -347,15 +347,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/auth/controller/auth.controller.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/auth/controller/auth.controller.ts:27</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: authenticate and login a user</p>
+                    <div class="io-description"><p><strong>summary</strong>: Authenticate and login a user</p>
 </div>
 
                     <div class="io-description">
@@ -398,7 +398,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;Response&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -439,15 +439,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/auth/controller/auth.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/auth/controller/auth.controller.ts:41</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: logout a user by adding their JWT to a Redis &#39;dead-list&#39; that will end the user&#39;s authorized session prior to the JWT expiration time</p>
+                    <div class="io-description"><p><strong>summary</strong>: Logout a user by adding their JWT to a Redis &#39;dead-list&#39; that will end the user&#39;s authorized session prior to the JWT expiration time</p>
 </div>
 
                     <div class="io-description">
@@ -470,7 +470,7 @@
 
 
                                     <td>
-                                        <p>the request containing the user&#39;s JWT payload to be added to the logged-out &#39;dead-list&#39; in the Redis cache</p>
+                                        <p>The request containing the user&#39;s JWT payload to be added to the logged-out &#39;dead-list&#39; in the Redis cache</p>
 
                                     </td>
                                 </tr>
@@ -480,7 +480,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../injectables/ExtractKeyValueUtil.html" target="_self" >Promise&lt;ExtractKeyValueUtilInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -521,15 +521,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/auth/controller/auth.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/auth/controller/auth.controller.ts:71</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: resets the user&#39;s password with the data submitted from the email redirect</p>
+                    <div class="io-description"><p><strong>summary</strong>: Resets the user&#39;s password with the data submitted from the email redirect</p>
 </div>
 
                     <div class="io-description">
@@ -556,7 +556,7 @@
 
 
                                     <td>
-                                        <p>the data submitted by the user to the reset-password email form</p>
+                                        <p>The data submitted by the user to the reset-password email form</p>
 
                                     </td>
                                 </tr>
@@ -566,7 +566,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -588,68 +588,69 @@ import { ResetPasswordDto } from &quot;../dto/reset-password.dto&quot;;
 import { JwtAuthGuard } from &quot;../gaurds/jwt-auth.guard&quot;;
 import { LocalAuthGuard } from &quot;../gaurds/local-auth.guard&quot;;
 import { LoggedOutGaurd } from &quot;../gaurds/logged-out.guard&quot;;
+import { ExtractKeyValueUtilInterface } from &quot;../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface&quot;;
 import { AuthService } from &quot;../service/auth.service&quot;;
 /**
- * **summary**: controller for handling the authentication and authorization of a registered user
- * - note: some methods in this controller are protected by JwtAuthGuard and LoggedOutGuard, which verify a user is Authorized
+ * **summary**: Controller for handling the authentication and authorization of a registered user
+ * - note: Some methods in this controller are protected by JwtAuthGuard and LoggedOutGuard, which verify a user is Authorized
  */
 @Controller(&#x27;auth&#x27;)
 export class AuthController {
     constructor(private readonly authService: AuthService) { }
 
     /**
-     * **summary**: authenticate and login a user
-     * @param email the user&#x27;s email
-     * @param password the user&#x27;s submitted password to be validated
+     * **summary**: Authenticate and login a user
+     * @param email The user&#x27;s email
+     * @param password The user&#x27;s submitted password to be validated
      */
     @HttpCode(200)
     @UseGuards(LocalAuthGuard)
     @Post(&#x27;login&#x27;)
-    async login(@Request() req, @Res() res: Response) {
-        const cookie &#x3D; await this.authService.login(req.user);
+    async login(@Request() req, @Res() res: Response): Promise&lt;Response&gt; {
+        const cookie &#x3D; await this.authService.login(req.user._doc);
         res.setHeader(&#x27;Set-Cookie&#x27;, cookie);
         req.user._doc.password &#x3D; undefined;
         return res.send(req.user._doc);
     }
 
     /**
-     * **summary**: logout a user by adding their JWT to a Redis &#x27;dead-list&#x27; that will end the user&#x27;s authorized session prior to the JWT expiration time
-     * @param req the request containing the user&#x27;s JWT payload to be added to the logged-out &#x27;dead-list&#x27; in the Redis cache
+     * **summary**: Logout a user by adding their JWT to a Redis &#x27;dead-list&#x27; that will end the user&#x27;s authorized session prior to the JWT expiration time
+     * @param req The request containing the user&#x27;s JWT payload to be added to the logged-out &#x27;dead-list&#x27; in the Redis cache
      */
     @UseGuards(JwtAuthGuard)
     @Redirect(&#x27;http://localhost:3000/auth/login&#x27;)
     @Post(&#x27;logout&#x27;)
-    async logout(@Request() req) {
+    async logout(@Request() req): Promise&lt;ExtractKeyValueUtilInterface&gt; {
         return await this.authService.logout(req);
     }
 
     /**
-     * **summary**: change the password of a logged in and authorized user
-     * @param req the request with the user JWT payload
-     * @param data the new password data
+     * **summary**: Change the password of a logged in and authorized user
+     * @param req The request with the user JWT payload
+     * @param data The new password data
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Post(&#x27;change-password&#x27;)
-    async changePassword(@Req() req, @Body() data: ChangePasswordDto) {
+    async changePassword(@Req() req, @Body() data: ChangePasswordDto): Promise&lt;void&gt; {
         return this.authService.changePassword(data, req)
     }
 
     /**
-     * **summary**: request to reset a forgotten password
-     * @param data the email address to send the forgot-password email to
+     * **summary**: Request to reset a forgotten password
+     * @param data The email address to send the forgot-password email to
      */
     @Post(&#x27;forgot-password&#x27;)
-    async forgotPassword(@Body() data: ForgotPasswordDto) {
+    async forgotPassword(@Body() data: ForgotPasswordDto): Promise&lt;string&gt; {
         return this.authService.forgotPassword(data)
     }
 
     /**
-     * **summary**: resets the user&#x27;s password with the data submitted from the email redirect
-     * @param data the data submitted by the user to the reset-password email form
+     * **summary**: Resets the user&#x27;s password with the data submitted from the email redirect
+     * @param data The data submitted by the user to the reset-password email form
      */
     @Post(&#x27;reset-password&#x27;)
-    async resetPassword(@Body() data: ResetPasswordDto) {
+    async resetPassword(@Body() data: ResetPasswordDto): Promise&lt;void&gt; {
         return await this.authService.resetPassword(data)
     }
 }</code></pre>

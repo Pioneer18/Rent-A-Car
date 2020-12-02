@@ -123,12 +123,12 @@ this makes queries slightly less selective and less efficient, but more secure.<
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(imagesModel: <a href="../interfaces/ImageInterface.html">Model<ImageInterface></a>, processSaveDataUtil: <a href="../injectables/ProcessSaveDataUtil.html">ProcessSaveDataUtil</a>, createMulterUploadUtil: <a href="../injectables/CreateMulterUploadUtil.html">CreateMulterUploadUtil</a>, multerUploadUtil: <a href="../injectables/MulterUploadUtil.html">MulterUploadUtil</a>, deleteS3ImagesUtil: <a href="../injectables/DeleteS3ImagesUtil.html">DeleteS3ImagesUtil</a>)</code>
+<code>constructor(imagesModel: Model<ImageModelInterface>, processSaveDataUtil: <a href="../injectables/ProcessSaveDataUtil.html">ProcessSaveDataUtil</a>, createMulterUploadUtil: <a href="../injectables/CreateMulterUploadUtil.html">CreateMulterUploadUtil</a>, multerUploadUtil: <a href="../injectables/MulterUploadUtil.html">MulterUploadUtil</a>, deleteS3ImagesUtil: <a href="../injectables/DeleteS3ImagesUtil.html">DeleteS3ImagesUtil</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/images/service/images.service.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/images/service/images.service.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -149,7 +149,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                                                         <td>imagesModel</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../interfaces/ImageInterface.html" target="_self" >Model&lt;ImageInterface&gt;</a></code>
+                                                                    <code>Model&lt;ImageModelInterface&gt;</code>
                                                         </td>
                                                   
                                                     <td>
@@ -239,7 +239,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/images/service/images.service.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/images/service/images.service.ts:132</a></div>
                             </td>
                         </tr>
 
@@ -302,7 +302,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/images/service/images.service.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/images/service/images.service.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -365,7 +365,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/images/service/images.service.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/images/service/images.service.ts:154</a></div>
                             </td>
                         </tr>
 
@@ -449,7 +449,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/images/service/images.service.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/images/service/images.service.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -505,7 +505,7 @@ this makes queries slightly less selective and less efficient, but more secure.<
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/images/service/images.service.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/images/service/images.service.ts:70</a></div>
                             </td>
                         </tr>
 
@@ -583,7 +583,7 @@ is just to ensure only the user&#39;s photos are returned and not another user&#
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/images/service/images.service.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/images/service/images.service.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -647,21 +647,26 @@ is just to ensure only the user&#39;s photos are returned and not another user&#
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger, Req, Res } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
-import { ImageInterface } from &#x27;../interface/modelInterface/image.interface&#x27;;
-import { Model } from &#x27;mongoose&#x27;;
-import { JwtPayloadDto } from &#x27;../../auth/dto/jwt-payload&#x27;;
-import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
+import { ImageModelInterface } from &#x27;../interfaces/modelInterface/image-model.interface&#x27;;
+import { Model, Query } from &#x27;mongoose&#x27;;
+import { JwtPayloadInterface } from &#x27;../../auth/interfaces/jwt-payload.interface&#x27;;
 import { profile } from &#x27;../../common/Const&#x27;;
-import { ImageDto } from &#x27;../dto/image.dto&#x27;;
+import { SaveImagesInterface } from &#x27;../interfaces/service/save-images.interface&#x27;
 import { ProcessSaveDataUtil } from &#x27;../util/process-save-data.util&#x27;;
-import { ProcessedSaveDataDto } from &#x27;../dto/processed-save-data.dto&#x27;;
-import { S3Provider } from &#x27;../providers/s3.provider&#x27;;
+import { ProcessedSaveDataInterface } from &#x27;../interfaces/utils/processSaveData/processed-save-data.interface&#x27;;
 import { CreateMulterUploadUtil } from &#x27;../util/create-multer-upload.util&#x27;;
 import { MulterUploadUtil } from &#x27;../util/multer-upload.util&#x27;;
-import { ImageQueryResultsDto } from &#x27;../dto/image-query-results.dto&#x27;;
 import { DeleteS3ImagesUtil } from &#x27;../util/delete-s3-images.util&#x27;;
+import { FindRentalImagesInterface } from &#x27;../interfaces/service/find-rental-images.interface&#x27;;
+import { DeleteImagesInterface } from &#x27;../interfaces/service/delete-images.interface&#x27;;
+import { FindProfileImageInterface } from &#x27;../interfaces/service/find-profile-image.interface&#x27;;
+import { DeleteAllImagesInterface } from &#x27;../interfaces/service/delete-all-images.interface&#x27;;
+import { FileUploadAndSaveInterface } from &#x27;../interfaces/service/fileupload-and-save.interface&#x27;;
+import { RetrievedImagesInterface } from &#x27;../interfaces/service/retrieved-images.interface&#x27;;
+import { DeleteResponseInterface } from &#x27;../../common/interfaces/delete-response.interface&#x27;;
+import { Image } from &#x27;../interfaces/image.interface&#x27;;
 /**
  * **summary**: contains all of the functionality for uploading and managing photos in the application.
  * - note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
@@ -671,7 +676,7 @@ import { DeleteS3ImagesUtil } from &#x27;../util/delete-s3-images.util&#x27;;
 export class ImagesService {
 
   constructor(
-    @InjectModel(&#x27;Images&#x27;) private readonly imagesModel: Model&lt;ImageInterface&gt;,
+    @InjectModel(&#x27;Images&#x27;) private readonly imagesModel: Model&lt;ImageModelInterface&gt;,
     private readonly processSaveDataUtil: ProcessSaveDataUtil,
     private readonly createMulterUploadUtil: CreateMulterUploadUtil,
     private readonly multerUploadUtil: MulterUploadUtil,
@@ -685,15 +690,19 @@ export class ImagesService {
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it&#x27;s a rental image): Check for null
    */
-  saveImages &#x3D; async (files, category, user_id, rental_id) &#x3D;&gt; {
+  saveImages &#x3D; async (data: SaveImagesInterface): Promise&lt;Image[] | Image&gt; &#x3D;&gt; {
     try {
-      const { packet, image }: ProcessedSaveDataDto &#x3D; await this.processSaveDataUtil.process(files, user_id, rental_id, category);
+      const { packet, image }: ProcessedSaveDataInterface &#x3D; await this.processSaveDataUtil.process(data);
       let flag;
       packet &#x3D;&#x3D;&#x3D; null ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
       if (flag &#x3D;&#x3D;&#x3D; &#x27;multiple&#x27;) {
         return await this.imagesModel.insertMany(packet);
       }
-      return await this.imagesModel.save(image)
+      const document &#x3D; new this.imagesModel(image);
+      document.save(function(err) {
+       if (err) throw new Error(err);
+       return;
+      });
     } catch (err) {
       throw new Error(err);
     }
@@ -707,18 +716,18 @@ export class ImagesService {
    * @param rental_id the id of the rental
    * @param user_id used to verify the image belongs to the requesting user
    */
-  findRentalImages &#x3D; async (img_id: string | null, rental_id: string | null, user: JwtPayloadDto): Promise&lt;ImageQueryResultsDto&gt; &#x3D;&gt; {
+  findRentalImages &#x3D; async (data: FindRentalImagesInterface): Promise&lt;RetrievedImagesInterface&gt; &#x3D;&gt; {
     // img_id given from findVehicleImage endpoint
     try {
       let flag;
-      img_id !&#x3D;&#x3D; null ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
+      data.img_id !&#x3D;&#x3D; null ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
       // find multiple images
       if (flag &#x3D;&#x3D;&#x3D; &#x27;multiple&#x27;) {
-        const images &#x3D; await this.imagesModel.find({ rental_id: rental_id, user_id: user.userId });
+        const images &#x3D; await this.imagesModel.find({ rental_id: data.rental_id, user_id: data.user.userId });
         return { count: images.length, images: images }
       }
       // find a specific image
-      const image &#x3D; await this.imagesModel.findById(img_id);
+      const image &#x3D; await this.imagesModel.findOne({ _id: data.img_id });
       return { count: 1, images: image }
     } catch (err) {
       throw new Error(err);
@@ -729,15 +738,15 @@ export class ImagesService {
    * **summary**: query multiple profile images by user_id and profile category, or find a specific profile photo by id
    * @param user the user property of the request object
    */
-  findProfileImages &#x3D; async (user: JwtPayloadDto, img_id?: string) &#x3D;&gt; {
+  findProfileImages &#x3D; async (data: FindProfileImageInterface): Promise&lt;RetrievedImagesInterface&gt; &#x3D;&gt; {
     try {
       let flag;
-      img_id ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
+      data.img_id ? flag &#x3D; &#x27;single&#x27; : flag &#x3D; &#x27;multiple&#x27;;
       if (flag &#x3D;&#x3D;&#x3D; &#x27;multiple&#x27;) {
-        const images &#x3D; await this.imagesModel.find({ user_id: user.userId })
+        const images &#x3D; await this.imagesModel.find({ user_id: data.user.userId, category: profile })
         return { count: images.length, images: images };
       };
-      const image &#x3D; await this.imagesModel.findById(img_id);
+      const image &#x3D; await this.imagesModel.findOne({ _id: data.img_id });
       return { count: 1, images: image }
     } catch (err) {
       throw new Error(err)
@@ -749,15 +758,15 @@ export class ImagesService {
    * @param category the images category; rentals or profile
    * @param user_id used to verify the photos belong to the requesting user
    */
-  deleteImages &#x3D; async (images: ImageDto[], user: JwtPayloadDto) &#x3D;&gt; {
+  deleteImages &#x3D; async (data: DeleteImagesInterface): Promise&lt;DeleteResponseInterface&gt; &#x3D;&gt; {
     try {
-      if (images &amp;&amp; images.length &gt; 0) {
-        if (images.length &#x3D;&#x3D;&#x3D; 1) {
-          await this.deleteS3ImagesUtil.deleteS3Image(images, user);
-          return await this.imagesModel.deleteOne({ _id: images[0]._id, user_id: user.userId });
+      if (data.images &amp;&amp; data.images.length &gt; 0) {
+        if (data.images.length &#x3D;&#x3D;&#x3D; 1) {
+          await this.deleteS3ImagesUtil.deleteS3Image({ images: data.images, user: data.user });
+          return await this.imagesModel.remove({ _id: data.images[0]._id, user_id: data.user.userId });
         }
-        const ids &#x3D; await this.deleteS3ImagesUtil.deleteS3Images(images, user);
-        return await this.imagesModel.deleteMany({ _id: { $in: ids }, user_id: user.userId })
+        const ids &#x3D; await this.deleteS3ImagesUtil.deleteS3Images({ images: data.images, user: data.user });
+        return await this.imagesModel.remove({ _id: { $in: ids }, user_id: data.user.userId })
       }
     } catch (err) {
       throw new Error(err);
@@ -769,14 +778,17 @@ export class ImagesService {
    * @param user_id used to locate the user&#x27;s photos as well as verify they belong to them
    * @param rental_id the id of the rental
    */
-  deleteAllImages &#x3D; async (user: JwtPayloadDto, rental_id: string) &#x3D;&gt; {
+  deleteAllImages &#x3D; async (data: DeleteAllImagesInterface): Promise&lt;DeleteResponseInterface&gt; &#x3D;&gt; {
     // delete all images of the selected rental
-    if (user &amp;&amp; rental_id !&#x3D;&#x3D; null) {
-      return await this.imagesModel.deleteMany({ rental_id: rental_id, user_id: user.userId });
+    if (data.user &amp;&amp; typeof data.rental_id &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+      console.log(&#x27;DELETING ALL RENTAL IMAGES NOW&#x27;)
+      console.log(data.rental_id);
+      console.log(data.user);
+      return await this.imagesModel.remove({ user_id: data.user.userId, rental_id: data.rental_id });
     }
     // delete all of the user&#x27;s profile images
-    if (user &amp;&amp; rental_id &#x3D;&#x3D;&#x3D; null) {
-      return await this.imagesModel.deleteMany({ user_id: user.userId, category: profile });
+    if (data.user &amp;&amp; data.rental_id &#x3D;&#x3D;&#x3D; undefined || typeof data.rental_id !&#x3D;&#x3D; &#x27;string&#x27;) {
+      return await this.imagesModel.remove({ user_id: data.user.userId, category: profile });
     }
   }
 
@@ -788,15 +800,23 @@ export class ImagesService {
    * @param rental_id the rental_id for rental image uploads
    * @param saveImages the images.service.saveImages method
    */
-  fileuploadAndSave &#x3D; async (req, res, category, rental_id) &#x3D;&gt; {
+  fileuploadAndSave &#x3D; async (data: FileUploadAndSaveInterface): Promise&lt;string&gt; &#x3D;&gt; {
     try {
       // create a multer upload
-      const user: JwtPayloadDto &#x3D; req.user;
-      const multerUpload &#x3D; await this.createMulterUploadUtil.create(req, category)
+      const user: JwtPayloadInterface &#x3D; data.req.user;
+      const multerUpload &#x3D; await this.createMulterUploadUtil.create({ req: data.req, category: data.category })
       // Upload the image(s)
-      await this.multerUploadUtil.upload(req, res, multerUpload, this.saveImages, category, user, rental_id);
+      await this.multerUploadUtil.upload({
+        req: data.req,
+        res: data.res,
+        multerUpload,
+        saveImages: this.saveImages,
+        category: data.category,
+        user,
+        rental_id: data.rental_id
+      });
     } catch (err) {
-      return res.status(500).json(&#x60;Failed to upload image file: ${err}&#x60;)
+      return data.res.status(500).json(&#x60;Failed to upload image file: ${err}&#x60;)
     }
   }
 }

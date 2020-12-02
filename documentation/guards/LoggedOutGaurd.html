@@ -66,7 +66,7 @@
                 <h3>Description</h3>
                 </p>
                 <p class="comment">
-                    <p><strong>summary</strong>: override the JWT expiration time and &#39;logout&#39; a user by adding their JWT to a Redis cache &#39;dead-list&#39;</p>
+                    <p><strong>summary</strong>: Override the JWT expiration time and &#39;logout&#39; a user by adding their JWT to a Redis cache &#39;dead-list&#39;</p>
 
                 </p>
 
@@ -190,7 +190,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: method that decides if the request will continue to the handler or be blocked </p>
+                    <div class="io-description"><p><strong>summary</strong>: Method that decides if the request will continue to the handler or be blocked </p>
 </div>
 
                     <div class="io-description">
@@ -270,7 +270,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: this is where we use redis to check the incoming jwt by it&#39;s last 8 digits. If the user&#39;s JWT is on the &#39;dead-list&#39;
+                    <div class="io-description"><p><strong>summary</strong>: This is where we use redis to check the incoming jwt by it&#39;s last 8 digits. If the user&#39;s JWT is on the &#39;dead-list&#39;
 they are no longer authorized to make requests before logging in again</p>
 </div>
 
@@ -298,7 +298,7 @@ they are no longer authorized to make requests before logging in again</p>
 
 
                                     <td>
-                                        <p>the request object</p>
+                                        <p>The request object</p>
 
                                     </td>
                                 </tr>
@@ -326,18 +326,18 @@ they are no longer authorized to make requests before logging in again</p>
             <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CanActivate, ExecutionContext, Injectable } from &quot;@nestjs/common&quot;;
 import { Request } from &quot;express&quot;;
 import { Observable } from &quot;rxjs&quot;;
-import { RedisService } from &quot;src/redis/service/redis.service&quot;;
+import { RedisService } from &quot;../../redis/service/redis.service&quot;;
 /**
- * **summary**: override the JWT expiration time and &#x27;logout&#x27; a user by adding their JWT to a Redis cache &#x27;dead-list&#x27;
+ * **summary**: Override the JWT expiration time and &#x27;logout&#x27; a user by adding their JWT to a Redis cache &#x27;dead-list&#x27;
  */
 @Injectable()
 export class LoggedOutGaurd implements CanActivate {
     constructor(private readonly redisService: RedisService) {}
 
     /**
-     * **summary**: this is where we use redis to check the incoming jwt by it&#x27;s last 8 digits. If the user&#x27;s JWT is on the &#x27;dead-list&#x27;
+     * **summary**: This is where we use redis to check the incoming jwt by it&#x27;s last 8 digits. If the user&#x27;s JWT is on the &#x27;dead-list&#x27;
      * they are no longer authorized to make requests before logging in again
-     * @param req the request object
+     * @param req The request object
      */
     private async checkDeadList(req: Request): Promise&lt;boolean&gt; {
         // grab the key from the incoming jwt
@@ -357,7 +357,7 @@ export class LoggedOutGaurd implements CanActivate {
     }
 
     /**
-     * **summary**: method that decides if the request will continue to the handler or be blocked 
+     * **summary**: Method that decides if the request will continue to the handler or be blocked 
      * @param context the execution context
      */
     canActivate(

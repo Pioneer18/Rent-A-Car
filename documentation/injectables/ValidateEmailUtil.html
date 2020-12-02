@@ -57,7 +57,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/user/util/validate-email.util.ts</code>
+            <code>src/user/utils/validate-email.util.ts</code>
         </p>
 
             <p class="comment">
@@ -114,7 +114,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/user/util/validate-email.util.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/user/utils/validate-email.util.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -147,7 +147,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user/util/validate-email.util.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/user/utils/validate-email.util.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -186,6 +186,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+import { ValidateEmailUtilInterface } from &quot;../interface/utils/validate-email-util.interface&quot;;
 /**
  * **summary**: throw an error if the user email already exists
  * @param check the results of a find user by email query
@@ -198,8 +199,8 @@ export class ValidateEmailUtil {
      * **summary**: if the array has a length greater than 0, a user with the email already exists
      * @param check 
      */
-    validateEmail &#x3D; (check) &#x3D;&gt; {
-        if(check.length &#x3D;&#x3D;&#x3D; 0 || check.length &#x3D;&#x3D;&#x3D; undefined) return
+    validateEmail &#x3D; (data: ValidateEmailUtilInterface): void &#x3D;&gt; {
+        if(data.check.length &#x3D;&#x3D;&#x3D; 0 || data.check.length &#x3D;&#x3D;&#x3D; undefined) return
         throw new Error(&#x27;A User exists that is already using this email&#x27;);
     }
 }</code></pre>

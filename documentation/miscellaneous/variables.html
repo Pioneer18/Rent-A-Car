@@ -92,9 +92,6 @@
                             <a href="#makeRequest" title="testfile.ts"><b>makeRequest</b>&nbsp;&nbsp;&nbsp;(testfile.ts)</a>
                         </li>
                         <li>
-                            <a href="#ObjectID" title="src/rental/schema/rental.schema.ts"><b>ObjectID</b>&nbsp;&nbsp;&nbsp;(src/.../rental.schema.ts)</a>
-                        </li>
-                        <li>
                             <a href="#profile" title="src/common/Const.ts"><b>profile</b>&nbsp;&nbsp;&nbsp;(src/.../Const.ts)</a>
                         </li>
                         <li>
@@ -270,10 +267,11 @@
     );
     
     console.log(&#x60;Response Data Below&#x60;);
+    //console.log(JSON.stringify(request, null, 2));
     console.log(JSON.stringify(request.data, null, 2));
-    console.log(JSON.stringify(request.data.items[0].position, null, 2))
-    console.log(JSON.stringify(request.data.items[0].title, null, 2))
-    console.log(JSON.stringify(request.data.items[0].address, null, 2))
+    //console.log(JSON.stringify(request.data.items[0].position, null, 2))
+    //console.log(JSON.stringify(request.data.items[0].title, null, 2))
+    //console.log(JSON.stringify(request.data.items[0].address, null, 2))
     return;
 }</code>
                         </td>
@@ -300,6 +298,7 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>joi.object({
+  userId: joi.string().required,
   rentalDescription: joi.string(),
   address: joi.string().required(),
   specs: joi.object({
@@ -357,7 +356,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate requested new rental before passing to the handler</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate requested new rental before passing to the handler</p>
 <ul>
 <li>fuel: when the selected fuel type is electric and not gas or hybrid, several fields must change their validation<ul>
 <li>mpgE: the metric for electric mileage. When the selected fuel type is electric, mpgE is required, otherwise it must be null</li>
@@ -544,7 +543,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: export constants to be used in the application. These are mostly names of providers</p>
+                        <div class="io-description"><p><strong>summary</strong>: Export constants to be used in the application. These are mostly names of providers</p>
 </div>
                     </td>
                 </tr>
@@ -615,7 +614,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: provide a connection to the remote database</p>
+                        <div class="io-description"><p><strong>summary</strong>: Provide a connection to the remote database</p>
 </div>
                     </td>
                 </tr>
@@ -715,7 +714,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: holds the secret key and expiration time of the JWT token for the Passport Jwt-Strategy</p>
+                        <div class="io-description"><p><strong>summary</strong>: Holds the secret key and expiration time of the JWT token for the Passport Jwt-Strategy</p>
 </div>
                     </td>
                 </tr>
@@ -726,27 +725,6 @@
     <h3>src/rental/schema/rental.schema.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ObjectID"></a>
-                        <span class="name">
-                            <b>
-                            ObjectID</b>
-                            <a href="#ObjectID"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>mongoose.ObjectId</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
@@ -761,13 +739,13 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>new Schema({
-  rentalId: ObjectID,
+  userId: String,
   rentalTitle: String,
   rentalDescription: String,
   address: String,
   loc: {
     type: { type: String },
-    coordinates: Object,
+    coordinates: [Number, Number],
   },
   specs: {
     odometer: Number,
@@ -790,7 +768,7 @@
     licensePlate: String,
     state: String,
   },
-  features: [String],
+  features: [{type: String}],
   scheduling: {
     requiredNotice: Number,
     rentMinDuration: Number,
@@ -803,7 +781,7 @@
       monthly: { type: Number, default: null },
     },
   },
-  photos: [String],
+  photos: [{type: String}],
   listed: Boolean,
 })</code>
                         </td>
@@ -811,7 +789,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: the schema for the Rental Model</p>
+                        <div class="io-description"><p><strong>summary</strong>: The schema for the Rental Model</p>
 </div>
                     </td>
                 </tr>
@@ -891,7 +869,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: the schema for the Unavailability Model</p>
+                        <div class="io-description"><p><strong>summary</strong>: The schema for the Unavailability Model</p>
 </div>
                     </td>
                 </tr>
@@ -994,7 +972,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate an incoming SearchRentalDto</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate an incoming SearchRentalDto</p>
 </div>
                     </td>
                 </tr>
@@ -1064,7 +1042,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: map the passed array, of any Type, into a new array of tuples with the index for each value</p>
+                        <div class="io-description"><p><strong>summary</strong>: Map the passed array, of any Type, into a new array of tuples with the index for each value</p>
 </div>
                     </td>
                 </tr>
@@ -1106,7 +1084,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: provide a connection to the Unavailability Model</p>
+                        <div class="io-description"><p><strong>summary</strong>: Provide a connection to the Unavailability Model</p>
 </div>
                     </td>
                 </tr>
@@ -1148,7 +1126,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: provide connection to the User Model</p>
+                        <div class="io-description"><p><strong>summary</strong>: Provide connection to the User Model</p>
 </div>
                     </td>
                 </tr>

@@ -140,10 +140,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/common/filters/http-error.filter.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/common/filters/http-error.filter.ts:24</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: Access the appropriate underlying arguments for any execution context with ArgumentHost</p>
+</div>
+                    </td>
+                </tr>
 
                     <tr>
                         <td class="col-md-4">
@@ -200,18 +206,18 @@ import { DateTime } from &#x27;luxon&#x27;;
 @Catch(HttpException)
 export class HttpErrorFilter implements ExceptionFilter&lt;HttpException&gt; {
   /**
+   * **summary**: Access the appropriate underlying arguments for any execution context with ArgumentHost
    * @param {} exception
    * @param {ArgumentsHost} host
    */
-  catch &#x3D; (exception: HttpException, host: ArgumentsHost) &#x3D;&gt; {
-    // note: access the appropriate underlying arguments for any execution context with ArgumentHost
+  catch &#x3D; (exception: HttpException, host: ArgumentsHost): void &#x3D;&gt; {
     const context &#x3D; host.switchToHttp();
     const request &#x3D; context.getRequest();
     const response &#x3D; context.getResponse();
     const status &#x3D; exception.getStatus();
 
     /**
-     * error responses
+     * Error responses
      */
     const errorResponse &#x3D; {
       http_code: status,
@@ -222,7 +228,7 @@ export class HttpErrorFilter implements ExceptionFilter&lt;HttpException&gt; {
     };
 
     /**
-     * error logging
+     * Error logging
      */
     Logger.error(
       &#x60;${request.method} ${request.url}&#x60;,
@@ -231,7 +237,7 @@ export class HttpErrorFilter implements ExceptionFilter&lt;HttpException&gt; {
     );
 
     /**
-     * take direct control of the response with the json method
+     * Take direct control of the response with the json method
      */
     response.status(status).json(errorResponse);
   }

@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: creates a <a href="https://moment.github.io/luxon/"><strong>Luxon</strong></a> <a href="https://moment.github.io/luxon/docs/manual/tour.html#intervals"><strong>Interval</strong></a> from the startTime and currentTime
+                <p><strong>summary</strong>: Creates a <a href="https://moment.github.io/luxon/"><strong>Luxon</strong></a> <a href="https://moment.github.io/luxon/docs/manual/tour.html#intervals"><strong>Interval</strong></a> from the startTime and currentTime
 and then uses Luxon methods to validate the Given Notice is at least 1 hour in duration; this is the minimum allowed for any user</p>
 <ul>
 <li>Luxon is &quot;a powerful, modern, and friendly wrapper for Javacript dates and times&quot;</li>
@@ -143,7 +143,7 @@ and then uses Luxon methods to validate the Given Notice is at least 1 hour in d
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: create the <strong>givenNotice</strong> property value, it must be at least one hour</p>
+                        <div class="io-description"><p><strong>summary</strong>: Create the <strong>givenNotice</strong> property value, it must be at least one hour</p>
 </div>
                     </td>
                 </tr>
@@ -199,7 +199,7 @@ and then uses Luxon methods to validate the Given Notice is at least 1 hour in d
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto</p>
+                        <div class="io-description"><p><strong>summary</strong>: Use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto</p>
 </div>
                     </td>
                 </tr>
@@ -256,7 +256,7 @@ and then uses Luxon methods to validate the Given Notice is at least 1 hour in d
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
+                        <div class="io-description"><p><strong>summary</strong>: Validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
 this is just another level of validation.</p>
 </div>
                     </td>
@@ -309,7 +309,7 @@ import { GivenNoticeSearchRentalDto } from &#x27;../dto/searchRental/given-notic
 import { RawSearchRentalDto } from &#x27;../dto/searchRental/raw-search-rental.dto&#x27;;
 import { DateTime } from &#x27;luxon&#x27;;
 /**
- * **summary**: creates a [**Luxon**](https://moment.github.io/luxon/) [**Interval**](https://moment.github.io/luxon/docs/manual/tour.html#intervals) from the startTime and currentTime
+ * **summary**: Creates a [**Luxon**](https://moment.github.io/luxon/) [**Interval**](https://moment.github.io/luxon/docs/manual/tour.html#intervals) from the startTime and currentTime
  * and then uses Luxon methods to validate the Given Notice is at least 1 hour in duration; this is the minimum allowed for any user
  * - Luxon is &quot;a powerful, modern, and friendly wrapper for Javacript dates and times&quot;
  */
@@ -317,10 +317,10 @@ import { DateTime } from &#x27;luxon&#x27;;
 export class GivenNoticePipe implements PipeTransform {
 
   /**
-   * **summary**: create the **givenNotice** property value, it must be at least one hour
+   * **summary**: Create the **givenNotice** property value, it must be at least one hour
    * @param startTime the request start time of the rental
    */
-  private createGivenNotice &#x3D; async(startTime) &#x3D;&gt; {
+  private createGivenNotice &#x3D; async(startTime): Promise&lt;number&gt; &#x3D;&gt; {
     const givenNotice: number &#x3D; startTime.diffNow().toObject().milliseconds;
     if (givenNotice &gt;&#x3D; 3600000) {
       return givenNotice;
@@ -331,12 +331,12 @@ export class GivenNoticePipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
+   * **summary**: Validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
    * this is just another level of validation.
    * @param startTime the requested time for the Rental to begin
    * @param endTime the requested time for the Rental to end
    */
-  private validateRequestedTime &#x3D; async(startTime, endTime) &#x3D;&gt; {
+  private validateRequestedTime &#x3D; async(startTime, endTime): Promise&lt;void&gt; &#x3D;&gt; {
     if (startTime &gt; endTime) {
       throw new Error(
         &#x27;The rental start time cannot be after the rental end time&#x27;,
@@ -348,7 +348,7 @@ export class GivenNoticePipe implements PipeTransform {
   }
 
   /**
-   * **summary**: use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto
+   * **summary**: Use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto
    * @param value the raw client request data to search for rentals
    */
   transform &#x3D; async(value: RawSearchRentalDto):Promise&lt;GivenNoticeSearchRentalDto&gt; &#x3D;&gt; {

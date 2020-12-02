@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/email/email.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/email/email.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -149,13 +149,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/email/email.service.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/email/email.service.ts:28</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: create the mail options to be used to send the email</p>
+                        <div class="io-description"><p><strong>summary</strong>: Create the mail options to be used to send the email</p>
 </div>
                     </td>
                 </tr>
@@ -175,7 +175,7 @@
                                                 <tr>
                                                         <td>email</td>
                                                         <td>
-                                                                <code><p>user&#39;s email</p>
+                                                                <code><p>User&#39;s email</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -205,13 +205,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/email/email.service.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/email/email.service.ts:43</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: use the nodemailer transporter to send the email</p>
+                        <div class="io-description"><p><strong>summary</strong>: Use the nodemailer transporter to send the email</p>
 </div>
                     </td>
                 </tr>
@@ -263,13 +263,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/email/email.service.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/email/email.service.ts:16</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: the gmail nodemailer transporter used to send emails</p>
+                        <div class="io-description"><p><strong>summary</strong>: The gmail nodemailer transporter used to send emails</p>
 </div>
                     </td>
                 </tr>
@@ -285,6 +285,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import * as nodemailer from &#x27;nodemailer&#x27;;
 import { MailOptionsInterface } from &#x27;./interface/mailoptions.interface&#x27;;
+import {CreateMailOptionsInterface} from &#x27;./interface/create-mail-options.interface&#x27;
 /**
  * **summary**: this email service uses the gmail nodemailer to send emails to the provided email; used to send the forgot password email to registered users
  */
@@ -294,7 +295,7 @@ export class EmailService {
 
 
     /**
-     * **summary**: the gmail nodemailer transporter used to send emails
+     * **summary**: The gmail nodemailer transporter used to send emails
      */
     private transporter &#x3D; nodemailer.createTransport( {
         service: &#x27;gmail&#x27;, 
@@ -305,13 +306,13 @@ export class EmailService {
     })
 
     /**
-     * **summary**: create the mail options to be used to send the email
-     * @param email user&#x27;s email
+     * **summary**: Create the mail options to be used to send the email
+     * @param email User&#x27;s email
      */
-    createMailOptions &#x3D; async(email: string): Promise&lt;MailOptionsInterface&gt; &#x3D;&gt; {
+    createMailOptions &#x3D; async(data: CreateMailOptionsInterface): Promise&lt;MailOptionsInterface&gt; &#x3D;&gt; {
         const mailOptions: MailOptionsInterface &#x3D; {
             from: &#x27;rentacar.team2020@gmail.com&#x27;,
-            to: email,
+            to: data.email,
             subject: &#x27;Reset Forgotten Email Password for Rent-A-Car&#x27;,
             text: &#x27;Please select the reset email link to reset your password&#x27;,
             html: &#x27;&lt;h1&gt;Rent-A-Car Password Reset&lt;/h1&gt;&lt;br&gt;&lt;p&gt;please select the reset email link to reset your passowrd&lt;/p&gt;&#x27;
@@ -320,10 +321,10 @@ export class EmailService {
     }
 
     /**
-     * **summary**: use the nodemailer transporter to send the email
+     * **summary**: Use the nodemailer transporter to send the email
      * @param mailOptions 
      */
-    sendMail &#x3D; async(mailOptions): Promise&lt;any&gt; &#x3D;&gt; {
+    sendMail &#x3D; async(mailOptions: MailOptionsInterface): Promise&lt;any&gt; &#x3D;&gt; {
         try{
             this.transporter.sendMail(mailOptions);
         } catch(err) {

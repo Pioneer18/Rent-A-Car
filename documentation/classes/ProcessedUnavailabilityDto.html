@@ -68,16 +68,22 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
+                <p><strong>summary</strong>: This dto is the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
 to create the ProcessedUnavailabilityQueryDtos as well as the returned ProcessedUnavailabilityQueryDto[]s that will be used by the handler
-to schedule the new unavailability.</p>
+to schedule the new unavailability. It is passed to the rental.controller.scheduleUnavailability() method</p>
 <ul>
-<li>passed to the rental.service.scheduleUnavailability() method</li>
+<li>note: <a href="https://docs.nestjs.com/controllers#request-payloads"><strong>request payloads</strong></a> are dto classes and not interfaces so they can be accessed by NestJS at runtime</li>
 </ul>
 
             </p>
 
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/ScheduleUnavailabilityInterface.html" target="_self" >ScheduleUnavailabilityInterface</a></code>
+            </p>
 
 
             <section>
@@ -140,7 +146,7 @@ to schedule the new unavailability.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -167,7 +173,7 @@ to schedule the new unavailability.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -194,7 +200,7 @@ to schedule the new unavailability.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/dto/unavailability/schedule/processed-unavailability.dto.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -215,13 +221,14 @@ to schedule the new unavailability.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UnavailabilityQueryDto } from &#x27;./unavailability-query.dto&#x27;;
 import { ProcessedUnavailabilityQueryDto } from &#x27;./processed-unavailability-query.dto&#x27;;
+import { ScheduleUnavailabilityInterface } from &#x27;../../../interface/service/schedule-unavailability.interface&#x27;;
 /**
- * **summary**: the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
+ * **summary**: This dto is the final procesed version of the request to schedule unavailability. It contains the UnavailabilityQueryDto data that was used
  * to create the ProcessedUnavailabilityQueryDtos as well as the returned ProcessedUnavailabilityQueryDto[]s that will be used by the handler
- * to schedule the new unavailability.
- * - passed to the rental.service.scheduleUnavailability() method
+ * to schedule the new unavailability. It is passed to the rental.controller.scheduleUnavailability() method
+ * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
-export class ProcessedUnavailabilityDto {
+export class ProcessedUnavailabilityDto implements ScheduleUnavailabilityInterface {
     y1Query: UnavailabilityQueryDto;
     y2Query: UnavailabilityQueryDto | null;
     data: {

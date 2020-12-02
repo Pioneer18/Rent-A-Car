@@ -109,7 +109,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/auth/strategies/jwt.strategy.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/auth/strategies/jwt.strategy.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -142,13 +142,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/auth/strategies/jwt.strategy.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/auth/strategies/jwt.strategy.ts:28</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: return the decoded payload of the JWT</p>
+                        <div class="io-description"><p><strong>summary</strong>: Return the decoded payload of the JWT</p>
 </div>
                     </td>
                 </tr>
@@ -185,6 +185,7 @@ import { PassportStrategy } from &#x27;@nestjs/passport&#x27;;
 import { ExtractJwt, Strategy } from &#x27;passport-jwt&#x27;;
 import { jwtConstants } from &#x27;../constant&#x27;;
 import { Request } from &#x27;express&#x27;
+import { JwtPayloadInterface } from &#x27;../interfaces/jwt-payload.interface&#x27;;
 /**
  * **summary**: [**Passport Jwt-Strategy**](http://www.passportjs.org/packages/passport-jwt/)
  */
@@ -202,10 +203,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   /**
-   * **summary**: return the decoded payload of the JWT
+   * **summary**: Return the decoded payload of the JWT
    * @param payload 
    */
-  validate &#x3D; async(payload: any) &#x3D;&gt; {
+  validate &#x3D; async(payload: any): Promise&lt;JwtPayloadInterface&gt; &#x3D;&gt; {
     return { userId: payload.sub, username: payload.username, email: payload.email };
   }
 }</code></pre>

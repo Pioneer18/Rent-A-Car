@@ -152,7 +152,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: use the <a href="https://moment.github.io/luxon/docs/class/src/datetime.js~DateTime.html#instance-get-isInLeapYear"><em>Luxon DateTime.isInLeapYear()</em></a> method
+                        <div class="io-description"><p><strong>summary</strong>: Use the <a href="https://moment.github.io/luxon/docs/class/src/datetime.js~DateTime.html#instance-get-isInLeapYear"><em>Luxon DateTime.isInLeapYear()</em></a> method
 to check if the this current year is a <a href="https://www.timeanddate.com/date/leapyear.html"><strong>leap year</strong></a>. For example, this year 2020 is actually a leap year!</p>
 </div>
                     </td>
@@ -173,7 +173,7 @@ to check if the this current year is a <a href="https://www.timeanddate.com/date
                                                 <tr>
                                                         <td>u1</td>
                                                         <td>
-                                                                <code><p>the initial unavailability&#39;s DateTime</p>
+                                                                <code><p>The initial unavailability&#39;s DateTime</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -210,7 +210,7 @@ to check if the this current year is a <a href="https://www.timeanddate.com/date
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: confirm that the user is requesting to schedule a single block of Unavailable time for their Rental that is logically and will
+                        <div class="io-description"><p><strong>summary</strong>: Confirm that the user is requesting to schedule a single block of Unavailable time for their Rental that is logically and will
 not cause an error in the application
 -validate requested rental start DateTime is not before the current DateTime</p>
 <ul>
@@ -251,13 +251,13 @@ not cause an error in the application
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/rental/pipes/validate-unavailability.pipe.ts:210</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/rental/pipes/validate-unavailability.pipe.ts:209</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: use the validateRelevance(), validateEachUnavailability(), validateCrossover(), validateCrossYearCongruence(),
+                        <div class="io-description"><p><strong>summary</strong>: Use the validateRelevance(), validateEachUnavailability(), validateCrossover(), validateCrossYearCongruence(),
 validateMinNotice(), and checkLeapYear() methods to validate the client request and return a ValidatedUnavailabilityDto</p>
 </div>
                     </td>
@@ -278,7 +278,7 @@ validateMinNotice(), and checkLeapYear() methods to validate the client request 
                                                 <tr>
                                                         <td>value</td>
                                                         <td>
-                                                                <code><p>the sorted but unvalidated client request data</p>
+                                                                <code><p>The sorted but unvalidated client request data</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -315,7 +315,7 @@ validateMinNotice(), and checkLeapYear() methods to validate the client request 
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: this method is called when the requested Unavailability spans into the next year. this method verifies that the crossover into the next year
+                        <div class="io-description"><p><strong>summary</strong>: This method is called when the requested Unavailability spans into the next year. this method verifies that the crossover into the next year
 includes the extra day if it&#39;s a leapYear. Even if it&#39;s not a leap year, this method verifies there are no missing or extra days as the Unavailability enters the
 start of the next year</p>
 </div>
@@ -369,13 +369,13 @@ start of the next year</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/rental/pipes/validate-unavailability.pipe.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/rental/pipes/validate-unavailability.pipe.ts:183</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate congruence in rentalId, start, end, and title across y1 and y2</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate congruence in rentalId, start, end, and title across y1 and y2</p>
 </div>
                     </td>
                 </tr>
@@ -395,14 +395,14 @@ start of the next year</p>
                                                 <tr>
                                                         <td>y1</td>
                                                         <td>
-                                                                <code><p>the first year of the requested Unavailability</p>
+                                                                <code><p>The first year of the requested Unavailability</p>
 </code>
                                                         </td>
                                                 </tr>
                                                 <tr>
                                                         <td>y2</td>
                                                         <td>
-                                                                <code><p>the second year of the requested Unavailability</p>
+                                                                <code><p>The second year of the requested Unavailability</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -433,15 +433,15 @@ start of the next year</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/rental/pipes/validate-unavailability.pipe.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/rental/pipes/validate-unavailability.pipe.ts:132</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate the data inisde of each UnavailabilityDto that will be used to schedule a sequential single &#39;block of Unavailability&#39; for the Rental</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate the data inisde of each UnavailabilityDto that will be used to schedule a sequential single &#39;block of Unavailability&#39; for the Rental</p>
 <ul>
-<li>note: uses the toItemIndexes() util to map a new array of <strong>tuples</strong> conataining an UnavailabilityDto and it&#39;s index in the array</li>
+<li>note: Uses the toItemIndexes() util to map a new array of <strong>tuples</strong> conataining an UnavailabilityDto and it&#39;s index in the array</li>
 </ul>
 </div>
                     </td>
@@ -462,7 +462,7 @@ start of the next year</p>
                                                 <tr>
                                                         <td>unavailability</td>
                                                         <td>
-                                                                <code><p>an array of UnavailabilityDtos, which is the data to create an individual Unavailability Document in the database</p>
+                                                                <code><p>An array of UnavailabilityDtos, which is the data to create an individual Unavailability Document in the database</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -499,7 +499,7 @@ start of the next year</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate that the requested unavailability is not before the current date &amp; time</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate that the requested unavailability is not before the current date &amp; time</p>
 </div>
                     </td>
                 </tr>
@@ -519,14 +519,14 @@ start of the next year</p>
                                                 <tr>
                                                         <td>a</td>
                                                         <td>
-                                                                <code><p>= request start DateTime</p>
+                                                                <code><p>= Request start DateTime</p>
 </code>
                                                         </td>
                                                 </tr>
                                                 <tr>
                                                         <td>b</td>
                                                         <td>
-                                                                <code><p>= current DateTime</p>
+                                                                <code><p>= Current DateTime</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -563,7 +563,7 @@ start of the next year</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate the requested unavailability start time is not in the past</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate the requested unavailability start time is not in the past</p>
 </div>
                     </td>
                 </tr>
@@ -583,7 +583,7 @@ start of the next year</p>
                                                 <tr>
                                                         <td>value</td>
                                                         <td>
-                                                                <code><p>the ordered unavailability from previous pipe</p>
+                                                                <code><p>The ordered unavailability from previous pipe</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -611,7 +611,7 @@ import { ValidatedUnavailabilityDto } from &#x27;../dto/unavailability/validated
 @Injectable()
 export class ValidateUnavailabilityPipe implements PipeTransform {
   /**
-   * **summary**: confirm that the user is requesting to schedule a single block of Unavailable time for their Rental that is logically and will
+   * **summary**: Confirm that the user is requesting to schedule a single block of Unavailable time for their Rental that is logically and will
    * not cause an error in the application
    * -validate requested rental start DateTime is not before the current DateTime
    * - if 2 years
@@ -624,8 +624,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
    */
 
   /**
-   * **summary**: use the [**Luxon DateTime.fromObject()**]() method to create a new DateTime from the raw client requested startTime
-   * @param u1 the 1st unavailabilityDto
+   * **summary**: Use the [**Luxon DateTime.fromObject()**]() method to create a new DateTime from the raw client requested startTime
+   * @param u1 The 1st unavailabilityDto
    */
   private convertToDateTime &#x3D; async (u1: UnavailabilityDto): Promise&lt;DateTime&gt; &#x3D;&gt; {
     if (!u1) {
@@ -642,11 +642,11 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate that the requested unavailability is not before the current date &amp; time
-   * @param a &#x3D; request start DateTime
-   * @param b &#x3D; current DateTime
+   * **summary**: Validate that the requested unavailability is not before the current date &amp; time
+   * @param a &#x3D; Request start DateTime
+   * @param b &#x3D; Current DateTime
    */
-  private validateMinNotice &#x3D; async (a: DateTime, b: DateTime) &#x3D;&gt; {
+  private validateMinNotice &#x3D; async (a: DateTime, b: DateTime): Promise&lt;void&gt; &#x3D;&gt; {
     const notice: Interval &#x3D; Interval.fromDateTimes(a, b).count(&#x27;hours&#x27;);
     if (isNaN(notice) || notice &lt; 0) {
       throw new Error(&#x27;requested unavailability cannot be in the past&#x27;);
@@ -656,8 +656,8 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate the requested unavailability start time is not in the past
-   * @param value the ordered unavailability from previous pipe
+   * **summary**: Validate the requested unavailability start time is not in the past
+   * @param value The ordered unavailability from previous pipe
    */
   private validateRelevance &#x3D; async (value: ValidateScheduleUnavailabilityDto): Promise&lt;DateTime&gt; &#x3D;&gt; {
     // should already know y1 and y2
@@ -671,7 +671,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: this method is called when the requested Unavailability spans into the next year. this method verifies that the crossover into the next year
+   * **summary**: This method is called when the requested Unavailability spans into the next year. this method verifies that the crossover into the next year
    * includes the extra day if it&#x27;s a leapYear. Even if it&#x27;s not a leap year, this method verifies there are no missing or extra days as the Unavailability enters the
    * start of the next year
    * @param y1 
@@ -717,24 +717,23 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: use the [*Luxon DateTime.isInLeapYear()*](https://moment.github.io/luxon/docs/class/src/datetime.js~DateTime.html#instance-get-isInLeapYear) method
+   * **summary**: Use the [*Luxon DateTime.isInLeapYear()*](https://moment.github.io/luxon/docs/class/src/datetime.js~DateTime.html#instance-get-isInLeapYear) method
    * to check if the this current year is a [**leap year**](https://www.timeanddate.com/date/leapyear.html). For example, this year 2020 is actually a leap year!
-   * @param u1 the initial unavailability&#x27;s DateTime
+   * @param u1 The initial unavailability&#x27;s DateTime
    */
-  private checkLeapYear &#x3D; async (u1: DateTime) &#x3D;&gt; {
+  private checkLeapYear &#x3D; async (u1: DateTime): Promise&lt;boolean&gt; &#x3D;&gt; {
     const check &#x3D; u1.isInLeapYear;
-
     return check; // true or false
   }
 
   /**
-   * **summary**: validate the data inisde of each UnavailabilityDto that will be used to schedule a sequential single &#x27;block of Unavailability&#x27; for the Rental
-   * - note: uses the toItemIndexes() util to map a new array of **tuples** conataining an UnavailabilityDto and it&#x27;s index in the array
-   * @param unavailability an array of UnavailabilityDtos, which is the data to create an individual Unavailability Document in the database
+   * **summary**: Validate the data inisde of each UnavailabilityDto that will be used to schedule a sequential single &#x27;block of Unavailability&#x27; for the Rental
+   * - note: Uses the toItemIndexes() util to map a new array of **tuples** conataining an UnavailabilityDto and it&#x27;s index in the array
+   * @param unavailability An array of UnavailabilityDtos, which is the data to create an individual Unavailability Document in the database
    */
   private validateEachUnavailability &#x3D; async (
     unavailability: UnavailabilityDto[],
-  ) &#x3D;&gt; {
+  ): Promise&lt;void&gt; &#x3D;&gt; {
     const base &#x3D; unavailability[0];
     for (const { item, index } of toItemIndexes(unavailability)) {
       // rentalId congruence
@@ -779,14 +778,14 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate congruence in rentalId, start, end, and title across y1 and y2
-   * @param y1 the first year of the requested Unavailability
-   * @param y2 the second year of the requested Unavailability
+   * **summary**: Validate congruence in rentalId, start, end, and title across y1 and y2
+   * @param y1 The first year of the requested Unavailability
+   * @param y2 The second year of the requested Unavailability
    */
   private validateCrossYearCongruence &#x3D; async (
     y1: UnavailabilityDto,
     y2: UnavailabilityDto,
-  ) &#x3D;&gt; {
+  ): Promise&lt;void&gt; &#x3D;&gt; {
     if (y1.rentalId !&#x3D;&#x3D; y2.rentalId) {
       throw new Error(&#x27;request cannot have more than 1 Rental ID&#x27;);
     }
@@ -805,9 +804,9 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: use the validateRelevance(), validateEachUnavailability(), validateCrossover(), validateCrossYearCongruence(),
+   * **summary**: Use the validateRelevance(), validateEachUnavailability(), validateCrossover(), validateCrossYearCongruence(),
    * validateMinNotice(), and checkLeapYear() methods to validate the client request and return a ValidatedUnavailabilityDto
-   * @param value the sorted but unvalidated client request data
+   * @param value The sorted but unvalidated client request data
    */
   transform &#x3D; async(value: ValidateScheduleUnavailabilityDto): Promise&lt;ValidatedUnavailabilityDto&gt; &#x3D;&gt; {
     try {

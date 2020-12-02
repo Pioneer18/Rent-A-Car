@@ -124,7 +124,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/images/util/process-save-data.util.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/images/util/process-save-data.util.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -189,8 +189,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { ImageInterface } from &quot;../interface/modelInterface/image.interface&quot;;
-import { ProcessedSaveDataDto } from &quot;../dto/processed-save-data.dto&quot;;
+import { ProcessedSaveDataInterface } from &quot;../interfaces/utils/processSaveData/processed-save-data.interface&quot;;
+import { SaveImagesInterface } from &quot;../interfaces/service/save-images.interface&quot;;
+import { Image } from &quot;../interfaces/image.interface&quot;;
 /**
  * **summary**: utility to process the save image request data before passing it to the handler
  */
@@ -204,18 +205,18 @@ export class ProcessSaveDataUtil {
    * @param rental_id the rental id
    * @param category the category of the image: rentals or photos
    */
-  process &#x3D; async (files, user_id, rental_id, category): Promise&lt;ProcessedSaveDataDto&gt; &#x3D;&gt; {
-    if (files &amp;&amp; files.length &gt; 0) {
+  process &#x3D; async (data: SaveImagesInterface): Promise&lt;ProcessedSaveDataInterface&gt; &#x3D;&gt; {
+    if (data.files &amp;&amp; data.files.length &gt; 0) {
       // single file
-      if (files.length &#x3D;&#x3D;&#x3D; 1) {
-        const temp &#x3D; files[0];
-        const image: ImageInterface &#x3D; {
-          user_id: user_id,
-          rental_id: rental_id,
+      if (data.files.length &#x3D;&#x3D;&#x3D; 1) {
+        const temp &#x3D; data.files[0];
+        const image: Image &#x3D; {
+          user_id: data.user_id,
+          rental_id: data.rental_id,
           bucket: temp.bucket,
           key: temp.key,
           etag: temp.etag,
-          category: category,
+          category: data.category,
           size: temp.size,
           location: temp.location
         }
@@ -223,14 +224,14 @@ export class ProcessSaveDataUtil {
 
       }
       // multiple files
-      const packet &#x3D; files.map(item &#x3D;&gt; {
-        const image: ImageInterface &#x3D; {
-          user_id: user_id,
-          rental_id: rental_id,
+      const packet &#x3D; data.files.map(item &#x3D;&gt; {
+        const image: Image &#x3D; {
+          user_id: data.user_id,
+          rental_id: data.rental_id,
           bucket: item.bucket,
           key: item.key,
           etag: item.etag,
-          category: category,
+          category: data.category,
           size: item.size,
           location: item.location
         }

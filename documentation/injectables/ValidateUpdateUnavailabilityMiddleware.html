@@ -116,12 +116,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(unavailability: <a href="../classes/UnavailabilityInterface.html">Model<UnavailabilityInterface></a>)</code>
+<code>constructor(unavailability: <a href="../classes/UnavailabilityModelInterface.html">Model<UnavailabilityModelInterface></a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -142,7 +142,7 @@
                                                         <td>unavailability</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/UnavailabilityInterface.html" target="_self" >Model&lt;UnavailabilityInterface&gt;</a></code>
+                                                                        <code><a href="../classes/UnavailabilityModelInterface.html" target="_self" >Model&lt;UnavailabilityModelInterface&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -185,7 +185,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -248,7 +248,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:142</a></div>
                             </td>
                         </tr>
 
@@ -320,7 +320,7 @@ rental.controller.updateUnavailability() method. Validate the request before pas
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -377,7 +377,7 @@ rental.controller.updateUnavailability() method. Validate the request before pas
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/rental/middleware/validate-update-unavailability.middleware.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -433,8 +433,9 @@ the database to the range of the request</p>
 import { Request, Response } from &#x27;express&#x27;;
 import { unavailabilityModel } from &#x27;../../common/Const&#x27;;
 import { Model } from &#x27;mongoose&#x27;;
-import { UnavailabilityInterface } from &#x27;../interface/modelInterface/Unavailability/unavailability.interface&#x27;;
+import { UnavailabilityModelInterface } from &#x27;../interface/modelInterface/Unavailability/unavailability.interface&#x27;;
 import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/validate-update-unavailability.dto&#x27;;
+import { CalculateRangeDto } from &#x27;../dto/unavailability/update/calculate-range.dto&#x27;;
 /**
  * **summary**: validate that incoming request to update a rental&#x27;s already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database
  */
@@ -442,28 +443,25 @@ import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/upda
 export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   constructor(
     @Inject(unavailabilityModel)
-    private readonly unavailability: Model&lt;UnavailabilityInterface&gt;,
-  ) {}
+    private readonly unavailability: Model&lt;UnavailabilityModelInterface&gt;,
+  ) { }
 
   /**
    * **summary**: calculate the [**range**](https://www.mathsisfun.com/data/range.html) of the requested Unavailability to update for the Rental
    * @param y1 the start and end day of the first year that the Unavailability is scheduled across
    * @param y2 the start and end day of the second yaer that the Unavailability is scheduled across; if there is a second year
    */
-  private calculateRange &#x3D; async (
-    y1: { sD: number; eD: number },
-    y2: { sD: number; eD: number } | null,
-  ) &#x3D;&gt; {
-    if (y2 !&#x3D;&#x3D; null) {
+  private calculateRange &#x3D; async (data: CalculateRangeDto) &#x3D;&gt; {
+    if (data.y2 !&#x3D;&#x3D; null) {
       // calculate range for 2 years
       let temp1: number;
       let temp2: number;
-      y1.sD &#x3D;&#x3D;&#x3D; y1.eD ? temp1 &#x3D; 1 : temp1 &#x3D; y1.eD - y1.sD + 1;
-      y2.sD &#x3D;&#x3D;&#x3D; y2.eD ? temp2 &#x3D; 1 : temp2 &#x3D; y2.eD - y2.sD + 1;
-      return {range: temp1 + temp2};
+      data.y1.sD &#x3D;&#x3D;&#x3D; data.y1.eD ? temp1 &#x3D; 1 : temp1 &#x3D; data.y1.eD - data.y1.sD + 1;
+      data.y2.sD &#x3D;&#x3D;&#x3D; data.y2.eD ? temp2 &#x3D; 1 : temp2 &#x3D; data.y2.eD - data.y2.sD + 1;
+      return { range: temp1 + temp2 };
     }
-    if (y1.sD !&#x3D;&#x3D; y1.eD) {
-      return { range: y1.eD - y1.sD + 1 };
+    if (data.y1.sD !&#x3D;&#x3D; data.y1.eD) {
+      return { range: data.y1.eD - data.y1.sD + 1 };
     }
     return { range: 1 };
   }
@@ -476,7 +474,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
    * @param range the range of the requested update Unavailability data
    */
   private validateExpectedUnavailability &#x3D; async (
-    value: ValidateUpdateUnavailabilityDto, range: {range: number},
+    value: ValidateUpdateUnavailabilityDto, range: { range: number },
   ) &#x3D;&gt; {
     const test &#x3D; await this.unavailability.find({
       rentalId: value.rentalId,
@@ -572,11 +570,14 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
    * @param res the response object
    * @param next the next method to continue onto the next handler
    */
-  use &#x3D; async(req: Request, res: Response, next: Function):Promise&lt;void&gt; &#x3D;&gt; {
+  use &#x3D; async (req: Request, res: Response, next: Function): Promise&lt;void&gt; &#x3D;&gt; {
     // apply only to update-unavailability request
     if (req.originalUrl &#x3D;&#x3D;&#x3D; &#x27;/v1/rental/update-unavailability&#x27;) {
       await this.validateDto(req.body);
-      const range &#x3D; await this.calculateRange(req.body.y1, req.body.y2); // to validate expected # of Unavailability docs
+      const range &#x3D; await this.calculateRange({
+        y1: req.body.y1,
+        y2: req.body.y2
+      }); // to validate expected # of Unavailability docs
       await this.validateExpectedUnavailability(req.body, range);
     }
     next();

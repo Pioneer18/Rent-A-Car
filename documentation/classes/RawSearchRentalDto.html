@@ -68,9 +68,9 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: search for retnals by address, a start and end time, price, and features</p>
+                <p><strong>summary</strong>: This Dto is to search for retnals by address, a start and end time, price, and features, it is passed to the GivenNoticePipe</p>
 <ul>
-<li>passed to the GivenNoticePipe</li>
+<li>note: <a href="https://docs.nestjs.com/controllers#request-payloads"><strong>request payloads</strong></a> are dto classes and not interfaces so they can be accessed by NestJS at runtime</li>
 </ul>
 
             </p>
@@ -94,9 +94,11 @@
                                 <a href="#address">address</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#features">features</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#price">price</a>
                             </li>
                             <li>
@@ -158,6 +160,7 @@
                         <a name="features"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Optional</span>
                             features</b>
                             <a href="#features"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -185,6 +188,7 @@
                         <a name="price"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Optional</span>
                             price</b>
                             <a href="#price"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -275,8 +279,8 @@
     address: string;
     rentalStartTime: Date;
     rentalEndTime: Date;
-    price: number;
-    features: string[];
+    price?: number;
+    features?: string[];
 }
 </code></pre>
     </div>

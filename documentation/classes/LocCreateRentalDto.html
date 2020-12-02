@@ -68,10 +68,11 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: contains the initial data submitted by a user to create a new rental listing. It also
+                <p><strong>summary</strong>: This dto contains the initial data submitted by a user to create a new rental listing. It also
 contains the raw location information as a single &quot;address&quot; string ad the coordinates for the address</p>
 <ul>
 <li>passed to the MapNewRentalPipe</li>
+<li>note: <a href="https://docs.nestjs.com/controllers#request-payloads"><strong>request payloads</strong></a> are dto classes and not interfaces so they can be accessed by NestJS at runtime</li>
 </ul>
 
             </p>
@@ -139,7 +140,7 @@ contains the raw location information as a single &quot;address&quot; string ad 
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -166,7 +167,7 @@ contains the raw location information as a single &quot;address&quot; string ad 
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -193,7 +194,7 @@ contains the raw location information as a single &quot;address&quot; string ad 
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/dto/createRental/loc-create-rental.dto.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -214,9 +215,10 @@ contains the raw location information as a single &quot;address&quot; string ad 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { RawCreateRentalDto } from &#x27;./raw-create-rental-dto&#x27;;
 /**
- * **summary**: contains the initial data submitted by a user to create a new rental listing. It also
+ * **summary**: This dto contains the initial data submitted by a user to create a new rental listing. It also
  * contains the raw location information as a single &quot;address&quot; string ad the coordinates for the address
  * - passed to the MapNewRentalPipe
+ * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
 export class LocCreateRentalDto {
   value: RawCreateRentalDto;

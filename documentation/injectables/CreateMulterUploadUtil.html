@@ -113,7 +113,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/images/util/create-multer-upload.util.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/images/util/create-multer-upload.util.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -176,13 +176,14 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/images/util/create-multer-upload.util.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/images/util/create-multer-upload.util.ts:21</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: create the Multer upload object</p>
+                        <div class="io-description"><p><strong>summary</strong>: create the Multer upload object for the S3 Bucket. The user&#39;s email and the category are used to store the images in the correct location.
+A maximum of 9 photos may be uploaded at once</p>
 </div>
                     </td>
                 </tr>
@@ -231,7 +232,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/images/util/create-multer-upload.util.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/images/util/create-multer-upload.util.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -247,7 +248,8 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
 import * as multer from &#x27;multer&#x27;;
 import * as multerS3 from &#x27;multer-s3&#x27;;
-import { JwtPayloadDto } from &quot;src/auth/dto/jwt-payload&quot;;
+import { JwtPayloadInterface } from &quot;src/auth/interfaces/jwt-payload.interface&quot;;
+import { CreateInterface } from &quot;../interfaces/utils/createMulterUploadUtil/create.interface&quot;;
 import { S3Provider } from &quot;../providers/s3.provider&quot;;
 /**
  * **summary**: create a multerUpload object
@@ -258,18 +260,19 @@ export class CreateMulterUploadUtil {
     private s3 &#x3D; this.s3Provider.getS3();
 
     /**
-     * **summary**: create the Multer upload object
+     * **summary**: create the Multer upload object for the S3 Bucket. The user&#x27;s email and the category are used to store the images in the correct location.
+     * A maximum of 9 photos may be uploaded at once
      * @param req 
      * @param category 
      */
-    create &#x3D; async (req, category) &#x3D;&gt; {
+    create &#x3D; async (data: CreateInterface) &#x3D;&gt; {
         try {
             // create a multer upload
-            const user: JwtPayloadDto &#x3D; req.user;
+            const user: JwtPayloadInterface &#x3D; data.req.user;
             return multer({
                 storage: multerS3({
                     s3: this.s3,
-                    bucket: &#x60;rent-a-car-photos/${user.email}/${category}&#x60;,
+                    bucket: &#x60;rent-a-car-photos/${user.email}/${data.category}&#x60;,
                     acl: &#x27;public-read&#x27;,
                     key: function (request, file, cb) {
                         cb(null, &#x60;${Date.now()}-${file.originalname}&#x60;); // unique id generator for file (image tag)

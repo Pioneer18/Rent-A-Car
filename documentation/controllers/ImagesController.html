@@ -69,7 +69,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: controller for managing images in the application</p>
+                <p><strong>summary</strong>: Controller for managing images in the application</p>
 
             </p>
 
@@ -210,7 +210,7 @@ Summary: Delete all of the user&#39;s profile images</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/DeleteResponseInterface.html" target="_self" >Promise&lt;DeleteResponseInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -297,7 +297,7 @@ Summary: delete all images for a selected rental</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/DeleteResponseInterface.html" target="_self" >Promise&lt;DeleteResponseInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -324,7 +324,7 @@ Summary: delete all images for a selected rental</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteRentalImages(images: <a href="../classes/ImageDto.html">ImageDto[]</a>, req)</code>
+                    <code>deleteRentalImages(images: <a href="../interfaces/Image.html">ImageDto[]</a>, req)</code>
                 </td>
             </tr>
 
@@ -364,7 +364,7 @@ Summary: Delete a single or multiple images of a rental</p>
                                 <tr>
                                     <td>images</td>
                                     <td>
-                                                <code><a href="../classes/ImageDto.html" target="_self" >ImageDto[]</a></code>
+                                                <code><a href="../interfaces/Image.html" target="_self" >ImageDto[]</a></code>
                                     </td>
 
                                     <td>
@@ -390,7 +390,7 @@ Summary: Delete a single or multiple images of a rental</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/DeleteResponseInterface.html" target="_self" >Promise&lt;DeleteResponseInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -417,7 +417,7 @@ Summary: Delete a single or multiple images of a rental</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findProfileImage(req, image: <a href="../classes/ImageDto.html">ImageDto</a>)</code>
+                    <code>findProfileImage(req, image: <a href="../interfaces/Image.html">ImageDto</a>)</code>
                 </td>
             </tr>
 
@@ -473,7 +473,7 @@ Summary: Find a user profile image</p>
                                 <tr>
                                     <td>image</td>
                                     <td>
-                                                <code><a href="../classes/ImageDto.html" target="_self" >ImageDto</a></code>
+                                                <code><a href="../interfaces/Image.html" target="_self" >ImageDto</a></code>
                                     </td>
 
                                     <td>
@@ -490,7 +490,7 @@ Summary: Find a user profile image</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;RetrievedImagesInterface&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -573,7 +573,7 @@ Summary: Find a user profile image</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;RetrievedImagesInterface&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -600,7 +600,7 @@ Summary: Find a user profile image</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findRentalImage(params: <a href="../classes/ImageDto.html">ImageDto</a>, req)</code>
+                    <code>findRentalImage(params: <a href="../interfaces/Image.html">ImageDto</a>, req)</code>
                 </td>
             </tr>
 
@@ -640,7 +640,7 @@ Summary: Find a vehicle image by id</p>
                                 <tr>
                                     <td>params</td>
                                     <td>
-                                                <code><a href="../classes/ImageDto.html" target="_self" >ImageDto</a></code>
+                                                <code><a href="../interfaces/Image.html" target="_self" >ImageDto</a></code>
                                     </td>
 
                                     <td>
@@ -666,7 +666,7 @@ Summary: Find a vehicle image by id</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;RetrievedImagesInterface&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -760,7 +760,7 @@ Summary: Find all of a rentals images</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;RetrievedImagesInterface&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -856,7 +856,7 @@ Summary: Upload a single or multiple profile photos to be saved</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;Response&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -951,7 +951,7 @@ Summary: Upload a single or multiple profile photos to be saved</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>    <code>Promise&lt;Response&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -966,21 +966,21 @@ Summary: Upload a single or multiple profile photos to be saved</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Req, UseGuards, Body, Get, Query, Res } from &#x27;@nestjs/common&#x27;;
-import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
 import { JwtAuthGuard } from &#x27;../../auth/gaurds/jwt-auth.guard&#x27;;
 import { ImagesService } from &#x27;../service/images.service&#x27;;
-import { response } from &#x27;express&#x27;;
+import { response, Response } from &#x27;express&#x27;;
 import { profile, rentals } from &#x27;../../common/Const&#x27;;
 import { ImageDto } from &#x27;../dto/image.dto&#x27;;
+import { RetrievedImagesInterface } from &#x27;../interfaces/service/retrieved-images.interface&#x27;;
+import { DeleteResponseInterface } from &#x27;src/common/interfaces/delete-response.interface&#x27;;
 /**
- * **summary**: controller for managing images in the application
+ * **summary**: Controller for managing images in the application
  */
 @UseGuards(JwtAuthGuard)
 @Controller(&#x27;images&#x27;)
 export class ImagesController {
     constructor(
         private readonly imagesService: ImagesService,
-        private readonly appConfig: AppConfigService,
     ) { }
 
     /**
@@ -990,9 +990,9 @@ export class ImagesController {
      * @param options option
      */
     @Post(&#x27;upload-rental-images&#x27;)
-    async uploadRentalImages(@Req() req, @Res() res, @Query() params) {
+    async uploadRentalImages(@Req() req, @Res() res, @Query() params): Promise&lt;Response&gt; {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, rentals, params.rental_id)
+            await this.imagesService.fileuploadAndSave({req, res, category: rentals, rental_id: params.rental_id});
         } catch (err) {
             return response
                 .status(500)
@@ -1006,9 +1006,9 @@ export class ImagesController {
      * @param files fieldName
      */
     @Post(&#x27;upload-profile-images&#x27;)
-    async uploadProfileImage(@Req() req, @Res() res, @Query() params) {
+    async uploadProfileImage(@Req() req, @Res() res, @Query() params): Promise&lt;Response&gt; {
         try {
-            await this.imagesService.fileuploadAndSave(req, res, profile, params.rental_id)
+            await this.imagesService.fileuploadAndSave({req, res, category: profile, rental_id: params.rental_id})
         } catch (err) {
             return response
                 .status(500)
@@ -1022,8 +1022,8 @@ export class ImagesController {
      * @param req the request object, which has a user property
      */
     @Get(&#x27;find-rental-images&#x27;)
-    async findRentalImages(@Query() params, @Req() req) {
-        return await this.imagesService.findRentalImages(null, params.rental_id, req.user);
+    async findRentalImages(@Query() params, @Req() req): Promise&lt;RetrievedImagesInterface&gt; {
+        return await this.imagesService.findRentalImages({ img_id: null, rental_id: params.rental_id, user: req.user });
     }
 
     /**
@@ -1032,8 +1032,8 @@ export class ImagesController {
      * @param image the id of the image to find
      */
     @Get(&#x27;find-rental-image&#x27;)
-    async findRentalImage(@Query() params: ImageDto, @Req() req) {
-        return await this.imagesService.findRentalImages(params._id, null, req.user);
+    async findRentalImage(@Query() params: ImageDto, @Req() req): Promise&lt;RetrievedImagesInterface&gt; {
+        return await this.imagesService.findRentalImages({ img_id: params._id, rental_id: null, user: req.user });
     }
 
     /**
@@ -1042,8 +1042,8 @@ export class ImagesController {
      * @param req request object
      */
     @Get(&#x27;find-profile-images&#x27;)
-    async findProfileImages(@Req() req) {
-        return await this.imagesService.findProfileImages(req.user);
+    async findProfileImages(@Req() req): Promise&lt;RetrievedImagesInterface&gt; {
+        return await this.imagesService.findProfileImages({ user: req.user });
     }
 
     /**
@@ -1052,8 +1052,8 @@ export class ImagesController {
      * @param req request object
      */
     @Get(&#x27;find-profile-image&#x27;)
-    async findProfileImage(@Req() req, @Body() image: ImageDto) {
-        return await this.imagesService.findProfileImages(req.user, image._id);
+    async findProfileImage(@Req() req, @Body() image: ImageDto): Promise&lt;RetrievedImagesInterface&gt; {
+        return await this.imagesService.findProfileImages({ user: req.user, img_id: image._id });
     }
 
     /**
@@ -1062,8 +1062,8 @@ export class ImagesController {
      * @param category both or a single one
      */
     @Post(&#x27;delete-images&#x27;)
-    async deleteRentalImages(@Body() images: ImageDto[], @Req() req) {
-        return await this.imagesService.deleteImages(images, req.user);
+    async deleteRentalImages(@Body() images: ImageDto[], @Req() req): Promise&lt;DeleteResponseInterface&gt; {
+        return await this.imagesService.deleteImages({ images, user: req.user });
     }
 
     /**
@@ -1071,8 +1071,8 @@ export class ImagesController {
      * Summary: delete all images for a selected rental
      */
     @Post(&#x27;delete-all-rental-images&#x27;)
-    async deleteAllRentalImages(@Query() params, @Req() req) {
-        return await this.imagesService.deleteAllImages(req.user, params.rental_id);
+    async deleteAllRentalImages(@Query() params, @Req() req): Promise&lt;DeleteResponseInterface&gt; {
+        return await this.imagesService.deleteAllImages({ user: req.user, rental_id: params.rental_id });
     }
 
     /**
@@ -1080,8 +1080,8 @@ export class ImagesController {
      * Summary: Delete all of the user&#x27;s profile images
      */
     @Post(&#x27;delete-all-profile-images&#x27;)
-    async deleteAllProfileImages(@Req() req) {
-        return await this.imagesService.deleteAllImages(req.user, null);
+    async deleteAllProfileImages(@Req() req): Promise&lt;DeleteResponseInterface&gt; {
+        return await this.imagesService.deleteAllImages({ user: req.user });
     }
 
 }

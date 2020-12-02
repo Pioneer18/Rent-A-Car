@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: create the final CreateRentalDto that will be passed to the rental.service.createRental() method</p>
+                <p><strong>summary</strong>: Create the final CreateRentalDto that will be passed to the rental.service.createRental() method</p>
 
             </p>
 
@@ -130,7 +130,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: transform the raw data into a CreateRentalDto</p>
+                        <div class="io-description"><p><strong>summary</strong>: Transform the raw data into a CreateRentalDto</p>
 </div>
                     </td>
                 </tr>
@@ -171,15 +171,15 @@
 import { LocCreateRentalDto } from &#x27;../dto/createRental/loc-create-rental.dto&#x27;;
 import { CreateRentalDto } from &#x27;../dto/createRental/create-rental.dto&#x27;;
 /**
- * **summary**: create the final CreateRentalDto that will be passed to the rental.service.createRental() method
+ * **summary**: Create the final CreateRentalDto that will be passed to the rental.service.createRental() method
  */
 @Injectable()
 export class MapNewRentalPipe implements PipeTransform {
   /**
-   * **summary**: transform the raw data into a CreateRentalDto
+   * **summary**: Transform the raw data into a CreateRentalDto
    * @param value the request to create a rental with all of the necessary raw data
    */
-  transform &#x3D; async(value: LocCreateRentalDto) &#x3D;&gt; {
+  transform &#x3D; async(value: LocCreateRentalDto): Promise&lt;CreateRentalDto&gt; &#x3D;&gt; {
     try {
       const data: CreateRentalDto &#x3D; {
         rentalDescription: &#x27;this is a tokyo grocery getter&#x27;,

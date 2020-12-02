@@ -142,7 +142,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/rental/utils/geo-url-api.util.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/rental/utils/geo-url-api.util.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -213,7 +213,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/rental/utils/geo-url-api.util.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/rental/utils/geo-url-api.util.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -273,6 +273,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import * as axios from &#x27;axios&#x27;;
 import { RawCoordinatesDto } from &#x27;../dto/createRental/raw-coordinates.dto&#x27;;
+import { GetCoordinatesInterface } from &#x27;../interface/utils/geoUrlApi/get-coordinates.interface&#x27;;
+import { MakeRequestInterface } from &#x27;../interface/utils/geoUrlApi/make-request.interface&#x27;
+import { ApiResponseData } from &#x27;../interface/utils/geoUrlApi/api-response-data&#x27;;
 
 /**
  * **summary**: use [**Geocoding &amp; Search API**](https://developer.here.com/documentation/geocoding-search-api/dev_guide/index.html) to get coordinates for an address
@@ -294,13 +297,12 @@ export class GeoUrlApiUtil {
    * @param geoUrl the base HERE geocoding and search v7 api url
    * @param apiKey the api key
    */
-  private makeRequest &#x3D; async(location, geoUrl, apiKey) &#x3D;&gt; {
+  private makeRequest &#x3D; async (data: MakeRequestInterface): Promise&lt;ApiResponseData&gt; &#x3D;&gt; {
     try {
-      console.log(&#x60;Geocoding &amp; Search API Request: ${geoUrl}?q&#x3D;${location}&amp;apiKey&#x3D;${apiKey}&#x60;)
       const request: any &#x3D; await axios.default.get(
-        &#x60;${geoUrl}?q&#x3D;${location}&amp;apiKey&#x3D;${apiKey}&#x60;,
+        &#x60;${data.geoUrl}?q&#x3D;${data.location}&amp;apiKey&#x3D;${data.apiKey}&#x60;,
       );
-      return request;
+      return request.data;
     } catch (err) {
       throw new Error(err);
     }
@@ -312,20 +314,20 @@ export class GeoUrlApiUtil {
    * @param geoUrl the url for the api
    * @param apiKey the key for the api
    */
-  getCoordinates &#x3D; async(address, geoUrl, apiKey):Promise&lt;[number, number]&gt; &#x3D;&gt; {
+  getCoordinates &#x3D; async (data: GetCoordinatesInterface): Promise&lt;[number, number]&gt; &#x3D;&gt; {
     try {
-      const location: string &#x3D; address.replace(/\s+/g, &#x27;+&#x27;);
+      const location: string &#x3D; data.address.replace(/\s+/g, &#x27;+&#x27;);
       // make the API request
       console.log(&#x27;location before the request&#x27;)
       console.log(location);
-      const response: any &#x3D; await this.makeRequest(
+      const response: any &#x3D; await this.makeRequest({
         location,
-        geoUrl,
-        apiKey
-      );
+        geoUrl: data.geoUrl,
+        apiKey: data.apiKey
+      });
       // grab the coordinates
       const rawCoordinates: RawCoordinatesDto &#x3D;
-        response.data.items[0].position;
+        response.items[0].position;
       // map the coords object to return
       const coords: [number, number] &#x3D; [
         rawCoordinates.lat,

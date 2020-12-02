@@ -68,14 +68,20 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: the mongoose update object created by the CreateUpdaterDtoPipe, it&#39;s the data to update an Unavailability for a rental</p>
+                <p><strong>summary</strong>: the mongoose update object created by the CreateUpdaterDtoPipe, it&#39;s the data to update an Unavailability for a rental. It&#39;s passed to the rental.controller.updateUnavailability() method</p>
 <ul>
-<li>passed to the rental.service.updateUnavailability() method</li>
+<li>note: <a href="https://docs.nestjs.com/controllers#request-payloads"><strong>request payloads</strong></a> are dto classes and not interfaces so they can be accessed by NestJS at runtime</li>
 </ul>
 
             </p>
 
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/UpdateUnavailabilityDataInterface.html" target="_self" >UpdateUnavailabilityDataInterface</a></code>
+            </p>
 
 
             <section>
@@ -135,7 +141,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/rental/dto/unavailability/update/update-unavailability-data.dto.ts:6</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/rental/dto/unavailability/update/update-unavailability-data.dto.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -162,7 +168,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/unavailability/update/update-unavailability-data.dto.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/dto/unavailability/update/update-unavailability-data.dto.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -181,7 +187,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class UpdateUnavailabilityDataDto {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { UpdateUnavailabilityDataInterface } from &quot;../../../interface/service/update-unavailability-data.interface&quot;;
+/**
+ * **summary**: the mongoose update object created by the CreateUpdaterDtoPipe, it&#x27;s the data to update an Unavailability for a rental. It&#x27;s passed to the rental.controller.updateUnavailability() method
+ * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
+ */
+export class UpdateUnavailabilityDataDto implements UpdateUnavailabilityDataInterface {
     filter: {
         rentalId: string,
         unavailabilityId: string,

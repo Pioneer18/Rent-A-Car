@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>summary: grab the Authorization header Cookie and the extract JWT and the <strong>key</strong> used for caching the token</p>
+                <p>summary: Grab the Authorization header Cookie and the extract JWT and the <strong>key</strong> used for caching the token</p>
 <ul>
 <li>note: the key is simply the last 8 digits of the this sessions JWT</li>
 </ul>
@@ -162,16 +162,16 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
 import { Request } from &quot;express&quot;;
-import { ExtractKeyValueUtilDto } from &quot;../dto/extract-key-value-util.dto&quot;;
+import { ExtractKeyValueUtilInterface } from &quot;../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface&quot;;
 /**
- * summary: grab the Authorization header Cookie and the extract JWT and the **key** used for caching the token
+ * summary: Grab the Authorization header Cookie and the extract JWT and the **key** used for caching the token
  * - note: the key is simply the last 8 digits of the this sessions JWT
  */
 @Injectable()
 export class ExtractKeyValueUtil {
     constructor() {}
     
-    public extract &#x3D; async(req: Request): Promise&lt;ExtractKeyValueUtilDto&gt; &#x3D;&gt; {
+    public extract &#x3D; async(req: Request): Promise&lt;ExtractKeyValueUtilInterface&gt; &#x3D;&gt; {
         if (req){
             const rawAuth: string &#x3D; req.headers.cookie
             return {

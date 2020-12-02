@@ -69,7 +69,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: controller for managing users in the application</p>
+                <p><strong>summary</strong>: Controller for managing users in the application</p>
 
             </p>
 
@@ -153,15 +153,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/user/controller/user.controller.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/user/controller/user.controller.ts:29</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: create a new user profile</p>
+                    <div class="io-description"><p><strong>summary</strong>: Create a new user profile</p>
 </div>
 
                     <div class="io-description">
@@ -188,7 +188,7 @@
 
 
                                     <td>
-                                        <p>new user data</p>
+                                        <p>New user data</p>
 
                                     </td>
                                 </tr>
@@ -198,7 +198,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/UserModelInterface.html" target="_self" >Promise&lt;CreateQuery&lt;UserModelInterface&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -239,15 +239,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/user/controller/user.controller.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/user/controller/user.controller.ts:66</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: delete a user profile</p>
+                    <div class="io-description"><p><strong>summary</strong>: Delete a user profile</p>
 </div>
 
                     <div class="io-description">
@@ -274,7 +274,7 @@
 
 
                                     <td>
-                                        <p>user credentials</p>
+                                        <p>User credentials</p>
 
                                     </td>
                                 </tr>
@@ -297,7 +297,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/UserInterface.html" target="_self" >Promise&lt;UserInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -338,15 +338,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/user/controller/user.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/user/controller/user.controller.ts:53</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>summary: find a user by email</p>
+                    <div class="io-description"><p>summary: Find a user by email</p>
 </div>
 
                     <div class="io-description">
@@ -357,6 +357,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -371,6 +372,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>User&#39;s email</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -378,7 +383,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/UserModelInterface.html" target="_self" >Promise&lt;UserModelInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -419,15 +424,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/user/controller/user.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/user/controller/user.controller.ts:42</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: update a user&#39;s profile data</p>
+                    <div class="io-description"><p><strong>summary</strong>: Update a user&#39;s profile data</p>
 </div>
 
                     <div class="io-description">
@@ -469,7 +474,7 @@
 
 
                                     <td>
-                                        <p>client request</p>
+                                        <p>Client request</p>
 
                                     </td>
                                 </tr>
@@ -479,7 +484,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/UserInterface.html" target="_self" >Promise&lt;UserInterface&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -494,6 +499,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect } from &#x27;@nestjs/common&#x27;;
+import { CreateQuery } from &#x27;mongoose&#x27;;
 import { JwtAuthGuard } from &#x27;../../auth/gaurds/jwt-auth.guard&#x27;;
 import { LoggedOutGaurd } from &#x27;../../auth/gaurds/logged-out.guard&#x27;;
 import { JoiValidationPipe } from &#x27;../../common/pipes/joi-validation.pipe&#x27;;
@@ -501,61 +507,63 @@ import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
 import { DeleteUserDto } from &#x27;../dto/delete-user.dto&#x27;;
 import { FindUserDto } from &#x27;../dto/find-user.dto&#x27;;
 import { UpdateUserDto } from &#x27;../dto/update-user.dto&#x27;;
+import { UserModelInterface } from &#x27;../interface/modelInterface/user-model.interface&#x27;;
 import { BcryptHashPipe } from &#x27;../pipes/bcrypt.pipe&#x27;;
 import { CreateUserValidation } from &#x27;../schema/validation/create-user-validation.schema&#x27;;
 import { UserService } from &#x27;../service/user.service&#x27;;
+import { UserInterface } from &#x27;../interface/user.interface&#x27;;
 /**
- * **summary**: controller for managing users in the application
+ * **summary**: Controller for managing users in the application
  */
 @Controller(&#x27;user&#x27;)
 export class UserController {
     constructor(private readonly userService: UserService) {}
     
     /**
-     * **summary**: create a new user profile
-     * @param user new user data
+     * **summary**: Create a new user profile
+     * @param user New user data
      */
     @UsePipes(new BcryptHashPipe())
     @UsePipes(new JoiValidationPipe(CreateUserValidation))
     @Post(&#x27;create-user&#x27;)
-    async createProfile(@Body() user: CreateUserDto) {
+    async createProfile(@Body() user: CreateUserDto): Promise&lt;CreateQuery&lt;UserModelInterface&gt;&gt; {
         return await this.userService.createUser(user);
     }
 
     /**
-     * **summary**: update a user&#x27;s profile data
+     * **summary**: Update a user&#x27;s profile data
      * @param update updates
-     * @param req client request
+     * @param req Client request
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Post(&#x27;update-user&#x27;)
     @Redirect(&#x27;http://localhost:3000/auth/login&#x27;)
-    async updateProfile(@Body() update: UpdateUserDto, @Req() req) {
+    async updateProfile(@Body() update: UpdateUserDto, @Req() req): Promise&lt;UserInterface&gt; {
         return await this.userService.updateUser(update, req);
     }
 
     /**
-     * summary: find a user by email
-     * @param email 
+     * summary: Find a user by email
+     * @param email User&#x27;s email
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Get(&#x27;find-user&#x27;)
-    async findUser(@Body() email: FindUserDto) {
+    async findUser(@Body() email: FindUserDto): Promise&lt;UserModelInterface&gt; {
         return await this.userService.findUser(email)
     }
 
 
     /**
-     * **summary**: delete a user profile
-     * @param data user credentials
+     * **summary**: Delete a user profile
+     * @param data User credentials
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
     @Redirect(&#x27;http://localhost:3000/auth/login&#x27;, 302)
     @Post(&#x27;delete-profile&#x27;)
-    async deleteProfile(@Body() data: DeleteUserDto, @Req() req) {
+    async deleteProfile(@Body() data: DeleteUserDto, @Req() req): Promise&lt;UserInterface&gt; {
         return this.userService.deleteUser(data, req);
     }
 }

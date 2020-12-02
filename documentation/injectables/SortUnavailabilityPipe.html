@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: sort the requested Rental Unavailability into a single or 2 year groupings (arrays). Sort each year&#39;s (array&#39;s) UnavailabilityDtos by ascending DOY (Day of the Year)</p>
+                <p><strong>summary</strong>: Sort the requested Rental Unavailability into a single or 2 year groupings (arrays). Sort each year&#39;s (array&#39;s) UnavailabilityDtos by ascending DOY (Day of the Year)</p>
 
             </p>
 
@@ -147,7 +147,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: return the sorted (by DOY) years in order, or return a single year</p>
+                        <div class="io-description"><p><strong>summary</strong>: Return the sorted (by DOY) years in order, or return a single year</p>
 </div>
                     </td>
                 </tr>
@@ -204,7 +204,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: separate years into y1 and y2 array and sort each by DOY</p>
+                        <div class="io-description"><p><strong>summary</strong>: Separate years into y1 and y2 array and sort each by DOY</p>
 </div>
                     </td>
                 </tr>
@@ -260,7 +260,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto</p>
+                        <div class="io-description"><p><strong>summary</strong>: Use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto</p>
 </div>
                     </td>
                 </tr>
@@ -317,7 +317,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate that the requested Unavailability does not cross more than a one year duration</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate that the requested Unavailability does not cross more than a one year duration</p>
 </div>
                     </td>
                 </tr>
@@ -374,7 +374,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate that the request to schedule unavailability is sequential and not two separate blocks of time</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate that the request to schedule unavailability is sequential and not two separate blocks of time</p>
 </div>
                     </td>
                 </tr>
@@ -424,13 +424,13 @@ import { RawScheduleUnavailabilityDto } from &#x27;../dto/unavailability/schedul
 import { SortedUnavailabilityDto } from &#x27;../dto/unavailability/schedule/sorted-unavailability.dto&#x27;;
 import { ValidateScheduleUnavailabilityDto } from &#x27;../dto/unavailability/schedule/validate-schedule-unavailability.dto&#x27;;
 /**
- * **summary**: sort the requested Rental Unavailability into a single or 2 year groupings (arrays). Sort each year&#x27;s (array&#x27;s) UnavailabilityDtos by ascending DOY (Day of the Year)
+ * **summary**: Sort the requested Rental Unavailability into a single or 2 year groupings (arrays). Sort each year&#x27;s (array&#x27;s) UnavailabilityDtos by ascending DOY (Day of the Year)
  */
 @Injectable()
 export class SortUnavailabilityPipe implements PipeTransform {
   
   /**
-   * **summary**: validate that the requested Unavailability does not cross more than a one year duration
+   * **summary**: Validate that the requested Unavailability does not cross more than a one year duration
    * @param yearB this value is exactly 1 year from the current date
    */
   private validate2Years &#x3D; async (yearB: UnavailabilityDto[]): Promise&lt;void&gt; &#x3D;&gt; {
@@ -443,7 +443,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: validate that the request to schedule unavailability is sequential and not two separate blocks of time
+   * **summary**: Validate that the request to schedule unavailability is sequential and not two separate blocks of time
    * @param a year 1
    * @param b year 2
    */
@@ -454,7 +454,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: return the sorted (by DOY) years in order, or return a single year
+   * **summary**: Return the sorted (by DOY) years in order, or return a single year
    * @param sorted the incoming data to be sorted
    */
   private orderYears &#x3D; async (sorted: SortedUnavailabilityDto): Promise&lt;ValidateScheduleUnavailabilityDto&gt; &#x3D;&gt; {
@@ -472,7 +472,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: separate years into y1 and y2 array and sort each by DOY
+   * **summary**: Separate years into y1 and y2 array and sort each by DOY
    * @param value the raw client request to schedule Unavailability on a Rental
    */
   private sort &#x3D; async (value: RawScheduleUnavailabilityDto): Promise&lt;SortedUnavailabilityDto&gt; &#x3D;&gt; {
@@ -499,7 +499,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
   }
 
   /**
-   * **summary**: use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto
+   * **summary**: Use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto
    * @param value the raw client request data
    */
   transform &#x3D; async(value: RawScheduleUnavailabilityDto): Promise&lt;ValidateScheduleUnavailabilityDto&gt; &#x3D;&gt; {

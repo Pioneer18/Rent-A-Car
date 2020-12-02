@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: validate incoming price and discounts and map data into a PricingDto before sending to handler</p>
+                <p><strong>summary</strong>: Validate incoming price and discounts and map data into a PricingDto before sending to handler</p>
 
             </p>
 
@@ -139,7 +139,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: map the final values of the PricingDto before passing to the handler</p>
+                        <div class="io-description"><p><strong>summary</strong>: Map the final values of the PricingDto before passing to the handler</p>
 </div>
                     </td>
                 </tr>
@@ -247,7 +247,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: validate the price and discounts do not have negative values nor violate common sense</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate the price and discounts do not have negative values nor violate common sense</p>
 </div>
                     </td>
                 </tr>
@@ -288,16 +288,16 @@
 import { PricingDto } from &#x27;../dto/pricing/pricing.dto&#x27;;
 
 /**
- * **summary**: validate incoming price and discounts and map data into a PricingDto before sending to handler
+ * **summary**: Validate incoming price and discounts and map data into a PricingDto before sending to handler
  */
 @Injectable()
 export class PricingPipe implements PipeTransform {
 
     /**
-     * **summary**: validate the price and discounts do not have negative values nor violate common sense
+     * **summary**: Validate the price and discounts do not have negative values nor violate common sense
      * @param data the raw user request to update the Rental&#x27;s pricing
      */
-    private validatePricingDto &#x3D; async (data: PricingDto) &#x3D;&gt; {
+    private validatePricingDto &#x3D; async (data: PricingDto): Promise&lt;void&gt; &#x3D;&gt; {
         const minPrice: number &#x3D; parseInt(process.env.MIN_PRICE, 10);
         // check rentalId
         if (!data.rentalId || (typeof data.rentalId !&#x3D;&#x3D; &#x27;string&#x27;)) {
@@ -315,10 +315,10 @@ export class PricingPipe implements PipeTransform {
     }
 
     /**
-     * **summary**: map the final values of the PricingDto before passing to the handler
+     * **summary**: Map the final values of the PricingDto before passing to the handler
      * @param 
      */
-    private mapPricingDto &#x3D; async (data: PricingDto) &#x3D;&gt; {
+    private mapPricingDto &#x3D; async (data: PricingDto): Promise&lt;PricingDto&gt; &#x3D;&gt; {
         const value: PricingDto &#x3D; {
             rentalId: data.rentalId,
             price: data.price ? data.price : null,
@@ -334,7 +334,7 @@ export class PricingPipe implements PipeTransform {
      * **summary**: use the validatePricingDto() and mapPricingDto() methods to prepare the data for the request handler
      * @param value the raw request from a user to update the pricing of a Rental
      */
-    transform &#x3D; async(value: PricingDto) &#x3D;&gt; {
+    transform &#x3D; async(value: PricingDto): Promise&lt;PricingDto&gt; &#x3D;&gt; {
         try {
             await this.validatePricingDto(value);
             const data: PricingDto &#x3D; await this.mapPricingDto(value);

@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: data for creating a new user</p>
+                <p><strong>summary</strong>: Dto for creating a new user</p>
 
             </p>
 
@@ -131,7 +131,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/user/dto/create-user.dto.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/user/dto/create-user.dto.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -158,7 +158,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/user/dto/create-user.dto.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/user/dto/create-user.dto.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -185,7 +185,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/user/dto/create-user.dto.ts:7</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/user/dto/create-user.dto.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -199,11 +199,12 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+import { CreateUserInterface } from &quot;../interface/service/create-user.interface&quot;;
 /**
- * **summary**: data for creating a new user
+ * **summary**: Dto for creating a new user
  */
 @Injectable()
-export class CreateUserDto {
+export class CreateUserDto implements CreateUserInterface {
     username: string;
     email: string;
     password: string;

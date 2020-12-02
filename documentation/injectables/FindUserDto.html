@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: find a user profile by email</p>
+                <p><strong>summary</strong>: Dto to find a user profile by email</p>
 
             </p>
 
@@ -125,7 +125,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/user/dto/find-user.dto.ts:7</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/user/dto/find-user.dto.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -139,11 +139,12 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { FindUserInterface } from &#x27;../interface/service/find-user.interface&#x27;;
 /**
- * **summary**: find a user profile by email
+ * **summary**: Dto to find a user profile by email
  */
 @Injectable()
-export class FindUserDto {
+export class FindUserDto implements FindUserInterface {
     email: string;
 }</code></pre>
     </div>

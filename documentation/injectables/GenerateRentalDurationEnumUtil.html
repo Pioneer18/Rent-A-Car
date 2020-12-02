@@ -128,7 +128,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -183,7 +183,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -229,6 +229,7 @@ duration of the rental in months, weeks, and days</p>
 import { Interval } from &#x27;luxon&#x27;;
 import { RentalDurations } from &#x27;../const&#x27;;
 import { ProcessRentalTimeDto } from &#x27;../dto/searchRental/process-rental-time.dto&#x27;;
+import { GenerateRentalDurationEnumInterface } from &#x27;../interface/utils/generateRentalDuration/generate-rental-duration-enum.interface&#x27;;
 /**
  * **summary**: generate RentalDuration Enums for the rentalDuration propery of the RequestCoordinatesDto
  */
@@ -240,9 +241,9 @@ export class GenerateRentalDurationEnumUtil {
    * @param startTime 
    * @param endTime 
    */
-  private processRentalTime &#x3D; async(startTime, endTime):Promise&lt;ProcessRentalTimeDto&gt; &#x3D;&gt; {
+  private processRentalTime &#x3D; async (data: GenerateRentalDurationEnumInterface): Promise&lt;ProcessRentalTimeDto&gt; &#x3D;&gt; {
     try {
-      const base &#x3D; Interval.fromDateTimes(startTime, endTime);
+      const base &#x3D; Interval.fromDateTimes(data.startTime, data.endTime);
       const months &#x3D; base.length(&#x27;months&#x27;);
       const weeks &#x3D; base.length(&#x27;weeks&#x27;);
       const days &#x3D; base.length(&#x27;days&#x27;);
@@ -260,9 +261,9 @@ export class GenerateRentalDurationEnumUtil {
    * @param startTime 
    * @param endTime 
    */
-  generateRentalDurationEnum &#x3D; async(startTime, endTime) &#x3D;&gt; {
+  generateRentalDurationEnum &#x3D; async (data: GenerateRentalDurationEnumInterface): Promise&lt;RentalDurations&gt; &#x3D;&gt; {
     try {
-      const schedule: ProcessRentalTimeDto &#x3D; await this.processRentalTime(startTime, endTime);
+      const schedule: ProcessRentalTimeDto &#x3D; await this.processRentalTime({ startTime: data.startTime, endTime: data.endTime });
       if (schedule.months &gt; 3) {
         return RentalDurations.Any;
       }

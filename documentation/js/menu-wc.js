@@ -60,13 +60,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppConfigModule.html" data-type="entity-link">AppConfigModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-AppConfigModule-8a2b3dbf1c498a699824fd2bff5dffa6"' : 'data-target="#xs-injectables-links-module-AppConfigModule-8a2b3dbf1c498a699824fd2bff5dffa6"' }>
+                                        'data-target="#injectables-links-module-AppConfigModule-03365064ee8041a68ddb3b306d9423d4"' : 'data-target="#xs-injectables-links-module-AppConfigModule-03365064ee8041a68ddb3b306d9423d4"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppConfigModule-8a2b3dbf1c498a699824fd2bff5dffa6"' :
-                                        'id="xs-injectables-links-module-AppConfigModule-8a2b3dbf1c498a699824fd2bff5dffa6"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppConfigModule-03365064ee8041a68ddb3b306d9423d4"' :
+                                        'id="xs-injectables-links-module-AppConfigModule-03365064ee8041a68ddb3b306d9423d4"' }>
                                         <li class="link">
                                             <a href="injectables/AppConfigService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>AppConfigService</a>
@@ -78,13 +78,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-AppModule-6bf2adf73154e8010500b31752a8b28b"' : 'data-target="#xs-controllers-links-module-AppModule-6bf2adf73154e8010500b31752a8b28b"' }>
+                                            'data-target="#controllers-links-module-AppModule-ba1e857003ba087eb48592ce20aeed4b"' : 'data-target="#xs-controllers-links-module-AppModule-ba1e857003ba087eb48592ce20aeed4b"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-6bf2adf73154e8010500b31752a8b28b"' :
-                                            'id="xs-controllers-links-module-AppModule-6bf2adf73154e8010500b31752a8b28b"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-ba1e857003ba087eb48592ce20aeed4b"' :
+                                            'id="xs-controllers-links-module-AppModule-ba1e857003ba087eb48592ce20aeed4b"' }>
                                             <li class="link">
                                                 <a href="controllers/AppController.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppController</a>
@@ -109,13 +109,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-AppModule-6bf2adf73154e8010500b31752a8b28b"' : 'data-target="#xs-injectables-links-module-AppModule-6bf2adf73154e8010500b31752a8b28b"' }>
+                                        'data-target="#injectables-links-module-AppModule-ba1e857003ba087eb48592ce20aeed4b"' : 'data-target="#xs-injectables-links-module-AppModule-ba1e857003ba087eb48592ce20aeed4b"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-6bf2adf73154e8010500b31752a8b28b"' :
-                                        'id="xs-injectables-links-module-AppModule-6bf2adf73154e8010500b31752a8b28b"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-ba1e857003ba087eb48592ce20aeed4b"' :
+                                        'id="xs-injectables-links-module-AppModule-ba1e857003ba087eb48592ce20aeed4b"' }>
                                         <li class="link">
                                             <a href="injectables/AppService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>AppService</a>
@@ -410,10 +410,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/ChangePasswordDto.html" data-type="entity-link">ChangePasswordDto</a>
+                                <a href="classes/CalculateRangeDto.html" data-type="entity-link">CalculateRangeDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/CheckPasswordTypoDto.html" data-type="entity-link">CheckPasswordTypoDto</a>
+                                <a href="classes/ChangePasswordDto.html" data-type="entity-link">ChangePasswordDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/CreateQueryDto.html" data-type="entity-link">CreateQueryDto</a>
@@ -428,9 +428,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ErrorFilter.html" data-type="entity-link">ErrorFilter</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ExtractKeyValueUtilDto.html" data-type="entity-link">ExtractKeyValueUtilDto</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/ForgotPasswordDto.html" data-type="entity-link">ForgotPasswordDto</a>
                             </li>
                             <li class="link">
@@ -443,25 +440,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ImageDto.html" data-type="entity-link">ImageDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ImageQueryResultsDto.html" data-type="entity-link">ImageQueryResultsDto</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/ImageUploadDto.html" data-type="entity-link">ImageUploadDto</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/JwtPayloadDto.html" data-type="entity-link">JwtPayloadDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/LocCreateRentalDto.html" data-type="entity-link">LocCreateRentalDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/LoginUserDto.html" data-type="entity-link">LoginUserDto</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/PricingDto.html" data-type="entity-link">PricingDto</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/ProcessedSaveDataDto.html" data-type="entity-link">ProcessedSaveDataDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/ProcessedUnavailabilityDto.html" data-type="entity-link">ProcessedUnavailabilityDto</a>
@@ -503,7 +488,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/UnavailabilityDto.html" data-type="entity-link">UnavailabilityDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/UnavailabilityInterface.html" data-type="entity-link">UnavailabilityInterface</a>
+                                <a href="classes/UnavailabilityModelInterface.html" data-type="entity-link">UnavailabilityModelInterface</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UnavailabilityQueryDto.html" data-type="entity-link">UnavailabilityQueryDto</a>
@@ -515,9 +500,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/UpdateUnavailabilityDto.html" data-type="entity-link">UpdateUnavailabilityDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/UserPropertyDto.html" data-type="entity-link">UserPropertyDto</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/ValidatedUnavailabilityDto.html" data-type="entity-link">ValidatedUnavailabilityDto</a>
                             </li>
                             <li class="link">
@@ -527,7 +509,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ValidateUpdateUnavailabilityDto.html" data-type="entity-link">ValidateUpdateUnavailabilityDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/VerifyNewPasswordDto.html" data-type="entity-link">VerifyNewPasswordDto</a>
+                                <a href="classes/VerifyNewPasswordInterface.html" data-type="entity-link">VerifyNewPasswordInterface</a>
                             </li>
                         </ul>
                     </li>
@@ -571,6 +553,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ExtractKeyValueUtil.html" data-type="entity-link">ExtractKeyValueUtil</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/FindUserByResetPwTokenDto.html" data-type="entity-link">FindUserByResetPwTokenDto</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/FindUserDto.html" data-type="entity-link">FindUserDto</a>
@@ -639,9 +624,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/RequestCoordinatesPipe.html" data-type="entity-link">RequestCoordinatesPipe</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ResetPasswordTokenDto.html" data-type="entity-link">ResetPasswordTokenDto</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/S3Provider.html" data-type="entity-link">S3Provider</a>
                                 </li>
                                 <li class="link">
@@ -701,13 +683,133 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/ImageInterface.html" data-type="entity-link">ImageInterface</a>
+                                <a href="interfaces/ApiResponseData.html" data-type="entity-link">ApiResponseData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ChangePasswordInterface.html" data-type="entity-link">ChangePasswordInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CheckPasswordTypoInterface.html" data-type="entity-link">CheckPasswordTypoInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CreateInterface.html" data-type="entity-link">CreateInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CreateMailOptionsInterface.html" data-type="entity-link">CreateMailOptionsInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CreateRentalInterface.html" data-type="entity-link">CreateRentalInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CreateRentalReturn.html" data-type="entity-link">CreateRentalReturn</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CreateUserInterface.html" data-type="entity-link">CreateUserInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DeleteAllImagesInterface.html" data-type="entity-link">DeleteAllImagesInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DeleteImagesInterface.html" data-type="entity-link">DeleteImagesInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DeleteResponseInterface.html" data-type="entity-link">DeleteResponseInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DeleteS3ImageInterface.html" data-type="entity-link">DeleteS3ImageInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/DeleteUserInterface.html" data-type="entity-link">DeleteUserInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditDetailsInterface.html" data-type="entity-link">EditDetailsInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditDetailsUpdater.html" data-type="entity-link">EditDetailsUpdater</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditPricingInterface.html" data-type="entity-link">EditPricingInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditPricingUpdater.html" data-type="entity-link">EditPricingUpdater</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ExtractKeyValueUtilInterface.html" data-type="entity-link">ExtractKeyValueUtilInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FileUploadAndSaveInterface.html" data-type="entity-link">FileUploadAndSaveInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FindProfileImageInterface.html" data-type="entity-link">FindProfileImageInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FindRentalImagesInterface.html" data-type="entity-link">FindRentalImagesInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FindUserByResetPwTokenInterface.html" data-type="entity-link">FindUserByResetPwTokenInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FindUserInterface.html" data-type="entity-link">FindUserInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ForgotPasswordInterface.html" data-type="entity-link">ForgotPasswordInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/GenerateRentalDurationEnumInterface.html" data-type="entity-link">GenerateRentalDurationEnumInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/GetCoordinatesInterface.html" data-type="entity-link">GetCoordinatesInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/Image.html" data-type="entity-link">Image</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ImageFileInterface.html" data-type="entity-link">ImageFileInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ImageModelInterface.html" data-type="entity-link">ImageModelInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/JwtPayloadInterface.html" data-type="entity-link">JwtPayloadInterface</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/MailOptionsInterface.html" data-type="entity-link">MailOptionsInterface</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/MakeRequestInterface.html" data-type="entity-link">MakeRequestInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/MulterUploadUtilInterface.html" data-type="entity-link">MulterUploadUtilInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ProcessedSaveDataInterface.html" data-type="entity-link">ProcessedSaveDataInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RemoveUnavailabilityInterface.html" data-type="entity-link">RemoveUnavailabilityInterface</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/RentalInterface.html" data-type="entity-link">RentalInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RentalModelInterface.html" data-type="entity-link">RentalModelInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RentalQuery.html" data-type="entity-link">RentalQuery</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ResetPasswordInterface.html" data-type="entity-link">ResetPasswordInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RetrievedImagesInterface.html" data-type="entity-link">RetrievedImagesInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SaveImagesInterface.html" data-type="entity-link">SaveImagesInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ScheduleUnavailabilityInterface.html" data-type="entity-link">ScheduleUnavailabilityInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SearchRentalInterface.html" data-type="entity-link">SearchRentalInterface</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SortedUnavailabilityDto.html" data-type="entity-link">SortedUnavailabilityDto</a>
@@ -716,7 +818,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/TransporterInterface.html" data-type="entity-link">TransporterInterface</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/UnavailabilityInterface.html" data-type="entity-link">UnavailabilityInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/UpdateResponseInterface.html" data-type="entity-link">UpdateResponseInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/UpdateUnavailabilityDataInterface.html" data-type="entity-link">UpdateUnavailabilityDataInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/UpdateUserInterface.html" data-type="entity-link">UpdateUserInterface</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/UserInterface.html" data-type="entity-link">UserInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/UserModelInterface.html" data-type="entity-link">UserModelInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ValidateEmailUtilInterface.html" data-type="entity-link">ValidateEmailUtilInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ValidateUserInterface.html" data-type="entity-link">ValidateUserInterface</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ValidateUserReturn.html" data-type="entity-link">ValidateUserReturn</a>
                             </li>
                         </ul>
                     </li>
