@@ -1,3 +1,6 @@
+/**
+ * **summary**: This interface is a lean version of the RentalModelInterface
+ */
 export interface RentalInterface {
     _id?: string;
     userId: string;
