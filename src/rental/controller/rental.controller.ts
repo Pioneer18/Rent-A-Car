@@ -27,11 +27,10 @@ import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-una
 import { AppConfigService } from '../../config/configuration.service';
 import { ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
-import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-model.interface';
 import { RentalInterface } from '../interface/rental.interface';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
-import { UpdateResponseInterface } from 'src/common/interfaces/update-response.interface';
-import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
+import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
+import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 
 /**
  * - **summary**: controller for managing rentals in the application
@@ -51,7 +50,7 @@ export class RentalController {
   @UsePipes(new JoiValidationPipe(CreateRentalValidationSchema))
   @UsePipes(new MapNewRentalPipe())
   @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
-  async createRental(@Body() rental: CreateRentalDto, @Req() req): Promise<RentalModelInterface> {
+  async createRental(@Body() rental: CreateRentalDto, @Req() req): Promise<RentalInterface> {
     try {
       return await this.rentalService.createRental(rental, req.user);
     } catch (err) {

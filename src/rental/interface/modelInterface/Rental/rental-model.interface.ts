@@ -16,6 +16,7 @@ export interface RentalModelInterface extends mongoose.Document {
     transmission: string;
     cityMpg: number;
     hwyMpg: number;
+    mpgE: number | null;
     fuel: string;
     gasGrade: string;
     description: string;
@@ -31,19 +32,19 @@ export interface RentalModelInterface extends mongoose.Document {
     licensePlate: string;
     state: string;
   };
-  features: [string];
+  features: string[];
   scheduling: {
     requiredNotice: number;
     rentMinDuration: number;
     rentMaxDuration: number;
   };
   pricing: {
-    price: { type: number /*; default: DEFAULT_PRICE*/ };
+    price: number | null;
     discounts: {
-      weekly: { type: number; default: null };
-      monthly: { type: number; default: null };
+      weekly: number | null;
+      monthly: number | null;
     };
   };
-  photos: [string];
+  photos: string[];
   listed: boolean;
 }

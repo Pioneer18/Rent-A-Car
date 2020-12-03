@@ -34,18 +34,17 @@ export class RentalService {
    * so the rental may be found by a geospatial query
    * @param rental The new rental to be created
    */
-  createRental = async (rental: CreateRentalInterface, user): Promise<RentalModelInterface> => {
+  createRental = async (rental: CreateRentalInterface, user): Promise<RentalInterface> => {
     try {
-      console.log('The Create Rental User');
-      console.log(user);
       let temp: any;
       temp = rental;
       temp.userId = user.userId;
       const upload: RentalInterface = temp;
-      console.log('Create Rental Upload');
-      console.log(upload);
       const document = await new this.rentalModel(upload);
-      return await document.save();
+      await document.save();
+      let lean: any;
+      lean = document;
+      return lean;
     } catch (err) {
       throw new Error(err);
     }

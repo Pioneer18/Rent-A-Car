@@ -6,6 +6,10 @@ import { RentalSchema } from '../schema/rental.schema';
 import { CreateRentalDto } from '../dto/createRental/create-rental.dto';
 import { SearchRentalDto } from '../dto/searchRental/search-rental.dto';
 import { PricingDto } from '../dto/pricing/pricing.dto';
+import { RentalInterface } from '../interface/rental.interface';
+import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
+import { unavailabilityModel } from '../../common/Const';
+import { UnavailabilitySchema } from '../schema/unavailability-schema';
 
 describe('Rental Controller', () => {
   let controller: RentalController;
@@ -18,7 +22,8 @@ describe('Rental Controller', () => {
       providers: [RentalService],
       imports: [
         MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
-        MongooseModule.forRoot('mongodb+srv://Pioneer20:unathi2020@cluster0.2d6ys.mongodb.net/Rent-A-Car?retryWrites=true&w=majority', {
+        MongooseModule.forFeature([{ name: unavailabilityModel, schema: UnavailabilitySchema }]),
+        MongooseModule.forRoot('mongodb://localhost/rent-a-car-test', {
           useNewUrlParser: true,
         }),
       ],
@@ -82,20 +87,130 @@ describe('Rental Controller', () => {
       photos: [],
       listed: true,
     };
-
+    const mockResponse: RentalInterface = {
+      pricing: {
+        discounts: {
+          weekly: 0,
+          monthly: 0,
+        },
+        price: 28
+      },
+      features: [
+        "bike rack",
+        "Heated Seats"
+      ],
+      photos: [],
+      _id: "5fc8f6f893cdc33ac0dd18c3",
+      rentalDescription: "this is a tokyo grocery getter",
+      address: "13125 Gascony St Riverview 33578",
+      specs: {
+        odometer: 20000,
+        transmission: "Auto",
+        cityMpg: 18,
+        hwyMpg: 25,
+        mpgE: null,
+        fuel: "gas",
+        gasGrade: "regular",
+        description: "For your adventures, on-road and off",
+        make: "Chevrolet",
+        model: "Colorado",
+        style: "pickup",
+        color: "orange",
+        numOfSeats: 5,
+        numDoors: 4
+      },
+      registration: {
+        vin: "5GAKVCKD1DJ206294",
+        licensePlate: "OD5t",
+        state: "FL"
+      },
+      scheduling: {
+        requiredNotice: 4,
+        rentMinDuration: 1,
+        rentMaxDuration: 4
+      },
+      loc: {
+        type: "Point",
+        coordinates: [
+          27.79382,
+          -82.33796
+        ]
+      },
+      listed: true,
+      userId: "5fc421feab08792888915744",
+      __v: 0
+    }
+    const user: JwtPayloadInterface = {
+      username: 'FakeGuy',
+      email: 'fakeguy@gmail.com',
+      userId: 'FakeId01'
+    }
     it('should pass back the mocked document', async () => {
-      const mockResponse = mockedRental;
       jest
         .spyOn(service, 'createRental')
         .mockImplementation(async () => mockResponse);
 
-      expect(await service.createRental(mockedRental)).toBe(mockResponse);
+      expect(await service.createRental(mockedRental, user)).toBe(mockResponse);
     });
   });
 
   describe('searchRental endpoint test', () => {
     it('should return an array of queried rentals', async () => {
-      const mockResponse = ['fake rental data'];
+      const mockResponse: RentalInterface[] = [
+        {
+          "pricing": {
+            "discounts": {
+              "weekly": 0,
+              "monthly": 0
+            },
+            "price": 28
+          },
+          "features": [
+            "bike rack",
+            "Heated Seats"
+          ],
+          "photos": [],
+          "_id": "5fc8f6f893cdc33ac0dd18c3",
+          "rentalDescription": "this is a tokyo grocery getter",
+          "address": "13125 Gascony St Riverview 33578",
+          "specs": {
+            "odometer": 20000,
+            "transmission": "Auto",
+            "cityMpg": 18,
+            "hwyMpg": 25,
+            "mpgE": null,
+            "fuel": "gas",
+            "gasGrade": "regular",
+            "description": "For your adventures, on-road and off",
+            "make": "Chevrolet",
+            "model": "Colorado",
+            "style": "pickup",
+            "color": "orange",
+            "numOfSeats": 5,
+            "numDoors": 4
+          },
+          "registration": {
+            "vin": "5GAKVCKD1DJ206294",
+            "licensePlate": "OD5t",
+            "state": "FL"
+          },
+          "scheduling": {
+            "requiredNotice": 4,
+            "rentMinDuration": 1,
+            "rentMaxDuration": 4
+          },
+          "loc": {
+            "type": "Point",
+            "coordinates": [
+              27.79382,
+              -82.33796
+            ]
+          },
+          "listed": true,
+          "userId": "5fc421feab08792888915744",
+          "__v": 0
+        }
+      ];
       const mockSearchRentalDto: SearchRentalDto = {
         address: 'muffin lane',
         price: 28,
@@ -114,9 +229,61 @@ describe('Rental Controller', () => {
 
   describe('editPrice endpoint test', () => {
     it('should return the updated document, or nothing', async () => {
-      const mockResponse = ['fake document'];
+      const mockResponse: RentalInterface = {
+        "pricing": {
+          "discounts": {
+            "weekly": null,
+            "monthly": null
+          },
+          "price": 28
+        },
+        "features": [
+          "bike rack",
+          "Heated Seats"
+        ],
+        "photos": [],
+        "_id": "5fc8f6f893cdc33ac0dd18c3",
+        "rentalDescription": "this is a tokyo grocery getter",
+        "address": "13125 Gascony St Riverview 33578",
+        "specs": {
+          "odometer": 20000,
+          "transmission": "Auto",
+          "cityMpg": 18,
+          "hwyMpg": 25,
+          "mpgE": null,
+          "fuel": "gas",
+          "gasGrade": "regular",
+          "description": "For your adventures, on-road and off",
+          "make": "Chevrolet",
+          "model": "Colorado",
+          "style": "pickup",
+          "color": "orange",
+          "numOfSeats": 5,
+          "numDoors": 4
+        },
+        "registration": {
+          "vin": "5GAKVCKD1DJ206294",
+          "licensePlate": "OD5t",
+          "state": "FL"
+        },
+        "scheduling": {
+          "requiredNotice": 4,
+          "rentMinDuration": 1,
+          "rentMaxDuration": 4
+        },
+        "loc": {
+          "type": "Point",
+          "coordinates": [
+            27.79382,
+            -82.33796
+          ]
+        },
+        "listed": true,
+        "userId": "5fc421feab08792888915744",
+        "__v": 0
+      };
       const mockPricingDto: PricingDto = {
-        rentalId: 'xxx',
+        rentalId: '5fc8f6f893cdc33ac0dd18c3',
         price: 28,
         discounts: {
           weekly: null,
