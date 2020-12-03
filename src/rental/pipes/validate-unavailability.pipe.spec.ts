@@ -1,8 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing"
-import { UnavailabilityDto } from "../dto/unavailability/unavailability.dto";
 import { ValidateUnavailabilityPipe } from "./validate-unavailability.pipe";
-import { DateTime, Interval, fromJSDate } from 'luxon'
-import { Logger } from "@nestjs/common";
 import { ValidateScheduleUnavailabilityDto } from "../dto/unavailability/schedule/validate-schedule-unavailability.dto";
 import { ValidatedUnavailabilityDto } from "../dto/unavailability/validated-unavailability.dto";
 

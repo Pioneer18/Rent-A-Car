@@ -4,15 +4,16 @@ import { CreateQuery, Model } from 'mongoose';
 import { UserModelInterface } from '../interface/modelInterface/user-model.interface';
 import { Request } from 'express';
 import { ExtractKeyValueUtil } from '../../auth/util/extract-key-value.util';
-import { VerifyNewPasswordUtil } from 'src/auth/util/verify-new-password.util';
+import { VerifyNewPasswordUtil } from '../../auth/util/verify-new-password.util';
 import { RedisService } from '../../redis/service/redis.service';
-import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
+import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
 import { CreateUserInterface } from '../interface/service/create-user.interface';
 import { FindUserInterface } from '../interface/service/find-user.interface';
 import { FindUserByResetPwTokenInterface } from '../interface/service/find-user-by-reset-pw-token.interface';
 import { UpdateUserInterface } from '../interface/service/update-user.interface';
 import { DeleteUserInterface } from '../interface/service/delete-user.interface';
 import { UserInterface } from '../interface/user.interface';
+import { CreatedUserInterface } from '../interface/service/created-user.interface';
 /**
  * **summary**: contains all of the functionality to manage a user profile
  */
@@ -29,7 +30,7 @@ export class UserService {
      * **summary**: Create a new user
      * @param user New user data
      */
-    createUser = async (user: CreateQuery<CreateUserInterface>): Promise<CreateQuery<UserModelInterface>> => {
+    createUser = async (user: CreateQuery<CreateUserInterface>): Promise<CreateQuery<CreatedUserInterface>> => {
         try {
             const document = await new this.userModel(user);
             document.save();

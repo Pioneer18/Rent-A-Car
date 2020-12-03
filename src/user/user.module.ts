@@ -21,7 +21,6 @@ import { RedisService } from '../redis/service/redis.service';
     DatabaseModule,
     RedisModule,
     AppConfigModule,
-    RedisModule,
   ],
   providers: [UserService, ...userProvider, ExtractKeyValueUtil, VerifyNewPasswordUtil, RedisService],
   controllers: [UserController],
