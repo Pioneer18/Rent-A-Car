@@ -18,7 +18,7 @@ describe('Rental Controller', () => {
       providers: [RentalService],
       imports: [
         MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
-        MongooseModule.forRoot('mongodb://localhost/rent-a-car', {
+        MongooseModule.forRoot('mongodb+srv://Pioneer20:unathi2020@cluster0.2d6ys.mongodb.net/Rent-A-Car?retryWrites=true&w=majority', {
           useNewUrlParser: true,
         }),
       ],
@@ -46,6 +46,7 @@ describe('Rental Controller', () => {
         transmission: 'Automatic',
         cityMpg: 28,
         hwyMpg: 33,
+        mpgE: null,
         fuel: 'gas',
         gasGrade: 'regular',
         description: 'A Tokyo grocery getter',
@@ -83,7 +84,7 @@ describe('Rental Controller', () => {
     };
 
     it('should pass back the mocked document', async () => {
-      const mockResponse = ['test'];
+      const mockResponse = mockedRental;
       jest
         .spyOn(service, 'createRental')
         .mockImplementation(async () => mockResponse);

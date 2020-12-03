@@ -26,8 +26,7 @@ import { UnavailabilityInterface } from '../interface/unavailability.interface';
 export class RentalService {
   constructor(
     @InjectModel('Rental') private readonly rentalModel: Model<RentalModelInterface>,
-    @Inject(unavailabilityModel)
-    private readonly unavailability: Model<UnavailabilityModelInterface>,
+    @InjectModel(unavailabilityModel) private readonly unavailability: Model<UnavailabilityModelInterface>,
   ) { }
 
   /**

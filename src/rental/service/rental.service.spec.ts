@@ -1,10 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { RentalService } from './rental.service';
-import { MongooseModule, getModelToken } from '@nestjs/mongoose';
+import { RentalService } from './rental.service'
+import { MongooseModule } from '@nestjs/mongoose';
 import { RentalSchema } from '../schema/rental.schema';
 import { CreateRentalDto } from '../dto/createRental/create-rental.dto';
 import { TestRentalService } from './test-rental.service';
 import { SearchRentalDto } from '../dto/searchRental/search-rental.dto';
+import { UnavailabilitySchema } from '../schema/unavailability-schema';
+import { unavailabilityModel } from '../../common/Const';
+import { EditDetailsInterface } from '../interface/service/edit-details.interface';
 
 /**
  * Test the properties of the RentalService Class:
@@ -25,7 +28,8 @@ describe('RentalService Unit Tests', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
-        MongooseModule.forRoot('mongodb://localhost/test-db', {
+        MongooseModule.forFeature([{ name: unavailabilityModel, schema: UnavailabilitySchema }]),
+        MongooseModule.forRoot('mongodb+srv://Pioneer20:unathi2020@cluster0.2d6ys.mongodb.net/Rent-A-Car?retryWrites=true&w=majority', {
           useNewUrlParser: true,
         }),
       ],
@@ -37,8 +41,8 @@ describe('RentalService Unit Tests', () => {
   });
 
   describe('RentalService definition test', () => {
-    it('should be defined', () => {
-      expect(service).toBeDefined();
+    it('should be defined', async () => {
+      expect(service).toBeDefined()
     });
   });
 
@@ -54,6 +58,7 @@ describe('RentalService Unit Tests', () => {
           transmission: 'Automatic',
           cityMpg: 28,
           hwyMpg: 33,
+          mpgE: null,
           fuel: 'gas',
           gasGrade: 'regular',
           description: 'A Tokyo grocery getter',
@@ -202,7 +207,7 @@ describe('RentalService Unit Tests', () => {
   });
 
   describe('editPricing method test', () => {
-    it('should query the db to update a rental with the given update and throw an error if one is caught', async () => {
+    it('should query the db to update a rental`s pricing with the given update and throw an error if one is caught', async () => {
       const pricingDto = {
         rentalId: 'fake-id',
         price: 29,
@@ -211,7 +216,7 @@ describe('RentalService Unit Tests', () => {
           monthly: 10,
         },
       };
-      const mockEditPricing = async (data) => {
+      const mockEditPricing = async (data: EditPricingInterface) => {
         const filter = { _id: data.rentalId };
         const update = {
           specs: {
@@ -227,24 +232,78 @@ describe('RentalService Unit Tests', () => {
         const updater = {
           $set: update,
         };
-        return {updater, filter};
+        return { updater, filter };
       };
       // expect filter
       const test = await mockEditPricing(pricingDto);
-      expect(test.filter).toEqual(expect.objectContaining({_id: 'fake-id'}));
+      expect(test.filter).toEqual(expect.objectContaining({ _id: 'fake-id' }));
       expect(test.updater.$set.specs.pricing.price).toBe(29);
       expect(test.updater.$set.specs.pricing.discounts.weekly).toBe(5);
       expect(test.updater.$set.specs.pricing.discounts.monthly).toBe(10);
     });
   });
 
-  it(`should query the db to update a rental's pricing with the given update, and throw an error if one is caught`, () => {
-    // do stuffs
-  });
+  describe('editDetails method test', () => {
+    it(`should query the db to update a rental's spec property with the given update, and throw an error if one is caught`, async () => {
+      // create update
+      const data: EditDetailsInterface = {
+        rentalId: '5fc575be2de5f937487a0994',
+        specs: {
+          odometer: 10000,
+          transmission: 'Auto',
+          cityMpg: 33,
+          hwyMpg: 40,
+          fuel: 'gas',
+          gasGrade: 'regular',
+          description: 'Super fast awesome car',
+          make: "Honda",
+          model: "Fit",
+          style: "Hatchback",
+          color: "white",
+          numOfSeats: 5,
+          numDoors: 4
+        },
+        features: ["A/C", "Bike Rack", "Radio"]
+      };
+      // create a mock updateDetails method
+      const mockEditDetails = async (data) => {
+        try {
+          const filter = { _id: data.rentalId };
+          const update = {
+            specs: data.specs,
+            features: data.features,
+          };
+          const updater: EditDetailsUpdater = {
+            $set: update,
+          };
+          return { updater, filter}
+        } catch (err) {
+          throw new Error(err);
+        }
+      };
+      // test the mock method with the mock data
+      const test = await mockEditDetails(data);
+      expect(test.filter).toEqual(expect.objectContaining({ _id: data.rentalId }));
+      expect(test.updater).toEqual(expect.objectContaining({
+        $set: {
+          specs: data.specs,
+          features: data.features
+        }
+      }));
+    });
+  })
 
   // scheduledUnavailability if pipes remove logic from handler
-  it(`should (receive a pre-validated unavailability) save the given unavailability or throw an error`, () => {
-    // do stuffs
+  describe(`scheduleUnavailability method test`, () => {
+
+  })
+  it(`should (receive a pre-validated unavailability) save the given unavailability or throw an error`, async () => {
+    // mock data
+    //const processed: ScheduleUnavailabilityInterface = {
+
+    //}
+    // mock method
+    // test
   });
 
   // scheduledUnavailability if utilities used in the handler
@@ -255,4 +314,9 @@ describe('RentalService Unit Tests', () => {
   afterAll(async () => {
     await app.close();
   });
-});
+}); import { from } from 'rxjs';
+import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
+import { EditPricingUpdater } from '../interface/service/edit-pricing-updater.interface';
+import { EditDetailsUpdater } from '../interface/service/edit-details-updater.interface';
+import { ScheduleUnavailabilityInterface } from '../interface/service/schedule-unavailability.interface';
+
