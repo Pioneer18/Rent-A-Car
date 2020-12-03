@@ -8,6 +8,14 @@ import { SearchRentalDto } from '../dto/searchRental/search-rental.dto';
 import { UnavailabilitySchema } from '../schema/unavailability-schema';
 import { unavailabilityModel } from '../../common/Const';
 import { EditDetailsInterface } from '../interface/service/edit-details.interface';
+import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
+import { EditDetailsUpdater } from '../interface/service/edit-details-updater.interface';
+import { ScheduleUnavailabilityInterface } from '../interface/service/schedule-unavailability.interface';
+import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
+import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
+import { SearchRentalInterface } from '../interface/service/search-rental.interface';
+import { RentalQuery } from '../interface/service/create-rental-query.interface';
+import { Logger } from '@nestjs/common';
 
 /**
  * Test the properties of the RentalService Class:
@@ -29,7 +37,7 @@ describe('RentalService Unit Tests', () => {
       imports: [
         MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
         MongooseModule.forFeature([{ name: unavailabilityModel, schema: UnavailabilitySchema }]),
-        MongooseModule.forRoot('mongodb+srv://Pioneer20:unathi2020@cluster0.2d6ys.mongodb.net/Rent-A-Car?retryWrites=true&w=majority', {
+        MongooseModule.forRoot('mongodb://localhost/rent-a-car-test', {
           useNewUrlParser: true,
         }),
       ],
@@ -276,7 +284,7 @@ describe('RentalService Unit Tests', () => {
           const updater: EditDetailsUpdater = {
             $set: update,
           };
-          return { updater, filter}
+          return { updater, filter }
         } catch (err) {
           throw new Error(err);
         }
@@ -293,30 +301,310 @@ describe('RentalService Unit Tests', () => {
     });
   })
 
-  // scheduledUnavailability if pipes remove logic from handler
+  // scheduledUnavailability
   describe(`scheduleUnavailability method test`, () => {
-
+    it(`should query for existing unavailability, check for overlap if there is unavailability already, and save if there are no conflicts`, async () => {
+      // mock data
+      const processed: ScheduleUnavailabilityInterface = {
+        "y1Query": {
+          "rentalId": "5fbdd52de2357234041850a2",
+          "year": 2020,
+          "doy": {
+            "$lte": 360,
+            "$gte": 358
+          },
+          "$or": [
+            {
+              "start": {
+                "$gte": 0
+              },
+              "end": {
+                "$lte": 24
+              }
+            },
+            {
+              "start": {
+                "$lte": 0
+              },
+              "end": {
+                "$gte": 0
+              }
+            },
+            {
+              "start": {
+                "$lte": 24
+              },
+              "end": {
+                "$gte": 24
+              }
+            },
+            {
+              "start": {
+                "$lte": 0
+              },
+              "end": {
+                "$gte": 24
+              }
+            }
+          ]
+        },
+        "y2Query": null,
+        "data": {
+          "y1": [
+            {
+              "unavailabilityId": "1606965381434",
+              "rentalId": "5fbdd52de2357234041850a2",
+              "year": 2020,
+              "doy": 358,
+              "start": 0,
+              "end": 24,
+              "title": "Christmas Break"
+            },
+            {
+              "unavailabilityId": "1606965381434",
+              "rentalId": "5fbdd52de2357234041850a2",
+              "year": 2020,
+              "doy": 359,
+              "start": 0,
+              "end": 24,
+              "title": "Christmas Break"
+            },
+            {
+              "unavailabilityId": "1606965381434",
+              "rentalId": "5fbdd52de2357234041850a2",
+              "year": 2020,
+              "doy": 360,
+              "start": 0,
+              "end": 24,
+              "title": "Christmas Break"
+            }
+          ],
+          "y2": null
+        }
+      }
+      // mock methods
+      const mockCheckForOverlap = async (data: ScheduleUnavailabilityInterface) => {
+        const { y1Query, y2Query } = data;
+        // if there are 2 years
+        if (y2Query !== null) {
+          const test1 = [];
+          const test2 = [];
+          if (test1.length || test2.length) {
+            throw new Error('this request overlaps with existing unavailability');
+          }
+        }
+        // else
+        const test = [];
+        if (test.length) {
+          throw new Error('this request overlaps with existing unavailability');
+        }
+      }
+      const mockScheduleUnavailability = async (processed: ScheduleUnavailabilityInterface) => {
+        try {
+          // if it passed, combine data into one array and insert
+          await mockCheckForOverlap(processed);
+          const { y1, y2 } = processed.data;
+          if (y2 !== null) {
+            const merged = y1.concat(y2);
+            // data that would be inserted into db
+            return merged;
+          }
+          // data that would be inseerted into db
+          return y1;
+        } catch (err) {
+          throw new Error(err);
+        }
+      }
+      // test
+      const test = await mockScheduleUnavailability(processed);
+      expect(test).toEqual(expect.arrayContaining([
+        {
+          "unavailabilityId": "1606965381434",
+          "rentalId": "5fbdd52de2357234041850a2",
+          "year": 2020,
+          "doy": 358,
+          "start": 0,
+          "end": 24,
+          "title": "Christmas Break"
+        },
+        {
+          "unavailabilityId": "1606965381434",
+          "rentalId": "5fbdd52de2357234041850a2",
+          "year": 2020,
+          "doy": 359,
+          "start": 0,
+          "end": 24,
+          "title": "Christmas Break"
+        },
+        {
+          "unavailabilityId": "1606965381434",
+          "rentalId": "5fbdd52de2357234041850a2",
+          "year": 2020,
+          "doy": 360,
+          "start": 0,
+          "end": 24,
+          "title": "Christmas Break"
+        }
+      ]));
+    });
   })
-  it(`should (receive a pre-validated unavailability) save the given unavailability or throw an error`, async () => {
-    // mock data
-    //const processed: ScheduleUnavailabilityInterface = {
 
-    //}
-    // mock method
-    // test
-  });
+  // updateUnavailability
+  describe(`updateUnavailability method test`, () => {
+    it('should edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental', async () => {
+      // mock data
+      const data: UpdateUnavailabilityDataInterface = {
+        filter: {
+          rentalId: '5fbdd52de2357234041850a2',
+          unavailabilityId: '1606606517860'
+        },
+        updater: {
+          $set: {
+            start: 0,
+            end: 12
+          }
+        }
+      }
+      // mock method
+      const updateUnavailability = async (data: UpdateUnavailabilityDataInterface) => {
+        try {
+          const update = { filter: data.filter, updater: data.updater }
+          return update;
+        } catch (err) {
+          throw new Error(err);
+        }
+      }
+      // test
+      const test = await updateUnavailability(data);
+      expect(test.filter).toEqual(expect.objectContaining({
+        rentalId: '5fbdd52de2357234041850a2',
+        unavailabilityId: '1606606517860'
+      }));
+      expect(test.updater).toEqual(expect.objectContaining({
+        $set: {
+          start: 0,
+          end: 12
+        }
+      }))
+    });
+  })
 
-  // scheduledUnavailability if utilities used in the handler
-  it('should query for existing unavailability, check for overlap if there is unavailability already, and save if there are no conflicts', () => {
-    // do stuffs
-  });
+  // removeUnavailability
+  describe(`removeUnavailability method test`, () => {
+    it('should remove an amount of time from a scheduled duration of unavailability on the rental', async () => {
+      // mock data
+      const deletedCount = [0,1,2];
+      const data: RemoveUnavailabilityInterface = {
+        rentalId: '5fbdd52de2357234041850a2',
+        unavailabilityId: '1606606517860'
+      }
+      // mock method
+      const removeUnavailability = async (data) => {
+        try {
+          const remove = {
+            rentalId: data.rentalId,
+            unavailabilityId: data.unavailabilityId,
+          };
+          if (deletedCount.length === 0) {
+            throw new Error('No Unavailability documents were found, no documents were deleted');
+          }
+          return remove;
+        } catch (err) {
+          throw new Error(err);
+        }
+      }
+      // test
+      const test = await removeUnavailability(data);
+      expect(test.rentalId).toEqual(expect.stringMatching('5fbdd52de2357234041850a2'));
+      expect(test.unavailabilityId).toEqual(expect.stringMatching('1606606517860'));
+    });
+  })
+
+  // createRentalQuery
+  describe(`createRentalQuery method test`, () => {
+    it('should convert a searchRentalDto into a mongoose query for the searchRental method', async () => {
+      // mock data
+      const data: SearchRentalInterface = {
+        address: '630 15th Tower 100 Ave, Longmont, Colorado(CO), 80501',
+        price: 30,
+        features: [],
+        rentalDuration: 2,
+        loc: {
+          type:'Point',
+          coordinates: [ 33, -33]
+        },
+        givenNotice: 2
+      }
+      // mock method
+      const createRentalQuery = async (rental: SearchRentalInterface) => {
+        try {
+          const query: RentalQuery = {
+            'scheduling.rentMinDuration': { $lte: rental.rentalDuration },
+            'scheduling.rentMaxDuration': { $gte: rental.rentalDuration },
+            'scheduling.requiredNotice': { $lte: rental.givenNotice },
+            'loc': {
+              $near: {
+                $maxDistance: 12875, // 8 miles
+                $geometry: {
+                  type: rental.loc.type,
+                  coordinates: [
+                    rental.loc.coordinates[0], // latitude
+                    rental.loc.coordinates[1], // longitude
+                  ],
+                },
+              },
+            },
+          };
+          rental.price
+            ? (query.pricing = {
+              price: rental.price, // add price as optional search parameter
+            })
+            : (rental.price = null);
+          rental.features
+            ? (query.features = { $in: rental.features })
+            : (rental.features = null);
+          return query;
+        } catch (err) {
+          throw new Error(err);
+        }
+      }
+      // test
+      const test = await createRentalQuery(data);
+      Logger.log('HERE IS THE: RentalQuery')
+      Logger.log(test);
+      expect(test).toEqual(expect.objectContaining({
+        "scheduling.rentMinDuration": {
+          "$lte": 2
+        },
+        "scheduling.rentMaxDuration": {
+          "$gte": 2
+        },
+        "scheduling.requiredNotice": {
+          "$lte": 2
+        },
+        "loc": {
+          "$near": {
+            "$maxDistance": 12875,
+            "$geometry": {
+              "type": "Point",
+              "coordinates": [
+                33,
+                -33
+              ]
+            }
+          }
+        },
+        "pricing": {
+          "price": 30
+        },
+        "features": {
+          "$in": []
+        }
+      }))
+    });
+  })
 
   afterAll(async () => {
     await app.close();
   });
-}); import { from } from 'rxjs';
-import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
-import { EditPricingUpdater } from '../interface/service/edit-pricing-updater.interface';
-import { EditDetailsUpdater } from '../interface/service/edit-details-updater.interface';
-import { ScheduleUnavailabilityInterface } from '../interface/service/schedule-unavailability.interface';
-
+}); 
