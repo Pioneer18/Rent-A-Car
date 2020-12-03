@@ -34,8 +34,6 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
       ordinal: u1.doy,
       hour: u1.start,
     });
-    Logger.log(`the requested start DateTime below:`);
-    Logger.log(start);
     return start;
   }
 
