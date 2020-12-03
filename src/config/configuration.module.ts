@@ -21,6 +21,7 @@ import { AppConfigService } from './configuration.service';
                 GEO_URL: Joi.string().required(),
                 // DATABASE
                 REMOTE_DB: Joi.string(),
+                TEST_DB: Joi.string(),
                 LOCAL_DB: Joi.string(),
                 // REDIS SERVER
                 REDIS_HOST: Joi.string().required(),

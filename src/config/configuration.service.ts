@@ -33,6 +33,12 @@ export class AppConfigService {
         return this.configService.get<string>('app.remote_db');
     }
     /**
+     * **summary**: Retrieve the **TEST_DB** environment variable
+     */
+    get test_db(): string {
+        return this.configService.get<string>('app.test_db');
+    }
+    /**
      * **summary**: Retrieve the **LOCAL_DB** environment variable
      */
     get local_db(): string {

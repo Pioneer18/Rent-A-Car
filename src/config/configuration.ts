@@ -7,6 +7,7 @@ export default registerAs('app', () => ({
     geo_api_key: process.env.GEO_API_KEY,
     geo_url: process.env.GEO_URL,
     remote_db: process.env.REMOTE_DB,
+    test_db: process.env.TEST_DB,
     local_db: process.env.LOCAL_DB,
     secret_key: process.env.SECRET_KEY,
     jwt_exp_time: process.env.JWT_EXP_TIME,
