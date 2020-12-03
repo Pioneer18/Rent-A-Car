@@ -23,6 +23,7 @@ import { ValidateRemoveUnavailabilityPipe } from './pipes/validate-remove-unavai
 import { AppConfigService } from 'src/config/configuration.service';
 import { GenerateRentalDurationEnumUtil } from './utils/generate-rental-duration-enum.util';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { unavailabilityModel } from '../common/Const';
 /**
  * - **summary**: This module provides all of the functionality for working with Rentals
  * - **Middleware**: This module consumes the **ValidateUpdateUnavailability** middleware; for more details, in the documentation checkout the **Injectables** ValidateUpdateUnavailability tab
@@ -31,7 +32,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'Rental', schema: RentalSchema }]),
-    MongooseModule.forFeature([{name: 'Unavailability', schema: UnavailabilitySchema}]),
+    MongooseModule.forFeature([{name: unavailabilityModel, schema: UnavailabilitySchema}]),
     DatabaseModule,
     ConfigModule,
   ],

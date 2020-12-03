@@ -4,7 +4,7 @@ import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-
 import { Injectable } from '@nestjs/common';
 
 /**
- * Test Rental Service provides access to private rentalModel for Unit Testing
+ * Test Rental Service provides access to private methods for Unit Testing
  */
 @Injectable()
 export class TestRentalService {
@@ -44,4 +44,5 @@ export class TestRentalService {
       : (rental.features = null);
     return query;
   }
+
 }
