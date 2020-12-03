@@ -1,7 +1,6 @@
 import { TestingModule, Test } from '@nestjs/testing';
 import { GenerateRentalDurationEnumUtil } from './generate-rental-duration-enum.util';
 import { DateTime, Interval } from 'luxon';
-import { Logger } from '@nestjs/common';
 import { RentalDurations } from '../const';
 /**
  * Summary:
@@ -66,21 +65,12 @@ describe('GenerateRentalDurationEnumUtil Unit Test', () => {
           const months = base.length('months');
           const weeks = base.length('weeks');
           const days = base.length('days');
-          Logger.log(`The Base`);
-          Logger.log(base);
-          Logger.log(`months: ${months}, weeks: ${weeks}, days: ${days}`);
           return { months, weeks, days };
         } catch (err) {
           throw new Error(err);
         }
       };
       const test = await mockProcessRentalTime(now, oneMonth);
-      Logger.log('test ------------------------------');
-      Logger.log(
-        `Days: ${test.days}, Weeks: ${test.weeks}, Months: ${
-          test.months
-        } test ------------------------------`,
-      );
       expect(test.days).toBe(31);
       expect(test.weeks).toBeGreaterThan(4); // 4.14 weeks
       expect(test.months).toBe(1);
