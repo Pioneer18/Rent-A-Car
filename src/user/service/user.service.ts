@@ -13,7 +13,6 @@ import { FindUserByResetPwTokenInterface } from '../interface/service/find-user-
 import { UpdateUserInterface } from '../interface/service/update-user.interface';
 import { DeleteUserInterface } from '../interface/service/delete-user.interface';
 import { UserInterface } from '../interface/user.interface';
-import { CreatedUserInterface } from '../interface/service/created-user.interface';
 /**
  * **summary**: contains all of the functionality to manage a user profile
  */
@@ -30,12 +29,10 @@ export class UserService {
      * **summary**: Create a new user
      * @param user New user data
      */
-    createUser = async (user: CreateQuery<CreateUserInterface>): Promise<CreateQuery<CreatedUserInterface>> => {
+    createUser = async (user: CreateQuery<CreateUserInterface>): Promise<CreateQuery<UserModelInterface>> => {
         try {
             const document = await new this.userModel(user);
-            document.save();
-            document.password = undefined;
-            return document;
+            return await document.save();
         } catch (err) {
             throw new Error(err);
         }
