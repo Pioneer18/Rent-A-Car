@@ -60,7 +60,7 @@ export class UserController {
      */
     @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGaurd)
-    @Redirect('http://localhost:3000/auth/login', 302)
+    // @Redirect('http://localhost:3000/auth/login', 302)
     @Post('delete-profile')
     async deleteProfile(@Body() data: DeleteUserDto, @Req() req): Promise<UserInterface> {
         return this.userService.deleteUser(data, req);
