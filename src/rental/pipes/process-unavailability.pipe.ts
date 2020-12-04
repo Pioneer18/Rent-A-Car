@@ -122,6 +122,8 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
     value: ValidatedUnavailabilityDto,
   ): Promise<ProcessedUnavailabilityDto> => {
     // add uuid
+    Logger.log('Validate Unavailability Dto')
+    Logger.log(value)
     const {pY1, pY2} = await this.addUnavailabilityId(value);
     const { y1, y2 } = value;
     // create Unavailability model queries for each year

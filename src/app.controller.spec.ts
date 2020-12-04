@@ -1,22 +1,33 @@
+
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
+import { AppModule } from './app.module';
 import { AppService } from './app.service';
+import { JwtAuthGuard } from './auth/gaurds/jwt-auth.guard';
+import { LoggedOutGaurd } from './auth/gaurds/logged-out.guard';
+import { RedisModule } from './redis/redis.module';
 
 describe('AppController', () => {
+
   let appController: AppController;
-
-  beforeEach(async () => {
-    const app: TestingModule = await Test.createTestingModule({
+  let app: TestingModule;
+  beforeAll(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [AppModule, RedisModule],
       controllers: [AppController],
-      providers: [AppService],
+      providers: [AppService, LoggedOutGaurd, JwtAuthGuard],
     }).compile();
-
-    appController = app.get<AppController>(AppController);
+    app = module;
+    appController = module.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+  describe('App Controller definition test', () => {
+    it('should be defined', async () => {
+      expect(appController).toBeDefined();
     });
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 });

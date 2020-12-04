@@ -1,4 +1,4 @@
-import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
+import { JwtPayloadInterface } from '../../../auth/interfaces/jwt-payload.interface';
 /**
  * **summary**: Interface for the images.service.deleteAllImages() method
  */

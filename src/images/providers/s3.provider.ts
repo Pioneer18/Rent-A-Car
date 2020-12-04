@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { AppConfigService } from 'src/config/configuration.service';
+import { AppConfigService } from '../../config/configuration.service';
 import { S3 } from 'aws-sdk';
 /**
  * **summary**: provide connection to the AWS S3 bucket

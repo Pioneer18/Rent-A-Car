@@ -5,7 +5,7 @@ import { response, Response } from 'express';
 import { profile, rentals } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
-import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
+import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 /**
  * **summary**: Controller for managing images in the application
  */

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
-import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
+import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
 import { CreateInterface } from '../interfaces/utils/createMulterUploadUtil/create.interface';
 import { S3Provider } from '../providers/s3.provider';
 /**

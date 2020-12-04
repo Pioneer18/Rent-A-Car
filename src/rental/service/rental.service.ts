@@ -16,7 +16,7 @@ import { ScheduleUnavailabilityInterface } from '../interface/service/schedule-u
 import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
 import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
-import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
+import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
 
 /**
@@ -128,6 +128,8 @@ export class RentalService {
    */
   scheduleUnavailability = async (processed: ScheduleUnavailabilityInterface): Promise<UnavailabilityInterface[]> => {
     try {
+      Logger.log(`Processed Unavailability Dto/Interface`)
+      Logger.log(processed)
       await this.checkForOverlap(processed);
       // if it passed, combine data into one array and insert
       const { y1, y2 } = processed.data;

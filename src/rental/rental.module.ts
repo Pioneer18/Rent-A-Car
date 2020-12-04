@@ -20,7 +20,7 @@ import { ValidateUnavailabilityPipe } from './pipes/validate-unavailability.pipe
 import { SortUnavailabilityPipe } from './pipes/sort-unavailability.pipe';
 import { CreateUpdaterDtoPipe } from './pipes/create-updater-dto.pipe';
 import { ValidateRemoveUnavailabilityPipe } from './pipes/validate-remove-unavailability.pipe';
-import { AppConfigService } from 'src/config/configuration.service';
+import { AppConfigService } from '../config/configuration.service';
 import { GenerateRentalDurationEnumUtil } from './utils/generate-rental-duration-enum.util';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { unavailabilityModel } from '../common/Const';

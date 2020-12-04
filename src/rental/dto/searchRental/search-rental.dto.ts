@@ -1,4 +1,4 @@
-import { SearchRentalInterface } from 'src/rental/interface/service/search-rental.interface';
+import { SearchRentalInterface } from '../../../rental/interface/service/search-rental.interface';
 
 /**
  * **summary**: This dto is the final form of the request to search for a rental. It includes the givenNotice,

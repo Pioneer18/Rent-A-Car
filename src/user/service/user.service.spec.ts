@@ -137,6 +137,8 @@ describe('UserService', () => {
       username: "Unathi",
       email: "unathi@gmail.com",
       password: "$2b$10$K.9/byQ9U51LHzx/ZLrU7.Q.F5DI8Lha.zfEECxfloKzoI20X1d0e",
+      resetPasswordExpires: null,
+      resetPasswordToken: null,
       __v: 0
     }
     it('should delete a user`s account', async () => {
