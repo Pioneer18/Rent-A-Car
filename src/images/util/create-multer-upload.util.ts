@@ -20,7 +20,6 @@ export class CreateMulterUploadUtil {
      */
     create = async (data: CreateInterface) => {
         Logger.log(`CREATE MULTER UPLOAD UTIL: Create Upload Data`)
-        Logger.log(data);
         try {
             // create a multer upload
             const user: JwtPayloadInterface = data.req.user;
