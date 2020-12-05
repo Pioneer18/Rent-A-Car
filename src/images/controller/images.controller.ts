@@ -1,7 +1,7 @@
 import { Controller, Post, Req, UseGuards, Body, Get, Query, Res, Logger } from '@nestjs/common';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
-import { response, Response } from 'express';
+import { response} from 'express';
 import { profile, rentals } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
@@ -25,11 +25,9 @@ export class ImagesController {
     @Post('upload-rental-images')
     async uploadRentalImages(@Req() req, @Res() res, @Query() params) {
         try {
-            Logger.log("Incoming request data: lets go")
-            Logger.log(req);
             await this.imagesService.fileuploadAndSave({req, res, category: rentals, rental_id: params.rental_id});
         } catch (err) {
-            return response
+            return res
                 .status(500)
                 .json(`Failed to upload image file: ${err.message}`);
         }
@@ -43,11 +41,9 @@ export class ImagesController {
     @Post('upload-profile-images')
     async uploadProfileImage(@Req() req, @Res() res, @Query() params) {
         try {
-            Logger.log("Incoming request data: lets go")
-            Logger.log(req);
             await this.imagesService.fileuploadAndSave({req, res, category: profile, rental_id: params.rental_id});
         } catch (err) {
-            return response
+            return res
                 .status(500)
                 .json(`Failed to upload image file: ${err.message}`);
         }
