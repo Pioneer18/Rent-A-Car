@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ProcessedSaveDataInterface } from '../interfaces/utils/processSaveData/processed-save-data.interface';
 import { SaveImagesInterface } from '../interfaces/service/save-images.interface';
 import { Image } from '../interfaces/image.interface';
@@ -19,6 +19,11 @@ export class ProcessSaveDataUtil {
     if (data.files && data.files.length > 0) {
       // single file
       if (data.files.length === 1) {
+        Logger.log('PROCESS SAVE DATA UTIL')
+        Logger.log(data.files)
+        Logger.log(data.rental_id)
+        Logger.log(data.user_id)
+        Logger.log(data.category)
         const temp = data.files[0];
         const image: Image = {
           user_id: data.user_id,

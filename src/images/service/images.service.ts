@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ImageModelInterface } from '../interfaces/modelInterface/image-model.interface';
-import { Model, Query } from 'mongoose';
+import { Model} from 'mongoose';
 import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
 import { profile } from '../../common/Const';
 import { SaveImagesInterface } from '../interfaces/service/save-images.interface';
@@ -151,9 +151,12 @@ export class ImagesService {
    * @param rental_id the rental_id for rental image uploads
    * @param saveImages the images.service.saveImages method
    */
-  fileuploadAndSave = async (data: FileUploadAndSaveInterface): Promise<string> => {
+  fileuploadAndSave = async (data: FileUploadAndSaveInterface) => {
     try {
       // create a multer upload
+      Logger.log(`FILE UPLOAD AND SAVE`);
+      Logger.log(JSON.stringify(data.req));
+      Logger.log(data.req.body);
       const user: JwtPayloadInterface = data.req.user;
       const multerUpload = await this.createMulterUploadUtil.create({ req: data.req, category: data.category });
       // Upload the image(s)

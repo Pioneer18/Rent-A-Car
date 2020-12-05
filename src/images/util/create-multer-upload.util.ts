@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import * as multer from 'multer';
 import * as multerS3 from 'multer-s3';
 import { JwtPayloadInterface } from '../../auth/interfaces/jwt-payload.interface';
@@ -19,6 +19,8 @@ export class CreateMulterUploadUtil {
      * @param category
      */
     create = async (data: CreateInterface) => {
+        Logger.log(`CREATE MULTER UPLOAD UTIL: Create Upload Data`)
+        Logger.log(data);
         try {
             // create a multer upload
             const user: JwtPayloadInterface = data.req.user;
