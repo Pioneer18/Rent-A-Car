@@ -3,7 +3,7 @@ export interface UserInterface {
     username: string;
     email: string;
     password: string;
-    resetPasswordToken: string | null;
-    resetPasswordExpires: Date | null;
+    resetPasswordToken?: string | null;
+    resetPasswordExpires?: Date | null;
     __v?: number;
 }
