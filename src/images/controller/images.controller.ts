@@ -86,7 +86,7 @@ export class ImagesController {
      * @param req request object
      */
     @Get('find-profile-image')
-    async findProfileImage(@Req() req, @Body() image: ImageDto): Promise<RetrievedImagesInterface> {
+    async findProfileImage(@Req() req, @Query() image: ImageDto): Promise<RetrievedImagesInterface> {
         return await this.imagesService.findProfileImages({ user: req.user, img_id: image._id });
     }
 
@@ -96,7 +96,7 @@ export class ImagesController {
      * @param category both or a single one
      */
     @Post('delete-images')
-    async deleteRentalImages(@Body() images: ImageDto[], @Req() req): Promise<DeleteResponseInterface> {
+    async deleteImages(@Body() images: ImageDto[], @Req() req): Promise<DeleteResponseInterface> {
         return await this.imagesService.deleteImages({ images, user: req.user });
     }
 
@@ -105,7 +105,7 @@ export class ImagesController {
      * Summary: delete all images for a selected rental
      */
     @Post('delete-all-rental-images')
-    async deleteAllRentalImages(@Query() params, @Req() req): Promise<DeleteResponseInterface> {
+    async deleteAllRentalImages(@Query() params: RentalIdParamsDto, @Req() req): Promise<DeleteResponseInterface> {
         return await this.imagesService.deleteAllImages({ user: req.user, rental_id: params.rental_id });
     }
 

@@ -5,7 +5,7 @@
 export interface Image {
     _id?: string;
     user_id: string;
-    rental_id: string;
+    rental_id?: string;
     bucket: string;
     key: string;
     etag: string;
