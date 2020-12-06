@@ -1,8 +1,10 @@
 import { ConfigModule } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
+import { MongooseModule } from "@nestjs/mongoose";
 import { PassportModule } from "@nestjs/passport";
 import { Test, TestingModule } from "@nestjs/testing";
 import { response, Response } from "express";
+import { UserSchema } from "src/user/schema/user.schema";
 import { AppConfigModule } from "../../config/configuration.module";
 import { AppConfigService } from "../../config/configuration.service";
 import { EmailService } from "../../email/email.service";
@@ -28,6 +30,10 @@ describe('Auth Controller', () => {
         const module: TestingModule = await Test.createTestingModule({
             imports: [
                 AppConfigModule,
+                // MongooseModule.forFeature([{ name: 'User', schema: UserSchema}]),
+                MongooseModule.forRoot('mongodb://localhost/rent-a-car-test', {
+                useNewUrlParser: true,
+                }),
                 ConfigModule,
                 UserModule,
                 PassportModule,
@@ -93,8 +99,8 @@ describe('Auth Controller', () => {
         it('should change the password to the new password submitted by the user', async () => {
             jest
                 .spyOn(controller, 'changePassword')
-                .mockImplementation(async (): Promise<void> => {})
-            expect(await controller.changePassword(req, data)).toBe({})
+                .mockImplementation(async () => {})
+            expect(await controller.changePassword(req, data)).toBeUndefined()
         })
     })
 
@@ -120,8 +126,8 @@ describe('Auth Controller', () => {
         it('should...', async () => {
             jest
                 .spyOn(controller, 'resetPassword')
-                .mockImplementation(async (): Promise<void> => {})
-            expect(await controller.resetPassword(data)).toBe({});
+                .mockImplementation(async () => {})
+            expect(await controller.resetPassword(data)).toBeUndefined();
         })
     })
 
