@@ -6,6 +6,7 @@ import { profile, rentals } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
+import { RentalIdParamsDto } from '../dto/rental-id-params.dto';
 /**
  * **summary**: Controller for managing images in the application
  */
@@ -23,7 +24,7 @@ export class ImagesController {
      * @param options option
      */
     @Post('upload-rental-images')
-    async uploadRentalImages(@Req() req, @Res() res, @Query() params): Promise<any> {
+    async uploadRentalImages(@Req() req, @Res() res, @Query() params: RentalIdParamsDto): Promise<any> {
         try {
             await this.imagesService.fileuploadAndSave({req, res, category: rentals, rental_id: params.rental_id});
         } catch (err) {
@@ -39,9 +40,9 @@ export class ImagesController {
      * @param files fieldName
      */
     @Post('upload-profile-images')
-    async uploadProfileImage(@Req() req, @Res() res, @Query() params): Promise<any> {
+    async uploadProfileImage(@Req() req, @Res() res): Promise<any> {
         try {
-            await this.imagesService.fileuploadAndSave({req, res, category: profile, rental_id: params.rental_id});
+            await this.imagesService.fileuploadAndSave({req, res, category: profile});
         } catch (err) {
             return res
                 .status(500)
