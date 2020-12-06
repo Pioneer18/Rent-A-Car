@@ -128,9 +128,6 @@ export class ImagesService {
   deleteAllImages = async (data: DeleteAllImagesInterface): Promise<DeleteResponseInterface> => {
     // delete all images of the selected rental
     if (data.user && typeof data.rental_id === 'string') {
-      console.log('DELETING ALL RENTAL IMAGES NOW');
-      console.log(data.rental_id);
-      console.log(data.user);
       return await this.imagesModel.remove({ user_id: data.user.userId, rental_id: data.rental_id });
     }
     // delete all of the user's profile images
