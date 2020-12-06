@@ -4,6 +4,6 @@ export interface UserInterface {
     email: string;
     password: string;
     resetPasswordToken?: string | null;
-    resetPasswordExpires?: Date | null;
+    resetPasswordExpires?: Date | string | null;
     __v?: number;
 }

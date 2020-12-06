@@ -5,6 +5,6 @@ export interface ValidateUserReturn {
     _id: string;
     username: string;
     email: string;
-    resetPasswordToken: string;
-    resetPasswordExpires: Date;
+    resetPasswordToken?: string;
+    resetPasswordExpires?: Date | string;
 }
