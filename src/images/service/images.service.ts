@@ -17,7 +17,6 @@ import { DeleteAllImagesInterface } from '../interfaces/service/delete-all-image
 import { FileUploadAndSaveInterface } from '../interfaces/service/fileupload-and-save.interface';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
-import { Image } from '../interfaces/image.interface';
 /**
  * **summary**: contains all of the functionality for uploading and managing photos in the application.
  * - note: for security, user_id is required for all queries to verify the queried images belong to the requesting user.
@@ -161,7 +160,7 @@ export class ImagesService {
         saveImages: this.saveImages,
         category: data.category,
         user,
-        rental_id: data.rental_id,
+        rental_id: data.rental_id ? data.rental_id : null,
       });
     } catch (err) {
       return data.res.status(500).json(`Failed to upload image file: ${err}`);

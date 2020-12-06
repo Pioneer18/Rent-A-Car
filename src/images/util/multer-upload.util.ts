@@ -29,7 +29,7 @@ export class MulterUploadUtil {
                     files: data.req.files,
                     category: data.category,
                     user_id: data.user.userId,
-                    rental_id: data.rental_id,
+                    rental_id: data.rental_id ? data.rental_id : null,
                 });
                 // return the aws download link
                 return data.res.status(201).json(data.req.files[0].location);
