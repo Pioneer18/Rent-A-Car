@@ -13,6 +13,7 @@ import { FindUserByResetPwTokenInterface } from '../interface/service/find-user-
 import { UpdateUserInterface } from '../interface/service/update-user.interface';
 import { DeleteUserInterface } from '../interface/service/delete-user.interface';
 import { UserInterface } from '../interface/user.interface';
+import { CreateUserReturnInterface } from '../interface/service/create-user-return.interface';
 /**
  * **summary**: contains all of the functionality to manage a user profile
  */
@@ -26,13 +27,22 @@ export class UserService {
     ) { }
 
     /**
-     * **summary**: Create a new user
+     * **summary**: Create a new user a return a simply object with the created user data
      * @param user New user data
      */
-    createUser = async (user: CreateQuery<CreateUserInterface>): Promise<CreateQuery<UserModelInterface>> => {
+    createUser = async (user: CreateQuery<CreateUserInterface>): Promise<CreateUserReturnInterface> => {
         try {
             const document = await new this.userModel(user);
-            return await document.save();
+            await document.save();
+            // don't return the mongodb document, just a object with the data
+            const lean: CreateUserReturnInterface = {
+                _id: document._id,
+                username: document.username,
+                email: document.email,
+                password: document.password,
+                __v: 0
+            }
+            return lean;
         } catch (err) {
             throw new Error(err);
         }

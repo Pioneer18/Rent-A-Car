@@ -12,6 +12,7 @@ import { BcryptHashPipe } from '../pipes/bcrypt.pipe';
 import { CreateUserValidation } from '../schema/validation/create-user-validation.schema';
 import { UserService } from '../service/user.service';
 import { UserInterface } from '../interface/user.interface';
+import { CreateUserReturnInterface } from '../interface/service/create-user-return.interface';
 /**
  * **summary**: Controller for managing users in the application
  */
@@ -26,7 +27,7 @@ export class UserController {
     @UsePipes(new BcryptHashPipe())
     @UsePipes(new JoiValidationPipe(CreateUserValidation))
     @Post('create-user')
-    async createProfile(@Body() user: CreateUserDto): Promise<CreateQuery<UserModelInterface>> {
+    async createProfile(@Body() user: CreateUserDto): Promise<CreateUserReturnInterface> {
         return await this.userService.createUser(user);
     }
 
