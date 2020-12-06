@@ -7,7 +7,7 @@ import { MulterUploadUtilInterface } from '../interfaces/utils/multerUploadUtil/
 export class MulterUploadUtil {
 
     /**
-     * **summary**: upload the provided files with the multerUpload object
+     * **summary**: upload the provided files with the multerUpload object and return the
      * @param req the client request
      * @param res the response
      * @param multerUpload uploader
@@ -31,6 +31,7 @@ export class MulterUploadUtil {
                     user_id: data.user.userId,
                     rental_id: data.rental_id,
                 });
+                // return the aws download link
                 return data.res.status(201).json(data.req.files[0].location);
             });
         } catch (err) {

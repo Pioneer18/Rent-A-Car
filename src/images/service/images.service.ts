@@ -41,7 +41,7 @@ export class ImagesService {
    * @param {string} user_id user id to associate with the image
    * @param {string | null} rental_id id of the rental (if it's a rental image): Check for null
    */
-  saveImages = async (data: SaveImagesInterface): Promise<Image[] | Image> => {
+  saveImages = async (data: SaveImagesInterface): Promise<ImageModelInterface[] | ImageModelInterface> => {
     try {
       const { packet, image }: ProcessedSaveDataInterface = await this.processSaveDataUtil.process(data);
       let flag;
@@ -50,10 +50,7 @@ export class ImagesService {
         return await this.imagesModel.insertMany(packet);
       }
       const document = new this.imagesModel(image);
-      document.save(function(err) {
-       if (err) { throw new Error(err); }
-       return;
-      });
+      return await document.save();
     } catch (err) {
       throw new Error(err);
     }
@@ -151,13 +148,13 @@ export class ImagesService {
    * @param rental_id the rental_id for rental image uploads
    * @param saveImages the images.service.saveImages method
    */
-  fileuploadAndSave = async (data: FileUploadAndSaveInterface) => {
+  fileuploadAndSave = async (data: FileUploadAndSaveInterface): Promise<any> => {
     try {
       Logger.log('File Upload And SAVE')
       const user: JwtPayloadInterface = data.req.user;
       const multerUpload = await this.createMulterUploadUtil.create({ req: data.req, category: data.category });
       // Upload the image(s)
-      await this.multerUploadUtil.upload({
+      return await this.multerUploadUtil.upload({
         req: data.req,
         res: data.res,
         multerUpload,

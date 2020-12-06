@@ -23,7 +23,7 @@ export class ImagesController {
      * @param options option
      */
     @Post('upload-rental-images')
-    async uploadRentalImages(@Req() req, @Res() res, @Query() params) {
+    async uploadRentalImages(@Req() req, @Res() res, @Query() params): Promise<any> {
         try {
             await this.imagesService.fileuploadAndSave({req, res, category: rentals, rental_id: params.rental_id});
         } catch (err) {
@@ -39,7 +39,7 @@ export class ImagesController {
      * @param files fieldName
      */
     @Post('upload-profile-images')
-    async uploadProfileImage(@Req() req, @Res() res, @Query() params) {
+    async uploadProfileImage(@Req() req, @Res() res, @Query() params): Promise<any> {
         try {
             await this.imagesService.fileuploadAndSave({req, res, category: profile, rental_id: params.rental_id});
         } catch (err) {
