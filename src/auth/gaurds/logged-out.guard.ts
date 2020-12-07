@@ -6,7 +6,7 @@ import { RedisService } from '../../redis/service/redis.service';
  * **summary**: Override the JWT expiration time and 'logout' a user by adding their JWT to a Redis cache 'dead-list'
  */
 @Injectable()
-export class LoggedOutGaurd implements CanActivate {
+export class LoggedOutGuard implements CanActivate {
     constructor(private readonly redisService: RedisService) {}
 
     /**
@@ -17,17 +17,13 @@ export class LoggedOutGaurd implements CanActivate {
     private async checkDeadList(req: Request): Promise<boolean> {
         // grab the key from the incoming jwt
         const rawAuth = req.headers.cookie;
-        console.log(rawAuth);
         const key = rawAuth.slice(-8);
         const check = await this.redisService.get(key);
-        console.log(`LOGGED-OUT Guard Check Results: `);
-        console.log(check);
         // if the key is found, deny access; User is Logged Out
         if (check && check !== null) {
             throw new Error('You are logged out, log back in to continue');
             // REDIRECT to login
         }
-        console.log('You are logged in :)');
         return true;
     }
 

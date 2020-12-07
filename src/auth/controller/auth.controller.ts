@@ -5,7 +5,7 @@ import { ForgotPasswordDto } from '../dto/forgot-password.dto';
 import { ResetPasswordDto } from '../dto/reset-password.dto';
 import { JwtAuthGuard } from '../gaurds/jwt-auth.guard';
 import { LocalAuthGuard } from '../gaurds/local-auth.guard';
-import { LoggedOutGaurd } from '../gaurds/logged-out.guard';
+import { LoggedOutGuard } from '../gaurds/logged-out.guard';
 import { ExtractKeyValueUtilInterface } from '../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface';
 import { AuthService } from '../service/auth.service';
 /**
@@ -49,7 +49,7 @@ export class AuthController {
      * @param data The new password data
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGaurd)
+    @UseGuards(LoggedOutGuard)
     @Post('change-password')
     async changePassword(@Req() req, @Body() data: ChangePasswordDto): Promise<void> {
         return this.authService.changePassword(data, req);
@@ -60,7 +60,7 @@ export class AuthController {
      * @param data The email address to send the forgot-password email to
      */
     @Post('forgot-password')
-    async forgotPassword(@Body() data: ForgotPasswordDto) {
+    async forgotPassword(@Body() data: ForgotPasswordDto): Promise<string> {
         return this.authService.forgotPassword(data);
     }
 

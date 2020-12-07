@@ -10,7 +10,7 @@ import { GeoUrlApiUtil } from '../utils/geo-url-api.util';
  */
 @Injectable()
 export class GeoUrlApiPipe {
-  constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil, private readonly appConfig: AppConfigService) { }
+  constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) { }
 
   /**
    * **summary**: Convert the location property object into a single address property string; will be passed to this.getCoordinates method

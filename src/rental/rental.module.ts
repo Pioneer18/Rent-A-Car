@@ -25,7 +25,7 @@ import { GenerateRentalDurationEnumUtil } from './utils/generate-rental-duration
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { unavailabilityModel } from '../common/Const';
 import { MapRentalUtil } from './utils/map-rental.util';
-import { ToItemsIndexes } from 'src/common/util/to-item-indexes';
+import { ToItemsIndexes } from '../common/util/to-item-indexes';
 /**
  * - **summary**: This module provides all of the functionality for working with Rentals
  * - **Middleware**: This module consumes the **ValidateUpdateUnavailability** middleware; for more details, in the documentation checkout the **Injectables** ValidateUpdateUnavailability tab

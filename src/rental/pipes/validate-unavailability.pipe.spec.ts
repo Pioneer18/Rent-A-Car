@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing"
 import { ValidateUnavailabilityPipe } from "./validate-unavailability.pipe";
 import { ValidateScheduleUnavailabilityDto } from "../dto/unavailability/schedule/validate-schedule-unavailability.dto";
 import { ValidatedUnavailabilityDto } from "../dto/unavailability/validated-unavailability.dto";
+import { ToItemsIndexes } from "../../common/util/to-item-indexes";
 
 describe('ValidateUnavailabilityPipe Unit Test', () => {
 
@@ -9,7 +10,10 @@ describe('ValidateUnavailabilityPipe Unit Test', () => {
     let app: TestingModule;
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            providers: [ValidateUnavailabilityPipe]
+            providers: [
+                ValidateUnavailabilityPipe,
+                ToItemsIndexes
+            ]
         }).compile();
         app = module;
         util = module.get<ValidateUnavailabilityPipe>(ValidateUnavailabilityPipe);

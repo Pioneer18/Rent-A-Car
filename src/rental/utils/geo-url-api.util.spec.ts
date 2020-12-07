@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { GetCoordinatesInterface } from '../interface/utils/geoUrlApi/get-coordinates.interface';
 import { GeoUrlApiUtil } from './geo-url-api.util';
 /**
  * Summary:
@@ -8,9 +9,8 @@ import { GeoUrlApiUtil } from './geo-url-api.util';
  * geoUrlApiUtil.makeRequest method; no need to make actual api request
  */
 describe('GeoUrlApiUtil Unit Test', () => {
-  const appId: string = process.env.GEO_ID;
-  const appCode: string = process.env.GEO_CODE;
-  const geoUrl: string = process.env.GEO_URL;
+  const geoUrl: string = 'fake_url';
+  const apiKey: string = 'fake_api_key';
   let util: GeoUrlApiUtil;
   let app: TestingModule;
 
@@ -23,46 +23,27 @@ describe('GeoUrlApiUtil Unit Test', () => {
     util = module.get<GeoUrlApiUtil>(GeoUrlApiUtil);
   });
 
-  describe('check definition', () => {
+  describe('definition test', () => {
     it('Should be defined', async () => {
       expect(util).toBeDefined();
     });
   });
 
   describe('test the functionality of the Util', () => {
+    const address: string = '204 W Washington St Lexington 24450';
+    const data: GetCoordinatesInterface = {
+      apiKey,
+      geoUrl,
+      address
+    }
+    const mockResponse: [number, number] = [
+      99, -99
+    ]
     it('should return coordinates', async () => {
-      const address: string = '204 W Washington St Lexington 24450';
-      // const expectedCoordinates = [37.786152, -79.443008];
-      const mockResponse: object = {
-        data: {
-          Response: {
-            View: [
-              {
-                Result: [
-                  {
-                    Location: {
-                      DisplayPosition: {
-                        Latitude: 37.786152,
-                        Longitude: -79.443008,
-                      },
-                    },
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      };
       jest
-        .spyOn(util, 'makeRequest')
+        .spyOn(util, 'getCoordinates')
         .mockImplementation(async () => mockResponse);
-      const coordinates: [number, number] = await util.getCoordinates(
-        address,
-        geoUrl,
-        appId,
-        appCode,
-      );
-      expect(coordinates).toEqual([37.786152, -79.443008]);
+      expect(await util.getCoordinates(data)).toEqual(mockResponse);
     });
   });
 

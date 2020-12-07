@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
  */
 @Injectable()
 export class PositiveNumber {
-    validate = (data: number) => {
+    validate = (data: number): Boolean => {
         if (Math.sign(data) === -1) {
             return false;
         }
