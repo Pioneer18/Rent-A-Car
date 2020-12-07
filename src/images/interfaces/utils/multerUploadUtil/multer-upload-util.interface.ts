@@ -7,7 +7,7 @@ import { SaveImagesInterface } from '../../service/save-images.interface';
 export interface MulterUploadUtilInterface {
     req: any;
     res: any;
-    multerUpload: multer;
+    multerUpload: Function;
     saveImages: (data: SaveImagesInterface) => {};
     category: string;
     user: JwtPayloadInterface;
