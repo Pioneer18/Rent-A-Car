@@ -60,7 +60,7 @@ export class AuthController {
      * @param data The email address to send the forgot-password email to
      */
     @Post('forgot-password')
-    async forgotPassword(@Body() data: ForgotPasswordDto): Promise<string> {
+    async forgotPassword(@Body() data: ForgotPasswordDto) {
         return this.authService.forgotPassword(data);
     }
 

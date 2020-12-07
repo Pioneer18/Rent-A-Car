@@ -3,19 +3,19 @@
  */
 export interface UpdateResponseInterface {
     n: number;
-    nModified: number;
-    opTime: {
+    nModified?: number;
+    opTime?: {
         'ts': string | number;
         't': number;
     };
-    electionId: string;
+    electionId?: string;
     ok: number;
-    $clusterTime: {
+    $clusterTime?: {
         'clusterTime': string;
         'signature': {
             'hash': string | number;
             'keyId': string | number;
         }
     };
-    operationTime: string | number;
+    operationTime?: string | number;
 }

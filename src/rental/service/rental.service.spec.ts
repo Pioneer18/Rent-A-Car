@@ -16,6 +16,7 @@ import { RemoveUnavailabilityInterface } from '../interface/service/remove-unava
 import { SearchRentalInterface } from '../interface/service/search-rental.interface';
 import { RentalQuery } from '../interface/service/create-rental-query.interface';
 import { Logger } from '@nestjs/common';
+import { MapRentalUtil } from '../utils/map-rental.util';
 
 /**
  * Test the properties of the RentalService Class:
@@ -41,7 +42,7 @@ describe('RentalService Unit Tests', () => {
           useNewUrlParser: true,
         }),
       ],
-      providers: [RentalService, TestRentalService],
+      providers: [RentalService, TestRentalService, MapRentalUtil],
     }).compile();
     app = module;
     service = module.get<RentalService>(RentalService);

@@ -2,12 +2,13 @@ import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { DateTime, Interval } from 'luxon';
 import { ValidateScheduleUnavailabilityDto } from '../dto/unavailability/schedule/validate-schedule-unavailability.dto';
 import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
-import { toItemIndexes } from '../../common/util/to-item-indexes';
+import { ToItemsIndexes } from '../../common/util/to-item-indexes';
 import { validated } from '../../common/Const';
 import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unavailability.dto';
 
 @Injectable()
 export class ValidateUnavailabilityPipe implements PipeTransform {
+  constructor(private readonly toItemsIndexes: ToItemsIndexes) {}
   /**
    * **summary**: Confirm that the user is requesting to schedule a single block of Unavailable time for their Rental that is logically and will
    * not cause an error in the application
@@ -131,7 +132,7 @@ export class ValidateUnavailabilityPipe implements PipeTransform {
     unavailability: UnavailabilityDto[],
   ): Promise<void> => {
     const base = unavailability[0];
-    for (const { item, index } of toItemIndexes(unavailability)) {
+    for (const { item, index } of this.toItemsIndexes.toItemIndexes(unavailability)) {
       // rentalId congruence
       if (item.rentalId !== base.rentalId) {
         throw new Error('request cannot have more than 1 Rental ID');

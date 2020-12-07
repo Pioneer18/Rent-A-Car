@@ -31,6 +31,7 @@ import { RentalInterface } from '../interface/rental.interface';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
+import { ToItemsIndexes } from '../../common/util/to-item-indexes';
 
 /**
  * - **summary**: controller for managing rentals in the application
@@ -93,14 +94,14 @@ export class RentalController {
    */
   @Post('schedule-unavailability')
   @UsePipes(new ProcessUnavailabilityPipe())
-  @UsePipes(new ValidateUnavailabilityPipe())
+  @UsePipes(new ValidateUnavailabilityPipe(new ToItemsIndexes()))
   @UsePipes(new SortUnavailabilityPipe())
   async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto): Promise<UnavailabilityInterface[]> {
     return await this.rentalService.scheduleUnavailability(processed);
   }
 
   /**
-   * **summary**: Edit current unavailability
+   * **summary**: Edit the selected rental's unavailability
    */
   @Post('update-unavailability')
   @UsePipes(new CreateUpdaterDtoPipe())
@@ -109,7 +110,7 @@ export class RentalController {
   }
 
    /**
-    * **summary**: Remove existing unavailability
+    * **summary**: Remove unavailability from the selected rental
     */
    @Post('remove-unavailability')
    @UsePipes(new ValidateRemoveUnavailabilityPipe())

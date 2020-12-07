@@ -112,7 +112,7 @@ export class AuthService {
      * @param email The email for resetting the password
      * **summary**: Sends user a reset password link to the provided email, if it's an account associated email
      */
-    forgotPassword = async (data: ForgotPasswordInterface): Promise<string> => {
+    forgotPassword = async (data: ForgotPasswordInterface) => {
         try {
             // query user and confirm they exist
             const user = await this.userService.findUser({email: data.email});

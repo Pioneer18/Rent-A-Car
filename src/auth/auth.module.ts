@@ -30,7 +30,16 @@ import { AppConfigService } from '../config/configuration.service';
       signOptions: {expiresIn: `${jwtConstants.jwt_exp_time}s`}, // add this expiresIn value to the `jwtConstants` object
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, LoggedOutGaurd, ExtractKeyValueUtil, VerifyNewPasswordUtil, EmailService, AppConfigService],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    LoggedOutGaurd, 
+    ExtractKeyValueUtil,
+    VerifyNewPasswordUtil,
+    EmailService,
+    AppConfigService
+  ],
   exports: [AuthService, LoggedOutGaurd, ExtractKeyValueUtil, VerifyNewPasswordUtil],
   controllers: [AuthController],
 })
