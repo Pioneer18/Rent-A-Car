@@ -18,6 +18,7 @@ import { RemoveUnavailabilityInterface } from '../interface/service/remove-unava
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
+import { MapRentalUtil } from '../utils/map-rental.util';
 
 /**
  * **summary**: Create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
@@ -27,6 +28,7 @@ export class RentalService {
   constructor(
     @InjectModel('Rental') private readonly rentalModel: Model<RentalModelInterface>,
     @InjectModel(unavailabilityModel) private readonly unavailability: Model<UnavailabilityModelInterface>,
+    private readonly mapRentalUtil: MapRentalUtil,
   ) { }
 
   /**
@@ -42,9 +44,7 @@ export class RentalService {
       const upload: RentalInterface = temp;
       const document = await new this.rentalModel(upload);
       await document.save();
-      let lean: any;
-      lean = document;
-      return lean;
+      return await this.mapRentalUtil.map(document);
     } catch (err) {
       throw new Error(err);
     }
