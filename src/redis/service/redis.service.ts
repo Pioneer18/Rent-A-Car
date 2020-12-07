@@ -13,7 +13,7 @@ export class RedisService {
      * **summary** use the key of a JWT to search the Redis 'dead-list' and check if the user is logged out
      * @param key the last 8 digits of a JWT used to list in in the dead-list of the Redis cache
      */
-    get = async (key): Promise<any> => {
+    get = async (key: string): Promise<any> => {
         return await this.cache.get(key);
     }
 
@@ -22,7 +22,7 @@ export class RedisService {
      * @param key the last 8 digits of a JWT
      * @param value the JWT
      */
-    set = async (key, value): Promise<any> => {
+    set = async (key: string, value: string): Promise<any> => {
         return await this.cache.set(key, value, null);
     }
 }

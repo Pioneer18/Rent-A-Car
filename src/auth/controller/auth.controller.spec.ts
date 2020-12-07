@@ -14,7 +14,7 @@ import { jwtConstants } from "../constant";
 import { ChangePasswordDto } from "../dto/change-password.dto";
 import { ForgotPasswordDto } from "../dto/forgot-password.dto";
 import { ResetPasswordDto } from "../dto/reset-password.dto";
-import { LoggedOutGaurd } from "../gaurds/logged-out.guard";
+import { LoggedOutGuard } from "../gaurds/logged-out.guard";
 import { ExtractKeyValueUtilInterface } from "../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface";
 import { AuthService } from "../service/auth.service";
 import { JwtStrategy } from "../strategies/jwt.strategy";
@@ -47,13 +47,13 @@ describe('Auth Controller', () => {
                 AuthService,
                 LocalStrategy,
                 JwtStrategy,
-                LoggedOutGaurd,
+                LoggedOutGuard,
                 ExtractKeyValueUtil,
                 VerifyNewPasswordUtil,
                 EmailService,
                 AppConfigService
             ],
-            exports: [ AuthService, LoggedOutGaurd, ExtractKeyValueUtil, VerifyNewPasswordUtil],
+            exports: [ AuthService, LoggedOutGuard, ExtractKeyValueUtil, VerifyNewPasswordUtil],
             controllers: [AuthController]
         }).compile()
         controller = module.get<AuthController>(AuthController);

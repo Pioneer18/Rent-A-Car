@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect } from '@nestjs/common';
 import { CreateQuery } from 'mongoose';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
-import { LoggedOutGaurd } from '../../auth/gaurds/logged-out.guard';
+import { LoggedOutGuard } from '../../auth/gaurds/logged-out.guard';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { DeleteUserDto } from '../dto/delete-user.dto';
@@ -36,7 +36,7 @@ export class UserController {
      * @param req Client request
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGaurd)
+    @UseGuards(LoggedOutGuard)
     @Post('update-user')
     // @Redirect('http://localhost:3000/auth/login')
     async updateProfile(@Body() update: UpdateUserDto, @Req() req): Promise<UserInterface> {
@@ -48,7 +48,7 @@ export class UserController {
      * @param email User's email
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGaurd)
+    @UseGuards(LoggedOutGuard)
     @Get('find-user')
     async findUser(@Body() email: FindUserDto): Promise<UserModelInterface> {
         return await this.userService.findUser(email);
@@ -59,7 +59,7 @@ export class UserController {
      * @param data User credentials
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGaurd)
+    @UseGuards(LoggedOutGuard)
     // @Redirect('http://localhost:3000/auth/login', 302)
     @Post('delete-profile')
     async deleteProfile(@Body() data: DeleteUserDto, @Req() req): Promise<UserInterface> {

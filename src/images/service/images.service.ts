@@ -146,9 +146,8 @@ export class ImagesService {
    */
   fileuploadAndSave = async (data: FileUploadAndSaveInterface): Promise<any> => {
     try {
-      Logger.log('File Upload And SAVE')
       const user: JwtPayloadInterface = data.req.user;
-      const multerUpload = await this.createMulterUploadUtil.create({ req: data.req, category: data.category });
+      const multerUpload: Function = await this.createMulterUploadUtil.create({ req: data.req, category: data.category });
       // Upload the image(s)
       return await this.multerUploadUtil.upload({
         req: data.req,

@@ -11,7 +11,7 @@ import { EmailService } from "../../email/email.service";
 import { RedisModule } from "../../redis/redis.module";
 import { UserModule } from "../../user/user.module";
 import { jwtConstants } from "../constant";
-import { LoggedOutGaurd } from "../gaurds/logged-out.guard";
+import { LoggedOutGuard } from "../gaurds/logged-out.guard";
 import { ChangePasswordInterface } from "../interfaces/service/change-password.interface";
 import { ForgotPasswordInterface } from "../interfaces/service/forgot-password.interface";
 import { ValidateUserReturn } from "../interfaces/service/validate-user-return.interface";
@@ -47,7 +47,7 @@ describe('Auth Service', () => {
                 AuthService,
                 LocalStrategy,
                 JwtStrategy,
-                LoggedOutGaurd,
+                LoggedOutGuard,
                 ExtractKeyValueUtil,
                 VerifyNewPasswordUtil,
                 EmailService,

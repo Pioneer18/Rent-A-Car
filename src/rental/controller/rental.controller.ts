@@ -50,7 +50,7 @@ export class RentalController {
   @Post()
   @UsePipes(new JoiValidationPipe(CreateRentalValidationSchema))
   @UsePipes(new MapNewRentalPipe())
-  @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil(), new AppConfigService(new ConfigService)))
+  @UsePipes(new GeoUrlApiPipe(new GeoUrlApiUtil()))
   async createRental(@Body() rental: CreateRentalDto, @Req() req): Promise<RentalInterface> {
     try {
       return await this.rentalService.createRental(rental, req.user);

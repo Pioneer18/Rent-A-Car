@@ -7,7 +7,7 @@ import { MulterUploadUtilInterface } from '../interfaces/utils/multerUploadUtil/
 export class MulterUploadUtil {
 
     /**
-     * **summary**: upload the provided files with the multerUpload object and return the
+     * **summary**: upload the provided files with the multerUpload function and return the
      * @param req the client request
      * @param res the response
      * @param multerUpload uploader

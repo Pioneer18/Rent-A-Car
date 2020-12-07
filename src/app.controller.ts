@@ -1,6 +1,6 @@
 import { Controller, UseGuards, Get, Request} from '@nestjs/common';
 import { JwtAuthGuard } from './auth/gaurds/jwt-auth.guard';
-import { LoggedOutGaurd } from './auth/gaurds/logged-out.guard';
+import { LoggedOutGuard } from './auth/gaurds/logged-out.guard';
 /**
  * **summary**: Does not provide any real functionality for the app
  */
@@ -8,7 +8,7 @@ import { LoggedOutGaurd } from './auth/gaurds/logged-out.guard';
 export class AppController {
 
   @UseGuards(JwtAuthGuard)
-  @UseGuards(LoggedOutGaurd)
+  @UseGuards(LoggedOutGuard)
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;

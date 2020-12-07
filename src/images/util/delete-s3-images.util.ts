@@ -10,7 +10,7 @@ export class DeleteS3ImagesUtil {
     private s3 = this.s3Provider.getS3();
 
     /**
-     * **summary**: delete the selected image from their AWS S3 Bucket
+     * **summary**: delete the selected image from it's AWS S3 Bucket
      * @param images the image to be delete
      * @param user the requesting user
      */
@@ -98,6 +98,6 @@ export class DeleteS3ImagesUtil {
             if (err) { console.log(err, err.stack); } // an error occurred
             console.log(data);           // successful response
         });
-
+        return ids;
     }
 }
