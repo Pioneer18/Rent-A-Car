@@ -15,7 +15,7 @@ dotenv.config();
 async function bootstrap() {
   const httpsOptions = {
     key: Secrets.key,
-    cert: fs.readFileSync(path.resolve(__dirname, './secrets/server.crt')),
+    cert: Secrets.crt, //fs.readFileSync(path.resolve(__dirname, './secrets/server.crt')),
   };
   console.log(`The Environment: ${process.env.NODE_ENV}`);
   // Development HTTP
