@@ -9,7 +9,7 @@ FROM node:current-slim AS builder2
 WORKDIR /app
 #COPY --from=builder1 /client ./client/
 COPY ./package.json .
-RUN npm install
+RUN npm install --production
 COPY . .
 RUN npm run build
 

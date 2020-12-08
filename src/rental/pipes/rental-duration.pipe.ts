@@ -1,4 +1,4 @@
-import { Injectable, PipeTransform } from '@nestjs/common';
+import { Injectable, Logger, PipeTransform } from '@nestjs/common';
 import { GivenNoticeSearchRentalDto } from '../dto/searchRental/given-notice-search-rental-dto';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum.util';
 import { RequestCoordinatesDto } from '../dto/searchRental/request-coordinates.dto';
@@ -30,6 +30,8 @@ export class RentalDurationPipe implements PipeTransform {
         ),
         givenNotice: value.givenNotice,
       };
+      Logger.log('RENTAL DURATION PIPE: RETURN DTO')
+      Logger.log(dto);
       return dto;
     } catch (err) {
       throw new Error(err);
