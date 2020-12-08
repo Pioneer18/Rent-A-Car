@@ -1,31 +1,18 @@
-FROM node:current-slim AS builder1
+# install and build the app
+FROM node:10 As builder
+WORKDIR /app
+COPY ./package.json ./
+RUN npm install
+COPY . .
+RUN npm build
+COPY . .
+
+# fresh new image to copy dist
+FROM node:10 As production
 WORKDIR /app
 COPY ./package.json .
-RUN npm install --only=dev
+RUN npm install --only=production
 COPY . .
-
-FROM node:current-slim AS builder2
-WORKDIR /app
-COPY --from=builder1 . .
-RUN npm install --production
-COPY . .
-RUN npm run build
-
-FROM node:current-slim
-WORKDIR /app
-COPY --from=builder2 /app .
+COPY --from=builder /app/dist ./dist
 EXPOSE 3000
-CMD ["npm", "run", "start"]
-
-#FROM node:10 AS builder
-#WORKDIR /app
-#COPY ./package.json ./
-#RUN npm install
-#COPY . .
-#RUN npm run build
-
-
-#FROM node:10-alpine
-#WORKDIR /app
-#COPY --from=builder /app ./
-#CMD ["npm", "run", "star:prod"]
+CMD ["npm", "run","start:prod"]
