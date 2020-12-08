@@ -57,8 +57,7 @@
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
-    "rxjs": "^6.3.3",
-    "typescript": "3.7.2"
+    "rxjs": "^6.3.3"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.11",
@@ -82,7 +81,7 @@
     "tsc-watch": "2.2.1",
     "tsconfig-paths": "3.8.0",
     "tslint": "5.16.0",
-    "typescript": "3.7.2",
+    "typescript": "^3.9.7",
     "webpack-node-externals": "^2.5.2"
   },
   "jest": {
