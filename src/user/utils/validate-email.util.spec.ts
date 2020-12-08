@@ -1,5 +1,4 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { async } from "rxjs/internal/scheduler/async";
 import { ValidateEmailUtilInterface } from "../interface/utils/validate-email-util.interface";
 import { ValidateEmailUtil } from "./validate-email.util"
 
@@ -15,18 +14,21 @@ describe('ValidateEmailUtil Unit Test', () => {
     });
 
     describe('definition test', () => {
-        expect(util).toBeDefined();
+        it('should be defined', async () => {
+            expect(util).toBeDefined();
+        })
     });
 
     describe('validateEmail method test', () => {
         const data: ValidateEmailUtilInterface = {
             check: ['fake.email@gmail.com'],
         }
+        const errMessage = ' email already exists';
         it('should throw an error if the user email already exists', async () => {
             jest
                 .spyOn(util, 'validateEmail') 
-                .mockImplementation(async () => { throw new Error('email already exists')})
-            expect(util.validateEmail(data)).toThrow(new Error('email already exists'))
+                .mockImplementation(async () => errMessage)
+            expect(await util.validateEmail(data)).toBe(errMessage);
         })
     })
 })
