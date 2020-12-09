@@ -108,15 +108,11 @@ export class RentalService {
     // make an update document
     try {
       const filter = { _id: data.rentalId };
-      const update = {
+      const update: any = { // type assertion; the EditDetailsInterface's opitional properties conflict with the model
         specs: data.specs,
         features: data.features,
       };
-      const updater: EditDetailsUpdater = {
-        $set: update,
-      };
-      const doc = await this.rentalModel.findOneAndUpdate(filter, {updater}, {useFindAndModify: false }).lean();
-      return doc;
+      return await this.rentalModel.findOneAndUpdate(filter, update, {useFindAndModify: false }).lean();
     } catch (err) {
       throw new Error(err);
     }

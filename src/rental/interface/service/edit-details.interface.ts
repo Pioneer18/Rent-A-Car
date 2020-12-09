@@ -8,6 +8,7 @@ export interface EditDetailsInterface {
         transmission?: string;
         cityMpg?: number;
         hwyMpg?: number;
+        mpgE?: number;
         fuel?: string;
         gasGrade?: string;
         description?: string;

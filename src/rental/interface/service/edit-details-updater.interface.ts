@@ -2,12 +2,12 @@
  * **summary**: Interface for the rental.service.editDetails() method's MongoDB updater
  */
 export interface EditDetailsUpdater {
-    $set: {
         specs?: {
             odometer?: number;
             transmission?: string;
             cityMpg?: number;
             hwyMpg?: number;
+            mpgE?: number;
             fuel?: string;
             gasGrade?: string;
             description?: string;
@@ -19,5 +19,4 @@ export interface EditDetailsUpdater {
             numDoors?: number;
         }
         features?: string[];
-    };
 }
