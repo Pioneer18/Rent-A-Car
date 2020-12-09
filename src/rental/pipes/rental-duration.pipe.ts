@@ -26,13 +26,10 @@ export class RentalDurationPipe implements PipeTransform {
           {
             startTime: value.rentalStartTime,
             endTime: value.rentalEndTime,
-          },
-        ),
+          }),
         givenNotice: value.givenNotice,
       };
-      Logger.log('RENTAL DURATION PIPE: RETURN DTO')
-      Logger.log(dto);
-      return dto;
+      return await dto;
     } catch (err) {
       throw new Error(err);
     }

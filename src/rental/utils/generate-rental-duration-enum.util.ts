@@ -20,9 +20,6 @@ export class GenerateRentalDurationEnumUtil {
       const months = base.length('months');
       const weeks = base.length('weeks');
       const days = base.length('days');
-      Logger.log(`The Base`);
-      Logger.log(base);
-      Logger.log(`months: ${months}, weeks: ${weeks}, days: ${days}`);
       return { months, weeks, days };
     } catch (err) {
       throw new Error(err);
@@ -60,6 +57,9 @@ export class GenerateRentalDurationEnumUtil {
       }
       if (schedule.days === 1) {
         return RentalDurations['1 Day'];
+      }
+      else {
+        throw new Error('Rental duration must be atleast a full day, please add more time to the rental')
       }
     } catch (err) {
       throw new Error(err);
