@@ -251,7 +251,7 @@ export class ValidateRemoveUnavailabilityPipe implements PipeTransform {
      * **summary**: Use the validateDto method to validate the request before passing it on
      * @param value the raw client request
      */
-    transform &#x3D; (value: RemoveUnavailabilityDto):RemoveUnavailabilityDto &#x3D;&gt; {
+    transform &#x3D; (value: RemoveUnavailabilityDto): RemoveUnavailabilityDto &#x3D;&gt; {
         this.validateDto(value);
         return value;
     }

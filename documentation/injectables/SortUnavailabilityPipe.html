@@ -428,7 +428,7 @@ import { ValidateScheduleUnavailabilityDto } from &#x27;../dto/unavailability/sc
  */
 @Injectable()
 export class SortUnavailabilityPipe implements PipeTransform {
-  
+
   /**
    * **summary**: Validate that the requested Unavailability does not cross more than a one year duration
    * @param yearB this value is exactly 1 year from the current date
@@ -502,7 +502,7 @@ export class SortUnavailabilityPipe implements PipeTransform {
    * **summary**: Use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto
    * @param value the raw client request data
    */
-  transform &#x3D; async(value: RawScheduleUnavailabilityDto): Promise&lt;ValidateScheduleUnavailabilityDto&gt; &#x3D;&gt; {
+  transform &#x3D; async (value: RawScheduleUnavailabilityDto): Promise&lt;ValidateScheduleUnavailabilityDto&gt; &#x3D;&gt; {
     try {
       const sorted: SortedUnavailabilityDto &#x3D; await this.sort(value);
       const ordered &#x3D; await this.orderYears(sorted);

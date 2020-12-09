@@ -190,11 +190,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import Joi &#x3D; require(&quot;@hapi/joi&quot;);
-import { Module } from &quot;@nestjs/common&quot;;
-import { ConfigModule, ConfigService } from &quot;@nestjs/config&quot;;
-import configuration from &quot;./configuration&quot;;
-import { AppConfigService } from &quot;./configuration.service&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import Joi &#x3D; require(&#x27;@hapi/joi&#x27;);
+import { Module } from &#x27;@nestjs/common&#x27;;
+import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
+import configuration from &#x27;./configuration&#x27;;
+import { AppConfigService } from &#x27;./configuration.service&#x27;;
 /**
  * **summary**: Import and provide app configuration related classes
  */
@@ -213,6 +213,7 @@ import { AppConfigService } from &quot;./configuration.service&quot;;
                 GEO_URL: Joi.string().required(),
                 // DATABASE
                 REMOTE_DB: Joi.string(),
+                TEST_DB: Joi.string(),
                 LOCAL_DB: Joi.string(),
                 // REDIS SERVER
                 REDIS_HOST: Joi.string().required(),
@@ -230,13 +231,14 @@ import { AppConfigService } from &quot;./configuration.service&quot;;
             validationOptions: {
                 allowUnkown: false, // enforce validation, don&#x27;t allow unknown keys in the env variables
                 abortEarly: true, // stop validation on first error
-            }
-        })
+            },
+        }),
     ],
     providers: [ConfigService, AppConfigService],
-    exports: [ConfigService, AppConfigService]
+    exports: [ConfigService, AppConfigService],
 })
-export class AppConfigModule {}</code></pre>
+export class AppConfigModule {}
+</code></pre>
     </div>
 </div>
 

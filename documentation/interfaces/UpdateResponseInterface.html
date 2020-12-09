@@ -87,24 +87,29 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#$clusterTime">$clusterTime</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#electionId">electionId</a>
                                 </li>
                                 <li>
                                         <a href="#n">n</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#nModified">nModified</a>
                                 </li>
                                 <li>
                                         <a href="#ok">ok</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#operationTime">operationTime</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#opTime">opTime</a>
                                 </li>
                             </ul>
@@ -141,6 +146,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -170,6 +180,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -228,6 +243,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -286,6 +306,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -315,6 +340,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -328,22 +358,23 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface UpdateResponseInterface {
     n: number;
-    nModified: number;
-    opTime: {
-        &quot;ts&quot;: string | number;
-        &quot;t&quot;: number;
-    },
-    electionId: string;
+    nModified?: number;
+    opTime?: {
+        &#x27;ts&#x27;: string | number;
+        &#x27;t&#x27;: number;
+    };
+    electionId?: string;
     ok: number;
-    $clusterTime: {
-        &quot;clusterTime&quot;: string;
-        &quot;signature&quot;: {
-            &quot;hash&quot;: string | number;
-            &quot;keyId&quot;: string | number;
+    $clusterTime?: {
+        &#x27;clusterTime&#x27;: string;
+        &#x27;signature&#x27;: {
+            &#x27;hash&#x27;: string | number;
+            &#x27;keyId&#x27;: string | number;
         }
-    },
-    operationTime: string | number;
-}</code></pre>
+    };
+    operationTime?: string | number;
+}
+</code></pre>
     </div>
 </div>
 

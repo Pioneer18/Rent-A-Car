@@ -130,7 +130,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: upload the provided files with the multerUpload object</p>
+                        <div class="io-description"><p><strong>summary</strong>: upload the provided files with the multerUpload function and return the</p>
 </div>
                     </td>
                 </tr>
@@ -216,8 +216,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { MulterUploadUtilInterface } from &quot;../interfaces/utils/multerUploadUtil/multer-upload-util.interface&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { MulterUploadUtilInterface } from &#x27;../interfaces/utils/multerUploadUtil/multer-upload-util.interface&#x27;;
 /**
  * **summary**: upload a single or multiple files as a multerUpload
  */
@@ -225,7 +225,7 @@ import { MulterUploadUtilInterface } from &quot;../interfaces/utils/multerUpload
 export class MulterUploadUtil {
 
     /**
-     * **summary**: upload the provided files with the multerUpload object
+     * **summary**: upload the provided files with the multerUpload function and return the
      * @param req the client request
      * @param res the response
      * @param multerUpload uploader
@@ -237,7 +237,7 @@ export class MulterUploadUtil {
      */
     upload &#x3D; async (data: MulterUploadUtilInterface): Promise&lt;void&gt; &#x3D;&gt; {
         try {
-            await data.multerUpload(data.req, data.res, function (err) {
+            await data.multerUpload(data.req, data.res, function(err) {
                 if (err) {
                     console.log(err);
                     return data.res.status(404).json(&#x60;Failed to upload image file: ${err}&#x60;);
@@ -247,15 +247,17 @@ export class MulterUploadUtil {
                     files: data.req.files,
                     category: data.category,
                     user_id: data.user.userId,
-                    rental_id: data.rental_id
+                    rental_id: data.rental_id ? data.rental_id : null,
                 });
+                // return the aws download link
                 return data.res.status(201).json(data.req.files[0].location);
             });
         } catch (err) {
-            throw new Error(err)
+            throw new Error(err);
         }
     }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

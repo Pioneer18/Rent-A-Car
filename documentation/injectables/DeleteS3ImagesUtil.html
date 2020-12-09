@@ -185,7 +185,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: delete the selected image from their AWS S3 Bucket</p>
+                        <div class="io-description"><p><strong>summary</strong>: delete the selected image from it&#39;s AWS S3 Bucket</p>
 </div>
                     </td>
                 </tr>
@@ -319,9 +319,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &quot;@nestjs/common&quot;;
-import { DeleteS3ImageInterface } from &quot;../interfaces/utils/deleteS3ImagesUtil/delte-s3-image.interface&quot;;
-import { S3Provider } from &quot;../providers/s3.provider&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &#x27;@nestjs/common&#x27;;
+import { DeleteS3ImageInterface } from &#x27;../interfaces/utils/deleteS3ImagesUtil/delte-s3-image.interface&#x27;;
+import { S3Provider } from &#x27;../providers/s3.provider&#x27;;
 /**
  * **summary**: utility for removing images from an AWS S3 Bucket
  */
@@ -331,32 +331,32 @@ export class DeleteS3ImagesUtil {
     private s3 &#x3D; this.s3Provider.getS3();
 
     /**
-     * **summary**: delete the selected image from their AWS S3 Bucket
+     * **summary**: delete the selected image from it&#x27;s AWS S3 Bucket
      * @param images the image to be delete
      * @param user the requesting user
      */
     deleteS3Image &#x3D; async (data: DeleteS3ImageInterface): Promise&lt;void&gt; &#x3D;&gt; {
         const bucket &#x3D; &#x60;rent-a-car-photos&#x60;;
         if (data.images[0].location.match(/\/rentals\//)) {
-            console.log(&#x27;Delete Single Image Location&#x27;)
+            console.log(&#x27;Delete Single Image Location&#x27;);
             console.log(data.images[0].location);
             const split &#x3D; data.images[0].location.split(/\/rentals\//);
             const key &#x3D; &#x60;${data.user.email}/rentals/${split[1]}&#x60;;
-            console.log(&#x27;Delete single Image Key&#x27;)
-            console.log(key)
-            await this.s3.deleteObject({ Bucket: bucket, Key: key }, function (err, data) {
-                if (err) { Logger.log(err, err.stack) }
+            console.log(&#x27;Delete single Image Key&#x27;);
+            console.log(key);
+            await this.s3.deleteObject({ Bucket: bucket, Key: key }, function(err, data) {
+                if (err) { Logger.log(err, err.stack); }
                 Logger.log(data);
             });
         }
         // delete profile image from s3 bucket
-        console.log(&#x27;Delete a single Profile Image Location&#x27;)
+        console.log(&#x27;Delete a single Profile Image Location&#x27;);
         console.log(data.images[0].location);
         const split &#x3D; data.images[0].location.split(/\/profile\//);
         console.log(&#x27;Delete Single Bucket Image Key&#x27;);
         const key &#x3D; &#x60;${data.user.email}/profile/${split[1]}&#x60;;
-        await this.s3.deleteObject({ Bucket: bucket, Key: key }, function (err, data) {
-            if (err) { Logger.log(err, err.stack) }
+        await this.s3.deleteObject({ Bucket: bucket, Key: key }, function(err, data) {
+            if (err) { Logger.log(err, err.stack); }
             Logger.log(data);
         });
         return;
@@ -374,54 +374,55 @@ export class DeleteS3ImagesUtil {
         const bucket &#x3D; &#x60;rent-a-car-photos&#x60;;
         // delete multiple aws rental images
         if (data.images[0].location.match(/\/rentals\//)) {
-            console.log(&#x60;Deleting multiple Rental Images&#x60;)
+            console.log(&#x60;Deleting multiple Rental Images&#x60;);
             data.images.map(item &#x3D;&gt; {
                 console.log(item.location);
                 const split &#x3D; item.location.split(/\/rentals\//);
                 const key &#x3D; &#x60;${data.user.email}/rentals/${split[1]}&#x60;;
-                objects.push({ Key: key })
+                objects.push({ Key: key });
                 ids.push(item._id);
             });
             const params &#x3D; {
                 Bucket: bucket,
                 Delete: {
                     Objects: objects,
-                    Quiet: false
-                }
-            }
+                    Quiet: false,
+                },
+            };
             console.log(&#x60;Delete Multiple Rental Images params&#x60;);
             console.log(params);
-            await this.s3.deleteObjects(params, function (err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
+            await this.s3.deleteObjects(params, function(err, data) {
+                if (err) { console.log(err, err.stack); } // an error occurred
                 console.log(data);           // successful response
-            })
+            });
             return ids;
         }
         // delete multiple aws profile images
-        console.log(&#x27;Delete Multiple AWS Profile Images&#x27;)
+        console.log(&#x27;Delete Multiple AWS Profile Images&#x27;);
         data.images.map(item &#x3D;&gt; {
             console.log(item.location);
             const split &#x3D; item.location.split(/\/profile\//);
             const key &#x3D; &#x60;${data.user.email}/profile/${split[1]}&#x60;;
-            objects.push({ Key: key })
+            objects.push({ Key: key });
             ids.push(item._id);
         });
         const params &#x3D; {
             Bucket: bucket,
             Delete: {
                 Objects: objects,
-                Quiet: false
-            }
-        }
+                Quiet: false,
+            },
+        };
         console.log(&#x60;Delete Multiple Profile Images params&#x60;);
         console.log(params);
-        await this.s3.deleteObjects(params, function (err, data) {
-            if (err) console.log(err, err.stack); // an error occurred
+        await this.s3.deleteObjects(params, function(err, data) {
+            if (err) { console.log(err, err.stack); } // an error occurred
             console.log(data);           // successful response
-        })
-
+        });
+        return ids;
     }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

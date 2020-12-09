@@ -311,7 +311,7 @@ import { ProcessedUnavailabilityQueryDto } from &#x27;../dto/unavailability/sche
 /**
  * **summary**: Query for any scheduled unavailability already in the database that would overlap with this request to add more unavailability to the Rental
  * This is to prevent the user on the front-end from accidentally overlapping &#x27;blocks&#x27; of scheduled unavailability. The front-end of course should also block this
- * @param year 
+ * @param year
  */
 @Injectable()
 export class ProcessUnavailabilityPipe implements PipeTransform {
@@ -422,10 +422,12 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
    * - the user may schedule as far as a year ahead. To easily track the data as a single &#x27;block&#x27; of unavailable time for the rental, each Unavailability document related to this query is given the same &#x27;uuid&#x27;
    * @param value the validated unavailability request dto
    */
-  transform &#x3D; async(
+  transform &#x3D; async (
     value: ValidatedUnavailabilityDto,
   ): Promise&lt;ProcessedUnavailabilityDto&gt; &#x3D;&gt; {
     // add uuid
+    Logger.log(&#x27;Validate Unavailability Dto&#x27;)
+    Logger.log(value)
     const {pY1, pY2} &#x3D; await this.addUnavailabilityId(value);
     const { y1, y2 } &#x3D; value;
     // create Unavailability model queries for each year

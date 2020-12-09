@@ -460,9 +460,12 @@ import { ValidateUnavailabilityPipe } from &#x27;./pipes/validate-unavailability
 import { SortUnavailabilityPipe } from &#x27;./pipes/sort-unavailability.pipe&#x27;;
 import { CreateUpdaterDtoPipe } from &#x27;./pipes/create-updater-dto.pipe&#x27;;
 import { ValidateRemoveUnavailabilityPipe } from &#x27;./pipes/validate-remove-unavailability.pipe&#x27;;
-import { AppConfigService } from &#x27;src/config/configuration.service&#x27;;
+import { AppConfigService } from &#x27;../config/configuration.service&#x27;;
 import { GenerateRentalDurationEnumUtil } from &#x27;./utils/generate-rental-duration-enum.util&#x27;;
 import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
+import { unavailabilityModel } from &#x27;../common/Const&#x27;;
+import { MapRentalUtil } from &#x27;./utils/map-rental.util&#x27;;
+import { ToItemsIndexes } from &#x27;../common/util/to-item-indexes&#x27;;
 /**
  * - **summary**: This module provides all of the functionality for working with Rentals
  * - **Middleware**: This module consumes the **ValidateUpdateUnavailability** middleware; for more details, in the documentation checkout the **Injectables** ValidateUpdateUnavailability tab
@@ -471,7 +474,7 @@ import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: &#x27;Rental&#x27;, schema: RentalSchema }]),
-    MongooseModule.forFeature([{name: &#x27;Unavailability&#x27;, schema: UnavailabilitySchema}]),
+    MongooseModule.forFeature([{name: unavailabilityModel, schema: UnavailabilitySchema}]),
     DatabaseModule,
     ConfigModule,
   ],
@@ -494,7 +497,9 @@ import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
     CreateUpdaterDtoPipe,
     ValidateRemoveUnavailabilityPipe,
     AppConfigService,
-    ConfigService
+    ConfigService,
+    MapRentalUtil,
+    ToItemsIndexes,
   ],
   exports: [RentalService],
 })

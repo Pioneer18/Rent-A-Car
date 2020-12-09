@@ -274,7 +274,7 @@
 import * as axios from &#x27;axios&#x27;;
 import { RawCoordinatesDto } from &#x27;../dto/createRental/raw-coordinates.dto&#x27;;
 import { GetCoordinatesInterface } from &#x27;../interface/utils/geoUrlApi/get-coordinates.interface&#x27;;
-import { MakeRequestInterface } from &#x27;../interface/utils/geoUrlApi/make-request.interface&#x27;
+import { MakeRequestInterface } from &#x27;../interface/utils/geoUrlApi/make-request.interface&#x27;;
 import { ApiResponseData } from &#x27;../interface/utils/geoUrlApi/api-response-data&#x27;;
 
 /**
@@ -287,7 +287,7 @@ import { ApiResponseData } from &#x27;../interface/utils/geoUrlApi/api-response-
  * @param {string} address the address to request coordinates for
  * @param {string} geoUrl base url of the Geocoding and Search geocoding request
  * @param {string} apiKey Geocoding and Search v7 API Key
- * 
+ *
  */
 @Injectable()
 export class GeoUrlApiUtil {
@@ -318,12 +318,12 @@ export class GeoUrlApiUtil {
     try {
       const location: string &#x3D; data.address.replace(/\s+/g, &#x27;+&#x27;);
       // make the API request
-      console.log(&#x27;location before the request&#x27;)
+      console.log(&#x27;location before the request&#x27;);
       console.log(location);
       const response: any &#x3D; await this.makeRequest({
         location,
         geoUrl: data.geoUrl,
-        apiKey: data.apiKey
+        apiKey: data.apiKey,
       });
       // grab the coordinates
       const rawCoordinates: RawCoordinatesDto &#x3D;

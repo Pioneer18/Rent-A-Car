@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: create a multerUpload object</p>
+                <p><strong>summary</strong>: create a multerUpload Function</p>
 
             </p>
 
@@ -182,7 +182,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: create the Multer upload object for the S3 Bucket. The user&#39;s email and the category are used to store the images in the correct location.
+                        <div class="io-description"><p><strong>summary</strong>: create the Multer upload function for the S3 Bucket. The user&#39;s email and the category are used to store the images in the correct location.
 A maximum of 9 photos may be uploaded at once</p>
 </div>
                     </td>
@@ -245,14 +245,14 @@ A maximum of 9 photos may be uploaded at once</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &#x27;@nestjs/common&#x27;;
 import * as multer from &#x27;multer&#x27;;
 import * as multerS3 from &#x27;multer-s3&#x27;;
-import { JwtPayloadInterface } from &quot;src/auth/interfaces/jwt-payload.interface&quot;;
-import { CreateInterface } from &quot;../interfaces/utils/createMulterUploadUtil/create.interface&quot;;
-import { S3Provider } from &quot;../providers/s3.provider&quot;;
+import { JwtPayloadInterface } from &#x27;../../auth/interfaces/jwt-payload.interface&#x27;;
+import { CreateInterface } from &#x27;../interfaces/utils/createMulterUploadUtil/create.interface&#x27;;
+import { S3Provider } from &#x27;../providers/s3.provider&#x27;;
 /**
- * **summary**: create a multerUpload object
+ * **summary**: create a multerUpload Function
  */
 @Injectable()
 export class CreateMulterUploadUtil {
@@ -260,12 +260,13 @@ export class CreateMulterUploadUtil {
     private s3 &#x3D; this.s3Provider.getS3();
 
     /**
-     * **summary**: create the Multer upload object for the S3 Bucket. The user&#x27;s email and the category are used to store the images in the correct location.
+     * **summary**: create the Multer upload function for the S3 Bucket. The user&#x27;s email and the category are used to store the images in the correct location.
      * A maximum of 9 photos may be uploaded at once
-     * @param req 
-     * @param category 
+     * @param req
+     * @param category
      */
-    create &#x3D; async (data: CreateInterface) &#x3D;&gt; {
+    create &#x3D; async (data: CreateInterface): Promise&lt;Function&gt; &#x3D;&gt; {
+        Logger.log(&#x60;CREATE MULTER UPLOAD UTIL: Create Upload Data&#x60;)
         try {
             // create a multer upload
             const user: JwtPayloadInterface &#x3D; data.req.user;
@@ -274,17 +275,18 @@ export class CreateMulterUploadUtil {
                     s3: this.s3,
                     bucket: &#x60;rent-a-car-photos/${user.email}/${data.category}&#x60;,
                     acl: &#x27;public-read&#x27;,
-                    key: function (request, file, cb) {
+                    key(request, file, cb) {
                         cb(null, &#x60;${Date.now()}-${file.originalname}&#x60;); // unique id generator for file (image tag)
                     },
                 }),
             }).array(&#x27;upload&#x27;, 9);
         } catch (err) {
-            throw new Error(err)
+            throw new Error(err);
         }
     }
 
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

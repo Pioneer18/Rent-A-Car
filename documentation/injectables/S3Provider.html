@@ -191,9 +191,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { AppConfigService } from &quot;src/config/configuration.service&quot;;
-import { S3 } from &#x27;aws-sdk&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
+import { S3 } from &#x27;aws-sdk&#x27;;
 /**
  * **summary**: provide connection to the AWS S3 bucket
  */
@@ -207,10 +207,11 @@ export class S3Provider {
     getS3 &#x3D; () &#x3D;&gt; {
         return new S3({
             accessKeyId: this.appConfig.access_key_id,
-            secretAccessKey: this.appConfig.secret_access_key
-        })
+            secretAccessKey: this.appConfig.secret_access_key,
+        });
     }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

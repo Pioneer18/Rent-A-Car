@@ -113,7 +113,7 @@ to get the coordinates of the address. The coordinates allow Rentals to be geosp
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(geoUrlApiUtil: <a href="../injectables/GeoUrlApiUtil.html">GeoUrlApiUtil</a>, appConfig: <a href="../injectables/AppConfigService.html">AppConfigService</a>)</code>
+<code>constructor(geoUrlApiUtil: <a href="../injectables/GeoUrlApiUtil.html">GeoUrlApiUtil</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -140,18 +140,6 @@ to get the coordinates of the address. The coordinates allow Rentals to be geosp
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/GeoUrlApiUtil.html" target="_self" >GeoUrlApiUtil</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>appConfig</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AppConfigService.html" target="_self" >AppConfigService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -376,7 +364,7 @@ import { GeoUrlApiUtil } from &#x27;../utils/geo-url-api.util&#x27;;
  */
 @Injectable()
 export class GeoUrlApiPipe {
-  constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil, private readonly appConfig: AppConfigService) { }
+  constructor(private readonly geoUrlApiUtil: GeoUrlApiUtil) { }
 
   /**
    * **summary**: Convert the location property object into a single address property string; will be passed to this.getCoordinates method
@@ -400,7 +388,7 @@ export class GeoUrlApiPipe {
     const coords &#x3D; await this.geoUrlApiUtil.getCoordinates({
       address,
       geoUrl,
-      apiKey
+      apiKey,
     });
     return coords;
   }

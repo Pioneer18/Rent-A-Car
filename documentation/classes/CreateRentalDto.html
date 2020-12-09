@@ -192,7 +192,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -219,7 +219,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -246,7 +246,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -273,7 +273,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -300,7 +300,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -327,7 +327,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -381,7 +381,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/rental/dto/createRental/create-rental.dto.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -427,7 +427,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CreateRentalInterface } from &quot;src/rental/interface/service/create-rental.interface&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CreateRentalInterface } from &#x27;../../../rental/interface/service/create-rental.interface&#x27;;
 
 /**
  * **summary**: Dto for the rental.controller.createRentalMethod()
@@ -439,8 +439,9 @@ export class CreateRentalDto implements CreateRentalInterface {
   specs: {
     odometer: number;
     transmission: string;
-    cityMpg: number;
-    hwyMpg: number;
+    cityMpg: number | null;
+    hwyMpg: number | null;
+    mpgE: number | null;
     fuel: string;
     gasGrade: string;
     description: string;

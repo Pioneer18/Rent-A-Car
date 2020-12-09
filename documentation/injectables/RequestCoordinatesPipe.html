@@ -235,6 +235,8 @@ export class RequestCoordinatesPipe implements PipeTransform&lt;any&gt; {
     const geoUrl &#x3D; process.env.GEO_URL;
     const apiKey &#x3D; process.env.GEO_API_KEY;
     try {
+      Logger.log(&#x27;Request Coordinates Pipe: Value&#x27;)
+      Logger.log(value);
       const dto: SearchRentalDto &#x3D; {
         address: value.address,
         price: value.price,
@@ -245,11 +247,13 @@ export class RequestCoordinatesPipe implements PipeTransform&lt;any&gt; {
           coordinates: await this.geoUrlApiUtil.getCoordinates({
             address: value.address,
             geoUrl,
-            apiKey
+            apiKey,
           }),
         },
         givenNotice: value.givenNotice,
       };
+      Logger.log(&#x27;Request Coordinates Pipe: Dto&#x27;)
+      Logger.log(dto);
       return dto;
     } catch (err) {
       throw new Error(err);

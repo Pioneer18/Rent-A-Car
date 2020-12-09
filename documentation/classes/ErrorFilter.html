@@ -197,8 +197,8 @@ import { DateTime } from &#x27;luxon&#x27;;
 export class ErrorFilter implements ExceptionFilter {
   /**
    * **summary**: Catch http errors and use the Logger to log the appropiate error and data
-   * @param error 
-   * @param host 
+   * @param error
+   * @param host
    */
   catch &#x3D; (error: Error, host: ArgumentsHost): any &#x3D;&gt; {
     const response &#x3D; host.switchToHttp().getResponse();

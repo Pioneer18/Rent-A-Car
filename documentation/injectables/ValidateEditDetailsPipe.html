@@ -405,7 +405,7 @@ export class ValidateEditDetailsPipe implements PipeTransform {
      * **summary**: Use the validateDetails() method to validate the request before passing to the handler
      * @param value the raw client request to edit the details (spec property) of a Rental
      */
-    transform &#x3D; async(value: EditDetailsDto):Promise&lt;EditDetailsDto&gt; &#x3D;&gt; {
+    transform &#x3D; async (value: EditDetailsDto): Promise&lt;EditDetailsDto&gt; &#x3D;&gt; {
         await this.validateDetails(value);
         return value;
     }

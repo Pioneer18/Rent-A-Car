@@ -320,7 +320,7 @@ export class GivenNoticePipe implements PipeTransform {
    * **summary**: Create the **givenNotice** property value, it must be at least one hour
    * @param startTime the request start time of the rental
    */
-  private createGivenNotice &#x3D; async(startTime): Promise&lt;number&gt; &#x3D;&gt; {
+  private createGivenNotice &#x3D; async (startTime): Promise&lt;number&gt; &#x3D;&gt; {
     const givenNotice: number &#x3D; startTime.diffNow().toObject().milliseconds;
     if (givenNotice &gt;&#x3D; 3600000) {
       return givenNotice;
@@ -336,7 +336,7 @@ export class GivenNoticePipe implements PipeTransform {
    * @param startTime the requested time for the Rental to begin
    * @param endTime the requested time for the Rental to end
    */
-  private validateRequestedTime &#x3D; async(startTime, endTime): Promise&lt;void&gt; &#x3D;&gt; {
+  private validateRequestedTime &#x3D; async (startTime, endTime): Promise&lt;void&gt; &#x3D;&gt; {
     if (startTime &gt; endTime) {
       throw new Error(
         &#x27;The rental start time cannot be after the rental end time&#x27;,
@@ -351,7 +351,7 @@ export class GivenNoticePipe implements PipeTransform {
    * **summary**: Use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto
    * @param value the raw client request data to search for rentals
    */
-  transform &#x3D; async(value: RawSearchRentalDto):Promise&lt;GivenNoticeSearchRentalDto&gt; &#x3D;&gt; {
+  transform &#x3D; async (value: RawSearchRentalDto): Promise&lt;GivenNoticeSearchRentalDto&gt; &#x3D;&gt; {
     try {
       // make start and end time into DateTimes
       const startTime: DateTime &#x3D; DateTime.fromISO(

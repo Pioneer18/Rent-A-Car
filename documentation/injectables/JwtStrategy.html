@@ -184,7 +184,7 @@
 import { PassportStrategy } from &#x27;@nestjs/passport&#x27;;
 import { ExtractJwt, Strategy } from &#x27;passport-jwt&#x27;;
 import { jwtConstants } from &#x27;../constant&#x27;;
-import { Request } from &#x27;express&#x27;
+import { Request } from &#x27;express&#x27;;
 import { JwtPayloadInterface } from &#x27;../interfaces/jwt-payload.interface&#x27;;
 /**
  * **summary**: [**Passport Jwt-Strategy**](http://www.passportjs.org/packages/passport-jwt/)
@@ -204,12 +204,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   /**
    * **summary**: Return the decoded payload of the JWT
-   * @param payload 
+   * @param payload
    */
-  validate &#x3D; async(payload: any): Promise&lt;JwtPayloadInterface&gt; &#x3D;&gt; {
+  validate &#x3D; async (payload: any): Promise&lt;JwtPayloadInterface&gt; &#x3D;&gt; {
     return { userId: payload.sub, username: payload.username, email: payload.email };
   }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

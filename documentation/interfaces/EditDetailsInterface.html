@@ -87,12 +87,14 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#features">features</a>
                                 </li>
                                 <li>
                                         <a href="#rentalId">rentalId</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#specs">specs</a>
                                 </li>
                             </ul>
@@ -129,6 +131,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -187,6 +194,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -200,23 +212,24 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface EditDetailsInterface {
     rentalId: string;
-    specs: {
-        odometer: number;
-        transmission: string;
-        cityMpg: number;
-        hwyMpg: number;
-        fuel: string;
-        gasGrade: string;
-        description: string;
-        make: string;
-        model: string;
-        style: string;
-        color: string;
-        numOfSeats: number;
-        numDoors: number;
+    specs?: {
+        odometer?: number;
+        transmission?: string;
+        cityMpg?: number;
+        hwyMpg?: number;
+        fuel?: string;
+        gasGrade?: string;
+        description?: string;
+        make?: string;
+        model?: string;
+        style?: string;
+        color?: string;
+        numOfSeats?: number;
+        numDoors?: number;
     };
-    features: string[];
-}</code></pre>
+    features?: string[];
+}
+</code></pre>
     </div>
 </div>
 

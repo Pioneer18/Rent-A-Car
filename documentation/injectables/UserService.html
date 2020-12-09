@@ -124,7 +124,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userModel: <a href="../interfaces/UserModelInterface.html">Model<UserModelInterface></a>, extractKeyValueUtil: <a href="../injectables/ExtractKeyValueUtil.html">ExtractKeyValueUtil</a>, verifyNewPasswordUtil: <a href="../injectables/VerifyNewPasswordUtil.html">VerifyNewPasswordUtil</a>, redisService: RedisService)</code>
+<code>constructor(userModel: <a href="../interfaces/UserModelInterface.html">Model<UserModelInterface></a>, extractKeyValueUtil: <a href="../injectables/ExtractKeyValueUtil.html">ExtractKeyValueUtil</a>, verifyNewPasswordUtil: <a href="../injectables/VerifyNewPasswordUtil.html">VerifyNewPasswordUtil</a>, redisService: <a href="../injectables/RedisService.html">RedisService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -186,7 +186,7 @@
                                                         <td>redisService</td>
                                                   
                                                         <td>
-                                                                    <code>RedisService</code>
+                                                                        <code><a href="../injectables/RedisService.html" target="_self" >RedisService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -234,7 +234,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: Create a new user</p>
+                        <div class="io-description"><p><strong>summary</strong>: Create a new user a return a simply object with the created user data</p>
 </div>
                     </td>
                 </tr>
@@ -285,7 +285,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/user/service/user.service.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/user/service/user.service.ts:129</a></div>
                             </td>
                         </tr>
 
@@ -317,7 +317,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/user/service/user.service.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/user/service/user.service.ts:104</a></div>
                             </td>
                         </tr>
 
@@ -380,7 +380,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/user/service/user.service.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/user/service/user.service.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -436,7 +436,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/user/service/user.service.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/user/service/user.service.ts:67</a></div>
                             </td>
                         </tr>
 
@@ -493,7 +493,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/user/service/user.service.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/user/service/user.service.ts:140</a></div>
                             </td>
                         </tr>
 
@@ -549,7 +549,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/user/service/user.service.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/user/service/user.service.ts:81</a></div>
                             </td>
                         </tr>
 
@@ -605,9 +605,9 @@ import { CreateQuery, Model } from &#x27;mongoose&#x27;;
 import { UserModelInterface } from &#x27;../interface/modelInterface/user-model.interface&#x27;;
 import { Request } from &#x27;express&#x27;;
 import { ExtractKeyValueUtil } from &#x27;../../auth/util/extract-key-value.util&#x27;;
-import { VerifyNewPasswordUtil } from &#x27;src/auth/util/verify-new-password.util&#x27;;
+import { VerifyNewPasswordUtil } from &#x27;../../auth/util/verify-new-password.util&#x27;;
 import { RedisService } from &#x27;../../redis/service/redis.service&#x27;;
-import { JwtPayloadInterface } from &#x27;src/auth/interfaces/jwt-payload.interface&#x27;;
+import { JwtPayloadInterface } from &#x27;../../auth/interfaces/jwt-payload.interface&#x27;;
 import { CreateUserInterface } from &#x27;../interface/service/create-user.interface&#x27;;
 import { FindUserInterface } from &#x27;../interface/service/find-user.interface&#x27;;
 import { FindUserByResetPwTokenInterface } from &#x27;../interface/service/find-user-by-reset-pw-token.interface&#x27;;
@@ -627,15 +627,22 @@ export class UserService {
     ) { }
 
     /**
-     * **summary**: Create a new user
+     * **summary**: Create a new user a return a simply object with the created user data
      * @param user New user data
      */
-    createUser &#x3D; async(user: CreateQuery&lt;CreateUserInterface&gt;): Promise&lt;CreateQuery&lt;UserModelInterface&gt;&gt; &#x3D;&gt; {
+    createUser &#x3D; async (user: CreateQuery&lt;CreateUserInterface&gt;): Promise&lt;UserInterface&gt; &#x3D;&gt; {
         try {
             const document &#x3D; await new this.userModel(user);
-            document.save();
-            document.password &#x3D; undefined;
-            return document;
+            await document.save();
+            // don&#x27;t return the mongodb document, just a object with the data
+            const lean: UserInterface &#x3D; {
+                _id: document._id,
+                username: document.username,
+                email: document.email,
+                password: document.password,
+                __v: 0
+            }
+            return lean;
         } catch (err) {
             throw new Error(err);
         }
@@ -658,12 +665,12 @@ export class UserService {
      * **summary**: Find a user by their resetPasswordToken once they have submitted the reset password email
      * @param data The token
      */
-    findUserByResetPasswordToken &#x3D; async(data: FindUserByResetPwTokenInterface): Promise&lt;UserModelInterface&gt; &#x3D;&gt; {
+    findUserByResetPasswordToken &#x3D; async (data: FindUserByResetPwTokenInterface): Promise&lt;UserModelInterface&gt; &#x3D;&gt; {
         try {
             const user &#x3D; await this.userModel.findOne({ resetPasswordToken: data.token });
             return user;
         } catch (err) {
-            throw new Error(err)
+            throw new Error(err);
         }
     }
 
@@ -672,21 +679,21 @@ export class UserService {
      * @param data The update user data
      * @param req The client request
      */
-    updateUser &#x3D; async(data: UpdateUserInterface, req ): Promise&lt;UserInterface&gt; &#x3D;&gt; {
+    updateUser &#x3D; async (data: UpdateUserInterface, req ): Promise&lt;UserInterface&gt; &#x3D;&gt; {
         try {
             // extract user email
             const user: JwtPayloadInterface &#x3D; req.user;
             const filter &#x3D; {email: user.email };
             // create an update object
-            let update &#x3D; this.createUserUpdate(data);
+            const update &#x3D; this.createUserUpdate(data);
             const updater &#x3D; {
                 $set: update,
-            }
+            };
             // logout the user and return the data before redirecting to login
             await this.logoutUser(req);
             return await this.userModel.findOneAndUpdate(filter, {updater}, {useFindAndModify: false}).lean();
-       } catch(err) {
-           throw new Error(err)
+       } catch (err) {
+           throw new Error(err);
        }
     }
 
@@ -695,19 +702,19 @@ export class UserService {
      * @param data user credentials
      * @param req The client request
      */
-    deleteUser &#x3D; async(data: DeleteUserInterface, req): Promise&lt;UserInterface&gt; &#x3D;&gt; {
+    deleteUser &#x3D; async (data: DeleteUserInterface, req): Promise&lt;UserInterface&gt; &#x3D;&gt; {
         try {
             // extract user email
-            const doc:JwtPayloadInterface &#x3D; req.user;
+            const doc: JwtPayloadInterface &#x3D; req.user;
             // query the user
             const user &#x3D; await this.findUser({email: doc.email});
             // verify their password matches the current
-            await this.verifyNewPasswordUtil.verifyMatch({newPassword: data.password, oldPassword: user.password})
+            await this.verifyNewPasswordUtil.verifyMatch({newPassword: data.password, oldPassword: user.password});
             // logout
             await this.logoutUser(req);
             // delete
             return await user.remove();
-        } catch(err) {
+        } catch (err) {
             throw new Error(err);
         }
     }
@@ -721,7 +728,7 @@ export class UserService {
      * @param data Client request data to update a user
      */
     private createUserUpdate &#x3D; (data: UpdateUserInterface): UpdateUserInterface &#x3D;&gt; {
-        let update: UpdateUserInterface &#x3D; {}
+        const update: UpdateUserInterface &#x3D; {};
         data.username ? update.username &#x3D; data.username : data.username &#x3D; null;
         data.email ? update.email &#x3D; data.email : data.email &#x3D; null;
         return update;
@@ -731,7 +738,7 @@ export class UserService {
      * **summary**: Log a user out of the application by adding their JWT to the Redis cache &#x27;dead-list&#x27;
      * @param req The client request
      */
-    private logoutUser &#x3D; async(req: Request): Promise&lt;void&gt; &#x3D;&gt; {
+    private logoutUser &#x3D; async (req: Request): Promise&lt;void&gt; &#x3D;&gt; {
         const {jwt, key} &#x3D; await this.extractKeyValueUtil.extract(req);
         await this.redisService.set(key, jwt);
     }

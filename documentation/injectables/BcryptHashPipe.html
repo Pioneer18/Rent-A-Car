@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: encrypt the user&#39;s password </p>
+                <p><strong>summary</strong>: encrypt the user&#39;s password</p>
 
             </p>
 
@@ -167,11 +167,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &quot;@nestjs/common&quot;;
-import { CreateUserDto } from &quot;../dto/create-user.dto&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
+import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
 import * as bcrypt from &#x27;bcrypt&#x27;;
 /**
- * **summary**: encrypt the user&#x27;s password 
+ * **summary**: encrypt the user&#x27;s password
  */
 @Injectable()
 export class BcryptHashPipe implements PipeTransform {
@@ -180,7 +180,7 @@ export class BcryptHashPipe implements PipeTransform {
      * **summary**: use bcrypt to hash and salt the user&#x27;s password
      * @param value new user info
      */
-    transform &#x3D; async(value: CreateUserDto) &#x3D;&gt; {
+    transform &#x3D; async (value: CreateUserDto): Promise&lt;CreateUserDto&gt; &#x3D;&gt; {
         try {
             const hash &#x3D; await bcrypt.hash(value.password, 10);
             const verified &#x3D; await bcrypt.compare(value.password, hash);
@@ -188,12 +188,13 @@ export class BcryptHashPipe implements PipeTransform {
                 value.password &#x3D; hash;
                 return value;
             }
-            throw new Error(&#x27;Bcrypt hashing failed, hash did not match the original&#x27;)
-        } catch(err) {
+            throw new Error(&#x27;Bcrypt hashing failed, hash did not match the original&#x27;);
+        } catch (err) {
             throw new Error(err);
         }
     }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

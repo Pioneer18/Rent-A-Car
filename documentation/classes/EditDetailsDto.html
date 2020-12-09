@@ -97,12 +97,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#features">features</a>
                             </li>
                             <li>
                                 <a href="#rentalId">rentalId</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#specs">specs</a>
                             </li>
                         </ul>
@@ -131,6 +133,7 @@
                         <a name="features"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Optional</span>
                             features</b>
                             <a href="#features"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -144,7 +147,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/rental/dto/details/edit-details.dto.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/rental/dto/details/edit-details.dto.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -185,6 +188,7 @@
                         <a name="specs"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Optional</span>
                             specs</b>
                             <a href="#specs"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -217,7 +221,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditDetailsInterface } from &quot;src/rental/interface/service/edit-details.interface&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditDetailsInterface } from &#x27;../../../rental/interface/service/edit-details.interface&#x27;;
 
 /**
  * **summary**: Dto to edit the details of a rental, passed to the rental.controller.editDetails method.
@@ -225,22 +229,23 @@
  */
 export class EditDetailsDto implements EditDetailsInterface {
   rentalId: string;
-  specs: {
-    odometer: number;
-    transmission: string;
-    cityMpg: number;
-    hwyMpg: number;
-    fuel: string;
-    gasGrade: string;
-    description: string;
-    make: string;
-    model: string;
-    style: string;
-    color: string;
-    numOfSeats: number;
-    numDoors: number;
+  specs?: {
+    odometer?: number;
+    transmission?: string;
+    cityMpg?: number | null;
+    hwyMpg?: number | null;
+    mpgE?: number | null;
+    fuel?: string;
+    gasGrade?: string;
+    description?: string;
+    make?: string;
+    model?: string;
+    style?: string;
+    color?: string;
+    numOfSeats?: number;
+    numDoors?: number;
   };
-  features: string[];
+  features?: string[];
 }
 </code></pre>
     </div>

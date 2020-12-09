@@ -113,7 +113,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>image:         <code><a href="../interfaces/Image.html" target="_self" >Image</a></code>
+                                        <code>image:         <code><a href="../interfaces/Image.html" target="_self" >Image | null</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -121,7 +121,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/Image.html" target="_self" >Image</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/Image.html" target="_self" >Image | null</a></code>
 
                                         </td>
                                     </tr>
@@ -142,7 +142,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>packet:         <code><a href="../interfaces/Image.html" target="_self" >Image[]</a></code>
+                                        <code>packet:         <code><a href="../interfaces/Image.html" target="_self" >Image[] | null</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -150,7 +150,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/Image.html" target="_self" >Image[]</a></code>
+                                            <i>Type : </i>        <code><a href="../interfaces/Image.html" target="_self" >Image[] | null</a></code>
 
                                         </td>
                                     </tr>
@@ -166,14 +166,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Image } from &quot;../../image.interface&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Image } from &#x27;../../image.interface&#x27;;
 /**
  * **summary**: Interface for the values returned by the ProcessSaveDataUtil.process() method
  */
 export interface ProcessedSaveDataInterface {
-    packet: Image[];
-    image: Image;
-}</code></pre>
+    packet: Image[] | null;
+    image: Image | null;
+}
+</code></pre>
     </div>
 </div>
 

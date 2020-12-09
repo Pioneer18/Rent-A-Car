@@ -128,13 +128,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/rental/utils/generate-rental-duration-enum.util.ts:34</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: create a RentalDuration <a href="https://www.typescriptlang.org/docs/handbook/enums.html"><strong>Enum</strong></a> from the given start and end time </p>
+                        <div class="io-description"><p><strong>summary</strong>: create a RentalDuration <a href="https://www.typescriptlang.org/docs/handbook/enums.html"><strong>Enum</strong></a> from the given start and end time</p>
 </div>
                     </td>
                 </tr>
@@ -189,7 +189,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: using the [<strong>Luxon Interval.fromDateTimes(<a href="https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes">https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes</a>)</strong>] method return the 
+                        <div class="io-description"><p><strong>summary</strong>: using the [<strong>Luxon Interval.fromDateTimes(<a href="https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes">https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes</a>)</strong>] method return the
 duration of the rental in months, weeks, and days</p>
 </div>
                     </td>
@@ -236,10 +236,10 @@ import { GenerateRentalDurationEnumInterface } from &#x27;../interface/utils/gen
 @Injectable()
 export class GenerateRentalDurationEnumUtil {
   /**
-   * **summary**: using the [**Luxon Interval.fromDateTimes(https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes)**] method return the 
+   * **summary**: using the [**Luxon Interval.fromDateTimes(https://moment.github.io/luxon/docs/class/src/interval.js~Interval.html#static-method-fromDateTimes)**] method return the
    * duration of the rental in months, weeks, and days
-   * @param startTime 
-   * @param endTime 
+   * @param startTime
+   * @param endTime
    */
   private processRentalTime &#x3D; async (data: GenerateRentalDurationEnumInterface): Promise&lt;ProcessRentalTimeDto&gt; &#x3D;&gt; {
     try {
@@ -247,9 +247,6 @@ export class GenerateRentalDurationEnumUtil {
       const months &#x3D; base.length(&#x27;months&#x27;);
       const weeks &#x3D; base.length(&#x27;weeks&#x27;);
       const days &#x3D; base.length(&#x27;days&#x27;);
-      Logger.log(&#x60;The Base&#x60;);
-      Logger.log(base);
-      Logger.log(&#x60;months: ${months}, weeks: ${weeks}, days: ${days}&#x60;);
       return { months, weeks, days };
     } catch (err) {
       throw new Error(err);
@@ -257,9 +254,9 @@ export class GenerateRentalDurationEnumUtil {
   }
 
   /**
-   * **summary**: create a RentalDuration [**Enum**](https://www.typescriptlang.org/docs/handbook/enums.html) from the given start and end time 
-   * @param startTime 
-   * @param endTime 
+   * **summary**: create a RentalDuration [**Enum**](https://www.typescriptlang.org/docs/handbook/enums.html) from the given start and end time
+   * @param startTime
+   * @param endTime
    */
   generateRentalDurationEnum &#x3D; async (data: GenerateRentalDurationEnumInterface): Promise&lt;RentalDurations&gt; &#x3D;&gt; {
     try {
@@ -287,6 +284,9 @@ export class GenerateRentalDurationEnumUtil {
       }
       if (schedule.days &#x3D;&#x3D;&#x3D; 1) {
         return RentalDurations[&#x27;1 Day&#x27;];
+      }
+      else {
+        throw new Error(&#x27;Rental duration must be atleast a full day, please add more time to the rental&#x27;)
       }
     } catch (err) {
       throw new Error(err);

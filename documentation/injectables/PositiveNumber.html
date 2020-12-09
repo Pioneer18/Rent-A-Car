@@ -150,7 +150,7 @@
  */
 @Injectable()
 export class PositiveNumber {
-    validate &#x3D; (data: number) &#x3D;&gt; {
+    validate &#x3D; (data: number): Boolean &#x3D;&gt; {
         if (Math.sign(data) &#x3D;&#x3D;&#x3D; -1) {
             return false;
         }

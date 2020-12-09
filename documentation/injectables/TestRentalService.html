@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Test Rental Service provides access to private rentalModel for Unit Testing</p>
+                <p>Test Rental Service provides access to private methods for Unit Testing</p>
 
             </p>
 
@@ -278,7 +278,7 @@ import { RentalModelInterface } from &#x27;../interface/modelInterface/Rental/re
 import { Injectable } from &#x27;@nestjs/common&#x27;;
 
 /**
- * Test Rental Service provides access to private rentalModel for Unit Testing
+ * Test Rental Service provides access to private methods for Unit Testing
  */
 @Injectable()
 export class TestRentalService {
@@ -318,6 +318,7 @@ export class TestRentalService {
       : (rental.features &#x3D; null);
     return query;
   }
+
 }
 </code></pre>
     </div>

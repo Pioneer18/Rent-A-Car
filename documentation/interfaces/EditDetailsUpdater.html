@@ -136,24 +136,25 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface EditDetailsUpdater {
     $set: {
-        specs: {
-            odometer: number;
-            transmission: string;
-            cityMpg: number;
-            hwyMpg: number;
-            fuel: string;
-            gasGrade: string;
-            description: string;
-            make: string;
-            model: string;
-            style: string;
-            color: string;
-            numOfSeats: number;
-            numDoors: number;
+        specs?: {
+            odometer?: number;
+            transmission?: string;
+            cityMpg?: number;
+            hwyMpg?: number;
+            fuel?: string;
+            gasGrade?: string;
+            description?: string;
+            make?: string;
+            model?: string;
+            style?: string;
+            color?: string;
+            numOfSeats?: number;
+            numDoors?: number;
         }
-        features: string[];
-    }
-}</code></pre>
+        features?: string[];
+    };
+}
+</code></pre>
     </div>
 </div>
 

@@ -171,7 +171,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: Every passport strategy calls the validate method (which calls the validateUser function in the auth.service) for any strategy. 
+                        <div class="io-description"><p><strong>summary</strong>: Every passport strategy calls the validate method (which calls the validateUser function in the auth.service) for any strategy.
 if the user is found, Passport will create a user property on the request object</p>
 </div>
                     </td>
@@ -229,13 +229,13 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
 
     /**
-     * **summary**: Every passport strategy calls the validate method (which calls the validateUser function in the auth.service) for any strategy. 
+     * **summary**: Every passport strategy calls the validate method (which calls the validateUser function in the auth.service) for any strategy.
      * if the user is found, Passport will create a user property on the request object
      * @param email the user email
      * @param password the user password
      */
-    validate &#x3D; async(email: string, password: string): Promise&lt;ValidateUserReturn&gt; &#x3D;&gt; {
-        const user &#x3D; await this.authService.validateUser({email: email, pass: password});
+    validate &#x3D; async (email: string, password: string): Promise&lt;ValidateUserReturn&gt; &#x3D;&gt; {
+        const user &#x3D; await this.authService.validateUser({email, pass: password});
         if (!user) {
             throw new Error(&#x27;invalid credentials&#x27;);
             // throw new UnauthorizedException(&#x27;invalid credentials&#x27;);

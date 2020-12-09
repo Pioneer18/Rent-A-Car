@@ -188,10 +188,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { ProcessedSaveDataInterface } from &quot;../interfaces/utils/processSaveData/processed-save-data.interface&quot;;
-import { SaveImagesInterface } from &quot;../interfaces/service/save-images.interface&quot;;
-import { Image } from &quot;../interfaces/image.interface&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &#x27;@nestjs/common&#x27;;
+import { ProcessedSaveDataInterface } from &#x27;../interfaces/utils/processSaveData/processed-save-data.interface&#x27;;
+import { SaveImagesInterface } from &#x27;../interfaces/service/save-images.interface&#x27;;
+import { Image } from &#x27;../interfaces/image.interface&#x27;;
 /**
  * **summary**: utility to process the save image request data before passing it to the handler
  */
@@ -218,9 +218,9 @@ export class ProcessSaveDataUtil {
           etag: temp.etag,
           category: data.category,
           size: temp.size,
-          location: temp.location
-        }
-       return {packet: null, image: image}
+          location: temp.location,
+        };
+        return {packet: null, image};
 
       }
       // multiple files
@@ -233,15 +233,16 @@ export class ProcessSaveDataUtil {
           etag: item.etag,
           category: data.category,
           size: item.size,
-          location: item.location
-        }
-        return image
+          location: item.location,
+        };
+        return image;
       });
-      return {packet: packet, image: null}
+      return {packet, image: null};
     }
-    throw new Error(&#x27;Failed to save: files were not found&#x27;)
+    throw new Error(&#x27;Failed to save: files were not found&#x27;);
   }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

@@ -264,16 +264,17 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface TransporterInterface {
     host: string;
-    secureConnection: boolean // TLS requires secureConnection to be false
+    secureConnection: boolean; // TLS requires secureConnection to be false
     port: number;
     tls: {
         ciphers: string;
-    }
+    };
     auth: {
         user: string;
         pass: string;
-    }
-}</code></pre>
+    };
+}
+</code></pre>
     </div>
 </div>
 

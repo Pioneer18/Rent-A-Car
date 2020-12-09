@@ -119,7 +119,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, jwtService: JwtService, redisService: RedisService, extractKeyValueUtil: <a href="../injectables/ExtractKeyValueUtil.html">ExtractKeyValueUtil</a>, verifyNewPasswordUtil: <a href="../injectables/VerifyNewPasswordUtil.html">VerifyNewPasswordUtil</a>, emailService: <a href="../injectables/EmailService.html">EmailService</a>, appConfig: <a href="../injectables/AppConfigService.html">AppConfigService</a>)</code>
+<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, jwtService: JwtService, redisService: <a href="../injectables/RedisService.html">RedisService</a>, extractKeyValueUtil: <a href="../injectables/ExtractKeyValueUtil.html">ExtractKeyValueUtil</a>, verifyNewPasswordUtil: <a href="../injectables/VerifyNewPasswordUtil.html">VerifyNewPasswordUtil</a>, emailService: <a href="../injectables/EmailService.html">EmailService</a>, appConfig: <a href="../injectables/AppConfigService.html">AppConfigService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -169,7 +169,7 @@
                                                         <td>redisService</td>
                                                   
                                                         <td>
-                                                                    <code>RedisService</code>
+                                                                        <code><a href="../injectables/RedisService.html" target="_self" >RedisService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -316,7 +316,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/auth/service/auth.service.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/auth/service/auth.service.ts:115</a></div>
                             </td>
                         </tr>
 
@@ -485,7 +485,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/auth/service/auth.service.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/auth/service/auth.service.ts:139</a></div>
                             </td>
                         </tr>
 
@@ -648,7 +648,7 @@ export class AuthService {
      * @param email The user email
      * @param pass The user password
      */
-    validateUser &#x3D; async(data: ValidateUserInterface): Promise&lt;ValidateUserReturn&gt; &#x3D;&gt; {
+    validateUser &#x3D; async (data: ValidateUserInterface): Promise&lt;ValidateUserReturn&gt; &#x3D;&gt; {
         try {
             const query: FindUserDto &#x3D; { email: data.email };
             const user: UserInterface &#x3D; await this.userService.findUser(query); // find user in db by username
@@ -666,7 +666,7 @@ export class AuthService {
      * summary: Return a JWT inside of a Cookie, which may only be interacted with by Http and not Javascript, to the now authenticated user
      * @param user The user logging into the application
      */
-    login &#x3D; async(user: UserInterface): Promise&lt;string&gt; &#x3D;&gt; {
+    login &#x3D; async (user: UserInterface): Promise&lt;string&gt; &#x3D;&gt; {
         // create the JWT payload
         const payload &#x3D; {
             username: user.username,
@@ -682,12 +682,12 @@ export class AuthService {
      * **summary**: Set the user&#x27;s JWT in the redis &#x27;dead-list&#x27; to log the user out prior to the JWT expiration
      * @param user User property from the request object
      */
-    logout &#x3D; async(req: Request): Promise&lt;ExtractKeyValueUtilInterface&gt; &#x3D;&gt; {
+    logout &#x3D; async (req: Request): Promise&lt;ExtractKeyValueUtilInterface&gt; &#x3D;&gt; {
         try {
             // extract the jwt and the cachce key, then save the jwt to redis dead-list with the key
             const { key, jwt } &#x3D; await this.extractKeyValueUtil.extract(req);
             await this.redisService.set(key, jwt);
-            return { key: key, jwt: jwt };
+            return { key, jwt };
         } catch (err) {
             throw new Error(err);
         }
@@ -699,7 +699,7 @@ export class AuthService {
      * @param confirm_password
      * @param req
      */
-    changePassword &#x3D; async(data: ChangePasswordInterface, req): Promise&lt;void&gt; &#x3D;&gt; {
+    changePassword &#x3D; async (data: ChangePasswordInterface, req): Promise&lt;void&gt; &#x3D;&gt; {
         try {
             // verify user submitted same pw twice, extract the jwt and it&#x27;s key (last 8 digits)
             await this.verifyNewPasswordUtil.checkTypos({ newPassword: data.newPassword, confirmPassword: data.confirmPassword });
@@ -714,29 +714,28 @@ export class AuthService {
             return;
         } catch (err) {
             throw new Error(err);
-        };
+        }
     }
-
 
     /**
      * summary: Send an email to a valid user email address to request resetting their forgotten password
      * @param email The email for resetting the password
      * **summary**: Sends user a reset password link to the provided email, if it&#x27;s an account associated email
      */
-    forgotPassword &#x3D; async(data: ForgotPasswordInterface): Promise&lt;string&gt; &#x3D;&gt; {
+    forgotPassword &#x3D; async (data: ForgotPasswordInterface): Promise&lt;string&gt; &#x3D;&gt; {
         try {
             // query user and confirm they exist
             const user &#x3D; await this.userService.findUser({email: data.email});
-            if (!user) { throw new Error(&#x27;There is no User registered with the provided email&#x27;)}
+            if (!user) { throw new Error(&#x27;There is no User registered with the provided email&#x27;); }
             // set the reset-token and it&#x27;s expiration on the user document
             user.setResetToken();
             user.setExpirationDate();
             user.save();
             // create mail options
             const mailOptions &#x3D; await this.emailService.createMailOptions({email: user.email});
-            const result &#x3D; await this.emailService.sendMail(mailOptions);
+            await this.emailService.sendMail(mailOptions);
             return user.resetPasswordToken;
-        } catch(err) { 
+        } catch (err) {
             throw new Error(err);
         }
     }
@@ -747,12 +746,12 @@ export class AuthService {
      * @param newPassword The new password entered the 1st time
      * @param confirmPassword The identical new password entered a second time
      */
-    resetPassword &#x3D; async(data: ResetPasswordInterface): Promise&lt;void&gt; &#x3D;&gt; {
+    resetPassword &#x3D; async (data: ResetPasswordInterface): Promise&lt;void&gt; &#x3D;&gt; {
         // check new password for typos, verify resetPasswordToken is active, and verify the new password does not match current
         await this.verifyNewPasswordUtil.checkTypos({newPassword: data.confirmPass, confirmPassword: data.resetPass});
         const user &#x3D; await this.userService.findUserByResetPasswordToken({token: data.resetPasswordToken});
-        if (new Date &gt;&#x3D; user.resetPasswordExpires) { throw new Error(&#x27;This passowrd reset request has expired, please make a new request.&#x27;)}
-        await this.verifyNewPasswordUtil.verifyNew({newPassword: data.resetPass, oldPassword: user.password})
+        if (new Date &gt;&#x3D; user.resetPasswordExpires) { throw new Error(&#x27;This passowrd reset request has expired, please make a new request.&#x27;); }
+        await this.verifyNewPasswordUtil.verifyNew({newPassword: data.resetPass, oldPassword: user.password});
         // reset the password and the &#x27;reset tokens&#x27; to null
         user.password &#x3D; await bcrypt.hash(data.resetPass, 10);
         user.resetPasswordToken &#x3D; null;

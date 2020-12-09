@@ -90,6 +90,7 @@
                                         <a href="#category">category</a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#rental_id">rental_id</a>
                                 </li>
                                 <li>
@@ -161,6 +162,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -234,8 +240,9 @@
     req: any;
     res: any;
     category: string;
-    rental_id: string;
-}</code></pre>
+    rental_id?: string;
+}
+</code></pre>
     </div>
 </div>
 

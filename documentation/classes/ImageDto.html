@@ -94,6 +94,7 @@
                                 <a href="#_id">_id</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#location">location</a>
                             </li>
                         </ul>
@@ -149,6 +150,7 @@
                         <a name="location"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Optional</span>
                             location</b>
                             <a href="#location"><span class="icon ion-ios-link"></span></a>
                         </span>
@@ -183,8 +185,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class ImageDto {
     _id: string; // id of an Image
-    location: string;
-}</code></pre>
+    location?: string;
+}
+</code></pre>
     </div>
 </div>
 

@@ -160,9 +160,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { Request } from &quot;express&quot;;
-import { ExtractKeyValueUtilInterface } from &quot;../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { Request } from &#x27;express&#x27;;
+import { ExtractKeyValueUtilInterface } from &#x27;../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface&#x27;;
 /**
  * summary: Grab the Authorization header Cookie and the extract JWT and the **key** used for caching the token
  * - note: the key is simply the last 8 digits of the this sessions JWT
@@ -170,19 +170,20 @@ import { ExtractKeyValueUtilInterface } from &quot;../interfaces/utils/extractKe
 @Injectable()
 export class ExtractKeyValueUtil {
     constructor() {}
-    
-    public extract &#x3D; async(req: Request): Promise&lt;ExtractKeyValueUtilInterface&gt; &#x3D;&gt; {
-        if (req){
-            const rawAuth: string &#x3D; req.headers.cookie
+
+    public extract &#x3D; async (req: Request): Promise&lt;ExtractKeyValueUtilInterface&gt; &#x3D;&gt; {
+        if (req) {
+            const rawAuth: string &#x3D; req.headers.cookie;
             return {
                 jwt: await rawAuth.slice(15), // JWT
                 key: await rawAuth.slice(-8), // KEY
-            }
+            };
         }
         throw new Error(&#x27;Cannot extract JWT and KEY from missing Request Object&#x27;);
     }
 
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

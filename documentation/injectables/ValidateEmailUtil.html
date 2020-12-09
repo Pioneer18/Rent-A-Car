@@ -185,8 +185,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { ValidateEmailUtilInterface } from &quot;../interface/utils/validate-email-util.interface&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { ValidateEmailUtilInterface } from &#x27;../interface/utils/validate-email-util.interface&#x27;;
 /**
  * **summary**: throw an error if the user email already exists
  * @param check the results of a find user by email query
@@ -197,13 +197,14 @@ export class ValidateEmailUtil {
 
     /**
      * **summary**: if the array has a length greater than 0, a user with the email already exists
-     * @param check 
+     * @param check
      */
     validateEmail &#x3D; (data: ValidateEmailUtilInterface): void &#x3D;&gt; {
-        if(data.check.length &#x3D;&#x3D;&#x3D; 0 || data.check.length &#x3D;&#x3D;&#x3D; undefined) return
+        if (data.check.length &#x3D;&#x3D;&#x3D; 0 || data.check.length &#x3D;&#x3D;&#x3D; undefined) { return; }
         throw new Error(&#x27;A User exists that is already using this email&#x27;);
     }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

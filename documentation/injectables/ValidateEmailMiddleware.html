@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: before creating a new user, validate that their email is not already in the database. this middleware is only applied to the 
+                <p><strong>summary</strong>: before creating a new user, validate that their email is not already in the database. this middleware is only applied to the
 user.controller.createUser() method</p>
 <ul>
 <li>note: uses the ValidateEmailUtil class</li>
@@ -324,7 +324,7 @@ user.controller.createUser() method</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, NestMiddleware } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, NestMiddleware } from &#x27;@nestjs/common&#x27;;
 import { Request, Response } from &#x27;express&#x27;;
 import { userModel } from &#x27;../../common/Const&#x27;;
 import { UserModelInterface } from &#x27;../interface/modelInterface/user-model.interface&#x27;;
@@ -332,7 +332,7 @@ import { Model } from &#x27;mongoose&#x27;;
 import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
 import { ValidateEmailUtil } from &#x27;../utils/validate-email.util&#x27;;
 /**
- * **summary**: before creating a new user, validate that their email is not already in the database. this middleware is only applied to the 
+ * **summary**: before creating a new user, validate that their email is not already in the database. this middleware is only applied to the
  * user.controller.createUser() method
  * - note: uses the ValidateEmailUtil class
  */
@@ -344,16 +344,16 @@ export class ValidateEmailMiddleware implements NestMiddleware {
         @Inject(userModel)
         private readonly user: Model&lt;UserModelInterface&gt;,
     ) {
-        this.validateEmailUtil &#x3D; new ValidateEmailUtil()
+        this.validateEmailUtil &#x3D; new ValidateEmailUtil();
     }
 
     /**
      * **summary**: query the databse to valdiate the requested new email is unique to the database
      * @param value the requested new user email
      */
-    private validateEmail &#x3D; async(value: CreateUserDto) &#x3D;&gt; {
+    private validateEmail &#x3D; async (value: CreateUserDto) &#x3D;&gt; {
         const check &#x3D; await this.user.find({ email: value.email });
-        this.validateEmailUtil.validateEmail({check})
+        this.validateEmailUtil.validateEmail({check});
     }
 
     /**
@@ -362,14 +362,15 @@ export class ValidateEmailMiddleware implements NestMiddleware {
      * @param res the response
      * @param next the next method to continue to the request handler
      */
-    use &#x3D; async(req: Request, res: Response, next: Function) &#x3D;&gt; {
+    use &#x3D; async (req: Request, res: Response, next: Function) &#x3D;&gt; {
         // apply to create-user route
         if (req.originalUrl &#x3D;&#x3D;&#x3D; &#x27;/v1/user/create-user&#x27;) {
             await this.validateEmail(req.body);
         }
         next();
     }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

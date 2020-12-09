@@ -126,7 +126,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UseGuards(JwtAuthGuard)<br />@UseGuards(LoggedOutGaurd)<br />@Get(&#x27;profile&#x27;)<br /></code>
+                    <code>@UseGuards(JwtAuthGuard)<br />@UseGuards(LoggedOutGuard)<br />@Get(&#x27;profile&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -180,9 +180,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, UseGuards, Get, Post, Request, Req, HttpCode } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, UseGuards, Get, Request} from &#x27;@nestjs/common&#x27;;
 import { JwtAuthGuard } from &#x27;./auth/gaurds/jwt-auth.guard&#x27;;
-import { LoggedOutGaurd } from &#x27;./auth/gaurds/logged-out.guard&#x27;;
+import { LoggedOutGuard } from &#x27;./auth/gaurds/logged-out.guard&#x27;;
 /**
  * **summary**: Does not provide any real functionality for the app
  */
@@ -190,7 +190,7 @@ import { LoggedOutGaurd } from &#x27;./auth/gaurds/logged-out.guard&#x27;;
 export class AppController {
 
   @UseGuards(JwtAuthGuard)
-  @UseGuards(LoggedOutGaurd)
+  @UseGuards(LoggedOutGuard)
   @Get(&#x27;profile&#x27;)
   getProfile(@Request() req) {
     return req.user;

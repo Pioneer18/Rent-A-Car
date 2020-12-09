@@ -428,8 +428,9 @@
   specs: {
     odometer: number;
     transmission: string;
-    cityMpg: number;
-    hwyMpg: number;
+    cityMpg: number | null;
+    hwyMpg: number | null;
+    mpgE: number | null;
     fuel: string;
     gasGrade: string;
     description: string;
@@ -464,7 +465,8 @@
   };
   photos: string[];
   listed: boolean;
-}</code></pre>
+}
+</code></pre>
     </div>
 </div>
 

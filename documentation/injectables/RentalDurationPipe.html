@@ -216,7 +216,7 @@ Rental query</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger, PipeTransform } from &#x27;@nestjs/common&#x27;;
 import { GivenNoticeSearchRentalDto } from &#x27;../dto/searchRental/given-notice-search-rental-dto&#x27;;
 import { GenerateRentalDurationEnumUtil } from &#x27;../utils/generate-rental-duration-enum.util&#x27;;
 import { RequestCoordinatesDto } from &#x27;../dto/searchRental/request-coordinates.dto&#x27;;
@@ -244,11 +244,10 @@ export class RentalDurationPipe implements PipeTransform {
           {
             startTime: value.rentalStartTime,
             endTime: value.rentalEndTime,
-          }
-        ),
+          }),
         givenNotice: value.givenNotice,
       };
-      return dto;
+      return await dto;
     } catch (err) {
       throw new Error(err);
     }

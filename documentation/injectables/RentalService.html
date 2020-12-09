@@ -130,7 +130,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(rentalModel: <a href="../interfaces/RentalModelInterface.html">Model<RentalModelInterface></a>, unavailability: <a href="../classes/UnavailabilityModelInterface.html">Model<UnavailabilityModelInterface></a>)</code>
+<code>constructor(rentalModel: <a href="../interfaces/RentalModelInterface.html">Model<RentalModelInterface></a>, unavailability: <a href="../classes/UnavailabilityModelInterface.html">Model<UnavailabilityModelInterface></a>, mapRentalUtil: <a href="../classes/MapRentalUtil.html">MapRentalUtil</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -176,6 +176,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>mapRentalUtil</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/MapRentalUtil.html" target="_self" >MapRentalUtil</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -211,14 +223,14 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/rental/service/rental.service.ts:235</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/rental/service/rental.service.ts:234</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: Validate there currently is no scheduled unavailability for the rental in the database that overlaps 
-with the requested unavailability </p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate there currently is no scheduled unavailability for the rental in the database that overlaps
+with the requested unavailability</p>
 </div>
                     </td>
                 </tr>
@@ -326,7 +338,7 @@ so the rental may be found by a geospatial query</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/rental/service/rental.service.ts:197</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/rental/service/rental.service.ts:196</a></div>
                             </td>
                         </tr>
 
@@ -335,7 +347,7 @@ so the rental may be found by a geospatial query</p>
                         <div class="io-description"><p><strong>summary</strong>: Convert a searchRentalDto into a mongoose query for the searchRental method</p>
 <ul>
 <li>The query searchs a maxium 8 mile radius for rentals</li>
-<li>Filters: <ul>
+<li>Filters:<ul>
 <li>rental min duration</li>
 <li>rental max duration</li>
 <li>advance notice minimum; e.g. 1 hour</li>
@@ -394,7 +406,7 @@ so the rental may be found by a geospatial query</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/rental/service/rental.service.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/rental/service/rental.service.ts:107</a></div>
                             </td>
                         </tr>
 
@@ -450,7 +462,7 @@ so the rental may be found by a geospatial query</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/rental/service/rental.service.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/rental/service/rental.service.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -514,7 +526,7 @@ so the rental may be found by a geospatial query</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/rental/service/rental.service.ts:170</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/rental/service/rental.service.ts:169</a></div>
                             </td>
                         </tr>
 
@@ -570,7 +582,7 @@ so the rental may be found by a geospatial query</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/rental/service/rental.service.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/rental/service/rental.service.ts:129</a></div>
                             </td>
                         </tr>
 
@@ -626,7 +638,7 @@ so the rental may be found by a geospatial query</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/rental/service/rental.service.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/rental/service/rental.service.ts:57</a></div>
                             </td>
                         </tr>
 
@@ -682,7 +694,7 @@ so the rental may be found by a geospatial query</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/rental/service/rental.service.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/rental/service/rental.service.ts:152</a></div>
                             </td>
                         </tr>
 
@@ -734,7 +746,7 @@ import { SearchRentalInterface } from &#x27;../interface/service/search-rental.i
 import { unavailabilityModel } from &#x27;../../common/Const&#x27;;
 import { UnavailabilityModelInterface } from &#x27;../interface/modelInterface/Unavailability/unavailability.interface&#x27;;
 import { CreateRentalInterface } from &#x27;../interface/service/create-rental.interface&#x27;;
-import { EditPricingInterface } from &#x27;../interface/service/edit-pricing.interface&#x27;;;
+import { EditPricingInterface } from &#x27;../interface/service/edit-pricing.interface&#x27;;
 import { RentalQuery } from &#x27;../interface/service/create-rental-query.interface&#x27;;
 import { EditPricingUpdater } from &#x27;../interface/service/edit-pricing-updater.interface&#x27;;
 import { EditDetailsInterface } from &#x27;../interface/service/edit-details.interface&#x27;;
@@ -743,9 +755,9 @@ import { ScheduleUnavailabilityInterface } from &#x27;../interface/service/sched
 import { UpdateUnavailabilityDataInterface } from &#x27;../interface/service/update-unavailability-data.interface&#x27;;
 import { RemoveUnavailabilityInterface } from &#x27;../interface/service/remove-unavailability.interface&#x27;;
 import { UpdateResponseInterface } from &#x27;../../common/interfaces/update-response.interface&#x27;;
-import { DeleteResponseInterface } from &#x27;src/common/interfaces/delete-response.interface&#x27;;
+import { DeleteResponseInterface } from &#x27;../../common/interfaces/delete-response.interface&#x27;;
 import { UnavailabilityInterface } from &#x27;../interface/unavailability.interface&#x27;;
-
+import { MapRentalUtil } from &#x27;../utils/map-rental.util&#x27;;
 
 /**
  * **summary**: Create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
@@ -754,8 +766,8 @@ import { UnavailabilityInterface } from &#x27;../interface/unavailability.interf
 export class RentalService {
   constructor(
     @InjectModel(&#x27;Rental&#x27;) private readonly rentalModel: Model&lt;RentalModelInterface&gt;,
-    @Inject(unavailabilityModel)
-    private readonly unavailability: Model&lt;UnavailabilityModelInterface&gt;,
+    @InjectModel(unavailabilityModel) private readonly unavailability: Model&lt;UnavailabilityModelInterface&gt;,
+    private readonly mapRentalUtil: MapRentalUtil,
   ) { }
 
   /**
@@ -763,18 +775,15 @@ export class RentalService {
    * so the rental may be found by a geospatial query
    * @param rental The new rental to be created
    */
-  createRental &#x3D; async (rental: CreateRentalInterface, user): Promise&lt;RentalModelInterface&gt; &#x3D;&gt; {
+  createRental &#x3D; async (rental: CreateRentalInterface, user): Promise&lt;RentalInterface&gt; &#x3D;&gt; {
     try {
-      console.log(&#x27;The Create Rental User&#x27;)
-      console.log(user)
       let temp: any;
       temp &#x3D; rental;
       temp.userId &#x3D; user.userId;
       const upload: RentalInterface &#x3D; temp;
-      console.log(&#x27;Create Rental Upload&#x27;);
-      console.log(upload)
       const document &#x3D; await new this.rentalModel(upload);
-      return await document.save();
+      await document.save();
+      return await this.mapRentalUtil.map(document);
     } catch (err) {
       throw new Error(err);
     }
@@ -785,7 +794,7 @@ export class RentalService {
    * @param rental SearchRentalDto
    */
   searchRental &#x3D; async (rental: SearchRentalInterface): Promise&lt;RentalInterface[]&gt; &#x3D;&gt; {
-    console.log(rental)
+    console.log(rental);
     try {
       const query: RentalQuery &#x3D; await this.createRentalQuery(rental);
       const rentals &#x3D; await this.rentalModel.find({query}).lean();
@@ -858,6 +867,8 @@ export class RentalService {
    */
   scheduleUnavailability &#x3D; async (processed: ScheduleUnavailabilityInterface): Promise&lt;UnavailabilityInterface[]&gt; &#x3D;&gt; {
     try {
+      Logger.log(&#x60;Processed Unavailability Dto/Interface&#x60;)
+      Logger.log(processed)
       await this.checkForOverlap(processed);
       // if it passed, combine data into one array and insert
       const { y1, y2 } &#x3D; processed.data;
@@ -912,7 +923,7 @@ export class RentalService {
   /**
    * **summary**: Convert a searchRentalDto into a mongoose query for the searchRental method
    * - The query searchs a maxium 8 mile radius for rentals
-   * - Filters: 
+   * - Filters:
    *   - rental min duration
    *   - rental max duration
    *   - advance notice minimum; e.g. 1 hour
@@ -955,8 +966,8 @@ export class RentalService {
   }
 
   /**
-   * **summary**: Validate there currently is no scheduled unavailability for the rental in the database that overlaps 
-   * with the requested unavailability 
+   * **summary**: Validate there currently is no scheduled unavailability for the rental in the database that overlaps
+   * with the requested unavailability
    * @param data Query for 1 or 2 years
    */
   private checkForOverlap &#x3D; async (data: ScheduleUnavailabilityInterface): Promise&lt;void&gt; &#x3D;&gt; {
@@ -978,7 +989,7 @@ export class RentalService {
     if (test.length) {
       throw new Error(&#x27;this request overlaps with existing unavailability&#x27;);
     }
-  };
+  }
 }
 </code></pre>
     </div>
