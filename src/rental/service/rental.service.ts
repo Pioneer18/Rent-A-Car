@@ -154,7 +154,7 @@ export class RentalService {
     try {
       const update = await this.unavailability.updateMany(
         data.filter,
-        {upater: data.updater},
+        data.updater
       );
       return update;
     } catch (err) {

@@ -1,4 +1,4 @@
-import { Injectable, PipeTransform } from '@nestjs/common';
+import { Injectable, Logger, PipeTransform } from '@nestjs/common';
 import { UpdateUnavailabilityDto } from '../dto/unavailability/update/update-unavailability.dto';
 import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
@@ -34,19 +34,15 @@ export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavail
         };
         if (value.newTitle === null) {
           const updater1 = {
-              $set: {
                 start: value.newStart,
                 end: value.newEnd,
-              },
           };
           return {filter, updater: updater1};
         }
         const updater2 = {
-            $set: {
                 start: value.newStart,
                 end: value.newEnd,
                 title: value.newTitle,
-            },
         };
         return { filter, updater: updater2};
     }

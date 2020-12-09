@@ -9,15 +9,11 @@ export class UpdateUnavailabilityDataDto implements UpdateUnavailabilityDataInte
         unavailabilityId: string,
     };
     updater: {
-        $set: {
             start: number,
             end: number,
-        },
     } | {
-        $set: {
             start: number,
             end: number,
             title: string,
-        },
     };
 }
