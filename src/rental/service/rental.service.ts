@@ -58,7 +58,7 @@ export class RentalService {
     console.log(rental);
     try {
       const query: RentalQuery = await this.createRentalQuery(rental);
-      const rentals = await this.rentalModel.find({query}).lean();
+      const rentals = await this.rentalModel.find({ query }).lean();
       if (rentals.length > 0) {
         return rentals;
       } else {
@@ -81,7 +81,7 @@ export class RentalService {
     // make an update document
     try {
       const filter = { _id: data.rentalId };
-      const update = {
+      const update: EditPricingUpdater = {
         pricing: {
           price: data.price,
           discounts: {
@@ -90,10 +90,7 @@ export class RentalService {
           },
         },
       };
-      const updater: EditPricingUpdater = {
-        $set: update,
-      };
-      const doc = await this.rentalModel.findOneAndUpdate({filter}, {updater}, {useFindAndModify: false}).lean();
+      const doc = await this.rentalModel.findOneAndUpdate(filter, update, { useFindAndModify: false, new: true }).lean();
       return doc;
     } catch (err) {
       throw new Error(err);
@@ -112,7 +109,7 @@ export class RentalService {
         specs: data.specs,
         features: data.features,
       };
-      return await this.rentalModel.findOneAndUpdate(filter, update, {useFindAndModify: false, new: true }).lean();
+      return await this.rentalModel.findOneAndUpdate(filter, update, { useFindAndModify: false, new: true }).lean();
     } catch (err) {
       throw new Error(err);
     }
