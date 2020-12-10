@@ -24,191 +24,191 @@
 <title>cluster_AuthModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1562,-268 1562,-70 8,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_AuthModule_imports</title>
-<polygon fill="none" stroke="black" points="1202,-78 1202,-130 1554,-130 1554,-78 1202,-78"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_AuthModule_providers</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 1194,-130 1194,-78 16,-78"/>
+<polygon fill="none" stroke="black" points="376,-78 376,-130 1554,-130 1554,-78 376,-78"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_AuthModule_exports</title>
-<polygon fill="none" stroke="black" points="556,-208 556,-260 1130,-260 1130,-208 556,-208"/>
+<polygon fill="none" stroke="black" points="434,-208 434,-260 1008,-260 1008,-208 434,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_AuthModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 368,-130 368,-78 16,-78"/>
 </g>
 <!-- AppConfigModule -->
 <g id="node1" class="node">
 <title>AppConfigModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1546.05,-122 1543.05,-126 1522.05,-126 1519.05,-122 1423.95,-122 1423.95,-86 1546.05,-86 1546.05,-122"/>
-<text text-anchor="middle" x="1485" y="-99.8" font-family="Times,serif" font-size="14.00">AppConfigModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="360.05,-122 357.05,-126 336.05,-126 333.05,-122 237.95,-122 237.95,-86 360.05,-86 360.05,-122"/>
+<text text-anchor="middle" x="299" y="-99.8" font-family="Times,serif" font-size="14.00">AppConfigModule</text>
 </g>
 <!-- AuthModule -->
 <g id="node4" class="node">
 <title>AuthModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="915.55,-187 912.55,-191 891.55,-191 888.55,-187 828.45,-187 828.45,-151 915.55,-151 915.55,-187"/>
-<text text-anchor="middle" x="872" y="-164.8" font-family="Times,serif" font-size="14.00">AuthModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="793.55,-187 790.55,-191 769.55,-191 766.55,-187 706.45,-187 706.45,-151 793.55,-151 793.55,-187"/>
+<text text-anchor="middle" x="750" y="-164.8" font-family="Times,serif" font-size="14.00">AuthModule</text>
 </g>
 <!-- AppConfigModule&#45;&gt;AuthModule -->
 <g id="edge1" class="edge">
 <title>AppConfigModule&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M1485,-122.28C1485,-143.32 1485,-175 1485,-175 1485,-175 925.59,-175 925.59,-175"/>
-<polygon fill="black" stroke="black" points="925.59,-171.5 915.59,-175 925.59,-178.5 925.59,-171.5"/>
+<path fill="none" stroke="black" d="M299,-122.02C299,-139.37 299,-163 299,-163 299,-163 696.35,-163 696.35,-163"/>
+<polygon fill="black" stroke="black" points="696.35,-166.5 706.35,-163 696.35,-159.5 696.35,-166.5"/>
 </g>
 <!-- RedisModule -->
 <g id="node2" class="node">
 <title>RedisModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1405.94,-122 1402.94,-126 1381.94,-126 1378.94,-122 1314.06,-122 1314.06,-86 1405.94,-86 1405.94,-122"/>
-<text text-anchor="middle" x="1360" y="-99.8" font-family="Times,serif" font-size="14.00">RedisModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="219.94,-122 216.94,-126 195.94,-126 192.94,-122 128.06,-122 128.06,-86 219.94,-86 219.94,-122"/>
+<text text-anchor="middle" x="174" y="-99.8" font-family="Times,serif" font-size="14.00">RedisModule</text>
 </g>
 <!-- RedisModule&#45;&gt;AuthModule -->
 <g id="edge2" class="edge">
 <title>RedisModule&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M1360,-122.11C1360,-141.34 1360,-169 1360,-169 1360,-169 925.74,-169 925.74,-169"/>
-<polygon fill="black" stroke="black" points="925.74,-165.5 915.74,-169 925.74,-172.5 925.74,-165.5"/>
+<path fill="none" stroke="black" d="M174,-122.11C174,-141.34 174,-169 174,-169 174,-169 696.23,-169 696.23,-169"/>
+<polygon fill="black" stroke="black" points="696.23,-172.5 706.23,-169 696.23,-165.5 696.23,-172.5"/>
 </g>
 <!-- UserModule -->
 <g id="node3" class="node">
 <title>UserModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1295.98,-122 1292.98,-126 1271.98,-126 1268.98,-122 1210.02,-122 1210.02,-86 1295.98,-86 1295.98,-122"/>
-<text text-anchor="middle" x="1253" y="-99.8" font-family="Times,serif" font-size="14.00">UserModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="109.98,-122 106.98,-126 85.98,-126 82.98,-122 24.02,-122 24.02,-86 109.98,-86 109.98,-122"/>
+<text text-anchor="middle" x="67" y="-99.8" font-family="Times,serif" font-size="14.00">UserModule</text>
 </g>
 <!-- UserModule&#45;&gt;AuthModule -->
 <g id="edge3" class="edge">
 <title>UserModule&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M1253,-122.02C1253,-139.37 1253,-163 1253,-163 1253,-163 925.71,-163 925.71,-163"/>
-<polygon fill="black" stroke="black" points="925.71,-159.5 915.71,-163 925.71,-166.5 925.71,-159.5"/>
+<path fill="none" stroke="black" d="M67,-122.28C67,-143.32 67,-175 67,-175 67,-175 696.24,-175 696.24,-175"/>
+<polygon fill="black" stroke="black" points="696.24,-178.5 706.24,-175 696.24,-171.5 696.24,-178.5"/>
 </g>
 <!-- AuthService  -->
 <g id="node5" class="node">
 <title>AuthService </title>
-<polygon fill="#fb8072" stroke="black" points="1121.98,-252 1032.02,-252 1032.02,-216 1121.98,-216 1121.98,-252"/>
-<text text-anchor="middle" x="1077" y="-229.8" font-family="Times,serif" font-size="14.00">AuthService </text>
+<polygon fill="#fb8072" stroke="black" points="999.98,-252 910.02,-252 910.02,-216 999.98,-216 999.98,-252"/>
+<text text-anchor="middle" x="955" y="-229.8" font-family="Times,serif" font-size="14.00">AuthService </text>
 </g>
 <!-- AuthModule&#45;&gt;AuthService  -->
 <g id="edge4" class="edge">
 <title>AuthModule&#45;&gt;AuthService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M915.73,-181C975.93,-181 1077,-181 1077,-181 1077,-181 1077,-205.76 1077,-205.76"/>
-<polygon fill="black" stroke="black" points="1073.5,-205.76 1077,-215.76 1080.5,-205.76 1073.5,-205.76"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M793.73,-181C853.93,-181 955,-181 955,-181 955,-181 955,-205.76 955,-205.76"/>
+<polygon fill="black" stroke="black" points="951.5,-205.76 955,-215.76 958.5,-205.76 951.5,-205.76"/>
 </g>
 <!-- ExtractKeyValueUtil  -->
 <g id="node6" class="node">
 <title>ExtractKeyValueUtil </title>
-<polygon fill="#fb8072" stroke="black" points="1014.45,-252 875.55,-252 875.55,-216 1014.45,-216 1014.45,-252"/>
-<text text-anchor="middle" x="945" y="-229.8" font-family="Times,serif" font-size="14.00">ExtractKeyValueUtil </text>
+<polygon fill="#fb8072" stroke="black" points="892.45,-252 753.55,-252 753.55,-216 892.45,-216 892.45,-252"/>
+<text text-anchor="middle" x="823" y="-229.8" font-family="Times,serif" font-size="14.00">ExtractKeyValueUtil </text>
 </g>
 <!-- AuthModule&#45;&gt;ExtractKeyValueUtil  -->
 <g id="edge5" class="edge">
 <title>AuthModule&#45;&gt;ExtractKeyValueUtil </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M895.77,-187.11C895.77,-187.11 895.77,-205.99 895.77,-205.99"/>
-<polygon fill="black" stroke="black" points="892.27,-205.99 895.77,-215.99 899.27,-205.99 892.27,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M773.77,-187.11C773.77,-187.11 773.77,-205.99 773.77,-205.99"/>
+<polygon fill="black" stroke="black" points="770.27,-205.99 773.77,-215.99 777.27,-205.99 770.27,-205.99"/>
 </g>
 <!-- LoggedOutGuard  -->
 <g id="node7" class="node">
 <title>LoggedOutGuard </title>
-<polygon fill="#fb8072" stroke="black" points="858.25,-252 739.75,-252 739.75,-216 858.25,-216 858.25,-252"/>
-<text text-anchor="middle" x="799" y="-229.8" font-family="Times,serif" font-size="14.00">LoggedOutGuard </text>
+<polygon fill="#fb8072" stroke="black" points="736.25,-252 617.75,-252 617.75,-216 736.25,-216 736.25,-252"/>
+<text text-anchor="middle" x="677" y="-229.8" font-family="Times,serif" font-size="14.00">LoggedOutGuard </text>
 </g>
 <!-- AuthModule&#45;&gt;LoggedOutGuard  -->
 <g id="edge6" class="edge">
 <title>AuthModule&#45;&gt;LoggedOutGuard </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M843.17,-187.11C843.17,-187.11 843.17,-205.99 843.17,-205.99"/>
-<polygon fill="black" stroke="black" points="839.67,-205.99 843.17,-215.99 846.67,-205.99 839.67,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M721.17,-187.11C721.17,-187.11 721.17,-205.99 721.17,-205.99"/>
+<polygon fill="black" stroke="black" points="717.67,-205.99 721.17,-215.99 724.67,-205.99 717.67,-205.99"/>
 </g>
 <!-- VerifyNewPasswordUtil  -->
 <g id="node8" class="node">
 <title>VerifyNewPasswordUtil </title>
-<polygon fill="#fb8072" stroke="black" points="721.89,-252 564.11,-252 564.11,-216 721.89,-216 721.89,-252"/>
-<text text-anchor="middle" x="643" y="-229.8" font-family="Times,serif" font-size="14.00">VerifyNewPasswordUtil </text>
+<polygon fill="#fb8072" stroke="black" points="599.89,-252 442.11,-252 442.11,-216 599.89,-216 599.89,-252"/>
+<text text-anchor="middle" x="521" y="-229.8" font-family="Times,serif" font-size="14.00">VerifyNewPasswordUtil </text>
 </g>
 <!-- AuthModule&#45;&gt;VerifyNewPasswordUtil  -->
 <g id="edge7" class="edge">
 <title>AuthModule&#45;&gt;VerifyNewPasswordUtil </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M828.4,-181C768.67,-181 668.74,-181 668.74,-181 668.74,-181 668.74,-205.76 668.74,-205.76"/>
-<polygon fill="black" stroke="black" points="665.24,-205.76 668.74,-215.76 672.24,-205.76 665.24,-205.76"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M706.28,-181C646.08,-181 545.02,-181 545.02,-181 545.02,-181 545.02,-205.76 545.02,-205.76"/>
+<polygon fill="black" stroke="black" points="541.52,-205.76 545.02,-215.76 548.52,-205.76 541.52,-205.76"/>
 </g>
 <!-- AppConfigService -->
 <g id="node9" class="node">
 <title>AppConfigService</title>
-<ellipse fill="#fdb462" stroke="black" cx="1103" cy="-104" rx="83.39" ry="18"/>
-<text text-anchor="middle" x="1103" y="-99.8" font-family="Times,serif" font-size="14.00">AppConfigService</text>
+<ellipse fill="#fdb462" stroke="black" cx="1463" cy="-104" rx="83.39" ry="18"/>
+<text text-anchor="middle" x="1463" y="-99.8" font-family="Times,serif" font-size="14.00">AppConfigService</text>
 </g>
 <!-- AppConfigService&#45;&gt;AuthModule -->
 <g id="edge8" class="edge">
 <title>AppConfigService&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M1025.91,-110.93C1025.91,-125.3 1025.91,-157 1025.91,-157 1025.91,-157 925.69,-157 925.69,-157"/>
-<polygon fill="black" stroke="black" points="925.69,-153.5 915.69,-157 925.69,-160.5 925.69,-153.5"/>
+<path fill="none" stroke="black" d="M1463,-122.28C1463,-143.32 1463,-175 1463,-175 1463,-175 803.8,-175 803.8,-175"/>
+<polygon fill="black" stroke="black" points="803.8,-171.5 793.8,-175 803.8,-178.5 803.8,-171.5"/>
 </g>
 <!-- AuthService -->
 <g id="node10" class="node">
 <title>AuthService</title>
-<ellipse fill="#fdb462" stroke="black" cx="942" cy="-104" rx="59.11" ry="18"/>
-<text text-anchor="middle" x="942" y="-99.8" font-family="Times,serif" font-size="14.00">AuthService</text>
+<ellipse fill="#fdb462" stroke="black" cx="1302" cy="-104" rx="59.11" ry="18"/>
+<text text-anchor="middle" x="1302" y="-99.8" font-family="Times,serif" font-size="14.00">AuthService</text>
 </g>
 <!-- AuthService&#45;&gt;AuthModule -->
 <g id="edge9" class="edge">
 <title>AuthService&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M899.23,-116.53C899.23,-116.53 899.23,-140.85 899.23,-140.85"/>
-<polygon fill="black" stroke="black" points="895.73,-140.85 899.23,-150.85 902.73,-140.85 895.73,-140.85"/>
+<path fill="none" stroke="black" d="M1302,-122.11C1302,-141.34 1302,-169 1302,-169 1302,-169 803.78,-169 803.78,-169"/>
+<polygon fill="black" stroke="black" points="803.78,-165.5 793.78,-169 803.78,-172.5 803.78,-165.5"/>
 </g>
 <!-- EmailService -->
 <g id="node11" class="node">
 <title>EmailService</title>
-<ellipse fill="#fdb462" stroke="black" cx="802" cy="-104" rx="63.12" ry="18"/>
-<text text-anchor="middle" x="802" y="-99.8" font-family="Times,serif" font-size="14.00">EmailService</text>
+<ellipse fill="#fdb462" stroke="black" cx="1162" cy="-104" rx="63.12" ry="18"/>
+<text text-anchor="middle" x="1162" y="-99.8" font-family="Times,serif" font-size="14.00">EmailService</text>
 </g>
 <!-- EmailService&#45;&gt;AuthModule -->
 <g id="edge10" class="edge">
 <title>EmailService&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M846.64,-116.84C846.64,-116.84 846.64,-140.52 846.64,-140.52"/>
-<polygon fill="black" stroke="black" points="843.14,-140.52 846.64,-150.52 850.14,-140.52 843.14,-140.52"/>
+<path fill="none" stroke="black" d="M1162,-122.02C1162,-139.37 1162,-163 1162,-163 1162,-163 803.7,-163 803.7,-163"/>
+<polygon fill="black" stroke="black" points="803.7,-159.5 793.7,-163 803.7,-166.5 803.7,-159.5"/>
 </g>
 <!-- ExtractKeyValueUtil -->
 <g id="node12" class="node">
 <title>ExtractKeyValueUtil</title>
-<ellipse fill="#fdb462" stroke="black" cx="628" cy="-104" rx="93.17" ry="18"/>
-<text text-anchor="middle" x="628" y="-99.8" font-family="Times,serif" font-size="14.00">ExtractKeyValueUtil</text>
+<ellipse fill="#fdb462" stroke="black" cx="988" cy="-104" rx="93.17" ry="18"/>
+<text text-anchor="middle" x="988" y="-99.8" font-family="Times,serif" font-size="14.00">ExtractKeyValueUtil</text>
 </g>
 <!-- ExtractKeyValueUtil&#45;&gt;AuthModule -->
 <g id="edge11" class="edge">
 <title>ExtractKeyValueUtil&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M616.4,-121.94C616.4,-137.32 616.4,-157 616.4,-157 616.4,-157 818.35,-157 818.35,-157"/>
-<polygon fill="black" stroke="black" points="818.35,-160.5 828.35,-157 818.35,-153.5 818.35,-160.5"/>
+<path fill="none" stroke="black" d="M902.59,-111.37C902.59,-125.93 902.59,-157 902.59,-157 902.59,-157 803.73,-157 803.73,-157"/>
+<polygon fill="black" stroke="black" points="803.73,-153.5 793.73,-157 803.73,-160.5 803.73,-153.5"/>
 </g>
 <!-- JwtStrategy -->
 <g id="node13" class="node">
 <title>JwtStrategy</title>
-<ellipse fill="#fdb462" stroke="black" cx="460" cy="-104" rx="56.76" ry="18"/>
-<text text-anchor="middle" x="460" y="-99.8" font-family="Times,serif" font-size="14.00">JwtStrategy</text>
+<ellipse fill="#fdb462" stroke="black" cx="820" cy="-104" rx="56.76" ry="18"/>
+<text text-anchor="middle" x="820" y="-99.8" font-family="Times,serif" font-size="14.00">JwtStrategy</text>
 </g>
 <!-- JwtStrategy&#45;&gt;AuthModule -->
 <g id="edge12" class="edge">
 <title>JwtStrategy&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M460,-122.02C460,-139.37 460,-163 460,-163 460,-163 818.3,-163 818.3,-163"/>
-<polygon fill="black" stroke="black" points="818.3,-166.5 828.3,-163 818.3,-159.5 818.3,-166.5"/>
+<path fill="none" stroke="black" d="M778.57,-116.53C778.57,-116.53 778.57,-140.85 778.57,-140.85"/>
+<polygon fill="black" stroke="black" points="775.07,-140.85 778.57,-150.85 782.07,-140.85 775.07,-140.85"/>
 </g>
 <!-- LocalStrategy -->
 <g id="node14" class="node">
 <title>LocalStrategy</title>
-<ellipse fill="#fdb462" stroke="black" cx="320" cy="-104" rx="65.41" ry="18"/>
-<text text-anchor="middle" x="320" y="-99.8" font-family="Times,serif" font-size="14.00">LocalStrategy</text>
+<ellipse fill="#fdb462" stroke="black" cx="680" cy="-104" rx="65.41" ry="18"/>
+<text text-anchor="middle" x="680" y="-99.8" font-family="Times,serif" font-size="14.00">LocalStrategy</text>
 </g>
 <!-- LocalStrategy&#45;&gt;AuthModule -->
 <g id="edge13" class="edge">
 <title>LocalStrategy&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M320,-122.11C320,-141.34 320,-169 320,-169 320,-169 818.22,-169 818.22,-169"/>
-<polygon fill="black" stroke="black" points="818.22,-172.5 828.22,-169 818.22,-165.5 818.22,-172.5"/>
+<path fill="none" stroke="black" d="M725.71,-116.84C725.71,-116.84 725.71,-140.52 725.71,-140.52"/>
+<polygon fill="black" stroke="black" points="722.21,-140.52 725.71,-150.52 729.21,-140.52 722.21,-140.52"/>
 </g>
 <!-- VerifyNewPasswordUtil -->
 <g id="node15" class="node">
 <title>VerifyNewPasswordUtil</title>
-<ellipse fill="#fdb462" stroke="black" cx="130" cy="-104" rx="106.49" ry="18"/>
-<text text-anchor="middle" x="130" y="-99.8" font-family="Times,serif" font-size="14.00">VerifyNewPasswordUtil</text>
+<ellipse fill="#fdb462" stroke="black" cx="490" cy="-104" rx="106.49" ry="18"/>
+<text text-anchor="middle" x="490" y="-99.8" font-family="Times,serif" font-size="14.00">VerifyNewPasswordUtil</text>
 </g>
 <!-- VerifyNewPasswordUtil&#45;&gt;AuthModule -->
 <g id="edge14" class="edge">
 <title>VerifyNewPasswordUtil&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M130,-122.28C130,-143.32 130,-175 130,-175 130,-175 818.35,-175 818.35,-175"/>
-<polygon fill="black" stroke="black" points="818.35,-178.5 828.35,-175 818.35,-171.5 818.35,-178.5"/>
+<path fill="none" stroke="black" d="M493.53,-122.24C493.53,-137.57 493.53,-157 493.53,-157 493.53,-157 696.2,-157 696.2,-157"/>
+<polygon fill="black" stroke="black" points="696.2,-160.5 706.2,-157 696.2,-153.5 696.2,-160.5"/>
 </g>
 </g>
 </svg>

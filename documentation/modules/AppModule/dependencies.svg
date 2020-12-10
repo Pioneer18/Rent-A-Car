@@ -24,109 +24,109 @@
 <title>cluster_AppModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-203 852,-203 852,-70 8,-70"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_AppModule_providers</title>
-<polygon fill="none" stroke="black" points="714,-78 714,-130 844,-130 844,-78 714,-78"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_AppModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-195 706,-195 706,-78 16,-78"/>
+<polygon fill="none" stroke="black" points="154,-78 154,-195 844,-195 844,-78 154,-78"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_AppModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 146,-130 146,-78 16,-78"/>
 </g>
 <!-- AppConfigModule -->
 <g id="node1" class="node">
 <title>AppConfigModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="698.05,-122 695.05,-126 674.05,-126 671.05,-122 575.95,-122 575.95,-86 698.05,-86 698.05,-122"/>
-<text text-anchor="middle" x="637" y="-99.8" font-family="Times,serif" font-size="14.00">AppConfigModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="836.05,-122 833.05,-126 812.05,-126 809.05,-122 713.95,-122 713.95,-86 836.05,-86 836.05,-122"/>
+<text text-anchor="middle" x="775" y="-99.8" font-family="Times,serif" font-size="14.00">AppConfigModule</text>
 </g>
 <!-- AppModule -->
 <g id="node2" class="node">
 <title>AppModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="443.66,-187 440.66,-191 419.66,-191 416.66,-187 360.34,-187 360.34,-151 443.66,-151 443.66,-187"/>
-<text text-anchor="middle" x="402" y="-164.8" font-family="Times,serif" font-size="14.00">AppModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="467.66,-187 464.66,-191 443.66,-191 440.66,-187 384.34,-187 384.34,-151 467.66,-151 467.66,-187"/>
+<text text-anchor="middle" x="426" y="-164.8" font-family="Times,serif" font-size="14.00">AppModule</text>
 </g>
 <!-- AppConfigModule&#45;&gt;AppModule -->
 <g id="edge1" class="edge">
 <title>AppConfigModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M637,-122.11C637,-141.34 637,-169 637,-169 637,-169 453.74,-169 453.74,-169"/>
-<polygon fill="black" stroke="black" points="453.74,-165.5 443.74,-169 453.74,-172.5 453.74,-165.5"/>
+<path fill="none" stroke="black" d="M775,-122.29C775,-144.21 775,-178 775,-178 775,-178 477.75,-178 477.75,-178"/>
+<polygon fill="black" stroke="black" points="477.75,-174.5 467.75,-178 477.75,-181.5 477.75,-174.5"/>
 </g>
 <!-- AppModule&#45;&gt;AppModule -->
 <g id="edge2" class="edge">
 <title>AppModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M415.94,-150.76C415.94,-143.57 415.94,-137 415.94,-137 415.94,-137 447.91,-137 447.91,-137 447.91,-137 447.91,-205 447.91,-205 447.91,-205 402,-205 402,-205 402,-205 402,-197.42 402,-197.42"/>
-<polygon fill="black" stroke="black" points="405.5,-197.42 402,-187.42 398.5,-197.42 405.5,-197.42"/>
+<path fill="none" stroke="black" d="M439.94,-150.76C439.94,-143.57 439.94,-137 439.94,-137 439.94,-137 480.87,-137 480.87,-137 480.87,-137 480.87,-205 480.87,-205 480.87,-205 426,-205 426,-205 426,-205 426,-197.42 426,-197.42"/>
+<polygon fill="black" stroke="black" points="429.5,-197.42 426,-187.42 422.5,-197.42 429.5,-197.42"/>
 </g>
 <!-- AuthModule -->
 <g id="node3" class="node">
 <title>AuthModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="557.55,-122 554.55,-126 533.55,-126 530.55,-122 470.45,-122 470.45,-86 557.55,-86 557.55,-122"/>
-<text text-anchor="middle" x="514" y="-99.8" font-family="Times,serif" font-size="14.00">AuthModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="695.55,-122 692.55,-126 671.55,-126 668.55,-122 608.45,-122 608.45,-86 695.55,-86 695.55,-122"/>
+<text text-anchor="middle" x="652" y="-99.8" font-family="Times,serif" font-size="14.00">AuthModule</text>
 </g>
 <!-- AuthModule&#45;&gt;AppModule -->
 <g id="edge3" class="edge">
 <title>AuthModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M514,-122.03C514,-138.4 514,-160 514,-160 514,-160 453.7,-160 453.7,-160"/>
-<polygon fill="black" stroke="black" points="453.7,-156.5 443.7,-160 453.7,-163.5 453.7,-156.5"/>
+<path fill="none" stroke="black" d="M652,-122.11C652,-141.34 652,-169 652,-169 652,-169 477.72,-169 477.72,-169"/>
+<polygon fill="black" stroke="black" points="477.72,-165.5 467.72,-169 477.72,-172.5 477.72,-165.5"/>
 </g>
 <!-- ImagesModule -->
 <g id="node4" class="node">
 <title>ImagesModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="451.97,-122 448.97,-126 427.97,-126 424.97,-122 352.03,-122 352.03,-86 451.97,-86 451.97,-122"/>
-<text text-anchor="middle" x="402" y="-99.8" font-family="Times,serif" font-size="14.00">ImagesModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="589.97,-122 586.97,-126 565.97,-126 562.97,-122 490.03,-122 490.03,-86 589.97,-86 589.97,-122"/>
+<text text-anchor="middle" x="540" y="-99.8" font-family="Times,serif" font-size="14.00">ImagesModule</text>
 </g>
 <!-- ImagesModule&#45;&gt;AppModule -->
 <g id="edge4" class="edge">
 <title>ImagesModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M388.06,-122.11C388.06,-122.11 388.06,-140.99 388.06,-140.99"/>
-<polygon fill="black" stroke="black" points="384.56,-140.99 388.06,-150.99 391.56,-140.99 384.56,-140.99"/>
+<path fill="none" stroke="black" d="M540,-122.03C540,-138.4 540,-160 540,-160 540,-160 477.8,-160 477.8,-160"/>
+<polygon fill="black" stroke="black" points="477.8,-156.5 467.8,-160 477.8,-163.5 477.8,-156.5"/>
 </g>
 <!-- RedisModule -->
 <g id="node5" class="node">
 <title>RedisModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="333.94,-122 330.94,-126 309.94,-126 306.94,-122 242.06,-122 242.06,-86 333.94,-86 333.94,-122"/>
-<text text-anchor="middle" x="288" y="-99.8" font-family="Times,serif" font-size="14.00">RedisModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="471.94,-122 468.94,-126 447.94,-126 444.94,-122 380.06,-122 380.06,-86 471.94,-86 471.94,-122"/>
+<text text-anchor="middle" x="426" y="-99.8" font-family="Times,serif" font-size="14.00">RedisModule</text>
 </g>
 <!-- RedisModule&#45;&gt;AppModule -->
 <g id="edge5" class="edge">
 <title>RedisModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M288,-122.03C288,-138.4 288,-160 288,-160 288,-160 350.2,-160 350.2,-160"/>
-<polygon fill="black" stroke="black" points="350.2,-163.5 360.2,-160 350.2,-156.5 350.2,-163.5"/>
+<path fill="none" stroke="black" d="M412.06,-122.11C412.06,-122.11 412.06,-140.99 412.06,-140.99"/>
+<polygon fill="black" stroke="black" points="408.56,-140.99 412.06,-150.99 415.56,-140.99 408.56,-140.99"/>
 </g>
 <!-- RentalModule -->
 <g id="node6" class="node">
 <title>RentalModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="224.1,-122 221.1,-126 200.1,-126 197.1,-122 127.9,-122 127.9,-86 224.1,-86 224.1,-122"/>
-<text text-anchor="middle" x="176" y="-99.8" font-family="Times,serif" font-size="14.00">RentalModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="362.1,-122 359.1,-126 338.1,-126 335.1,-122 265.9,-122 265.9,-86 362.1,-86 362.1,-122"/>
+<text text-anchor="middle" x="314" y="-99.8" font-family="Times,serif" font-size="14.00">RentalModule</text>
 </g>
 <!-- RentalModule&#45;&gt;AppModule -->
 <g id="edge6" class="edge">
 <title>RentalModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M176,-122.11C176,-141.34 176,-169 176,-169 176,-169 350.28,-169 350.28,-169"/>
-<polygon fill="black" stroke="black" points="350.28,-172.5 360.28,-169 350.28,-165.5 350.28,-172.5"/>
+<path fill="none" stroke="black" d="M314,-122.03C314,-138.4 314,-160 314,-160 314,-160 374.3,-160 374.3,-160"/>
+<polygon fill="black" stroke="black" points="374.3,-163.5 384.3,-160 374.3,-156.5 374.3,-163.5"/>
 </g>
 <!-- UserModule -->
 <g id="node7" class="node">
 <title>UserModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="109.98,-122 106.98,-126 85.98,-126 82.98,-122 24.02,-122 24.02,-86 109.98,-86 109.98,-122"/>
-<text text-anchor="middle" x="67" y="-99.8" font-family="Times,serif" font-size="14.00">UserModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="247.98,-122 244.98,-126 223.98,-126 220.98,-122 162.02,-122 162.02,-86 247.98,-86 247.98,-122"/>
+<text text-anchor="middle" x="205" y="-99.8" font-family="Times,serif" font-size="14.00">UserModule</text>
 </g>
 <!-- UserModule&#45;&gt;AppModule -->
 <g id="edge7" class="edge">
 <title>UserModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M67,-122.29C67,-144.21 67,-178 67,-178 67,-178 350.25,-178 350.25,-178"/>
-<polygon fill="black" stroke="black" points="350.25,-181.5 360.25,-178 350.25,-174.5 350.25,-181.5"/>
+<path fill="none" stroke="black" d="M205,-122.11C205,-141.34 205,-169 205,-169 205,-169 374.17,-169 374.17,-169"/>
+<polygon fill="black" stroke="black" points="374.17,-172.5 384.17,-169 374.17,-165.5 374.17,-172.5"/>
 </g>
 <!-- AppService -->
 <g id="node8" class="node">
 <title>AppService</title>
-<ellipse fill="#fdb462" stroke="black" cx="779" cy="-104" rx="56.74" ry="18"/>
-<text text-anchor="middle" x="779" y="-99.8" font-family="Times,serif" font-size="14.00">AppService</text>
+<ellipse fill="#fdb462" stroke="black" cx="81" cy="-104" rx="56.74" ry="18"/>
+<text text-anchor="middle" x="81" y="-99.8" font-family="Times,serif" font-size="14.00">AppService</text>
 </g>
 <!-- AppService&#45;&gt;AppModule -->
 <g id="edge8" class="edge">
 <title>AppService&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M779,-122.29C779,-144.21 779,-178 779,-178 779,-178 453.79,-178 453.79,-178"/>
-<polygon fill="black" stroke="black" points="453.79,-174.5 443.79,-178 453.79,-181.5 453.79,-174.5"/>
+<path fill="none" stroke="black" d="M81,-122.29C81,-144.21 81,-178 81,-178 81,-178 374.04,-178 374.04,-178"/>
+<polygon fill="black" stroke="black" points="374.04,-181.5 384.04,-178 374.04,-174.5 374.04,-181.5"/>
 </g>
 </g>
 </svg>
