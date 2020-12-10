@@ -112,7 +112,7 @@ export class RentalService {
         specs: data.specs,
         features: data.features,
       };
-      return await this.rentalModel.findOneAndUpdate(filter, update, {useFindAndModify: false }).lean();
+      return await this.rentalModel.findOneAndUpdate(filter, update, {useFindAndModify: false, new: true }).lean();
     } catch (err) {
       throw new Error(err);
     }
