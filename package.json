@@ -5,6 +5,7 @@
   "author": "Jonathan Sells",
   "license": "MIT",
   "scripts": {
+    "prestart": "node getEnv",
     "doc:serve": "npx @compodoc/compodoc --theme \"Stripe\" -p tsconfig.json -s",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
