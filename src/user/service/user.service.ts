@@ -85,12 +85,9 @@ export class UserService {
             const filter = {email: user.email };
             // create an update object
             const update = this.createUserUpdate(data);
-            const updater = {
-                $set: update,
-            };
             // logout the user and return the data before redirecting to login
             await this.logoutUser(req);
-            return await this.userModel.findOneAndUpdate(filter, {updater}, {useFindAndModify: false}).lean();
+            return await this.userModel.findOneAndUpdate(filter, update, {useFindAndModify: false, new: true}).lean();
        } catch (err) {
            throw new Error(err);
        }

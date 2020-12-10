@@ -246,7 +246,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/rental/pipes/create-updater-dto.pipe.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/rental/pipes/create-updater-dto.pipe.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -289,7 +289,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, PipeTransform } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger, PipeTransform } from &#x27;@nestjs/common&#x27;;
 import { UpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/update-unavailability.dto&#x27;;
 import { ValidateUpdateUnavailabilityDto } from &#x27;../dto/unavailability/update/validate-update-unavailability.dto&#x27;;
 import { UpdateUnavailabilityDataInterface } from &#x27;../interface/service/update-unavailability-data.interface&#x27;;
@@ -325,19 +325,15 @@ export class CreateUpdaterDtoPipe implements PipeTransform&lt;ValidateUpdateUnav
         };
         if (value.newTitle &#x3D;&#x3D;&#x3D; null) {
           const updater1 &#x3D; {
-              $set: {
                 start: value.newStart,
                 end: value.newEnd,
-              },
           };
           return {filter, updater: updater1};
         }
         const updater2 &#x3D; {
-            $set: {
                 start: value.newStart,
                 end: value.newEnd,
                 title: value.newTitle,
-            },
         };
         return { filter, updater: updater2};
     }

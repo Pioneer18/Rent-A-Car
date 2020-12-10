@@ -285,7 +285,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/user/service/user.service.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/user/service/user.service.ts:126</a></div>
                             </td>
                         </tr>
 
@@ -317,7 +317,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/user/service/user.service.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/user/service/user.service.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -493,7 +493,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/user/service/user.service.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/user/service/user.service.ts:137</a></div>
                             </td>
                         </tr>
 
@@ -686,12 +686,9 @@ export class UserService {
             const filter &#x3D; {email: user.email };
             // create an update object
             const update &#x3D; this.createUserUpdate(data);
-            const updater &#x3D; {
-                $set: update,
-            };
             // logout the user and return the data before redirecting to login
             await this.logoutUser(req);
-            return await this.userModel.findOneAndUpdate(filter, {updater}, {useFindAndModify: false}).lean();
+            return await this.userModel.findOneAndUpdate(filter, update, {useFindAndModify: false, new: true}).lean();
        } catch (err) {
            throw new Error(err);
        }

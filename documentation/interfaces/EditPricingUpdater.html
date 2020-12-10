@@ -87,7 +87,7 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#$set">$set</a>
+                                        <a href="#pricing">pricing</a>
                                 </li>
                             </ul>
                         </td>
@@ -104,13 +104,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="$set"></a>
-                                        <span class="name"><b>$set</b><a href="#$set"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="pricing"></a>
+                                        <span class="name"><b>pricing</b><a href="#pricing"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>$set:     <code>literal type</code>
+                                        <code>pricing:     <code>literal type</code>
 </code>
                                     </td>
                                 </tr>
@@ -135,7 +135,6 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface EditPricingUpdater {
-    $set: {
         pricing: {
             price: number;
             discounts: {
@@ -143,7 +142,6 @@
                 monthly: number;
             }
         },
-    };
 }
 </code></pre>
     </div>
