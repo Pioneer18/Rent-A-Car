@@ -1,8 +1,8 @@
 steps:
-- name: node:12
+- name: node
   entrypoint: npm
   args:["install", "run", "build", "start:prod"]
-- name: node:12
+- name: node
   entrypoint: npm
   args: ["run", "create-env"]
   env:
