@@ -1,8 +1,8 @@
 steps:
-- name: node:10.15.1
+- name: node:12
   entrypoint: npm
   args:["install"]
-- name: node:10.15.1
+- name: node:12
   entrypoint: npm
   args: ["run", "create-env"]
   env:
@@ -23,6 +23,6 @@ steps:
     - 'AWS_BUCKET_NAME=${_AWS_BUCKET_NAME}'
     - 'AWS_REGION=${_AWS_REGION}'
     - 'AWS_UPLOADED_FILE_URL_LINK=${_AWS_UPLOADED_FILE_URL_LINK}'
-  - name: "gcr.io/cloud-builders/gcloud"
+  - name: "gcr.io/cloud-builders/docker"
     args: ["app", "deploy"]
   timeout: "1600s"
