@@ -24,3 +24,5 @@ steps:
     - 'AWS_REGION=${_AWS_REGION}'
     - 'AWS_UPLOADED_FILE_URL_LINK=${_AWS_UPLOADED_FILE_URL_LINK}'
   - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy"]
+  timeout: "1600s"
