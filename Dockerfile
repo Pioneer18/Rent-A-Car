@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install --only=production
 COPY . .
-RUN npm run-scripts build
+RUN npm run-script build
 EXPOSE 3000
 EXPOSE 6379
 # start the supervisord service
