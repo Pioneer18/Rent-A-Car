@@ -22,7 +22,6 @@ steps:
     - 'AWS_S3_BUCKET_PROFILE=${_AWS_S3_BUCKET_PROFILE}'
     - 'AWS_BUCKET_NAME=${_AWS_BUCKET_NAME}'
     - 'AWS_REGION=${_AWS_REGION}'
-    - 'AWS_UPLOADED_FILE_URL_LINK=${_AWS_UPLOADED_FILE_URL_LINK}'
   - name: "gcr.io/cloud-builders/docker"
     args: ["app", "deploy"]
   timeout: "1600s"
