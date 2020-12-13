@@ -5,7 +5,6 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-COPY dist ./
 EXPOSE 6379
 # start the supervisord service
 CMD ["npm", "run", "start:prod"]
