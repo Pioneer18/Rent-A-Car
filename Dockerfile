@@ -5,6 +5,7 @@ COPY package*.json ./
 RUN npm install --only=production
 COPY . .
 RUN npm run build
+COPY . .
 EXPOSE 3000
 EXPOSE 6379
 # start the supervisord service
