@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-COPY dist ./
+COPY ./dist ./
 
 FROM node:12 As prod
 WORKDIR /usr/src/app
