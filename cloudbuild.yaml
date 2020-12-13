@@ -5,24 +5,23 @@ steps:
 - name: node:12
   entrypoint: npm
   args: ["run", "create-env"]
-  env: [
-    'GEO_URL=${_GEO_URL}',
-    'GEO_API_KEY=${_GEO_API_KEY}',
-    'REMOTE_DB=${_REMOTE_DB}',
-    'SECRET_KEY=${_SECRET_KEY}',
-    'JWT_EXP_TIME=${_JWT_EXP_TIME}',
-    'REDIS_HOST=${_REDIS_HOST}',
-    'REDIS_PORT=${_REDIS_PORT}',
-    'CACHE_TTL=${_CACHE_TTL}',
-    'PORT=${_PORT}',
-    'NODE_ENV=${_NODE_ENV}',
-    'ACCESS_KEY_ID=${_ACCESS_KEY_ID}',
-    'SECRET_ACCESS_KEY=${_SECRET_ACCESS_KEY}',
-    'AWS_S3_BUCKET_RENTALS=${_AWS_S3_BUCKET_RENTALS}',
-    'AWS_REGION=${_AWS_REGION}',
-    'AWS_S3_BUCKET_PROFILE=${_AWS_S3_BUCKET_PROFILE}',
-    'AWS_BUCKET_NAME=${_AWS_BUCKET_NAME}'
-  ]
+  env:
+    - 'GEO_URL=${_GEO_URL}'
+    - 'GEO_API_KEY=${_GEO_API_KEY}'
+    - 'REMOTE_DB=${_REMOTE_DB}'
+    - 'SECRET_KEY=${_SECRET_KEY}'
+    - 'JWT_EXP_TIME=${_JWT_EXP_TIME}'
+    - 'REDIS_HOST=${_REDIS_HOST}'
+    - 'REDIS_PORT=${_REDIS_PORT}'
+    - 'CACHE_TTL=${_CACHE_TTL}'
+    - 'PORT=${_PORT}'
+    - 'NODE_ENV=${_NODE_ENV}'
+    - 'ACCESS_KEY_ID=${_ACCESS_KEY_ID}'
+    - 'SECRET_ACCESS_KEY=${_SECRET_ACCESS_KEY}'
+    - 'AWS_S3_BUCKET_RENTALS=${_AWS_S3_BUCKET_RENTALS}'
+    - 'AWS_REGION=${_AWS_REGION}'
+    - 'AWS_S3_BUCKET_PROFILE=${_AWS_S3_BUCKET_PROFILE}'
+    - 'AWS_BUCKET_NAME=${_AWS_BUCKET_NAME}'
   - name: "gcr.io/cloud-builders/docker"
     args: ["app", "deploy"]
   timeout: "1600s"
