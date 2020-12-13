@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm install --only=production
 COPY . .
 # install supervisord and make config and logs directories
-RUN npm install supervisor && mkdir -p /var/log/supervisor && mkdir -p /etc/supervisor.conf
+RUN mkdir -p /var/log/supervisor && mkdir -p /etc/supervisor.conf
 COPY ./supervisor.conf /etc/supervisor.conf
 EXPOSE 3000
 EXPOSE 6379
