@@ -1,4 +1,6 @@
 steps:
+- name: redis:alpine
+  args: ["-d", "--network=cloudbuild"]
 - name: node
   entrypoint: npm
   args: ["install", "run", "build"]
@@ -23,5 +25,5 @@ steps:
     - 'AWS_S3_BUCKET_PROFILE=${_AWS_S3_BUCKET_PROFILE}'
     - 'AWS_BUCKET_NAME=${_AWS_BUCKET_NAME}'
 - name: "gcr.io/cloud-builders/docker"
-  args: ['build', '-t', 'gcr.io/rent-a-car-298203/rent-a-car', '.']
+  args: ['build', '--network=cloudbuild', '-t', 'gcr.io/rent-a-car-298203/rent-a-car', '.']
   timeout: "1600s"
