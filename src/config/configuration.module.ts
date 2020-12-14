@@ -15,7 +15,7 @@ import { AppConfigService } from './configuration.service';
                 NODE_ENV: Joi.string()
                   .valid('development', 'production', 'test')
                   .default('development'),
-                PORT: Joi.number().default(3000),
+                _PORT: Joi.number().default(3000),
                 // GEO LOCATION API
                 GEO_API_KEY: Joi.string().required(),
                 GEO_URL: Joi.string().required(),

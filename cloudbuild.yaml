@@ -1,8 +1,8 @@
 steps:
-- name: node:12
+- name: node
   entrypoint: npm
   args: ["install", "run", "build"]
-- name: node:12
+- name: node
   entrypoint: npm
   args: ["run", "create-env"]
   env:
@@ -14,7 +14,7 @@ steps:
     - 'REDIS_HOST=${_REDIS_HOST}'
     - 'REDIS_PORT=${_REDIS_PORT}'
     - 'CACHE_TTL=${_CACHE_TTL}'
-    - 'PORT=${_PORT}'
+    - '_PORT=${_PORT}'
     - 'NODE_ENV=${_NODE_ENV}'
     - 'ACCESS_KEY_ID=${_ACCESS_KEY_ID}'
     - 'SECRET_ACCESS_KEY=${_SECRET_ACCESS_KEY}'
