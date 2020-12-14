@@ -23,5 +23,5 @@ steps:
     - 'AWS_S3_BUCKET_PROFILE=${_AWS_S3_BUCKET_PROFILE}'
     - 'AWS_BUCKET_NAME=${_AWS_BUCKET_NAME}'
 - name: "gcr.io/cloud-builders/docker"
-  args: ["app", "deploy"]
+  args: ['build', '-t', 'gcr.io/rent-a-car-298203/rent-a-car', '.']
   timeout: "1600s"
