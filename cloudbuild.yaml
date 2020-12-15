@@ -22,6 +22,6 @@ steps:
     - 'AWS_REGION=${_AWS_REGION}'
     - 'AWS_S3_BUCKET_PROFILE=${_AWS_S3_BUCKET_PROFILE}'
     - 'AWS_BUCKET_NAME=${_AWS_BUCKET_NAME}'
-- name: "gcr.io/cloud-builders/docker"
-  args: ['build', '-t', 'gcr.io/rent-a-car-298203/rent-a-car', '.']
+- name: "gcr.io/cloud-builders/docker-compose:1.19.0"
+  args: ['up', '-d']
   timeout: "1600s"
