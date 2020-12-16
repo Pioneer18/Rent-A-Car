@@ -35,7 +35,7 @@ export class HttpErrorFilter implements ExceptionFilter<HttpException> {
       timestamp: DateTime.local(),
       path: request.url,
       method: request.method,
-      message: exception.message.error || exception.message || null,
+      message: exception.message || null,
     };
 
     /**
