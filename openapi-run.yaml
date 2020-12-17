@@ -1,59 +1,16 @@
----
-openapi: 3.0.0
+swagger: '2.0'
 info:
-  title: Rent-A-Car-API
-  description: Rent-A-Car is an example TypeScript backend application to demonstrate
-    technical skill; created by Jonathan Sells
-  version: '1.0'
-  contact: {}
-tags:
-- name: rac
-  description: 'a demonstration Nest.js backend application'
-servers: []
-components:
-  schemas:
-    CreateUserDto:
-      type: object
-      properties: {}
-    UpdateUserDto:
-      type: object
-      properties: {}
-    FindUserDto:
-      type: object
-      properties: {}
-    DeleteUserDto:
-      type: object
-      properties: {}
-    CreateRentalDto:
-      type: object
-      properties: {}
-    SearchRentalDto:
-      type: object
-      properties: {}
-    PricingDto:
-      type: object
-      properties: {}
-    EditDetailsDto:
-      type: object
-      properties: {}
-    ProcessedUnavailabilityDto:
-      type: object
-      properties: {}
-    UpdateUnavailabilityDataDto:
-      type: object
-      properties: {}
-    RemoveUnavailabilityDto:
-      type: object
-      properties: {}
-    ChangePasswordDto:
-      type: object
-      properties: {}
-    ForgotPasswordDto:
-      type: object
-      properties: {}
-    ResetPasswordDto:
-      type: object
-      properties: {}
+  title: Rent-A-Car API
+  description: Example Typescrtipt backend application
+  version: 1.0.0
+host: racapp-ckibfdodrq-ue.a.run.app
+schemes:
+  - https
+produces:
+  - application/json
+x-google-backend:
+  address: https://racapp-ckibfdodrq-ue.a.run.app
+  protocol: h2
 paths:
   "/profile":
     get:
