@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable} from '@nestjs/common';
 import { Request } from 'express';
 import { Observable } from 'rxjs';
 import { RedisService } from '../../redis/service/redis.service';
@@ -18,9 +18,13 @@ export class LoggedOutGuard implements CanActivate {
         // grab the key from the incoming jwt
         const rawAuth = req.headers.cookie;
         const key = rawAuth.slice(-8);
+        console.log(`Logged Out Guard:`)
+        console.log(`The Cookie: ${rawAuth}`)
+        console.log(`The Key: ${key}`)
         const check = await this.redisService.get(key);
         // if the key is found, deny access; User is Logged Out
         if (check && check !== null) {
+            console.log(`Failed the LoggedOutGuard Check`)
             throw new Error('You are logged out, log back in to continue');
             // REDIRECT to login
         }
