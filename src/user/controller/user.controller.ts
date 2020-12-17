@@ -36,7 +36,7 @@ export class UserController {
      * @param req Client request
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGuard)
+    // @UseGuards(LoggedOutGuard)
     @Post('update-user')
     // @Redirect('http://localhost:3000/auth/login')
     async updateProfile(@Body() update: UpdateUserDto, @Req() req): Promise<UserInterface> {
@@ -48,7 +48,7 @@ export class UserController {
      * @param email User's email
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGuard)
+    // @UseGuards(LoggedOutGuard)
     @Get('find-user')
     async findUser(@Body() email: FindUserDto): Promise<UserModelInterface> {
         return await this.userService.findUser(email);
@@ -59,7 +59,7 @@ export class UserController {
      * @param data User credentials
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGuard)
+    // @UseGuards(LoggedOutGuard)
     // @Redirect('http://localhost:3000/auth/login', 302)
     @Post('delete-profile')
     async deleteProfile(@Body() data: DeleteUserDto, @Req() req): Promise<UserInterface> {
