@@ -1,0 +1,596 @@
+---
+openapi: 3.0.0
+info:
+  title: Rent-A-Car-API
+  description: Rent-A-Car is an example TypeScript backend application to demonstrate
+    technical skill; created by Jonathan Sells
+  version: '1.0'
+  contact: {}
+tags:
+- name: rac
+  description: 'a demonstration Nest.js backend application'
+servers: []
+components:
+  schemas:
+    CreateUserDto:
+      type: object
+      properties: {}
+    UpdateUserDto:
+      type: object
+      properties: {}
+    FindUserDto:
+      type: object
+      properties: {}
+    DeleteUserDto:
+      type: object
+      properties: {}
+    CreateRentalDto:
+      type: object
+      properties: {}
+    SearchRentalDto:
+      type: object
+      properties: {}
+    PricingDto:
+      type: object
+      properties: {}
+    EditDetailsDto:
+      type: object
+      properties: {}
+    ProcessedUnavailabilityDto:
+      type: object
+      properties: {}
+    UpdateUnavailabilityDataDto:
+      type: object
+      properties: {}
+    RemoveUnavailabilityDto:
+      type: object
+      properties: {}
+    ChangePasswordDto:
+      type: object
+      properties: {}
+    ForgotPasswordDto:
+      type: object
+      properties: {}
+    ResetPasswordDto:
+      type: object
+      properties: {}
+paths:
+  "/profile":
+    get:
+      operationId: AppController_getProfile
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/user/create-user":
+    post:
+      operationId: UserController_createProfile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateUserDto"
+      responses:
+        '201':
+          description: ''
+  "/user/update-user":
+    post:
+      operationId: UserController_updateProfile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/UpdateUserDto"
+      responses:
+        '201':
+          description: ''
+  "/user/find-user":
+    get:
+      operationId: UserController_findUser
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/FindUserDto"
+      responses:
+        '200':
+          description: ''
+  "/user/delete-profile":
+    post:
+      operationId: UserController_deleteProfile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/DeleteUserDto"
+      responses:
+        '201':
+          description: ''
+  "/rental":
+    post:
+      operationId: RentalController_createRental
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateRentalDto"
+      responses:
+        '201':
+          description: ''
+    get:
+      operationId: RentalController_searchRental
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/SearchRentalDto"
+      responses:
+        '200':
+          description: ''
+  "/rental/edit-price":
+    post:
+      operationId: RentalController_editPricing
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/PricingDto"
+      responses:
+        '201':
+          description: ''
+  "/rental/edit-details":
+    post:
+      operationId: RentalController_editDetails
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/EditDetailsDto"
+      responses:
+        '201':
+          description: ''
+  "/rental/schedule-unavailability":
+    post:
+      operationId: RentalController_scheduleUnavailability
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ProcessedUnavailabilityDto"
+      responses:
+        '201':
+          description: ''
+  "/rental/update-unavailability":
+    post:
+      operationId: RentalController_updateUnavailability
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/UpdateUnavailabilityDataDto"
+      responses:
+        '201':
+          description: ''
+  "/rental/remove-unavailability":
+    post:
+      operationId: RentalController_removeUnavailability
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/RemoveUnavailabilityDto"
+      responses:
+        '201':
+          description: ''
+  "/images/upload-rental-images":
+    post:
+      operationId: ImagesController_uploadRentalImages
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  "/images/upload-profile-images":
+    post:
+      operationId: ImagesController_uploadProfileImage
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  "/images/find-rental-images":
+    get:
+      operationId: ImagesController_findRentalImages
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/images/find-rental-image":
+    get:
+      operationId: ImagesController_findRentalImage
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/images/find-profile-images":
+    get:
+      operationId: ImagesController_findProfileImages
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/images/find-profile-image":
+    get:
+      operationId: ImagesController_findProfileImage
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/images/delete-images":
+    post:
+      operationId: ImagesController_deleteImages
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '201':
+          description: ''
+  "/images/delete-all-rental-images":
+    post:
+      operationId: ImagesController_deleteAllRentalImages
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  "/images/delete-all-profile-images":
+    post:
+      operationId: ImagesController_deleteAllProfileImages
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  "/auth/login":
+    post:
+      operationId: AuthController_login
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/auth/logout":
+    post:
+      operationId: AuthController_logout
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  "/auth/change-password":
+    post:
+      operationId: AuthController_changePassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ChangePasswordDto"
+      responses:
+        '201':
+          description: ''
+  "/auth/forgot-password":
+    post:
+      operationId: AuthController_forgotPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ForgotPasswordDto"
+      responses:
+        '201':
+          description: ''
+  "/auth/reset-password":
+    post:
+      operationId: AuthController_resetPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ResetPasswordDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/rental":
+    post:
+      operationId: RentalController_createRental
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateRentalDto"
+      responses:
+        '201':
+          description: ''
+    get:
+      operationId: RentalController_searchRental
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/SearchRentalDto"
+      responses:
+        '200':
+          description: ''
+  "/v1/rental/edit-price":
+    post:
+      operationId: RentalController_editPricing
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/PricingDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/rental/edit-details":
+    post:
+      operationId: RentalController_editDetails
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/EditDetailsDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/rental/schedule-unavailability":
+    post:
+      operationId: RentalController_scheduleUnavailability
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ProcessedUnavailabilityDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/rental/update-unavailability":
+    post:
+      operationId: RentalController_updateUnavailability
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/UpdateUnavailabilityDataDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/rental/remove-unavailability":
+    post:
+      operationId: RentalController_removeUnavailability
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/RemoveUnavailabilityDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/auth/login":
+    post:
+      operationId: AuthController_login
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/v1/auth/logout":
+    post:
+      operationId: AuthController_logout
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  "/v1/auth/change-password":
+    post:
+      operationId: AuthController_changePassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ChangePasswordDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/auth/forgot-password":
+    post:
+      operationId: AuthController_forgotPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ForgotPasswordDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/auth/reset-password":
+    post:
+      operationId: AuthController_resetPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ResetPasswordDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/user/create-user":
+    post:
+      operationId: UserController_createProfile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateUserDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/user/update-user":
+    post:
+      operationId: UserController_updateProfile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/UpdateUserDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/user/find-user":
+    get:
+      operationId: UserController_findUser
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/FindUserDto"
+      responses:
+        '200':
+          description: ''
+  "/v1/user/delete-profile":
+    post:
+      operationId: UserController_deleteProfile
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/DeleteUserDto"
+      responses:
+        '201':
+          description: ''
+  "/v1/images/upload-rental-images":
+    post:
+      operationId: ImagesController_uploadRentalImages
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  "/v1/images/upload-profile-images":
+    post:
+      operationId: ImagesController_uploadProfileImage
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  "/v1/images/find-rental-images":
+    get:
+      operationId: ImagesController_findRentalImages
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/v1/images/find-rental-image":
+    get:
+      operationId: ImagesController_findRentalImage
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/v1/images/find-profile-images":
+    get:
+      operationId: ImagesController_findProfileImages
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/v1/images/find-profile-image":
+    get:
+      operationId: ImagesController_findProfileImage
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  "/v1/images/delete-images":
+    post:
+      operationId: ImagesController_deleteImages
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '201':
+          description: ''
+  "/v1/images/delete-all-rental-images":
+    post:
+      operationId: ImagesController_deleteAllRentalImages
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  "/v1/images/delete-all-profile-images":
+    post:
+      operationId: ImagesController_deleteAllProfileImages
+      parameters: []
+      responses:
+        '201':
+          description: ''
