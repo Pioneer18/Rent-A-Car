@@ -879,3 +879,15 @@ definitions:
         type: string
         format: email
   ResetPasswordDto:
+    type: object
+    required:
+    - resetPass
+    - confirmPass
+    - resetPasswordToken
+    properties:
+      resetPass:
+        type: string
+      confirmPass:
+        type: string
+      resetPasswordToken:
+        type: string
