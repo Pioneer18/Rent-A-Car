@@ -1,7 +1,6 @@
 import { Controller, Post, Req, UseGuards, Body, Get, Query, Res, Logger } from '@nestjs/common';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
-import { response} from 'express';
 import { profile, rentals } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
