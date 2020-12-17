@@ -19,294 +19,16 @@ paths:
       responses:
         '200':
           description: ''
-  "/user/create-user":
-    post:
-      operationId: UserController_createProfile
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/CreateUserDto"
-      responses:
-        '201':
-          description: ''
-  "/user/update-user":
-    post:
-      operationId: UserController_updateProfile
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/UpdateUserDto"
-      responses:
-        '201':
-          description: ''
-  "/user/find-user":
-    get:
-      operationId: UserController_findUser
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/FindUserDto"
-      responses:
-        '200':
-          description: ''
-  "/user/delete-profile":
-    post:
-      operationId: UserController_deleteProfile
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/DeleteUserDto"
-      responses:
-        '201':
-          description: ''
-  "/rental":
-    post:
-      operationId: RentalController_createRental
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/CreateRentalDto"
-      responses:
-        '201':
-          description: ''
-    get:
-      operationId: RentalController_searchRental
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/SearchRentalDto"
-      responses:
-        '200':
-          description: ''
-  "/rental/edit-price":
-    post:
-      operationId: RentalController_editPricing
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/PricingDto"
-      responses:
-        '201':
-          description: ''
-  "/rental/edit-details":
-    post:
-      operationId: RentalController_editDetails
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/EditDetailsDto"
-      responses:
-        '201':
-          description: ''
-  "/rental/schedule-unavailability":
-    post:
-      operationId: RentalController_scheduleUnavailability
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/ProcessedUnavailabilityDto"
-      responses:
-        '201':
-          description: ''
-  "/rental/update-unavailability":
-    post:
-      operationId: RentalController_updateUnavailability
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/UpdateUnavailabilityDataDto"
-      responses:
-        '201':
-          description: ''
-  "/rental/remove-unavailability":
-    post:
-      operationId: RentalController_removeUnavailability
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/RemoveUnavailabilityDto"
-      responses:
-        '201':
-          description: ''
-  "/images/upload-rental-images":
-    post:
-      operationId: ImagesController_uploadRentalImages
-      parameters: []
-      responses:
-        '201':
-          description: ''
-  "/images/upload-profile-images":
-    post:
-      operationId: ImagesController_uploadProfileImage
-      parameters: []
-      responses:
-        '201':
-          description: ''
-  "/images/find-rental-images":
-    get:
-      operationId: ImagesController_findRentalImages
-      parameters: []
-      responses:
-        '200':
-          description: ''
-  "/images/find-rental-image":
-    get:
-      operationId: ImagesController_findRentalImage
-      parameters: []
-      responses:
-        '200':
-          description: ''
-  "/images/find-profile-images":
-    get:
-      operationId: ImagesController_findProfileImages
-      parameters: []
-      responses:
-        '200':
-          description: ''
-  "/images/find-profile-image":
-    get:
-      operationId: ImagesController_findProfileImage
-      parameters: []
-      responses:
-        '200':
-          description: ''
-  "/images/delete-images":
-    post:
-      operationId: ImagesController_deleteImages
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: string
-      responses:
-        '201':
-          description: ''
-  "/images/delete-all-rental-images":
-    post:
-      operationId: ImagesController_deleteAllRentalImages
-      parameters: []
-      responses:
-        '201':
-          description: ''
-  "/images/delete-all-profile-images":
-    post:
-      operationId: ImagesController_deleteAllProfileImages
-      parameters: []
-      responses:
-        '201':
-          description: ''
-  "/auth/login":
-    post:
-      operationId: AuthController_login
-      parameters: []
-      responses:
-        '200':
-          description: ''
-  "/auth/logout":
-    post:
-      operationId: AuthController_logout
-      parameters: []
-      responses:
-        '201':
-          description: ''
-  "/auth/change-password":
-    post:
-      operationId: AuthController_changePassword
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/ChangePasswordDto"
-      responses:
-        '201':
-          description: ''
-  "/auth/forgot-password":
-    post:
-      operationId: AuthController_forgotPassword
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/ForgotPasswordDto"
-      responses:
-        '201':
-          description: ''
-  "/auth/reset-password":
-    post:
-      operationId: AuthController_resetPassword
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/ResetPasswordDto"
-      responses:
-        '201':
-          description: ''
   "/v1/rental":
     post:
       operationId: RentalController_createRental
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/CreateRentalDto"
       responses:
         '201':
           description: ''
     get:
       operationId: RentalController_searchRental
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/SearchRentalDto"
       responses:
         '200':
           description: ''
@@ -314,12 +36,6 @@ paths:
     post:
       operationId: RentalController_editPricing
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/PricingDto"
       responses:
         '201':
           description: ''
@@ -327,12 +43,6 @@ paths:
     post:
       operationId: RentalController_editDetails
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/EditDetailsDto"
       responses:
         '201':
           description: ''
@@ -340,12 +50,6 @@ paths:
     post:
       operationId: RentalController_scheduleUnavailability
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/ProcessedUnavailabilityDto"
       responses:
         '201':
           description: ''
@@ -353,12 +57,6 @@ paths:
     post:
       operationId: RentalController_updateUnavailability
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/UpdateUnavailabilityDataDto"
       responses:
         '201':
           description: ''
@@ -366,12 +64,6 @@ paths:
     post:
       operationId: RentalController_removeUnavailability
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/RemoveUnavailabilityDto"
       responses:
         '201':
           description: ''
@@ -393,12 +85,6 @@ paths:
     post:
       operationId: AuthController_changePassword
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/ChangePasswordDto"
       responses:
         '201':
           description: ''
@@ -406,12 +92,6 @@ paths:
     post:
       operationId: AuthController_forgotPassword
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/ForgotPasswordDto"
       responses:
         '201':
           description: ''
@@ -419,12 +99,6 @@ paths:
     post:
       operationId: AuthController_resetPassword
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/ResetPasswordDto"
       responses:
         '201':
           description: ''
@@ -432,12 +106,6 @@ paths:
     post:
       operationId: UserController_createProfile
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/CreateUserDto"
       responses:
         '201':
           description: ''
@@ -445,12 +113,6 @@ paths:
     post:
       operationId: UserController_updateProfile
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/UpdateUserDto"
       responses:
         '201':
           description: ''
@@ -458,12 +120,6 @@ paths:
     get:
       operationId: UserController_findUser
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/FindUserDto"
       responses:
         '200':
           description: ''
@@ -471,12 +127,6 @@ paths:
     post:
       operationId: UserController_deleteProfile
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/DeleteUserDto"
       responses:
         '201':
           description: ''
@@ -526,14 +176,6 @@ paths:
     post:
       operationId: ImagesController_deleteImages
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: string
       responses:
         '201':
           description: ''
@@ -551,343 +193,3 @@ paths:
       responses:
         '201':
           description: ''
-definitions:
-  CreateUserDto:
-    type: object
-    required:
-    - username
-    - email
-    - password
-    properties:
-      username:
-        type: string
-        example: 'fake-user'
-      email:
-        type: string
-        format: email
-        example: fake.email@gmail.com
-      password:
-        type: string
-        format: password
-  UpdateUserDto:
-    type: object
-    properties:
-      username:
-        type: string
-      email:
-        type: string
-        format: email
-  FindUserDto:
-    type: object
-    required:
-    - email
-    properties:
-      email:
-        type: string
-        format: email
-  DeleteUserDto:
-    type: object
-    required:
-    - password
-    properties:
-      password:
-        type: string
-        format: password
-  CreateRentalDto:
-    type: object
-    required:
-    - rentalDescription
-    - address
-    - specs
-    - registration
-    - features
-    - scheduling
-    - pricing
-    - loc
-    - photos
-    - listed
-    properties:
-      rentalDescription:
-        type: string
-      address:
-        type: string
-      specs:
-        type: object
-        properties:
-          odometer:
-            type: string
-          transmission:
-            type: string
-          cityMpg:
-            type: number
-          hwyMpg:
-            type: number
-          mpgE:
-            type: number
-          fuel:
-            type: string
-          gasGrade:
-            type: string
-          description:
-            type: string
-          make:
-            type: string
-          model:
-            type: string
-          style:
-            type: string
-          color:
-            type: string
-          numOfSeats:
-            type: number
-          numDoors:
-            type: number
-      registration:
-        type: object
-        properties:
-          vin:
-            type: string
-          licensePlate:
-            type: string
-          state:
-            type: string
-      features:
-        type: [string]
-      scheduling:
-        type: object
-        properties:
-          requiredNotice:
-            type: number
-          rentMinDuration:
-            type: number
-          rentMaxDuration:
-            type: number
-      pricing:
-        type: object
-        properties:
-          price:
-            type: number
-          discounts:
-            type: object
-            properties:
-              weekly: number
-              monthly: number
-      loc:
-        type: object
-        properties:
-          type:
-            type: string
-          coordinates:
-            type: string
-      photos:
-        type: [string]
-      listed:
-        type: boolean         
-  PricingDto:
-    type: object
-    required:
-    - rentalId
-    - price
-    - discounts
-    properties:
-      rentalId:
-        type: string
-      price:
-        type: number
-      discounts:
-        type: object
-        properties:
-          weekly:
-            type: number
-          monthly:
-            type: number
-  EditDetailsDto:
-    type: object
-    properties:
-      rentalId:
-        type: string
-      specs:
-        type: object
-        properties:
-          odometer:
-            type: string
-          transmission:
-            type: string
-          cityMpg:
-            type: number
-          hwyMpg:
-            type: number
-          mpgE:
-            type: number
-          fuel:
-            type: string
-          gasGrade:
-            type: string
-          description:
-            type: string
-          make:
-            type: string
-          model:
-            type: string
-          style:
-            type: string
-          color:
-            type: string
-          numOfSeats:
-            type: number
-          numDoors:
-            type: number
-      features:
-        type: [string]
-  ProcessedUnavailabilityDto:
-    type: object
-    required:
-    - y1Query
-    - y2Query
-    - data
-    properties:
-      y1Query:
-        $ref: '#definitions/UnavailabilityQueryDto'
-      y2Query:
-        $ref: '#definitions/UnavailabilityQueryDto'
-      data:
-        type: object
-        properties:
-          y1:
-            type: array
-            items:
-              $ref: '#definitions/ProcessedUnavailabilityQueryDto'
-          y2:
-            type: array | null
-            items:
-              $ref: '#definitions/ProcessedUnavailabilityQueryDto'
-  UnavailabilityQueryDto:
-    type: object
-    required:
-    - rentalId
-    - year
-    - doy
-    - $or
-    properties:
-      rentalId:
-        type: string
-      year:
-        type: number
-      doy:
-        type: object
-        properties:
-          $lte:
-            type: number
-          $gte:
-            type: number
-      $or:
-        type: array
-        items:
-          $ref: '#/definitions/StartEnd'
-  StartEnd:
-    type: object
-    required:
-    - start
-    - end
-    properties:
-      start:
-        type: object
-        properties:
-          $gte:
-            type: number
-      end:
-        type: object
-        properties:
-          $lte:
-            type: number
-  ProcessedUnavailabilityQueryDto:
-    type: object
-    required:
-    - unavailabilityId
-    - rentalId
-    - year
-    - doy
-    - start
-    - end
-    - title
-    properties:
-      unavailabilityId:
-        type: string
-      rentalId:
-        type: string
-      year:
-        type: number
-      doy:
-        type: number
-      start:
-        type: number
-      end:
-        type: number
-      title:
-        type: string
-  UpdateUnavailabilityDataDto:
-    type: object
-    required:
-    - filter
-    - udpater
-    properties:
-      filter:
-        type: object
-        properties:
-          rentalId:
-            type: string
-          unavailabilityId:
-            type: string
-      updater:
-        type: object
-        required:
-        - start
-        - end
-        properties:
-          start:
-            type: number
-          end:
-            type: number
-          title:
-            type: string
-  RemoveUnavailabilityDto:
-    type: object
-    required:
-    - rentalId
-    - unavailabilityId
-    properties:
-      rentalId:
-        type: string
-      unavailabilityId:
-        type: string
-  ChangePasswordDto:
-    type: object
-    required:
-    - newPassword
-    - confirmPassword
-    properties:
-      newPassword:
-        type: string
-      confirmPassword:
-        type: string
-  ForgotPasswordDto:
-    type: object
-    required:
-    - email
-    properties:
-      email:
-        type: string
-        format: email
-  ResetPasswordDto:
-    type: object
-    required:
-    - resetPass
-    - confirmPass
-    - resetPasswordToken
-    properties:
-      resetPass:
-        type: string
-      confirmPass:
-        type: string
-      resetPasswordToken:
-        type: string
