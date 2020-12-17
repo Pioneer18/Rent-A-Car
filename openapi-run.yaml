@@ -551,3 +551,331 @@ paths:
       responses:
         '201':
           description: ''
+definitions:
+  CreateUserDto:
+    type: object
+    required:
+    - username
+    - email
+    - password
+    properties:
+      username:
+        type: string
+        example: 'fake-user'
+      email:
+        type: string
+        format: email
+        example: fake.email@gmail.com
+      password:
+        type: string
+        format: password
+  UpdateUserDto:
+    type: object
+    properties:
+      username:
+        type: string
+      email:
+        type: string
+        format: email
+  FindUserDto:
+    type: object
+    required:
+    - email
+    properties:
+      email:
+        type: string
+        format: email
+  DeleteUserDto:
+    type: object
+    required:
+    - password
+    properties:
+      password:
+        type: string
+        format: password
+  CreateRentalDto:
+    type: object
+    required:
+    - rentalDescription
+    - address
+    - specs
+    - registration
+    - features
+    - scheduling
+    - pricing
+    - loc
+    - photos
+    - listed
+    properties:
+      rentalDescription:
+        type: string
+      address:
+        type: string
+      specs:
+        type: object
+        properties:
+          odometer:
+            type: string
+          transmission:
+            type: string
+          cityMpg:
+            type: number
+          hwyMpg:
+            type: number
+          mpgE:
+            type: number
+          fuel:
+            type: string
+          gasGrade:
+            type: string
+          description:
+            type: string
+          make:
+            type: string
+          model:
+            type: string
+          style:
+            type: string
+          color:
+            type: string
+          numOfSeats:
+            type: number
+          numDoors:
+            type: number
+      registration:
+        type: object
+        properties:
+          vin:
+            type: string
+          licensePlate:
+            type: string
+          state:
+            type: string
+      features:
+        type: [string]
+      scheduling:
+        type: object
+        properties:
+          requiredNotice:
+            type: number
+          rentMinDuration:
+            type: number
+          rentMaxDuration:
+            type: number
+      pricing:
+        type: object
+        properties:
+          price:
+            type: number
+          discounts:
+            type: object
+            properties:
+              weekly: number
+              monthly: number
+      loc:
+        type: object
+        properties:
+          type:
+            type: string
+          coordinates:
+            type: string
+      photos:
+        type: [string]
+      listed:
+        type: boolean         
+  PricingDto:
+    type: object
+    required:
+    - rentalId
+    - price
+    - discounts
+    properties:
+      rentalId:
+        type: string
+      price:
+        type: number
+      discounts:
+        type: object
+        properties:
+          weekly:
+            type: number
+          monthly:
+            type: number
+  EditDetailsDto:
+    type: object
+    properties:
+      rentalId:
+        type: string
+      specs:
+        type: object
+        properties:
+          odometer:
+            type: string
+          transmission:
+            type: string
+          cityMpg:
+            type: number
+          hwyMpg:
+            type: number
+          mpgE:
+            type: number
+          fuel:
+            type: string
+          gasGrade:
+            type: string
+          description:
+            type: string
+          make:
+            type: string
+          model:
+            type: string
+          style:
+            type: string
+          color:
+            type: string
+          numOfSeats:
+            type: number
+          numDoors:
+            type: number
+      features:
+        type: [string]
+  ProcessedUnavailabilityDto:
+    type: object
+    required:
+    - y1Query
+    - y2Query
+    - data
+    properties:
+      y1Query:
+        $ref: '#definitions/UnavailabilityQueryDto'
+      y2Query:
+        $ref: '#definitions/UnavailabilityQueryDto'
+      data:
+        type: object
+        properties:
+          y1:
+            type: array
+            items:
+              $ref: '#definitions/ProcessedUnavailabilityQueryDto'
+          y2:
+            type: array | null
+            items:
+              $ref: '#definitions/ProcessedUnavailabilityQueryDto'
+  UnavailabilityQueryDto:
+    type: object
+    required:
+    - rentalId
+    - year
+    - doy
+    - $or
+    properties:
+      rentalId:
+        type: string
+      year:
+        type: number
+      doy:
+        type: object
+        properties:
+          $lte:
+            type: number
+          $gte:
+            type: number
+      $or:
+        type: array
+        items:
+          $ref: '#/definitions/StartEnd'
+  StartEnd:
+    type: object
+    required:
+    - start
+    - end
+    properties:
+      start:
+        type: object
+        properties:
+          $gte:
+            type: number
+      end:
+        type: object
+        properties:
+          $lte:
+            type: number
+  ProcessedUnavailabilityQueryDto:
+    type: object
+    required:
+    - unavailabilityId
+    - rentalId
+    - year
+    - doy
+    - start
+    - end
+    - title
+    properties:
+      unavailabilityId:
+        type: string
+      rentalId:
+        type: string
+      year:
+        type: number
+      doy:
+        type: number
+      start:
+        type: number
+      end:
+        type: number
+      title:
+        type: string
+  UpdateUnavailabilityDataDto:
+    type: object
+    required:
+    - filter
+    - udpater
+    properties:
+      filter:
+        type: object
+        properties:
+          rentalId:
+            type: string
+          unavailabilityId:
+            type: string
+      updater:
+        type: object
+        required:
+        - start
+        - end
+        properties:
+          start:
+            type: number
+          end:
+            type: number
+          title:
+            type: string
+  RemoveUnavailabilityDto:
+    type: object
+    required:
+    - rentalId
+    - unavailabilityId
+    properties:
+      rentalId:
+        type: string
+      unavailabilityId:
+        type: string
+  ChangePasswordDto:
+    type: object
+    required:
+    - newPassword
+    - confirmPassword
+    properties:
+      newPassword:
+        type: string
+      confirmPassword:
+        type: string
+  ForgotPasswordDto:
+    type: object
+    required:
+    - email
+    properties:
+      email:
+        type: string
+        format: email
+  ResetPasswordDto:
