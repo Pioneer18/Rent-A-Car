@@ -24,8 +24,6 @@ import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
 import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto'; // '../dto/update-unavailability-data.dto';
 import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
-import { AppConfigService } from '../../config/configuration.service';
-import { ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { RentalInterface } from '../interface/rental.interface';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';

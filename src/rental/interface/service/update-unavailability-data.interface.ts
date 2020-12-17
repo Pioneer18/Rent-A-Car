@@ -9,9 +9,6 @@ export interface UpdateUnavailabilityDataInterface {
     updater: {
             start: number,
             end: number,
-    } | {
-            start: number,
-            end: number,
-            title: string,
+            title?: string
     };
 }
