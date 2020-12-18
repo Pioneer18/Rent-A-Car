@@ -7,4 +7,4 @@ To quickly get started with a tour of the application, please follow this guide
 ##### **Logging In to the Applicaiton**
 The first step to using the Rent-A-Car API is to login to the application. You may use one of the premade accounts below, or create a new account to being. To create a new account use the **User Module - Create User** request. Once you have created or selected an account, open the **Auth Module** and select the **login** request to enter your selected account credentials. A successful request will return the created profile data in the response
 
-<img src="https://media.giphy.com/media/vwQz6tQnjMwSSOdp7x/giphy.gif" width="600" height="200">
+<img src="./postman-examples/login-example.png" width="600" height="200">
