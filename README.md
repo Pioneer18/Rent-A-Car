@@ -7,7 +7,6 @@ This project is a demonstration of a scalable, loosely-coupled, testable, server
 ## Try the App with Postman:
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/d687e602b7ebb63c6883)
 * Note: If Postman Web never launches try downloading the app to your pc, it will import the collection and environment and run fine. 
-* will be deployed soon :)
 
 ## Contributing
 - [**Jonathan Sells**](https://github.com/Pioneer18)
