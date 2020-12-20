@@ -11,10 +11,18 @@ export class RedisService {
 
     /**
      * **summary** use the key of a JWT to search the Redis 'dead-list' and check if the user is logged out
-     * @param key the last 8 digits of a JWT used to list in in the dead-list of the Redis cache
+     * @param key the last 8 digits of a JWT used to list in the dead-list of the Redis cache
      */
     get = async (key: string): Promise<any> => {
         return await this.cache.get(key);
+    }
+
+    /**
+     * **summary** syncGet is the synchronous version of the get method, used when async is not apporpriate
+     * @param key the last 8 digits of a JWT used to list in the dead-list of the Redis cache 
+     */
+    syncGet = (key: string): Promise<any> => {
+        return this.cache.get(key);
     }
 
     /**
