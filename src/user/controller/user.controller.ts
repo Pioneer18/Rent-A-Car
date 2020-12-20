@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect } from '@nestjs/common';
+import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect, Query } from '@nestjs/common';
 import { CreateQuery } from 'mongoose';
 import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
 import { LoggedOutGuard } from '../../auth/gaurds/logged-out.guard';
@@ -51,7 +51,7 @@ export class UserController {
     @UseGuards(JwtAuthGuard)
     // @UseGuards(LoggedOutGuard)
     @Get('find-user')
-    async findUser(@Body() email: FindUserDto): Promise<UserModelInterface> {
+    async findUser(@Query() email: FindUserDto): Promise<UserModelInterface> {
         return await this.userService.findUser(email);
     }
 
