@@ -62,7 +62,7 @@ export class RentalController {
    * - **Note**: This route is using **POST** instead of **GET** because Goolge Cloud App Engine is experiencing an error
    * where any **GET** request with a body recieve a 400 Bad Request Error default 
    */
-  @Post()
+  @Post('search-rental')
   @UsePipes(new JoiValidationPipe(SearchRentalValidationSchema))
   @UsePipes(new RequestCoordinatesPipe(new GeoUrlApiUtil()))
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
