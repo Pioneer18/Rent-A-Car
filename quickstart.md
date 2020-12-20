@@ -9,7 +9,7 @@
 
 <img src="https://drive.google.com/uc?export=view&id=1z8uwCcdBdTj0gD0V39oWFEjlcHq-O9o8" alt="Login example gif" width="600">
 
-<font size=3>To create a new account use the **User Module - Create User** request. Once you have created or selected an account, open the **Auth Module** and select the **Login** request to enter your selected account credentials. A successful login request will return the created profile data in the response</font>  
+<font size=3>To create a new account use the **User Module - Create User** request. Once you have created or selected an account, open the **Auth Module** and select the **Login** request to enter your selected account credentials. A successful login request will return the created profile data in the response as seen below.</font>  
 
 <img src="https://drive.google.com/uc?export=view&id=1p8oGVy38OqYgKJ6x4VoE1eu6UwN_w5nM" alt="Login example" width="450" height="180">
 
@@ -20,14 +20,14 @@
 
 <font size=3>A successful request will return the rental you just sent and a '201 Created' response, as seen below. Notice that the returned rental has an **_id** property now, this is its unique id in the remote MongoDB database.</font>
 
-<img src="https://drive.google.com/uc?export=view&id=1xthGFOPAqJ53y2XVIWGUQHASRtdMywkE" alt="Login example" >
+<img src="https://drive.google.com/uc?export=view&id=1MJcfMsFlhIbD_u_mTbOO3S-jf2OYtBNU" alt="Login example" >
 
 
 ## **Upload Images to a Rental Listing**
 
 <font size=3>To upload images to the new rental you've just created, copy the **_id** from the **Create Rental**  response object and paste it in the **Params** of the **Upload Rental Images** request, as seen below.</font> 
 
-<img src="https://drive.google.com/uc?export=view&id=1KLCQL_WXZyejmwhBDhr49KRyxDz32hp_" alt="Login example" >
+<img src="https://drive.google.com/uc?export=view&id=1dESLgGAzBEtVRV41HuPfm_lYqgfZU8g0" alt="Login example" >
 
 <font size=3>Next switch to the body of the **Upload Rental Images** request and choose images from your local pc as shown below, then select **Send** to upload your images. The images are stored in a public **AWS S3 Bucket** in a directory with your account email, the link returned in the response is the download link for the Bucket.</font>
 
