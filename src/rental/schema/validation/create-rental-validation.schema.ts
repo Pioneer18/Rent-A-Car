@@ -9,7 +9,8 @@ import * as joi from '@hapi/joi';
  */
 export const CreateRentalValidationSchema = joi.object({
   userId: joi.string().required,
-  rentalDescription: joi.string(),
+  rentalTitle: joi.string().required(),
+  rentalDescription: joi.string().required(),
   address: joi.string().required(),
   specs: joi.object({
     odometer: joi.number().required(),

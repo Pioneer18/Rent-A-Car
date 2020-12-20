@@ -5,6 +5,7 @@ import * as mongoose from 'mongoose';
 export interface RentalModelInterface extends mongoose.Document {
   _id: string;
   userId: string;
+  rentalTitle: string;
   rentalDescription: string;
   address: string;
   loc: {

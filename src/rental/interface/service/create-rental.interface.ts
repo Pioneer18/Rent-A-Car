@@ -2,6 +2,7 @@
  * **summary**: Interface for the rental.service.createRental() method
  */
 export interface CreateRentalInterface {
+  rentalTitle: string;
   rentalDescription: string;
   address: string;
   specs: {

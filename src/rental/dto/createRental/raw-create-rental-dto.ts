@@ -1,5 +1,7 @@
 /**
  * **summary**: The initial dto submitted by a user to create a new rental listing.This dto is passed to the GeoUrlApiPipe transform method which will add coordinates from the location property information
+ * - rentalTitle: Honda Accord 2020 Deal! 
+ * - rentalDescription: describe the rental, for example: Get away for the weekend without breaking the bank!
  * - specs: specifications about the vehicle
  * - registration: basic vehicle registration data
  * - features: e.g. 'bike rack', 'heated seats', 'auto-pilot', etc.
@@ -12,6 +14,8 @@
  * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
 export class RawCreateRentalDto {
+  rentalTitle: string;
+  rentalDescription: string;
   specs: {
     odometer: number;
     transmission: string;

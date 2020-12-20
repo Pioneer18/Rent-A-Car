@@ -13,7 +13,8 @@ export class MapNewRentalPipe implements PipeTransform {
   transform = async (value: LocCreateRentalDto): Promise<CreateRentalDto> => {
     try {
       const data: CreateRentalDto = {
-        rentalDescription: 'this is a tokyo grocery getter',
+        rentalTitle: value.value.rentalTitle,
+        rentalDescription: value.value.rentalDescription,
         address: value.address,
         specs: value.value.specs,
         registration: value.value.registration,

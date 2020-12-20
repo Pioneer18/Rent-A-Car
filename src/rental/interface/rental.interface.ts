@@ -4,6 +4,7 @@
 export interface RentalInterface {
     _id?: string;
     userId: string;
+    rentalTitle: string;
     rentalDescription: string;
     address: string;
     loc: {
