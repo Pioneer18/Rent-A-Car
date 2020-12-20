@@ -2,10 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import { AppConfigService } from './config/configuration.service';
-import * as fs from 'fs';
-import * as path from 'path';
 import * as helmet from 'helmet';
-import { Secrets } from './secrets/secrets';
 import * as cookieParser from 'cookie-parser';
 /**
  * **summary**: Bootstrap the application. It will run as an Https server in production and
@@ -13,14 +10,9 @@ import * as cookieParser from 'cookie-parser';
  */
 dotenv.config();
 async function bootstrap() {
-  const httpsOptions = {
-    key: Secrets.key,
-    cert: Secrets.crt, //fs.readFileSync(path.resolve(__dirname, './secrets/server.crt')),
-  };
-  console.log(`The Environment: ${process.env.NODE_ENV}`);
   // Development HTTP
   if (process.env.NODE_ENV === 'development') {
-    console.log('Running in Dev: Http');
+    console.log('Running in Dev: http://localhost:3000');
     const app = await NestFactory.create(AppModule);
     const appConfig = await app.get(AppConfigService);
     app.enableCors();
@@ -28,12 +20,10 @@ async function bootstrap() {
     app.use(cookieParser());
     await app.listen(appConfig.port || 3000);
   }
-  // Production HTTPS
+  // Production HTTPS Google Cloud Run
   if (process.env.NODE_ENV === 'production') {
-    console.log('Running in Prod: Https');
-    const app = await NestFactory.create(AppModule, {
-      httpsOptions,
-    });
+    console.log('Running in Prod: https://racapp-ckibfdodrq-ue.a.run.app');
+    const app = await NestFactory.create(AppModule);
     const appConfig = await app.get(AppConfigService);
     app.enableCors();
     app.use(helmet());
