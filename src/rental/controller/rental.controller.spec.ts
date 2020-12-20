@@ -90,6 +90,7 @@ describe('Rental Controller', () => {
   // currently failing because of Pipes involvement
   describe('createRental endpoint test', () => {
     const mockedRental: CreateRentalDto = {
+      rentalTitle: 'this is a fake rental title',
       rentalDescription: 'This is a Tokyo grocery getter',
       address: '3489 FakeDale Drive, Fake City, GA',
       specs: {
@@ -147,6 +148,7 @@ describe('Rental Controller', () => {
       ],
       photos: [],
       _id: "5fc8f6f893cdc33ac0dd18c3",
+      rentalTitle: 'this is a fake rental title',
       rentalDescription: "this is a tokyo grocery getter",
       address: "13125 Gascony St Riverview 33578",
       specs: {
@@ -217,6 +219,7 @@ describe('Rental Controller', () => {
           ],
           "photos": [],
           "_id": "5fc8f6f893cdc33ac0dd18c3",
+          "rentalTitle":"This is a fake rental title",
           "rentalDescription": "this is a tokyo grocery getter",
           "address": "13125 Gascony St Riverview 33578",
           "specs": {
@@ -289,6 +292,7 @@ describe('Rental Controller', () => {
         ],
         "photos": [],
         "_id": "5fc8f6f893cdc33ac0dd18c3",
+        "rentalTitle": "this is a fake rental title",
         "rentalDescription": "this is a tokyo grocery getter",
         "address": "13125 Gascony St Riverview 33578",
         "specs": {
@@ -366,6 +370,7 @@ describe('Rental Controller', () => {
       ],
       "photos": [],
       "_id": "5fc575be2de5f937487a0994",
+      "rentalTitle": "this is a fake rental title",
       "rentalDescription": "a truck worth driving", // update
       "address": "13125 Gascony St Riverview 33578",
       "specs": {
@@ -541,11 +546,9 @@ describe('Rental Controller', () => {
         unavailabilityId: "1606606517860",
       },
       updater: {
-        $set: {
           start: 0,
           end: 12, // the new ending
           title: "New Years Unavailability"
-        }
       }
     }
     const response: UpdateResponseInterface = {
