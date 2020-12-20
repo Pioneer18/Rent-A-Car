@@ -37,7 +37,7 @@ export class AuthController {
      * @param req The request containing the user's JWT payload to be added to the logged-out 'dead-list' in the Redis cache
      */
     @UseGuards(JwtAuthGuard)
-    @Redirect('http://localhost:3000/auth/login')
+    // @Redirect('http://localhost:3000/auth/login')
     @Post('logout')
     async logout(@Request() req): Promise<ExtractKeyValueUtilInterface> {
         return await this.authService.logout(req);
