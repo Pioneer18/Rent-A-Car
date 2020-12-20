@@ -48,8 +48,8 @@ export class AuthController {
      * @param req The request with the user JWT payload
      * @param data The new password data
      */
-    @UseGuards(JwtAuthGuard)
     @UseGuards(LoggedOutGuard)
+    @UseGuards(JwtAuthGuard)
     @Post('change-password')
     async changePassword(@Req() req, @Body() data: ChangePasswordDto): Promise<void> {
         return this.authService.changePassword(data, req);

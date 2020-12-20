@@ -14,14 +14,16 @@ export class LoggedOutGuard implements CanActivate {
      * they are no longer authorized to make requests before logging in again
      * @param req The request object
      */
-    private checkDeadList(req: Request): boolean {
+    private async checkDeadList(req: Request): Promise<boolean> {
         // grab the key from the incoming jwt
         const rawAuth = req.headers.cookie;
         const key = rawAuth.slice(-8);
         console.log(`Logged Out Guard:`)
         console.log(`The Cookie: ${rawAuth}`)
         console.log(`The Key: ${key}`)
-        const check = this.redisService.syncGet(key);
+        const check = await this.redisService.get(key);
+        console.log(`Logged Out Guard Check Results:`)
+        console.log(check);
         // if the key is found, deny access; User is Logged Out
         if (check && check !== null) {
             console.log(`Failed the LoggedOutGuard Check`)
@@ -35,10 +37,10 @@ export class LoggedOutGuard implements CanActivate {
      * **summary**: Method that decides if the request will continue to the handler or be blocked
      * @param context the execution context
      */
-    canActivate(
+    async canActivate(
         context: ExecutionContext,
-    ): boolean | Promise<boolean> | Observable<boolean> {
+    ): Promise<boolean> {
         const request = context.switchToHttp().getRequest();
-        return this.checkDeadList(request);
+        return await this.checkDeadList(request);
     }
 }

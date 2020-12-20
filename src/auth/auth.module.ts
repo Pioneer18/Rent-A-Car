@@ -15,6 +15,7 @@ import { AppConfigModule } from '../config/configuration.module';
 import { VerifyNewPasswordUtil } from './util/verify-new-password.util';
 import { EmailService } from '../email/email.service';
 import { AppConfigService } from '../config/configuration.service';
+import { RedisService } from '../redis/service/redis.service';
 /**
  * **summary**: This module provides all of the functionality for authenticating and authorizing a user
  */
@@ -38,7 +39,8 @@ import { AppConfigService } from '../config/configuration.service';
     ExtractKeyValueUtil,
     VerifyNewPasswordUtil,
     EmailService,
-    AppConfigService
+    AppConfigService,
+    RedisService
   ],
   exports: [AuthService, LoggedOutGuard, ExtractKeyValueUtil, VerifyNewPasswordUtil],
   controllers: [AuthController],
