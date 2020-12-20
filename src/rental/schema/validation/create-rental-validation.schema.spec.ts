@@ -5,6 +5,7 @@ import { CreateRentalValidationSchema } from '../validation/create-rental-valida
 describe('CreateRentalValidationSchema Unit Test', () => {
   it('should only accept objects that fit the MapRentalInterface', () => {
     const rental: CreateRentalDto = {
+      rentalTitle: 'this is a fake title',
       rentalDescription: 'Tokyo grocery getter',
       address: '204 W Washington St, Lexington, VA 24450',
       specs: {
@@ -12,6 +13,7 @@ describe('CreateRentalValidationSchema Unit Test', () => {
         transmission: 'Automatic',
         cityMpg: 28,
         hwyMpg: 33,
+        mpgE: null,
         fuel: 'gas',
         gasGrade: 'regular',
         description: 'This is a tokyo grocery getter',
