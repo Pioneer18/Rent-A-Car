@@ -14,7 +14,7 @@ import { jwtConstants } from "../constant";
 import { ChangePasswordDto } from "../dto/change-password.dto";
 import { ForgotPasswordDto } from "../dto/forgot-password.dto";
 import { ResetPasswordDto } from "../dto/reset-password.dto";
-import { LoggedOutGuard } from "../gaurds/logged-out.guard";
+import { LoggedOutGuard } from "../guards/logged-out.guard";
 import { ExtractKeyValueUtilInterface } from "../interfaces/utils/extractKeyValueUtil/extract-key-value-util.interface";
 import { AuthService } from "../service/auth.service";
 import { JwtStrategy } from "../strategies/jwt.strategy";

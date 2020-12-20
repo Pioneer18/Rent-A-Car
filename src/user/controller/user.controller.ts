@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect, Query } from '@nestjs/common';
 import { CreateQuery } from 'mongoose';
-import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
-import { LoggedOutGuard } from '../../auth/gaurds/logged-out.guard';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
 import { JoiValidationPipe } from '../../common/pipes/joi-validation.pipe';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { DeleteUserDto } from '../dto/delete-user.dto';

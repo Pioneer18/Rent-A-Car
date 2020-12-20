@@ -1,6 +1,6 @@
 import { Controller, UseGuards, Get, Request} from '@nestjs/common';
-import { JwtAuthGuard } from './auth/gaurds/jwt-auth.guard';
-import { LoggedOutGuard } from './auth/gaurds/logged-out.guard';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { LoggedOutGuard } from './auth/guards/logged-out.guard';
 /**
  * **summary**: Does not provide any real functionality for the app
  */

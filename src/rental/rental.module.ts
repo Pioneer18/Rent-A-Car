@@ -26,6 +26,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { unavailabilityModel } from '../common/Const';
 import { MapRentalUtil } from './utils/map-rental.util';
 import { ToItemsIndexes } from '../common/util/to-item-indexes';
+import { RedisModule } from '../redis/redis.module';
+import { RedisService } from '../redis/service/redis.service';
 /**
  * - **summary**: This module provides all of the functionality for working with Rentals
  * - **Middleware**: This module consumes the **ValidateUpdateUnavailability** middleware; for more details, in the documentation checkout the **Injectables** ValidateUpdateUnavailability tab
@@ -37,6 +39,7 @@ import { ToItemsIndexes } from '../common/util/to-item-indexes';
     MongooseModule.forFeature([{name: unavailabilityModel, schema: UnavailabilitySchema}]),
     DatabaseModule,
     ConfigModule,
+    RedisModule
   ],
   controllers: [RentalController],
   providers: [
@@ -60,6 +63,7 @@ import { ToItemsIndexes } from '../common/util/to-item-indexes';
     ConfigService,
     MapRentalUtil,
     ToItemsIndexes,
+    RedisService
   ],
   exports: [RentalService],
 })

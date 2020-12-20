@@ -15,8 +15,7 @@ import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images
 import { SaveImagesInterface } from '../interfaces/service/save-images.interface';
 import { FindProfileImageInterface } from '../interfaces/service/find-profile-image.interface';
 import { DeleteImagesInterface } from '../interfaces/service/delete-images.interface';
-import { response } from 'express';
-import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
+import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 import { DeleteAllImagesInterface } from '../interfaces/service/delete-all-images.interface';
 import { FileUploadAndSaveInterface } from '../interfaces/service/fileupload-and-save.interface';
 describe('ImagesService', () => {

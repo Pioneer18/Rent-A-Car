@@ -24,18 +24,20 @@ import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
 import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto'; // '../dto/update-unavailability-data.dto';
 import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
-import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RentalInterface } from '../interface/rental.interface';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 import { ToItemsIndexes } from '../../common/util/to-item-indexes';
+import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
 
 /**
  * - **summary**: controller for managing rentals in the application
  * - **Middleware**: The ValidateUpdateUnavailabilityMiddleware class is applied to the updateUnavailability method
  */
 @UseGuards(JwtAuthGuard)
+@UseGuards(LoggedOutGuard)
 @Controller('rental')
 export class RentalController {
   constructor(

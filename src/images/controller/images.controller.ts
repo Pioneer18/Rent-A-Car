@@ -1,15 +1,17 @@
 import { Controller, Post, Req, UseGuards, Body, Get, Query, Res, Logger } from '@nestjs/common';
-import { JwtAuthGuard } from '../../auth/gaurds/jwt-auth.guard';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { ImagesService } from '../service/images.service';
 import { profile, rentals } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 import { RentalIdParamsDto } from '../dto/rental-id-params.dto';
+import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
 /**
  * **summary**: Controller for managing images in the application
  */
 @UseGuards(JwtAuthGuard)
+@UseGuards(LoggedOutGuard)
 @Controller('images')
 export class ImagesController {
     constructor(

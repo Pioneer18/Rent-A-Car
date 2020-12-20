@@ -3,8 +3,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppModule } from './app.module';
 import { AppService } from './app.service';
-import { JwtAuthGuard } from './auth/gaurds/jwt-auth.guard';
-import { LoggedOutGuard } from './auth/gaurds/logged-out.guard';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { LoggedOutGuard } from './auth/guards/logged-out.guard';
 import { RedisModule } from './redis/redis.module';
 
 describe('AppController', () => {

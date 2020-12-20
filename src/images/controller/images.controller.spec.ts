@@ -15,8 +15,7 @@ import { Request, Response } from 'express';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
 import { RentalIdParamsDto } from '../dto/rental-id-params.dto';
 import { ImageDto } from '../dto/image.dto';
-import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
-import { DeleteResponseInterface } from 'src/common/interfaces/delete-response.interface';
+import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 
 describe('Images Controller', () => {
   let controller: ImagesController;

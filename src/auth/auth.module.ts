@@ -9,7 +9,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './controller/auth.controller';
 import { RedisModule } from '../redis/redis.module';
-import { LoggedOutGuard } from './gaurds/logged-out.guard';
+import { LoggedOutGuard } from './guards/logged-out.guard';
 import { ExtractKeyValueUtil } from './util/extract-key-value.util';
 import { AppConfigModule } from '../config/configuration.module';
 import { VerifyNewPasswordUtil } from './util/verify-new-password.util';

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { RedisService } from '../redis/service/redis.service';
 import { AppConfigModule } from '../config/configuration.module';
 import { AppConfigService } from '../config/configuration.service';
 import { DatabaseModule } from '../database/database.module';
@@ -11,6 +12,7 @@ import { CreateMulterUploadUtil } from './util/create-multer-upload.util';
 import { DeleteS3ImagesUtil } from './util/delete-s3-images.util';
 import { MulterUploadUtil } from './util/multer-upload.util';
 import { ProcessSaveDataUtil } from './util/process-save-data.util';
+import { RedisModule } from '../redis/redis.module';
 /**
  * **summary**: contians all of the functionality for managing images in the application
  */
@@ -19,6 +21,7 @@ import { ProcessSaveDataUtil } from './util/process-save-data.util';
         DatabaseModule,
         MongooseModule.forFeature([{ name: 'Images', schema: ImageSchema }]),
         AppConfigModule,
+        RedisModule
     ],
     controllers: [ImagesController],
     providers: [
@@ -29,6 +32,7 @@ import { ProcessSaveDataUtil } from './util/process-save-data.util';
         CreateMulterUploadUtil,
         MulterUploadUtil,
         DeleteS3ImagesUtil,
+        RedisService,
     ],
     exports: [ImagesService],
 
