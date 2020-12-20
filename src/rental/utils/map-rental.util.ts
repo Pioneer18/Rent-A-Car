@@ -9,6 +9,7 @@ export class MapRentalUtil {
         return {
             _id: data._id,
             userId: data.userId,
+            rentalTitle: data.rentalTitle,
             rentalDescription: data.rentalDescription,
             address: data.address,
             loc: {
