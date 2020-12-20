@@ -35,6 +35,8 @@ describe('GeoUrlApiPipe Unit Test', () => {
 
   describe('test the Functionality of the Pipe', () => {
     const createRentalDto: RawCreateRentalDto = {
+      rentalTitle: 'this is a fake rental title',
+      rentalDescription: 'this is a fake rental description',
       specs: {
         odometer: 230000,
         transmission: 'Automatic',

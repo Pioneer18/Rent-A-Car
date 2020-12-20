@@ -23,6 +23,7 @@ describe('Map Rental Util', () => {
         const mockRentalModelInterface: any = {
             "_id": "5fcd4cb63f741a0a048da7b1",
             "userId": "5fb00c20ef7f512e4cbac459",
+            "rentalTitle": "this is a fake rental title",
             "rentalDescription": "this is a tokyo grocery getter",
             "address": "13125 Gascony St Riverview 33578",
             "loc": {
@@ -75,6 +76,7 @@ describe('Map Rental Util', () => {
         const response: RentalInterface = {
             "_id": "5fcd4cb63f741a0a048da7b1",
             "userId": "5fb00c20ef7f512e4cbac459",
+            "rentalTitle": "this is a fake rental title",
             "rentalDescription": "this is a tokyo grocery getter",
             "address": "13125 Gascony St Riverview 33578",
             "loc": {

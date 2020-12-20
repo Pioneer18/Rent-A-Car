@@ -26,6 +26,8 @@ describe('MapNewRentalPipe Unit Test', () => {
       // do stuffs
       const mockValue: LocCreateRentalDto = {
         value: {
+          rentalTitle: 'This is a fake rental title',
+          rentalDescription: 'this is a tokyo grocery getter',
           specs: {
             odometer: 230000,
             transmission: 'Automatic',
@@ -73,6 +75,7 @@ describe('MapNewRentalPipe Unit Test', () => {
       };
       const mapped = await pipe.transform(mockValue);
       const expected: CreateRentalDto = {
+        rentalTitle: 'This is a fake rental title',
         rentalDescription: 'this is a tokyo grocery getter',
         address: '204 W Washington St Lexington 24450',
         specs: {
