@@ -16,9 +16,9 @@
 ## **Create a New Rental Listing**
 <font size=3>Now that you are logged in, create a new rental listing at your home address or any address of your choice. You may use the example rental JSON object already in the request, one of the rental examples from [here](), or rewrite the rental data yourself.</font>
 
-<img src="https://drive.google.com/uc?export=view&id=1USunlVWm7ZATTgzAfM28bfG_gchZjmUb" alt="Login example">
+<img src="https://drive.google.com/uc?export=view&id=1xNGFZ61qHfN6EkImS3z7opUPX0Up5hdB" alt="Login example">
 
-<font size=3>A successful request will return the rental you just sent and a '201 Created' response, as seen below</font>
+<font size=3>A successful request will return the rental you just sent and a '201 Created' response, as seen below. Notice that the returned rental has an **_id** property now, this is its unique id in the remote MongoDB database.</font>
 
 <img src="https://drive.google.com/uc?export=view&id=1xthGFOPAqJ53y2XVIWGUQHASRtdMywkE" alt="Login example" >
 
