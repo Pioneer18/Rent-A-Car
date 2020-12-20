@@ -25,6 +25,14 @@
 
 ## **Upload Images to a Rental Listing**
 
+<font size=3>To upload images to the new rental you've just created, copy the **_id** from the **Create Rental**  response object and paste it in the **Params** of the **Upload Rental Images** request, as seen below.</font> 
+
+<img src="https://drive.google.com/uc?export=view&id=1KLCQL_WXZyejmwhBDhr49KRyxDz32hp_" alt="Login example" >
+
+<font size=3>Next switch to the body of the **Upload Rental Images** request and choose images from your local pc as shown below, then select **Send** to upload your images. The images are stored in a public **AWS S3 Bucket** in a directory with your account email, the link returned in the response is the download link for the Bucket.</font>
+
+<img src="https://drive.google.com/uc?export=view&id=1tYF1grDx2454Bq1zSaDPghctN8n0EvLb" alt="Login example" >
+
 ## **Search For Rental Listings in Different Cities**
 
 
