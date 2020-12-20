@@ -15,8 +15,8 @@ import { UserInterface } from '../interface/user.interface';
 /**
  * **summary**: Controller for managing users in the application
  */
-@UseGuards(JwtAuthGuard)
 @UseGuards(LoggedOutGuard)
+@UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
