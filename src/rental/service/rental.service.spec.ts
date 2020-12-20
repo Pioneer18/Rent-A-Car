@@ -60,6 +60,7 @@ describe('RentalService Unit Tests', () => {
       const mockRentalModel = await testService.returnRentalModel();
       // a mocked CreateRentalDto object to pass to the createRental method
       const mockedRental: CreateRentalDto = {
+        rentalTitle: 'this is a fake rental title',
         rentalDescription: 'This is a Tokyo grocery getter',
         address: '3489 FakeDale Drive, Fake City, GA',
         specs: {
@@ -278,14 +279,11 @@ describe('RentalService Unit Tests', () => {
       const mockEditDetails = async (data) => {
         try {
           const filter = { _id: data.rentalId };
-          const update = {
+          const update: EditDetailsUpdater = {
             specs: data.specs,
             features: data.features,
           };
-          const updater: EditDetailsUpdater = {
-            $set: update,
-          };
-          return { updater, filter }
+          return { update, filter }
         } catch (err) {
           throw new Error(err);
         }
@@ -293,7 +291,7 @@ describe('RentalService Unit Tests', () => {
       // test the mock method with the mock data
       const test = await mockEditDetails(data);
       expect(test.filter).toEqual(expect.objectContaining({ _id: data.rentalId }));
-      expect(test.updater).toEqual(expect.objectContaining({
+      expect(test.update).toEqual(expect.objectContaining({
         $set: {
           specs: data.specs,
           features: data.features
@@ -460,10 +458,8 @@ describe('RentalService Unit Tests', () => {
           unavailabilityId: '1606606517860'
         },
         updater: {
-          $set: {
             start: 0,
             end: 12
-          }
         }
       }
       // mock method
