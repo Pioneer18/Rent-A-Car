@@ -11,7 +11,6 @@ import { EditPricingInterface } from '../interface/service/edit-pricing.interfac
 import { RentalQuery } from '../interface/service/create-rental-query.interface';
 import { EditPricingUpdater } from '../interface/service/edit-pricing-updater.interface';
 import { EditDetailsInterface } from '../interface/service/edit-details.interface';
-import { EditDetailsUpdater } from '../interface/service/edit-details-updater.interface';
 import { ScheduleUnavailabilityInterface } from '../interface/service/schedule-unavailability.interface';
 import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
 import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
@@ -19,6 +18,7 @@ import { UpdateResponseInterface } from '../../common/interfaces/update-response
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
 import { MapRentalUtil } from '../utils/map-rental.util';
+import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
 
 /**
  * **summary**: Create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
@@ -64,6 +64,19 @@ export class RentalService {
       } else {
         throw new Error('No rentals were found');
       }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * **summary**: Query the current user's rentals
+   * @param user The user's id 
+   */
+  userRentals = async (user: JwtPayloadInterface): Promise<RentalInterface[]> => {
+    try {
+      const rentals = await this.rentalModel.find({userId: user.userId}).lean();
+      return rentals;
     } catch (err) {
       throw new Error(err);
     }

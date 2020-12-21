@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req, UseGuards, Request } from '@nestjs/common';
 import { RentalService } from '../service/rental.service';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
@@ -31,6 +31,7 @@ import { UpdateResponseInterface } from '../../common/interfaces/update-response
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 import { ToItemsIndexes } from '../../common/util/to-item-indexes';
 import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
+import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
 
 /**
  * - **summary**: controller for managing rentals in the application
@@ -71,6 +72,15 @@ export class RentalController {
   @UsePipes(new GivenNoticePipe())
   async searchRental(@Body() searchRentalDto: SearchRentalDto): Promise<RentalInterface[]> {
       return await this.rentalService.searchRental(searchRentalDto);
+  }
+
+  /**
+   * **summary**: Find all of the current logged in user's rentals
+   * @param userId
+   */
+  @Get('user-rentals')
+  async userRentals(@Request() req): Promise<RentalInterface[]> {
+    return await this.rentalService.userRentals(req.user)
   }
 
   /**

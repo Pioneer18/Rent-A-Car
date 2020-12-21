@@ -38,18 +38,18 @@
 Rent-A-Car is designed to enable a user to travel to a new city and easily locate a convenient rental car near their location. Like other similar car rental applications, Rent-A-Car users may list rental vehicles at their home or a well traveled public location; e.g. near a Train Station.
 
 ## **Troubleshooting**
-<font size=3>- **No Response From Request**: If your request is infintely pending and never recieves a successful response, you may have not logged into the application or your session has expired. Please try logging into the application again before making the request</font>
+<font size=3>- **No Response From Request**: If your request is infintely pending and never recieves a successful response, you may have not logged into the application or your session has expired. Please try logging into the application again before making the request.</font>
 
-<font size=3>- **Image Upload Error**: If you are unable to upload one or several images, make sure that the selected files exist and are not corrupted in any way</font>
-
-<font size=3>If you've ensured the selected files are present and that they are of the correct uncorrupted file type, yet the files still never upload, try removing the cookie key from the Header of the request.</font>
+<font size=3>- **Image Upload Error**: If you are unable to upload one or several images, make sure that the selected files exist and are not corrupted in any way.</font>
 
 <img src="https://drive.google.com/uc?export=view&id=1-5uvVG0Ya5Dmc_6BRVSOii8FDRkXuCZq" alt="Login example" >
 
-<font size=3>- **Create Rental Error**: If you get a bad request error when you send the **Create Rental** request, try these solutions</font>
+<font size=3>- **Create Rental Error**: If you get a bad request error when you send the **Create Rental** request, try these solutions.</font>
 
 - Double check the **gasGrade** value is one of the following exactly (regular, mid, premium, diesel, N/A)
 - Make sure you have filled in every property and that there are no missing commas
 - If everything looks perfect but there is still an error, make sure that the last propery of each section does not have a comma
 
-<font size=3>- **No Search Rental Results**: If you cannot find any rentals near the addresses you are entering, you may be searching to far from any listed rentals. Please try one of the searching with one of the examples below</font>
+<font size=3>- **No Search Rental Results**: If you cannot find any rentals near the addresses you are entering, you may be searching to far from any listed rentals. Please try one of the searching with one of the examples below.</font>
+
+<font size=3>- **Cannot Read Property 'Slice' of Undefined**: If you receive this error message, check that you have the **Cookie** property selected in the **Headers** tab of the request.</font>
