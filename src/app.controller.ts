@@ -8,7 +8,7 @@ import { LoggedOutGuard } from './auth/guards/logged-out.guard';
 export class AppController {
 
   @UseGuards(JwtAuthGuard)
-  // @UseGuards(LoggedOutGuard)
+  @UseGuards(LoggedOutGuard)
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
