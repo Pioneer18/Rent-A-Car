@@ -1,8 +1,8 @@
-# **Rent A Car API**
-<font size=3>[Rent-a-car](https://github.com/Pioneer18/Rent-A-Car) is a demonstrative peer-to-peer car rental application. A user is able to search for car rentals in a radius near their location or near any address of their choice, as well as list and manage their own rentals. This application was built with a [NestJS](https://nestjs.com) backend.</font>
+# **Rent-A-Car API**
+<font size=3>[Rent-a-car](https://github.com/Pioneer18/Rent-A-Car) is a demonstrative peer-to-peer car rental application. The app is designed to enable users to travel to a new city and easily locate a convenient rental car near their location, or to list their own vehicle for rental. Like other similar car rental applications, Rent-A-Car users may list rental vehicles at their home or near a well traveled public location; e.g. near a Train Station. Users may also manage their profiles, upload images for their rentals, edit rental details, and more. This application was built with the [NestJS](https://nestjs.com) webframework.</font>
 
 ## **Quick Start**
-<font size=3>To quickly get started with a tour of the application, please follow this guide.</font>
+<font size=3>To quickly get started with a tour of the application, please follow this [guide](https://github.com/Pioneer18/Rent-A-Car/wiki/Rent-A-Car-Wiki-Home).</font>
 
 ## **Logging In to the Applicaiton**
 <font size=3>The first step to using the Rent-A-Car API is to login to the application. You may use one of the premade accounts available in the request body, or create a new account to begin.</font>
@@ -16,7 +16,7 @@
 ## **Create a New Rental Listing**
 <font size=3>Now that you are logged in, create a new rental listing at your home address or any address of your choice. You may use the example rental JSON object already in the request, one of the rental examples from [here](), or rewrite the rental data yourself.</font>
 
-<img src="https://drive.google.com/uc?export=view&id=1xNGFZ61qHfN6EkImS3z7opUPX0Up5hdB" alt="Login example">
+<img src="https://drive.google.com/uc?export=view&id=1yjWM6KbWoGuE84uVJkqri3onSlb4KH0S" alt="Login example">
 
 <font size=3>A successful request will return the rental you just sent and a '201 Created' response, as seen below. Notice that the returned rental has an **_id** property now, this is its unique id in the remote MongoDB database.</font>
 
@@ -35,6 +35,7 @@
 
 ## **Search For Rental Listings in Different Cities**
 
+Rent-A-Car is designed to enable a user to travel to a new city and easily locate a convenient rental car near their location. Like other similar car rental applications, Rent-A-Car users may list rental vehicles at their home or a well traveled public location; e.g. near a Train Station.
 
 ## **Troubleshooting**
 <font size=3>**No Response From Request**: If your request is infintely pending and never recieves a successful response, you may have not logged into the application or your session has expired. Please try logging into the application again before making the request</font>
