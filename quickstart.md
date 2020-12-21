@@ -11,27 +11,27 @@
 
 <font size=3>To create a new account use the **User Module - Create User** request. Once you have created or selected an account, open the **Auth Module** and select the **Login** request to enter your selected account credentials. A successful login request will return the created profile data in the response as seen below.</font>  
 
-<img src="https://drive.google.com/uc?export=view&id=1p8oGVy38OqYgKJ6x4VoE1eu6UwN_w5nM" alt="Login example" width="450" height="180">
+<img src="https://drive.google.com/uc?export=view&id=1p8oGVy38OqYgKJ6x4VoE1eu6UwN_w5nM" alt="Login Success" width="450" height="180">
 
 ## **Create a New Rental Listing**
 <font size=3>Now that you are logged in, create a new rental listing at your home address or any address of your choice. You may use the example rental JSON object already in the request, one of the rental examples from [here](), or rewrite the rental data yourself.</font>
 
-<img src="https://drive.google.com/uc?export=view&id=1yjWM6KbWoGuE84uVJkqri3onSlb4KH0S" alt="Login example">
+<img src="https://drive.google.com/uc?export=view&id=1yjWM6KbWoGuE84uVJkqri3onSlb4KH0S" alt="Create a Rental Gif">
 
 <font size=3>A successful request will return the rental you just sent and a '201 Created' response, as seen below. Notice that the returned rental has an **_id** property now, this is its unique id in the remote MongoDB database.</font>
 
-<img src="https://drive.google.com/uc?export=view&id=1MJcfMsFlhIbD_u_mTbOO3S-jf2OYtBNU" alt="Login example" >
+<img src="https://drive.google.com/uc?export=view&id=1MJcfMsFlhIbD_u_mTbOO3S-jf2OYtBNU" alt="Created a Rental" >
 
 
 ## **Upload Images to a Rental Listing**
 
-<font size=3>To upload images to the new rental you've just created, copy the **_id** from the **Create Rental**  response object and paste it in the **Params** of the **Upload Rental Images** request, as seen below.</font> 
+<font size=3>To upload images to the new rental you've just created, select the **List Your Rentals** request to find your rental's **_id**. Copy the **_id** of the rental you would like to upload images to, and paste it into the **Upload Rental Images**'s **rentalId** param, as seen below. Then, in the body tab of the **Upload Rental Images** request, select the images you wish to upload from your computer's local file system. </font> 
 
-<img src="https://drive.google.com/uc?export=view&id=1dESLgGAzBEtVRV41HuPfm_lYqgfZU8g0" alt="Login example" >
+<img src="https://drive.google.com/uc?export=view&id=1tYF1grDx2454Bq1zSaDPghctN8n0EvLb" alt="Upload Rental Images Gif" >
 
 <font size=3>Next switch to the body of the **Upload Rental Images** request and choose images from your local pc as shown below, then select **Send** to upload your images. The images are stored in a public **AWS S3 Bucket** in a directory with your account email, the link returned in the response is the download link for the Bucket.</font>
 
-<img src="https://drive.google.com/uc?export=view&id=1tYF1grDx2454Bq1zSaDPghctN8n0EvLb" alt="Login example" >
+<img src="https://drive.google.com/uc?export=view&id=1tYF1grDx2454Bq1zSaDPghctN8n0EvLb" alt="" >
 
 ## **Search For Rental Listings in Different Cities**
 
@@ -42,7 +42,7 @@ Rent-A-Car is designed to enable a user to travel to a new city and easily locat
 
 <font size=3>- **Image Upload Error**: If you are unable to upload one or several images, make sure that the selected files exist and are not corrupted in any way.</font>
 
-<img src="https://drive.google.com/uc?export=view&id=1-5uvVG0Ya5Dmc_6BRVSOii8FDRkXuCZq" alt="Login example" >
+<img src="https://drive.google.com/uc?export=view&id=1-5uvVG0Ya5Dmc_6BRVSOii8FDRkXuCZq" alt="Image Upload Error" >
 
 <font size=3>- **Create Rental Error**: If you get a bad request error when you send the **Create Rental** request, try these solutions.</font>
 
