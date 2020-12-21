@@ -188,6 +188,22 @@ export class RentalService {
   }
 
   /**
+   * **summary**: Remove the selected rental
+   * @param rentalId string 
+   */
+  removeRental = async (rentalId: string): Promise<DeleteResponseInterface> => {
+    try {
+      const remove = await this.rentalModel.remove({_id: rentalId})
+      if (remove.deletedCount === 0) {
+        throw new Error('No Unavailability documents were found, no documents were deleted');
+      }
+      return remove;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  /**
    * **summary**: Convert a searchRentalDto into a mongoose query for the searchRental method
    * - The query searchs a maxium 8 mile radius for rentals
    * - Filters:

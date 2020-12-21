@@ -43,7 +43,7 @@ import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
 export class RentalController {
   constructor(
     private readonly rentalService: RentalService,
-    ) {}
+  ) { }
 
   /**
    * **summary**: Create a new vehicle rental listing
@@ -71,7 +71,7 @@ export class RentalController {
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
   @UsePipes(new GivenNoticePipe())
   async searchRental(@Body() searchRentalDto: SearchRentalDto): Promise<RentalInterface[]> {
-      return await this.rentalService.searchRental(searchRentalDto);
+    return await this.rentalService.searchRental(searchRentalDto);
   }
 
   /**
@@ -89,7 +89,7 @@ export class RentalController {
   @Post('edit-price')
   @UsePipes(new PricingPipe())
   async editPricing(@Body() pricingDto: PricingDto): Promise<RentalInterface> {
-      return await this.rentalService.editPricing(pricingDto);
+    return await this.rentalService.editPricing(pricingDto);
   }
 
   /**
@@ -98,7 +98,7 @@ export class RentalController {
   @Post('edit-details')
   @UsePipes(new ValidateEditDetailsPipe())
   async editDetails(@Body() editDetailsDto: EditDetailsDto): Promise<RentalInterface> {
-      return await this.rentalService.editDetails(editDetailsDto);
+    return await this.rentalService.editDetails(editDetailsDto);
   }
 
   /**
@@ -121,16 +121,21 @@ export class RentalController {
     return await this.rentalService.updateUnavailability(data);
   }
 
-   /**
-    * **summary**: Remove unavailability from the selected rental
-    */
-   @Post('remove-unavailability')
-   @UsePipes(new ValidateRemoveUnavailabilityPipe())
-   async removeUnavailability(@Body() data: RemoveUnavailabilityDto): Promise<DeleteResponseInterface> {
-     return await this.rentalService.removeUnavailability(data);
-   }
+  /**
+   * **summary**: Remove unavailability from the selected rental
+   */
+  @Post('remove-unavailability')
+  @UsePipes(new ValidateRemoveUnavailabilityPipe())
+  async removeUnavailability(@Body() data: RemoveUnavailabilityDto): Promise<DeleteResponseInterface> {
+    return await this.rentalService.removeUnavailability(data);
+  }
 
-    /**
-     * Toggle Rental listed status
-     */
+  /**
+   * **summary**: Remove the selected rental
+   * @param rentalId
+   */
+  @Post('remove-rental')
+  async removeRental(@Query() rentalId: string) {
+    return await this.rentalService.removeRental(rentalId);
+  }
 }
