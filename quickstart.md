@@ -27,15 +27,28 @@
 
 <font size=3>To upload images to the new rental you've just created, select the **List Your Rentals** request to find your rental's **_id**. Copy the **_id** of the rental you would like to upload images to, and paste it into the **Upload Rental Images**'s **rentalId** param, as seen below. Then, in the body tab of the **Upload Rental Images** request, select the images you wish to upload from your computer's local file system. </font> 
 
+<font size=3>Next switch to the body of the **Upload Rental Images** request and choose images from your local pc, which is also shown below, then select **Send** to upload your images.</font>
+
 <img src="https://drive.google.com/uc?export=view&id=1tYF1grDx2454Bq1zSaDPghctN8n0EvLb" alt="Upload Rental Images Gif" >
 
-<font size=3>Next switch to the body of the **Upload Rental Images** request and choose images from your local pc as shown below, then select **Send** to upload your images. The images are stored in a public **AWS S3 Bucket** in a directory with your account email, the link returned in the response is the download link for the Bucket.</font>
+<font size=3>The images are stored in a public **AWS S3 Bucket** in a directory with your account email, the link returned in the response is the download link for the Bucket. In the two images below you can see the download link, and a screenshot of the bucket where the images are stored.</font>
 
-<img src="https://drive.google.com/uc?export=view&id=1tYF1grDx2454Bq1zSaDPghctN8n0EvLb" alt="" >
+<img src="https://drive.google.com/uc?export=view&id=1tVv92vCFXhOzL71G3DE_Ox8009Tjx1sc" alt="aws download link">
+
+<img src="https://drive.google.com/uc?export=view&id=1Ish_BRCeQI8lk2wtP3tbpgc5rK-8SOs-" alt="s3 bucket">
+
 
 ## **Search For Rental Listings in Different Cities**
 
-Rent-A-Car is designed to enable a user to travel to a new city and easily locate a convenient rental car near their location. Like other similar car rental applications, Rent-A-Car users may list rental vehicles at their home or a well traveled public location; e.g. near a Train Station.
+#### Rental Listing Reference Table
+
+|City          |User          |Vehicle          |Address               |Max Duration     |Min Duration     |Required Notice 
+
+## **Schdeule Unavailability**
+
+## **Edit The Rental Pricing**
+
+## **Logout of the App**
 
 ## **Troubleshooting**
 <font size=3>- **No Response From Request**: If your request is infintely pending and never recieves a successful response, you may have not logged into the application or your session has expired. Please try logging into the application again before making the request.</font>
