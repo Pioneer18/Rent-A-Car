@@ -31,7 +31,7 @@ import { UpdateResponseInterface } from '../../common/interfaces/update-response
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 import { ToItemsIndexes } from '../../common/util/to-item-indexes';
 import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
-import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
+import { RentalIdDto } from '../dto/rental-id.dto';
 
 /**
  * - **summary**: controller for managing rentals in the application
@@ -135,7 +135,7 @@ export class RentalController {
    * @param rentalId
    */
   @Post('remove-rental')
-  async removeRental(@Query() rentalId: string) {
-    return await this.rentalService.removeRental(rentalId);
+  async removeRental(@Query() params: RentalIdDto) {
+    return await this.rentalService.removeRental(params.rentalId);
   }
 }
