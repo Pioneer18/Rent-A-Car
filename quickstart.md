@@ -53,3 +53,5 @@ Rent-A-Car is designed to enable a user to travel to a new city and easily locat
 <font size=3>- **No Search Rental Results**: If you cannot find any rentals near the addresses you are entering, you may be searching to far from any listed rentals. Please try one of the searching with one of the examples below.</font>
 
 <font size=3>- **Cannot Read Property 'Slice' of Undefined**: If you receive this error message, check that you have the **Cookie** property selected in the **Headers** tab of the request.</font>
+
+<font size=3>- **Slow Request Response**: If you are experincing slow request response time, such as on initial login, this is likely due to the Google Platform's 'Cold Load'
