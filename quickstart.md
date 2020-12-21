@@ -40,9 +40,29 @@
 
 ## **Search For Rental Listings in Different Cities**
 
-#### Rental Listing Reference Table
+<font size=3>Because Rent-A-Car is demonstrative and does not have a real user base listing rentals, please reference the below table to simulate searching for rentals in a city. There are a total of 15 rentals listed in 3 different
+Florida cities; Tampa, Orlando, and Riverview. The addresses were generated with an online random address generator tool.</font>
 
-|City          |User          |Vehicle          |Address               |Max Duration     |Min Duration     |Required Notice 
+### Rental Listing Reference Table
+
+| City      | User                     | Vehicle                     | Address                                   | _id                       |Max Duration  | Min Duration  | Required Notice  |
+|-----------|--------------------------|-----------------------------|-------------------------------------------|---------------------------|--------------|---------------|------------------|
+| Tampa     | ice.king@gmail.com       | 1980 Volkswagen Rabbit      | 1103 E Lambright St Tampa 33604           | 5fe018f2975b32000e391509  |     6        |       4       |        4         |
+| Tampa     | ice.king@gmail.com       | 2020 Subaru Outback         | 2512 E Stanley Matthew Cir Tampa 33604    | 5fe01a64975b32000e39150a  |     6        |       4       |        4         |
+| Tampa     | sp117@gmail.com          | Rezvani Tank X              | 5807 Osceola Pl Tampa 33604               | 5fe01d94975b32000e39150c  |     6        |       2       |        2         |
+| Tampa     | sp117@gmail.com          | Rexvani Hercules 6x6        | 5801 N 9th St Tampa 33604                 | 5fe02065975b32000e39150d  |     6        |       2       |        2         |
+| Tampa     |                          |                             |                                           |                           |              |               |                  |
+| Riverview | finn-the-human@gmail.com | Tesla Model 3               | 10417 Avelar Ridge Dr Riverview 33578     | 5fe001c28d3a5b000e7ab5e3  |     5        |       1       |        2         |
+| Riverview | finn-the-human@gmail.com | Cybertruck SM               | 10262 Post Harvest Dr Riverview 33578     | 5fe003b18d3a5b000e7ab5e4  |     5        |       1       |        2         |
+| Riverview | jake.dog@gmail.com       | 2017 Toyota Prius           | 7022 Blue Beech Dr Riverview 33578        | 5fe01441975b32000e391506  |     6        |       1       |        1         |
+| Riverview | jake.dog@gmail.com       | 2002 Dodge Grand Caravan    | 8203 N Mulberry St Tampa 33604            | 5fe016b1975b32000e391507  |     6        |       1       |        1         |
+| Riverview | unathi.email@gmail.com   | 2020 Honda Accord           | 5334 Bandera Springs Cir Riverview 33578  | 5fdec36f1815d8000eb06f49  |     5        |       2       |        3         |
+| Riverview | unathi.email@gmail.com   | 2020 Ram Power Truck        | 11323 Poinsettia St Riverview 33578       | 5fdffc7c8d3a5b000e7ab5e2  |     5        |       2       |        3         |
+| Orlando   |                          |                             |                                           |                           |     5        |       1       |        2         |
+| Orlando   |                          |                             |                                           |                           |              |               |                  |
+| Orlando   |                          |                             |                                           |                           |              |               |                  |
+| Orlando   |                          |                             |                                           |                           |              |               |                  |
+| Orlando   |                          |                             |                                           |                           |              |               |                  |
 
 ## **Schdeule Unavailability**
 
