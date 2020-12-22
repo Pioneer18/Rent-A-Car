@@ -10,7 +10,7 @@ import { RentalDurationPipe } from '../pipes/rental-duration.pipe';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum.util';
 import { SearchRentalDto } from '../dto/searchRental/search-rental.dto';
 import { RequestCoordinatesPipe } from '../pipes/request-coordinates.pipe';
-import { GivenNoticePipe } from '../pipes/given-notice.pipe';
+import { RentalSearchFilterPipe } from '../pipes/rental-search-filter.pipe';
 import { SearchRentalValidationSchema } from '../schema/validation/search-rental-validation.schema';
 import { PricingPipe } from '../pipes/pricing.pipe';
 import { PricingDto } from '../dto/pricing/pricing.dto';
@@ -69,7 +69,7 @@ export class RentalController {
   @UsePipes(new JoiValidationPipe(SearchRentalValidationSchema))
   @UsePipes(new RequestCoordinatesPipe(new GeoUrlApiUtil()))
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
-  @UsePipes(new GivenNoticePipe())
+  @UsePipes(new RentalSearchFilterPipe())
   async searchRental(@Body() searchRentalDto: SearchRentalDto): Promise<RentalInterface[]> {
     return await this.rentalService.searchRental(searchRentalDto);
   }

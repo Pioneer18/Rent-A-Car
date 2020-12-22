@@ -1,9 +1,10 @@
 import { Injectable, Logger, PipeTransform } from '@nestjs/common';
-import { GivenNoticeSearchRentalDto } from '../dto/searchRental/given-notice-search-rental-dto';
+import { RentalSearchFilter } from '../dto/searchRental/given-notice-search-rental-dto';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum.util';
 import { RequestCoordinatesDto } from '../dto/searchRental/request-coordinates.dto';
+import { RentalDurations } from '../const';
 /**
- * **summary**: Create a rental Duration from the incoming GivenNoticeSearchRentalDto
+ * **summary**: Create a rental Duration from the incoming RentalSearchFilter
  */
 @Injectable()
 export class RentalDurationPipe implements PipeTransform {
@@ -16,18 +17,21 @@ export class RentalDurationPipe implements PipeTransform {
    * Rental query
    * @param value the semi processed client request data to query a rental near their, or a specified, locaion
    */
-  transform = async (value: GivenNoticeSearchRentalDto): Promise<RequestCoordinatesDto> => {
+  transform = async (value: RentalSearchFilter): Promise<RequestCoordinatesDto> => {
     try {
+      let rentalDuration = null;
+      if (value.rentalEndTime && value.rentalStartTime) {
+        rentalDuration = await this.generateDuration.generateRentalDurationEnum({
+          startTime: value.rentalStartTime,
+          endTime: value.rentalEndTime,
+        });
+      }
       const dto: RequestCoordinatesDto = {
         address: value.address,
-        price: value.price,
-        features: value.features,
-        rentalDuration: await this.generateDuration.generateRentalDurationEnum(
-          {
-            startTime: value.rentalStartTime,
-            endTime: value.rentalEndTime,
-          }),
-        givenNotice: value.givenNotice,
+        price: value.price ? value.price : null,
+        features: value.features ? value.features : null,
+        rentalDuration,
+        givenNotice: rentalDuration !== null ? value.givenNotice : null,
       };
       return await dto;
     } catch (err) {

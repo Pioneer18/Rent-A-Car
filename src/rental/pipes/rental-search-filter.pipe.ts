@@ -2,7 +2,7 @@ import {
   Injectable,
   PipeTransform,
 } from '@nestjs/common';
-import { GivenNoticeSearchRentalDto } from '../dto/searchRental/given-notice-search-rental-dto';
+import { RentalSearchFilter } from '../dto/searchRental/given-notice-search-rental-dto';
 import { RawSearchRentalDto } from '../dto/searchRental/raw-search-rental.dto';
 import { DateTime } from 'luxon';
 /**
@@ -11,7 +11,7 @@ import { DateTime } from 'luxon';
  * - Luxon is "a powerful, modern, and friendly wrapper for Javacript dates and times"
  */
 @Injectable()
-export class GivenNoticePipe implements PipeTransform {
+export class RentalSearchFilterPipe implements PipeTransform {
 
   /**
    * **summary**: Create the **givenNotice** property value, it must be at least one hour
@@ -45,29 +45,38 @@ export class GivenNoticePipe implements PipeTransform {
   }
 
   /**
-   * **summary**: Use the validateRequestedTime and createGivenNotice methods to return a GivenNoticeSearchRentalDto
+   * **summary**: Use the validateRequestedTime and createGivenNotice methods to return a RentalSearchFilter
    * @param value the raw client request data to search for rentals
    */
-  transform = async (value: RawSearchRentalDto): Promise<GivenNoticeSearchRentalDto> => {
+  transform = async (value: RawSearchRentalDto): Promise<RentalSearchFilter> => {
     try {
-      // make start and end time into DateTimes
-      const startTime: DateTime = DateTime.fromISO(
-        new Date(value.rentalStartTime).toISOString(),
-      );
-      const endTime: DateTime = DateTime.fromISO(
-        new Date(value.rentalEndTime).toISOString(),
-      );
-      await this.validateRequestedTime(startTime, endTime);
-      const givenNotice = await this.createGivenNotice(startTime);
-      const dto: GivenNoticeSearchRentalDto = {
+      // Schedule specific query
+      if (value.rentalStartTime && value.rentalEndTime) {
+        const startTime: DateTime = DateTime.fromISO(
+          new Date(value.rentalStartTime).toISOString(),
+        );
+        const endTime: DateTime = DateTime.fromISO(
+          new Date(value.rentalEndTime).toISOString(),
+        );
+        await this.validateRequestedTime(startTime, endTime);
+        const givenNotice = await this.createGivenNotice(startTime);
+        const dto: RentalSearchFilter = {
+          address: value.address,
+          rentalStartTime: startTime,
+          rentalEndTime: endTime,
+          price: value.price ? value.price : null,
+          features: value.features ? value.features : null,
+          givenNotice,
+        };
+        return dto;
+      }
+      // No Schedule
+      const dto: RentalSearchFilter = {
         address: value.address,
-        rentalStartTime: startTime,
-        rentalEndTime: endTime,
         price: value.price ? value.price : null,
         features: value.features ? value.features : null,
-        givenNotice,
-      };
-      return dto;
+      }
+      return dto
     } catch (err) {
       throw new Error(err);
     }

@@ -12,7 +12,7 @@ import { MapNewRentalPipe } from './pipes/map-new-rental.pipe';
 import { GeoUrlApiPipe } from './pipes/geo-url-api.pipe';
 import { RequestCoordinatesPipe } from './pipes/request-coordinates.pipe';
 import { RentalDurationPipe } from './pipes/rental-duration.pipe';
-import { GivenNoticePipe } from './pipes/given-notice.pipe';
+import { RentalSearchFilterPipe } from './pipes/rental-search-filter.pipe';
 import { PricingPipe } from './pipes/pricing.pipe';
 import { ValidateEditDetailsPipe } from './pipes/validate-edit-details.pipe';
 import { ProcessUnavailabilityPipe } from './pipes/process-unavailability.pipe';
@@ -51,7 +51,7 @@ import { RedisService } from '../redis/service/redis.service';
     RequestCoordinatesPipe,
     RentalDurationPipe,
     GenerateRentalDurationEnumUtil,
-    GivenNoticePipe,
+    RentalSearchFilterPipe,
     PricingPipe,
     ValidateEditDetailsPipe,
     ProcessUnavailabilityPipe,

@@ -218,11 +218,13 @@ export class RentalService {
   private createRentalQuery = async (rental: SearchRentalInterface): Promise<RentalQuery> => {
     try {
       const query: RentalQuery = {
+        // Scheduling should be optional, each one of them
         'scheduling.rentMinDuration': { $lte: rental.rentalDuration },
         'scheduling.rentMaxDuration': { $gte: rental.rentalDuration },
         'scheduling.requiredNotice': { $lte: rental.givenNotice },
         'loc': {
           $near: {
+            // There should be distance enum
             $maxDistance: 12875, // 8 miles
             $geometry: {
               type: rental.loc.type,

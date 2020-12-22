@@ -23,7 +23,7 @@ import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { RequestCoordinatesPipe } from '../pipes/request-coordinates.pipe';
 import { RentalDurationPipe } from '../pipes/rental-duration.pipe';
 import { GenerateRentalDurationEnumUtil } from '../utils/generate-rental-duration-enum.util';
-import { GivenNoticePipe } from '../pipes/given-notice.pipe';
+import { RentalSearchFilterPipe } from '../pipes/rental-search-filter.pipe';
 import { PricingPipe } from '../pipes/pricing.pipe';
 import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pipe';
 import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
@@ -52,7 +52,7 @@ describe('Rental Controller', () => {
         RequestCoordinatesPipe,
         RentalDurationPipe,
         GenerateRentalDurationEnumUtil,
-        GivenNoticePipe,
+        RentalSearchFilterPipe,
         PricingPipe,
         ValidateUnavailabilityPipe,
         ProcessUnavailabilityPipe,

@@ -1,25 +1,25 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { GivenNoticePipe } from './given-notice.pipe';
+import { RentalSearchFilterPipe } from './rental-search-filter.pipe';
 import { RawSearchRentalDto } from '../dto/searchRental/raw-search-rental.dto';
 import { Logger } from '@nestjs/common';
 import { DateTime } from 'luxon';
 /**
  * What does this pipe do?
  * **summary**:
- * Accepts a RawSearchRentalDto and returns a GivenNoticeSearchRentalDto
+ * Accepts a RawSearchRentalDto and returns a RentalSearchFilter
  * creates a givenNotice
  * validatesRequestedTime
  */
-describe('GivenNoticePipe Unit Test', () => {
-  let pipe: GivenNoticePipe;
+describe('RentalSearchFilterPipe Unit Test', () => {
+  let pipe: RentalSearchFilterPipe;
   let app: TestingModule;
   let setTime;
 
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [GivenNoticePipe],
+      providers: [RentalSearchFilterPipe],
     }).compile();
-    pipe = module.get<GivenNoticePipe>(GivenNoticePipe);
+    pipe = module.get<RentalSearchFilterPipe>(RentalSearchFilterPipe);
     app = module;
 
     const temp = async () => {
@@ -54,7 +54,7 @@ describe('GivenNoticePipe Unit Test', () => {
     setTime = temp;
   });
 
-  describe('GivenNoticePipe definition unit test', () => {
+  describe('RentalSearchFilterPipe definition unit test', () => {
     it('should be defined', () => {
       expect(pipe).toBeDefined();
     });
