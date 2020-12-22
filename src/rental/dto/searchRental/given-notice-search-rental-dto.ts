@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon';
+import { SearchRentalRadius } from '../../../rental/const';
 /**
  * **summary**: Dto returned by the RentalSearchFilterPipe after processing a RawSearchRentalDto; The RentalSearchFilterPipe adds the 'givenNotice' property
  * - passed to the RentalDurationPipe
@@ -11,4 +12,5 @@ export class RentalSearchFilter {
   price?: number;
   features?: string[];
   givenNotice?: number;
+  radius: SearchRentalRadius;
 }

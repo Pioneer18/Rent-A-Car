@@ -32,6 +32,7 @@ export class RentalDurationPipe implements PipeTransform {
         features: value.features ? value.features : null,
         rentalDuration,
         givenNotice: rentalDuration !== null ? value.givenNotice : null,
+        radius: value.radius
       };
       return await dto;
     } catch (err) {

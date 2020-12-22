@@ -18,13 +18,11 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
     const geoUrl = process.env.GEO_URL;
     const apiKey = process.env.GEO_API_KEY;
     try {
-      Logger.log('Request Coordinates Pipe: Value')
-      Logger.log(value);
       const dto: SearchRentalDto = {
         address: value.address,
-        price: value.price,
-        features: value.features,
-        rentalDuration: value.rentalDuration,
+        price: value.price ? value.price : null,
+        features: value.features ? value.features : null,
+        rentalDuration: value.rentalDuration ? value.rentalDuration : null,
         loc: {
           type: 'Point',
           coordinates: await this.geoUrlApiUtil.getCoordinates({
@@ -33,7 +31,8 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
             apiKey,
           }),
         },
-        givenNotice: value.givenNotice,
+        givenNotice: value.givenNotice ? value.givenNotice : null,
+        radius: value.radius
       };
       Logger.log('Request Coordinates Pipe: Dto')
       Logger.log(dto);

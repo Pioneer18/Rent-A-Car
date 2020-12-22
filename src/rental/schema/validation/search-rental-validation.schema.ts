@@ -5,9 +5,9 @@ import * as joi from '@hapi/joi';
  */
 export const SearchRentalValidationSchema = joi.object({
   address: joi.string().required(),
-  features: joi.array().items(joi.string()).allow(null),
-  price: joi.number().allow(null),
-  rentalDuration: joi.number().required(),
+  features: joi.array().items(joi.string()).required().allow(null),
+  price: joi.number().required().allow(null),
+  rentalDuration: joi.number().required().allow(null),
   loc: {
     type: joi.string().required(),
     coordinates: joi
@@ -15,5 +15,6 @@ export const SearchRentalValidationSchema = joi.object({
       .items(joi.number(), joi.number())
       .required(),
   },
-  givenNotice: joi.number().required(),
+  givenNotice: joi.number().required().allow(null),
+  radius: joi.number().required()
 });

@@ -11,3 +11,11 @@ export enum RentalDurations {
   '1 Month',
   '3 Months',
 }
+
+export enum SearchRentalRadius {
+  '12874m', // 8 miles - 0
+  '16093m', // 10 miles
+  '22530m', // 14 miles
+  '28968m'  // 18 miles
+
+}

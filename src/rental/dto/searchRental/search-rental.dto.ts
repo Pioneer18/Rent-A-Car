@@ -1,3 +1,4 @@
+import { SearchRentalRadius } from '../../../rental/const';
 import { SearchRentalInterface } from '../../../rental/interface/service/search-rental.interface';
 
 /**
@@ -7,12 +8,13 @@ import { SearchRentalInterface } from '../../../rental/interface/service/search-
  */
 export class SearchRentalDto implements SearchRentalInterface {
     address: string;
-    price: number;
-    features: string[];
-    rentalDuration: number;
+    price?: number;
+    features?: string[];
+    rentalDuration?: number;
     loc: {
         type: 'Point'
         coordinates: [number, number];
     };
-    givenNotice: number;
+    givenNotice?: number;
+    radius: SearchRentalRadius;
 }

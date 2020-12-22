@@ -217,12 +217,31 @@ export class RentalService {
    */
   private createRentalQuery = async (rental: SearchRentalInterface): Promise<RentalQuery> => {
     try {
-      const query: RentalQuery = {
+      const build = {
         // Scheduling should be optional, each one of them
-        'scheduling.rentMinDuration': { $lte: rental.rentalDuration },
-        'scheduling.rentMaxDuration': { $gte: rental.rentalDuration },
-        'scheduling.requiredNotice': { $lte: rental.givenNotice },
+        'scheduling.rentMinDuration': rental.rentalDuration ? { $lte: rental.rentalDuration } : null,
+        'scheduling.rentMaxDuration': rental.rentalDuration ? { $gte: rental.rentalDuration } : null,
+        'scheduling.requiredNotice': rental.rentalDuration ? { $lte: rental.givenNotice } : null,
         'loc': {
+          $near: {
+            // There should be distance enum
+            $maxDistance: rental.radius, // 12875 === 8 miles
+            $geometry: {
+              type: rental.loc.type,
+              coordinates: [
+                rental.loc.coordinates[0], // latitude
+                rental.loc.coordinates[1], // longitude
+              ],
+            },
+          },
+        },
+        pricing: {
+          price: rental.price ? rental.price : null
+        },
+        features: rental.features ? rental.features : null
+      };
+      let query: RentalQuery = {
+        loc: {
           $near: {
             // There should be distance enum
             $maxDistance: 12875, // 8 miles
@@ -234,16 +253,14 @@ export class RentalService {
               ],
             },
           },
-        },
-      };
-      rental.price
-        ? (query.pricing = {
-          price: rental.price, // add price as optional search parameter
-        })
-        : (rental.price = null);
-      rental.features
-        ? (query.features = { $in: rental.features })
-        : (rental.features = null);
+        }
+      }
+      // add filter options to the query
+      for (const [key, value] of Object.entries(build)) {
+        if (value !== null && key !== 'loc') query[key] = value;
+      }
+      console.log('HERE IS THE RENTAL QUERY')
+      console.log(query)
       return query;
     } catch (err) {
       throw new Error(err);

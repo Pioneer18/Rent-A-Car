@@ -67,6 +67,7 @@ export class RentalSearchFilterPipe implements PipeTransform {
           price: value.price ? value.price : null,
           features: value.features ? value.features : null,
           givenNotice,
+          radius: value.radius
         };
         return dto;
       }
@@ -75,6 +76,7 @@ export class RentalSearchFilterPipe implements PipeTransform {
         address: value.address,
         price: value.price ? value.price : null,
         features: value.features ? value.features : null,
+        radius: value.radius
       }
       return dto
     } catch (err) {
