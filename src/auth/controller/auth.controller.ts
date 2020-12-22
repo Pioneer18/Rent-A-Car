@@ -36,6 +36,7 @@ export class AuthController {
      * session prior to the JWT expiration time
      * @param req The request containing the user's JWT payload to be added to the logged-out 'dead-list' in the Redis cache
      */
+    @UseGuards(LoggedOutGuard)
     @UseGuards(JwtAuthGuard)
     // @Redirect('http://localhost:3000/auth/login')
     @Post('logout')
