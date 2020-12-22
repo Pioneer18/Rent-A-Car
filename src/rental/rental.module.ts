@@ -28,6 +28,7 @@ import { MapRentalUtil } from './utils/map-rental.util';
 import { ToItemsIndexes } from '../common/util/to-item-indexes';
 import { RedisModule } from '../redis/redis.module';
 import { RedisService } from '../redis/service/redis.service';
+import { RadiusToMeters } from './utils/radius-to-meters';
 /**
  * - **summary**: This module provides all of the functionality for working with Rentals
  * - **Middleware**: This module consumes the **ValidateUpdateUnavailability** middleware; for more details, in the documentation checkout the **Injectables** ValidateUpdateUnavailability tab
@@ -63,7 +64,8 @@ import { RedisService } from '../redis/service/redis.service';
     ConfigService,
     MapRentalUtil,
     ToItemsIndexes,
-    RedisService
+    RedisService,
+    RadiusToMeters
   ],
   exports: [RentalService],
 })

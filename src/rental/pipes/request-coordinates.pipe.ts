@@ -18,6 +18,7 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
     const geoUrl = process.env.GEO_URL;
     const apiKey = process.env.GEO_API_KEY;
     try {
+      let temp = value.radius;
       const dto: SearchRentalDto = {
         address: value.address,
         price: value.price ? value.price : null,
@@ -32,10 +33,8 @@ export class RequestCoordinatesPipe implements PipeTransform<any> {
           }),
         },
         givenNotice: value.givenNotice ? value.givenNotice : null,
-        radius: value.radius
+        radius: value.radius,
       };
-      Logger.log('Request Coordinates Pipe: Dto')
-      Logger.log(dto);
       return dto;
     } catch (err) {
       throw new Error(err);

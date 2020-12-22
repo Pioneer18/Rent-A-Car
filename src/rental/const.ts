@@ -13,9 +13,9 @@ export enum RentalDurations {
 }
 
 export enum SearchRentalRadius {
-  '12874m', // 8 miles - 0
-  '16093m', // 10 miles
-  '22530m', // 14 miles
-  '28968m'  // 18 miles
+  '3218m', // 2 miles - 0
+  '6437m', // 4 miles
+  '9656m', // 6 miles
+  '12874m' // 8 miles
 
 }
