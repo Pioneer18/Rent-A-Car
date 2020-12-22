@@ -1,4 +1,4 @@
-import { Injectable, Inject, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-model.interface';
@@ -19,6 +19,7 @@ import { DeleteResponseInterface } from '../../common/interfaces/delete-response
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
 import { MapRentalUtil } from '../utils/map-rental.util';
 import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
+import { RadiusToMeters } from '../utils/radius-to-meters';
 
 /**
  * **summary**: Create, search for near (within a radius: e.g. 10 miles of) a location, update details, and schedule blocks of unavailable time for Rentals
@@ -29,6 +30,7 @@ export class RentalService {
     @InjectModel('Rental') private readonly rentalModel: Model<RentalModelInterface>,
     @InjectModel(unavailabilityModel) private readonly unavailability: Model<UnavailabilityModelInterface>,
     private readonly mapRentalUtil: MapRentalUtil,
+    private readonly radiusToMeters: RadiusToMeters
   ) { }
 
   /**
@@ -57,8 +59,8 @@ export class RentalService {
   searchRental = async (rental: SearchRentalInterface): Promise<RentalInterface[]> => {
     console.log(rental);
     try {
-      const query: RentalQuery = await this.createRentalQuery(rental);
-      const rentals = await this.rentalModel.find({ query }).lean();
+      const query = await this.createRentalQuery(rental);
+      const rentals = await this.rentalModel.find(query).lean();
       if (rentals.length > 0) {
         return rentals;
       } else {
@@ -215,36 +217,16 @@ export class RentalService {
    *   - rental features: optional
    * @param rental SearchRentalDto
    */
-  private createRentalQuery = async (rental: SearchRentalInterface): Promise<RentalQuery> => {
+  private createRentalQuery = async (rental: SearchRentalInterface): Promise<any> => {
     try {
-      const build = {
-        // Scheduling should be optional, each one of them
-        'scheduling.rentMinDuration': rental.rentalDuration ? { $lte: rental.rentalDuration } : null,
-        'scheduling.rentMaxDuration': rental.rentalDuration ? { $gte: rental.rentalDuration } : null,
-        'scheduling.requiredNotice': rental.rentalDuration ? { $lte: rental.givenNotice } : null,
-        'loc': {
-          $near: {
-            // There should be distance enum
-            $maxDistance: rental.radius, // 12875 === 8 miles
-            $geometry: {
-              type: rental.loc.type,
-              coordinates: [
-                rental.loc.coordinates[0], // latitude
-                rental.loc.coordinates[1], // longitude
-              ],
-            },
-          },
-        },
-        pricing: {
-          price: rental.price ? rental.price : null
-        },
-        features: rental.features ? rental.features : null
-      };
-      let query: RentalQuery = {
+      // convert radius to meters
+      const radius = this.radiusToMeters.convert(rental.radius);
+      // add loc to query
+      let query: any = {
         loc: {
           $near: {
             // There should be distance enum
-            $maxDistance: 12875, // 8 miles
+            $maxDistance: radius,
             $geometry: {
               type: rental.loc.type,
               coordinates: [
@@ -255,10 +237,16 @@ export class RentalService {
           },
         }
       }
-      // add filter options to the query
-      for (const [key, value] of Object.entries(build)) {
-        if (value !== null && key !== 'loc') query[key] = value;
+      // conditionally add scheduling options to the query
+      if (rental.rentalDuration) {
+        query.scheduling.rentMinDuration = { $lte: rental.rentalDuration }
+        query.scheduling.rentMaxDuration = { $gte: rental.rentalDuration }
+        query.scheduling.requiredNotice = { $lte: rental.givenNotice }
       }
+      // conditionally add price and features
+      rental.price !== null ? query.pricing.price = rental.price : rental.price = null;
+      rental.features !== null ? query.features = {$in: rental.features} : rental.features = null;
+      
       console.log('HERE IS THE RENTAL QUERY')
       console.log(query)
       return query;
