@@ -155,6 +155,18 @@ export class RentalService {
   }
 
   /**
+   * **summary**: Return all of the selected rental's unavailability
+   * @param rentalId
+   */
+  rentalUnavailability = async (rentalId) => {
+    try {
+      return await this.unavailability.find({ rentalId: rentalId }).lean()
+    } catch (err) {
+      if (err) throw new Error(err);
+    }
+  }
+
+  /**
    * **summary**: Edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
    * @param data The mongoDB updater and filter
    */

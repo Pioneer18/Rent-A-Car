@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req, UseGuards, Request } from '@nestjs/common';
+import { Controller, Post, Body, Get, UsePipes, Query, Req, UseGuards, Request } from '@nestjs/common';
 import { RentalService } from '../service/rental.service';
 import { GeoUrlApiPipe } from '../pipes/geo-url-api.pipe';
 import { MapNewRentalPipe } from '../pipes/map-new-rental.pipe';
@@ -110,6 +110,15 @@ export class RentalController {
   @UsePipes(new SortUnavailabilityPipe())
   async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto): Promise<UnavailabilityInterface[]> {
     return await this.rentalService.scheduleUnavailability(processed);
+  }
+
+  /**
+   * **summary**: Return all of the selected rental's unavailability
+   * @param rentalId
+   */
+  @Get('rental-unavailability')
+  async rentalUnavailability(@Query() params: RentalIdDto) {
+    return await this.rentalService.rentalUnavailability(params.rentalId);
   }
 
   /**
