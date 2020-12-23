@@ -1,4 +1,3 @@
-import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unavailability.dto';
 import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/raw-update-unavailability.dto';
 import { TestingModule, Test } from '@nestjs/testing';
 import { CreateUpdaterDtoPipe } from './create-updater-dto.pipe';
@@ -15,12 +14,10 @@ describe('CreateUpdaterDtoPipe Unit Test', () => {
         pipe = module.get<CreateUpdaterDtoPipe>(CreateUpdaterDtoPipe);
     });
     describe('transform method test', () => {
-        it('should accept a RawUpdateUnavailabilityDto and return an UpdateUnavailabilityDto', () => {
+        it('should accept a RawUpdateUnavailabilityDto and return an EditUnavailabilityTimeInterface', () => {
             const RawUpdateUnavailabilityDto: RawUpdateUnavailabilityDto = {
                 unavailabilityId: 'xxx365',
                 rentalId: 'xxx149',
-                newStartDay: 8,
-                newEndDay: 9,
                 newStartTime: 0,
                 newEndTime: 24,
                 newTitle: 'Testing',

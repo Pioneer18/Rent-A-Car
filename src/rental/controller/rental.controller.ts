@@ -21,7 +21,7 @@ import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pip
 import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
 import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
 import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
-import { EditUnavailabilityTimeDto } from '../dto/unavailability/update/edit-unavailability-timedto'; // '../dto/update-unavailability-data.dto';
+import { EditUnavailabilityTimeDto } from '../dto/unavailability/update/edit-unavailability-time.dto';
 import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
