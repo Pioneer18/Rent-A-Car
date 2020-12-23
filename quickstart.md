@@ -40,7 +40,7 @@
 
 ## **Search For Rental Listings in Different Cities**
 
-<font size=3>Because Rent-A-Car is demonstrative and does not have a real user base actively listing rentals, please reference the below table to simulate searching for rentals in a city. There are a total of 15 rentals listed in 3 different Florida cities; Tampa, Orlando, and Riverview. Search with one of the address to find that rental and any others in a 2, 4, 6, or 8 mile radius. The addresses were generated with an online random address generator.</font>
+<font size=3>Because Rent-A-Car is demonstrative and does not have a real user base actively listing rentals, please reference the below table to simulate searching for rentals in a city. There are a total of 15 rentals listed in 3 different Florida cities; Tampa, Orlando, and Riverview. Search with one of the addresses to find that rental and any others in a 2, 4, 6, or 8 mile radius. The addresses were generated with an online random address generator.</font>
 
 ### Rental Listing Reference Table
 
@@ -76,23 +76,41 @@
 -  **price**: 27
 -  **features**: ["Heated Seats"]
 
-<font size=3>Below is an example of how to use the **Search Rentals** request. In this example, the search is being made from the town movie theater with a radius of 3 (6 miles), and will only return rentals that have the ***Heated Seats*** feature.</font>
+<font size=3>Below is an example of how to use the **Search Rentals** request. In this example the search is being made from the town movie theater with a radius of 3 (6 miles), and will only return rentals that have the ***Heated Seats*** feature.</font>
 
 <img src="https://drive.google.com/uc?export=view&id=1j-UIaVXPCd0euvdBYYkiS_VFUyEEDyYs" alt="Search Rentals Example Heated Seats">
 
-<font size=3>In this next example, the radius is adjusted from 2 miles up to 6 miles to find rentals near the Tampa International Airport. The results are then further narrowed by limiting the price to $60.</font>
+<font size=3>In this next example the radius is adjusted from 2 miles up to 6 miles to find rentals near the Tampa International Airport. The results are then further narrowed by limiting the price to $60.</font>
 
 <img src="https://drive.google.com/uc?export=view&id=1U0qRSklwVsepJyTXeRLZKagi8nFxXaZz" alt="Search Rentals Example Tampa Airport">
 
-<font size=3>This example narrows the rental search by specifying a rental **start time** and **end time**, which will filter only rentals with a duration that matches the requested time.</font>
+<font size=3>This example narrows the rental search by specifying a rental **start time** and **end time**, which will filter only rentals with a duration that accommodates the requested rental duration. You can see the initial search results reduce from 5 to 3 after specifying the rental duration.</font>
 
-<img src="https://drive.google.com/uc?export=view&id=" alt="Search Rentals Example Tampa Airport">
+<img src="https://drive.google.com/uc?export=view&id=1ET0kz_HyktJmt4TJXSNEsSeoZnYjFSXZ" alt="Search Rentals Example Orlando Airport">
 
 ## **Schdeule Unavailability**
 
+<font size=3>Now that you have created a rental listing and searched for other available rentals, let's edit the **Availability** of one of your rentals and add a block of unavailable time for Christmas Break. Select the **Schedule Unavailability** request and create an Unavailability as seen in the example below.</font>
+
+<img src="https://drive.google.com/uc?export=view&id=1898OU1sjWfXb4zAIsoa5cBp6ta9GTwyT" alt="Schedule Unavailability">
+
 ## **Edit The Rental Pricing**
 
+<font size=3>Maybe your not getting as many rental requests as you'd like, lets edit the price on your rental to try to get more clients! Open the **Edit Rental Price** request and follow the example below</font>
+
+<img src="https://drive.google.com/uc?export=view&id=1kaBbEbBWzDkl7ELKpbIBm9hyMSF6HtDc" alt="Edit Rental Pricing">
+
 ## **Logout of the App**
+
+<font size=3>Now that you've had a brief tour of some of Rent-A-Car's main features, let's logout of the application. Select the **Logout** request and press send.</font>
+
+<img src="https://drive.google.com/uc?export=view&id=1P3gXVR9jTiYSbWS9JXJmZ2IdIDYx-zRk" alt="Logout">
+
+
+## **Next Steps**
+
+<font size=3>Feel free to explore the other request available in the application, each request has documentation explaining its proper use. For more information about the application visit the [GitHub page](https://github.com/Pioneer18/Rent-A-Car), the [Wiki](https://github.com/Pioneer18/Rent-A-Car/wiki/Rent-A-Car-Wiki-Home), or the [technical application documentation website]()</font>
+
 
 ## **Troubleshooting**
 <font size=3>- **No Response From Request**: If your request is infinitely pending and never receives a successful response, you may have not logged into the application or your session has expired. Please try logging into the application again before making the request.</font>
