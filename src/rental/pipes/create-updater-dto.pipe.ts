@@ -1,6 +1,6 @@
 import { Injectable, Logger, PipeTransform } from '@nestjs/common';
 import { UpdateUnavailabilityDto } from '../dto/unavailability/update/update-unavailability.dto';
-import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
+import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/raw-update-unavailability.dto';
 import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
 /**
  * **summary**: Transforms incoming data into the UpdateUnavailabilityDto, then passes it to the rental.service.updateUnavailability() method
@@ -16,8 +16,8 @@ export class CreateUpdaterDtoPipe implements PipeTransform<RawUpdateUnavailabili
         const data: UpdateUnavailabilityDto = {
             unavailabilityId: value.unavailabilityId,
             rentalId: value.rentalId,
-            newStart: value.newStart,
-            newEnd: value.newEnd,
+            newStart: value.newStartTime,
+            newEnd: value.newEndTime,
             newTitle: value.newTitle,
         };
         return data;

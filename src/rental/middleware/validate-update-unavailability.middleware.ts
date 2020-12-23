@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { unavailabilityModel } from '../../common/Const';
 import { Model } from 'mongoose';
 import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
-import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
+import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/raw-update-unavailability.dto';
 import { CalculateRangeDto } from '../dto/unavailability/update/calculate-range.dto';
 /**
  * **summary**: validate that incoming request to update a rental's already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database
