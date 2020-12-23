@@ -170,7 +170,7 @@ export class RentalService {
    * **summary**: Edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
    * @param data The mongoDB updater and filter
    */
-  updateUnavailability = async (data: UpdateUnavailabilityDataInterface): Promise<UpdateResponseInterface> => {
+  editUnavailabilityTime = async (data: UpdateUnavailabilityDataInterface): Promise<UpdateResponseInterface> => {
     // send the update
     try {
       const update = await this.unavailability.updateMany(
@@ -184,7 +184,7 @@ export class RentalService {
   }
 
   /**
-   * **summary**: Remove an amount of time from a scheduled duration of unavailability on the rental
+   * **summary**: Remove a scheduled unavailability completely from 
    * @param data Rental_id and unavailability_id
    */
   removeUnavailability = async (data: RemoveUnavailabilityInterface): Promise<DeleteResponseInterface> => {

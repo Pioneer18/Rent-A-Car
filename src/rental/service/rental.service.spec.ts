@@ -448,8 +448,8 @@ describe('RentalService Unit Tests', () => {
     });
   })
 
-  // updateUnavailability
-  describe(`updateUnavailability method test`, () => {
+  // editUnavailabilityTime
+  describe(`editUnavailabilityTime method test`, () => {
     it('should edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental', async () => {
       // mock data
       const data: UpdateUnavailabilityDataInterface = {
@@ -463,7 +463,7 @@ describe('RentalService Unit Tests', () => {
         }
       }
       // mock method
-      const updateUnavailability = async (data: UpdateUnavailabilityDataInterface) => {
+      const editUnavailabilityTime = async (data: UpdateUnavailabilityDataInterface) => {
         try {
           const update = { filter: data.filter, updater: data.updater }
           return update;
@@ -472,7 +472,7 @@ describe('RentalService Unit Tests', () => {
         }
       }
       // test
-      const test = await updateUnavailability(data);
+      const test = await editUnavailabilityTime(data);
       expect(test.filter).toEqual(expect.objectContaining({
         rentalId: '5fbdd52de2357234041850a2',
         unavailabilityId: '1606606517860'

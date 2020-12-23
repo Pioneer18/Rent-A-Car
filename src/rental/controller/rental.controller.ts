@@ -35,7 +35,7 @@ import { RentalIdDto } from '../dto/rental-id.dto';
 
 /**
  * - **summary**: controller for managing rentals in the application
- * - **Middleware**: The ValidateUpdateUnavailabilityMiddleware class is applied to the updateUnavailability method
+ * - **Middleware**: The ValidateUpdateUnavailabilityMiddleware class is applied to the editUnavailabilityTime method
  */
 @UseGuards(JwtAuthGuard)
 @UseGuards(LoggedOutGuard)
@@ -128,8 +128,8 @@ export class RentalController {
    */
   @Post('update-unavailability')
   @UsePipes(new CreateUpdaterDtoPipe())
-  async updateUnavailability(@Body() data: UpdateUnavailabilityDataDto): Promise<UpdateResponseInterface> {
-    return await this.rentalService.updateUnavailability(data);
+  async editUnavailabilityTime(@Body() data: UpdateUnavailabilityDataDto): Promise<UpdateResponseInterface> {
+    return await this.rentalService.editUnavailabilityTime(data);
   }
 
   /**

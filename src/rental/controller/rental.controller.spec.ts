@@ -539,7 +539,7 @@ describe('Rental Controller', () => {
     })
   })
 
-  describe('updateUnavailability method test', () => {
+  describe('editUnavailabilityTime method test', () => {
     const data: UpdateUnavailabilityDataDto = {
       filter: {
         rentalId: "5fbdd52de2357234041850a2",
@@ -570,9 +570,9 @@ describe('Rental Controller', () => {
     }
     it('should edit an Unavailability on the rental', async () => {
       jest
-        .spyOn(controller, 'updateUnavailability')
+        .spyOn(controller, 'editUnavailabilityTime')
         .mockImplementation(async () => response);
-      expect(await controller.updateUnavailability(data)).toBe(response);
+      expect(await controller.editUnavailabilityTime(data)).toBe(response);
     });
   });
   

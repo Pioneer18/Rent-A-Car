@@ -134,7 +134,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
 
   /**
    * **summary**: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
-   * rental.controller.updateUnavailability() method. Validate the request before passing the data to the handler
+   * rental.controller.editUnavailabilityTime() method. Validate the request before passing the data to the handler
    * @param req the request object
    * @param res the response object
    * @param next the next method to continue onto the next handler

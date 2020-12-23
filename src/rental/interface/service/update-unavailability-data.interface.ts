@@ -1,5 +1,5 @@
 /**
- * **summary**: Interface for the rental.service.updateUnavailability() method
+ * **summary**: Interface for the rental.service.editUnavailabilityTime() method
  */
 export interface UpdateUnavailabilityDataInterface {
     filter: {

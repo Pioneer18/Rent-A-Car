@@ -3,48 +3,43 @@ import { UpdateUnavailabilityDto } from '../dto/unavailability/update/update-una
 import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/raw-update-unavailability.dto';
 import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
 /**
- * **summary**: Transforms incoming data into the UpdateUnavailabilityDto, then passes it to the rental.service.updateUnavailability() method
+ * **summary**: Transforms incoming data into the UpdateUnavailabilityDto, then passes it to the rental.service.editUnavailabilityTime() method
  */
 @Injectable()
 export class CreateUpdaterDtoPipe implements PipeTransform<RawUpdateUnavailabilityDto, Promise<UpdateUnavailabilityDataInterface>> {
 
     /**
-     * **summary**: Map the RawUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
-     * @param value RawUpdateUnavailabilityDto
+     * **summary**: Extends the start day or end day of the unavailability
+     * This method will add or reduce documents from the unavailability group as necessary. 
+     * @param 
      */
-    private distillDto = async (value: RawUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDto> => {
-        const data: UpdateUnavailabilityDto = {
-            unavailabilityId: value.unavailabilityId,
-            rentalId: value.rentalId,
-            newStart: value.newStartTime,
-            newEnd: value.newEndTime,
-            newTitle: value.newTitle,
-        };
-        return data;
-    }
 
     /**
-     * **summary**: Create a MongoDB update object from the UpdateUnavailabilityDto
+     * **summary**: Reduces the start day or end day of the unavailability
+     * This method will add or reduce documents from the unavailability group as necessary. 
+     * @param 
+     */
+
+    /**
+     * **summary**: 
+     * - create the filter to find the unavailability
+     * - add a new start or end time for the unavailability
+     * - extend the endTime if available or reduce the endTime
+     * - extend the startTime if available or reduce the startTime
      * @param value UpdateUnavailabilityDto
      */
-    private createUpdateData = async (value: UpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataInterface> => {
+    private createUpdateData = async (value: RawUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataInterface> => {
         const filter = {
             rentalId: value.rentalId,
             unavailabilityId: value.unavailabilityId,
         };
-        if (value.newTitle === null) {
-          const updater1 = {
-                start: value.newStart,
-                end: value.newEnd,
-          };
-          return {filter, updater: updater1};
-        }
-        const updater2 = {
-                start: value.newStart,
-                end: value.newEnd,
-                title: value.newTitle,
+        // create the updater
+        const updater = {
+            start: value.newStartTime ? value.newStartTime : null,
+            end: value.newEndTime ? value.newEndTime : null,
+            title: value.newTitle ? value.newTitle : null,
         };
-        return { filter, updater: updater2};
+        return {filter, updater: updater};
     }
 
     /**
@@ -53,8 +48,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform<RawUpdateUnavailabili
      */
     transform = async (value: RawUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataInterface> => {
         // return an UpdateUnavailabilityDto
-        const raw =  await this.distillDto(value);
-        const data = await this.createUpdateData(raw);
+        const data = await this.createUpdateData(value);
         return data;
     }
 }
