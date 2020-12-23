@@ -6,7 +6,7 @@
 export class RawUpdateUnavailabilityDto {
   unavailabilityId: string;
   rentalId: string;
-  newStartTime: number;
-  newEndTime: number;
-  newTitle: string | null; // not required
+  newStartTime?: number;
+  newEndTime?: number;
+  newTitle?: string | null; // not required
 }

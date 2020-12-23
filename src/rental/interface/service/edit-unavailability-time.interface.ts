@@ -7,8 +7,8 @@ export interface EditUnavailabilityTimeInterface {
         unavailabilityId: string,
     };
     updater: {
-            start: number, // time
-            end: number, // time
+            start?: number, // time
+            end?: number, // time
             title?: string
     };
 }
