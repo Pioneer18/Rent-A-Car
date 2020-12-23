@@ -47,5 +47,5 @@ export interface RentalInterface {
     };
     photos: string[];
     listed: boolean;
-    __v?: 0
+    __v?: number
 }

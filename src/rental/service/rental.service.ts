@@ -59,8 +59,9 @@ export class RentalService {
   searchRental = async (rental: SearchRentalInterface): Promise<RentalInterface[]> => {
     console.log(rental);
     try {
-      const query = await this.createRentalQuery(rental);
-      const rentals = await this.rentalModel.find(query).lean();
+      // call a sendRequest funciton
+      const rentals = await this.sendRequest(rental);
+      // const rentals = await this.rentalModel.find({ loc: query.loc }).where('pricing.price').lte(30);
       if (rentals.length > 0) {
         return rentals;
       } else {
@@ -77,7 +78,7 @@ export class RentalService {
    */
   userRentals = async (user: JwtPayloadInterface): Promise<RentalInterface[]> => {
     try {
-      const rentals = await this.rentalModel.find({userId: user.userId}).lean();
+      const rentals = await this.rentalModel.find({ userId: user.userId }).lean();
       return rentals;
     } catch (err) {
       throw new Error(err);
@@ -195,7 +196,7 @@ export class RentalService {
    */
   removeRental = async (rentalId: string): Promise<DeleteResponseInterface> => {
     try {
-      const remove = await this.rentalModel.remove({_id: rentalId})
+      const remove = await this.rentalModel.remove({ _id: rentalId })
       if (remove.deletedCount === 0) {
         throw new Error('No Unavailability documents were found, no documents were deleted');
       }
@@ -217,12 +218,12 @@ export class RentalService {
    *   - rental features: optional
    * @param rental SearchRentalDto
    */
-  private createRentalQuery = async (rental: SearchRentalInterface): Promise<any> => {
+  private sendRequest = async (rental: SearchRentalInterface): Promise<any> => {
     try {
+      console.log(JSON.stringify(rental))
       // convert radius to meters
       const radius = this.radiusToMeters.convert(rental.radius);
-      // add loc to query
-      let query: any = {
+      const query = {
         loc: {
           $near: {
             // There should be distance enum
@@ -237,19 +238,74 @@ export class RentalService {
           },
         }
       }
-      // conditionally add scheduling options to the query
-      if (rental.rentalDuration) {
-        query.scheduling.rentMinDuration = { $lte: rental.rentalDuration }
-        query.scheduling.rentMaxDuration = { $gte: rental.rentalDuration }
-        query.scheduling.requiredNotice = { $lte: rental.givenNotice }
+      let rentals: any;
+      // request with each filter option
+      if (rental.price === null || rental.features === null || rental.rentalDuration === null) {
+        console.log('INSIDE QUERY FILTER')
+        // only price
+        if (rental.price !== null && rental.features === null && rental.rentalDuration === null) {
+          console.log('ONLY PRICE')
+          rentals = await this.rentalModel.find(query)
+            .where('pricing.price').lte(rental.price)
+        }
+        // only features
+        if (rental.features !== null && rental.price === null && rental.rentalDuration === null) {
+          console.log('ONLY features ')
+          rentals = await this.rentalModel.find(query)
+            .where('features').in(rental.features)
+        }
+        // only scheduling
+        if (rental.rentalDuration !== null && rental.price === null && rental.features === null) {
+          console.log('ONLY scheduling ')
+          rentals = await this.rentalModel.find(query)
+            .where('scheduling.rentMinDuration').lte(rental.rentalDuration)
+            .where('scheduling.rentMaxDuration').gte(rental.rentalDuration)
+            .where('schdeuling.requiredNotice').lte(rental.givenNotice)
+        }
+        // price and scheduling
+        if (rental.price !== null && rental.rentalDuration !== null && rental.features === null) {
+          console.log('PRICE AND SCHEDULING')
+          rentals = await this.rentalModel.find(query)
+            .where('pricing.price').lte(rental.price)
+            .where('scheduling.rentMinDuration').lte(rental.rentalDuration)
+            .where('scheduling.rentMaxDuration').gte(rental.rentalDuration)
+            .where('schdeuling.requiredNotice').lte(rental.givenNotice)
+        }
+        // price and features
+        if (rental.price !== null && rental.features !== null && rental.rentalDuration === null) {
+          console.log('PRICE AND FEATURES')
+          rentals = await this.rentalModel.find(query)
+            .where('pricing.price').lte(rental.price)
+            .where('features').in(rental.features)
+        }
+        // features and scheduling
+        if (rental.features !== null && rental.rentalDuration !== null && rental.givenNotice !== null && rental.price === null) {
+          console.log('FEATURES AND SCHEDULING')
+          rentals = await this.rentalModel.find(query)
+            .where('scheduling.rentMinDuration').lte(rental.rentalDuration)
+            .where('scheduling.rentMaxDuration').gte(rental.rentalDuration)
+            .where('schdeuling.requiredNotice').lte(rental.givenNotice)
+            .where('features').in(rental.features)
+        }
+        // only loc
+        if (rental.features === null && rental.rentalDuration === null && rental.givenNotice === null && rental.price === null) {
+          console.log('LOC ONLY')
+          rentals = await this.rentalModel.find(query);
+        }
       }
-      // conditionally add price and features
-      rental.price !== null ? query.pricing.price = rental.price : rental.price = null;
-      rental.features !== null ? query.features = {$in: rental.features} : rental.features = null;
-      
-      console.log('HERE IS THE RENTAL QUERY')
-      console.log(query)
-      return query;
+      else {// query with every option
+        console.log('EVERYTHING')
+        rentals = await this.rentalModel.find(query)
+          .where('pricing.price').lte(rental.price)
+          .where('scheduling.rentMinDuration').lte(rental.rentalDuration)
+          .where('scheduling.rentMaxDuration').gte(rental.rentalDuration)
+          .where('schdeuling.requiredNotice').lte(rental.givenNotice)
+          .where('features').in(rental.features)
+      }
+
+      console.log('Rental Query')
+      console.log(rentals)
+      return rentals;
     } catch (err) {
       throw new Error(err);
     }
