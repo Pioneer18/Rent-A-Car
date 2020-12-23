@@ -1,18 +1,18 @@
 import { Injectable, Logger, PipeTransform } from '@nestjs/common';
 import { UpdateUnavailabilityDto } from '../dto/unavailability/update/update-unavailability.dto';
-import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
+import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
 /**
  * **summary**: Transforms incoming data into the UpdateUnavailabilityDto, then passes it to the rental.service.updateUnavailability() method
  */
 @Injectable()
-export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavailabilityDto, Promise<UpdateUnavailabilityDataInterface>> {
+export class CreateUpdaterDtoPipe implements PipeTransform<RawUpdateUnavailabilityDto, Promise<UpdateUnavailabilityDataInterface>> {
 
     /**
-     * **summary**: Map the ValidateUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
-     * @param value ValidateUpdateUnavailabilityDto
+     * **summary**: Map the RawUpdateUnavailabilityDto to a simpler UpdateUnavailabilityDto format
+     * @param value RawUpdateUnavailabilityDto
      */
-    private distillDto = async (value: ValidateUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDto> => {
+    private distillDto = async (value: RawUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDto> => {
         const data: UpdateUnavailabilityDto = {
             unavailabilityId: value.unavailabilityId,
             rentalId: value.rentalId,
@@ -51,7 +51,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform<ValidateUpdateUnavail
      * **summary**: Use the private methods to return a UpdateUnavailabilityDto
      * @param value a validated UpdateUnavailabilityDto
      */
-    transform = async (value: ValidateUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataInterface> => {
+    transform = async (value: RawUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataInterface> => {
         // return an UpdateUnavailabilityDto
         const raw =  await this.distillDto(value);
         const data = await this.createUpdateData(raw);

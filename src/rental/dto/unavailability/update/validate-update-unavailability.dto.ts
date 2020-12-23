@@ -3,17 +3,9 @@
  * that the user is requesting to update.
  * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
-export class ValidateUpdateUnavailabilityDto {
+export class RawUpdateUnavailabilityDto {
   unavailabilityId: string;
   rentalId: string;
-  y1: {
-    sD: number;
-    eD: number;
-  };
-  y2: {
-    sD: number;
-    eD: number;
-  };
   newStart: number;
   newEnd: number;
   newTitle: string | null; // not required

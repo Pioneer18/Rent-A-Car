@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { unavailabilityModel } from '../../common/Const';
 import { Model } from 'mongoose';
 import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
-import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
+import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 import { CalculateRangeDto } from '../dto/unavailability/update/calculate-range.dto';
 /**
  * **summary**: validate that incoming request to update a rental's already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database
@@ -43,7 +43,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
    * @param range the range of the requested update Unavailability data
    */
   private validateExpectedUnavailability = async (
-    value: ValidateUpdateUnavailabilityDto, range: { range: number },
+    value: RawUpdateUnavailabilityDto, range: { range: number },
   ) => {
     const test = await this.unavailability.find({
       rentalId: value.rentalId,
@@ -64,7 +64,7 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
    * **summary**: validate the incoming dto data does not break the below validation tree
    * @param value the sorted request to update already scheduled Unavailability on a Rental
    */
-  private validateDto = async (value: ValidateUpdateUnavailabilityDto) => {
+  private validateDto = async (value: RawUpdateUnavailabilityDto) => {
     if (typeof value.unavailabilityId !== 'string') {
       throw new Error('invalid unavailabilityId; must be a string');
     }

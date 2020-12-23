@@ -122,7 +122,9 @@ export class RentalController {
   }
 
   /**
-   * **summary**: Edit the selected rental's unavailability
+   * **summary**: Edit a rental's 'unavailability'; change the start and end time of the unavailability,
+   * or change change the start and end day of the unavailability.
+   * @param data RawUpdateUnavailabilityDto
    */
   @Post('update-unavailability')
   @UsePipes(new CreateUpdaterDtoPipe())

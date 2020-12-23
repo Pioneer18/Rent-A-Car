@@ -1,5 +1,5 @@
 import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unavailability.dto';
-import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
+import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 import { TestingModule, Test } from '@nestjs/testing';
 import { CreateUpdaterDtoPipe } from './create-updater-dto.pipe';
 import { Logger } from '@nestjs/common';
@@ -15,8 +15,8 @@ describe('CreateUpdaterDtoPipe Unit Test', () => {
         pipe = module.get<CreateUpdaterDtoPipe>(CreateUpdaterDtoPipe);
     });
     describe('transform method test', () => {
-        it('should accept a ValidateUpdateUnavailabilityDto and return an UpdateUnavailabilityDto', () => {
-            const validateUpdateUnavailabilityDto: ValidateUpdateUnavailabilityDto = {
+        it('should accept a RawUpdateUnavailabilityDto and return an UpdateUnavailabilityDto', () => {
+            const RawUpdateUnavailabilityDto: RawUpdateUnavailabilityDto = {
                 unavailabilityId: 'xxx365',
                 rentalId: 'xxx149',
                 y1: {
@@ -28,7 +28,7 @@ describe('CreateUpdaterDtoPipe Unit Test', () => {
                 newEnd: 24,
                 newTitle: 'Testing',
             };
-            const test = pipe.transform(validateUpdateUnavailabilityDto);
+            const test = pipe.transform(RawUpdateUnavailabilityDto);
             Logger.log(test);
         });
     });
