@@ -12,7 +12,7 @@ import { RentalQuery } from '../interface/service/create-rental-query.interface'
 import { EditPricingUpdater } from '../interface/service/edit-pricing-updater.interface';
 import { EditDetailsInterface } from '../interface/service/edit-details.interface';
 import { ScheduleUnavailabilityInterface } from '../interface/service/schedule-unavailability.interface';
-import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
+import {EditUnavailabilityTimeInterface } from '../interface/service/edit-unavailability-time.interface';
 import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
@@ -170,7 +170,7 @@ export class RentalService {
    * **summary**: Edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
    * @param data The mongoDB updater and filter
    */
-  editUnavailabilityTime = async (data: UpdateUnavailabilityDataInterface): Promise<UpdateResponseInterface> => {
+  editUnavailabilityTime = async (data:EditUnavailabilityTimeInterface): Promise<UpdateResponseInterface> => {
     // send the update
     try {
       const update = await this.unavailability.updateMany(

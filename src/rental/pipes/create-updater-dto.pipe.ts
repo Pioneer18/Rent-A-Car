@@ -1,34 +1,18 @@
 import { Injectable, Logger, PipeTransform } from '@nestjs/common';
 import { UpdateUnavailabilityDto } from '../dto/unavailability/update/update-unavailability.dto';
 import { RawUpdateUnavailabilityDto } from '../dto/unavailability/update/raw-update-unavailability.dto';
-import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
+import {EditUnavailabilityTimeInterface } from '../interface/service/edit-unavailability-time.interface';
 /**
  * **summary**: Transforms incoming data into the UpdateUnavailabilityDto, then passes it to the rental.service.editUnavailabilityTime() method
  */
 @Injectable()
-export class CreateUpdaterDtoPipe implements PipeTransform<RawUpdateUnavailabilityDto, Promise<UpdateUnavailabilityDataInterface>> {
+export class CreateUpdaterDtoPipe implements PipeTransform<RawUpdateUnavailabilityDto, Promise<EditUnavailabilityTimeInterface>> {
 
     /**
-     * **summary**: Extends the start day or end day of the unavailability
-     * This method will add or reduce documents from the unavailability group as necessary. 
-     * @param 
-     */
-
-    /**
-     * **summary**: Reduces the start day or end day of the unavailability
-     * This method will add or reduce documents from the unavailability group as necessary. 
-     * @param 
-     */
-
-    /**
-     * **summary**: 
-     * - create the filter to find the unavailability
-     * - add a new start or end time for the unavailability
-     * - extend the endTime if available or reduce the endTime
-     * - extend the startTime if available or reduce the startTime
+     * **summary**: This funciton creates the filter to find the unavailability and adds a new start or end time for the unavailability
      * @param value UpdateUnavailabilityDto
      */
-    private createUpdateData = async (value: RawUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataInterface> => {
+    private createUpdateData = async (value: RawUpdateUnavailabilityDto): Promise<EditUnavailabilityTimeInterface> => {
         const filter = {
             rentalId: value.rentalId,
             unavailabilityId: value.unavailabilityId,
@@ -39,6 +23,8 @@ export class CreateUpdaterDtoPipe implements PipeTransform<RawUpdateUnavailabili
             end: value.newEndTime ? value.newEndTime : null,
             title: value.newTitle ? value.newTitle : null,
         };
+        console.log(`Edit Unavailability Filter: ${filter}`)
+        console.log(`Edit Unavailability Updater: ${updater}`)
         return {filter, updater: updater};
     }
 
@@ -46,7 +32,7 @@ export class CreateUpdaterDtoPipe implements PipeTransform<RawUpdateUnavailabili
      * **summary**: Use the private methods to return a UpdateUnavailabilityDto
      * @param value a validated UpdateUnavailabilityDto
      */
-    transform = async (value: RawUpdateUnavailabilityDto): Promise<UpdateUnavailabilityDataInterface> => {
+    transform = async (value: RawUpdateUnavailabilityDto): Promise<EditUnavailabilityTimeInterface> => {
         // return an UpdateUnavailabilityDto
         const data = await this.createUpdateData(value);
         return data;

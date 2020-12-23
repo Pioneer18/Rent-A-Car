@@ -21,7 +21,7 @@ import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pip
 import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
 import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
 import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
-import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto'; // '../dto/update-unavailability-data.dto';
+import { EditUnavailabilityTimeDto } from '../dto/unavailability/update/edit-unavailability-timedto'; // '../dto/update-unavailability-data.dto';
 import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
@@ -122,13 +122,12 @@ export class RentalController {
   }
 
   /**
-   * **summary**: Edit a rental's 'unavailability'; change the start and end time of the unavailability,
-   * or change change the start and end day of the unavailability.
+   * **summary**: Edit an unavailability's start or end time
    * @param data RawUpdateUnavailabilityDto
    */
-  @Post('update-unavailability')
+  @Post('edit-unavailability-time')
   @UsePipes(new CreateUpdaterDtoPipe())
-  async editUnavailabilityTime(@Body() data: UpdateUnavailabilityDataDto): Promise<UpdateResponseInterface> {
+  async editUnavailabilityTime(@Body() data: EditUnavailabilityTimeDto): Promise<UpdateResponseInterface> {
     return await this.rentalService.editUnavailabilityTime(data);
   }
 

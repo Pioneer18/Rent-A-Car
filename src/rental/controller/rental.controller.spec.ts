@@ -13,7 +13,7 @@ import { UnavailabilitySchema } from '../schema/unavailability-schema';
 import { EditDetailsDto } from '../dto/details/edit-details.dto';
 import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
-import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto';
+import { EditUnavailabilityTimeDto } from '../dto/unavailability/update/edit-unavailability-timedto';
 import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
@@ -540,7 +540,7 @@ describe('Rental Controller', () => {
   })
 
   describe('editUnavailabilityTime method test', () => {
-    const data: UpdateUnavailabilityDataDto = {
+    const data: EditUnavailabilityTimeDto = {
       filter: {
         rentalId: "5fbdd52de2357234041850a2",
         unavailabilityId: "1606606517860",

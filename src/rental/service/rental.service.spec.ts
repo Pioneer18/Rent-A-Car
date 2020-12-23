@@ -11,7 +11,7 @@ import { EditDetailsInterface } from '../interface/service/edit-details.interfac
 import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
 import { EditDetailsUpdater } from '../interface/service/edit-details-updater.interface';
 import { ScheduleUnavailabilityInterface } from '../interface/service/schedule-unavailability.interface';
-import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
+import {EditUnavailabilityTimeInterface } from '../interface/service/edit-unavailability-time.interface';
 import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
 import { SearchRentalInterface } from '../interface/service/search-rental.interface';
 import { RentalQuery } from '../interface/service/create-rental-query.interface';
@@ -452,7 +452,7 @@ describe('RentalService Unit Tests', () => {
   describe(`editUnavailabilityTime method test`, () => {
     it('should edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental', async () => {
       // mock data
-      const data: UpdateUnavailabilityDataInterface = {
+      const data:EditUnavailabilityTimeInterface = {
         filter: {
           rentalId: '5fbdd52de2357234041850a2',
           unavailabilityId: '1606606517860'
@@ -463,7 +463,7 @@ describe('RentalService Unit Tests', () => {
         }
       }
       // mock method
-      const editUnavailabilityTime = async (data: UpdateUnavailabilityDataInterface) => {
+      const editUnavailabilityTime = async (data:EditUnavailabilityTimeInterface) => {
         try {
           const update = { filter: data.filter, updater: data.updater }
           return update;
