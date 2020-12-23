@@ -260,7 +260,7 @@ export class RentalService {
           rentals = await this.rentalModel.find(query)
             .where('scheduling.rentMinDuration').lte(rental.rentalDuration)
             .where('scheduling.rentMaxDuration').gte(rental.rentalDuration)
-            .where('schdeuling.requiredNotice').lte(rental.givenNotice)
+            .where('scheduling.requiredNotice').lte(rental.givenNotice)
         }
         // price and scheduling
         if (rental.price !== null && rental.rentalDuration !== null && rental.features === null) {
@@ -269,7 +269,7 @@ export class RentalService {
             .where('pricing.price').lte(rental.price)
             .where('scheduling.rentMinDuration').lte(rental.rentalDuration)
             .where('scheduling.rentMaxDuration').gte(rental.rentalDuration)
-            .where('schdeuling.requiredNotice').lte(rental.givenNotice)
+            .where('scheduling.requiredNotice').lte(rental.givenNotice)
         }
         // price and features
         if (rental.price !== null && rental.features !== null && rental.rentalDuration === null) {
@@ -284,7 +284,7 @@ export class RentalService {
           rentals = await this.rentalModel.find(query)
             .where('scheduling.rentMinDuration').lte(rental.rentalDuration)
             .where('scheduling.rentMaxDuration').gte(rental.rentalDuration)
-            .where('schdeuling.requiredNotice').lte(rental.givenNotice)
+            .where('scheduling.requiredNotice').lte(rental.givenNotice)
             .where('features').in(rental.features)
         }
         // only loc
@@ -299,7 +299,7 @@ export class RentalService {
           .where('pricing.price').lte(rental.price)
           .where('scheduling.rentMinDuration').lte(rental.rentalDuration)
           .where('scheduling.rentMaxDuration').gte(rental.rentalDuration)
-          .where('schdeuling.requiredNotice').lte(rental.givenNotice)
+          .where('scheduling.requiredNotice').lte(rental.givenNotice)
           .where('features').in(rental.features)
       }
 

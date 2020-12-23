@@ -40,7 +40,7 @@
 
 ## **Search For Rental Listings in Different Cities**
 
-<font size=3>Because Rent-A-Car is demonstrative and does not have a real user base actively listing rentals, please reference the below table to simulate searching for rentals in a city. There are a total of 15 rentals listed in 3 different Florida cities; Tampa, Orlando, and Riverview. Search with one of the address to find that rental and any others in a 10 mile radius. The addresses were generated with an online random address generator.</font>
+<font size=3>Because Rent-A-Car is demonstrative and does not have a real user base actively listing rentals, please reference the below table to simulate searching for rentals in a city. There are a total of 15 rentals listed in 3 different Florida cities; Tampa, Orlando, and Riverview. Search with one of the address to find that rental and any others in a 2, 4, 6, or 8 mile radius. The addresses were generated with an online random address generator.</font>
 
 ### Rental Listing Reference Table
 
@@ -66,9 +66,27 @@
 
 <font size=3>**Note**: Max Duration, Min Duration, and Required Notice are [**Enums**](https://www.typescriptlang.org/docs/handbook/enums.html) that translate into time as days, weeks, and months</font>
 
-<font size=3>Below is an example of how to use the **Search Rentals** request:</font>
+<font size=3>Below is a example of each **filter option** for the **Search Rentals** request, only an **address** and **radius** are required to make a request</font>
 
-<img src="" alt="Search Rentals Example">
+#### Filter
+-  **address**: 2496 W Brandon Blvd, Brandon, FL 33511
+-  **radius**: 0 = 2 miles, 1 = 4 miles, 2 = 6 miles, and 3 = 8 miles
+-  **rentalStartTime**: "December 24, 2020 11:13:00"
+-  **rentalEndTime**: "December 27, 2020 10:00:00"
+-  **price**: 27
+-  **features**: ["Heated Seats"]
+
+<font size=3>Below is an example of how to use the **Search Rentals** request. In this example, the search is being made from the town movie theater with a radius of 3 (6 miles), and will only return rentals that have the ***Heated Seats*** feature.</font>
+
+<img src="https://drive.google.com/uc?export=view&id=1j-UIaVXPCd0euvdBYYkiS_VFUyEEDyYs" alt="Search Rentals Example Heated Seats">
+
+<font size=3>In this next example, the radius is adjusted from 2 miles up to 6 miles to find rentals near the Tampa International Airport. The results are then further narrowed by limiting the price to $60.</font>
+
+<img src="https://drive.google.com/uc?export=view&id=1U0qRSklwVsepJyTXeRLZKagi8nFxXaZz" alt="Search Rentals Example Tampa Airport">
+
+<font size=3>This example narrows the rental search by specifying a rental **start time** and **end time**, which will filter only rentals with a duration that matches the requested time.</font>
+
+<img src="https://drive.google.com/uc?export=view&id=" alt="Search Rentals Example Tampa Airport">
 
 ## **Schdeule Unavailability**
 
