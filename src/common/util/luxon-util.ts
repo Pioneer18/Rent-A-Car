@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 /**
  * **summary**: Exports Luxon functionality
  */
@@ -7,9 +8,9 @@ export class LuxonUtil {
     /**
      * **summary**: Convert each JS Date object to a DateTime
      */
-    dateToDateTime = async (dates: Date[]) => {
-        const dateTimes = dates.map( date => {
-
+    dateToDateTime = async (dates: Date[]): Promise<DateTime[]> => {
+        return await dates.map( date => {
+            return DateTime.fromISO(date.toISOString());
         })
     }
 
