@@ -21,6 +21,7 @@ import { AppConfigModule } from './config/configuration.module';
 import { AppConfigService } from './config/configuration.service';
 import { AuthController } from './auth/controller/auth.controller';
 import { RedisModule } from './redis/redis.module';
+import { UnavailabilityModule } from './unavailability/unavailability.module';
 
 /**
  * **summary**: Registers every module in the app and their dependencies. provide the HttpFilter,
@@ -48,6 +49,7 @@ import { RedisModule } from './redis/redis.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../client/build'),
     }),
+    UnavailabilityModule,
   ],
   controllers: [AppController, UserController, RentalController, ImagesController, AuthController],
   providers: [
