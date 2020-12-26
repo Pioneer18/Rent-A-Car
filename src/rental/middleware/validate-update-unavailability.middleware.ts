@@ -4,7 +4,7 @@ import { unavailabilityModel } from '../../common/Const';
 import { Model } from 'mongoose';
 import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
 import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
-import { CalculateRangeDto } from '../dto/unavailability/update/calculate-range.dto';
+import { CalculateRangeDto } from '../../unavailability/dto/calculate-range.dto';
 /**
  * **summary**: validate that incoming request to update a rental's already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database
  */
