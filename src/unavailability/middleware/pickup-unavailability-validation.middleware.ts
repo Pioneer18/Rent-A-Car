@@ -49,42 +49,63 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
   }
 
   private sendOverlapQuery = async (unavailability: UnavailabilityDto) => {
-    return await this.unavailability.find({rentalId: unavailability.rentalId})
-      // enclosed
-      .where('startDateTime.year').equals(unavailability.startDateTime.year)
-      .where('startDateTime.month').gte(unavailability.startDateTime.month)
-      .where('startDateTime.day').gte(unavailability.startDateTime.day)
-      .where('startDateTime.hour').gte(unavailability.startDateTime.hour)
-      .where('startDateTime.minute').gte(unavailability.startDateTime.minute)
-      .where('endDateTime.year').equals(unavailability.endDateTime.year)
-      .where('endDateTime.month').lte(unavailability.endDateTime.month)
-      .where('endDateTime.day').lte(unavailability.endDateTime.day)
-      .where('endDateTime.hour').lte(unavailability.endDateTime.hour)
-      .where('endDateTime.minute').lte(unavailability.endDateTime.minute)
-      // offset before start
-      .or([
+    return await this.unavailability.find({
+      rentalId: unavailability.rentalId,
+      $or: [
+        // outside
         {
           'startDateTime.year': unavailability.startDateTime.year,
-          'startDateTime.month': {$lte: unavailability.startDateTime.month},
-          'startDateTime.day': {$lte: unavailability.startDateTime.day},
-          'startDateTime.hour': {$lte: unavailability.startDateTime.hour},
-          'startDateTime.minute': {$lte: unavailability.startDateTime.minute},
+          'startDateTime.month': { $lte: unavailability.startDateTime.month },
+          'startDateTime.day': { $lte: unavailability.startDateTime.day },
+          'startDateTime.hour': { $lte: unavailability.startDateTime.hour },
+          'startDateTime.minute': { $lte: unavailability.startDateTime.minute },
           'endDateTime.year': unavailability.endDateTime.year,
-          'endDateTime.month': {$lte: unavailability.endDateTime.month},
-          'endDateTime.day': {$lte: unavailability.endDateTime.day},
-          'endDateTime.hour': {$lte: unavailability.endDateTime.hour},
-          'endDateTime.minute': {$lte: unavailability.endDateTime.minute}
+          'endDateTime.month': { $gte: unavailability.endDateTime.month },
+          'endDateTime.day': { $gte: unavailability.endDateTime.day },
+          'endDateTime.hour': { $gte: unavailability.endDateTime.hour },
+          'endDateTime.minute': { $gte: unavailability.endDateTime.minute },
+        },
+        // enclosed
+        {
+          'startDateTime.year': unavailability.startDateTime.year,
+          'startDateTime.month': { $gte: unavailability.startDateTime.month },
+          'startDateTime.day': { $gte: unavailability.startDateTime.day },
+          'startDateTime.hour': { $gte: unavailability.startDateTime.hour },
+          'startDateTime.minute': { $gte: unavailability.startDateTime.minute },
+          'endDateTime.year': unavailability.endDateTime.year,
+          'endDateTime.month': { $lte: unavailability.endDateTime.month },
+          'endDateTime.day': { $lte: unavailability.endDateTime.day },
+          'endDateTime.hour': { $lte: unavailability.endDateTime.hour },
+          'endDateTime.minute': { $lte: unavailability.endDateTime.minute },
+        },
+        // offset before start
+        {
+          'startDateTime.year': { $lte: unavailability.startDateTime.year },
+          'startDateTime.month': { $lte: unavailability.startDateTime.month },
+          'startDateTime.day': { $lte: unavailability.startDateTime.day },
+          'startDateTime.hour': { $lte: unavailability.startDateTime.hour },
+          'startDateTime.minute': { $lte: unavailability.startDateTime.minute },
+          'endDateTime.year': { $gte: unavailability.startDateTime.year, $lte: unavailability.endDateTime.year },
+          'endDateTime.month': { $gte: unavailability.startDateTime.month, $lte: unavailability.endDateTime.month },
+          'endDateTime.day': { $gte: unavailability.startDateTime.day, $lte: unavailability.endDateTime.day },
+          'endDateTime.hour': { $gte: unavailability.startDateTime.hour, $lte: unavailability.endDateTime.hour },
+          'endDateTime.minute': { $gte: unavailability.startDateTime.minute, $lte: unavailability.endDateTime.minute }
+        },
+        // offset after end
+        {
+          'startDateTime.year': { $lte: unavailability.endDateTime.year },
+          'startDateTime.month': { $lte: unavailability.endDateTime.month },
+          'startDateTime.day': { $lte: unavailability.endDateTime.day },
+          'startDateTime.hour': { $lte: unavailability.endDateTime.hour },
+          'startDateTime.minute': { $lte: unavailability.endDateTime.minute },
+          'endDateTime.year': { $gte: unavailability.endDateTime.year },
+          'endDateTime.month': { $gte: unavailability.endDateTime.month },
+          'endDateTime.day': { $gte: unavailability.endDateTime.day },
+          'endDateTime.hour': { $gte: unavailability.endDateTime.hour },
+          'endDateTime.minute': { $gte: unavailability.endDateTime.minute },
         }
-      ])
-      /*.where('startDateTime.year').equals(unavailability.startDateTime.year)
-      .where('startDateTime.month').lte(unavailability.startDateTime.month)
-      .where('startDateTime.day').lte(unavailability.startDateTime.day)
-      .where('startDateTime.hour').lte(unavailability.startDateTime.hour)
-      .where('startDateTime.minute').lte(unavailability.startDateTime.minute)
-      .where('startDateTime.month').gte(unavailability.endDateTime.month)
-      .where('startDateTime.day').gte(unavailability.endDateTime.day)
-      .where('startDateTime.hour').gte(unavailability.endDateTime.hour)
-      .where('startDateTime.minute').gte(unavailability.endDateTime.minute)*/
+      ]
+    });
   }
 
   /**
