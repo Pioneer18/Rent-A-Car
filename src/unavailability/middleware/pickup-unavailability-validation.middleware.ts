@@ -50,6 +50,7 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
 
   private sendOverlapQuery = async (unavailability: UnavailabilityDto) => {
     return await this.unavailability.find({rentalId: unavailability.rentalId})
+      // enclosed
       .where('startDateTime.year').equals(unavailability.startDateTime.year)
       .where('startDateTime.month').gte(unavailability.startDateTime.month)
       .where('startDateTime.day').gte(unavailability.startDateTime.day)
@@ -60,6 +61,30 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
       .where('endDateTime.day').lte(unavailability.endDateTime.day)
       .where('endDateTime.hour').lte(unavailability.endDateTime.hour)
       .where('endDateTime.minute').lte(unavailability.endDateTime.minute)
+      // offset before start
+      .or([
+        {
+          'startDateTime.year': unavailability.startDateTime.year,
+          'startDateTime.month': {$lte: unavailability.startDateTime.month},
+          'startDateTime.day': {$lte: unavailability.startDateTime.day},
+          'startDateTime.hour': {$lte: unavailability.startDateTime.hour},
+          'startDateTime.minute': {$lte: unavailability.startDateTime.minute},
+          'endDateTime.year': unavailability.endDateTime.year,
+          'endDateTime.month': {$lte: unavailability.endDateTime.month},
+          'endDateTime.day': {$lte: unavailability.endDateTime.day},
+          'endDateTime.hour': {$lte: unavailability.endDateTime.hour},
+          'endDateTime.minute': {$lte: unavailability.endDateTime.minute}
+        }
+      ])
+      /*.where('startDateTime.year').equals(unavailability.startDateTime.year)
+      .where('startDateTime.month').lte(unavailability.startDateTime.month)
+      .where('startDateTime.day').lte(unavailability.startDateTime.day)
+      .where('startDateTime.hour').lte(unavailability.startDateTime.hour)
+      .where('startDateTime.minute').lte(unavailability.startDateTime.minute)
+      .where('startDateTime.month').gte(unavailability.endDateTime.month)
+      .where('startDateTime.day').gte(unavailability.endDateTime.day)
+      .where('startDateTime.hour').gte(unavailability.endDateTime.hour)
+      .where('startDateTime.minute').gte(unavailability.endDateTime.minute)*/
   }
 
   /**
