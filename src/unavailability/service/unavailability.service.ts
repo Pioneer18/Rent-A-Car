@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UnavailabilityModelInterface } from '../interface/unavailability-model.interface';
+import { UnavailabilityModelInterface } from '../interface/model/unavailability-model.interface';
 import { unavailabilityModel } from '../../common/Const';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
 

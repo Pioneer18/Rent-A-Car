@@ -1,14 +1,15 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { Model } from 'mongoose';
-import { UnavailabilityModelInterface } from '../interface/unavailability-model.interface';
+import { UnavailabilityModelInterface } from '../interface/model/unavailability-model.interface';
 import { UnavailabilityDto } from '../dto/unavailability.dto';
 import { LuxonUtil } from '../../common/util/luxon-util';
 import { DateTime } from 'luxon';
 import { InjectModel } from '@nestjs/mongoose';
 import { unavailabilityModel } from '../../common/Const';
 /**
- * **summary**: 
+ * **summary**: Verify the requested new Unavailability does not conflict with Unavailability already scheduled for the selected rental.
+ * Also verify the requested new Unavailability has valid data. 
  */
 @Injectable()
 export class PickupUnavailabilityValidationMiddleware implements NestMiddleware {
@@ -48,6 +49,14 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
     return;
   }
 
+  /**
+   * **summary** Query the database and check for the 4 conditions of scheduling conflicts.
+   * - verify the requested unavailability is 'enclosed' by an existing unavailability
+   * - verify the requested unavailability will not 'enclose' an existing unavailability
+   * - verify the requested unavailability will not 'overlap' an exsiting unavailability's ending
+   * - verify the requested unavailability will not 'overlap' an existing unavailability's start
+   * @param unavailability 
+   */
   private sendOverlapQuery = async (unavailability: UnavailabilityDto) => {
     return await this.unavailability.find({
       rentalId: unavailability.rentalId,
