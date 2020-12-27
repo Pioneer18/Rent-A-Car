@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UnavailabilityModelInterface } from '../../rental/interface/modelInterface/Unavailability/unavailability.interface';
+import { UnavailabilityModelInterface } from '../interface/unavailability-model.interface';
 import { unavailabilityModel } from '../../common/Const';
-import { UnavailabilityInterface } from 'src/rental/interface/unavailability.interface';
+import { UnavailabilityInterface } from '../interface/unavailability.interface';
 
 @Injectable()
 export class UnavailabilityService {
@@ -17,7 +17,11 @@ export class UnavailabilityService {
      */
     scheduleUnavailability = async (unavailability: UnavailabilityInterface) => {
         try {
+            console.log(`SCHEDULE UNAVAILABILITY:`)
+            console.log(unavailability);
             const document = await new this.unavailability(unavailability);
+            console.log('DOCUMENT')
+            console.log(document);
             await document.save();
             // map the returned model into a plain UnavailabilityInterface
             return document;

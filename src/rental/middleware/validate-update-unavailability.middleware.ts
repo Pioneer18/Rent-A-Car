@@ -1,25 +1,24 @@
-import { Injectable, Inject, Logger, NestMiddleware } from '@nestjs/common';
+/*import { Injectable, Inject, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { unavailabilityModel } from '../../common/Const';
 import { Model } from 'mongoose';
-import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
+// import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.model.interface';
 import { ValidateUpdateUnavailabilityDto } from '../dto/unavailability/update/validate-update-unavailability.dto';
 import { CalculateRangeDto } from '../../unavailability/dto/calculate-range.dto';
-/**
+import { UnavailabilityModelInterface } from '../../unavailability/interface/unavailability-model.interface';
+
  * **summary**: validate that incoming request to update a rental's already scheduled Unavailability. Validate that the expected # of unavailability docs are present in the database
- */
+ 
 @Injectable()
 export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
   constructor(
-    @Inject(unavailabilityModel)
-    private readonly unavailability: Model<UnavailabilityModelInterface>,
+    // @Inject(unavailabilityModel) private readonly unavailability: Model<UnavailabilityModelInterface>,
   ) { }
 
-  /**
    * **summary**: calculate the [**range**](https://www.mathsisfun.com/data/range.html) of the requested Unavailability to update for the Rental
    * @param y1 the start and end day of the first year that the Unavailability is scheduled across
    * @param y2 the start and end day of the second yaer that the Unavailability is scheduled across; if there is a second year
-   */
+   
   private calculateRange = async (data: CalculateRangeDto) => {
     if (data.y2 !== null) {
       // calculate range for 2 years
@@ -35,13 +34,13 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
     return { range: 1 };
   }
 
-  /**
+  
    * **summary**: validate that the unavailability to be updated is present in the database, and verify that the expected **range** (number of days) of the Unavailability to update
    * matches the actual range of the Unavailability as it's saved in the database. Use the results of the calculateRange() method, to compare the range of the Unavailability in
    * the database to the range of the request
    * @param value the raw request data
    * @param range the range of the requested update Unavailability data
-   */
+   
   private validateExpectedUnavailability = async (
     value: ValidateUpdateUnavailabilityDto, range: { range: number },
   ) => {
@@ -60,10 +59,10 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
 
   }
 
-  /**
+
    * **summary**: validate the incoming dto data does not break the below validation tree
    * @param value the sorted request to update already scheduled Unavailability on a Rental
-   */
+ 
   private validateDto = async (value: ValidateUpdateUnavailabilityDto) => {
     if (typeof value.unavailabilityId !== 'string') {
       throw new Error('invalid unavailabilityId; must be a string');
@@ -132,13 +131,13 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
     }
   }
 
-  /**
+
    * **summary**: apply the validatedto(), calculateRange(), and validateExpectedUnavailability() methods to incoming requests to the
    * rental.controller.updateUnavailability() method. Validate the request before passing the data to the handler
    * @param req the request object
    * @param res the response object
    * @param next the next method to continue onto the next handler
-   */
+   
   use = async (req: Request, res: Response, next: Function): Promise<void> => {
     // apply only to update-unavailability request
     if (req.originalUrl === '/v1/rental/update-unavailability') {
@@ -151,4 +150,4 @@ export class ValidateUpdateUnavailabilityMiddleware implements NestMiddleware {
     }
     next();
   }
-}
+}*/

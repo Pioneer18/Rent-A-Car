@@ -1,18 +1,18 @@
-import { Injectable, PipeTransform, Logger } from '@nestjs/common';
+/*import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { UnavailabilityDto } from '../dto/unavailability/unavailability.dto';
 import { RawScheduleUnavailabilityDto } from '../dto/unavailability/schedule/raw-schedule-unavailability.dto';
 import { SortedUnavailabilityDto } from '../dto/unavailability/schedule/sorted-unavailability.dto';
 import { ValidateScheduleUnavailabilityDto } from '../dto/unavailability/schedule/validate-schedule-unavailability.dto';
-/**
+
  * **summary**: Sort the requested Rental Unavailability into a single or 2 year groupings (arrays). Sort each year's (array's) UnavailabilityDtos by ascending DOY (Day of the Year)
- */
+ 
 @Injectable()
 export class SortUnavailabilityPipe implements PipeTransform {
 
-  /**
+  
    * **summary**: Validate that the requested Unavailability does not cross more than a one year duration
    * @param yearB this value is exactly 1 year from the current date
-   */
+   
   private validate2Years = async (yearB: UnavailabilityDto[]): Promise<void> => {
     for (const x of yearB) {
       if (x.year !== yearB[0].year) {
@@ -22,21 +22,21 @@ export class SortUnavailabilityPipe implements PipeTransform {
     return;
   }
 
-  /**
+  
    * **summary**: Validate that the request to schedule unavailability is sequential and not two separate blocks of time
    * @param a year 1
    * @param b year 2
-   */
+   
   private validateSequential = async (a, b): Promise<void> => {
     if (a + 1 !== b) {
       throw new Error('years must be sequential');
     }
   }
 
-  /**
+  
    * **summary**: Return the sorted (by DOY) years in order, or return a single year
    * @param sorted the incoming data to be sorted
-   */
+  
   private orderYears = async (sorted: SortedUnavailabilityDto): Promise<ValidateScheduleUnavailabilityDto> => {
     // return a single year
     if (sorted.yB === null) {
@@ -51,10 +51,10 @@ export class SortUnavailabilityPipe implements PipeTransform {
     return { y1: sorted.yB, y2: sorted.yA };
   }
 
-  /**
+  
    * **summary**: Separate years into y1 and y2 array and sort each by DOY
    * @param value the raw client request to schedule Unavailability on a Rental
-   */
+   
   private sort = async (value: RawScheduleUnavailabilityDto): Promise<SortedUnavailabilityDto> => {
     // grab the year property from the first element
     const iYear: number = value.unavailability[0].year;
@@ -78,10 +78,10 @@ export class SortUnavailabilityPipe implements PipeTransform {
     };
   }
 
-  /**
+  
    * **summary**: Use the sort(), orderYears(), validateSequential(), and validate2Years() methods to sort and return the data as a ValidateScheduleUnavailabilityDto
    * @param value the raw client request data
-   */
+    
   transform = async (value: RawScheduleUnavailabilityDto): Promise<ValidateScheduleUnavailabilityDto> => {
     try {
       const sorted: SortedUnavailabilityDto = await this.sort(value);
@@ -94,3 +94,4 @@ export class SortUnavailabilityPipe implements PipeTransform {
     }
   }
 }
+*/

@@ -1,21 +1,21 @@
-import { Injectable, PipeTransform, Logger } from '@nestjs/common';
+/*import { Injectable, PipeTransform, Logger } from '@nestjs/common';
 import { ValidatedUnavailabilityDto } from '../dto/unavailability/validated-unavailability.dto';
 import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
 import { UnavailabilityQueryDto } from '../dto/unavailability/schedule/unavailability-query.dto';
 import { CreateQueryDto } from '../dto/unavailability/schedule/create-query.dto';
 import { ProcessedUnavailabilityQueryDto } from '../dto/unavailability/schedule/processed-unavailability-query.dto';
-/**
+*
  * **summary**: Query for any scheduled unavailability already in the database that would overlap with this request to add more unavailability to the Rental
  * This is to prevent the user on the front-end from accidentally overlapping 'blocks' of scheduled unavailability. The front-end of course should also block this
  * @param year
- */
+ 
 @Injectable()
 export class ProcessUnavailabilityPipe implements PipeTransform {
 
-  /**
+  *
    * **summary**: Create a MongoDB query object from the provided CreateQueryDto
    * @param year data for creating a MongoDB update object
-   */
+   
   protected createQuery = async (
     year: CreateQueryDto,
   ): Promise<UnavailabilityQueryDto> => {
@@ -48,12 +48,12 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
     };
   }
 
-  /**
+  *
    * **summary**: Add unavailabilityId (uuid) to each UnavailabilityDto in the incoming ValidatedUnavailabilityDto
    * - this method checks if the user is schedling time only for this year or into the next year as well
    * - the uuid identifies a series of unavailability, allowing the entire block of time to be identified in the database
    * @param value the semi processed and validate client request data
-   */
+   
   protected addUnavailabilityId = async (
     value: ValidatedUnavailabilityDto,
   ): Promise<{
@@ -113,11 +113,11 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
     return { pY1: py1, pY2: null };
   }
 
-  /**
+  *
    * **summary**: Process the request to update a rental's 'scheduled unavailability'
    * - the user may schedule as far as a year ahead. To easily track the data as a single 'block' of unavailable time for the rental, each Unavailability document related to this query is given the same 'uuid'
    * @param value the validated unavailability request dto
-   */
+   
   transform = async (
     value: ValidatedUnavailabilityDto,
   ): Promise<ProcessedUnavailabilityDto> => {
@@ -168,4 +168,4 @@ export class ProcessUnavailabilityPipe implements PipeTransform {
       },
     };
   }
-}
+}*/

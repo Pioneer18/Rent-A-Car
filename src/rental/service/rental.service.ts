@@ -4,19 +4,13 @@ import { Model } from 'mongoose';
 import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-model.interface';
 import { RentalInterface } from '../interface/rental.interface';
 import { SearchRentalInterface } from '../interface/service/search-rental.interface';
-import { unavailabilityModel } from '../../common/Const';
-import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.interface';
+// import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.model.interface';
 import { CreateRentalInterface } from '../interface/service/create-rental.interface';
 import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
-import { RentalQuery } from '../interface/service/create-rental-query.interface';
 import { EditPricingUpdater } from '../interface/service/edit-pricing-updater.interface';
 import { EditDetailsInterface } from '../interface/service/edit-details.interface';
-import { ScheduleUnavailabilityInterface } from '../interface/service/schedule-unavailability.interface';
-import { UpdateUnavailabilityDataInterface } from '../interface/service/update-unavailability-data.interface';
-import { RemoveUnavailabilityInterface } from '../interface/service/remove-unavailability.interface';
-import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
-import { UnavailabilityInterface } from '../interface/unavailability.interface';
+// import { UnavailabilityInterface } from '../interface/unavailability.interface';
 import { MapRentalUtil } from '../utils/map-rental.util';
 import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
 import { RadiusToMeters } from '../utils/radius-to-meters';
@@ -28,7 +22,7 @@ import { RadiusToMeters } from '../utils/radius-to-meters';
 export class RentalService {
   constructor(
     @InjectModel('Rental') private readonly rentalModel: Model<RentalModelInterface>,
-    @InjectModel(unavailabilityModel) private readonly unavailability: Model<UnavailabilityModelInterface>,
+    // @InjectModel(unavailabilityModel) private readonly unavailability: Model<UnavailabilityModelInterface>,
     private readonly mapRentalUtil: MapRentalUtil,
     private readonly radiusToMeters: RadiusToMeters
   ) { }
@@ -135,7 +129,7 @@ export class RentalService {
    * **summary**: Set a period of unavailability for the rental (e.g. mon - wed)
    * @param processed The validated and organized requested unavailability
    */
-  scheduleUnavailability = async (processed: ScheduleUnavailabilityInterface): Promise<UnavailabilityInterface[]> => {
+  /*scheduleUnavailability = async (processed: ScheduleUnavailabilityInterface): Promise<UnavailabilityInterface[]> => {
     try {
       Logger.log(`Processed Unavailability Dto/Interface`)
       Logger.log(processed)
@@ -152,25 +146,25 @@ export class RentalService {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  }*/
 
   /**
    * **summary**: Return all of the selected rental's unavailability
    * @param rentalId
    */
-  rentalUnavailability = async (rentalId) => {
+  /*rentalUnavailability = async (rentalId) => {
     try {
       return await this.unavailability.find({ rentalId: rentalId }).lean()
     } catch (err) {
       if (err) throw new Error(err);
     }
-  }
+  }*/
 
   /**
    * **summary**: Edit a block of scheduled unavailability by either extending or reducing the scheduled duration of time on the rental
    * @param data The mongoDB updater and filter
    */
-  updateUnavailability = async (data: UpdateUnavailabilityDataInterface): Promise<UpdateResponseInterface> => {
+  /*updateUnavailability = async (data: UpdateUnavailabilityDataInterface): Promise<UpdateResponseInterface> => {
     // send the update
     try {
       const update = await this.unavailability.updateMany(
@@ -181,13 +175,13 @@ export class RentalService {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  }*/
 
   /**
    * **summary**: Remove an amount of time from a scheduled duration of unavailability on the rental
    * @param data Rental_id and unavailability_id
    */
-  removeUnavailability = async (data: RemoveUnavailabilityInterface): Promise<DeleteResponseInterface> => {
+  /*removeUnavailability = async (data: RemoveUnavailabilityInterface): Promise<DeleteResponseInterface> => {
     try {
       const remove = await this.unavailability.remove({
         rentalId: data.rentalId,
@@ -200,7 +194,7 @@ export class RentalService {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  }*/
 
   /**
    * **summary**: Remove the selected rental
@@ -328,7 +322,7 @@ export class RentalService {
    * with the requested unavailability
    * @param data Query for 1 or 2 years
    */
-  private checkForOverlap = async (data: ScheduleUnavailabilityInterface): Promise<void> => {
+  /*private checkForOverlap = async (data: ScheduleUnavailabilityInterface): Promise<void> => {
     const { y1Query, y2Query } = data;
     // if there are 2 years
     if (y2Query !== null) {
@@ -347,5 +341,5 @@ export class RentalService {
     if (test.length) {
       throw new Error('this request overlaps with existing unavailability');
     }
-  }
+  }*/
 }

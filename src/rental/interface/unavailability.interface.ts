@@ -1,14 +1,25 @@
 /**
  * **summary**: Interface for the Unavailability Model
- */
 export interface UnavailabilityInterface {
     _id?: string;
-    unavailabilityId?: string | number;
+    title: string; // e.g. Christmas
     rentalId: string;
-    year: number;
-    doy: number; // day of the year
-    start: number; // min: 0; max: 24 military time
-    end: number; // min: 0; max: 24 military time
-    title: string; // e.g. Chris
+    startDateTime: {
+        year: number,
+        month: number,
+        day: number,
+        hour: number,
+        minute: number,
+        // timeZone: String,
+    }
+    endDateTime:{
+        year: number,
+        month: number,
+        day: number,
+        hour: number,
+        minute: number,
+        // timeZone: String,
+    }
     __v?: number;
 }
+*/
