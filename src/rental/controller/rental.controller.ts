@@ -102,17 +102,6 @@ export class RentalController {
   }
 
   /**
-   * **summary**: Set a period of unavailability for the rental
-   */
-  /*@Post('schedule-unavailability')
-  @UsePipes(new ProcessUnavailabilityPipe())
-  @UsePipes(new ValidateUnavailabilityPipe(new ToItemsIndexes()))
-  @UsePipes(new SortUnavailabilityPipe())
-  async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto): Promise<UnavailabilityInterface[]> {
-    return await this.rentalService.scheduleUnavailability(processed);
-  }*/
-
-  /**
    * **summary**: Return all of the selected rental's unavailability
    * @param rentalId
    */

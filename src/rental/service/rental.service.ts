@@ -1,16 +1,14 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { RentalModelInterface } from '../interface/modelInterface/Rental/rental-model.interface';
 import { RentalInterface } from '../interface/rental.interface';
 import { SearchRentalInterface } from '../interface/service/search-rental.interface';
-// import { UnavailabilityModelInterface } from '../interface/modelInterface/Unavailability/unavailability.model.interface';
 import { CreateRentalInterface } from '../interface/service/create-rental.interface';
 import { EditPricingInterface } from '../interface/service/edit-pricing.interface';
 import { EditPricingUpdater } from '../interface/service/edit-pricing-updater.interface';
 import { EditDetailsInterface } from '../interface/service/edit-details.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
-// import { UnavailabilityInterface } from '../interface/unavailability.interface';
 import { MapRentalUtil } from '../utils/map-rental.util';
 import { JwtPayloadInterface } from 'src/auth/interfaces/jwt-payload.interface';
 import { RadiusToMeters } from '../utils/radius-to-meters';
@@ -124,29 +122,6 @@ export class RentalService {
       throw new Error(err);
     }
   }
-
-  /**
-   * **summary**: Set a period of unavailability for the rental (e.g. mon - wed)
-   * @param processed The validated and organized requested unavailability
-   */
-  /*scheduleUnavailability = async (processed: ScheduleUnavailabilityInterface): Promise<UnavailabilityInterface[]> => {
-    try {
-      Logger.log(`Processed Unavailability Dto/Interface`)
-      Logger.log(processed)
-      await this.checkForOverlap(processed);
-      // if it passed, combine data into one array and insert
-      const { y1, y2 } = processed.data;
-      if (y2 !== null) {
-        const merged = y1.concat(y2);
-        Logger.log(`the merged years`);
-        Logger.log(merged);
-        return await this.unavailability.insertMany(merged, { ordered: true });
-      }
-      return await this.unavailability.insertMany(y1, { ordered: true });
-    } catch (err) {
-      throw new Error(err);
-    }
-  }*/
 
   /**
    * **summary**: Return all of the selected rental's unavailability
