@@ -1,16 +1,27 @@
 import { DateTime } from 'luxon';
+import { DateObject } from '../../unavailability/dto/date-object.dto';
 /**
  * **summary**: Exports Luxon functionality
  */
 export class LuxonUtil {
-    constructor(){}
+    constructor() { }
 
     /**
      * **summary**: Convert each JS Date object to a DateTime
      */
     dateToDateTime = async (dates: Date[]): Promise<DateTime[]> => {
-        return await dates.map( date => {
+        return await dates.map(date => {
             return DateTime.fromISO(date.toISOString());
+        })
+    }
+
+    /**
+     * **summary**: Convert each date object into a DateTime
+     * @param dates 
+     */
+    objectToDateTime = async (dates: DateObject[]): Promise<DateTime[]> => {
+        return await dates.map(date => {
+            return DateTime.fromObject(date);
         })
     }
 
@@ -34,7 +45,7 @@ export class LuxonUtil {
      */
     createJsDate = (data: string[]): Date[] => {
         try {
-            const dates: Date[] =  data.map( item => {
+            const dates: Date[] = data.map(item => {
                 return new Date(item)
             });
             return dates;

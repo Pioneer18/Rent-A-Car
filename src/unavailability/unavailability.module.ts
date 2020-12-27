@@ -1,17 +1,24 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { unavailabilityModel } from 'src/common/Const';
-import { ValidateUpdateUnavailabilityMiddleware } from 'src/rental/middleware/validate-update-unavailability.middleware';
+import { unavailabilityModel } from '../common/Const';
+import { PickupUnavailabilityValidationMiddleware} from './middleware/pickup-unavailability-validation.middleware'
 import { UnavailabilityController } from './controller/unavailability.controller';
 import { UnavailabilitySchema } from './schema/unavailability-schema';
 import { UnavailabilityService } from './service/unavailability.service';
+import { RedisModule } from '../redis/redis.module';
+import { LuxonUtil } from '../common/util/luxon-util';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: unavailabilityModel, schema: UnavailabilitySchema }])
+    MongooseModule.forFeature([{ name: unavailabilityModel, schema: UnavailabilitySchema }]),
+    RedisModule
   ],
   controllers: [UnavailabilityController],
-  providers: [UnavailabilityService]
+  providers: [
+    UnavailabilityService,
+    LuxonUtil
+  ],
+  exports: [UnavailabilityService]
 })
 export class UnavailabilityModule {
   constructor() { }
@@ -21,7 +28,7 @@ export class UnavailabilityModule {
    */
   configure = (consumer: MiddlewareConsumer) => {
     consumer
-      .apply(ValidateUpdateUnavailabilityMiddleware)
-      .forRoutes('v1/rental');
+      .apply(PickupUnavailabilityValidationMiddleware)
+      .forRoutes('v1/unavailability');
   }
 }

@@ -10,9 +10,21 @@ import * as mongoose from 'mongoose';
  */
 export interface UnavailabilityModelInterface extends mongoose.Document {
     rentalId: string;
-    startDate: string | DateTime;
-    endDate: string | DateTime;
-    startTime: number; // min: 0; max: 24
-    endTime: number; // min: 0; max: 24
     title: string; 
+    startDateTime: {
+        year: number,
+        month: number,
+        day: number,
+        hour: number,
+        minute: number,
+        // timeZone: String,
+    },
+    endDateTime:{
+        year: number,
+        month: number,
+        day: number,
+        hour: number,
+        minute: number,
+        // timeZone: String,
+    }
 }

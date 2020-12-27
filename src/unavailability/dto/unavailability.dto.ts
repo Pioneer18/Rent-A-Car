@@ -11,9 +11,21 @@ import { UnavailabilityInterface } from '../interface/unavailability.interface'
  */
 export class UnavailabilityDto implements UnavailabilityInterface {
     rentalId: string;
-    startDate: string;
-    endDate: string;
-    startTime: number; // min: 0; max: 24
-    endTime: number; // min: 0; max: 24
     title: string;
+    startDateTime: {
+        year: number,
+        month: number,
+        day: number,
+        hour: number,
+        minute: number,
+        // timeZone: String,
+    }
+    endDateTime:{
+        year: number,
+        month: number,
+        day: number,
+        hour: number,
+        minute: number,
+        // timeZone: String,
+    }
 }

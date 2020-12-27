@@ -22,6 +22,7 @@ import { AppConfigService } from './config/configuration.service';
 import { AuthController } from './auth/controller/auth.controller';
 import { RedisModule } from './redis/redis.module';
 import { UnavailabilityModule } from './unavailability/unavailability.module';
+import { UnavailabilityController } from './unavailability/controller/unavailability.controller';
 
 /**
  * **summary**: Registers every module in the app and their dependencies. provide the HttpFilter,
@@ -51,7 +52,7 @@ import { UnavailabilityModule } from './unavailability/unavailability.module';
     }),
     UnavailabilityModule,
   ],
-  controllers: [AppController, UserController, RentalController, ImagesController, AuthController],
+  controllers: [AppController, UserController, RentalController, ImagesController, AuthController, UnavailabilityController],
   providers: [
     AppService,
     { provide: APP_FILTER, useClass: HttpErrorFilter },

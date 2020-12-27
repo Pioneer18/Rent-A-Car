@@ -1,4 +1,5 @@
-import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { UnavailabilityDto } from '../dto/unavailability.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
 import { UnavailabilityService } from '../service/unavailability.service';
@@ -13,8 +14,8 @@ export class UnavailabilityController {
      * **summary**: Schedule a period of **rental pickup unavailability** for the selected rental
      */
     @Post('schedule-pickup-unavailability')
-    async scheduleUnavailability() {
-        // return await this.unavailabilityService.scheduleUnavailability();
+    async scheduleUnavailability(@Body() unavailability: UnavailabilityDto) {
+        return await this.unavailabilityService.scheduleUnavailability(unavailability);
     }
 
     /**

@@ -10,10 +10,22 @@ import { DateTime } from 'luxon';
 export interface UnavailabilityInterface {
     _id?: string;
     rentalId: string;
-    startDate: string | DateTime;
-    endDate: string | DateTime;
-    startTime: number; // min: 0; max: 24
-    endTime: number; // min: 0; max: 24
     title: string; 
+    startDateTime: {
+        year: number;
+        month: number;
+        day: number;
+        hour: number;
+        minute: number;
+        // timeZone: String,
+    };
+    endDateTime:{
+        year: number;
+        month: number;
+        day: number;
+        hour: number;
+        minute: number;
+        // timeZone: String,
+    };
     __v?: number;
 }
