@@ -29,6 +29,6 @@ export class UnavailabilityModule {
   configure = (consumer: MiddlewareConsumer) => {
     consumer
       .apply(PickupUnavailabilityValidationMiddleware)
-      .forRoutes('v1/unavailability');
+      .forRoutes('unavailability');
   }
 }

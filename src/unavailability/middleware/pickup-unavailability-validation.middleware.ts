@@ -48,30 +48,18 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
     return;
   }
 
-  private createOverlapQuery = async (unavailability: UnavailabilityDto) => {
-    return {
-      rentalId: unavailability.rentalId,
-      // greater than or equal to the start date-time
-      $or: [
-        {
-          startDateTime: {
-            year: unavailability.startDateTime.year,
-            month: { $gte: unavailability.startDateTime.month },
-            day: { $gte: unavailability.startDateTime.day },
-            hour: { $gte: unavailability.startDateTime.hour },
-            minute: { $te: unavailability.startDateTime.minute }
-          },
-          // less than or equal to the end date-time
-          endDateTime: {
-            year: unavailability.endDateTime.year,
-            month: { $lte: unavailability.endDateTime.month },
-            day: { $lte: unavailability.endDateTime.day },
-            hour: { $lte: unavailability.endDateTime.hour },
-            minute: { $lte: unavailability.endDateTime.minute }
-          }
-        },
-      ]
-    }
+  private sendOverlapQuery = async (unavailability: UnavailabilityDto) => {
+    return await this.unavailability.find({rentalId: unavailability.rentalId})
+      .where('startDateTime.year').equals(unavailability.startDateTime.year)
+      .where('startDateTime.month').gte(unavailability.startDateTime.month)
+      .where('startDateTime.day').gte(unavailability.startDateTime.day)
+      .where('startDateTime.hour').gte(unavailability.startDateTime.hour)
+      .where('startDateTime.minute').gte(unavailability.startDateTime.minute)
+      .where('endDateTime.year').equals(unavailability.endDateTime.year)
+      .where('endDateTime.month').lte(unavailability.endDateTime.month)
+      .where('endDateTime.day').lte(unavailability.endDateTime.day)
+      .where('endDateTime.hour').lte(unavailability.endDateTime.hour)
+      .where('endDateTime.minute').lte(unavailability.endDateTime.minute)
   }
 
   /**
@@ -79,8 +67,9 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
    * @param unavailability
    */
   checkForOverlap = async (unavailability: UnavailabilityDto) => {
-    const query = await this.createOverlapQuery(unavailability);
-    const check = await this.unavailability.find({query});
+    const check = await this.sendOverlapQuery(unavailability);
+    console.log('MIDDLEWARE CHECK')
+    console.log(check)
     if (check.length >= 1) throw new Error('The requested unavailability will overlap with unavailability already in the database');
     return;
   }
@@ -93,8 +82,8 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
    */
   use = async (req: Request, res: Response, next: Function): Promise<void> => {
     // apply only to update-unavailability request
-    if (req.originalUrl === '/v1/unavailability/schedule-pickup-unavailability') {
-      console.log( `VALIDATE UNAVAILABILITY MIDDLEWARE`)
+    if (req.originalUrl === '/unavailability/schedule-pickup-unavailability') {
+      console.log(`VALIDATE UNAVAILABILITY MIDDLEWARE`)
       await this.validateUnavailability(req.body);
       await this.checkForOverlap(req.body)
     }
