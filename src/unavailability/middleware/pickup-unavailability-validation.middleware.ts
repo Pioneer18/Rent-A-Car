@@ -22,7 +22,7 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
    * **summary**: Convert the startDate and endDate to Luxon DateTimes
    * @param unavailability new unavailability data 
    */
-  private convertToDateTimes = async (unavailability: UnavailabilityDto)/* Promise<DateTime[]>*/ => {
+  convertToDateTimes = async (unavailability: UnavailabilityDto)/* Promise<DateTime[]>*/ => {
     return await this.luxonUtil.objectToDateTime([unavailability.startDateTime, unavailability.endDateTime]);
   }
 
