@@ -5,7 +5,7 @@ import { profile, rentals } from '../../common/Const';
 import { ImageDto } from '../dto/image.dto';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
-import { RentalIdParamsDto } from '../dto/rental-id-params.dto';
+import { RentalIdParamsDto } from '../../rental/dto/rental-id-params.dto';
 import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
 /**
  * **summary**: Controller for managing images in the application

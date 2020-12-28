@@ -13,7 +13,7 @@ import { ProcessSaveDataUtil } from '../util/process-save-data.util';
 import { ImagesController } from './images.controller';
 import { Request, Response } from 'express';
 import { RetrievedImagesInterface } from '../interfaces/service/retrieved-images.interface';
-import { RentalIdParamsDto } from '../dto/rental-id-params.dto';
+import { RentalIdParamsDto } from '../../rental/dto/rental-id-params.dto';
 import { ImageDto } from '../dto/image.dto';
 import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 
