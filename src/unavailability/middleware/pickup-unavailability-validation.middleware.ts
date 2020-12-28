@@ -138,6 +138,18 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
   use = async (req: Request, res: Response, next: Function): Promise<void> => {
     // apply only to update-unavailability request
     if (req.originalUrl === '/unavailability/schedule-pickup-unavailability') {
+      if (req.body.unavailability_id) {
+        // process the reschedule request
+        const update: UnavailabilityDto = {
+          rentalId: req.body.rentalId,
+          title: req.body.title,
+          startDateTime: req.body.startDateTime,
+          endDateTime: req.body.endDateTime
+        }
+        const id = req.body.unavailability_id;
+        await this.validateUnavailability(update);
+        // check for reschedule overlap
+      }
       console.log(`VALIDATE UNAVAILABILITY MIDDLEWARE`)
       await this.validateUnavailability(req.body);
       await this.checkForOverlap(req.body)
