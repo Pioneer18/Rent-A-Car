@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { UnavailabilityDto } from '../dto/unavailability.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
 import { UnavailabilityService } from '../service/unavailability.service';
+import { RentalIdParamsDto } from '../../rental/dto/rental-id-params.dto';
 
 @UseGuards(LoggedOutGuard)
 @UseGuards(JwtAuthGuard)
@@ -20,10 +21,11 @@ export class UnavailabilityController {
 
     /**
      * **summary**: Return all of a rental's **Scheduled Unavailability**
+     * @param rentalId the selected rental's _id
      */
     @Get('view-pickup-unavailability')
-    async viewUnavailability() {
-        // return await this.unavailabilityService.viewUnavailability();
+    async viewUnavailability(@Query() params: RentalIdParamsDto) {
+        return await this.unavailabilityService.viewUnavailability(params.rental_id);
     }
 
     /**

@@ -32,8 +32,12 @@ export class UnavailabilityService {
     /**
      * **summary**:
      */
-    viewUnavailability = async () => {
-
+    viewUnavailability = async (rental_id: string) => {
+        try {
+            return await this.unavailability.find({rentalId: rental_id})
+        } catch (err) {
+            throw new Error(err);
+        }
     }
     /**
      * **summary**:
