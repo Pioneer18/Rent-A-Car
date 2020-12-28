@@ -102,15 +102,6 @@ export class RentalController {
   }
 
   /**
-   * **summary**: Return all of the selected rental's unavailability
-   * @param rentalId
-   */
-  /*@Get('rental-unavailability')
-  async rentalUnavailability(@Query() params: RentalIdDto) {
-    return await this.rentalService.rentalUnavailability(params.rentalId);
-  }*/
-
-  /**
    * **summary**: Edit the selected rental's unavailability
    */
   /*@Post('update-unavailability')
