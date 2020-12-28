@@ -4,6 +4,8 @@ import { Model } from 'mongoose';
 import { UnavailabilityModelInterface } from '../interface/model/unavailability-model.interface';
 import { unavailabilityModel } from '../../common/Const';
 import { UnavailabilityInterface } from '../interface/unavailability.interface';
+import { RescheduleUnavailabilityDto } from '../dto/reschedule-unavailability.dto';
+import { UnavailabilityDto } from '../dto/unavailability.dto';
 
 @Injectable()
 export class UnavailabilityService {
@@ -30,7 +32,7 @@ export class UnavailabilityService {
         }
     }
     /**
-     * **summary**:
+     * **summary**: Select a rental by it's _id and view all of it's scheduled pickup-unavailability
      */
     viewUnavailability = async (rental_id: string) => {
         try {
@@ -40,10 +42,21 @@ export class UnavailabilityService {
         }
     }
     /**
-     * **summary**:
+     * **summary**: Reschedule the selected unavailability
      */
-    rescheduleUnavailability = async () => {
-
+    rescheduleUnavailability = async (unavailability: RescheduleUnavailabilityDto) => {
+        try {
+            const filter = {_id: unavailability.unavailability_id}
+            const update: UnavailabilityDto = {
+                rentalId: unavailability.rentalId,
+                title: unavailability.title,
+                startDateTime: unavailability.startDateTime,
+                endDateTime: unavailability.endDateTime
+            }
+            return await this.unavailability.findOneAndUpdate(filter, update, {new: true});
+        } catch (err) {
+            if (err) throw new Error(err);
+        }
     }
     /**
      * **summary**:

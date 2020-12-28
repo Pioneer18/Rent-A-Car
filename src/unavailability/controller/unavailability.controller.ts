@@ -4,6 +4,7 @@ import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
 import { UnavailabilityService } from '../service/unavailability.service';
 import { RentalIdParamsDto } from '../../rental/dto/rental-id-params.dto';
+import { RescheduleUnavailabilityDto } from '../dto/reschedule-unavailability.dto';
 
 @UseGuards(LoggedOutGuard)
 @UseGuards(JwtAuthGuard)
@@ -32,8 +33,8 @@ export class UnavailabilityController {
      * **summary**: Reschedule the selected Unavailability
      */
     @Post('reschedule-pickup-unavailability')
-    async rescheduleUnavailability() {
-        // return await this.unavailabilityService.rescheduleUnavailability();
+    async rescheduleUnavailability(@Body() unavailability: RescheduleUnavailabilityDto) {
+        return await this.unavailabilityService.rescheduleUnavailability(unavailability);
     }
 
     /**
