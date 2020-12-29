@@ -53,7 +53,7 @@ export class UnavailabilityService {
                 startDateTime: unavailability.startDateTime,
                 endDateTime: unavailability.endDateTime
             }
-            return await this.unavailability.findOneAndUpdate(filter, update, {new: true});
+            return await this.unavailability.findOneAndUpdate(filter, update, {new: true, useFindAndModify: false});
         } catch (err) {
             if (err) throw new Error(err);
         }

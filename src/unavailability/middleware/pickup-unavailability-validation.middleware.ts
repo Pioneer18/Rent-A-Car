@@ -7,6 +7,7 @@ import { LuxonUtil } from '../../common/util/luxon-util';
 import { DateTime } from 'luxon';
 import { InjectModel } from '@nestjs/mongoose';
 import { unavailabilityModel } from '../../common/Const';
+import { RescheduleUnavailabilityDto } from '../dto/reschedule-unavailability.dto';
 /**
  * **summary**: Verify the requested new Unavailability does not conflict with Unavailability already scheduled for the selected rental.
  * Also verify the requested new Unavailability has valid data. 
@@ -60,7 +61,93 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
   private sendOverlapQuery = async (unavailability: UnavailabilityDto) => {
     return await this.unavailability.find({
       rentalId: unavailability.rentalId,
-      $or: [
+      $where: function () {
+        // outside greater by year
+        if (
+          // less than start year
+          (this.startDateTime.year < unavailability.startDateTime.year && this.endDateTime.year >= unavailability.endDateTime.year) ||
+          // greater than end year
+          (this.startDateTime.year <= unavailability.startDateTime && this.endDateTime.year > unavailability.endDateTime.year)
+        ) {
+          return true;
+        }
+        // outside greater by month
+        if (
+          (
+            // less than start month
+            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
+            (this.startDateTime.month < unavailability.startDateTime.month && this.endDateTime.month >= unavailability.endDateTime.month)
+          ) ||
+          (
+            // greater than end month
+            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
+            (this.startDateTime.month <= unavailability.startDateTime.month && this.endDateTime.month > unavailability.endDateTime.month)
+          )
+        ) {
+          return true;
+        }
+        // outside greater by day
+        if (
+          (
+            // less than start day
+            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
+            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
+            (this.startDateTime.day < unavailability.startDateTime.day && this.endDateTime.day >= unavailability.endDateTime.day)
+          ) ||
+          (
+            // greater than end day
+            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
+            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
+            (this.startDateTime.day <= unavailability.startDateTime.day && this.endDateTime.day > unavailability.endDateTime.day)
+          )
+        ) {
+          return true;
+        }
+        // outside greater by hour
+        if (
+          (
+            // less than start hour
+            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
+            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
+            (this.startDateTime.day === unavailability.startDateTime.day && this.endDateTime.day === unavailability.endDateTime.day) &&
+            (this.startDateTime.hour < unavailability.startDateTime.hour && this.endDateTime.hour >= unavailability.endDateTime.hour)
+          ) ||
+          (
+            // less than start hour
+            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
+            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
+            (this.startDateTime.day === unavailability.startDateTime.day && this.endDateTime.day === unavailability.endDateTime.day) &&
+            (this.startDateTime.hour <= unavailability.startDateTime.hour && this.endDateTime.hour > unavailability.endDateTime.hour)
+          )
+        ) {
+          return true;
+        }
+        // outside greater by minute
+        if (
+          (
+            //less than start mintue
+            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
+            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
+            (this.startDateTime.day === unavailability.startDateTime.day && this.endDateTime.day === unavailability.endDateTime.day) &&
+            (this.startDateTime.hour === unavailability.startDateTime.hour && this.endDateTime.hour === unavailability.endDateTime.hour) &&
+            (this.startDateTime.minute < unavailability.startDateTime.minute && this.endDateTime.minute >= unavailability.endDateTime.minute)
+          ) ||
+          (
+            //greater than end mintue
+            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
+            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
+            (this.startDateTime.day === unavailability.startDateTime.day && this.endDateTime.day === unavailability.endDateTime.day) &&
+            (this.startDateTime.hour === unavailability.startDateTime.hour && this.endDateTime.hour === unavailability.endDateTime.hour) &&
+            (this.startDateTime.minute <= unavailability.startDateTime.minute && this.endDateTime.minute > unavailability.endDateTime.minute)
+          )
+        ) {
+          return true
+        }
+        // enclosed
+        // offset start
+        // offset end
+      },
+      /*$or: [
         // outside
         {
           'startDateTime.year': unavailability.startDateTime.year,
@@ -69,6 +156,141 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
           'startDateTime.hour': { $lte: unavailability.startDateTime.hour },
           'startDateTime.minute': { $lte: unavailability.startDateTime.minute },
           'endDateTime.year': unavailability.endDateTime.year,
+          'endDateTime.month': { $gte: unavailability.endDateTime.month },
+          'endDateTime.day': { $gte: unavailability.endDateTime.day },
+          'endDateTime.hour': { $gte: unavailability.endDateTime.hour },
+          'endDateTime.minute': { $gte: unavailability.endDateTime.minute },
+        },
+        // enclosed
+        {
+          'startDateTime.year': unavailability.startDateTime.year,
+          'startDateTime.month': { $gte: unavailability.startDateTime.month },
+          'startDateTime.day': { $gte: unavailability.startDateTime.day },
+          'startDateTime.hour': { $gte: unavailability.startDateTime.hour },
+          'startDateTime.minute': { $gte: unavailability.startDateTime.minute },
+          'endDateTime.year': unavailability.endDateTime.year,
+          'endDateTime.month': { $lte: unavailability.endDateTime.month },
+          'endDateTime.day': { $lte: unavailability.endDateTime.day },
+          'endDateTime.hour': { $lte: unavailability.endDateTime.hour },
+          'endDateTime.minute': { $lte: unavailability.endDateTime.minute },
+        },
+        // offset before start
+        {
+          'startDateTime.year': { $lte: unavailability.startDateTime.year },
+          'startDateTime.month': { $lte: unavailability.startDateTime.month },
+          'startDateTime.day': { $lte: unavailability.startDateTime.day },
+          'startDateTime.hour': { $lte: unavailability.startDateTime.hour },
+          'startDateTime.minute': { $lte: unavailability.startDateTime.minute },
+          'endDateTime.year': { $gte: unavailability.startDateTime.year, $lte: unavailability.endDateTime.year },
+          'endDateTime.month': { $gte: unavailability.startDateTime.month, $lte: unavailability.endDateTime.month },
+          'endDateTime.day': { $gte: unavailability.startDateTime.day, $lte: unavailability.endDateTime.day },
+          'endDateTime.hour': { $gte: unavailability.startDateTime.hour, $lte: unavailability.endDateTime.hour },
+          'endDateTime.minute': { $gte: unavailability.startDateTime.minute, $lte: unavailability.endDateTime.minute }
+        },
+        // offset after end
+        {
+          'startDateTime.year': { $lte: unavailability.endDateTime.year },
+          'startDateTime.month': { $lte: unavailability.endDateTime.month },
+          'startDateTime.day': { $lte: unavailability.endDateTime.day },
+          'startDateTime.hour': { $lte: unavailability.endDateTime.hour },
+          'startDateTime.minute': { $lte: unavailability.endDateTime.minute },
+          'endDateTime.year': { $gte: unavailability.endDateTime.year },
+          'endDateTime.month': { $gte: unavailability.endDateTime.month },
+          'endDateTime.day': { $gte: unavailability.endDateTime.day },
+          'endDateTime.hour': { $gte: unavailability.endDateTime.hour },
+          'endDateTime.minute': { $gte: unavailability.endDateTime.minute },
+        }
+      ]*/
+    });
+  }
+  private sendOverlapQuery_ = async (unavailability: UnavailabilityDto) => {
+    return await this.unavailability.find({
+      rentalId: unavailability.rentalId,
+      // outside
+      $or: [
+        // year
+        {
+          $and: [
+            { ' r': { $lt: unavailability.startDateTime.year } },
+            { 'endDateTime.year': { $gt: unavailability.endDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': { $lt: unavailability.startDateTime.month } },
+            { 'endDateTime.month': { $gt: unavailability.endDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': { $lt: unavailability.startDateTime.day } },
+            { 'endDateTime.day': { $gt: unavailability.endDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': { $lt: unavailability.startDateTime.hour } },
+            { 'endDateTime.hour': { $gt: unavailability.endDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': { $lte: unavailability.startDateTime.minute } },
+            { 'endDateTime.minute': { $gte: unavailability.endDateTime.minute } }
+          ]
+        },
+      ]
+    });
+  }
+
+  /**
+  * **summary** Query the database and check for the 4 conditions of scheduling conflicts. Ignore the 
+  * Unavailability that is being rescheduled for this query.
+  * - verify the requested unavailability is 'enclosed' by an existing unavailability
+  * - verify the requested unavailability will not 'enclose' an existing unavailability
+  * - verify the requested unavailability will not 'overlap' an exsiting unavailability's ending
+  * - verify the requested unavailability will not 'overlap' an existing unavailability's start
+  * @param unavailability 
+  */
+  private sendRescheduleOverlapQuery = async (unavailability: RescheduleUnavailabilityDto) => {
+    console.log('SEND RESCHEDULE OVERLAP QUERY');
+    console.log(unavailability);
+    return await this.unavailability.find({
+      _id: { $ne: unavailability.unavailability_id },
+      rentalId: unavailability.rentalId,
+      $or: [
+        // outside
+        {
+          'startDateTime.year': { $lte: unavailability.startDateTime.year },
+          'startDateTime.month': { $lte: unavailability.startDateTime.month },
+          'startDateTime.day': { $lte: unavailability.startDateTime.day },
+          'startDateTime.hour': { $lte: unavailability.startDateTime.hour },
+          'startDateTime.minute': { $lte: unavailability.startDateTime.minute },
+          'endDateTime.year': { $gte: unavailability.endDateTime.year },
           'endDateTime.month': { $gte: unavailability.endDateTime.month },
           'endDateTime.day': { $gte: unavailability.endDateTime.day },
           'endDateTime.hour': { $gte: unavailability.endDateTime.hour },
@@ -122,12 +344,25 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
    * @param unavailability
    */
   checkForOverlap = async (unavailability: UnavailabilityDto) => {
-    const check = await this.sendOverlapQuery(unavailability);
+    const check = await this.sendOverlapQuery_ (unavailability);
     console.log('MIDDLEWARE CHECK')
     console.log(check)
-    if (check.length >= 1) throw new Error('The requested unavailability will overlap with unavailability already in the database');
+    if (check.length >= 1) throw new Error(`The requested unavailability will overlap with unavailability already scheduled for this rental: ${unavailability.rentalId}`);
     return;
   }
+
+  checkForRescheduleOverlap = async (unavailability: RescheduleUnavailabilityDto) => {
+    const check = await this.sendRescheduleOverlapQuery(unavailability);
+    console.log('MIDDLEWARE RESCHEDULE CHECK');
+    console.log(check);
+    if (check.length >= 1) throw new Error(`The requested rescheduling will overlap with unavailability already scheduled for this rental: ${unavailability.rentalId}`);
+    return;
+  }
+
+  /**
+   * **summary
+   * @param unavailability
+   */
 
   /**
    * **summary**:
@@ -136,23 +371,26 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
    * @param next the next method to continue onto the next handler
    */
   use = async (req: Request, res: Response, next: Function): Promise<void> => {
-    // apply only to update-unavailability request
+    // Schedule
     if (req.originalUrl === '/unavailability/schedule-pickup-unavailability') {
+      console.log(`VALIDATE UNAVAILABILITY MIDDLEWARE`)
+      await this.validateUnavailability(req.body);
+      await this.checkForOverlap(req.body);
+    }
+    // Reschedule
+    if (req.originalUrl === '/unavailability/reschedule-pickup-unavailability') {
       if (req.body.unavailability_id) {
-        // process the reschedule request
+        console.log(`VALIDATE RESCHEDULING MIDDLEWARE`);
         const update: UnavailabilityDto = {
           rentalId: req.body.rentalId,
           title: req.body.title,
           startDateTime: req.body.startDateTime,
           endDateTime: req.body.endDateTime
         }
-        const id = req.body.unavailability_id;
         await this.validateUnavailability(update);
-        // check for reschedule overlap
+        await this.checkForRescheduleOverlap(req.body)
       }
-      console.log(`VALIDATE UNAVAILABILITY MIDDLEWARE`)
-      await this.validateUnavailability(req.body);
-      await this.checkForOverlap(req.body)
+      else throw new Error('Please provide an Unavailability _id to reschedule');
     }
     next();
   }
