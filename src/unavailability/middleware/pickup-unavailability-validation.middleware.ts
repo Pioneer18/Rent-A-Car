@@ -61,157 +61,12 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
   private sendOverlapQuery = async (unavailability: UnavailabilityDto) => {
     return await this.unavailability.find({
       rentalId: unavailability.rentalId,
-      $where: function () {
-        // outside greater by year
-        if (
-          // less than start year
-          (this.startDateTime.year < unavailability.startDateTime.year && this.endDateTime.year >= unavailability.endDateTime.year) ||
-          // greater than end year
-          (this.startDateTime.year <= unavailability.startDateTime && this.endDateTime.year > unavailability.endDateTime.year)
-        ) {
-          return true;
-        }
-        // outside greater by month
-        if (
-          (
-            // less than start month
-            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
-            (this.startDateTime.month < unavailability.startDateTime.month && this.endDateTime.month >= unavailability.endDateTime.month)
-          ) ||
-          (
-            // greater than end month
-            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
-            (this.startDateTime.month <= unavailability.startDateTime.month && this.endDateTime.month > unavailability.endDateTime.month)
-          )
-        ) {
-          return true;
-        }
-        // outside greater by day
-        if (
-          (
-            // less than start day
-            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
-            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
-            (this.startDateTime.day < unavailability.startDateTime.day && this.endDateTime.day >= unavailability.endDateTime.day)
-          ) ||
-          (
-            // greater than end day
-            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
-            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
-            (this.startDateTime.day <= unavailability.startDateTime.day && this.endDateTime.day > unavailability.endDateTime.day)
-          )
-        ) {
-          return true;
-        }
-        // outside greater by hour
-        if (
-          (
-            // less than start hour
-            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
-            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
-            (this.startDateTime.day === unavailability.startDateTime.day && this.endDateTime.day === unavailability.endDateTime.day) &&
-            (this.startDateTime.hour < unavailability.startDateTime.hour && this.endDateTime.hour >= unavailability.endDateTime.hour)
-          ) ||
-          (
-            // less than start hour
-            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
-            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
-            (this.startDateTime.day === unavailability.startDateTime.day && this.endDateTime.day === unavailability.endDateTime.day) &&
-            (this.startDateTime.hour <= unavailability.startDateTime.hour && this.endDateTime.hour > unavailability.endDateTime.hour)
-          )
-        ) {
-          return true;
-        }
-        // outside greater by minute
-        if (
-          (
-            //less than start mintue
-            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
-            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
-            (this.startDateTime.day === unavailability.startDateTime.day && this.endDateTime.day === unavailability.endDateTime.day) &&
-            (this.startDateTime.hour === unavailability.startDateTime.hour && this.endDateTime.hour === unavailability.endDateTime.hour) &&
-            (this.startDateTime.minute < unavailability.startDateTime.minute && this.endDateTime.minute >= unavailability.endDateTime.minute)
-          ) ||
-          (
-            //greater than end mintue
-            (this.startDateTime.year === unavailability.startDateTime.year && this.endDateTime.year === unavailability.endDateTime.year) &&
-            (this.startDateTime.month === unavailability.startDateTime.month && this.endDateTime.month === unavailability.endDateTime.month) &&
-            (this.startDateTime.day === unavailability.startDateTime.day && this.endDateTime.day === unavailability.endDateTime.day) &&
-            (this.startDateTime.hour === unavailability.startDateTime.hour && this.endDateTime.hour === unavailability.endDateTime.hour) &&
-            (this.startDateTime.minute <= unavailability.startDateTime.minute && this.endDateTime.minute > unavailability.endDateTime.minute)
-          )
-        ) {
-          return true
-        }
-        // enclosed
-        // offset start
-        // offset end
-      },
-      /*$or: [
-        // outside
-        {
-          'startDateTime.year': unavailability.startDateTime.year,
-          'startDateTime.month': { $lte: unavailability.startDateTime.month },
-          'startDateTime.day': { $lte: unavailability.startDateTime.day },
-          'startDateTime.hour': { $lte: unavailability.startDateTime.hour },
-          'startDateTime.minute': { $lte: unavailability.startDateTime.minute },
-          'endDateTime.year': unavailability.endDateTime.year,
-          'endDateTime.month': { $gte: unavailability.endDateTime.month },
-          'endDateTime.day': { $gte: unavailability.endDateTime.day },
-          'endDateTime.hour': { $gte: unavailability.endDateTime.hour },
-          'endDateTime.minute': { $gte: unavailability.endDateTime.minute },
-        },
-        // enclosed
-        {
-          'startDateTime.year': unavailability.startDateTime.year,
-          'startDateTime.month': { $gte: unavailability.startDateTime.month },
-          'startDateTime.day': { $gte: unavailability.startDateTime.day },
-          'startDateTime.hour': { $gte: unavailability.startDateTime.hour },
-          'startDateTime.minute': { $gte: unavailability.startDateTime.minute },
-          'endDateTime.year': unavailability.endDateTime.year,
-          'endDateTime.month': { $lte: unavailability.endDateTime.month },
-          'endDateTime.day': { $lte: unavailability.endDateTime.day },
-          'endDateTime.hour': { $lte: unavailability.endDateTime.hour },
-          'endDateTime.minute': { $lte: unavailability.endDateTime.minute },
-        },
-        // offset before start
-        {
-          'startDateTime.year': { $lte: unavailability.startDateTime.year },
-          'startDateTime.month': { $lte: unavailability.startDateTime.month },
-          'startDateTime.day': { $lte: unavailability.startDateTime.day },
-          'startDateTime.hour': { $lte: unavailability.startDateTime.hour },
-          'startDateTime.minute': { $lte: unavailability.startDateTime.minute },
-          'endDateTime.year': { $gte: unavailability.startDateTime.year, $lte: unavailability.endDateTime.year },
-          'endDateTime.month': { $gte: unavailability.startDateTime.month, $lte: unavailability.endDateTime.month },
-          'endDateTime.day': { $gte: unavailability.startDateTime.day, $lte: unavailability.endDateTime.day },
-          'endDateTime.hour': { $gte: unavailability.startDateTime.hour, $lte: unavailability.endDateTime.hour },
-          'endDateTime.minute': { $gte: unavailability.startDateTime.minute, $lte: unavailability.endDateTime.minute }
-        },
-        // offset after end
-        {
-          'startDateTime.year': { $lte: unavailability.endDateTime.year },
-          'startDateTime.month': { $lte: unavailability.endDateTime.month },
-          'startDateTime.day': { $lte: unavailability.endDateTime.day },
-          'startDateTime.hour': { $lte: unavailability.endDateTime.hour },
-          'startDateTime.minute': { $lte: unavailability.endDateTime.minute },
-          'endDateTime.year': { $gte: unavailability.endDateTime.year },
-          'endDateTime.month': { $gte: unavailability.endDateTime.month },
-          'endDateTime.day': { $gte: unavailability.endDateTime.day },
-          'endDateTime.hour': { $gte: unavailability.endDateTime.hour },
-          'endDateTime.minute': { $gte: unavailability.endDateTime.minute },
-        }
-      ]*/
-    });
-  }
-  private sendOverlapQuery_ = async (unavailability: UnavailabilityDto) => {
-    return await this.unavailability.find({
-      rentalId: unavailability.rentalId,
-      // outside
+      // #1 Absolutely Enclose the Query
       $or: [
         // year
         {
           $and: [
-            { ' r': { $lt: unavailability.startDateTime.year } },
+            { 'startDateTime.year': { $lt: unavailability.startDateTime.year } },
             { 'endDateTime.year': { $gt: unavailability.endDateTime.year } }
           ]
         },
@@ -259,8 +114,400 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'endDateTime.day': unavailability.endDateTime.day },
             { 'startDateTime.hour': unavailability.startDateTime.hour },
             { 'endDateTime.hour': unavailability.endDateTime.hour },
-            { 'startDateTime.minute': { $lte: unavailability.startDateTime.minute } },
-            { 'endDateTime.minute': { $gte: unavailability.endDateTime.minute } }
+            { 'startDateTime.minute': { $lt: unavailability.startDateTime.minute } },
+            { 'endDateTime.minute': { $gt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #2 Absolutely Enclosed by Query
+        // year
+        {
+          $and: [
+            { 'startDateTime.year': { $gt: unavailability.startDateTime.year } },
+            { 'endDateTime.year': { $lt: unavailability.endDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': { $gt: unavailability.startDateTime.month } },
+            { 'endDateTime.month': { $lt: unavailability.endDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': { $gt: unavailability.startDateTime.day } },
+            { 'endDateTime.day': { $lt: unavailability.endDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': { $gt: unavailability.startDateTime.hour } },
+            { 'endDateTime.hour': { $lt: unavailability.endDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': { $gt: unavailability.startDateTime.minute } },
+            { 'endDateTime.minute': { $lt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #3 Absolutely Equal
+        // year
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': unavailability.startDateTime.minute },
+            { 'endDateTime.minute': unavailability.endDateTime.minute }
+          ]
+        },
+        // #4 Start === Start && End > End
+        // year
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': { $gt: unavailability.endDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': { $gt: unavailability.endDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': { $gt: unavailability.endDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': { $gt: unavailability.endDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': unavailability.startDateTime.minute },
+            { 'endDateTime.minute': { $gt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #5 Start === Start && End < End
+        // year
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': { $lt: unavailability.endDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': { $lt: unavailability.endDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': { $lt: unavailability.endDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': { $lt: unavailability.endDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': unavailability.startDateTime.minute },
+            { 'endDateTime.minute': { $lt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #6  End === End && Start < Start
+        // year
+        {
+          $and: [
+            { 'startDateTime.year': { $lt: unavailability.startDateTime.year } },
+            { 'endDateTime.year': unavailability.endDateTime.year }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': { $lt: unavailability.startDateTime.month } },
+            { 'endDateTime.month': unavailability.endDateTime.month }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': { $lt: unavailability.startDateTime.day } },
+            { 'endDateTime.day': unavailability.endDateTime.day }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': { $lt: unavailability.startDateTime.hour } },
+            { 'endDateTime.hour': unavailability.endDateTime.hour }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': { $lt: unavailability.startDateTime.minute } },
+            { 'endDateTime.minute': unavailability.endDateTime.minute }
+          ]
+        },
+        // #7 End === End && Start > Start
+        // year
+        {
+          $and: [
+            { 'startDateTime.year': { $gt: unavailability.startDateTime.year } },
+            { 'endDateTime.year': unavailability.endDateTime.year }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': { $gt: unavailability.startDateTime.month } },
+            { 'endDateTime.month': unavailability.endDateTime.month }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': { $gt: unavailability.startDateTime.day } },
+            { 'endDateTime.day': unavailability.endDateTime.day }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': { $gt: unavailability.startDateTime.hour } },
+            { 'endDateTime.hour': unavailability.endDateTime.hour }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': { $gt: unavailability.startDateTime.minute } },
+            { 'endDateTime.minute': unavailability.endDateTime.minute }
+          ]
+        },
+        // #8 Start < Start && End > Start
+        // year
+        {
+          $and: [
+            { 'startDateTime.year': { $lt: unavailability.startDateTime.year } },
+            { 'endDateTime.year': { $gt: unavailability.startDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': { $lt: unavailability.startDateTime.month } },
+            { 'endDateTime.month': { $gt: unavailability.startDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': { $lt: unavailability.startDateTime.day } },
+            { 'endDateTime.day': { $gt: unavailability.startDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': { $lt: unavailability.startDateTime.hour } },
+            { 'endDateTime.hour': { $gt: unavailability.startDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': { $lt: unavailability.startDateTime.minute } },
+            { 'endDateTime.minute': { $gt: unavailability.startDateTime.minute } }
           ]
         },
       ]
@@ -344,7 +591,7 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
    * @param unavailability
    */
   checkForOverlap = async (unavailability: UnavailabilityDto) => {
-    const check = await this.sendOverlapQuery_ (unavailability);
+    const check = await this.sendOverlapQuery(unavailability);
     console.log('MIDDLEWARE CHECK')
     console.log(check)
     if (check.length >= 1) throw new Error(`The requested unavailability will overlap with unavailability already scheduled for this rental: ${unavailability.rentalId}`);
