@@ -16,20 +16,8 @@ import { PricingPipe } from '../pipes/pricing.pipe';
 import { PricingDto } from '../dto/pricing/pricing.dto';
 import { ValidateEditDetailsPipe } from '../pipes/validate-edit-details.pipe';
 import { EditDetailsDto } from '../dto/details/edit-details.dto';
-// import { SortUnavailabilityPipe } from '../pipes/sort-unavailability.pipe';
-// import { ValidateUnavailabilityPipe } from '../pipes/validate-unavailability.pipe';
-// import { ProcessUnavailabilityPipe } from '../pipes/process-unavailability.pipe';
-// import { ProcessedUnavailabilityDto } from '../dto/unavailability/schedule/processed-unavailability.dto';
-// import { CreateUpdaterDtoPipe } from '../pipes/create-updater-dto.pipe';
-// import { UpdateUnavailabilityDataDto } from '../dto/unavailability/update/update-unavailability-data.dto'; // '../dto/update-unavailability-data.dto';
-// import { ValidateRemoveUnavailabilityPipe } from '../pipes/validate-remove-unavailability.pipe';
-// import { RemoveUnavailabilityDto } from '../dto/unavailability/remove/remove-unavailability.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { RentalInterface } from '../interface/rental.interface';
-// import { UnavailabilityInterface } from '../interface/unavailability.interface';
-// import { UpdateResponseInterface } from '../../common/interfaces/update-response.interface';
-// import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
-// import { ToItemsIndexes } from '../../common/util/to-item-indexes';
 import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
 import { RentalIdDto } from '../dto/rental-id.dto';
 
@@ -100,24 +88,6 @@ export class RentalController {
   async editDetails(@Body() editDetailsDto: EditDetailsDto): Promise<RentalInterface> {
     return await this.rentalService.editDetails(editDetailsDto);
   }
-
-  /**
-   * **summary**: Edit the selected rental's unavailability
-   */
-  /*@Post('update-unavailability')
-  @UsePipes(new CreateUpdaterDtoPipe())
-  async updateUnavailability(@Body() data: UpdateUnavailabilityDataDto): Promise<UpdateResponseInterface> {
-    return await this.rentalService.updateUnavailability(data);
-  }*/
-
-  /**
-   * **summary**: Remove unavailability from the selected rental
-   */
-  /*@Post('remove-unavailability')
-  @UsePipes(new ValidateRemoveUnavailabilityPipe())
-  async removeUnavailability(@Body() data: RemoveUnavailabilityDto): Promise<DeleteResponseInterface> {
-    return await this.rentalService.removeUnavailability(data);
-  }*/
 
   /**
    * **summary**: Remove the selected rental
