@@ -58,11 +58,11 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
    * - verify the requested unavailability will not 'overlap' an existing unavailability's start
    * @param unavailability 
    */
-  private sendOverlapQuery = async (unavailability: UnavailabilityDto) => {
-    return await this.unavailability.find({
+  private sendOverlapQuery = async (unavailability: UnavailabilityDto, unavailabiility_id?: string) => {
+    const query = {
       rentalId: unavailability.rentalId,
-      // #1 Absolutely Enclose the Query
       $or: [
+        // #1 Absolutely Enclose the Query
         // year
         {
           $and: [
@@ -641,7 +641,7 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.month': { $lte: unavailability.endDateTime.month } },
             { 'startDateTime.day': { $lte: unavailability.endDateTime.day } },
             { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
-            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute}}
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } }
           ]
         },
         // month
@@ -653,7 +653,7 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'endDateTime.month': { $gt: unavailability.endDateTime.month } },
             { 'startDateTime.day': { $lte: unavailability.endDateTime.day } },
             { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
-            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute}}
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } }
           ]
         },
         // day
@@ -666,7 +666,7 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.day': unavailability.endDateTime.day },
             { 'endDateTime.day': { $gt: unavailability.endDateTime.day } },
             { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
-            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute}}
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } }
           ]
         },
         // hour
@@ -680,7 +680,7 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'endDateTime.day': unavailability.endDateTime.day },
             { 'startDateTime.hour': unavailability.endDateTime.hour },
             { 'endDateTime.hour': { $gt: unavailability.endDateTime.hour } },
-            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute}}
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } }
           ]
         },
         // minute
@@ -699,79 +699,16 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
           ]
         }
       ]
-    });
-  }
+    };
+    if (unavailabiility_id) {
+      // reschedule query
+      let reQuery: any = query;
+      reQuery._id = { $ne: unavailabiility_id };
+      return await this.unavailability.find(reQuery);
+    }
+    // schedule new query
+    return await this.unavailability.find(query);
 
-  /**
-  * **summary** Query the database and check for the 4 conditions of scheduling conflicts. Ignore the 
-  * Unavailability that is being rescheduled for this query.
-  * - verify the requested unavailability is 'enclosed' by an existing unavailability
-  * - verify the requested unavailability will not 'enclose' an existing unavailability
-  * - verify the requested unavailability will not 'overlap' an exsiting unavailability's ending
-  * - verify the requested unavailability will not 'overlap' an existing unavailability's start
-  * @param unavailability 
-  */
-  private sendRescheduleOverlapQuery = async (unavailability: RescheduleUnavailabilityDto) => {
-    console.log('SEND RESCHEDULE OVERLAP QUERY');
-    console.log(unavailability);
-    return await this.unavailability.find({
-      _id: { $ne: unavailability.unavailability_id },
-      rentalId: unavailability.rentalId,
-      $or: [
-        // outside
-        {
-          'startDateTime.year': { $lte: unavailability.startDateTime.year },
-          'startDateTime.month': { $lte: unavailability.startDateTime.month },
-          'startDateTime.day': { $lte: unavailability.startDateTime.day },
-          'startDateTime.hour': { $lte: unavailability.startDateTime.hour },
-          'startDateTime.minute': { $lte: unavailability.startDateTime.minute },
-          'endDateTime.year': { $gte: unavailability.endDateTime.year },
-          'endDateTime.month': { $gte: unavailability.endDateTime.month },
-          'endDateTime.day': { $gte: unavailability.endDateTime.day },
-          'endDateTime.hour': { $gte: unavailability.endDateTime.hour },
-          'endDateTime.minute': { $gte: unavailability.endDateTime.minute },
-        },
-        // enclosed
-        {
-          'startDateTime.year': unavailability.startDateTime.year,
-          'startDateTime.month': { $gte: unavailability.startDateTime.month },
-          'startDateTime.day': { $gte: unavailability.startDateTime.day },
-          'startDateTime.hour': { $gte: unavailability.startDateTime.hour },
-          'startDateTime.minute': { $gte: unavailability.startDateTime.minute },
-          'endDateTime.year': unavailability.endDateTime.year,
-          'endDateTime.month': { $lte: unavailability.endDateTime.month },
-          'endDateTime.day': { $lte: unavailability.endDateTime.day },
-          'endDateTime.hour': { $lte: unavailability.endDateTime.hour },
-          'endDateTime.minute': { $lte: unavailability.endDateTime.minute },
-        },
-        // offset before start
-        {
-          'startDateTime.year': { $lte: unavailability.startDateTime.year },
-          'startDateTime.month': { $lte: unavailability.startDateTime.month },
-          'startDateTime.day': { $lte: unavailability.startDateTime.day },
-          'startDateTime.hour': { $lte: unavailability.startDateTime.hour },
-          'startDateTime.minute': { $lte: unavailability.startDateTime.minute },
-          'endDateTime.year': { $gte: unavailability.startDateTime.year, $lte: unavailability.endDateTime.year },
-          'endDateTime.month': { $gte: unavailability.startDateTime.month, $lte: unavailability.endDateTime.month },
-          'endDateTime.day': { $gte: unavailability.startDateTime.day, $lte: unavailability.endDateTime.day },
-          'endDateTime.hour': { $gte: unavailability.startDateTime.hour, $lte: unavailability.endDateTime.hour },
-          'endDateTime.minute': { $gte: unavailability.startDateTime.minute, $lte: unavailability.endDateTime.minute }
-        },
-        // offset after end
-        {
-          'startDateTime.year': { $lte: unavailability.endDateTime.year },
-          'startDateTime.month': { $lte: unavailability.endDateTime.month },
-          'startDateTime.day': { $lte: unavailability.endDateTime.day },
-          'startDateTime.hour': { $lte: unavailability.endDateTime.hour },
-          'startDateTime.minute': { $lte: unavailability.endDateTime.minute },
-          'endDateTime.year': { $gte: unavailability.endDateTime.year },
-          'endDateTime.month': { $gte: unavailability.endDateTime.month },
-          'endDateTime.day': { $gte: unavailability.endDateTime.day },
-          'endDateTime.hour': { $gte: unavailability.endDateTime.hour },
-          'endDateTime.minute': { $gte: unavailability.endDateTime.minute },
-        }
-      ]
-    });
   }
 
   /**
@@ -787,7 +724,7 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
   }
 
   checkForRescheduleOverlap = async (unavailability: RescheduleUnavailabilityDto) => {
-    const check = await this.sendRescheduleOverlapQuery(unavailability);
+    const check = await this.sendOverlapQuery(unavailability, unavailability.unavailability_id);
     console.log('MIDDLEWARE RESCHEDULE CHECK');
     console.log(check);
     if (check.length >= 1) throw new Error(`The requested rescheduling will overlap with unavailability already scheduled for this rental: ${unavailability.rentalId}`);
