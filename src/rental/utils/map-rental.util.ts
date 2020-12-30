@@ -1,4 +1,3 @@
-import { number } from "@hapi/joi";
 import { RentalModelInterface } from "../interface/modelInterface/Rental/rental-model.interface";
 import { RentalInterface } from "../interface/rental.interface";
 

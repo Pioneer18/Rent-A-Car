@@ -12,8 +12,6 @@ import { RentalDurationPipe } from './pipes/rental-duration.pipe';
 import { RentalSearchFilterPipe } from './pipes/rental-search-filter.pipe';
 import { PricingPipe } from './pipes/pricing.pipe';
 import { ValidateEditDetailsPipe } from './pipes/validate-edit-details.pipe';
-import { CreateUpdaterDtoPipe } from './pipes/create-updater-dto.pipe';
-import { ValidateRemoveUnavailabilityPipe } from './pipes/validate-remove-unavailability.pipe';
 import { AppConfigService } from '../config/configuration.service';
 import { GenerateRentalDurationEnumUtil } from './utils/generate-rental-duration-enum.util';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -45,8 +43,6 @@ import { RadiusToMeters } from './utils/radius-to-meters';
     RentalSearchFilterPipe,
     PricingPipe,
     ValidateEditDetailsPipe,
-    CreateUpdaterDtoPipe,
-    ValidateRemoveUnavailabilityPipe,
     AppConfigService,
     ConfigService,
     MapRentalUtil,
