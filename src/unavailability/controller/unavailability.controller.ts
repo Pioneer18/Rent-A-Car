@@ -5,6 +5,8 @@ import { LoggedOutGuard } from '../../auth/guards/logged-out.guard';
 import { UnavailabilityService } from '../service/unavailability.service';
 import { RentalIdParamsDto } from '../../rental/dto/rental-id-params.dto';
 import { RescheduleUnavailabilityDto } from '../dto/reschedule-unavailability.dto';
+import { RemoveUnavailabilityDto } from '../dto/remove-unavailability.dto';
+import { DeleteResponseInterface } from '../../common/interfaces/delete-response.interface';
 
 @UseGuards(LoggedOutGuard)
 @UseGuards(JwtAuthGuard)
@@ -41,7 +43,7 @@ export class UnavailabilityController {
      * **summary**: Remove the selected unavailability
      */
     @Post('remove-pickup-unavailability')
-    async removeUnavailability() {
-        // return await this.unavailabilitySevice.removeUnavailability();
+    async removeUnavailability(@Query() params: RemoveUnavailabilityDto): Promise<DeleteResponseInterface> {
+        return await this.unavailabilityService.removeUnavailability(params._id);
     }
 }
