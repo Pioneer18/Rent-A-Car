@@ -124,25 +124,6 @@ export class RentalService {
   }
 
   /**
-   * **summary**: Remove an amount of time from a scheduled duration of unavailability on the rental
-   * @param data Rental_id and unavailability_id
-   */
-  /*removeUnavailability = async (data: RemoveUnavailabilityInterface): Promise<DeleteResponseInterface> => {
-    try {
-      const remove = await this.unavailability.remove({
-        rentalId: data.rentalId,
-        unavailabilityId: data.unavailabilityId,
-      });
-      if (remove.deletedCount === 0) {
-        throw new Error('No Unavailability documents were found, no documents were deleted');
-      }
-      return remove;
-    } catch (err) {
-      throw new Error(err);
-    }
-  }*/
-
-  /**
    * **summary**: Remove the selected rental
    * @param rentalId string 
    */
@@ -262,30 +243,4 @@ export class RentalService {
       throw new Error(err);
     }
   }
-
-  /**
-   * **summary**: Validate there currently is no scheduled unavailability for the rental in the database that overlaps
-   * with the requested unavailability
-   * @param data Query for 1 or 2 years
-   */
-  /*private checkForOverlap = async (data: ScheduleUnavailabilityInterface): Promise<void> => {
-    const { y1Query, y2Query } = data;
-    // if there are 2 years
-    if (y2Query !== null) {
-      const test1 = await this.unavailability.find(y1Query);
-      const test2 = await this.unavailability.find(y2Query);
-      Logger.log(`test1`);
-      Logger.log(test1);
-      Logger.log(`test2`);
-      Logger.log(test2);
-      if (test1.length || test2.length) {
-        throw new Error('this request overlaps with existing unavailability');
-      }
-    }
-    // else
-    const test = await this.unavailability.find(y1Query);
-    if (test.length) {
-      throw new Error('this request overlaps with existing unavailability');
-    }
-  }*/
 }
