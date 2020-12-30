@@ -175,46 +175,6 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
           ]
         },
         // #3 Absolutely Equal
-        // year
-        {
-          $and: [
-            { 'startDateTime.year': unavailability.startDateTime.year },
-            { 'endDateTime.year': unavailability.endDateTime.year }
-          ]
-        },
-        // month
-        {
-          $and: [
-            { 'startDateTime.year': unavailability.startDateTime.year },
-            { 'endDateTime.year': unavailability.endDateTime.year },
-            { 'startDateTime.month': unavailability.startDateTime.month },
-            { 'endDateTime.month': unavailability.endDateTime.month }
-          ]
-        },
-        // day
-        {
-          $and: [
-            { 'startDateTime.year': unavailability.startDateTime.year },
-            { 'endDateTime.year': unavailability.endDateTime.year },
-            { 'startDateTime.month': unavailability.startDateTime.month },
-            { 'endDateTime.month': unavailability.endDateTime.month },
-            { 'startDateTime.day': unavailability.startDateTime.day },
-            { 'endDateTime.day': unavailability.endDateTime.day }
-          ]
-        },
-        // hour
-        {
-          $and: [
-            { 'startDateTime.year': unavailability.startDateTime.year },
-            { 'endDateTime.year': unavailability.endDateTime.year },
-            { 'startDateTime.month': unavailability.startDateTime.month },
-            { 'endDateTime.month': unavailability.endDateTime.month },
-            { 'startDateTime.day': unavailability.startDateTime.day },
-            { 'endDateTime.day': unavailability.endDateTime.day },
-            { 'startDateTime.hour': unavailability.startDateTime.hour },
-            { 'endDateTime.hour': unavailability.endDateTime.hour }
-          ]
-        },
         // minute
         {
           $and: [
@@ -230,12 +190,16 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'endDateTime.minute': unavailability.endDateTime.minute }
           ]
         },
-        // #4 Start === Start && End > End
+        // #4 Start === Start && End > End : sE <== eQ
         // year
         {
           $and: [
             { 'startDateTime.year': unavailability.startDateTime.year },
-            { 'endDateTime.year': { $gt: unavailability.endDateTime.year } }
+            { 'endDateTime.year': { $gt: unavailability.endDateTime.year } },
+            { 'startDateTime.month': { $lte: unavailability.endDateTime.month } },
+            { 'startDateTime.day': { $lte: unavailability.endDateTime.day } },
+            { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } },
           ]
         },
         // month
@@ -244,7 +208,10 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.year': unavailability.startDateTime.year },
             { 'endDateTime.year': unavailability.endDateTime.year },
             { 'startDateTime.month': unavailability.startDateTime.month },
-            { 'endDateTime.month': { $gt: unavailability.endDateTime.month } }
+            { 'endDateTime.month': { $gt: unavailability.endDateTime.month } },
+            { 'startDateTime.day': { $lte: unavailability.endDateTime.day } },
+            { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } },
           ]
         },
         // day
@@ -255,7 +222,9 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.month': unavailability.startDateTime.month },
             { 'endDateTime.month': unavailability.endDateTime.month },
             { 'startDateTime.day': unavailability.startDateTime.day },
-            { 'endDateTime.day': { $gt: unavailability.endDateTime.day } }
+            { 'endDateTime.day': { $gt: unavailability.endDateTime.day } },
+            { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } },
           ]
         },
         // hour
@@ -268,7 +237,8 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.day': unavailability.startDateTime.day },
             { 'endDateTime.day': unavailability.endDateTime.day },
             { 'startDateTime.hour': unavailability.startDateTime.hour },
-            { 'endDateTime.hour': { $gt: unavailability.endDateTime.hour } }
+            { 'endDateTime.hour': { $gt: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } },
           ]
         },
         // minute
@@ -286,12 +256,16 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'endDateTime.minute': { $gt: unavailability.endDateTime.minute } }
           ]
         },
-        // #5 Start === Start && End < End
+        // #5 Start === Start && End < End: eE >== sQ
         // year
         {
           $and: [
             { 'startDateTime.year': unavailability.startDateTime.year },
-            { 'endDateTime.year': { $lt: unavailability.endDateTime.year } }
+            { 'endDateTime.year': { $lt: unavailability.endDateTime.year } },
+            { 'endDateTime.month': { $gte: unavailability.startDateTime.month } },
+            { 'endDateTime.day': { $gte: unavailability.startDateTime.day } },
+            { 'endDateTime.hour': { $gte: unavailability.startDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // month
@@ -300,7 +274,10 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.year': unavailability.startDateTime.year },
             { 'endDateTime.year': unavailability.endDateTime.year },
             { 'startDateTime.month': unavailability.startDateTime.month },
-            { 'endDateTime.month': { $lt: unavailability.endDateTime.month } }
+            { 'endDateTime.month': { $lt: unavailability.endDateTime.month } },
+            { 'endDateTime.day': { $gte: unavailability.startDateTime.day } },
+            { 'endDateTime.hour': { $gte: unavailability.startDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // day
@@ -311,7 +288,9 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.month': unavailability.startDateTime.month },
             { 'endDateTime.month': unavailability.endDateTime.month },
             { 'startDateTime.day': unavailability.startDateTime.day },
-            { 'endDateTime.day': { $lt: unavailability.endDateTime.day } }
+            { 'endDateTime.day': { $lt: unavailability.endDateTime.day } },
+            { 'endDateTime.hour': { $gte: unavailability.startDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // hour
@@ -324,7 +303,8 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.day': unavailability.startDateTime.day },
             { 'endDateTime.day': unavailability.endDateTime.day },
             { 'startDateTime.hour': unavailability.startDateTime.hour },
-            { 'endDateTime.hour': { $lt: unavailability.endDateTime.hour } }
+            { 'endDateTime.hour': { $lt: unavailability.endDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // minute
@@ -342,12 +322,16 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'endDateTime.minute': { $lt: unavailability.endDateTime.minute } }
           ]
         },
-        // #6  End === End && Start < Start
+        // #6  End === End && Start < Start: eE >== sQ
         // year
         {
           $and: [
             { 'startDateTime.year': { $lt: unavailability.startDateTime.year } },
-            { 'endDateTime.year': unavailability.endDateTime.year }
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'endDateTime.month': { $gte: unavailability.startDateTime.month } },
+            { 'endDateTime.day': { $gte: unavailability.startDateTime.day } },
+            { 'endDateTime.hour': { $gte: unavailability.startDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // month
@@ -356,7 +340,10 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.year': unavailability.startDateTime.year },
             { 'endDateTime.year': unavailability.endDateTime.year },
             { 'startDateTime.month': { $lt: unavailability.startDateTime.month } },
-            { 'endDateTime.month': unavailability.endDateTime.month }
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'endDateTime.day': { $gte: unavailability.startDateTime.day } },
+            { 'endDateTime.hour': { $gte: unavailability.startDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // day
@@ -367,7 +354,9 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.month': unavailability.startDateTime.month },
             { 'endDateTime.month': unavailability.endDateTime.month },
             { 'startDateTime.day': { $lt: unavailability.startDateTime.day } },
-            { 'endDateTime.day': unavailability.endDateTime.day }
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'endDateTime.hour': { $gte: unavailability.startDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // hour
@@ -380,7 +369,8 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.day': unavailability.startDateTime.day },
             { 'endDateTime.day': unavailability.endDateTime.day },
             { 'startDateTime.hour': { $lt: unavailability.startDateTime.hour } },
-            { 'endDateTime.hour': unavailability.endDateTime.hour }
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // minute
@@ -403,7 +393,11 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
         {
           $and: [
             { 'startDateTime.year': { $gt: unavailability.startDateTime.year } },
-            { 'endDateTime.year': unavailability.endDateTime.year }
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': { $lte: unavailability.endDateTime.month } },
+            { 'startDateTime.day': { $lte: unavailability.endDateTime.day } },
+            { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } }
           ]
         },
         // month
@@ -412,7 +406,10 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.year': unavailability.startDateTime.year },
             { 'endDateTime.year': unavailability.endDateTime.year },
             { 'startDateTime.month': { $gt: unavailability.startDateTime.month } },
-            { 'endDateTime.month': unavailability.endDateTime.month }
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': { $lte: unavailability.endDateTime.day } },
+            { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } }
           ]
         },
         // day
@@ -423,7 +420,9 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.month': unavailability.startDateTime.month },
             { 'endDateTime.month': unavailability.endDateTime.month },
             { 'startDateTime.day': { $gt: unavailability.startDateTime.day } },
-            { 'endDateTime.day': unavailability.endDateTime.day }
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } }
           ]
         },
         // hour
@@ -436,7 +435,8 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.day': unavailability.startDateTime.day },
             { 'endDateTime.day': unavailability.endDateTime.day },
             { 'startDateTime.hour': { $gt: unavailability.startDateTime.hour } },
-            { 'endDateTime.hour': unavailability.endDateTime.hour }
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute } }
           ]
         },
         // minute
@@ -511,11 +511,15 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
           ]
         },
         // #9 Start < End && End === Start
-         // year
-         {
+        // year
+        {
           $and: [
             { 'startDateTime.year': { $lt: unavailability.startDateTime.year } },
-            { 'endDateTime.year':  unavailability.startDateTime.year }
+            { 'endDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.month': { $gte: unavailability.startDateTime.month } },
+            { 'endDateTime.day': { $gte: unavailability.startDateTime.day } },
+            { 'endDateTime.hour': { $gte: unavailability.startDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // month
@@ -524,7 +528,10 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.year': unavailability.startDateTime.year },
             { 'endDateTime.year': unavailability.endDateTime.year },
             { 'startDateTime.month': { $lt: unavailability.startDateTime.month } },
-            { 'endDateTime.month': unavailability.startDateTime.month }
+            { 'endDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.day': { $gte: unavailability.startDateTime.day } },
+            { 'endDateTime.hour': { $gte: unavailability.startDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // day
@@ -535,7 +542,9 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.month': unavailability.startDateTime.month },
             { 'endDateTime.month': unavailability.endDateTime.month },
             { 'startDateTime.day': { $lt: unavailability.startDateTime.day } },
-            { 'endDateTime.day': unavailability.startDateTime.day }
+            { 'endDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.hour': { $gte: unavailability.startDateTime.hour } },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // hour
@@ -548,7 +557,8 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'startDateTime.day': unavailability.startDateTime.day },
             { 'endDateTime.day': unavailability.endDateTime.day },
             { 'startDateTime.hour': { $lt: unavailability.startDateTime.hour } },
-            { 'endDateTime.hour': unavailability.startDateTime.hour }
+            { 'endDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.minute': { $gte: unavailability.startDateTime.minute } }
           ]
         },
         // minute
@@ -566,6 +576,128 @@ export class PickupUnavailabilityValidationMiddleware implements NestMiddleware 
             { 'endDateTime.minute': unavailability.startDateTime.minute }
           ]
         },
+        // #10 End > End && Start < End
+        // year
+        {
+          $and: [
+            { 'startDateTime.year': { $lt: unavailability.endDateTime.year } },
+            { 'endDateTime.year': { $gt: unavailability.endDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': { $lt: unavailability.endDateTime.month } },
+            { 'endDateTime.month': { $gt: unavailability.endDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': { $lt: unavailability.endDateTime.day } },
+            { 'endDateTime.day': { $gt: unavailability.endDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': { $lt: unavailability.endDateTime.hour } },
+            { 'endDateTime.hour': { $gt: unavailability.endDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': { $lt: unavailability.endDateTime.minute } },
+            { 'endDateTime.minute': { $gt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #11 End > End && Start === End
+        // year
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.endDateTime.year },
+            { 'endDateTime.year': { $gt: unavailability.endDateTime.year } },
+            { 'startDateTime.month': { $lte: unavailability.endDateTime.month } },
+            { 'startDateTime.day': { $lte: unavailability.endDateTime.day } },
+            { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute}}
+          ]
+        },
+        // month
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.endDateTime.month },
+            { 'endDateTime.month': { $gt: unavailability.endDateTime.month } },
+            { 'startDateTime.day': { $lte: unavailability.endDateTime.day } },
+            { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute}}
+          ]
+        },
+        // day
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.endDateTime.day },
+            { 'endDateTime.day': { $gt: unavailability.endDateTime.day } },
+            { 'startDateTime.hour': { $lte: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute}}
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.endDateTime.hour },
+            { 'endDateTime.hour': { $gt: unavailability.endDateTime.hour } },
+            { 'startDateTime.minute': { $lte: unavailability.endDateTime.minute}}
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { 'startDateTime.year': unavailability.startDateTime.year },
+            { 'endDateTime.year': unavailability.endDateTime.year },
+            { 'startDateTime.month': unavailability.startDateTime.month },
+            { 'endDateTime.month': unavailability.endDateTime.month },
+            { 'startDateTime.day': unavailability.startDateTime.day },
+            { 'endDateTime.day': unavailability.endDateTime.day },
+            { 'startDateTime.hour': unavailability.startDateTime.hour },
+            { 'endDateTime.hour': unavailability.endDateTime.hour },
+            { 'startDateTime.minute': unavailability.endDateTime.minute },
+            { 'endDateTime.minute': { $gt: unavailability.endDateTime.minute } }
+          ]
+        }
       ]
     });
   }
