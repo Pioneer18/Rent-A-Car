@@ -107,7 +107,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/rental/utils/map-rental.util.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/rental/utils/map-rental.util.ts:4</a></div>
                             </td>
                         </tr>
 
@@ -139,7 +139,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/rental/utils/map-rental.util.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/rental/utils/map-rental.util.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -158,8 +158,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { number } from &quot;@hapi/joi&quot;;
-import { RentalModelInterface } from &quot;../interface/modelInterface/Rental/rental-model.interface&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { RentalModelInterface } from &quot;../interface/modelInterface/Rental/rental-model.interface&quot;;
 import { RentalInterface } from &quot;../interface/rental.interface&quot;;
 
 export class MapRentalUtil {
@@ -169,6 +168,7 @@ export class MapRentalUtil {
         return {
             _id: data._id,
             userId: data.userId,
+            rentalTitle: data.rentalTitle,
             rentalDescription: data.rentalDescription,
             address: data.address,
             loc: {

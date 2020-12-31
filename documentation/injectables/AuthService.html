@@ -675,7 +675,7 @@ export class AuthService {
         };
         // create JWT and return as a Cookie string
         const token &#x3D; await this.jwtService.sign(payload);
-        return &#x60;Authentication&#x3D;${token}; HttpOnly; Path&#x3D;/; Max-Age&#x3D;${this.appConfig.jwt_exp_time}&#x60;;
+        return &#x60;Authentication&#x3D;${token}; Secure; HttpOnly; Path&#x3D;/; Max-Age&#x3D;${this.appConfig.jwt_exp_time}&#x60;;
     }
 
     /**

@@ -175,8 +175,8 @@ export class ExtractKeyValueUtil {
         if (req) {
             const rawAuth: string &#x3D; req.headers.cookie;
             return {
-                jwt: await rawAuth.slice(15), // JWT
-                key: await rawAuth.slice(-8), // KEY
+                jwt: rawAuth.slice(15), // JWT
+                key: rawAuth.slice(-8), // KEY
             };
         }
         throw new Error(&#x27;Cannot extract JWT and KEY from missing Request Object&#x27;);

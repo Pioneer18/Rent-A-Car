@@ -43,7 +43,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>RequestCoordinatesDto</li>
+  <li>RentalSearchFilter</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,15 +61,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/rental/dto/searchRental/request-coordinates.dto.ts</code>
+            <code>src/rental/dto/searchRental/given-notice-search-rental-dto.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: This dto contains the results of the RentalSearchFilterPipe; which added the givenNotice property to this data. It&#39;s passed to the RequestCoordinatesPipe</p>
+                <p><strong>summary</strong>: Dto returned by the RentalSearchFilterPipe after processing a RawSearchRentalDto; The RentalSearchFilterPipe adds the &#39;givenNotice&#39; property</p>
 <ul>
+<li>passed to the RentalDurationPipe</li>
 <li>note: <a href="https://docs.nestjs.com/controllers#request-payloads"><strong>request payloads</strong></a> are dto classes and not interfaces so they can be accessed by NestJS at runtime</li>
 </ul>
 
@@ -110,7 +111,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#rentalDuration">rentalDuration</a>
+                                <a href="#rentalEndTime">rentalEndTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#rentalStartTime">rentalStartTime</a>
                             </li>
                         </ul>
                     </td>
@@ -151,7 +156,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/rental/dto/searchRental/request-coordinates.dto.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/dto/searchRental/given-notice-search-rental-dto.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -179,7 +184,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/searchRental/request-coordinates.dto.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/rental/dto/searchRental/given-notice-search-rental-dto.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -207,7 +212,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/dto/searchRental/request-coordinates.dto.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/rental/dto/searchRental/given-notice-search-rental-dto.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -235,7 +240,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/dto/searchRental/request-coordinates.dto.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/rental/dto/searchRental/given-notice-search-rental-dto.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -262,7 +267,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/rental/dto/searchRental/request-coordinates.dto.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/rental/dto/searchRental/given-notice-search-rental-dto.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -273,24 +278,52 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="rentalDuration"></a>
+                        <a name="rentalEndTime"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Optional</span>
-                            rentalDuration</b>
-                            <a href="#rentalDuration"><span class="icon ion-ios-link"></span></a>
+                            rentalEndTime</b>
+                            <a href="#rentalEndTime"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>    <code>DateTime</code>
 
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/dto/searchRental/request-coordinates.dto.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/rental/dto/searchRental/given-notice-search-rental-dto.ts:11</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rentalStartTime"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Optional</span>
+                            rentalStartTime</b>
+                            <a href="#rentalStartTime"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>DateTime</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/dto/searchRental/given-notice-search-rental-dto.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -309,17 +342,19 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SearchRentalRadius } from &quot;../../../rental/const&quot;;
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DateTime } from &#x27;luxon&#x27;;
+import { SearchRentalRadius } from &#x27;../../../rental/const&#x27;;
 /**
- * **summary**: This dto contains the results of the RentalSearchFilterPipe; which added the givenNotice property to this data. It&#x27;s passed to the RequestCoordinatesPipe
+ * **summary**: Dto returned by the RentalSearchFilterPipe after processing a RawSearchRentalDto; The RentalSearchFilterPipe adds the &#x27;givenNotice&#x27; property
+ * - passed to the RentalDurationPipe
  * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
  */
-export class RequestCoordinatesDto {
+export class RentalSearchFilter {
   address: string;
+  rentalStartTime?: DateTime;
+  rentalEndTime?: DateTime;
   price?: number;
   features?: string[];
-  rentalDuration?: number; // enum
   givenNotice?: number;
   radius: SearchRentalRadius;
 }
@@ -351,7 +386,7 @@ export class RequestCoordinatesDto {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'RequestCoordinatesDto.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'RentalSearchFilter.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

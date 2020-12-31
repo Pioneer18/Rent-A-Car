@@ -39,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>RedisService</li>
+  <li>RentalSearchFilterPipe</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -57,14 +57,18 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/redis/service/redis.service.ts</code>
+            <code>src/rental/pipes/rental-search-filter.pipe.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: this Redis service is used to logout users and check if they are logged out</p>
+                <p><strong>summary</strong>: Creates a <a href="https://moment.github.io/luxon/"><strong>Luxon</strong></a> <a href="https://moment.github.io/luxon/docs/manual/tour.html#intervals"><strong>Interval</strong></a> from the startTime and currentTime
+and then uses Luxon methods to validate the Given Notice is at least 1 hour in duration; this is the minimum allowed for any user</p>
+<ul>
+<li>Luxon is &quot;a powerful, modern, and friendly wrapper for Javacript dates and times&quot;</li>
+</ul>
 
             </p>
 
@@ -83,13 +87,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#get">get</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#createGivenNotice">createGivenNotice</a>
                             </li>
                             <li>
-                                <a href="#set">set</a>
+                                <a href="#transform">transform</a>
                             </li>
                             <li>
-                                <a href="#syncGet">syncGet</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#validateRequestedTime">validateRequestedTime</a>
                             </li>
                         </ul>
                     </td>
@@ -104,54 +110,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(cache: Cache)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/redis/service/redis.service.ts:7</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>cache</td>
-                                                  
-                                                        <td>
-                                                                    <code>Cache</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
             <section>
@@ -163,11 +121,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="get"></a>
+                        <a name="createGivenNotice"></a>
                         <span class="name">
                             <b>
-                            get</b>
-                            <a href="#get"><span class="icon ion-ios-link"></span></a>
+                                <span class="modifier">Private</span>
+                            createGivenNotice</b>
+                            <a href="#createGivenNotice"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -178,13 +137,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/redis/service/redis.service.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/rental/pipes/rental-search-filter.pipe.ts:20</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong> use the key of a JWT to search the Redis &#39;dead-list&#39; and check if the user is logged out</p>
+                        <div class="io-description"><p><strong>summary</strong>: Create the <strong>givenNotice</strong> property value, it must be at least one hour</p>
 </div>
                     </td>
                 </tr>
@@ -202,9 +161,9 @@
                                       </thead>
                                       <tbody>
                                                 <tr>
-                                                        <td>key</td>
+                                                        <td>startTime</td>
                                                         <td>
-                                                                <code><p>the last 8 digits of a JWT used to list in the dead-list of the Redis cache</p>
+                                                                <code><p>the request start time of the rental</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -219,11 +178,11 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="set"></a>
+                        <a name="transform"></a>
                         <span class="name">
                             <b>
-                            set</b>
-                            <a href="#set"><span class="icon ion-ios-link"></span></a>
+                            transform</b>
+                            <a href="#transform"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -234,13 +193,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/redis/service/redis.service.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/rental/pipes/rental-search-filter.pipe.ts:51</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong> this method is used to add a user&#39;s JWT to the logged out &#39;dead-list&#39;</p>
+                        <div class="io-description"><p><strong>summary</strong>: Use the validateRequestedTime and createGivenNotice methods to return a RentalSearchFilter</p>
 </div>
                     </td>
                 </tr>
@@ -257,17 +216,10 @@
                                           </tr>
                                       </thead>
                                       <tbody>
-                                                <tr>
-                                                        <td>key</td>
-                                                        <td>
-                                                                <code><p>the last 8 digits of a JWT</p>
-</code>
-                                                        </td>
-                                                </tr>
                                                 <tr>
                                                         <td>value</td>
                                                         <td>
-                                                                <code><p>the JWT</p>
+                                                                <code><p>the raw client request data to search for rentals</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -282,11 +234,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="syncGet"></a>
+                        <a name="validateRequestedTime"></a>
                         <span class="name">
                             <b>
-                            syncGet</b>
-                            <a href="#syncGet"><span class="icon ion-ios-link"></span></a>
+                                <span class="modifier">Private</span>
+                            validateRequestedTime</b>
+                            <a href="#validateRequestedTime"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -297,13 +250,14 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/redis/service/redis.service.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/rental/pipes/rental-search-filter.pipe.ts:36</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong> syncGet is the synchronous version of the get method, used when async is not apporpriate</p>
+                        <div class="io-description"><p><strong>summary</strong>: Validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
+this is just another level of validation.</p>
 </div>
                     </td>
                 </tr>
@@ -321,9 +275,16 @@
                                       </thead>
                                       <tbody>
                                                 <tr>
-                                                        <td>key</td>
+                                                        <td>startTime</td>
                                                         <td>
-                                                                <code><p>the last 8 digits of a JWT used to list in the dead-list of the Redis cache </p>
+                                                                <code><p>the requested time for the Rental to begin</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>endTime</td>
+                                                        <td>
+                                                                <code><p>the requested time for the Rental to end</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -340,41 +301,91 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CACHE_MANAGER, Inject, Injectable } from &#x27;@nestjs/common&#x27;;
-import { Cache } from &#x27;cache-manager&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Injectable,
+  PipeTransform,
+} from &#x27;@nestjs/common&#x27;;
+import { RentalSearchFilter } from &#x27;../dto/searchRental/given-notice-search-rental-dto&#x27;;
+import { RawSearchRentalDto } from &#x27;../dto/searchRental/raw-search-rental.dto&#x27;;
+import { DateTime } from &#x27;luxon&#x27;;
 /**
- * **summary**: this Redis service is used to logout users and check if they are logged out
+ * **summary**: Creates a [**Luxon**](https://moment.github.io/luxon/) [**Interval**](https://moment.github.io/luxon/docs/manual/tour.html#intervals) from the startTime and currentTime
+ * and then uses Luxon methods to validate the Given Notice is at least 1 hour in duration; this is the minimum allowed for any user
+ * - Luxon is &quot;a powerful, modern, and friendly wrapper for Javacript dates and times&quot;
  */
 @Injectable()
-export class RedisService {
-    constructor(
-        @Inject(CACHE_MANAGER) private readonly cache: Cache,
-    ) {}
+export class RentalSearchFilterPipe implements PipeTransform {
 
-    /**
-     * **summary** use the key of a JWT to search the Redis &#x27;dead-list&#x27; and check if the user is logged out
-     * @param key the last 8 digits of a JWT used to list in the dead-list of the Redis cache
-     */
-    get &#x3D; async (key: string): Promise&lt;any&gt; &#x3D;&gt; {
-        return await this.cache.get(key);
+  /**
+   * **summary**: Create the **givenNotice** property value, it must be at least one hour
+   * @param startTime the request start time of the rental
+   */
+  private createGivenNotice &#x3D; async (startTime): Promise&lt;number&gt; &#x3D;&gt; {
+    const givenNotice: number &#x3D; startTime.diffNow().toObject().milliseconds;
+    if (givenNotice &gt;&#x3D; 3600000) {
+      return givenNotice;
     }
+    throw new Error(
+      &#x27;Sorry, you cannot request a rental less than an hour before it begins&#x27;,
+    );
+  }
 
-    /**
-     * **summary** syncGet is the synchronous version of the get method, used when async is not apporpriate
-     * @param key the last 8 digits of a JWT used to list in the dead-list of the Redis cache 
-     */
-    syncGet &#x3D; (key: string): Promise&lt;any&gt; &#x3D;&gt; {
-        return this.cache.get(key);
+  /**
+   * **summary**: Validate that the rental start time is not before the requested rental end time. The frontend of course has validation for this on the form,
+   * this is just another level of validation.
+   * @param startTime the requested time for the Rental to begin
+   * @param endTime the requested time for the Rental to end
+   */
+  private validateRequestedTime &#x3D; async (startTime, endTime): Promise&lt;void&gt; &#x3D;&gt; {
+    if (startTime &gt; endTime) {
+      throw new Error(
+        &#x27;The rental start time cannot be after the rental end time&#x27;,
+      );
     }
+    if (endTime.diff(startTime).toObject().milliseconds &lt; 3600000) {
+      throw new Error(&#x27;The rental must be at least 1 hour in Duration&#x27;);
+    }
+  }
 
-    /**
-     * **summary** this method is used to add a user&#x27;s JWT to the logged out &#x27;dead-list&#x27;
-     * @param key the last 8 digits of a JWT
-     * @param value the JWT
-     */
-    set &#x3D; async (key: string, value: string): Promise&lt;any&gt; &#x3D;&gt; {
-        return await this.cache.set(key, value, null);
+  /**
+   * **summary**: Use the validateRequestedTime and createGivenNotice methods to return a RentalSearchFilter
+   * @param value the raw client request data to search for rentals
+   */
+  transform &#x3D; async (value: RawSearchRentalDto): Promise&lt;RentalSearchFilter&gt; &#x3D;&gt; {
+    try {
+      // Schedule specific query
+      if (value.rentalStartTime &amp;&amp; value.rentalEndTime) {
+        const startTime: DateTime &#x3D; DateTime.fromISO(
+          new Date(value.rentalStartTime).toISOString(),
+        );
+        const endTime: DateTime &#x3D; DateTime.fromISO(
+          new Date(value.rentalEndTime).toISOString(),
+        );
+        await this.validateRequestedTime(startTime, endTime);
+        const givenNotice &#x3D; await this.createGivenNotice(startTime);
+        const dto: RentalSearchFilter &#x3D; {
+          address: value.address,
+          rentalStartTime: startTime,
+          rentalEndTime: endTime,
+          price: value.price ? value.price : null,
+          features: value.features ? value.features : null,
+          givenNotice,
+          radius: value.radius
+        };
+        return dto;
+      }
+      // No Schedule
+      const dto: RentalSearchFilter &#x3D; {
+        address: value.address,
+        price: value.price ? value.price : null,
+        features: value.features ? value.features : null,
+        radius: value.radius
+      }
+      return dto
+    } catch (err) {
+      throw new Error(err);
     }
+  }
 }
 </code></pre>
     </div>
@@ -409,7 +420,7 @@ export class RedisService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'RedisService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'RentalSearchFilterPipe.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

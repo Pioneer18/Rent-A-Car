@@ -61,27 +61,11 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/rental/dto/unavailability/remove/remove-unavailability.dto.ts</code>
+            <code>src/unavailability/dto/remove-unavailability.dto.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p><strong>summary</strong>: This Dto contains the data necessary to delte an Unavailability document from the database, it&#39;s passed to the rental.controller.removeUnavailability() method</p>
-<ul>
-<li>note: <a href="https://docs.nestjs.com/controllers#request-payloads"><strong>request payloads</strong></a> are dto classes and not interfaces so they can be accessed by NestJS at runtime</li>
-</ul>
-
-            </p>
 
 
-            <p class="comment">
-                <h3>Implements</h3>
-            </p>
-            <p class="comment">
-                            <code><a href="../interfaces/RemoveUnavailabilityInterface.html" target="_self" >RemoveUnavailabilityInterface</a></code>
-            </p>
 
 
             <section>
@@ -97,10 +81,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#rentalId">rentalId</a>
-                            </li>
-                            <li>
-                                <a href="#unavailabilityId">unavailabilityId</a>
+                                <a href="#_id">_id</a>
                             </li>
                         </ul>
                     </td>
@@ -125,11 +106,11 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="rentalId"></a>
+                        <a name="_id"></a>
                         <span class="name">
                             <b>
-                            rentalId</b>
-                            <a href="#rentalId"><span class="icon ion-ios-link"></span></a>
+                            _id</b>
+                            <a href="#_id"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -141,34 +122,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/rental/dto/unavailability/remove/remove-unavailability.dto.ts:7</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="unavailabilityId"></a>
-                        <span class="name">
-                            <b>
-                            unavailabilityId</b>
-                            <a href="#unavailabilityId"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/rental/dto/unavailability/remove/remove-unavailability.dto.ts:8</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="2" class="link-to-prism">src/unavailability/dto/remove-unavailability.dto.ts:2</a></div>
                             </td>
                         </tr>
 
@@ -187,16 +141,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { RemoveUnavailabilityInterface } from &#x27;../../../../rental/interface/service/remove-unavailability.interface&#x27;;
-/**
- * **summary**: This Dto contains the data necessary to delte an Unavailability document from the database, it&#x27;s passed to the rental.controller.removeUnavailability() method
- * - note: [**request payloads**](https://docs.nestjs.com/controllers#request-payloads) are dto classes and not interfaces so they can be accessed by NestJS at runtime
- */
-export class RemoveUnavailabilityDto implements RemoveUnavailabilityInterface {
-  rentalId: string;
-  unavailabilityId: string;
-}
-</code></pre>
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class RemoveUnavailabilityDto {
+    _id: string;
+}</code></pre>
     </div>
 </div>
 

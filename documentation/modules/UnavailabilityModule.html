@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
     <li>Modules</li>
-    <li>AppConfigModule</li>
+    <li>UnavailabilityModule</li>
 </ol>
 
 <div class="text-center module-graph-container">
@@ -63,58 +63,62 @@
 <polygon fill="#fb8072" stroke="transparent" points="406,-10 406,-30 426,-30 426,-10 406,-10"/>
 <text text-anchor="start" x="429.73" y="-15.4" font-family="sans-serif" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
-<title>cluster_AppConfigModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="111,-70 111,-268 385,-268 385,-70 111,-70"/>
+<title>cluster_UnavailabilityModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="79,-70 79,-268 417,-268 417,-70 79,-70"/>
 </g>
 <g id="clust6" class="cluster">
-<title>cluster_AppConfigModule_providers</title>
-<polygon fill="none" stroke="black" points="157,-78 157,-130 339,-130 339,-78 157,-78"/>
+<title>cluster_UnavailabilityModule_providers</title>
+<polygon fill="none" stroke="black" points="203,-78 203,-130 409,-130 409,-78 203,-78"/>
 </g>
 <g id="clust4" class="cluster">
-<title>cluster_AppConfigModule_exports</title>
-<polygon fill="none" stroke="black" points="119,-208 119,-260 377,-260 377,-208 119,-208"/>
+<title>cluster_UnavailabilityModule_exports</title>
+<polygon fill="none" stroke="black" points="157,-208 157,-260 315,-260 315,-208 157,-208"/>
 </g>
-<!-- AppConfigService  -->
+<g id="clust3" class="cluster">
+<title>cluster_UnavailabilityModule_imports</title>
+<polygon fill="none" stroke="black" points="87,-78 87,-130 195,-130 195,-78 87,-78"/>
+</g>
+<!-- RedisModule -->
 <g id="node1" class="node">
-<title>AppConfigService </title>
-<polygon fill="#fb8072" stroke="black" points="369.47,-252 244.53,-252 244.53,-216 369.47,-216 369.47,-252"/>
-<text text-anchor="middle" x="307" y="-229.8" font-family="Times,serif" font-size="14.00">AppConfigService </text>
+<title>RedisModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="186.94,-122 183.94,-126 162.94,-126 159.94,-122 95.06,-122 95.06,-86 186.94,-86 186.94,-122"/>
+<text text-anchor="middle" x="141" y="-99.8" font-family="Times,serif" font-size="14.00">RedisModule</text>
 </g>
-<!-- ConfigService  -->
+<!-- UnavailabilityModule -->
 <g id="node2" class="node">
-<title>ConfigService </title>
-<polygon fill="#fb8072" stroke="black" points="227.37,-252 126.63,-252 126.63,-216 227.37,-216 227.37,-252"/>
-<text text-anchor="middle" x="177" y="-229.8" font-family="Times,serif" font-size="14.00">ConfigService </text>
+<title>UnavailabilityModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="305.64,-187 302.64,-191 281.64,-191 278.64,-187 166.36,-187 166.36,-151 305.64,-151 305.64,-187"/>
+<text text-anchor="middle" x="236" y="-164.8" font-family="Times,serif" font-size="14.00">UnavailabilityModule</text>
 </g>
-<!-- AppConfigModule -->
-<g id="node3" class="node">
-<title>AppConfigModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="309.05,-187 306.05,-191 285.05,-191 282.05,-187 186.95,-187 186.95,-151 309.05,-151 309.05,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">AppConfigModule</text>
-</g>
-<!-- AppConfigModule&#45;&gt;AppConfigService  -->
+<!-- RedisModule&#45;&gt;UnavailabilityModule -->
 <g id="edge1" class="edge">
-<title>AppConfigModule&#45;&gt;AppConfigService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M277.02,-187.11C277.02,-187.11 277.02,-205.99 277.02,-205.99"/>
-<polygon fill="black" stroke="black" points="273.52,-205.99 277.02,-215.99 280.52,-205.99 273.52,-205.99"/>
+<title>RedisModule&#45;&gt;UnavailabilityModule</title>
+<path fill="none" stroke="black" d="M176.45,-122.11C176.45,-122.11 176.45,-140.99 176.45,-140.99"/>
+<polygon fill="black" stroke="black" points="172.95,-140.99 176.45,-150.99 179.95,-140.99 172.95,-140.99"/>
 </g>
-<!-- AppConfigModule&#45;&gt;ConfigService  -->
+<!-- UnavailabilityService  -->
+<g id="node3" class="node">
+<title>UnavailabilityService </title>
+<polygon fill="#fb8072" stroke="black" points="306.57,-252 165.43,-252 165.43,-216 306.57,-216 306.57,-252"/>
+<text text-anchor="middle" x="236" y="-229.8" font-family="Times,serif" font-size="14.00">UnavailabilityService </text>
+</g>
+<!-- UnavailabilityModule&#45;&gt;UnavailabilityService  -->
 <g id="edge2" class="edge">
-<title>AppConfigModule&#45;&gt;ConfigService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M206.96,-187.11C206.96,-187.11 206.96,-205.99 206.96,-205.99"/>
-<polygon fill="black" stroke="black" points="203.46,-205.99 206.96,-215.99 210.46,-205.99 203.46,-205.99"/>
+<title>UnavailabilityModule&#45;&gt;UnavailabilityService </title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M236,-187.11C236,-187.11 236,-205.99 236,-205.99"/>
+<polygon fill="black" stroke="black" points="232.5,-205.99 236,-215.99 239.5,-205.99 232.5,-205.99"/>
 </g>
-<!-- AppConfigService -->
+<!-- UnavailabilityService -->
 <g id="node4" class="node">
-<title>AppConfigService</title>
-<ellipse fill="#fdb462" stroke="black" cx="248" cy="-104" rx="83.39" ry="18"/>
-<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">AppConfigService</text>
+<title>UnavailabilityService</title>
+<ellipse fill="#fdb462" stroke="black" cx="306" cy="-104" rx="95.48" ry="18"/>
+<text text-anchor="middle" x="306" y="-99.8" font-family="Times,serif" font-size="14.00">UnavailabilityService</text>
 </g>
-<!-- AppConfigService&#45;&gt;AppConfigModule -->
+<!-- UnavailabilityService&#45;&gt;UnavailabilityModule -->
 <g id="edge3" class="edge">
-<title>AppConfigService&#45;&gt;AppConfigModule</title>
-<path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
-<polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
+<title>UnavailabilityService&#45;&gt;UnavailabilityModule</title>
+<path fill="none" stroke="black" d="M258.29,-119.73C258.29,-119.73 258.29,-140.65 258.29,-140.65"/>
+<polygon fill="black" stroke="black" points="254.79,-140.65 258.29,-150.65 261.79,-140.65 254.79,-140.65"/>
 </g>
 </g>
 </svg>
@@ -146,17 +150,10 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/config/configuration.module.ts</code>
+            <code>src/unavailability/unavailability.module.ts</code>
         </p>
 
 
-        <p class="comment">
-            <h3>Description</h3>
-        </p>
-        <p class="comment">
-            <p><strong>summary</strong>: Import and provide app configuration related classes</p>
-
-        </p>
 
 
         <div class="container-fluid module">
@@ -166,7 +163,25 @@
                             title="Official documentation about module providers"><span class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../injectables/AppConfigService.html">AppConfigService</a>
+                            <a href="../injectables/UnavailabilityService.html">UnavailabilityService</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Controllers<a href="https://docs.nestjs.com/controllers" target="_blank" title="Official documentation about module controllers"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../controllers/UnavailabilityController.html">UnavailabilityController</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../modules/RedisModule.html">RedisModule</a>
                         </li>
                     </ul>
                 </div>
@@ -175,10 +190,7 @@
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../s/AppConfigService.html">AppConfigService</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="../s/ConfigService.html">ConfigService</a>
+                            <a href="../s/UnavailabilityService.html">UnavailabilityService</a>
                         </li>
                     </ul>
                 </div>
@@ -190,54 +202,40 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import Joi &#x3D; require(&#x27;@hapi/joi&#x27;);
-import { Module } from &#x27;@nestjs/common&#x27;;
-import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
-import configuration from &#x27;./configuration&#x27;;
-import { AppConfigService } from &#x27;./configuration.service&#x27;;
-/**
- * **summary**: Import and provide app configuration related classes
- */
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MiddlewareConsumer, Module } from &#x27;@nestjs/common&#x27;;
+import { MongooseModule } from &#x27;@nestjs/mongoose&#x27;;
+import { unavailabilityModel } from &#x27;../common/Const&#x27;;
+import { PickupUnavailabilityValidationMiddleware} from &#x27;./middleware/pickup-unavailability-validation.middleware&#x27;
+import { UnavailabilityController } from &#x27;./controller/unavailability.controller&#x27;;
+import { UnavailabilitySchema } from &#x27;./schema/unavailability-schema&#x27;;
+import { UnavailabilityService } from &#x27;./service/unavailability.service&#x27;;
+import { RedisModule } from &#x27;../redis/redis.module&#x27;;
+import { LuxonUtil } from &#x27;../common/util/luxon-util&#x27;;
+
 @Module({
-    imports: [
-        ConfigModule.forRoot({
-            load: [configuration],
-            validationSchema: Joi.object({
-                // GENERAL
-                NODE_ENV: Joi.string()
-                  .valid(&#x27;development&#x27;, &#x27;production&#x27;, &#x27;test&#x27;)
-                  .default(&#x27;development&#x27;),
-                _PORT: Joi.number().default(3000),
-                // GEO LOCATION API
-                GEO_API_KEY: Joi.string().required(),
-                GEO_URL: Joi.string().required(),
-                // DATABASE
-                REMOTE_DB: Joi.string(),
-                TEST_DB: Joi.string(),
-                LOCAL_DB: Joi.string(),
-                // REDIS SERVER
-                REDIS_HOST: Joi.string().required(),
-                REDIS_PORT: Joi.string().required(),
-                CACHE_TTL: Joi.string().required(),
-                // AWS API ACCESS
-                ACCESS_KEY_ID: Joi.string().required(),
-                SECRET_ACCESS_KEY: Joi.string().required(),
-                // JWT AUTHORIZATION
-                SECRET_KEY: Joi.string().required(),
-                JWT_EXP_TIME: Joi.string().required(),
-                AWS_S3_BUCKET_RENTALS: Joi.string().required(),
-                AWS_S3_BUCKET_PROFILE: Joi.string().required(),
-            }),
-            validationOptions: {
-                allowUnkown: false, // enforce validation, don&#x27;t allow unknown keys in the env variables
-                abortEarly: true, // stop validation on first error
-            },
-        }),
-    ],
-    providers: [ConfigService, AppConfigService],
-    exports: [ConfigService, AppConfigService],
+  imports: [
+    MongooseModule.forFeature([{ name: unavailabilityModel, schema: UnavailabilitySchema }]),
+    RedisModule
+  ],
+  controllers: [UnavailabilityController],
+  providers: [
+    UnavailabilityService,
+    LuxonUtil
+  ],
+  exports: [UnavailabilityService]
 })
-export class AppConfigModule {}
+export class UnavailabilityModule {
+  constructor() { }
+  /**
+   * **summary**: applies the ValidateUpdateUnavailability which validates a user&#x27;s request to the rental.controller.updateUnavaialability method
+   * @param consumer interfacing defining method for applying user defined middleware to routes
+   */
+  configure &#x3D; (consumer: MiddlewareConsumer) &#x3D;&gt; {
+    consumer
+      .apply(PickupUnavailabilityValidationMiddleware)
+      .forRoutes(&#x27;unavailability&#x27;);
+  }
+}
 </code></pre>
     </div>
 </div>
@@ -273,7 +271,7 @@ export class AppConfigModule {}
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppConfigModule.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UnavailabilityModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

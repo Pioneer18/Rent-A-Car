@@ -106,11 +106,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#removeUnavailability">removeUnavailability</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#scheduleUnavailability">scheduleUnavailability</a>
+                                <a href="#removeRental">removeRental</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -118,7 +114,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#updateUnavailability">updateUnavailability</a>
+                                <a href="#userRentals">userRentals</a>
                             </li>
                         </ul>
                     </td>
@@ -168,8 +164,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:43</a></div>
                 </td>
             </tr>
 
@@ -395,20 +391,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="removeUnavailability"></a>
+                    <a name="removeRental"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            removeUnavailability
+                            removeRental
                         </b>
-                        <a href="#removeUnavailability"><span class="icon ion-ios-link"></span></a>
+                        <a href="#removeRental"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removeUnavailability(data: <a href="../classes/RemoveUnavailabilityDto.html">RemoveUnavailabilityDto</a>)</code>
+                    <code>removeRental(params: <a href="../interfaces/RentalIdDto.html">RentalIdDto</a>)</code>
                 </td>
             </tr>
 
@@ -416,21 +412,21 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;remove-unavailability&#x27;)<br />@UsePipes(new ValidateRemoveUnavailabilityPipe())<br /></code>
+                    <code>@Post(&#x27;remove-rental&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:97</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: Remove unavailability from the selected rental</p>
+                    <div class="io-description"><p><strong>summary</strong>: Remove the selected rental</p>
 </div>
 
                     <div class="io-description">
@@ -445,9 +441,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>params</td>
                                     <td>
-                                                <code><a href="../classes/RemoveUnavailabilityDto.html" target="_self" >RemoveUnavailabilityDto</a></code>
+                                                <code><a href="../interfaces/RentalIdDto.html" target="_self" >RentalIdDto</a></code>
                                     </td>
 
                                     <td>
@@ -462,88 +458,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/DeleteResponseInterface.html" target="_self" >Promise&lt;DeleteResponseInterface&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="scheduleUnavailability"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            scheduleUnavailability
-                        </b>
-                        <a href="#scheduleUnavailability"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>scheduleUnavailability(processed: <a href="../classes/ProcessedUnavailabilityDto.html">ProcessedUnavailabilityDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post(&#x27;schedule-unavailability&#x27;)<br />@UsePipes(new ProcessUnavailabilityPipe())<br />@UsePipes(new ValidateUnavailabilityPipe())<br />@UsePipes(new SortUnavailabilityPipe())<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:99</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: Set a period of unavailability for the rental</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>processed</td>
-                                    <td>
-                                                <code><a href="../classes/ProcessedUnavailabilityDto.html" target="_self" >ProcessedUnavailabilityDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/UnavailabilityInterface.html" target="_self" >Promise&lt;UnavailabilityInterface[]&gt;</a></code>
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                     <div class="io-description">
@@ -578,14 +493,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@UsePipes(new JoiValidationPipe())<br />@UsePipes(new RequestCoordinatesPipe())<br />@UsePipes(new RentalDurationPipe())<br />@UsePipes(new GivenNoticePipe())<br /></code>
+                    <code>@Post(&#x27;search-rental&#x27;)<br />@UsePipes(new JoiValidationPipe())<br />@UsePipes(new RequestCoordinatesPipe())<br />@UsePipes(new RentalDurationPipe())<br />@UsePipes(new RentalSearchFilterPipe())<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -593,6 +508,10 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p><strong>summary</strong>: Find rentals available near a specified location (user&#39;s location)</p>
+<ul>
+<li><strong>Note</strong>: This route is using <strong>POST</strong> instead of <strong>GET</strong> because Goolge Cloud App Engine is experiencing an error
+where any <strong>GET</strong> request with a body recieve a 400 Bad Request Error default </li>
+</ul>
 </div>
 
                     <div class="io-description">
@@ -638,20 +557,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateUnavailability"></a>
+                    <a name="userRentals"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Async</span>
-                            updateUnavailability
+                            userRentals
                         </b>
-                        <a href="#updateUnavailability"><span class="icon ion-ios-link"></span></a>
+                        <a href="#userRentals"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateUnavailability(data: <a href="../classes/UpdateUnavailabilityDataDto.html">UpdateUnavailabilityDataDto</a>)</code>
+                    <code>userRentals(req)</code>
                 </td>
             </tr>
 
@@ -659,21 +578,21 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;update-unavailability&#x27;)<br />@UsePipes(new CreateUpdaterDtoPipe())<br /></code>
+                    <code>@Get(&#x27;user-rentals&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/rental/controller/rental.controller.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/rental/controller/rental.controller.ts:70</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p><strong>summary</strong>: Edit the selected rental&#39;s unavailability</p>
+                    <div class="io-description"><p><strong>summary</strong>: Find all of the current logged in user&#39;s rentals</p>
 </div>
 
                     <div class="io-description">
@@ -682,16 +601,12 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/UpdateUnavailabilityDataDto.html" target="_self" >UpdateUnavailabilityDataDto</a></code>
-                                    </td>
+                                    <td>req</td>
 
                                     <td>
                                         No
@@ -705,7 +620,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/UpdateResponseInterface.html" target="_self" >Promise&lt;UpdateResponseInterface&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/RentalInterface.html" target="_self" >Promise&lt;RentalInterface[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -719,7 +634,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Body, Get, Param, UsePipes, Query, Res, Req, UseGuards } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Body, Get, UsePipes, Query, Req, UseGuards, Request } from &#x27;@nestjs/common&#x27;;
 import { RentalService } from &#x27;../service/rental.service&#x27;;
 import { GeoUrlApiPipe } from &#x27;../pipes/geo-url-api.pipe&#x27;;
 import { MapNewRentalPipe } from &#x27;../pipes/map-new-rental.pipe&#x27;;
@@ -731,39 +646,28 @@ import { RentalDurationPipe } from &#x27;../pipes/rental-duration.pipe&#x27;;
 import { GenerateRentalDurationEnumUtil } from &#x27;../utils/generate-rental-duration-enum.util&#x27;;
 import { SearchRentalDto } from &#x27;../dto/searchRental/search-rental.dto&#x27;;
 import { RequestCoordinatesPipe } from &#x27;../pipes/request-coordinates.pipe&#x27;;
-import { GivenNoticePipe } from &#x27;../pipes/given-notice.pipe&#x27;;
+import { RentalSearchFilterPipe } from &#x27;../pipes/rental-search-filter.pipe&#x27;;
 import { SearchRentalValidationSchema } from &#x27;../schema/validation/search-rental-validation.schema&#x27;;
 import { PricingPipe } from &#x27;../pipes/pricing.pipe&#x27;;
 import { PricingDto } from &#x27;../dto/pricing/pricing.dto&#x27;;
 import { ValidateEditDetailsPipe } from &#x27;../pipes/validate-edit-details.pipe&#x27;;
 import { EditDetailsDto } from &#x27;../dto/details/edit-details.dto&#x27;;
-import { SortUnavailabilityPipe } from &#x27;../pipes/sort-unavailability.pipe&#x27;;
-import { ValidateUnavailabilityPipe } from &#x27;../pipes/validate-unavailability.pipe&#x27;;
-import { ProcessUnavailabilityPipe } from &#x27;../pipes/process-unavailability.pipe&#x27;;
-import { ProcessedUnavailabilityDto } from &#x27;../dto/unavailability/schedule/processed-unavailability.dto&#x27;;
-import { CreateUpdaterDtoPipe } from &#x27;../pipes/create-updater-dto.pipe&#x27;;
-import { UpdateUnavailabilityDataDto } from &#x27;../dto/unavailability/update/update-unavailability-data.dto&#x27;; // &#x27;../dto/update-unavailability-data.dto&#x27;;
-import { ValidateRemoveUnavailabilityPipe } from &#x27;../pipes/validate-remove-unavailability.pipe&#x27;;
-import { RemoveUnavailabilityDto } from &#x27;../dto/unavailability/remove/remove-unavailability.dto&#x27;;
-import { AppConfigService } from &#x27;../../config/configuration.service&#x27;;
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
-import { JwtAuthGuard } from &#x27;../../auth/gaurds/jwt-auth.guard&#x27;;
+import { JwtAuthGuard } from &#x27;../../auth/guards/jwt-auth.guard&#x27;;
 import { RentalInterface } from &#x27;../interface/rental.interface&#x27;;
-import { UnavailabilityInterface } from &#x27;../interface/unavailability.interface&#x27;;
-import { UpdateResponseInterface } from &#x27;../../common/interfaces/update-response.interface&#x27;;
-import { DeleteResponseInterface } from &#x27;../../common/interfaces/delete-response.interface&#x27;;
-import { ToItemsIndexes } from &#x27;../../common/util/to-item-indexes&#x27;;
+import { LoggedOutGuard } from &#x27;../../auth/guards/logged-out.guard&#x27;;
+import { RentalIdDto } from &#x27;../dto/rental-id.dto&#x27;;
 
 /**
  * - **summary**: controller for managing rentals in the application
  * - **Middleware**: The ValidateUpdateUnavailabilityMiddleware class is applied to the updateUnavailability method
  */
 @UseGuards(JwtAuthGuard)
+@UseGuards(LoggedOutGuard)
 @Controller(&#x27;rental&#x27;)
 export class RentalController {
   constructor(
     private readonly rentalService: RentalService,
-    ) {}
+  ) { }
 
   /**
    * **summary**: Create a new vehicle rental listing
@@ -782,14 +686,25 @@ export class RentalController {
 
   /**
    * **summary**: Find rentals available near a specified location (user&#x27;s location)
+   * - **Note**: This route is using **POST** instead of **GET** because Goolge Cloud App Engine is experiencing an error
+   * where any **GET** request with a body recieve a 400 Bad Request Error default 
    */
-  @Get()
+  @Post(&#x27;search-rental&#x27;)
   @UsePipes(new JoiValidationPipe(SearchRentalValidationSchema))
   @UsePipes(new RequestCoordinatesPipe(new GeoUrlApiUtil()))
   @UsePipes(new RentalDurationPipe(new GenerateRentalDurationEnumUtil()))
-  @UsePipes(new GivenNoticePipe())
+  @UsePipes(new RentalSearchFilterPipe())
   async searchRental(@Body() searchRentalDto: SearchRentalDto): Promise&lt;RentalInterface[]&gt; {
-      return await this.rentalService.searchRental(searchRentalDto);
+    return await this.rentalService.searchRental(searchRentalDto);
+  }
+
+  /**
+   * **summary**: Find all of the current logged in user&#x27;s rentals
+   * @param userId
+   */
+  @Get(&#x27;user-rentals&#x27;)
+  async userRentals(@Request() req): Promise&lt;RentalInterface[]&gt; {
+    return await this.rentalService.userRentals(req.user)
   }
 
   /**
@@ -798,7 +713,7 @@ export class RentalController {
   @Post(&#x27;edit-price&#x27;)
   @UsePipes(new PricingPipe())
   async editPricing(@Body() pricingDto: PricingDto): Promise&lt;RentalInterface&gt; {
-      return await this.rentalService.editPricing(pricingDto);
+    return await this.rentalService.editPricing(pricingDto);
   }
 
   /**
@@ -807,41 +722,17 @@ export class RentalController {
   @Post(&#x27;edit-details&#x27;)
   @UsePipes(new ValidateEditDetailsPipe())
   async editDetails(@Body() editDetailsDto: EditDetailsDto): Promise&lt;RentalInterface&gt; {
-      return await this.rentalService.editDetails(editDetailsDto);
+    return await this.rentalService.editDetails(editDetailsDto);
   }
 
   /**
-   * **summary**: Set a period of unavailability for the rental
+   * **summary**: Remove the selected rental
+   * @param rentalId
    */
-  @Post(&#x27;schedule-unavailability&#x27;)
-  @UsePipes(new ProcessUnavailabilityPipe())
-  @UsePipes(new ValidateUnavailabilityPipe(new ToItemsIndexes()))
-  @UsePipes(new SortUnavailabilityPipe())
-  async scheduleUnavailability(@Body() processed: ProcessedUnavailabilityDto): Promise&lt;UnavailabilityInterface[]&gt; {
-    return await this.rentalService.scheduleUnavailability(processed);
+  @Post(&#x27;remove-rental&#x27;)
+  async removeRental(@Query() params: RentalIdDto) {
+    return await this.rentalService.removeRental(params.rentalId);
   }
-
-  /**
-   * **summary**: Edit the selected rental&#x27;s unavailability
-   */
-  @Post(&#x27;update-unavailability&#x27;)
-  @UsePipes(new CreateUpdaterDtoPipe())
-  async updateUnavailability(@Body() data: UpdateUnavailabilityDataDto): Promise&lt;UpdateResponseInterface&gt; {
-    return await this.rentalService.updateUnavailability(data);
-  }
-
-   /**
-    * **summary**: Remove unavailability from the selected rental
-    */
-   @Post(&#x27;remove-unavailability&#x27;)
-   @UsePipes(new ValidateRemoveUnavailabilityPipe())
-   async removeUnavailability(@Body() data: RemoveUnavailabilityDto): Promise&lt;DeleteResponseInterface&gt; {
-     return await this.rentalService.removeUnavailability(data);
-   }
-
-    /**
-     * Toggle Rental listed status
-     */
 }
 </code></pre>
     </div>

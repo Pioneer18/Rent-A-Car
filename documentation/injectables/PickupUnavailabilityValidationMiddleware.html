@@ -1,0 +1,1328 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>rent-a-car documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">rent-a-car documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>PickupUnavailabilityValidationMiddleware</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/unavailability/middleware/pickup-unavailability-validation.middleware.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p><strong>summary</strong>: Verify the requested new Unavailability does not conflict with Unavailability already scheduled for the selected rental.
+Also verify the requested new Unavailability has valid data. </p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkForOverlap">checkForOverlap</a>
+                            </li>
+                            <li>
+                                <a href="#checkForRescheduleOverlap">checkForRescheduleOverlap</a>
+                            </li>
+                            <li>
+                                <a href="#convertToDateTimes">convertToDateTimes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#sendOverlapQuery">sendOverlapQuery</a>
+                            </li>
+                            <li>
+                                <a href="#use">use</a>
+                            </li>
+                            <li>
+                                <a href="#validateUnavailability">validateUnavailability</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(unavailability: <a href="../interfaces/UnavailabilityModelInterface.html">Model<UnavailabilityModelInterface></a>, luxonUtil: <a href="../classes/LuxonUtil.html">LuxonUtil</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/unavailability/middleware/pickup-unavailability-validation.middleware.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>unavailability</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/UnavailabilityModelInterface.html" target="_self" >Model&lt;UnavailabilityModelInterface&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>luxonUtil</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/LuxonUtil.html" target="_self" >LuxonUtil</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkForOverlap"></a>
+                        <span class="name">
+                            <b>
+                            checkForOverlap</b>
+                            <a href="#checkForOverlap"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="718" class="link-to-prism">src/unavailability/middleware/pickup-unavailability-validation.middleware.ts:718</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: Check the databse for any unavailability that overlaps with the requested new unavailability</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>unavailability</td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkForRescheduleOverlap"></a>
+                        <span class="name">
+                            <b>
+                            checkForRescheduleOverlap</b>
+                            <a href="#checkForRescheduleOverlap"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="726" class="link-to-prism">src/unavailability/middleware/pickup-unavailability-validation.middleware.ts:726</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convertToDateTimes"></a>
+                        <span class="name">
+                            <b>
+                            convertToDateTimes</b>
+                            <a href="#convertToDateTimes"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/unavailability/middleware/pickup-unavailability-validation.middleware.ts:26</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: Convert the startDate and endDate to Luxon DateTimes</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>unavailability</td>
+                                                        <td>
+                                                                <code><p>new unavailability data </p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sendOverlapQuery"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            sendOverlapQuery</b>
+                            <a href="#sendOverlapQuery"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/unavailability/middleware/pickup-unavailability-validation.middleware.ts:61</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong> Query the database and check for the 4 conditions of scheduling conflicts.</p>
+<ul>
+<li>verify the requested unavailability is &#39;enclosed&#39; by an existing unavailability</li>
+<li>verify the requested unavailability will not &#39;enclose&#39; an existing unavailability</li>
+<li>verify the requested unavailability will not &#39;overlap&#39; an exsiting unavailability&#39;s ending</li>
+<li>verify the requested unavailability will not &#39;overlap&#39; an existing unavailability&#39;s start</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>unavailability</td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="use"></a>
+                        <span class="name">
+                            <b>
+                            use</b>
+                            <a href="#use"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="745" class="link-to-prism">src/unavailability/middleware/pickup-unavailability-validation.middleware.ts:745</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>**summary</p>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>unavailability</td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validateUnavailability"></a>
+                        <span class="name">
+                            <b>
+                            validateUnavailability</b>
+                            <a href="#validateUnavailability"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/unavailability/middleware/pickup-unavailability-validation.middleware.ts:38</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: Validate the requested new unavalability data conforms to the following conditions:</p>
+<ul>
+<li>The duration is at least one full day</li>
+<li>The duration is no more than a full year (including leap year days)</li>
+<li>The start date and time is before the end date and time</li>
+</ul>
+</div>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>unavailability</td>
+                                                        <td>
+                                                                <code><p>new unavailability data</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NestMiddleware } from &#x27;@nestjs/common&#x27;;
+import { Request, Response } from &#x27;express&#x27;;
+import { Model } from &#x27;mongoose&#x27;;
+import { UnavailabilityModelInterface } from &#x27;../interface/model/unavailability-model.interface&#x27;;
+import { UnavailabilityDto } from &#x27;../dto/unavailability.dto&#x27;;
+import { LuxonUtil } from &#x27;../../common/util/luxon-util&#x27;;
+import { DateTime } from &#x27;luxon&#x27;;
+import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
+import { unavailabilityModel } from &#x27;../../common/Const&#x27;;
+import { RescheduleUnavailabilityDto } from &#x27;../dto/reschedule-unavailability.dto&#x27;;
+/**
+ * **summary**: Verify the requested new Unavailability does not conflict with Unavailability already scheduled for the selected rental.
+ * Also verify the requested new Unavailability has valid data. 
+ */
+@Injectable()
+export class PickupUnavailabilityValidationMiddleware implements NestMiddleware {
+  constructor(
+    @InjectModel(unavailabilityModel) private readonly unavailability: Model&lt;UnavailabilityModelInterface&gt;,
+    private readonly luxonUtil: LuxonUtil
+  ) { }
+
+  /**
+   * **summary**: Convert the startDate and endDate to Luxon DateTimes
+   * @param unavailability new unavailability data 
+   */
+  convertToDateTimes &#x3D; async (unavailability: UnavailabilityDto)/* Promise&lt;DateTime[]&gt;*/ &#x3D;&gt; {
+    return await this.luxonUtil.objectToDateTime([unavailability.startDateTime, unavailability.endDateTime]);
+  }
+
+
+  /**
+   * **summary**: Validate the requested new unavalability data conforms to the following conditions:
+   * - The duration is at least one full day
+   * - The duration is no more than a full year (including leap year days)
+   * - The start date and time is before the end date and time
+   * @param  unavailability new unavailability data
+   */
+  validateUnavailability &#x3D; async (unavailability: UnavailabilityDto): Promise&lt;void&gt; &#x3D;&gt; {
+    const dateTimes: DateTime[] &#x3D; await this.convertToDateTimes(unavailability);
+    const startDate: DateTime &#x3D; dateTimes[0], endDate: DateTime &#x3D; dateTimes[1];
+    // check if the unavailability is in a leap year
+    const days &#x3D; endDate.diff(startDate, &#x27;days&#x27;);
+    const leapYear &#x3D; (startDate.isInLeapYear || endDate.isInLeapYear);
+    if (days.values.days &lt; 1) throw new Error(&#x27;Unavailability must be for at least one full day (24 hours)&#x27;);
+    if (days.values.days &gt; 365 &amp;&amp; leapYear &#x3D;&#x3D;&#x3D; false) throw new Error(&#x27;You cannot schedule over a single Unavailability for more than a years duration&#x27;);
+    if (days.values.days &gt; 366 &amp;&amp; leapYear &#x3D;&#x3D;&#x3D; true) throw new Error(&#x27;You cannot schedule over a single Unavailability for more than a years duration&#x27;)
+    if (startDate &lt; endDate &#x3D;&#x3D;&#x3D; false) throw new Error(&#x27;The start date and time must be before the end date and time&#x27;);
+    if (unavailability.title &#x3D;&#x3D; null || typeof unavailability.title !&#x3D;&#x3D; &#x27;string&#x27;) throw new Error(&#x27;title must be a string&#x27;)
+    if (unavailability.rentalId &#x3D;&#x3D; null || typeof unavailability.title !&#x3D;&#x3D; &#x27;string&#x27;) throw new Error(&#x27;rentalId must be a string&#x27;)
+    return;
+  }
+
+  /**
+   * **summary** Query the database and check for the 4 conditions of scheduling conflicts.
+   * - verify the requested unavailability is &#x27;enclosed&#x27; by an existing unavailability
+   * - verify the requested unavailability will not &#x27;enclose&#x27; an existing unavailability
+   * - verify the requested unavailability will not &#x27;overlap&#x27; an exsiting unavailability&#x27;s ending
+   * - verify the requested unavailability will not &#x27;overlap&#x27; an existing unavailability&#x27;s start
+   * @param unavailability 
+   */
+  private sendOverlapQuery &#x3D; async (unavailability: UnavailabilityDto, unavailabiility_id?: string) &#x3D;&gt; {
+    const query &#x3D; {
+      rentalId: unavailability.rentalId,
+      $or: [
+        // #1 Absolutely Enclose the Query
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: { $lt: unavailability.startDateTime.year } },
+            { &#x27;endDateTime.year&#x27;: { $gt: unavailability.endDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: { $lt: unavailability.startDateTime.month } },
+            { &#x27;endDateTime.month&#x27;: { $gt: unavailability.endDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: { $lt: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.day&#x27;: { $gt: unavailability.endDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: { $lt: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.hour&#x27;: { $gt: unavailability.endDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: { $lt: unavailability.startDateTime.minute } },
+            { &#x27;endDateTime.minute&#x27;: { $gt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #2 Absolutely Enclosed by Query
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: { $gt: unavailability.startDateTime.year } },
+            { &#x27;endDateTime.year&#x27;: { $lt: unavailability.endDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: { $gt: unavailability.startDateTime.month } },
+            { &#x27;endDateTime.month&#x27;: { $lt: unavailability.endDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: { $gt: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.day&#x27;: { $lt: unavailability.endDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: { $gt: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.hour&#x27;: { $lt: unavailability.endDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: { $gt: unavailability.startDateTime.minute } },
+            { &#x27;endDateTime.minute&#x27;: { $lt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #3 Absolutely Equal
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: unavailability.startDateTime.minute },
+            { &#x27;endDateTime.minute&#x27;: unavailability.endDateTime.minute }
+          ]
+        },
+        // #4 Start &#x3D;&#x3D;&#x3D; Start &amp;&amp; End &gt; End : sE &lt;&#x3D;&#x3D; eQ
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: { $gt: unavailability.endDateTime.year } },
+            { &#x27;startDateTime.month&#x27;: { $lte: unavailability.endDateTime.month } },
+            { &#x27;startDateTime.day&#x27;: { $lte: unavailability.endDateTime.day } },
+            { &#x27;startDateTime.hour&#x27;: { $lte: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } },
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: { $gt: unavailability.endDateTime.month } },
+            { &#x27;startDateTime.day&#x27;: { $lte: unavailability.endDateTime.day } },
+            { &#x27;startDateTime.hour&#x27;: { $lte: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } },
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: { $gt: unavailability.endDateTime.day } },
+            { &#x27;startDateTime.hour&#x27;: { $lte: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } },
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: { $gt: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } },
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: unavailability.startDateTime.minute },
+            { &#x27;endDateTime.minute&#x27;: { $gt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #5 Start &#x3D;&#x3D;&#x3D; Start &amp;&amp; End &lt; End: eE &gt;&#x3D;&#x3D; sQ
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: { $lt: unavailability.endDateTime.year } },
+            { &#x27;endDateTime.month&#x27;: { $gte: unavailability.startDateTime.month } },
+            { &#x27;endDateTime.day&#x27;: { $gte: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.hour&#x27;: { $gte: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: { $lt: unavailability.endDateTime.month } },
+            { &#x27;endDateTime.day&#x27;: { $gte: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.hour&#x27;: { $gte: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: { $lt: unavailability.endDateTime.day } },
+            { &#x27;endDateTime.hour&#x27;: { $gte: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: { $lt: unavailability.endDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: unavailability.startDateTime.minute },
+            { &#x27;endDateTime.minute&#x27;: { $lt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #6  End &#x3D;&#x3D;&#x3D; End &amp;&amp; Start &lt; Start: eE &gt;&#x3D;&#x3D; sQ
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: { $lt: unavailability.startDateTime.year } },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;endDateTime.month&#x27;: { $gte: unavailability.startDateTime.month } },
+            { &#x27;endDateTime.day&#x27;: { $gte: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.hour&#x27;: { $gte: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: { $lt: unavailability.startDateTime.month } },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;endDateTime.day&#x27;: { $gte: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.hour&#x27;: { $gte: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: { $lt: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;endDateTime.hour&#x27;: { $gte: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: { $lt: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: { $lt: unavailability.startDateTime.minute } },
+            { &#x27;endDateTime.minute&#x27;: unavailability.endDateTime.minute }
+          ]
+        },
+        // #7 End &#x3D;&#x3D;&#x3D; End &amp;&amp; Start &gt; Start
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: { $gt: unavailability.startDateTime.year } },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: { $lte: unavailability.endDateTime.month } },
+            { &#x27;startDateTime.day&#x27;: { $lte: unavailability.endDateTime.day } },
+            { &#x27;startDateTime.hour&#x27;: { $lte: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: { $gt: unavailability.startDateTime.month } },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: { $lte: unavailability.endDateTime.day } },
+            { &#x27;startDateTime.hour&#x27;: { $lte: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: { $gt: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: { $lte: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: { $gt: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: { $gt: unavailability.startDateTime.minute } },
+            { &#x27;endDateTime.minute&#x27;: unavailability.endDateTime.minute }
+          ]
+        },
+        // #8 Start &lt; Start &amp;&amp; End &gt; Start
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: { $lt: unavailability.startDateTime.year } },
+            { &#x27;endDateTime.year&#x27;: { $gt: unavailability.startDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: { $lt: unavailability.startDateTime.month } },
+            { &#x27;endDateTime.month&#x27;: { $gt: unavailability.startDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: { $lt: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.day&#x27;: { $gt: unavailability.startDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: { $lt: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.hour&#x27;: { $gt: unavailability.startDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: { $lt: unavailability.startDateTime.minute } },
+            { &#x27;endDateTime.minute&#x27;: { $gt: unavailability.startDateTime.minute } }
+          ]
+        },
+        // #9 Start &lt; End &amp;&amp; End &#x3D;&#x3D;&#x3D; Start
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: { $lt: unavailability.startDateTime.year } },
+            { &#x27;endDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.month&#x27;: { $gte: unavailability.startDateTime.month } },
+            { &#x27;endDateTime.day&#x27;: { $gte: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.hour&#x27;: { $gte: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: { $lt: unavailability.startDateTime.month } },
+            { &#x27;endDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.day&#x27;: { $gte: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.hour&#x27;: { $gte: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: { $lt: unavailability.startDateTime.day } },
+            { &#x27;endDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.hour&#x27;: { $gte: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: { $lt: unavailability.startDateTime.hour } },
+            { &#x27;endDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.minute&#x27;: { $gte: unavailability.startDateTime.minute } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: { $lt: unavailability.startDateTime.minute } },
+            { &#x27;endDateTime.minute&#x27;: unavailability.startDateTime.minute }
+          ]
+        },
+        // #10 End &gt; End &amp;&amp; Start &lt; End
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: { $lt: unavailability.endDateTime.year } },
+            { &#x27;endDateTime.year&#x27;: { $gt: unavailability.endDateTime.year } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: { $lt: unavailability.endDateTime.month } },
+            { &#x27;endDateTime.month&#x27;: { $gt: unavailability.endDateTime.month } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: { $lt: unavailability.endDateTime.day } },
+            { &#x27;endDateTime.day&#x27;: { $gt: unavailability.endDateTime.day } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: { $lt: unavailability.endDateTime.hour } },
+            { &#x27;endDateTime.hour&#x27;: { $gt: unavailability.endDateTime.hour } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: { $lt: unavailability.endDateTime.minute } },
+            { &#x27;endDateTime.minute&#x27;: { $gt: unavailability.endDateTime.minute } }
+          ]
+        },
+        // #11 End &gt; End &amp;&amp; Start &#x3D;&#x3D;&#x3D; End
+        // year
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;endDateTime.year&#x27;: { $gt: unavailability.endDateTime.year } },
+            { &#x27;startDateTime.month&#x27;: { $lte: unavailability.endDateTime.month } },
+            { &#x27;startDateTime.day&#x27;: { $lte: unavailability.endDateTime.day } },
+            { &#x27;startDateTime.hour&#x27;: { $lte: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } }
+          ]
+        },
+        // month
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;endDateTime.month&#x27;: { $gt: unavailability.endDateTime.month } },
+            { &#x27;startDateTime.day&#x27;: { $lte: unavailability.endDateTime.day } },
+            { &#x27;startDateTime.hour&#x27;: { $lte: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } }
+          ]
+        },
+        // day
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;endDateTime.day&#x27;: { $gt: unavailability.endDateTime.day } },
+            { &#x27;startDateTime.hour&#x27;: { $lte: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } }
+          ]
+        },
+        // hour
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: { $gt: unavailability.endDateTime.hour } },
+            { &#x27;startDateTime.minute&#x27;: { $lte: unavailability.endDateTime.minute } }
+          ]
+        },
+        // minute
+        {
+          $and: [
+            { &#x27;startDateTime.year&#x27;: unavailability.startDateTime.year },
+            { &#x27;endDateTime.year&#x27;: unavailability.endDateTime.year },
+            { &#x27;startDateTime.month&#x27;: unavailability.startDateTime.month },
+            { &#x27;endDateTime.month&#x27;: unavailability.endDateTime.month },
+            { &#x27;startDateTime.day&#x27;: unavailability.startDateTime.day },
+            { &#x27;endDateTime.day&#x27;: unavailability.endDateTime.day },
+            { &#x27;startDateTime.hour&#x27;: unavailability.startDateTime.hour },
+            { &#x27;endDateTime.hour&#x27;: unavailability.endDateTime.hour },
+            { &#x27;startDateTime.minute&#x27;: unavailability.endDateTime.minute },
+            { &#x27;endDateTime.minute&#x27;: { $gt: unavailability.endDateTime.minute } }
+          ]
+        }
+      ]
+    };
+    if (unavailabiility_id) {
+      // reschedule query
+      let reQuery: any &#x3D; query;
+      reQuery._id &#x3D; { $ne: unavailabiility_id };
+      return await this.unavailability.find(reQuery);
+    }
+    // schedule new query
+    return await this.unavailability.find(query);
+
+  }
+
+  /**
+   * **summary**: Check the databse for any unavailability that overlaps with the requested new unavailability
+   * @param unavailability
+   */
+  checkForOverlap &#x3D; async (unavailability: UnavailabilityDto) &#x3D;&gt; {
+    const check &#x3D; await this.sendOverlapQuery(unavailability);
+    console.log(&#x27;MIDDLEWARE CHECK&#x27;)
+    console.log(check)
+    if (check.length &gt;&#x3D; 1) throw new Error(&#x60;The requested unavailability will overlap with unavailability already scheduled for this rental: ${unavailability.rentalId}&#x60;);
+    return;
+  }
+
+  checkForRescheduleOverlap &#x3D; async (unavailability: RescheduleUnavailabilityDto) &#x3D;&gt; {
+    const check &#x3D; await this.sendOverlapQuery(unavailability, unavailability.unavailability_id);
+    console.log(&#x27;MIDDLEWARE RESCHEDULE CHECK&#x27;);
+    console.log(check);
+    if (check.length &gt;&#x3D; 1) throw new Error(&#x60;The requested rescheduling will overlap with unavailability already scheduled for this rental: ${unavailability.rentalId}&#x60;);
+    return;
+  }
+
+  /**
+   * **summary
+   * @param unavailability
+   */
+
+  /**
+   * **summary**:
+   * @param req the request object
+   * @param res the response object
+   * @param next the next method to continue onto the next handler
+   */
+  use &#x3D; async (req: Request, res: Response, next: Function): Promise&lt;void&gt; &#x3D;&gt; {
+    // Schedule
+    if (req.originalUrl &#x3D;&#x3D;&#x3D; &#x27;/unavailability/schedule-pickup-unavailability&#x27;) {
+      console.log(&#x60;VALIDATE UNAVAILABILITY MIDDLEWARE&#x60;)
+      await this.validateUnavailability(req.body);
+      await this.checkForOverlap(req.body);
+    }
+    // Reschedule
+    if (req.originalUrl &#x3D;&#x3D;&#x3D; &#x27;/unavailability/reschedule-pickup-unavailability&#x27;) {
+      if (req.body.unavailability_id) {
+        console.log(&#x60;VALIDATE RESCHEDULING MIDDLEWARE&#x60;);
+        const update: UnavailabilityDto &#x3D; {
+          rentalId: req.body.rentalId,
+          title: req.body.title,
+          startDateTime: req.body.startDateTime,
+          endDateTime: req.body.endDateTime
+        }
+        await this.validateUnavailability(update);
+        await this.checkForRescheduleOverlap(req.body)
+      }
+      else throw new Error(&#x27;Please provide an Unavailability _id to reschedule&#x27;);
+    }
+    next();
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'PickupUnavailabilityValidationMiddleware.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

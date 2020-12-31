@@ -153,8 +153,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/user/controller/user.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/user/controller/user.controller.ts:31</a></div>
                 </td>
             </tr>
 
@@ -233,14 +233,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UseGuards(JwtAuthGuard)<br />@UseGuards(LoggedOutGuard)<br />@Post(&#x27;delete-profile&#x27;)<br /></code>
+                    <code>@UseGuards(JwtAuthGuard)<br />@Post(&#x27;delete-profile&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/user/controller/user.controller.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/user/controller/user.controller.ts:67</a></div>
                 </td>
             </tr>
 
@@ -332,14 +332,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UseGuards(JwtAuthGuard)<br />@UseGuards(LoggedOutGuard)<br />@Get(&#x27;find-user&#x27;)<br /></code>
+                    <code>@UseGuards(JwtAuthGuard)<br />@Get(&#x27;find-user&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/user/controller/user.controller.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/user/controller/user.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -418,14 +418,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UseGuards(JwtAuthGuard)<br />@UseGuards(LoggedOutGuard)<br />@Post(&#x27;update-user&#x27;)<br /></code>
+                    <code>@UseGuards(JwtAuthGuard)<br />@Post(&#x27;update-user&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/user/controller/user.controller.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/user/controller/user.controller.ts:44</a></div>
                 </td>
             </tr>
 
@@ -498,10 +498,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Body, Get, UsePipes, UseGuards, Req, Redirect, Query } from &#x27;@nestjs/common&#x27;;
 import { CreateQuery } from &#x27;mongoose&#x27;;
-import { JwtAuthGuard } from &#x27;../../auth/gaurds/jwt-auth.guard&#x27;;
-import { LoggedOutGuard } from &#x27;../../auth/gaurds/logged-out.guard&#x27;;
+import { JwtAuthGuard } from &#x27;../../auth/guards/jwt-auth.guard&#x27;;
+import { LoggedOutGuard } from &#x27;../../auth/guards/logged-out.guard&#x27;;
 import { JoiValidationPipe } from &#x27;../../common/pipes/joi-validation.pipe&#x27;;
 import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
 import { DeleteUserDto } from &#x27;../dto/delete-user.dto&#x27;;
@@ -515,6 +515,8 @@ import { UserInterface } from &#x27;../interface/user.interface&#x27;;
 /**
  * **summary**: Controller for managing users in the application
  */
+@UseGuards(LoggedOutGuard)
+@UseGuards(JwtAuthGuard)
 @Controller(&#x27;user&#x27;)
 export class UserController {
     constructor(private readonly userService: UserService) {}
@@ -536,7 +538,7 @@ export class UserController {
      * @param req Client request
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGuard)
+    // @UseGuards(LoggedOutGuard)
     @Post(&#x27;update-user&#x27;)
     // @Redirect(&#x27;http://localhost:3000/auth/login&#x27;)
     async updateProfile(@Body() update: UpdateUserDto, @Req() req): Promise&lt;UserInterface&gt; {
@@ -548,9 +550,9 @@ export class UserController {
      * @param email User&#x27;s email
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGuard)
+    // @UseGuards(LoggedOutGuard)
     @Get(&#x27;find-user&#x27;)
-    async findUser(@Body() email: FindUserDto): Promise&lt;UserModelInterface&gt; {
+    async findUser(@Query() email: FindUserDto): Promise&lt;UserModelInterface&gt; {
         return await this.userService.findUser(email);
     }
 
@@ -559,7 +561,7 @@ export class UserController {
      * @param data User credentials
      */
     @UseGuards(JwtAuthGuard)
-    @UseGuards(LoggedOutGuard)
+    // @UseGuards(LoggedOutGuard)
     // @Redirect(&#x27;http://localhost:3000/auth/login&#x27;, 302)
     @Post(&#x27;delete-profile&#x27;)
     async deleteProfile(@Body() data: DeleteUserDto, @Req() req): Promise&lt;UserInterface&gt; {

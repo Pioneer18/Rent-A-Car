@@ -173,8 +173,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/images/controller/images.controller.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/images/controller/images.controller.ts:118</a></div>
                 </td>
             </tr>
 
@@ -251,8 +251,8 @@ Summary: Delete all of the user&#39;s profile images</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/images/controller/images.controller.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/images/controller/images.controller.ts:109</a></div>
                 </td>
             </tr>
 
@@ -344,8 +344,8 @@ Summary: delete all images for a selected rental</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/images/controller/images.controller.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/images/controller/images.controller.ts:100</a></div>
                 </td>
             </tr>
 
@@ -437,8 +437,8 @@ Summary: Delete a single or multiple images of a rental</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/images/controller/images.controller.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/images/controller/images.controller.ts:90</a></div>
                 </td>
             </tr>
 
@@ -537,8 +537,8 @@ Summary: Find a user profile image</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/images/controller/images.controller.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/images/controller/images.controller.ts:80</a></div>
                 </td>
             </tr>
 
@@ -620,8 +620,8 @@ Summary: Find a user profile image</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/images/controller/images.controller.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/images/controller/images.controller.ts:70</a></div>
                 </td>
             </tr>
 
@@ -713,8 +713,8 @@ Summary: Find a vehicle image by id</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/images/controller/images.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/images/controller/images.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -807,8 +807,8 @@ Summary: Find all of a rentals images</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/images/controller/images.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/images/controller/images.controller.ts:44</a></div>
                 </td>
             </tr>
 
@@ -894,8 +894,8 @@ Summary: Upload a single or multiple profile photos to be saved</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/images/controller/images.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/images/controller/images.controller.ts:28</a></div>
                 </td>
             </tr>
 
@@ -971,18 +971,19 @@ Summary: Upload a single or multiple profile photos to be saved</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Req, UseGuards, Body, Get, Query, Res, Logger } from &#x27;@nestjs/common&#x27;;
-import { JwtAuthGuard } from &#x27;../../auth/gaurds/jwt-auth.guard&#x27;;
+import { JwtAuthGuard } from &#x27;../../auth/guards/jwt-auth.guard&#x27;;
 import { ImagesService } from &#x27;../service/images.service&#x27;;
-import { response} from &#x27;express&#x27;;
 import { profile, rentals } from &#x27;../../common/Const&#x27;;
 import { ImageDto } from &#x27;../dto/image.dto&#x27;;
 import { RetrievedImagesInterface } from &#x27;../interfaces/service/retrieved-images.interface&#x27;;
 import { DeleteResponseInterface } from &#x27;../../common/interfaces/delete-response.interface&#x27;;
-import { RentalIdParamsDto } from &#x27;../dto/rental-id-params.dto&#x27;;
+import { RentalIdParamsDto } from &#x27;../../rental/dto/rental-id-params.dto&#x27;;
+import { LoggedOutGuard } from &#x27;../../auth/guards/logged-out.guard&#x27;;
 /**
  * **summary**: Controller for managing images in the application
  */
 @UseGuards(JwtAuthGuard)
+@UseGuards(LoggedOutGuard)
 @Controller(&#x27;images&#x27;)
 export class ImagesController {
     constructor(

@@ -64,7 +64,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p><strong>summary</strong>: Create a rental Duration from the incoming GivenNoticeSearchRentalDto</p>
+                <p><strong>summary</strong>: Create a rental Duration from the incoming RentalSearchFilter</p>
 
             </p>
 
@@ -109,7 +109,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/rental/pipes/rental-duration.pipe.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/rental/pipes/rental-duration.pipe.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -172,7 +172,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/rental/pipes/rental-duration.pipe.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/rental/pipes/rental-duration.pipe.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -217,11 +217,12 @@ Rental query</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger, PipeTransform } from &#x27;@nestjs/common&#x27;;
-import { GivenNoticeSearchRentalDto } from &#x27;../dto/searchRental/given-notice-search-rental-dto&#x27;;
+import { RentalSearchFilter } from &#x27;../dto/searchRental/given-notice-search-rental-dto&#x27;;
 import { GenerateRentalDurationEnumUtil } from &#x27;../utils/generate-rental-duration-enum.util&#x27;;
 import { RequestCoordinatesDto } from &#x27;../dto/searchRental/request-coordinates.dto&#x27;;
+import { RentalDurations } from &#x27;../const&#x27;;
 /**
- * **summary**: Create a rental Duration from the incoming GivenNoticeSearchRentalDto
+ * **summary**: Create a rental Duration from the incoming RentalSearchFilter
  */
 @Injectable()
 export class RentalDurationPipe implements PipeTransform {
@@ -234,18 +235,22 @@ export class RentalDurationPipe implements PipeTransform {
    * Rental query
    * @param value the semi processed client request data to query a rental near their, or a specified, locaion
    */
-  transform &#x3D; async (value: GivenNoticeSearchRentalDto): Promise&lt;RequestCoordinatesDto&gt; &#x3D;&gt; {
+  transform &#x3D; async (value: RentalSearchFilter): Promise&lt;RequestCoordinatesDto&gt; &#x3D;&gt; {
     try {
+      let rentalDuration &#x3D; null;
+      if (value.rentalEndTime &amp;&amp; value.rentalStartTime) {
+        rentalDuration &#x3D; await this.generateDuration.generateRentalDurationEnum({
+          startTime: value.rentalStartTime,
+          endTime: value.rentalEndTime,
+        });
+      }
       const dto: RequestCoordinatesDto &#x3D; {
         address: value.address,
-        price: value.price,
-        features: value.features,
-        rentalDuration: await this.generateDuration.generateRentalDurationEnum(
-          {
-            startTime: value.rentalStartTime,
-            endTime: value.rentalEndTime,
-          }),
-        givenNotice: value.givenNotice,
+        price: value.price ? value.price : null,
+        features: value.features ? value.features : null,
+        rentalDuration,
+        givenNotice: rentalDuration !&#x3D;&#x3D; null ? value.givenNotice : null,
+        radius: value.radius
       };
       return await dto;
     } catch (err) {

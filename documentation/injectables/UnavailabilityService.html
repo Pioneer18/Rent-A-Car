@@ -39,7 +39,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>RedisService</li>
+  <li>UnavailabilityService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -57,16 +57,9 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/redis/service/redis.service.ts</code>
+            <code>src/unavailability/service/unavailability.service.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p><strong>summary</strong>: this Redis service is used to logout users and check if they are logged out</p>
-
-            </p>
 
 
 
@@ -83,13 +76,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#get">get</a>
+                                <a href="#removeUnavailability">removeUnavailability</a>
                             </li>
                             <li>
-                                <a href="#set">set</a>
+                                <a href="#rescheduleUnavailability">rescheduleUnavailability</a>
                             </li>
                             <li>
-                                <a href="#syncGet">syncGet</a>
+                                <a href="#scheduleUnavailability">scheduleUnavailability</a>
+                            </li>
+                            <li>
+                                <a href="#viewUnavailability">viewUnavailability</a>
                             </li>
                         </ul>
                     </td>
@@ -110,12 +106,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(cache: Cache)</code>
+<code>constructor(unavailability: <a href="../interfaces/UnavailabilityModelInterface.html">Model<UnavailabilityModelInterface></a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/redis/service/redis.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/unavailability/service/unavailability.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -133,10 +129,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>cache</td>
+                                                        <td>unavailability</td>
                                                   
                                                         <td>
-                                                                    <code>Cache</code>
+                                                                        <code><a href="../interfaces/UnavailabilityModelInterface.html" target="_self" >Model&lt;UnavailabilityModelInterface&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -163,11 +159,11 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="get"></a>
+                        <a name="removeUnavailability"></a>
                         <span class="name">
                             <b>
-                            get</b>
-                            <a href="#get"><span class="icon ion-ios-link"></span></a>
+                            removeUnavailability</b>
+                            <a href="#removeUnavailability"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -178,13 +174,77 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/redis/service/redis.service.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/unavailability/service/unavailability.service.ts:65</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong> use the key of a JWT to search the Redis &#39;dead-list&#39; and check if the user is logged out</p>
+                        <div class="io-description"><p><strong>summary</strong>: Remove the selected unavailability</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rescheduleUnavailability"></a>
+                        <span class="name">
+                            <b>
+                            rescheduleUnavailability</b>
+                            <a href="#rescheduleUnavailability"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/unavailability/service/unavailability.service.ts:48</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: Reschedule the selected unavailability</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="scheduleUnavailability"></a>
+                        <span class="name">
+                            <b>
+                            scheduleUnavailability</b>
+                            <a href="#scheduleUnavailability"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/unavailability/service/unavailability.service.ts:21</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: Save an Unavailabiity Document for the selected Rental</p>
 </div>
                     </td>
                 </tr>
@@ -202,9 +262,9 @@
                                       </thead>
                                       <tbody>
                                                 <tr>
-                                                        <td>key</td>
+                                                        <td>Unavailabiity</td>
                                                         <td>
-                                                                <code><p>the last 8 digits of a JWT used to list in the dead-list of the Redis cache</p>
+                                                                <code><p>The Unavailability Document to be saved</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -219,11 +279,11 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="set"></a>
+                        <a name="viewUnavailability"></a>
                         <span class="name">
                             <b>
-                            set</b>
-                            <a href="#set"><span class="icon ion-ios-link"></span></a>
+                            viewUnavailability</b>
+                            <a href="#viewUnavailability"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -234,104 +294,17 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/redis/service/redis.service.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/unavailability/service/unavailability.service.ts:38</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong> this method is used to add a user&#39;s JWT to the logged out &#39;dead-list&#39;</p>
+                        <div class="io-description"><p><strong>summary</strong>: Select a rental by it&#39;s _id and view all of it&#39;s scheduled pickup-unavailability</p>
 </div>
                     </td>
                 </tr>
 
-                    <tr>
-                        <td class="col-md-4">
-                          <div class="io-description">
-                                  <b>Parameters :</b>
-                                  <table class="params">
-                                      <thead>
-                                          <tr>
-                                                <td>Name</td>
-                                                    <td>Description</td>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                                <tr>
-                                                        <td>key</td>
-                                                        <td>
-                                                                <code><p>the last 8 digits of a JWT</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>value</td>
-                                                        <td>
-                                                                <code><p>the JWT</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                      </tbody>
-                                  </table>
-                          </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="syncGet"></a>
-                        <span class="name">
-                            <b>
-                            syncGet</b>
-                            <a href="#syncGet"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/redis/service/redis.service.ts:24</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong> syncGet is the synchronous version of the get method, used when async is not apporpriate</p>
-</div>
-                    </td>
-                </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                          <div class="io-description">
-                                  <b>Parameters :</b>
-                                  <table class="params">
-                                      <thead>
-                                          <tr>
-                                                <td>Name</td>
-                                                    <td>Description</td>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                                <tr>
-                                                        <td>key</td>
-                                                        <td>
-                                                                <code><p>the last 8 digits of a JWT used to list in the dead-list of the Redis cache </p>
-</code>
-                                                        </td>
-                                                </tr>
-                                      </tbody>
-                                  </table>
-                          </div>
-                        </td>
-                    </tr>
             </tbody>
         </table>
 </section>
@@ -340,41 +313,82 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CACHE_MANAGER, Inject, Injectable } from &#x27;@nestjs/common&#x27;;
-import { Cache } from &#x27;cache-manager&#x27;;
-/**
- * **summary**: this Redis service is used to logout users and check if they are logged out
- */
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
+import { Model } from &#x27;mongoose&#x27;;
+import { UnavailabilityModelInterface } from &#x27;../interface/model/unavailability-model.interface&#x27;;
+import { unavailabilityModel } from &#x27;../../common/Const&#x27;;
+import { UnavailabilityInterface } from &#x27;../interface/unavailability.interface&#x27;;
+import { RescheduleUnavailabilityDto } from &#x27;../dto/reschedule-unavailability.dto&#x27;;
+import { UnavailabilityDto } from &#x27;../dto/unavailability.dto&#x27;;
+import { DeleteResponseInterface } from &#x27;src/common/interfaces/delete-response.interface&#x27;;
+
 @Injectable()
-export class RedisService {
+export class UnavailabilityService {
     constructor(
-        @Inject(CACHE_MANAGER) private readonly cache: Cache,
-    ) {}
+        @InjectModel(unavailabilityModel) private readonly unavailability: Model&lt;UnavailabilityModelInterface&gt;,
+    ) { }
 
     /**
-     * **summary** use the key of a JWT to search the Redis &#x27;dead-list&#x27; and check if the user is logged out
-     * @param key the last 8 digits of a JWT used to list in the dead-list of the Redis cache
+     * **summary**: Save an Unavailabiity Document for the selected Rental
+     * @param Unavailabiity The Unavailability Document to be saved
      */
-    get &#x3D; async (key: string): Promise&lt;any&gt; &#x3D;&gt; {
-        return await this.cache.get(key);
+    scheduleUnavailability &#x3D; async (unavailability: UnavailabilityInterface) &#x3D;&gt; {
+        try {
+            console.log(&#x60;SCHEDULE UNAVAILABILITY:&#x60;)
+            console.log(unavailability);
+            const document &#x3D; await new this.unavailability(unavailability);
+            console.log(&#x27;DOCUMENT&#x27;)
+            console.log(document);
+            await document.save();
+            // map the returned model into a plain UnavailabilityInterface
+            return document;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+    /**
+     * **summary**: Select a rental by it&#x27;s _id and view all of it&#x27;s scheduled pickup-unavailability
+     */
+    viewUnavailability &#x3D; async (rental_id: string) &#x3D;&gt; {
+        try {
+            return await this.unavailability.find({ rentalId: rental_id })
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+    /**
+     * **summary**: Reschedule the selected unavailability
+     */
+    rescheduleUnavailability &#x3D; async (unavailability: RescheduleUnavailabilityDto) &#x3D;&gt; {
+        try {
+            const filter &#x3D; { _id: unavailability.unavailability_id }
+            const update: UnavailabilityDto &#x3D; {
+                rentalId: unavailability.rentalId,
+                title: unavailability.title,
+                startDateTime: unavailability.startDateTime,
+                endDateTime: unavailability.endDateTime
+            }
+            return await this.unavailability.findOneAndUpdate(filter, update, { new: true, useFindAndModify: false });
+        } catch (err) {
+            if (err) throw new Error(err);
+        }
+    }
+    /**
+     * **summary**: Remove the selected unavailability
+     */
+    removeUnavailability &#x3D; async (_id: string): Promise&lt;DeleteResponseInterface&gt; &#x3D;&gt; {
+        try {
+            const remove &#x3D; await this.unavailability.remove({ _id: _id });
+            if (remove.deletedCount &#x3D;&#x3D;&#x3D; 0) {
+                throw new Error(&#x27;The requested unavailability was not found, no documents were deleted.&#x27;)
+            }
+            return remove;
+        } catch (err) {
+            if (err) throw new Error(err);
+        }
     }
 
-    /**
-     * **summary** syncGet is the synchronous version of the get method, used when async is not apporpriate
-     * @param key the last 8 digits of a JWT used to list in the dead-list of the Redis cache 
-     */
-    syncGet &#x3D; (key: string): Promise&lt;any&gt; &#x3D;&gt; {
-        return this.cache.get(key);
-    }
-
-    /**
-     * **summary** this method is used to add a user&#x27;s JWT to the logged out &#x27;dead-list&#x27;
-     * @param key the last 8 digits of a JWT
-     * @param value the JWT
-     */
-    set &#x3D; async (key: string, value: string): Promise&lt;any&gt; &#x3D;&gt; {
-        return await this.cache.set(key, value, null);
-    }
 }
 </code></pre>
     </div>
@@ -409,7 +423,7 @@ export class RedisService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'RedisService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UnavailabilityService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

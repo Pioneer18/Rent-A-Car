@@ -43,7 +43,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>RentalIdParamsDto</li>
+  <li>RadiusToMeters</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/rental/dto/rental-id-params.dto.ts</code>
+            <code>src/rental/utils/radius-to-meters.ts</code>
         </p>
 
 
@@ -81,7 +81,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#rental_id">rental_id</a>
+                                <a href="#convert">convert</a>
                             </li>
                         </ul>
                     </td>
@@ -96,6 +96,24 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/rental/utils/radius-to-meters.ts:3</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -106,26 +124,31 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="rental_id"></a>
+                        <a name="convert"></a>
                         <span class="name">
                             <b>
-                            rental_id</b>
-                            <a href="#rental_id"><span class="icon ion-ios-link"></span></a>
+                            convert</b>
+                            <a href="#convert"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="2" class="link-to-prism">src/rental/dto/rental-id-params.dto.ts:2</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/rental/utils/radius-to-meters.ts:8</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: Convert the SearchRentalRadius to it&#39;s enumerated value in meters</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -141,9 +164,24 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class RentalIdParamsDto {
-    rental_id: string;
-}</code></pre>
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SearchRentalRadius } from &quot;../const&quot;;
+
+export class RadiusToMeters {
+    constructor() {}
+    /**
+     * **summary**: Convert the SearchRentalRadius to it&#x27;s enumerated value in meters
+     */
+    convert &#x3D; (radius: SearchRentalRadius): number &#x3D;&gt; {
+        let response: number;
+        let trash: any;
+        radius &#x3D;&#x3D;&#x3D; 0 ? response &#x3D; 3218 : trash &#x3D; null;
+        radius &#x3D;&#x3D;&#x3D; 1 ? response &#x3D; 6437 : trash &#x3D; null;
+        radius &#x3D;&#x3D;&#x3D; 2 ? response &#x3D; 9656 : trash &#x3D; null;
+        radius &#x3D;&#x3D;&#x3D; 3 ? response &#x3D; 12874 : trash &#x3D; null;
+        return response;
+    }
+}
+</code></pre>
     </div>
 </div>
 
@@ -171,7 +209,7 @@
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'RentalIdParamsDto.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'RadiusToMeters.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
