@@ -427,34 +427,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                 </ul>
                 </li>
-                        <li class="chapter">
-                            <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#controllers-links"' :
-                                'data-target="#xs-controllers-links"' }>
-                                <span class="icon ion-md-swap"></span>
-                                <span>Controllers</span>
-                                <span class="icon ion-ios-arrow-down"></span>
-                            </div>
-                            <ul class="links collapse " ${ isNormalMode ? 'id="controllers-links"' : 'id="xs-controllers-links"' }>
-                                <li class="link">
-                                    <a href="controllers/AppController.html" data-type="entity-link">AppController</a>
-                                </li>
-                                <li class="link">
-                                    <a href="controllers/AuthController.html" data-type="entity-link">AuthController</a>
-                                </li>
-                                <li class="link">
-                                    <a href="controllers/ImagesController.html" data-type="entity-link">ImagesController</a>
-                                </li>
-                                <li class="link">
-                                    <a href="controllers/RentalController.html" data-type="entity-link">RentalController</a>
-                                </li>
-                                <li class="link">
-                                    <a href="controllers/UnavailabilityController.html" data-type="entity-link">UnavailabilityController</a>
-                                </li>
-                                <li class="link">
-                                    <a href="controllers/UserController.html" data-type="entity-link">UserController</a>
-                                </li>
-                            </ul>
-                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#classes-links"' :
                             'data-target="#xs-classes-links"' }>
@@ -564,34 +536,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
-                                    <a href="injectables/AppConfigService.html" data-type="entity-link">AppConfigService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/AppService.html" data-type="entity-link">AppService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/AuthService.html" data-type="entity-link">AuthService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/BcryptHashPipe.html" data-type="entity-link">BcryptHashPipe</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/CreateMulterUploadUtil.html" data-type="entity-link">CreateMulterUploadUtil</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/CreateUserDto.html" data-type="entity-link">CreateUserDto</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/DeleteS3ImagesUtil.html" data-type="entity-link">DeleteS3ImagesUtil</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/DeleteUserDto.html" data-type="entity-link">DeleteUserDto</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/EmailService.html" data-type="entity-link">EmailService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/ExtractKeyValueUtil.html" data-type="entity-link">ExtractKeyValueUtil</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/FindUserByResetPwTokenDto.html" data-type="entity-link">FindUserByResetPwTokenDto</a>
@@ -600,31 +551,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/FindUserDto.html" data-type="entity-link">FindUserDto</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/GenerateRentalDurationEnumUtil.html" data-type="entity-link">GenerateRentalDurationEnumUtil</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/GeoUrlApiPipe.html" data-type="entity-link">GeoUrlApiPipe</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/GeoUrlApiUtil.html" data-type="entity-link">GeoUrlApiUtil</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/ImagesService.html" data-type="entity-link">ImagesService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/JoiValidationPipe.html" data-type="entity-link">JoiValidationPipe</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/JwtAuthGuard.html" data-type="entity-link">JwtAuthGuard</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/JwtStrategy.html" data-type="entity-link">JwtStrategy</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/LocalAuthGuard.html" data-type="entity-link">LocalAuthGuard</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/LocalStrategy.html" data-type="entity-link">LocalStrategy</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/LoggingInterceptor.html" data-type="entity-link">LoggingInterceptor</a>
@@ -633,43 +566,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/LoginDto.html" data-type="entity-link">LoginDto</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/MapNewRentalPipe.html" data-type="entity-link">MapNewRentalPipe</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/MulterUploadUtil.html" data-type="entity-link">MulterUploadUtil</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/PickupUnavailabilityValidationMiddleware.html" data-type="entity-link">PickupUnavailabilityValidationMiddleware</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/PositiveNumber.html" data-type="entity-link">PositiveNumber</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/PricingPipe.html" data-type="entity-link">PricingPipe</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/ProcessSaveDataUtil.html" data-type="entity-link">ProcessSaveDataUtil</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/RedisService.html" data-type="entity-link">RedisService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/RentalDurationPipe.html" data-type="entity-link">RentalDurationPipe</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/RentalSearchFilterPipe.html" data-type="entity-link">RentalSearchFilterPipe</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/RentalService.html" data-type="entity-link">RentalService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/RequestCoordinatesPipe.html" data-type="entity-link">RequestCoordinatesPipe</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/ReschedulePickupUnavailabilityValidationMiddleware.html" data-type="entity-link">ReschedulePickupUnavailabilityValidationMiddleware</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/S3Provider.html" data-type="entity-link">S3Provider</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/SchedulingValidationPipe.html" data-type="entity-link">SchedulingValidationPipe</a>
@@ -678,25 +581,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/TestRentalService.html" data-type="entity-link">TestRentalService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/UnavailabilityService.html" data-type="entity-link">UnavailabilityService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/UpdateUserDto.html" data-type="entity-link">UpdateUserDto</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/UserService.html" data-type="entity-link">UserService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/ValidateEditDetailsPipe.html" data-type="entity-link">ValidateEditDetailsPipe</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ValidateEmailMiddleware.html" data-type="entity-link">ValidateEmailMiddleware</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ValidateEmailUtil.html" data-type="entity-link">ValidateEmailUtil</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/VerifyNewPasswordUtil.html" data-type="entity-link">VerifyNewPasswordUtil</a>
                                 </li>
                             </ul>
                         </li>

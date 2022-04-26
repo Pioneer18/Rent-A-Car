@@ -92,10 +92,10 @@
                             <a href="#Schema" title="src/rental/schema/rental.schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../rental.schema.ts)</a>
                         </li>
                         <li>
-                            <a href="#Schema" title="src/user/schema/user.schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../user.schema.ts)</a>
+                            <a href="#Schema" title="src/unavailability/schema/unavailability-schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../unavailability-schema.ts)</a>
                         </li>
                         <li>
-                            <a href="#Schema" title="src/unavailability/schema/unavailability-schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../unavailability-schema.ts)</a>
+                            <a href="#Schema" title="src/user/schema/user.schema.ts"><b>Schema</b>&nbsp;&nbsp;&nbsp;(src/.../user.schema.ts)</a>
                         </li>
                         <li>
                             <a href="#SearchRentalValidationSchema" title="src/rental/schema/validation/search-rental-validation.schema.ts"><b>SearchRentalValidationSchema</b>&nbsp;&nbsp;&nbsp;(src/.../search-rental-validation.schema.ts)</a>
@@ -663,66 +663,6 @@
             </tbody>
         </table>
 </section>
-    <h3>src/user/schema/user.schema.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="Schema"></a>
-                        <span class="name">
-                            <b>
-                            Schema</b>
-                            <a href="#Schema"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>mongoose.Schema</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="UserSchema"></a>
-                        <span class="name">
-                            <b>
-                            UserSchema</b>
-                            <a href="#UserSchema"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new Schema({
-    username: String,
-    email: {
-        type: String,
-        unique: true,
-    },
-    password: String,
-    resetPasswordToken: String,
-    resetPasswordExpires: Date,
-})</code>
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p><strong>summary</strong>: schema for the User model</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-</section>
     <h3>src/unavailability/schema/unavailability-schema.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -786,6 +726,66 @@
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p><strong>summary</strong>: The schema for the Unavailability Model</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/user/schema/user.schema.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="Schema"></a>
+                        <span class="name">
+                            <b>
+                            Schema</b>
+                            <a href="#Schema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>mongoose.Schema</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="UserSchema"></a>
+                        <span class="name">
+                            <b>
+                            UserSchema</b>
+                            <a href="#UserSchema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Schema({
+    username: String,
+    email: {
+        type: String,
+        unique: true,
+    },
+    password: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
+})</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p><strong>summary</strong>: schema for the User model</p>
 </div>
                     </td>
                 </tr>
