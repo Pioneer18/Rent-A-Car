@@ -25,6 +25,7 @@ async function bootstrap() {
     console.log('Running in Prod: https://racapp-ckibfdodrq-ue.a.run.app');
     const app = await NestFactory.create(AppModule);
     const appConfig = await app.get(AppConfigService);
+    console.log(appConfig.remote_db);
     app.enableCors();
     app.use(helmet());
     app.use(cookieParser());
