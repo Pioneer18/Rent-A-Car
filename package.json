@@ -70,7 +70,7 @@
     "@types/passport-jwt": "^3.0.3",
     "@types/passport-local": "^1.0.33",
     "@types/supertest": "2.0.7",
-    "nodemon": "^2.0.6",
+    "nodemon": "^2.0.20",
     "prettier": "1.17.0",
     "start-server-webpack-plugin": "^2.2.5",
     "supertest": "4.0.2",
